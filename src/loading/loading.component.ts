@@ -2,7 +2,8 @@ import {
 	ChangeDetectionStrategy,
 	Component,
 	HostBinding,
-	Input
+	Input,
+	inject
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 import { NgClass } from "@angular/common";
@@ -36,6 +37,8 @@ import { NgClass } from "@angular/common";
 	imports: [NgClass]
 })
 export class Loading {
+	public i18n = inject(I18n);
+
 	/**
 	 * Accessible title for the loading circle.
 	 * Defaults to the `LOADING.TITLE` value from the i18n service.
@@ -57,5 +60,9 @@ export class Loading {
 	 */
 	@Input() @HostBinding("class.cds--loading-overlay") overlay = false;
 
-	constructor(protected i18n: I18n) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 }

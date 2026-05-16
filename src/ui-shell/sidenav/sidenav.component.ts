@@ -2,7 +2,8 @@ import {
 	Component,
 	HostBinding,
 	Input,
-	ViewEncapsulation
+	ViewEncapsulation,
+	inject
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 import { NavigationItem } from "../header/header-navigation-items.interface";
@@ -89,6 +90,8 @@ import { AsyncPipe } from "@angular/common";
 	imports: [SideNavItem, SideNavMenu, AsyncPipe]
 })
 export class SideNav {
+	i18n = inject(I18n);
+
 	@HostBinding("class.cds--side-nav") hostClass = true;
 	@Input() ariaLabel = "Side navigation";
 	/**
@@ -115,7 +118,11 @@ export class SideNav {
 	 */
 	@Input() useRouter = false;
 
-	constructor(public i18n: I18n) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	toggle() {
 		this.expanded = !this.expanded;

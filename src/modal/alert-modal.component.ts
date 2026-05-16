@@ -1,9 +1,8 @@
 import {
 	Component,
-	Inject,
 	ViewChild,
 	AfterViewInit,
-	Optional
+	inject
 } from "@angular/core";
 import { BaseModal } from "./base-modal.class";
 import { Modal } from "./modal.component";
@@ -97,21 +96,25 @@ import { BaseModalService } from "./base-modal.service";
 	]
 })
 export class AlertModal extends BaseModal implements AfterViewInit {
+	type = inject<any>("type" as any, { optional: true })! ?? "default";
+	label = inject<string>("label" as any, { optional: true })!;
+	title = inject<string>("title" as any, { optional: true })!;
+	content = inject<string>("content" as any, { optional: true })!;
+	size = inject<string>("size" as any, { optional: true })!;
+	hasScrollingContent = inject<boolean>("hasScrollingContent" as any, { optional: true })! ?? null;
+	buttons = inject<any>("buttons" as any, { optional: true })! ?? [];
+	onClose = inject<Function>("close" as any, { optional: true })!;
+	showCloseButton = inject<any>("showCloseButton" as any, { optional: true })! ?? true;
+
 	@ViewChild("modalContent", { static: true }) modalContent: { nativeElement: any; };
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
 	/**
 	 * Creates an instance of `AlertModal`.
 	 */
-	constructor(
-		@Optional() @Inject("type") public type = "default",
-		@Optional() @Inject("label") public label: string,
-		@Optional() @Inject("title") public title: string,
-		@Optional() @Inject("content") public content: string,
-		@Optional() @Inject("size") public size: string,
-		@Optional() @Inject("hasScrollingContent") public hasScrollingContent: boolean = null,
-		@Optional() @Inject("buttons") public buttons = [],
-		@Optional() @Inject("close") public onClose: Function,
-		@Optional() @Inject("showCloseButton") public showCloseButton = true
-	) {
+	constructor() {
 		super();
 		for (let i = 0; i < this.buttons.length; i++) {
 			const button = this.buttons[i];

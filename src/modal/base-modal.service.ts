@@ -18,6 +18,8 @@ export class BaseModalService {
 	// track all our open modals
 	protected static modalList: Array<ComponentRef<any>> = [];
 
+	placeholderService = inject(PlaceholderService);
+
 	/**
 	 * Current module/component injection enviornment
 	 * Allows modules to use providers from calling component
@@ -35,10 +37,14 @@ export class BaseModalService {
 	 */
 	protected environment: EnvironmentInjector = inject(EnvironmentInjector);
 
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of `ModalService`.
 	 */
-	constructor(public placeholderService: PlaceholderService) {}
+	constructor() {}
 
 	/**
 	 * Creates and renders the modal component that is passed in.

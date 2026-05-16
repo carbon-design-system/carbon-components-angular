@@ -1,9 +1,6 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { LayerDirective } from "../layer";
-import {
-	TileGroup,
-	SelectionTile
-} from "./";
+import { TileGroup, SelectionTile } from "./";
 import { AILabelModule } from "../ai-label";
 import { ButtonModule } from "../button";
 import { IconModule } from "../icon";

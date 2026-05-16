@@ -1,8 +1,5 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
-import {
-	ContentSwitcher,
-	ContentSwitcherOption
-} from "./";
+import { ContentSwitcher, ContentSwitcherOption } from "./";
 
 export default {
 	title: "Components/Content Switcher",

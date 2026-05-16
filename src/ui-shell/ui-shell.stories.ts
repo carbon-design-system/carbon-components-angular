@@ -5,12 +5,16 @@ import { Search } from "../search";
 import { IconDirective } from "../icon";
 import { ThemeDirective } from "../theme";
 
+import { BarComponent, FooComponent, HeaderFluidComponent } from "./stories";
 import {
-	BarComponent,
-	FooComponent,
-	HeaderFluidComponent
-} from "./stories";
-import { Header, Hamburger, HeaderAction, HeaderItem, HeaderNavigation, HeaderMenu, HeaderGlobal } from "./header";
+	Header,
+	Hamburger,
+	HeaderAction,
+	HeaderItem,
+	HeaderNavigation,
+	HeaderMenu,
+	HeaderGlobal
+} from "./header";
 import { SideNav, SideNavItem, SideNavMenu } from "./sidenav";
 import { CommonModule } from "@angular/common";
 import { Panel, SwitcherList, SwitcherListItem } from "./panel";

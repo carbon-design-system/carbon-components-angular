@@ -10,7 +10,8 @@ import {
 	TemplateRef,
 	ViewChildren,
 	QueryList,
-	ChangeDetectorRef
+	ChangeDetectorRef,
+	inject
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { EventService } from "carbon-components-angular/utils";
@@ -307,6 +308,9 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	public topRangeId = `${this.id}-top-range`;
 	public fractionComplete = 0;
 
+	protected elementRef = inject(ElementRef);
+	protected eventService = inject(EventService);
+
 	protected isMouseDown = false;
 	protected inputs: HTMLInputElement[];
 	protected _min = 0;
@@ -317,11 +321,13 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	protected _readonly = false;
 	protected _focusedThumbIndex = 0;
 
-	constructor(
-		protected elementRef: ElementRef,
-		protected eventService: EventService,
-		private changeDetection: ChangeDetectorRef
-	) {}
+	private changeDetection = inject(ChangeDetectorRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngAfterViewInit() {
 		// bind mousemove and mouseup to the document so we don't have issues tracking the mouse

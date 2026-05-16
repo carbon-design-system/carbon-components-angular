@@ -4,7 +4,8 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	HostBinding
+	HostBinding,
+	inject
 } from "@angular/core";
 
 import { I18n } from "carbon-components-angular/i18n";
@@ -132,6 +133,8 @@ export interface PaginationNavTranslations {
 })
 export class PaginationNav {
 	static paginationCounter = 0;
+
+	public i18n = inject(I18n);
 	/**
 	 * `PaginationNavModel` with the information about pages you are controlling.
 	 */
@@ -234,10 +237,13 @@ export class PaginationNav {
 	nextItemText = this.i18n.getOverridable("PAGINATION.NEXT");
 	previousItemText = this.i18n.getOverridable("PAGINATION.PREVIOUS");
 
-	constructor(
-		protected i18n: I18n,
-		protected experimental: ExperimentalService
-	) {
+	protected experimental = inject(ExperimentalService);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
 		PaginationNav.paginationCounter++;
 	}
 

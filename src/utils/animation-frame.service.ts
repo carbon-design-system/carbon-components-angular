@@ -1,7 +1,8 @@
 import {
 	Injectable,
 	OnDestroy,
-	NgZone
+	NgZone,
+	inject
 } from "@angular/core";
 import { Observable, Subject, from } from "rxjs";
 
@@ -9,11 +10,17 @@ import { Observable, Subject, from } from "rxjs";
 export class AnimationFrameServiceSingleton implements OnDestroy {
 	public tick: Observable<number>;
 
+	protected ngZone = inject(NgZone);
+
 	protected frameSource = new Subject<number>();
 
 	protected animationFrameId: number;
 
-	constructor(protected ngZone: NgZone) {
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
 		this.tick = this.frameSource.asObservable();
 		this.ngZone.runOutsideAngular(() => {
 			this.animationFrameId = requestAnimationFrame(this.doTick.bind(this));
@@ -36,7 +43,13 @@ export class AnimationFrameServiceSingleton implements OnDestroy {
 export class AnimationFrameService {
 	public tick: Observable<number>;
 
-	constructor(protected singleton: AnimationFrameServiceSingleton) {
+	protected singleton = inject(AnimationFrameServiceSingleton);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
 		this.tick = from(this.singleton.tick);
 	}
 }

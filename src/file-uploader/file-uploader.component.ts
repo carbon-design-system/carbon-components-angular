@@ -5,7 +5,8 @@ import {
 	ViewChild,
 	EventEmitter,
 	TemplateRef,
-	ChangeDetectionStrategy
+	ChangeDetectionStrategy,
+	inject
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -115,6 +116,9 @@ export class FileUploader implements ControlValueAccessor {
 	 * Counter used to create unique ids for file-uploader components
 	 */
 	static fileUploaderCount = 0;
+
+	public i18n = inject(I18n);
+
 	/**
 	 * Accessible text for the button that opens the upload window.
 	 *
@@ -206,7 +210,11 @@ export class FileUploader implements ControlValueAccessor {
 	protected onTouchedCallback: () => void = noop;
 	protected onChangeCallback: (_: Set<FileItem>) => void = noop;
 
-	constructor(protected i18n: I18n) {
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
 		FileUploader.fileUploaderCount++;
 	}
 

@@ -1,4 +1,4 @@
-import { Component, Inject } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import {
 	ModalService,
 	BaseModal,
@@ -53,14 +53,11 @@ import { PLACEHOLDER_SERVICE_PROVIDER, Placeholder } from "../../placeholder";
 	standalone: true
 })
 export class SampleModal extends BaseModal {
-	constructor(
-		@Inject("modalText") public modalText,
-		@Inject("size") public size,
-		@Inject("isFullWidth") public isFullWidth,
-		@Inject("showCloseButton") public showCloseButton = true,
-		protected modalService: ModalService) {
-		super();
-	}
+	public modalText = inject<any>("modalText" as any);
+	public size = inject<any>("size" as any);
+	public isFullWidth = inject<any>("isFullWidth" as any);
+	public showCloseButton = inject<boolean | undefined>("showCloseButton" as any) ?? true;
+	protected modalService = inject(ModalService);
 
 	showSecondaryModal() {
 		this.modalService.show({

@@ -2,7 +2,8 @@ import {
 	Component,
 	Output,
 	EventEmitter,
-	Input
+	Input,
+	inject
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 import { NgClass } from "@angular/common";
@@ -31,6 +32,8 @@ import { IconDirective } from "carbon-components-angular/icon";
 	imports: [NgClass, IconDirective]
 })
 export class Hamburger {
+	i18n = inject(I18n);
+
 	/**
 	 * Controls the active/selected state for the `Hamburger` menu.
 	 */
@@ -51,7 +54,11 @@ export class Hamburger {
 	 */
 	@Output() selected: EventEmitter<Object> = new EventEmitter<Object>();
 
-	constructor(public i18n: I18n) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	/**
 	 * Emit the Hamburger click event upwards.

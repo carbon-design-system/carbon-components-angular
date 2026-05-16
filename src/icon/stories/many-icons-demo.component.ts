@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, inject, OnInit } from "@angular/core";
 import * as Icons from "@carbon/icons";
 
 import { IconDirective } from "../icon.directive";
@@ -34,7 +34,7 @@ import { IconService } from "../";
 export class ManyIconDemo implements OnInit {
 	groupedIcons: any = [];
 
-	constructor(protected iconService: IconService) {}
+	protected iconService = inject(IconService);
 
 	ngOnInit() {
 		const iconMap = new Map();

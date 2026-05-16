@@ -16,7 +16,8 @@ import {
 	OnInit,
 	SimpleChange,
 	ChangeDetectionStrategy,
-	HostBinding
+	HostBinding,
+	inject
 } from "@angular/core";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 import flatpickr from "flatpickr";
@@ -277,6 +278,9 @@ export class DatePicker implements
 	// eslint-disable-next-line @angular-eslint/no-output-on-prefix -- existing output name; renaming would break consumers
 	@Output() onClose: EventEmitter<any> = new EventEmitter();
 
+	protected elementRef = inject(ElementRef);
+	protected i18n = inject(I18n);
+
 	protected _value = [];
 
 	protected _flatpickrOptions: Partial<Options> = {
@@ -316,10 +320,11 @@ export class DatePicker implements
 
 	protected flatpickrInstance = null;
 
-	constructor(
-		protected elementRef: ElementRef,
-		protected i18n: I18n
-	) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngOnInit() {
 		// if i18n is set to anything other than en we'll want to change the language

@@ -7,7 +7,8 @@ import {
 	TemplateRef,
 	ViewChild,
 	ChangeDetectionStrategy,
-	HostBinding
+	HostBinding,
+	inject
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { NgClass, NgTemplateOutlet } from "@angular/common";
@@ -210,7 +211,13 @@ export class DatePickerInput {
 
 	@ViewChild("input") input: ElementRef;
 
-	constructor(protected elementRef: ElementRef) {}
+	protected elementRef = inject(ElementRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	onChange(event) {
 		this.value = event.target.value;

@@ -1,5 +1,10 @@
 import { Meta, moduleMetadata } from "@storybook/angular";
-import { TextArea, TextInput, TextInputLabelComponent, TextareaLabelComponent } from "./";
+import {
+	TextArea,
+	TextInput,
+	TextInputLabelComponent,
+	TextareaLabelComponent
+} from "./";
 import { AILabelModule } from "../ai-label";
 import { ButtonModule } from "../button";
 import { IconModule } from "../icon";

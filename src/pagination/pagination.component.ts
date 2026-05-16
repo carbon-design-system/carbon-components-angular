@@ -3,7 +3,8 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter
+	EventEmitter,
+	inject
 } from "@angular/core";
 
 import { I18n, ReplacePipe } from "carbon-components-angular/i18n";
@@ -247,6 +248,8 @@ export interface PaginationTranslations {
 export class Pagination {
 	static paginationCounter = 0;
 
+	public i18n = inject(I18n);
+
 	/**
 	 * Set to `true` for a loading pagination component.
 	 */
@@ -410,9 +413,15 @@ export class Pagination {
 	ofLastPagesText = this.i18n.getOverridable("PAGINATION.OF_LAST_PAGES");
 	ofLastPageText = this.i18n.getOverridable("PAGINATION.OF_LAST_PAGE");
 
+	protected experimental = inject(ExperimentalService);
+
 	protected _pageOptions = [];
 
-	constructor(protected i18n: I18n, protected experimental: ExperimentalService) {
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
 		Pagination.paginationCounter++;
 	}
 }

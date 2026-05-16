@@ -4,7 +4,8 @@ import {
 	Output,
 	EventEmitter,
 	Input,
-	TemplateRef
+	TemplateRef,
+	inject
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 import { IconButton } from "carbon-components-angular/button";
@@ -49,6 +50,8 @@ import { IconDirective } from "carbon-components-angular/icon";
 	imports: [NgTemplateOutlet, IconButton, IconDirective]
 })
 export class ModalHeader {
+	public i18n = inject(I18n);
+
 	/**
 	 * @deprecated since v5
 	 * Sets the style on the modal heading based on its category.
@@ -82,7 +85,11 @@ export class ModalHeader {
 		"aria-label": this.i18n.get().MODAL.CLOSE
 	};
 
-	constructor(protected i18n: I18n) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	/**
 	 * Handles click for the close icon button within the `Modal`.

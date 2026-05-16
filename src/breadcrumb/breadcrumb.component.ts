@@ -5,10 +5,10 @@ import {
 	QueryList,
 	AfterContentInit,
 	TemplateRef,
-	Optional,
 	Output,
 	EventEmitter,
-	ChangeDetectionStrategy
+	ChangeDetectionStrategy,
+	inject
 } from "@angular/core";
 
 import { BreadcrumbItem } from "./breadcrumb-item.interface";
@@ -163,6 +163,9 @@ const MINIMUM_OVERFLOW_THRESHOLD = 4;
 	]
 })
 export class Breadcrumb implements AfterContentInit {
+	public i18n = inject(I18n);
+	public router = inject(Router, { optional: true })!;
+
 	@ContentChildren(BreadcrumbItemComponent) children: QueryList<BreadcrumbItemComponent>;
 
 	@Input() items: Array<BreadcrumbItem>;
@@ -239,7 +242,11 @@ export class Breadcrumb implements AfterContentInit {
 	protected _threshold: number;
 	protected _skeleton = false;
 
-	constructor(protected i18n: I18n, @Optional() protected router: Router) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngAfterContentInit() {
 		this.updateChildren();

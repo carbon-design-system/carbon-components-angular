@@ -4,8 +4,8 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	Optional,
-	ChangeDetectionStrategy
+	ChangeDetectionStrategy,
+	inject
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
@@ -69,9 +69,15 @@ export class BreadcrumbItemComponent {
 
 	@HostBinding("class.cds--breadcrumb-item") itemClass = true;
 
+	protected domSanitizer = inject(DomSanitizer);
+	protected router = inject(Router, { optional: true })!;
 	protected _href: string;
 
-	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	useTemplate() {
 		return this.skeleton || this._href || this.route;

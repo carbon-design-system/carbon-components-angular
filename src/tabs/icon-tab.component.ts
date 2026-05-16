@@ -1,8 +1,4 @@
-import {
-	Component,
-	forwardRef,
-	Input
-} from "@angular/core";
+import { Component, forwardRef, Input } from "@angular/core";
 import { NgTemplateOutlet } from "@angular/common";
 import { Tab } from "./tab.component";
 

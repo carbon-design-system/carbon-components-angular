@@ -10,7 +10,8 @@ import {
 	ElementRef,
 	ChangeDetectionStrategy,
 	OnChanges,
-	SimpleChanges
+	SimpleChanges,
+	inject
 } from "@angular/core";
 import { ContentSwitcherOption } from "./content-switcher-option.directive";
 import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular/common";
@@ -90,7 +91,13 @@ export class ContentSwitcher implements AfterViewInit, OnChanges {
 
 	@ContentChildren(ContentSwitcherOption) options: QueryList<ContentSwitcherOption>;
 
-	constructor(protected elementRef: ElementRef) {}
+	protected elementRef = inject(ElementRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (this.options) {

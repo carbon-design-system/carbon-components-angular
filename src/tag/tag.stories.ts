@@ -1,5 +1,10 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { Tag, TagFilter, TagOperationalComponent, TagSelectableComponent } from "./";
+import {
+	Tag,
+	TagFilter,
+	TagOperationalComponent,
+	TagSelectableComponent
+} from "./";
 import { IconDirective } from "../icon";
 import { PopoverContainer, PopoverContent } from "../popover";
 import { AILabelModule } from "../ai-label";

@@ -15,7 +15,8 @@ import {
 	QueryList,
 	Renderer2,
 	SimpleChanges,
-	ViewChild
+	ViewChild,
+	inject
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { EventService } from "carbon-components-angular/utils";
@@ -68,6 +69,8 @@ const VERTICAL_TAB_HEIGHT = 64;
 export class TabHeaderGroupVertical
 	extends BaseTabHeader
 	implements AfterContentInit, OnChanges, OnInit, OnDestroy {
+	public i18n = inject(I18n);
+
 	/**
 	 * i18n strings for the tab list `aria-label` fallback.
 	 */
@@ -111,13 +114,6 @@ export class TabHeaderGroupVertical
 	isOverflowingTop = false;
 	isOverflowingBottom = false;
 
-	/**
-	 * We use taller rows when any header has a secondary label.
-	 */
-	@HostBinding("class.cds--tabs--tall") get tallClass(): boolean {
-		return this.hasSecondaryLabelTabs;
-	}
-
 	get hasSecondaryLabelTabs(): boolean {
 		if (!this.tabHeaderQuery) {
 			return false;
@@ -127,20 +123,40 @@ export class TabHeaderGroupVertical
 			.some((h) => h.secondaryLabel != null && h.secondaryLabel !== "");
 	}
 
+	/**
+	 * We use taller rows when any header has a secondary label.
+	 */
+	@HostBinding("class.cds--tabs--tall") get tallClass(): boolean {
+		return this.hasSecondaryLabelTabs;
+	}
+
+	protected elementRef: ElementRef;
+	protected changeDetectorRef: ChangeDetectorRef;
+	protected eventService: EventService;
+	protected renderer: Renderer2;
+
 	private selectedSubscriptionTracker = new Subscription();
 	private closeSubscriptionTracker = new Subscription();
 
 	private resizeObserver: ResizeObserver | null = null;
 	private boundListScrollHandler: () => void;
 
-	constructor(
-		protected elementRef: ElementRef,
-		protected changeDetectorRef: ChangeDetectorRef,
-		protected eventService: EventService,
-		protected renderer: Renderer2,
-		protected i18n: I18n
-	) {
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
+		const elementRef = inject(ElementRef);
+		const changeDetectorRef = inject(ChangeDetectorRef);
+		const eventService = inject(EventService);
+		const renderer = inject(Renderer2);
+
 		super(elementRef, changeDetectorRef, eventService, renderer);
+		this.elementRef = elementRef;
+		this.changeDetectorRef = changeDetectorRef;
+		this.eventService = eventService;
+		this.renderer = renderer;
+
 		this.type = "contained";
 		// Cache a stable reference for add/removeEventListener.
 		this.boundListScrollHandler = () => this.updateOverflowState();

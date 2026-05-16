@@ -5,13 +5,12 @@ import {
 	Component,
 	ElementRef,
 	EventEmitter,
-	Inject,
 	Input,
-	Optional,
 	Output,
 	TemplateRef,
 	ViewChild,
-	HostListener
+	HostListener,
+	inject
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { CheckboxValue } from "./checkbox.types";
@@ -142,7 +141,6 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	 * Variable used for creating unique ids for checkbox components.
 	 */
 	static checkboxCount = 0;
-
 	private static helperIdCounter = 0;
 
 	/**
@@ -308,13 +306,17 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	readonly helperId = `checkbox-helper-${Checkbox.helperIdCounter++}`;
 
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+	private hostGroup = inject<CheckboxGroupHost | null>(CHECKBOX_GROUP_HOST, { optional: true });
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of `Checkbox`.
 	 */
-	constructor(
-		protected changeDetectorRef: ChangeDetectorRef,
-		@Optional() @Inject(CHECKBOX_GROUP_HOST) private hostGroup: CheckboxGroupHost | null
-	) {
+	constructor() {
 		Checkbox.checkboxCount++;
 	}
 

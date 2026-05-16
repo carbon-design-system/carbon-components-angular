@@ -1,8 +1,4 @@
-import {
-	Component,
-	HostBinding,
-	Input
-} from "@angular/core";
+import { Component, HostBinding, Input } from "@angular/core";
 import { NgTemplateOutlet } from "@angular/common";
 
 @Component({

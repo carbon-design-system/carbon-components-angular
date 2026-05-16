@@ -4,7 +4,7 @@ import {
 	TemplateRef,
 	ViewChild
 } from "@angular/core";
-import { AILabelComponent } from "../../ai-label";
+import { AILabelComponent, AILabelModule } from "../../ai-label";
 import { TableHeaderItem } from "../table-header-item.class";
 import { TableItem } from "../table-item.class";
 import { TableModel } from "../table-model.class";
@@ -15,6 +15,8 @@ import { TableHeaderDecorator } from "../header/table-header-decorator.component
 import { TableHeaderDescription } from "../header/table-header-description.directive";
 import { TableHeaderTitle } from "../header/table-header-title.directive";
 import { AI_LABEL_INNER } from "../../storybook/ai-label-story-shared";
+import { IconDirective } from "../../icon";
+import { ButtonModule } from "../../button";
 
 const DEMO_ROWS: string[][] = [
 	["Load Balancer 3", "HTTP", "3000", "Round robin", "Kevin's VM Groups", "Disabled"],
@@ -58,7 +60,7 @@ function showSlugForRowIndex(i: number): boolean {
 		</cds-table>
 	`,
 	standalone: true,
-	imports: [Table, AILabelComponent]
+	imports: [Table, AILabelModule, IconDirective, ButtonModule]
 })
 export class TableAiLabelWithSelectionStory implements AfterViewInit {
 
@@ -123,7 +125,7 @@ export class TableAiLabelWithSelectionStory implements AfterViewInit {
 		</cds-table>
 	`,
 	standalone: true,
-	imports: [Table, AILabelComponent]
+	imports: [Table, AILabelModule, IconDirective, ButtonModule]
 })
 export class TableAiLabelRadioSelectionStory implements AfterViewInit {
 
@@ -188,7 +190,7 @@ export class TableAiLabelRadioSelectionStory implements AfterViewInit {
 		</cds-table>
 	`,
 	standalone: true,
-	imports: [Table, AILabelComponent]
+	imports: [Table, AILabelModule, IconDirective, ButtonModule]
 })
 export class TableAiLabelSelectionExpansionStory implements AfterViewInit {
 
@@ -256,7 +258,7 @@ export class TableAiLabelSelectionExpansionStory implements AfterViewInit {
 		</cds-table>
 	`,
 	standalone: true,
-	imports: [Table, AILabelComponent]
+	imports: [Table, AILabelModule, IconDirective, ButtonModule]
 })
 export class TableAiLabelExpansionOnlyStory implements AfterViewInit {
 
@@ -320,7 +322,7 @@ export class TableAiLabelExpansionOnlyStory implements AfterViewInit {
 		</cds-table>
 	`,
 	standalone: true,
-	imports: [Table, AILabelComponent]
+	imports: [Table, AILabelModule, IconDirective, ButtonModule]
 })
 export class TableAiLabelColumnExpansionStory implements AfterViewInit {
 
@@ -380,7 +382,7 @@ export class TableAiLabelColumnExpansionStory implements AfterViewInit {
 		</cds-table>
 	`,
 	standalone: true,
-	imports: [Table, AILabelComponent]
+	imports: [Table, AILabelModule, IconDirective, ButtonModule]
 })
 export class TableAiLabelColumnSortStory implements AfterViewInit {
 

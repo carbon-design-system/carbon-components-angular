@@ -3,7 +3,8 @@ import {
 	ElementRef,
 	HostBinding,
 	Input,
-	Renderer2
+	Renderer2,
+	inject
 } from "@angular/core";
 
 /**
@@ -20,6 +21,9 @@ import {
 	standalone: true
 })
 export class StackDirective {
+	public render = inject(Renderer2);
+	public hostElement = inject(ElementRef);
+
 	@HostBinding("class.cds--stack-horizontal") get isHorizontal() {
 		return this.cdsStack === "horizontal";
 	}
@@ -56,5 +60,9 @@ export class StackDirective {
 	// Used to track previous value of gap so we can dynamically remove class
 	private _gap;
 
-	constructor(private render: Renderer2, private hostElement: ElementRef) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 }

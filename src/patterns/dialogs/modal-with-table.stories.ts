@@ -1,10 +1,12 @@
-import {
-	Component,
-	OnInit,
-	ViewEncapsulation
-} from "@angular/core";
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { BaseModal, Modal, ModalContent, ModalFooter, ModalHeader } from "../../modal";
+import {
+	BaseModal,
+	Modal,
+	ModalContent,
+	ModalFooter,
+	ModalHeader
+} from "../../modal";
 import {
 	Table,
 	TableContainer,

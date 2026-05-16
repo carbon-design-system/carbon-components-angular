@@ -1,7 +1,8 @@
 import {
+	AfterContentInit,
 	Component,
-	Input,
-	AfterContentInit
+	inject,
+	Input
 } from "@angular/core";
 import { Observable, Subject } from "rxjs";
 
@@ -26,7 +27,7 @@ export class DataPassingModal implements AfterContentInit {
 	protected modalInputValue = "";
 	protected data: Observable<string> = new Subject<string>();
 
-	constructor(protected modalService: ModalService) {}
+	protected modalService = inject(ModalService);
 
 	openModal() {
 		this.modalService.create({

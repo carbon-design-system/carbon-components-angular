@@ -2,7 +2,14 @@ import { moduleMetadata, Meta } from "@storybook/angular";
 import { GridModule } from "../grid/grid.module";
 import { IconModule } from "../icon/icon.module";
 
-import { Tab, TabHeader, TabHeaderGroup, TabHeaders, TabSkeleton, Tabs } from "./";
+import {
+	Tab,
+	TabHeader,
+	TabHeaderGroup,
+	TabHeaders,
+	TabSkeleton,
+	Tabs
+} from "./";
 
 import { TabsStoryModule } from "./stories";
 

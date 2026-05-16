@@ -7,7 +7,8 @@ import {
 	Input,
 	NgZone,
 	Renderer2,
-	TemplateRef
+	TemplateRef,
+	inject
 } from "@angular/core";
 import { PopoverContainer } from "carbon-components-angular/popover";
 import { NgTemplateOutlet } from "@angular/common";
@@ -81,18 +82,32 @@ export class TooltipDefinition extends PopoverContainer {
 
 	@Input() openOnHover = false;
 
+	protected elementRef: ElementRef;
+	protected ngZone: NgZone;
+	protected renderer: Renderer2;
+	protected changeDetectorRef: ChangeDetectorRef;
+
 	/**
 	 * Helper variable to ensure button blur doesn't fire on `click` of popover content
 	 */
 	private isInteractingWithPopover = false;
 
-	constructor(
-		protected elementRef: ElementRef,
-		protected ngZone: NgZone,
-		protected renderer: Renderer2,
-		protected changeDetectorRef: ChangeDetectorRef
-	) {
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
+		const elementRef = inject(ElementRef);
+		const ngZone = inject(NgZone);
+		const renderer = inject(Renderer2);
+		const changeDetectorRef = inject(ChangeDetectorRef);
+
 		super(elementRef, ngZone, renderer, changeDetectorRef);
+		this.elementRef = elementRef;
+		this.ngZone = ngZone;
+		this.renderer = renderer;
+		this.changeDetectorRef = changeDetectorRef;
+
 		this.highContrast = true;
 		this.dropShadow = false;
 	}

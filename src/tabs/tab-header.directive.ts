@@ -8,7 +8,8 @@ import {
 	HostBinding,
 	HostListener,
 	TemplateRef,
-	forwardRef
+	forwardRef,
+	inject
 } from "@angular/core";
 
 import { Tab } from "./tab.component";
@@ -154,7 +155,13 @@ export class TabHeader extends TabHeaderBase implements AfterViewInit {
 		return this.title ?? null;
 	}
 
-	constructor(private host: ElementRef) {
+	private host = inject(ElementRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
 		super();
 	}
 

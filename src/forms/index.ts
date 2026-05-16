@@ -8,15 +8,8 @@ export {
 	CheckboxState,
 	CheckboxValue
 } from "carbon-components-angular/checkbox";
-export {
-	ToggleModule,
-	Toggle
-} from "carbon-components-angular/toggle";
-export {
-	Radio,
-	RadioChange,
-	RadioGroup
-} from "carbon-components-angular/radio";
+export { ToggleModule, Toggle } from "carbon-components-angular/toggle";
+export { Radio, RadioChange, RadioGroup } from "carbon-components-angular/radio";
 export {
 	Label,
 	PasswordInputLabelComponent,

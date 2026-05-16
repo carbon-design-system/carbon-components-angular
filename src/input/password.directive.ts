@@ -4,7 +4,8 @@ import {
 	Input,
 	Renderer2,
 	ElementRef,
-	AfterViewInit
+	AfterViewInit,
+	inject
 } from "@angular/core";
 
 @Directive({
@@ -70,9 +71,16 @@ export class PasswordInput implements AfterViewInit {
 		return this.invalid ? true : undefined;
 	}
 
+	protected elementRef = inject(ElementRef);
+	protected renderer = inject(Renderer2);
+
 	private _type = "password";
 
-	constructor(protected elementRef: ElementRef, protected renderer: Renderer2) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngAfterViewInit(): void {
 		this.renderer.setAttribute(this.elementRef.nativeElement, "type", this._type);

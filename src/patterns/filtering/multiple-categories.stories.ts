@@ -1,9 +1,20 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { TableModel, TableHeaderItem, TableItem, TableContainer, Table } from "../../table";
+import {
+	TableModel,
+	TableHeaderItem,
+	TableItem,
+	TableContainer,
+	Table
+} from "../../table";
 import { Dropdown, DropdownList } from "../../dropdown";
 import { StructuredList } from "../../structured-list";
-import { ColumnDirective, GridDirective, GridService, RowDirective } from "../../grid";
+import {
+	ColumnDirective,
+	GridDirective,
+	GridService,
+	RowDirective
+} from "../../grid";
 import { Radio, RadioGroup } from "../../radio";
 import { Button } from "../../button";
 import { Tag } from "../../tag/index";

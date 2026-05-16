@@ -2,7 +2,8 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter
+	EventEmitter,
+	inject
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 import { TableItem } from "../table-item.class";
@@ -75,9 +76,15 @@ export class TableCheckbox {
 	 */
 	@Output() selectedChange = new EventEmitter();
 
+	protected i18n = inject(I18n);
+
 	protected _label = this.i18n.getOverridable("TABLE.CHECKBOX_ROW");
 
-	constructor(protected i18n: I18n) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	getSelectionLabelValue(row: TableItem[]) {
 		if (!this.selectionLabelColumn) {

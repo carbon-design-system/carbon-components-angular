@@ -6,7 +6,8 @@ import {
 	TemplateRef,
 	EventEmitter,
 	ChangeDetectionStrategy,
-	ChangeDetectorRef
+	ChangeDetectorRef,
+	inject
 } from "@angular/core";
 import { NgTemplateOutlet, NgClass } from "@angular/common";
 import { IconDirective } from "carbon-components-angular/icon";
@@ -69,9 +70,6 @@ export class AccordionItem {
 	}
 	@HostBinding("attr.role") role = "listitem";
 
-	protected _itemDisabled = false;
-	protected _parentDisabled = false;
-
 	@Input() set disabled(value: boolean) {
 		this._itemDisabled = value;
 	}
@@ -80,7 +78,16 @@ export class AccordionItem {
 		return this._parentDisabled || this._itemDisabled;
 	}
 
-	constructor(private changeDetector: ChangeDetectorRef) {}
+	protected _itemDisabled = false;
+	protected _parentDisabled = false;
+
+	private changeDetector = inject(ChangeDetectorRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	// Called by Accordion to cascade disabled without overwriting the item `disabled` input.
 	setParentDisabled(value: boolean): void {

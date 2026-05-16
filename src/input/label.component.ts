@@ -8,7 +8,8 @@ import {
 	ViewChild,
 	ContentChild,
 	AfterContentInit,
-	ChangeDetectorRef
+	ChangeDetectorRef,
+	inject
 } from "@angular/core";
 
 import { TextArea } from "./text-area.directive";
@@ -184,9 +185,6 @@ import { IconDirective } from "carbon-components-angular/icon";
 	]
 })
 export class Label implements AfterContentInit, AfterViewInit {
-	/**
-	 * Used to build the id of the input item associated with the `Label`.
-	 */
 	static labelCounter = 0;
 	/**
 	 * The id of the input item associated with the `Label`. This value is also used to associate the `Label` with
@@ -280,10 +278,16 @@ export class Label implements AfterContentInit, AfterViewInit {
 
 	type: "TextArea" | "TextInput" | "PasswordInput";
 
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of Label.
 	 */
-	constructor(protected changeDetectorRef: ChangeDetectorRef) {}
+	constructor() {}
 
 	/**
 	 * Update wrapper class if a textarea is hosted.

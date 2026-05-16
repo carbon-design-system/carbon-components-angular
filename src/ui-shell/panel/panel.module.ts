@@ -7,11 +7,7 @@ import { Panel } from "./panel.component";
 import { SwitcherList } from "./switcher-list.component";
 import { SwitcherListItem } from "./switcher-list-item.component";
 
-export {
-	Panel,
-	SwitcherList,
-	SwitcherListItem
-};
+export { Panel, SwitcherList, SwitcherListItem };
 
 @NgModule({
 	imports: [

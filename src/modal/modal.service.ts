@@ -1,4 +1,4 @@
-import { Injectable, ViewContainerRef } from "@angular/core";
+import { Injectable, ViewContainerRef, inject } from "@angular/core";
 import { AlertModal } from "./alert-modal.component";
 import { AlertModalData } from "./alert-modal.interface";
 import { PlaceholderService } from "carbon-components-angular/placeholder";
@@ -15,11 +15,21 @@ import { BaseModalService } from "./base-modal.service";
  */
 @Injectable()
 export class ModalService extends BaseModalService {
+	placeholderService: PlaceholderService;
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of `ModalService`.
 	 */
-	constructor(public placeholderService: PlaceholderService) {
+	constructor() {
+		const placeholderService = inject(PlaceholderService);
+
 		super(placeholderService);
+
+		this.placeholderService = placeholderService;
 	}
 
 	/**

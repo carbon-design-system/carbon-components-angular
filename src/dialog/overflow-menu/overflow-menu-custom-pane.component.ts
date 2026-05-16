@@ -1,4 +1,9 @@
-import { AfterViewInit, Component, ElementRef, Optional } from "@angular/core";
+import {
+	AfterViewInit,
+	Component,
+	ElementRef,
+	inject
+} from "@angular/core";
 import { position } from "@carbon/utils-position";
 import { I18n } from "carbon-components-angular/i18n";
 import { AnimationFrameService, AnimationFrameServiceSingleton, ElementService } from "carbon-components-angular/utils";
@@ -31,14 +36,25 @@ import { NgClass, NgTemplateOutlet } from "@angular/common";
 	imports: [NgClass, NgTemplateOutlet]
 })
 export class OverflowMenuCustomPane extends Dialog implements AfterViewInit {
-	constructor(
-		protected elementRef: ElementRef,
-		protected i18n: I18n,
-		@Optional() protected animationFrameService: AnimationFrameService = null,
-		// mark `elementService` as optional since making it mandatory would be a breaking change
-		@Optional() protected elementService: ElementService = null
-	) {
+	protected elementRef: ElementRef;
+	protected i18n = inject(I18n);
+	protected animationFrameService: AnimationFrameService;
+	protected elementService: ElementService;
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
+		const elementRef = inject(ElementRef);
+		const animationFrameService = inject(AnimationFrameService, { optional: true })! ?? null;
+		const elementService = inject(ElementService, { optional: true })! ?? null;
+
 		super(elementRef, elementService, animationFrameService);
+
+		this.elementRef = elementRef;
+		this.animationFrameService = animationFrameService;
+		this.elementService = elementService;
 	}
 
 	onClick(event) {

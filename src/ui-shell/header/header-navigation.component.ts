@@ -1,8 +1,4 @@
-import {
-	Component,
-	HostBinding,
-	Input
-} from "@angular/core";
+import { Component, HostBinding, Input } from "@angular/core";
 import { NavigationItem } from "./header-navigation-items.interface";
 import { HeaderItem } from "./header-item.component";
 import { HeaderMenu } from "./header-menu.component";

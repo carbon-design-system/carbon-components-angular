@@ -6,7 +6,8 @@ import {
 	HostListener,
 	Input,
 	Output,
-	TemplateRef
+	TemplateRef,
+	inject
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -181,17 +182,21 @@ export class Toggle implements ControlValueAccessor {
 	 */
 	id = "toggle-" + Toggle.toggleCount;
 
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+	protected i18n = inject(I18n);
+
 	protected _checked = false;
 
 	protected _offValues = this.i18n.getOverridable("TOGGLE.OFF");
 	protected _onValues = this.i18n.getOverridable("TOGGLE.ON");
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
 	/**
 	 * Creates an instance of Toggle.
 	 */
-	constructor(
-		protected changeDetectorRef: ChangeDetectorRef,
-		protected i18n: I18n
-	) {
+	constructor() {
 		Toggle.toggleCount++;
 	}
 

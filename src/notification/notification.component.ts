@@ -1,7 +1,8 @@
 import {
 	Component,
 	Input,
-	HostBinding
+	HostBinding,
+	inject
 } from "@angular/core";
 
 import { NotificationContent } from "./notification-content.interface";
@@ -65,6 +66,7 @@ import { NgTemplateOutlet, AsyncPipe } from "@angular/common";
 })
 export class Notification extends BaseNotification {
 	private static notificationCount = 0;
+
 	/**
 	 * Can have `type`, `title`, and `message` members.
 	 *
@@ -94,7 +96,20 @@ export class Notification extends BaseNotification {
 	@HostBinding("class.cds--inline-notification--low-contrast") get isLowContrast() { return this.notificationObj.lowContrast; }
 	@HostBinding("class.cds--inline-notification--hide-close-button") get isCloseHidden() { return !this.notificationObj.showClose; }
 
-	constructor(protected notificationDisplayService: NotificationDisplayService, protected i18n: I18n) {
+	protected notificationDisplayService: NotificationDisplayService;
+	protected i18n: I18n;
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
+		const notificationDisplayService = inject(NotificationDisplayService);
+		const i18n = inject(I18n);
+
 		super(notificationDisplayService, i18n);
+
+		this.notificationDisplayService = notificationDisplayService;
+		this.i18n = i18n;
 	}
 }

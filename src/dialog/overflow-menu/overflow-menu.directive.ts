@@ -4,7 +4,8 @@ import {
 	ViewContainerRef,
 	Input,
 	TemplateRef,
-	HostListener
+	HostListener,
+	inject
 } from "@angular/core";
 import { DialogDirective } from "../dialog.directive";
 import { DialogService } from "../dialog.service";
@@ -74,16 +75,30 @@ export class OverflowMenuDirective extends DialogDirective {
 	 */
 	@Input() customPane = false;
 
+	protected elementRef: ElementRef;
+	protected viewContainerRef: ViewContainerRef;
+	protected dialogService: DialogService;
+	protected eventService: EventService;
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of `OverflowMenuDirective`.
 	 */
-	constructor(
-		protected elementRef: ElementRef,
-		protected viewContainerRef: ViewContainerRef,
-		protected dialogService: DialogService,
-		protected eventService: EventService
-	) {
+	constructor() {
+		const elementRef = inject(ElementRef);
+		const viewContainerRef = inject(ViewContainerRef);
+		const dialogService = inject(DialogService);
+		const eventService = inject(EventService);
+
 		super(elementRef, viewContainerRef, dialogService, eventService);
+
+		this.elementRef = elementRef;
+		this.viewContainerRef = viewContainerRef;
+		this.dialogService = dialogService;
+		this.eventService = eventService;
 	}
 
 	updateConfig() {

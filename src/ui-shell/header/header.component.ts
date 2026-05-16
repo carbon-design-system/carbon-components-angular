@@ -1,10 +1,10 @@
 import {
 	Component,
 	Input,
-	Optional,
 	Output,
 	EventEmitter,
-	TemplateRef
+	TemplateRef,
+	inject
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Router, RouterLink } from "@angular/router";
@@ -60,6 +60,8 @@ import { NgTemplateOutlet, AsyncPipe } from "@angular/common";
 	providers: [Router]
 })
 export class Header {
+	public i18n = inject(I18n);
+
 	/**
 	 * ID in the main body content to jump to. Used by keyboard and screen reader users to skip the header content.
 	 */
@@ -107,10 +109,14 @@ export class Header {
 
 	protected _href = "#";
 
-	constructor(
-		public i18n: I18n,
-		protected domSanitizer: DomSanitizer,
-		@Optional() protected router: Router) {}
+	protected domSanitizer = inject(DomSanitizer);
+	protected router = inject(Router, { optional: true })!;
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	public isTemplate(value) {
 		return value instanceof TemplateRef;

@@ -2,7 +2,8 @@ import {
 	Component,
 	Input,
 	EventEmitter,
-	Output
+	Output,
+	inject
 } from "@angular/core";
 import { TableModel } from "../table-model.class";
 import { I18n } from "carbon-components-angular/i18n";
@@ -155,10 +156,16 @@ export class TableBody {
 	 */
 	@Output() rowClick = new EventEmitter<number>();
 
+	protected i18n = inject(I18n);
+
 	protected _checkboxRowLabel = this.i18n.getOverridable("TABLE.CHECKBOX_ROW");
 	protected _expandButtonAriaLabel = this.i18n.getOverridable("TABLE.EXPAND_BUTTON");
 
-	constructor(protected i18n: I18n) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	/**
 	 * Triggered when a single row is clicked.

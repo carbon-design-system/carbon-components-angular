@@ -1,6 +1,11 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import {
+	Component,
+	inject,
+	OnDestroy,
+	OnInit
+} from "@angular/core";
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { ColumnDirective, GridDirective, GridService, RowDirective } from "../../grid";
+import { ColumnDirective, GridDirective, RowDirective } from "../../grid";
 import { Dropdown, DropdownList } from "../../dropdown";
 import { Button } from "../../button";
 import { ProgressIndicator } from "../../progress-indicator";
@@ -198,7 +203,7 @@ class MultiStepFormStory implements OnInit, OnDestroy {
 
 	currentStep = 1;
 
-	constructor(protected formBuilder: FormBuilder) {}
+	protected formBuilder = inject(FormBuilder);
 
 	ngOnInit() {
 		document.querySelector(".sb-show-main")?.classList.add("full-page");

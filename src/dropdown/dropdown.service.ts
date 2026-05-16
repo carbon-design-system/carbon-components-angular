@@ -1,4 +1,9 @@
-import { Injectable, ElementRef, OnDestroy } from "@angular/core";
+import {
+	Injectable,
+	ElementRef,
+	OnDestroy,
+	inject
+} from "@angular/core";
 import { PlaceholderService } from "carbon-components-angular/placeholder";
 import { Subscription } from "rxjs";
 import { position } from "@carbon/utils-position";
@@ -8,6 +13,9 @@ const defaultOffset = { top: 0, left: 0 };
 
 @Injectable()
 export class DropdownService implements OnDestroy {
+	protected placeholderService = inject(PlaceholderService);
+	protected animationFrameService = inject(AnimationFrameService);
+
 	public set offset(value: { top?: number, left?: number }) {
 		this._offset = Object.assign({}, defaultOffset, value);
 	}
@@ -28,10 +36,11 @@ export class DropdownService implements OnDestroy {
 
 	protected _offset = defaultOffset;
 
-	constructor(
-		protected placeholderService: PlaceholderService,
-		protected animationFrameService: AnimationFrameService
-	) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	/**
 	 * Appends the menu to the body, or a `cds-placeholder` (if defined)

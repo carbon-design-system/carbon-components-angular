@@ -2,11 +2,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { ComboBox } from "./";
 
-import {
-	DynamicListComboBox,
-	ReactiveFormsCombobox,
-	MockQueryCombobox
-} from "./stories";
+import { DynamicListComboBox, ReactiveFormsCombobox, MockQueryCombobox } from "./stories";
 import { DropdownList } from "../dropdown";
 import { AILabelModule } from "../ai-label";
 import { ButtonModule } from "../button";

@@ -5,7 +5,6 @@ import {
 	Component,
 	ContentChildren,
 	ElementRef,
-	forwardRef,
 	HostBinding,
 	Input,
 	NgZone,
@@ -16,14 +15,11 @@ import {
 	SimpleChanges,
 	TemplateRef,
 	ViewChild,
-	ViewContainerRef
+	ViewContainerRef,
+	inject
 } from "@angular/core";
 
-import {
-	autoUpdate,
-	computePosition,
-	flip
-} from "@floating-ui/dom";
+import { autoUpdate, computePosition, flip } from "@floating-ui/dom";
 import { ContextMenuItemComponent, ItemClickEvent } from "carbon-components-angular/context-menu";
 import { Subscription } from "rxjs";
 import { NgClass } from "@angular/common";
@@ -122,6 +118,12 @@ export class MenuButtonComponent implements OnChanges, AfterViewInit, OnDestroy 
 	@ViewChild("reference", { static: true }) referenceElement: ElementRef<HTMLButtonElement>;
 	@ViewChild("menuTemplate") menuTemplate: TemplateRef<any>;
 
+	protected ngZone = inject(NgZone);
+	protected renderer = inject(Renderer2);
+	protected hostElement = inject(ElementRef);
+	protected viewContainerRef = inject(ViewContainerRef);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+
 	protected documentClick = this.handleFocusOut.bind(this);
 	protected unmountFloatingElement: Function;
 
@@ -129,13 +131,11 @@ export class MenuButtonComponent implements OnChanges, AfterViewInit, OnDestroy 
 	private _alignment: MenuButtonPlacement = "bottom";
 	private menuRef: HTMLElement;
 
-	constructor(
-		protected ngZone: NgZone,
-		protected renderer: Renderer2,
-		protected hostElement: ElementRef,
-		protected viewContainerRef: ViewContainerRef,
-		protected changeDetectorRef: ChangeDetectorRef
-	) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 
 	/**

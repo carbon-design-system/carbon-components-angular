@@ -5,7 +5,8 @@ import {
 	NgZone,
 	OnChanges,
 	Renderer2,
-	SimpleChanges
+	SimpleChanges,
+	inject
 } from "@angular/core";
 
 import { PopoverContainer } from "carbon-components-angular/popover";
@@ -19,13 +20,27 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 	standalone: true
 })
 export class AILabelPopoverDirective extends PopoverContainer implements OnChanges {
-	constructor(
-		protected elementRef: ElementRef,
-		protected ngZone: NgZone,
-		protected renderer: Renderer2,
-		protected changeDetectorRef: ChangeDetectorRef
-	) {
+	protected elementRef: ElementRef;
+	protected ngZone: NgZone;
+	protected renderer: Renderer2;
+	protected changeDetectorRef: ChangeDetectorRef;
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
+		const elementRef = inject(ElementRef);
+		const ngZone = inject(NgZone);
+		const renderer = inject(Renderer2);
+		const changeDetectorRef = inject(ChangeDetectorRef);
+
 		super(elementRef, ngZone, renderer, changeDetectorRef);
+		this.elementRef = elementRef;
+		this.ngZone = ngZone;
+		this.renderer = renderer;
+		this.changeDetectorRef = changeDetectorRef;
+
 		this.highContrast = true;
 		this.dropShadow = false;
 	}

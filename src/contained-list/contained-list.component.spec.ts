@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { IconButton } from "../button";
@@ -47,7 +47,13 @@ import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 	]
 })
 class WrapperComponent {
-	constructor(private iconService: IconService) {
+	private iconService = inject(IconService);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
 		this.iconService.registerAll([Apple16, Fish16]);
 	}
 }

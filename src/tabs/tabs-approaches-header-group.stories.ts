@@ -3,10 +3,11 @@ import {
 	AfterViewInit,
 	ChangeDetectorRef,
 	Component,
+	inject,
 	Input,
 	OnDestroy,
-	ViewChildren,
-	QueryList
+	QueryList,
+	ViewChildren
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { moduleMetadata, Meta } from "@storybook/angular";
@@ -74,7 +75,7 @@ class StoryDismissableTabHeaderGroupComponent implements AfterViewInit, OnDestro
 
 	private paneQueryChangesSub!: Subscription;
 
-	constructor(private cdr: ChangeDetectorRef) {}
+	private cdr = inject(ChangeDetectorRef);
 
 	ngAfterViewInit(): void {
 		this.paneQueryChangesSub = this.paneQuery.changes.subscribe(() =>

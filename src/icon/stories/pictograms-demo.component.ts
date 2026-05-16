@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, inject, OnInit } from "@angular/core";
 import * as Icons from "@carbon/pictograms";
 
 import { IconDirective } from "../icon.directive";
@@ -32,7 +32,7 @@ import { ColumnDirective, GridDirective, RowDirective } from "../../grid";
 export class ManyPictogramsDemo implements OnInit {
 	groupedIcons: any = [];
 
-	constructor(protected iconService: IconService) { }
+	protected iconService = inject(IconService);
 
 	ngOnInit() {
 		const iconMap = new Map();

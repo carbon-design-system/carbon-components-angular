@@ -8,10 +8,6 @@ export { OverflowMenuCustomPane } from "./overflow-menu/overflow-menu-custom-pan
 export { OverflowMenuDirective } from "./overflow-menu/overflow-menu.directive";
 export { OverflowMenuOption } from "./overflow-menu/overflow-menu-option.component";
 
-export {
-	DialogConfig,
-	CloseMeta,
-	CloseReasons
-} from "./dialog-config.interface";
+export { DialogConfig, CloseMeta, CloseReasons } from "./dialog-config.interface";
 
 export { DialogModule } from "./dialog.module";

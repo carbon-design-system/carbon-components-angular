@@ -7,12 +7,12 @@ import {
 	ElementRef,
 	HostListener,
 	ContentChild,
-	Optional,
 	OnInit,
 	AfterContentInit,
 	OnDestroy,
 	ChangeDetectionStrategy,
-	ChangeDetectorRef
+	ChangeDetectorRef,
+	inject
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { ContextMenuSelectionService } from "./context-menu-selection.service";
@@ -85,13 +85,18 @@ export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDes
 	selectable = false;
 
 	@ContentChild(ContextMenuComponent, { static: true }) childContextMenu: ContextMenuComponent;
+
+	protected elementRef = inject(ElementRef);
+	protected contextMenuSelectionService = inject(ContextMenuSelectionService, { optional: true })!;
+
+	private changeDetectorRef = inject(ChangeDetectorRef);
 	private subscriptions = new Subscription();
 
-	constructor(
-		protected elementRef: ElementRef,
-		private changeDetectorRef: ChangeDetectorRef,
-		@Optional() protected contextMenuSelectionService: ContextMenuSelectionService
-	) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngOnInit() {
 		switch (this.type) {

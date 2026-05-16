@@ -11,7 +11,8 @@ import {
 	OnDestroy,
 	Output,
 	SimpleChanges,
-	ViewChild
+	ViewChild,
+	inject
 } from "@angular/core";
 import { Placement } from "@floating-ui/dom";
 import { NgClass } from "@angular/common";
@@ -238,12 +239,18 @@ export class AILabelComponent implements AfterViewInit, OnChanges, OnDestroy {
 	 */
 	@Output() revertClick = new EventEmitter<MouseEvent>();
 
+	private elementRef = inject(ElementRef);
+
 	@ViewChild("aiLabelPopoverHost", { read: AILabelPopoverDirective })
 	private aiLabelPopover: AILabelPopoverDirective;
 
 	private readonly documentClick = this.handleOutsideClick.bind(this);
 
-	constructor(private elementRef: ElementRef) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	onPopoverIsOpenChange(open: boolean): void {
 		this.isOpen = open;

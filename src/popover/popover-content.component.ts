@@ -4,7 +4,8 @@ import {
 	ViewChild,
 	ElementRef,
 	AfterViewInit,
-	ChangeDetectorRef
+	ChangeDetectorRef,
+	inject
 } from "@angular/core";
 
 /**
@@ -32,7 +33,13 @@ export class PopoverContent implements AfterViewInit {
 	@ViewChild("content") popoverContent: ElementRef;
 	autoAlign = false;
 
-	constructor(private changeDetectorRef: ChangeDetectorRef) {}
+	private changeDetectorRef = inject(ChangeDetectorRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngAfterViewInit(): void {
 		if (this.popoverContent) {

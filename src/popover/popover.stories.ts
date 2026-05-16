@@ -1,8 +1,5 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
-import {
-	PopoverContainer,
-	PopoverContent
-} from "./";
+import { PopoverContainer, PopoverContent } from "./";
 
 export default {
 	title: "Components/Popover",

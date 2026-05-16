@@ -11,7 +11,8 @@ import {
 	ViewChildren,
 	QueryList,
 	ChangeDetectionStrategy,
-	ChangeDetectorRef
+	ChangeDetectorRef,
+	inject
 } from "@angular/core";
 import {
 	Observable,
@@ -137,6 +138,11 @@ import { AnimationFrameService, AnimationFrameServiceSingleton } from "carbon-co
 })
 export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDestroy {
 	static listCount = 0;
+
+	public i18n = inject(I18n);
+
+	public elementRef = inject(ElementRef);
+
 	@Input() ariaLabel = this.i18n.get().DROPDOWN_LIST.LABEL;
 	/**
 	 * The list items belonging to the `DropdownList`.
@@ -241,14 +247,16 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 */
 	protected _itemsReady: Observable<boolean>;
 
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of `DropdownList`.
 	 */
-	constructor(
-		public elementRef: ElementRef,
-		protected i18n: I18n,
-		protected changeDetectorRef: ChangeDetectorRef
-	) {}
+	constructor() {}
 
 	/**
 	 * Retrieves array of list items and index of the selected item after view has rendered.

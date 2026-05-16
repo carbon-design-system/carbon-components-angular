@@ -6,7 +6,8 @@ import {
 	Input,
 	Output,
 	TemplateRef,
-	ViewEncapsulation
+	ViewEncapsulation,
+	inject
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 import { OverflowMenuDirective } from "./overflow-menu.directive";
@@ -108,6 +109,8 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 	]
 })
 export class OverflowMenu extends BaseIconButton {
+	public i18n = inject(I18n);
+
 	@Input() buttonLabel = this.i18n.get().OVERFLOW_MENU.OVERFLOW;
 
 	@Input() description = this.i18n.get().OVERFLOW_MENU.ICON_DESCRIPTION;
@@ -138,7 +141,13 @@ export class OverflowMenu extends BaseIconButton {
 
 	@ContentChild(OverflowMenuDirective) overflowMenuDirective: OverflowMenuDirective;
 
-	constructor(protected elementRef: ElementRef, protected i18n: I18n) {
+	protected elementRef = inject(ElementRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
 		super();
 	}
 

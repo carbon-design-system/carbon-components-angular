@@ -1,9 +1,10 @@
 import {
 	Component,
-	OnInit,
+	EventEmitter,
+	inject,
 	Input,
-	Output,
-	EventEmitter
+	OnInit,
+	Output
 } from "@angular/core";
 import {
 	FormBuilder,
@@ -70,7 +71,7 @@ export class ReactiveFormsStory implements OnInit {
 	@Output() selected = new EventEmitter();
 	@Output() onClose = new EventEmitter();
 
-	constructor(protected formBuilder: FormBuilder) {}
+	protected formBuilder = inject(FormBuilder);
 
 	ngOnInit() {
 		this.formGroup = this.formBuilder.group({

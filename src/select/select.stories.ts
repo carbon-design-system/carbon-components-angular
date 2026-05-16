@@ -1,10 +1,6 @@
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { moduleMetadata, Meta } from "@storybook/angular";
-import {
-	Select,
-	Option,
-	OptGroup
-} from "./";
+import { Select, Option, OptGroup } from "./";
 
 import { ReactiveFormsSelect } from "./stories";
 import { AILabelModule } from "../ai-label";

@@ -14,16 +14,13 @@ import {
 	TemplateRef,
 	AfterViewInit,
 	ChangeDetectionStrategy,
-	ChangeDetectorRef
+	ChangeDetectorRef,
+	inject
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
 // Observable import is required here so typescript can compile correctly
-import {
-	Observable,
-	of,
-	Subscription
-} from "rxjs";
+import { Observable, of, Subscription } from "rxjs";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
 import { I18n } from "carbon-components-angular/i18n";
@@ -251,23 +248,15 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 })
 export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDestroy, ControlValueAccessor {
 	static dropdownCount = 0;
+
+	public i18n = inject(I18n);
+
 	@HostBinding("class.cds--list-box__wrapper--fluid--invalid") get fluidInvalidClass() {
 		return this.invalid && this.fluid;
 	}
 
 	@HostBinding("class.cds--list-box__wrapper--fluid--focus") get fluidFocusClass() {
 		return this.fluid && this._isFocused && !this.isOpen;
-	}
-
-	protected get writtenValue() {
-		return this._writtenValue;
-	}
-
-	protected set writtenValue(val: any[]) {
-		if (val && val.length === 0) {
-			this.clearSelected();
-		}
-		this._writtenValue = val;
 	}
 
 	@Input() id = `dropdown-${Dropdown.dropdownCount++}`;
@@ -445,6 +434,22 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	outsideKey = this._outsideKey.bind(this);
 	keyboardNav = this._keyboardNav.bind(this);
 
+	protected elementRef = inject(ElementRef);
+	protected dropdownService = inject(DropdownService);
+	protected elementService = inject(ElementService);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+
+	protected get writtenValue() {
+		return this._writtenValue;
+	}
+
+	protected set writtenValue(val: any[]) {
+		if (val && val.length === 0) {
+			this.clearSelected();
+		}
+		this._writtenValue = val;
+	}
+
 	protected visibilitySubscription = new Subscription();
 
 	protected onTouchedCallback: () => void = this._noop;
@@ -454,16 +459,14 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	// primarily used to capture and propagate input to `writeValue` before the content is available
 	private _writtenValue: any = [];
 
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of Dropdown.
 	 */
-	constructor(
-		protected elementRef: ElementRef,
-		protected i18n: I18n,
-		protected dropdownService: DropdownService,
-		protected elementService: ElementService,
-		protected changeDetectorRef: ChangeDetectorRef
-	) {}
+	constructor() {}
 
 	/**
 	 * Updates the `type` property in the `@ContentChild`.

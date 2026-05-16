@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { Subject } from "rxjs";
 import { NotificationService } from "../";
 
@@ -12,7 +12,8 @@ import { NotificationService } from "../";
 })
 export class DyanmicActionableStory {
 	actionSubject = new Subject<any>();
-	constructor(protected notificationService: NotificationService) {}
+
+	protected notificationService = inject(NotificationService);
 
 	showNotification() {
 		this.notificationService.showActionable({

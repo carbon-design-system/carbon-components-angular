@@ -6,7 +6,8 @@ import {
 	TemplateRef,
 	ChangeDetectorRef,
 	HostBinding,
-	Renderer2
+	Renderer2,
+	inject
 } from "@angular/core";
 import { EventService } from "carbon-components-angular/utils";
 
@@ -115,6 +116,11 @@ export class BaseTabHeader {
 	readonly longPressMultiplier = 3;
 	readonly clickMultiplier = 1.5;
 
+	protected elementRef = inject(ElementRef);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+	protected eventService = inject(EventService);
+	protected renderer = inject(Renderer2);
+
 	protected longPressInterval = null;
 	protected tickInterval = null;
 	protected scrollDebounceTimer: any = null;
@@ -135,12 +141,11 @@ export class BaseTabHeader {
 			(tabList.scrollLeft + tabList.clientWidth) === tabList.scrollWidth;
 	}
 
-	constructor(
-		protected elementRef: ElementRef,
-		protected changeDetectorRef: ChangeDetectorRef,
-		protected eventService: EventService,
-		protected renderer: Renderer2
-	) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	handleScroll() {
 		// Debounce the change detection trigger so the scroll arrow visibility

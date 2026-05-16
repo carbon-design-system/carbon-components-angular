@@ -1,6 +1,14 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { PLACEHOLDER_SERVICE_PROVIDER, Placeholder } from "../placeholder";
-import { Modal, ModalContent, ModalContentText, ModalFooter, ModalHeader, ModalHeaderHeading, ModalHeaderLabel } from "./";
+import {
+	Modal,
+	ModalContent,
+	ModalContentText,
+	ModalFooter,
+	ModalHeader,
+	ModalHeaderHeading,
+	ModalHeaderLabel
+} from "./";
 import { InputModule } from "../input";
 import { IconModule } from "../icon";
 import { AILabelModule } from "../ai-label";

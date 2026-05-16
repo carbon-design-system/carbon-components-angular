@@ -1,5 +1,11 @@
 import { Component, Input } from "@angular/core";
-import { Hamburger, Header, HeaderNavigation, NavigationItem, SideNav } from "../";
+import {
+	Hamburger,
+	Header,
+	HeaderNavigation,
+	NavigationItem,
+	SideNav
+} from "../";
 
 @Component({
 	selector: "app-bar",

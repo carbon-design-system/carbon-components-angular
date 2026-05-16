@@ -5,11 +5,10 @@ import {
 	FormControl,
 	ReactiveFormsModule
 } from "@angular/forms";
-import {
-	Component,
-	OnInit,
-	Input
-} from "@angular/core";
+import { Component,
+	inject,
+	Input,
+	OnInit } from "@angular/core";
 import isEqual from "lodash-es/isEqual";
 
 import { DropdownList } from "carbon-components-angular/dropdown";
@@ -84,7 +83,7 @@ export class ReactiveFormsCombobox implements OnInit {
 
 	_items: any[] = [];
 
-	constructor(private fb: FormBuilder) {}
+	private fb = inject(FormBuilder);
 
 	ngOnInit() {
 		this.sampleForm = this.fb.group({

@@ -1,10 +1,11 @@
-import {
-	Component,
-	Input,
-	OnInit
-} from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 
-import { Pagination, PaginationModel, PaginationNav, PaginationNavItem } from "../..";
+import {
+	Pagination,
+	PaginationModel,
+	PaginationNav,
+	PaginationNavItem
+} from "../..";
 
 @Component({
 	selector: "app-pagination",
