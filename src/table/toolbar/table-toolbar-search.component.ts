@@ -1,9 +1,5 @@
 import { Search } from "carbon-components-angular/search";
-import {
-	Component,
-	HostBinding,
-	AfterViewInit
-} from "@angular/core";
+import { Component, HostBinding, AfterViewInit } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { NgClass } from "@angular/common";
 import { IconDirective } from "carbon-components-angular/icon";

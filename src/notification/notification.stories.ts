@@ -2,13 +2,14 @@ import { ViewEncapsulation } from "@angular/core";
 import { Subject } from "rxjs";
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { Button } from "../button";
-import { Notification, BaseNotification, Toast, ActionableNotification } from "./";
-
 import {
-	DyanmicActionableStory,
-	NotificationStory,
-	ToastStory
-} from "./stories";
+	Notification,
+	BaseNotification,
+	Toast,
+	ActionableNotification
+} from "./";
+
+import { DyanmicActionableStory, NotificationStory, ToastStory } from "./stories";
 
 export default {
 	title: "Components/Notification",

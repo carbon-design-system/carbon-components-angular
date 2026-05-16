@@ -3,7 +3,8 @@ import {
 	Pagination,
 	PaginationNav,
 	PaginationNavItem,
-	PaginationOverflow } from "./";
+	PaginationOverflow
+} from "./";
 
 import { PaginationNavStory } from "./pagination-nav/stories";
 

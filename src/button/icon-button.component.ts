@@ -8,7 +8,8 @@ import {
 	Output,
 	Renderer2,
 	TemplateRef,
-	ViewChild
+	ViewChild,
+	inject
 } from "@angular/core";
 import { BaseIconButton } from "./base-icon-button.component";
 import { ButtonSize, ButtonType } from "./button.types";
@@ -62,6 +63,8 @@ import { Button } from "./button.directive";
 	imports: [Tooltip, NgClass, Button]
 })
 export class IconButton extends BaseIconButton implements AfterViewInit {
+	static iconButtonCounter = 0;
+
 	/**
 	 * Pass global carbon classes to icon button
 	 */
@@ -96,8 +99,6 @@ export class IconButton extends BaseIconButton implements AfterViewInit {
 	get buttonAttributes() {
 		return this.buttonAttributes;
 	}
-
-	static iconButtonCounter = 0;
 
 	@ViewChild("button") button: ElementRef;
 
@@ -150,8 +151,13 @@ export class IconButton extends BaseIconButton implements AfterViewInit {
 
 	private classList: { [key: string]: boolean } = {};
 	private attributeList: { [key: string]: string } = {};
+	private renderer = inject(Renderer2);
 
-	constructor(private renderer: Renderer2) {
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
 		super();
 	}
 

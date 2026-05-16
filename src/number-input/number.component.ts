@@ -6,7 +6,8 @@ import {
 	HostListener,
 	Input,
 	Output,
-	TemplateRef
+	TemplateRef,
+	inject
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -360,6 +361,8 @@ export class NumberComponent implements ControlValueAccessor {
 		return this.fluid && this.skeleton;
 	}
 
+	protected i18n = inject(I18n);
+
 	protected _isFocused = false;
 
 	protected _value = 0;
@@ -367,10 +370,14 @@ export class NumberComponent implements ControlValueAccessor {
 	protected _decrementLabel: Overridable = this.i18n.getOverridable("NUMBER.DECREMENT");
 	protected _incrementLabel: Overridable = this.i18n.getOverridable("NUMBER.INCREMENT");
 
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of `Number`.
 	 */
-	constructor(protected i18n: I18n) {
+	constructor() {
 		NumberComponent.numberCount++;
 	}
 

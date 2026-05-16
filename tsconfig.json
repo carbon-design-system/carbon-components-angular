@@ -12,7 +12,7 @@
     "sourceMap": true,
     "inlineSources": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "outDir": "./dist-pkg",
     "rootDir": ".",
     "target": "ES2022",

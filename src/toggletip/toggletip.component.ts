@@ -10,7 +10,8 @@ import {
 	Input,
 	NgZone,
 	OnDestroy,
-	Renderer2
+	Renderer2,
+	inject
 } from "@angular/core";
 import { fromEvent, Subscription } from "rxjs";
 import { PopoverContainer, PopoverContent } from "carbon-components-angular/popover";
@@ -47,15 +48,15 @@ export class Toggletip extends PopoverContainer implements AfterViewInit, OnDest
 	@ContentChild(ToggletipButton, { read: ElementRef }) btn!: ElementRef;
 
 	documentClick = this.handleFocusOut.bind(this);
+
 	private subscription: Subscription;
 
-	constructor(
-		protected hostElement: ElementRef,
-		protected ngZone: NgZone,
-		protected renderer: Renderer2,
-		protected changeDetectorRef: ChangeDetectorRef
-	) {
-		super(hostElement, ngZone, renderer, changeDetectorRef);
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
+		super();
 		this.highContrast = true;
 		this.dropShadow = false;
 	}
@@ -96,7 +97,7 @@ export class Toggletip extends PopoverContainer implements AfterViewInit, OnDest
 	}
 
 	handleFocusOut(event) {
-		if (!this.hostElement.nativeElement.contains(event.target)) {
+		if (!this.elementRef.nativeElement.contains(event.target)) {
 			this.handleExpansion(false, event);
 		}
 	}

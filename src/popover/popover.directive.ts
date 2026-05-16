@@ -11,7 +11,8 @@ import {
 	OnDestroy,
 	Output,
 	Renderer2,
-	SimpleChanges
+	SimpleChanges,
+	inject
 } from "@angular/core";
 import {
 	arrow,
@@ -124,18 +125,21 @@ export class PopoverContainer implements AfterViewInit, OnChanges, OnDestroy {
 	 */
 	@Input() alignmentAxisOffset?: number;
 
+	protected elementRef = inject(ElementRef);
+	protected ngZone = inject(NgZone);
+	protected renderer = inject(Renderer2);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
 	protected popoverContentRef: HTMLElement;
 	protected caretRef: HTMLElement;
 	protected caretOffset: number;
 	protected caretHeight: number;
 	protected unmountFloatingElement: Function;
 
-	constructor(
-		protected elementRef: ElementRef,
-		protected ngZone: NgZone,
-		protected renderer: Renderer2,
-		protected changeDetectorRef: ChangeDetectorRef
-	) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	/**
 	 * Handles emitting open/close event

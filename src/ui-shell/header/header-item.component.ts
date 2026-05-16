@@ -1,10 +1,10 @@
 import {
 	Component,
 	Input,
-	Optional,
 	EventEmitter,
 	Output,
-	HostBinding
+	HostBinding,
+	inject
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Router, RouterLinkActive, RouterLink } from "@angular/router";
@@ -111,7 +111,14 @@ export class HeaderItem {
 
 	protected _href = "#";
 
-	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) {}
+	protected domSanitizer = inject(DomSanitizer);
+	protected router = inject(Router, { optional: true })!;
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	navigate(event) {
 		if (this.router && this.route) {

@@ -1,9 +1,5 @@
-import { Component, OnInit } from "@angular/core";
-import {
-	FormBuilder,
-	FormGroup,
-	ReactiveFormsModule
-} from "@angular/forms";
+import { Component, inject, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 
 import { Checkbox } from "../checkbox.component";
 
@@ -26,7 +22,7 @@ import { Checkbox } from "../checkbox.component";
 export class ReactiveFormsStory implements OnInit {
 	public formGroup: FormGroup;
 
-	constructor(protected formBuilder: FormBuilder) {}
+	protected formBuilder = inject(FormBuilder);
 
 	ngOnInit() {
 		this.formGroup = this.formBuilder.group({

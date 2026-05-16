@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, inject, OnInit } from "@angular/core";
 import { Accessibility16 } from "@carbon/icons";
 
 import { IconService } from "../";
@@ -10,7 +10,7 @@ import { IconService } from "../";
 	`
 })
 export class IconDemo implements OnInit {
-	constructor(protected iconService: IconService) {}
+	protected iconService = inject(IconService);
 
 	ngOnInit() {
 		this.iconService.register(Accessibility16);

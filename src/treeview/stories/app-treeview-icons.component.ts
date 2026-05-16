@@ -1,4 +1,9 @@
-import { AfterViewInit, Component, TemplateRef, ViewChild } from "@angular/core";
+import {
+	AfterViewInit,
+	Component,
+	TemplateRef,
+	ViewChild
+} from "@angular/core";
 import { Node } from "../tree-node.types";
 import { IconDirective } from "../../icon";
 import { TreeViewComponent } from "../";

@@ -1,8 +1,4 @@
-import {
-	Component,
-	Input,
-	HostBinding
-} from "@angular/core";
+import { Component, Input, HostBinding } from "@angular/core";
 import { Select } from "carbon-components-angular/select";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { IconDirective } from "carbon-components-angular/icon";

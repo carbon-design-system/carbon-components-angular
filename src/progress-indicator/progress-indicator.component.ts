@@ -3,7 +3,8 @@ import {
 	Component,
 	EventEmitter,
 	Input,
-	Output
+	Output,
+	inject
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 import { Step } from "./progress-indicator-step.interface";
@@ -80,13 +81,6 @@ import { IconDirective } from "carbon-components-angular/icon";
 	imports: [NgClass, IconDirective]
 })
 export class ProgressIndicator {
-	@Input() get current() {
-		return this._current;
-	}
-	set current(current: number) {
-		this._current = current;
-		this.setProgressIndicatorStates();
-	}
 	static skeletonSteps(stepCount: number) {
 		const steps = [];
 		for (let i = 0; i < stepCount; i++) {
@@ -94,6 +88,16 @@ export class ProgressIndicator {
 		}
 
 		return steps;
+	}
+
+	public i18n = inject(I18n);
+
+	@Input() get current() {
+		return this._current;
+	}
+	set current(current: number) {
+		this._current = current;
+		this.setProgressIndicatorStates();
 	}
 
 	@Input() steps: Array<Step>;
@@ -114,7 +118,11 @@ export class ProgressIndicator {
 
 	private _current: number;
 
-	constructor(protected i18n: I18n) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	/**
 	 * Executes click function if `onClick` exists for step

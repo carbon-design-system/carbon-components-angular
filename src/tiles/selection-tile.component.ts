@@ -8,7 +8,8 @@ import {
 	AfterViewInit,
 	ChangeDetectorRef,
 	ChangeDetectionStrategy,
-	TemplateRef
+	TemplateRef,
+	inject
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 import { NgClass, AsyncPipe, NgTemplateOutlet } from "@angular/common";
@@ -64,6 +65,8 @@ import { IconDirective } from "carbon-components-angular/icon";
 })
 export class SelectionTile implements AfterViewInit {
 	static tileCount = 0;
+
+	public i18n = inject(I18n);
 
 	/**
 	 * @deprecated since v5 - Use `cdsLayer` directive instead
@@ -137,7 +140,13 @@ export class SelectionTile implements AfterViewInit {
 	// the value and check again when input exists in `AfterViewInit`.
 	protected _selected = null;
 
-	constructor(public i18n: I18n, protected changeDetectorRef: ChangeDetectorRef) {
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
 		SelectionTile.tileCount++;
 	}
 

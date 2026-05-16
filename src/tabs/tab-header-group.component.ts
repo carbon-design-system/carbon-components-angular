@@ -15,7 +15,8 @@ import {
 	ViewChild,
 	OnInit,
 	OnDestroy,
-	Renderer2
+	Renderer2,
+	inject
 } from "@angular/core";
 
 import { Subscription } from "rxjs";
@@ -101,6 +102,7 @@ import { NgClass, NgTemplateOutlet } from "@angular/common";
 	imports: [NgClass, NgTemplateOutlet]
 })
 export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, OnChanges, OnInit, OnDestroy {
+	public i18n = inject(I18n);
 
 	@HostBinding("class.cds--tabs--full-width") get fullWidthClass() {
 		return this.distributeWidth;
@@ -169,14 +171,12 @@ export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, O
 	 */
 	activeIndex: number | null = null;
 
-	constructor(
-		protected elementRef: ElementRef,
-		protected changeDetectorRef: ChangeDetectorRef,
-		protected eventService: EventService,
-		protected renderer: Renderer2,
-		protected i18n: I18n
-	) {
-		super(elementRef, changeDetectorRef, eventService, renderer);
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
+		super();
 	}
 
 	@HostListener("keydown", ["$event"])

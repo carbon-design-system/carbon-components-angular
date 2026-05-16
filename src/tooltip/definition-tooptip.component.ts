@@ -7,7 +7,8 @@ import {
 	Input,
 	NgZone,
 	Renderer2,
-	TemplateRef
+	TemplateRef,
+	inject
 } from "@angular/core";
 import { PopoverContainer } from "carbon-components-angular/popover";
 import { NgTemplateOutlet } from "@angular/common";
@@ -86,13 +87,12 @@ export class TooltipDefinition extends PopoverContainer {
 	 */
 	private isInteractingWithPopover = false;
 
-	constructor(
-		protected elementRef: ElementRef,
-		protected ngZone: NgZone,
-		protected renderer: Renderer2,
-		protected changeDetectorRef: ChangeDetectorRef
-	) {
-		super(elementRef, ngZone, renderer, changeDetectorRef);
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
+		super();
 		this.highContrast = true;
 		this.dropShadow = false;
 	}

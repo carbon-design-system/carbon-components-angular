@@ -1,10 +1,6 @@
-import { Component, Input } from "@angular/core";
+import { Component, inject, Input } from "@angular/core";
 
-import {
-	ModalService,
-	ModalButton,
-	AlertModalType
-} from "../";
+import { ModalService, ModalButton, AlertModalType } from "../";
 import { PLACEHOLDER_SERVICE_PROVIDER } from "../../placeholder";
 
 @Component({
@@ -24,7 +20,7 @@ export class AlertModalStory {
 	@Input() size: "xs" | "sm" | "md" | "lg";
 	@Input() showCloseButton: boolean;
 
-	constructor(protected modalService: ModalService) {}
+	protected modalService = inject(ModalService);
 
 	openModal() {
 		this.modalService.show({

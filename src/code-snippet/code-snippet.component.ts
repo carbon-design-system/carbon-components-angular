@@ -5,7 +5,8 @@ import {
 	HostBinding,
 	Input,
 	OnInit,
-	ViewChild
+	ViewChild,
+	inject
 } from "@angular/core";
 
 import { BaseIconButton } from "carbon-components-angular/button";
@@ -150,6 +151,9 @@ export enum SnippetType {
 	]
 })
 export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit {
+	public i18n = inject(I18n);
+	public eventService = inject(EventService);
+
 	@HostBinding("class.cds--snippet") get snippetClass() {
 		return this.display !== SnippetType.inline;
 	}
@@ -241,10 +245,14 @@ export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit
 	hasRight = false;
 	hasLeft = false;
 
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of CodeSnippet.
 	 */
-	constructor(protected i18n: I18n, protected eventService: EventService) {
+	constructor() {
 		super();
 		this.dropShadow = false;
 	}

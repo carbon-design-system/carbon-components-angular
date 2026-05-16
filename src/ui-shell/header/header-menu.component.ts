@@ -4,7 +4,8 @@ import {
 	HostListener,
 	ElementRef,
 	TemplateRef,
-	HostBinding
+	HostBinding,
+	inject
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { HeaderItemInterface } from "./header-navigation-items.interface";
@@ -84,7 +85,14 @@ export class HeaderMenu {
 
 	protected _href = "#";
 
-	constructor(protected domSanitizer: DomSanitizer, protected elementRef: ElementRef) {}
+	protected domSanitizer = inject(DomSanitizer);
+	protected elementRef = inject(ElementRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	@HostListener("click")
 	onClick() {

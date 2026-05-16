@@ -5,7 +5,8 @@ import {
 	ElementRef,
 	Output,
 	EventEmitter,
-	AfterViewInit
+	AfterViewInit,
+	inject
 } from "@angular/core";
 import { NgTemplateOutlet } from "@angular/common";
 
@@ -139,9 +140,15 @@ Please use the \`Target\` enum exported by carbon-components-angular`);
 	// change after checked errors
 	public title = null;
 
+	protected elementRef = inject(ElementRef);
+
 	protected _target: Target;
 
-	constructor(protected elementRef: ElementRef) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	onClick() {
 		this.selected.emit();

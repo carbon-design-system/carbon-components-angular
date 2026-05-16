@@ -3,7 +3,8 @@ import {
 	Input,
 	ElementRef,
 	OnInit,
-	OnDestroy
+	OnDestroy,
+	inject
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 
@@ -25,6 +26,9 @@ import { DomSanitizer } from "@angular/platform-browser";
 	standalone: true
 })
 export class Documentation implements OnInit, OnDestroy {
+	protected elementRef = inject(ElementRef);
+	protected sanitizer = inject(DomSanitizer);
+
 	@Input() set src(src: string) {
 		this._src = this.sanitizer.bypassSecurityTrustResourceUrl(src);
 	}
@@ -34,7 +38,11 @@ export class Documentation implements OnInit, OnDestroy {
 
 	protected _src;
 
-	constructor(protected elementRef: ElementRef, protected sanitizer: DomSanitizer) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngOnInit() {
 		document.querySelector("html").style.overflow = "hidden";

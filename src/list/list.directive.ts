@@ -2,7 +2,8 @@ import {
 	Directive,
 	ElementRef,
 	HostBinding,
-	Input
+	Input,
+	inject
 } from "@angular/core";
 
 /**
@@ -44,5 +45,11 @@ export class List {
 	 */
 	@Input() @HostBinding("class.cds--list--expressive") isExpressive = false;
 
-	constructor(protected elementRef: ElementRef) {}
+	protected elementRef = inject(ElementRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 }

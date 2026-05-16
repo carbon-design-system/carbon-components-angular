@@ -1,6 +1,12 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { TableModel, TableHeaderItem, TableItem, Table, TableContainer } from "../../table/index";
+import {
+	TableModel,
+	TableHeaderItem,
+	TableItem,
+	Table,
+	TableContainer
+} from "../../table/index";
 import { Hamburger, Header } from "../../ui-shell";
 import { Dropdown, DropdownList } from "../../dropdown";
 import { ColumnDirective, GridDirective, RowDirective } from "../../grid/index";

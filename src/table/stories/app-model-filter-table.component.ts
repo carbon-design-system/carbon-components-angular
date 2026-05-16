@@ -1,7 +1,8 @@
 import {
 	Component,
-	OnInit,
-	Input
+	inject,
+	Input,
+	OnInit
 } from "@angular/core";
 import { TableModel } from "../table-model.class";
 import { TableHeaderItem } from "../table-header-item.class";
@@ -167,11 +168,7 @@ export class FilterWithModelStory implements OnInit {
 		]
 	];
 
-	constructor(protected iconService: IconService) {
-		this.iconService.registerAll([
-			Add16, Filter16
-		]);
-	}
+	protected iconService = inject(IconService);
 
 	filterNodeNames(searchString: string) {
 		this.model.data = this.dataset
@@ -193,6 +190,10 @@ export class FilterWithModelStory implements OnInit {
 	};
 
 	ngOnInit() {
+		this.iconService.registerAll([
+			Add16, Filter16
+		]);
+
 		this.model.header = [
 			new TableHeaderItem({
 				data: "Node ID"

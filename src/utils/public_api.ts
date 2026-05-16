@@ -21,13 +21,8 @@ export {
 	isVisibleInContainer,
 	scrollableParentsObservable
 } from "./scroll";
-export {
-	clone,
-	closestAttr
-} from "./utils";
-export {
-	UtilsModule
-} from "./utils.module";
+export { clone, closestAttr } from "./utils";
+export {UtilsModule} from "./utils.module";
 export { getScrollbarWidth } from "./window-tools";
 export { ElementService } from "./element.service";
 export { ElementVisibilityEvent } from "./element.types";

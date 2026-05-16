@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, inject, OnInit } from "@angular/core";
 import {
 	FormGroup,
 	FormBuilder,
@@ -32,7 +32,7 @@ import { Select } from "../select.component";
 export class ReactiveFormsSelect implements OnInit {
 	public formGroup: FormGroup;
 
-	constructor(protected formBuilder: FormBuilder) {}
+	protected formBuilder = inject(FormBuilder);
 
 	clearSelection() {
 		this.formGroup.get("selecterino")?.setValue("default");

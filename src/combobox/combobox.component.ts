@@ -14,7 +14,8 @@ import {
 	TemplateRef,
 	OnDestroy,
 	ChangeDetectionStrategy,
-	ChangeDetectorRef
+	ChangeDetectorRef,
+	inject
 } from "@angular/core";
 import { AbstractDropdownView, DropdownService, ListItem } from "carbon-components-angular/dropdown";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
@@ -243,6 +244,8 @@ import {  PlaceholderService } from "carbon-components-angular/placeholder";
 	imports: [NgClass, NgTemplateOutlet, IconDirective]
 })
 export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnDestroy {
+	static comboBoxCount = 0;
+
 	/**
 	 * Text to show when nothing is selected.
 	 */
@@ -313,7 +316,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	get clearSelectionAria() {
 		return this._clearSelectionAria.value;
 	}
-	static comboBoxCount = 0;
 	@Input() id = `combobox-${ComboBox.comboBoxCount++}`;
 	@Input() labelId = `combobox-label-${ComboBox.comboBoxCount++}`;
 	/**
@@ -504,6 +506,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 */
 	_dropUp = false;
 
+	protected elementRef = inject(ElementRef);
+	protected dropdownService = inject(DropdownService);
+	protected i18n = inject(I18n);
+	protected cdr = inject(ChangeDetectorRef);
 	protected noop = this._noop.bind(this);
 	protected onTouchedCallback: () => void = this._noop;
 	protected propagateChangeCallback: (_: any) => void = this._noop;
@@ -518,15 +524,14 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 
 	protected _isFocused = false;
 
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of ComboBox.
 	 */
-	constructor(
-		protected elementRef: ElementRef,
-		protected dropdownService: DropdownService,
-		protected i18n: I18n,
-		protected cdr: ChangeDetectorRef
-	) {}
+	constructor() {}
 
 	/**
 	 * Lifecycle hook.

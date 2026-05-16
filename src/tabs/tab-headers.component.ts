@@ -16,7 +16,8 @@ import {
 	OnDestroy,
 	OnInit,
 	ChangeDetectorRef,
-	Renderer2
+	Renderer2,
+	inject
 } from "@angular/core";
 import { EventService } from "carbon-components-angular/utils";
 import { I18n } from "carbon-components-angular/i18n";
@@ -216,6 +217,8 @@ import { Tooltip } from "carbon-components-angular/tooltip";
 })
 
 export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnChanges, OnDestroy, OnInit {
+	public i18n = inject(I18n);
+
 	/**
 	 * List of `Tab` components.
 	 */
@@ -270,14 +273,12 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 
 	private resizeObserver: ResizeObserver;
 
-	constructor(
-		protected elementRef: ElementRef,
-		protected changeDetectorRef: ChangeDetectorRef,
-		protected eventService: EventService,
-		protected renderer: Renderer2,
-		protected i18n: I18n
-	) {
-		super(elementRef, changeDetectorRef, eventService, renderer);
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
+		super();
 	}
 
 	get hasSecondaryLabelTabs(): boolean {

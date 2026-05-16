@@ -1,5 +1,16 @@
-import { Component, ViewChild, ViewChildren, QueryList } from "@angular/core";
-import { ComponentFixture, TestBed, fakeAsync, tick, waitForAsync } from "@angular/core/testing";
+import {
+	Component,
+	ViewChild,
+	ViewChildren,
+	QueryList
+} from "@angular/core";
+import {
+	ComponentFixture,
+	TestBed,
+	fakeAsync,
+	tick,
+	waitForAsync
+} from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
 import { TilesModule, TileGroup, SelectionTile } from "./";

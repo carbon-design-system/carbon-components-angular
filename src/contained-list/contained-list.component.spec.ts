@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { IconButton } from "../button";
@@ -47,7 +47,13 @@ import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 	]
 })
 class WrapperComponent {
-	constructor(private iconService: IconService) {
+	private iconService = inject(IconService);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
 		this.iconService.registerAll([Apple16, Fish16]);
 	}
 }
@@ -135,7 +141,7 @@ describe("ContainedList", () => {
 			expect(listItemElement.nativeElement.textContent.trim()).toBe("List item");
 		});
 
-		it("should render the icon", () => {
+		it("should render the icon from template ref", () => {
 			const wrapperFixture: ComponentFixture<WrapperComponent> = TestBed.createComponent(WrapperComponent);
 			wrapperFixture.detectChanges();
 
@@ -143,12 +149,13 @@ describe("ContainedList", () => {
 			expect(iconElement).toBeTruthy();
 		});
 
-		it("should render the icon", () => {
+		it("should render the icon from string ref", () => {
 			const wrapperFixture: ComponentFixture<WrapperComponent> = TestBed.createComponent(WrapperComponent);
 			wrapperFixture.detectChanges();
 
-			const iconElement = wrapperFixture.debugElement
-				.query(By.css(".cds--contained-list-item:nth-child(3) svg[ng-reflect-ibm-icon='apple']"));
+			const iconElement = wrapperFixture.debugElement.query(
+				By.css(".cds--contained-list-item:nth-child(3) .cds--contained-list-item__icon svg")
+			);
 			expect(iconElement).toBeTruthy();
 		});
 

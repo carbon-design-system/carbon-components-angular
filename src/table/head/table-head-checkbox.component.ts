@@ -3,7 +3,8 @@ import {
 	Input,
 	Output,
 	HostBinding,
-	EventEmitter
+	EventEmitter,
+	inject
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
@@ -55,9 +56,15 @@ export class TableHeadCheckbox {
 
 	@HostBinding("class.cds--table-column-checkbox") hostClass = true;
 
+	protected i18n = inject(I18n);
+
 	protected _ariaLabel = this.i18n.getOverridable("TABLE.CHECKBOX_HEADER");
 
-	constructor(protected i18n: I18n) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	getAriaLabel(): Observable<string> {
 		return this._ariaLabel.subject;

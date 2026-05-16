@@ -11,7 +11,8 @@ import {
 	OnDestroy,
 	SimpleChanges,
 	TemplateRef,
-	ViewChild
+	ViewChild,
+	inject
 } from "@angular/core";
 import { NgClass, NgTemplateOutlet } from "@angular/common";
 import { IconDirective } from "carbon-components-angular/icon";
@@ -194,6 +195,7 @@ import { IconDirective } from "carbon-components-angular/icon";
 	imports: [NgClass, NgTemplateOutlet, IconDirective]
 })
 export class TextInputLabelComponent implements AfterViewInit, AfterContentInit, OnChanges, OnDestroy {
+	static labelCounter = 0;
 
 	@HostBinding("class.cds--text-input-wrapper--inline") get isInlineWrapper() {
 		return this.inline;
@@ -210,10 +212,6 @@ export class TextInputLabelComponent implements AfterViewInit, AfterContentInit,
 	@HostBinding("class.cds--text-input--fluid__skeleton") get fluidSkeletonClass() {
 		return this.fluid && this.skeleton;
 	}
-	/**
-	 * Used to build the id of the input item associated with the `Label`.
-	 */
-	static labelCounter = 0;
 	/**
 	 * The id of the input item associated with the `Label`. This value is also used to associate the `Label` with
 	 * its input counterpart through the 'for' attribute.
@@ -309,15 +307,21 @@ export class TextInputLabelComponent implements AfterViewInit, AfterContentInit,
 
 	@HostBinding("class.cds--text-input-wrapper") textInputWrapper = true;
 
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+
 	// Cached reference to the input element, set once in ngAfterViewInit.
 	private _inputElement: HTMLInputElement | null = null;
 	// Cached listener so it can be removed precisely (avoids anonymous-function leak).
 	private _inputListener: ((e: Event) => void) | null = null;
 
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of Label.
 	 */
-	constructor(protected changeDetectorRef: ChangeDetectorRef) {}
+	constructor() {}
 
 	/**
 	 * Sets the id on the input item associated with the `Label` and attaches the

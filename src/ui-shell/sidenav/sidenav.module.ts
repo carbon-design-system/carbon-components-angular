@@ -11,11 +11,7 @@ import { RouterLinkExtendedDirective } from "./routerlink-extended.directive";
 
 export { SideNavItemInterface } from "./sidenav-item.interface";
 
-export {
-	SideNav,
-	SideNavItem,
-	SideNavMenu
-};
+export { SideNav, SideNavItem, SideNavMenu };
 
 @NgModule({
 	imports: [

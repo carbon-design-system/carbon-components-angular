@@ -9,7 +9,8 @@ import {
 	AfterViewInit,
 	TemplateRef,
 	OnDestroy,
-	HostBinding
+	HostBinding,
+	inject
 } from "@angular/core";
 import { Subscription, fromEvent, Observable } from "rxjs";
 
@@ -24,7 +25,12 @@ import { DataGridInteractionModel } from "./data-grid-interaction-model.class";
 import { TableDomAdapter } from "./table-adapter.class";
 import { TableRowSize } from "./table.types";
 import { TableDirective } from "./table.directive";
-import { NgClass, NgStyle, NgTemplateOutlet, AsyncPipe } from "@angular/common";
+import {
+	NgClass,
+	NgStyle,
+	NgTemplateOutlet,
+	AsyncPipe
+} from "@angular/common";
 import { TableHead } from "./head/table-head.component";
 import { TableBody } from "./body/table-body.component";
 
@@ -651,6 +657,10 @@ export class Table implements OnInit, AfterViewInit, OnDestroy {
 	public columnDraggedHoverIndex = -1;
 	public columnDraggedPosition = "";
 
+	protected elementRef = inject(ElementRef);
+	protected applicationRef = inject(ApplicationRef);
+	protected i18n = inject(I18n);
+
 	protected _model: TableModel;
 	protected _isDataGrid = false;
 	// flag to prevent getters/setters from querying the view before it's fully instantiated
@@ -676,14 +686,14 @@ export class Table implements OnInit, AfterViewInit, OnDestroy {
 	protected mouseMoveSubscription: Subscription;
 	protected mouseUpSubscription: Subscription;
 
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of Table.
 	 */
-	constructor(
-		protected elementRef: ElementRef,
-		protected applicationRef: ApplicationRef,
-		protected i18n: I18n
-	) {}
+	constructor() {}
 
 	ngOnInit() {
 		// Manually trigger check to see if all checkboxes are selected

@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, inject, Input } from "@angular/core";
 import { ModalService } from "../";
 
 import { SampleModal } from "./sample-modal.component";
@@ -20,7 +20,7 @@ export class ModalStory {
 	@Input() isFullWidth = false;
 	@Input() ariaLabelledby: string;
 
-	constructor(protected modalService: ModalService) {}
+	protected modalService = inject(ModalService);
 
 	openModal() {
 		this.modalService.create({

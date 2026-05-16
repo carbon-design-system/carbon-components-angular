@@ -1,6 +1,14 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { PLACEHOLDER_SERVICE_PROVIDER, Placeholder } from "../placeholder";
-import { Modal, ModalContent, ModalContentText, ModalFooter, ModalHeader, ModalHeaderHeading, ModalHeaderLabel } from "./";
+import {
+	Modal,
+	ModalContent,
+	ModalContentText,
+	ModalFooter,
+	ModalHeader,
+	ModalHeaderHeading,
+	ModalHeaderLabel
+} from "./";
 import { InputModule } from "../input";
 import { IconModule } from "../icon";
 import { AILabelModule } from "../ai-label";
@@ -14,7 +22,7 @@ import {
 	AlertModalStory,
 	SampleFormModal
 } from "./stories";
-import { Button } from "../button";
+import { ButtonModule } from "../button";
 
 export default {
 	title: "Components/Modal",
@@ -30,7 +38,6 @@ export default {
 				ModalHeaderHeading,
 				ModalHeaderLabel,
 				Placeholder,
-				Button,
 				// stories
 				ModalStory,
 				SampleModal,
@@ -40,7 +47,8 @@ export default {
 				SampleFormModal,
 				IconModule,
 				InputModule,
-				AILabelModule
+				AILabelModule,
+				ButtonModule
 			],
 			providers: [PLACEHOLDER_SERVICE_PROVIDER]
 		})

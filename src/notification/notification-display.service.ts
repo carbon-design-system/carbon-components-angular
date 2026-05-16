@@ -1,11 +1,14 @@
-import {
-	Injectable,
-	ApplicationRef
-} from "@angular/core";
+import { Injectable, ApplicationRef, inject } from "@angular/core";
 
 @Injectable()
 export class NotificationDisplayService {
-	constructor(protected applicationRef: ApplicationRef) {}
+	protected applicationRef = inject(ApplicationRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	/**
 	 * Programatically closes notification based on `notificationRef`.	 *

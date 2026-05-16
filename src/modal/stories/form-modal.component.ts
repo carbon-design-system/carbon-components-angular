@@ -1,5 +1,14 @@
 import { Component } from "@angular/core";
-import { BaseModal, Modal, ModalContent, ModalContentText, ModalFooter, ModalHeader, ModalHeaderHeading, ModalHeaderLabel } from "../";
+import {
+	BaseModal,
+	Modal,
+	ModalContent,
+	ModalContentText,
+	ModalFooter,
+	ModalHeader,
+	ModalHeaderHeading,
+	ModalHeaderLabel
+} from "../";
 import { Label, TextInput } from "../../input";
 
 @Component({

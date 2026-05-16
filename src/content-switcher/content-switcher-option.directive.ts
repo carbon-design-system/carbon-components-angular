@@ -7,7 +7,8 @@ import {
 	EventEmitter,
 	ElementRef,
 	OnInit,
-	Renderer2
+	Renderer2,
+	inject
 } from "@angular/core";
 
 @Directive({
@@ -60,7 +61,14 @@ export class ContentSwitcherOption implements OnInit {
 
 	protected _active = false;
 
-	constructor(private renderer: Renderer2, private hostElement: ElementRef) {}
+	private renderer = inject(Renderer2);
+	private hostElement = inject(ElementRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	@HostListener("click", ["$event"])
 	hostClick(event: MouseEvent) {

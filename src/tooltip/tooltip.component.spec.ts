@@ -1,4 +1,9 @@
-import { TestBed, ComponentFixture, tick, fakeAsync } from "@angular/core/testing";
+import {
+	TestBed,
+	ComponentFixture,
+	tick,
+	fakeAsync
+} from "@angular/core/testing";
 import { Component, Input, DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
 

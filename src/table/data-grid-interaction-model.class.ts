@@ -1,8 +1,4 @@
-import {
-	BehaviorSubject,
-	Observable,
-	combineLatest
-} from "rxjs";
+import { BehaviorSubject, Observable, combineLatest } from "rxjs";
 import { map } from "rxjs/operators";
 import { TableAdapter } from "./table-adapter.class";
 import { tabbableSelectorIgnoreTabIndex, getFocusElementList } from "carbon-components-angular/common";

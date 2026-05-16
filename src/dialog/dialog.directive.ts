@@ -11,7 +11,8 @@ import {
 	OnChanges,
 	HostBinding,
 	SimpleChanges,
-	ComponentRef
+	ComponentRef,
+	inject
 } from "@angular/core";
 import { DialogService } from "./dialog.service";
 import { CloseMeta, CloseReasons, DialogConfig } from "./dialog-config.interface";
@@ -123,12 +124,21 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		return this.isOpen ? this.dialogConfig.compID : null;
 	}
 
+	protected elementRef = inject(ElementRef);
+	protected viewContainerRef = inject(ViewContainerRef);
+	protected dialogService = inject(DialogService);
+	protected eventService = inject(EventService);
+
 	/**
 	 * Keeps a reference to the currently opened dialog
 	 */
 	protected dialogRef: ComponentRef<Dialog>;
 
 	private subscriptions: Subscription[] = [];
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
 
 	/**
 	 * Creates an instance of DialogDirective.
@@ -137,15 +147,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * @param dialogService
 	 * @param eventService
 	 */
-	constructor(
-		protected elementRef: ElementRef,
-		protected viewContainerRef: ViewContainerRef,
-		protected dialogService: DialogService,
-		/**
-		 * Deprecated as of v5
-		 */
-		protected eventService: EventService
-	) {}
+	constructor() {}
 
 	ngOnChanges(changes: SimpleChanges) {
 		// set the config object (this can [and should!] be added to in child classes depending on what they need)

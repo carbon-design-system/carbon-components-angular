@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { NotificationService } from "../";
 
 @Component({
@@ -10,7 +10,7 @@ import { NotificationService } from "../";
 	providers: [NotificationService]
 })
 export class NotificationStory {
-	constructor(protected notificationService: NotificationService) {}
+	protected notificationService = inject(NotificationService);
 
 	showNotification() {
 		this.notificationService.showNotification({

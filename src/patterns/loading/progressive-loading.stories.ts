@@ -1,8 +1,4 @@
-import {
-	Component,
-	OnInit,
-	OnDestroy
-} from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { moduleMetadata, Meta } from "@storybook/angular";
 import {
 	TableModel,
@@ -12,7 +8,12 @@ import {
 	TableContainer
 } from "../../table";
 import { Dropdown, DropdownList } from "../../dropdown";
-import { ColumnDirective, GridDirective, GridService, RowDirective } from "../../grid";
+import {
+	ColumnDirective,
+	GridDirective,
+	GridService,
+	RowDirective
+} from "../../grid";
 import { Button } from "../../button";
 import { Checkbox } from "../../checkbox";
 import { Hamburger, Header } from "../../ui-shell";

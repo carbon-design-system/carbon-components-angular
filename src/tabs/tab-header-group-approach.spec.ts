@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { Component, Type } from "@angular/core";
 import { TestBed, fakeAsync, tick } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
@@ -7,17 +7,18 @@ import { UtilsModule } from "../utils";
 import { TabsModule } from "./tabs.module";
 import { IconModule } from "../icon";
 
+// Shared deps for standalone tab test hosts
+const tabsTestDeps = [
+	TabsModule,
+	UtilsModule,
+	I18nModule,
+	IconModule
+];
+
 describe("Tabs — Tab header group approach", () => {
-	function configureDeclarations(components: any[]) {
+	function configureTestHosts(components: Array<Type<unknown>>) {
 		TestBed.configureTestingModule({
-			imports: [
-				TabsModule,
-				UtilsModule,
-				I18nModule,
-				IconModule
-			],
-			declarations: components,
-			schemas: [CUSTOM_ELEMENTS_SCHEMA]
+			imports: components
 		});
 	}
 
@@ -26,7 +27,7 @@ describe("Tabs — Tab header group approach", () => {
 	}
 
 	beforeEach(() => {
-		configureDeclarations([
+		configureTestHosts([
 			HGInitialSelectionSecondTest,
 			HGCustomClassOnTabHostTest,
 			HGConditionalTabTest,
@@ -210,6 +211,7 @@ function visibleTabpanels(root: HTMLElement): HTMLElement[] {
 }
 
 @Component({
+	imports: tabsTestDeps,
 	template: `
 		<cds-tab-header-group [ariaLabel]="'List of tabs'">
 			<cds-tab-header [paneReference]="t1">Tab Label 1</cds-tab-header>
@@ -219,12 +221,13 @@ function visibleTabpanels(root: HTMLElement): HTMLElement[] {
 		<cds-tab #t1>Panel 1</cds-tab>
 		<cds-tab #t2 [active]="true">Panel 2</cds-tab>
 		<cds-tab #t3>Panel 3</cds-tab>
-	`,
-	standalone: false
+	`
+
 })
 class HGInitialSelectionSecondTest {}
 
 @Component({
+	imports: tabsTestDeps,
 	template: `
 		<cds-tab-header-group [ariaLabel]="'List of tabs'">
 			<cds-tab-header [paneReference]="p1">One</cds-tab-header>
@@ -232,12 +235,13 @@ class HGInitialSelectionSecondTest {}
 		</cds-tab-header-group>
 		<cds-tab #p1 class="my-panel custom-class">Tab Panel 1</cds-tab>
 		<cds-tab #p2>Tab Panel 2</cds-tab>
-	`,
-	standalone: false
+	`
+
 })
 class HGCustomClassOnTabHostTest {}
 
 @Component({
+	imports: tabsTestDeps,
 	template: `
 		<cds-tab-header-group [ariaLabel]="'List of tabs'">
 			<cds-tab-header [paneReference]="t1">One</cds-tab-header>
@@ -251,12 +255,13 @@ class HGCustomClassOnTabHostTest {}
 			<cds-tab #excluded>X</cds-tab>
 		}
 		<cds-tab #t2>B</cds-tab>
-	`,
-	standalone: false
+	`
+
 })
 class HGConditionalTabTest {}
 
 @Component({
+	imports: tabsTestDeps,
 	template: `
 		<cds-tab-header-group [type]="'contained'" [ariaLabel]="'List of tabs'">
 			<cds-tab-header [paneReference]="s1" [secondaryLabel]="'test-secondary'">One</cds-tab-header>
@@ -264,12 +269,13 @@ class HGConditionalTabTest {}
 		</cds-tab-header-group>
 		<cds-tab #s1>A</cds-tab>
 		<cds-tab #s2>B</cds-tab>
-	`,
-	standalone: false
+	`
+
 })
 class HGSecondaryLabelContainedTest {}
 
 @Component({
+	imports: tabsTestDeps,
 	template: `
 		<ng-template #iconTpl>
 			<svg
@@ -285,12 +291,13 @@ class HGSecondaryLabelContainedTest {}
 		</cds-tab-header-group>
 		<cds-tab #p1>First body</cds-tab>
 		<cds-tab #p2>Second body</cds-tab>
-	`,
-	standalone: false
+	`
+
 })
 class HGContentProjectionLabeledIconTabTest {}
 
 @Component({
+	imports: tabsTestDeps,
 	template: `
 		<ng-template #iconTpl>
 			<svg
@@ -309,12 +316,13 @@ class HGContentProjectionLabeledIconTabTest {}
 				[badgeIndicator]="true" />
 		</cds-tab-header-group>
 		<cds-tab #only1>Icon-only body</cds-tab>
-	`,
-	standalone: false
+	`
+
 })
 class HGIconTabBadgeTest {}
 
 @Component({
+	imports: tabsTestDeps,
 	template: `
 		<cds-tab-header-group [cacheActive]="true" [ariaLabel]="'List of tabs'">
 			<cds-tab-header [paneReference]="a">One</cds-tab-header>
@@ -322,12 +330,13 @@ class HGIconTabBadgeTest {}
 		</cds-tab-header-group>
 		<cds-tab #a>First body</cds-tab>
 		<cds-tab #b>Second body</cds-tab>
-	`,
-	standalone: false
+	`
+
 })
 class TabHeaderGroupPaneRefSwitchTest {}
 
 @Component({
+	imports: tabsTestDeps,
 	template: `
 		<cds-tab-header-group
 			[dismissable]="true"
@@ -338,14 +347,15 @@ class TabHeaderGroupPaneRefSwitchTest {}
 		</cds-tab-header-group>
 		<cds-tab #d1>P1</cds-tab>
 		<cds-tab #d2>P2</cds-tab>
-	`,
-	standalone: false
+	`
+
 })
 class HGDismissableTabsTest {
 	onTabClose(_: number) {}
 }
 
 @Component({
+	imports: tabsTestDeps,
 	template: `
 		<cds-tab-header-group [followFocus]="true" [ariaLabel]="'List of tabs'">
 			<cds-tab-header [paneReference]="k1">Tab Label 1</cds-tab-header>
@@ -355,12 +365,13 @@ class HGDismissableTabsTest {
 		<cds-tab #k1>P1</cds-tab>
 		<cds-tab #k2>P2</cds-tab>
 		<cds-tab #k3>P3</cds-tab>
-	`,
-	standalone: false
+	`
+
 })
 class HGKeyboardNavigationTest {}
 
 @Component({
+	imports: tabsTestDeps,
 	template: `
 		<cds-tab-header-group [followFocus]="false" [ariaLabel]="'List of tabs'">
 			<cds-tab-header [paneReference]="m1">Tab Label 1</cds-tab-header>
@@ -370,12 +381,13 @@ class HGKeyboardNavigationTest {}
 		<cds-tab #m1>P1</cds-tab>
 		<cds-tab #m2>P2</cds-tab>
 		<cds-tab #m3>P3</cds-tab>
-	`,
-	standalone: false
+	`
+
 })
 class HGManualActivationTest {}
 
 @Component({
+	imports: tabsTestDeps,
 	template: `
 		<cds-tab-header-group [ariaLabel]="'List of tabs'">
 			<cds-tab-header [paneReference]="v1">One</cds-tab-header>
@@ -383,12 +395,13 @@ class HGManualActivationTest {}
 		</cds-tab-header-group>
 		<cds-tab #v1>One content</cds-tab>
 		<cds-tab #v2>Two content</cds-tab>
-	`,
-	standalone: false
+	`
+
 })
 class HGTabPanelVisibilityTest {}
 
 @Component({
+	imports: tabsTestDeps,
 	template: `
 		<cds-tab-header-group [ariaLabel]="'List of tabs'">
 			<cds-tab-header [paneReference]="so1" (selected)="onFirstSelected()">One</cds-tab-header>
@@ -396,14 +409,15 @@ class HGTabPanelVisibilityTest {}
 		</cds-tab-header-group>
 		<cds-tab #so1>A</cds-tab>
 		<cds-tab #so2>B</cds-tab>
-	`,
-	standalone: false
+	`
+
 })
 class HGSelectedOutputTest {
 	onFirstSelected() {}
 }
 
 @Component({
+	imports: tabsTestDeps,
 	template: `
 		<cds-tab-header-group [type]="'contained'" [fullWidth]="true" [ariaLabel]="'List of tabs'">
 			<cds-tab-header [paneReference]="fw1">One</cds-tab-header>
@@ -413,7 +427,7 @@ class HGSelectedOutputTest {
 		<cds-tab #fw1>A</cds-tab>
 		<cds-tab #fw2>B</cds-tab>
 		<cds-tab #fw3>C</cds-tab>
-	`,
-	standalone: false
+	`
+
 })
 class HGFullWidthContainedTest {}

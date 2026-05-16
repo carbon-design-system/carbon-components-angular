@@ -5,11 +5,17 @@ import {
 	AfterViewInit,
 	ViewChild,
 	ChangeDetectionStrategy,
-	TemplateRef
+	TemplateRef,
+	inject
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 import { merge } from "carbon-components-angular/utils";
-import { NgClass, NgStyle, NgTemplateOutlet, AsyncPipe } from "@angular/common";
+import {
+	NgClass,
+	NgStyle,
+	NgTemplateOutlet,
+	AsyncPipe
+} from "@angular/common";
 import { IconDirective } from "carbon-components-angular/icon";
 import { Tile } from "./tile.component";
 
@@ -105,6 +111,8 @@ export interface ExpandableTileTranslations {
 	]
 })
 export class ExpandableTile implements AfterViewInit {
+	public i18n = inject(I18n);
+
 	/**
 	 * @deprecated since v5 - Use `cdsLayer` directive instead
 	 * Set to `"light"` to apply the light style
@@ -154,7 +162,13 @@ export class ExpandableTile implements AfterViewInit {
 	expand = this.i18n.getOverridable("TILES.EXPAND");
 	collapse = this.i18n.getOverridable("TILES.COLLAPSE");
 
-	constructor(protected i18n: I18n, protected element: ElementRef) {}
+	protected element = inject(ElementRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngAfterViewInit() {
 		this.updateMaxHeight();

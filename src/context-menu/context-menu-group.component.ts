@@ -8,7 +8,8 @@ import {
 	OnDestroy,
 	OnInit,
 	Output,
-	SimpleChanges
+	SimpleChanges,
+	inject
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { ContextMenuSelectionService } from "./context-menu-selection.service";
@@ -32,9 +33,15 @@ export class ContextMenuGroupComponent implements OnInit, OnChanges, OnDestroy {
 	@Input() type: null | "radio" | "checkbox" = null;
 	@Output() valueChange = new EventEmitter<any[]>();
 
+	protected contextMenuSelectionService = inject(ContextMenuSelectionService);
+
 	private subscription = new Subscription();
 
-	constructor(protected contextMenuSelectionService: ContextMenuSelectionService) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngOnInit() {
 		const { selectionObservable } = this.contextMenuSelectionService;

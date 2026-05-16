@@ -5,7 +5,8 @@ import {
 	OnDestroy,
 	NgZone,
 	ViewContainerRef,
-	Injector
+	Injector,
+	inject
 } from "@angular/core";
 
 import { NotificationContent, ToastContent, ActionableContent } from "./notification-content.interface";
@@ -28,14 +29,18 @@ export class NotificationService implements OnDestroy {
 	public notificationRefs = new Array<ComponentRef<any>>();
 	public onClose: EventEmitter<any> = new EventEmitter();
 
+	protected injector = inject(Injector);
+	protected viewContainer = inject(ViewContainerRef);
+	protected ngZone = inject(NgZone);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Constructs Notification Service
 	 */
-	constructor(
-		protected injector: Injector,
-		protected viewContainer: ViewContainerRef,
-		protected ngZone: NgZone
-	) {}
+	constructor() {}
 
 	/**
 	 * Shows the notification based on the `notificationObj`.

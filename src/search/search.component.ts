@@ -8,7 +8,8 @@ import {
 	HostListener,
 	Input,
 	Output,
-	ViewChild
+	ViewChild,
+	inject
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { I18n } from "carbon-components-angular/i18n";
@@ -42,6 +43,8 @@ export class Search implements ControlValueAccessor {
 	 * Variable used for creating unique ids for search components.
 	 */
 	static searchCount = 0;
+
+	public i18n = inject(I18n);
 
 	@HostBinding("class.cds--form-item") get containerClass() {
 		return !(this.toolbar || this.expandable);
@@ -148,20 +151,23 @@ export class Search implements ControlValueAccessor {
 
 	@ViewChild("input") inputRef: ElementRef;
 
+	protected elementRef = inject(ElementRef);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+
 	/**
 	 * Sets `true` when composing text via IME.
 	 */
 	protected isComposing = false;
 
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of `Search`.
 	 * @param i18n The i18n translations.
 	 */
-	constructor(
-		protected elementRef: ElementRef,
-		protected i18n: I18n,
-		protected changeDetectorRef: ChangeDetectorRef
-	) {
+	constructor() {
 		Search.searchCount++;
 	}
 

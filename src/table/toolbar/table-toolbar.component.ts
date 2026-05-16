@@ -3,7 +3,8 @@ import {
 	Component,
 	EventEmitter,
 	Input,
-	Output
+	Output,
+	inject
 } from "@angular/core";
 import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { TableRowSize } from "../table.types";
@@ -97,6 +98,8 @@ import { ReplacePipe } from "carbon-components-angular/i18n";
 	]
 })
 export class TableToolbar {
+	public i18n = inject(I18n);
+
 	@Input() model: TableModel;
 
 	@Input() set batchText (value: string | { SINGLE: string, MULTIPLE: string }) {
@@ -129,7 +132,11 @@ export class TableToolbar {
 	_batchTextSingle: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.BATCH_TEXT_SINGLE");
 	_batchTextMultiple: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.BATCH_TEXT_MULTIPLE");
 
-	constructor(protected i18n: I18n) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	get count() {
 		return this.model.totalDataLength > 0 ? this.model.rowsSelected.reduce((previous, current) => previous + (current ? 1 : 0), 0) : 0;

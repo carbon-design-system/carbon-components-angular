@@ -6,7 +6,8 @@ import {
 	OnInit,
 	OnDestroy,
 	TemplateRef,
-	AfterContentChecked
+	AfterContentChecked,
+	inject
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { TreeViewService } from "./treeview.service";
@@ -175,8 +176,13 @@ export class TreeNodeComponent implements AfterContentChecked, OnInit, OnDestroy
 	offset;
 	private _node;
 	private subscription: Subscription;
+	private treeViewService = inject(TreeViewService);
 
-	constructor(private treeViewService: TreeViewService) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	/**
 	 * Caclulate offset for margin/padding

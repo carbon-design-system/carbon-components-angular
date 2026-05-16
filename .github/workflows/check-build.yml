@@ -42,7 +42,7 @@ jobs:
 
     strategy:
       matrix:
-        angular-version: [19, 20, 21]
+        angular-version: [20, 21]
         node-version: [22.x]
 
     steps:

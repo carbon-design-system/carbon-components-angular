@@ -3,7 +3,8 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	AfterViewInit
+	AfterViewInit,
+	inject
 } from "@angular/core";
 
 import { TableModel } from "../table-model.class";
@@ -217,12 +218,17 @@ export class TableHead implements AfterViewInit {
 
 	public scrollbarWidth = 0;
 
+	protected i18n = inject(I18n);
 	protected _checkboxHeaderLabel = this.i18n.getOverridable("TABLE.CHECKBOX_HEADER");
 	protected _sortDescendingLabel = this.i18n.getOverridable("TABLE.SORT_DESCENDING");
 	protected _sortAscendingLabel = this.i18n.getOverridable("TABLE.SORT_ASCENDING");
 	protected _filterTitle = this.i18n.getOverridable("TABLE.FILTER");
 
-	constructor(protected i18n: I18n) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngAfterViewInit() {
 		setTimeout(() => {

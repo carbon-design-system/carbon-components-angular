@@ -10,7 +10,8 @@ import {
 	ViewChild,
 	ChangeDetectorRef,
 	ContentChild,
-	ChangeDetectionStrategy
+	ChangeDetectionStrategy,
+	inject
 } from "@angular/core";
 import { PasswordInput } from "./password.directive";
 import { BaseIconButton } from "carbon-components-angular/button";
@@ -190,9 +191,6 @@ import { Tooltip } from "carbon-components-angular/tooltip";
  * Represents the Password Input Label Component.
  */
 export class PasswordInputLabelComponent extends BaseIconButton implements AfterViewInit {
-	/**
-	 * Counter for generating unique labelInputID.
-	 */
 	static labelCounter = 0;
 
 	@ContentChild(PasswordInput) textInput: PasswordInput;
@@ -322,11 +320,17 @@ export class PasswordInputLabelComponent extends BaseIconButton implements After
 		return this.fluid && this.skeleton;
 	}
 
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Constructor for PasswordInputLabelComponent.
 	 * @param changeDetectorRef - Reference to ChangeDetectorRef.
 	 */
-	constructor(protected changeDetectorRef: ChangeDetectorRef) {
+	constructor() {
 		super();
 	}
 

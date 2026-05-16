@@ -2,7 +2,8 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter
+	EventEmitter,
+	inject
 } from "@angular/core";
 import { range } from "carbon-components-angular/common";
 import { I18n } from "carbon-components-angular/i18n";
@@ -52,6 +53,8 @@ import { IconDirective } from "carbon-components-angular/icon";
 	imports: [PaginationNavItem, FormsModule, IconDirective]
 })
 export class PaginationOverflow {
+	public i18n = inject(I18n);
+
 	/**
 	 * The page for this component to dipslay
 	 */
@@ -72,7 +75,11 @@ export class PaginationOverflow {
 		return rangeArray;
 	}
 
-	constructor(protected i18n: I18n) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	handleChange(event) {
 		this.change.emit(+event.target.value);

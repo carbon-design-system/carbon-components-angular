@@ -10,11 +10,12 @@ import {
 	SimpleChanges,
 	OnChanges,
 	Renderer2,
-	Inject,
 	OnDestroy,
-	TemplateRef
+	TemplateRef,
+	DOCUMENT,
+	inject
 } from "@angular/core";
-import { DOCUMENT, NgClass } from "@angular/common";
+import { NgClass } from "@angular/common";
 import { cycleTabs, getFocusElementList } from "carbon-components-angular/common";
 import { BaseModalService } from "./base-modal.service";
 import { Overlay } from "./overlay.component";
@@ -113,6 +114,8 @@ export class ModalDemo {
 	imports: [Overlay, NgClass]
 })
 export class Modal implements AfterViewInit, OnChanges, OnDestroy {
+	modalService = inject(BaseModalService);
+
 	/**
 	 * Size of the modal to display.
 	 */
@@ -174,14 +177,17 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 	 */
 	@Input() selectorPrimaryFocus = "[modal-primary-focus]";
 
+	private document = inject<Document>(DOCUMENT);
+	private renderer = inject(Renderer2);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of `Modal`.
 	 */
-	constructor(
-		public modalService: BaseModalService,
-		@Inject(DOCUMENT) private document: Document,
-		private renderer: Renderer2
-	) {}
+	constructor() {}
 
 	ngOnChanges({ open, hasScrollingContent }: SimpleChanges) {
 		if (open) {

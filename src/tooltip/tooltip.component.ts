@@ -12,7 +12,8 @@ import {
 	Renderer2,
 	SimpleChanges,
 	TemplateRef,
-	ViewChild
+	ViewChild,
+	inject
 } from "@angular/core";
 import { PopoverContainer } from "carbon-components-angular/popover";
 import { NgTemplateOutlet } from "@angular/common";
@@ -88,15 +89,14 @@ export class Tooltip extends PopoverContainer implements OnChanges, AfterContent
 
 	@ViewChild("contentWrapper") wrapper: ElementRef<HTMLSpanElement>;
 
-	private timeoutId: any; // it should be number, but setTimeout below is matching the NodeJs type instead of the JS type
+	private timeoutId: any;
 
-	constructor(
-		protected elementRef: ElementRef,
-		protected ngZone: NgZone,
-		protected renderer: Renderer2,
-		protected changeDetectorRef: ChangeDetectorRef
-	) {
-		super(elementRef, ngZone, renderer, changeDetectorRef);
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]); // it should be number, but setTimeout below is matching the NodeJs type instead of the JS type
+
+	constructor() {
+		super();
 		this.highContrast = true;
 		this.dropShadow = false;
 	}

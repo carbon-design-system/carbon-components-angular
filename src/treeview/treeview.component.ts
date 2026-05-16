@@ -1,4 +1,4 @@
-import { DOCUMENT, NgTemplateOutlet, NgClass } from "@angular/common";
+import { NgTemplateOutlet, NgClass } from "@angular/common";
 import {
 	Component,
 	Input,
@@ -6,11 +6,12 @@ import {
 	TemplateRef,
 	EventEmitter,
 	AfterViewInit,
-	Inject,
 	ViewChild,
 	ElementRef,
 	OnInit,
-	OnDestroy
+	OnDestroy,
+	DOCUMENT,
+	inject
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { EventOnNode, Node } from "./tree-node.types";
@@ -73,6 +74,10 @@ import { TreeNodeComponent } from "./tree-node.component";
 	imports: [NgTemplateOutlet, NgClass, TreeNodeComponent]
 })
 export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
+	static treeViewCount = 0;
+
+	treeViewService = inject(TreeViewService);
+
 	/**
 	 * Pass `Node[]` array to have tree view render the nodes
 	 * Passing value will disregard projected content
@@ -85,8 +90,6 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 	get tree() {
 		return this._tree;
 	}
-
-	static treeViewCount = 0;
 
 	@Input() id = `tree-view-${TreeViewComponent.treeViewCount++}`;
 	/**
@@ -122,12 +125,14 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 	private treeWalker: TreeWalker;
 	private _tree: Node[] = [];
 	private subscription: Subscription;
+	private document = inject<Document>(DOCUMENT);
+	private elementRef = inject(ElementRef);
 
-	constructor(
-		@Inject(DOCUMENT) private document: Document,
-		public treeViewService: TreeViewService,
-		private elementRef: ElementRef
-	) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	/**
 	 * Subscribe for node selection

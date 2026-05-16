@@ -7,7 +7,8 @@ import {
 	HostListener,
 	Input,
 	OnChanges,
-	SimpleChanges
+	SimpleChanges,
+	inject
 } from "@angular/core";
 
 /**
@@ -61,7 +62,13 @@ export class ContextMenuComponent implements OnChanges, AfterViewInit {
 	 */
 	@HostBinding("class.cds--menu--with-icons") iconClass = false;
 
-	constructor(protected elementRef: ElementRef) {}
+	protected elementRef = inject(ElementRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (changes.open && changes.open.currentValue) {

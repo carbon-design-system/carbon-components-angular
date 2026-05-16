@@ -1,4 +1,9 @@
-import { Directive, Input, OnChanges, SimpleChanges } from "@angular/core";
+import {
+	Directive,
+	Input,
+	OnChanges,
+	SimpleChanges
+} from "@angular/core";
 import { NavigationExtras, RouterLink } from "@angular/router";
 import keys from "lodash-es/keys";
 

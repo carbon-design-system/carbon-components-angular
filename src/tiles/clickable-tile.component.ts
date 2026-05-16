@@ -3,9 +3,9 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	Optional,
 	ChangeDetectionStrategy,
-	TemplateRef
+	TemplateRef,
+	inject
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { Link } from "carbon-components-angular/link";
@@ -44,12 +44,10 @@ import { NgClass, NgTemplateOutlet } from "@angular/common";
 			[attr.aria-disabled]="disabled">
 			<ng-content></ng-content>
 			@if (decorator) {
-
 				<div class="cds--tile--inner-decorator">
 					<ng-template [ngTemplateOutlet]="decorator"></ng-template>
 				</div>
-
-}
+			}
 		</a>
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -109,7 +107,13 @@ export class ClickableTile {
 	 */
 	@Output() navigation = new EventEmitter<Promise<boolean>>();
 
-	constructor(@Optional() protected router: Router) {}
+	protected router = inject(Router, { optional: true })!;
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	navigate(event) {
 		if (this.router && this.route && !this.disabled) {

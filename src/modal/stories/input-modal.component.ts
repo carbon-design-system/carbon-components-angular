@@ -1,5 +1,11 @@
-import { Component, Inject } from "@angular/core";
-import { ModalService, BaseModal, Modal, ModalHeader, ModalFooter } from "../";
+import { Component, inject } from "@angular/core";
+import {
+	ModalService,
+	BaseModal,
+	Modal,
+	ModalHeader,
+	ModalFooter
+} from "../";
 import { Label, TextInput } from "../../input";
 import { PLACEHOLDER_SERVICE_PROVIDER } from "../../placeholder";
 
@@ -37,14 +43,11 @@ import { PLACEHOLDER_SERVICE_PROVIDER } from "../../placeholder";
 	providers: [ModalService, PLACEHOLDER_SERVICE_PROVIDER]
 })
 export class InputModal extends BaseModal {
-	constructor(
-		@Inject("modalText") public modalText,
-		@Inject("size") public size,
-		@Inject("data") public data,
-		@Inject("inputValue") public inputValue,
-		protected modalService: ModalService) {
-		super();
-	}
+	public modalText = inject<any>("modalText" as any);
+	public size = inject<any>("size" as any);
+	public data = inject<any>("data" as any);
+	public inputValue = inject<any>("inputValue" as any);
+	protected modalService = inject(ModalService);
 
 	onChange(event) {
 		this.data.next(event.target.value);

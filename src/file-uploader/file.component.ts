@@ -6,7 +6,8 @@ import {
 	ChangeDetectionStrategy,
 	Input,
 	Output,
-	TemplateRef
+	TemplateRef,
+	inject
 } from "@angular/core";
 import { NgTemplateOutlet } from "@angular/common";
 
@@ -92,6 +93,8 @@ import { Button } from "carbon-components-angular/button";
 	imports: [NgTemplateOutlet, IconDirective, Loading, Button]
 })
 export class FileComponent implements OnDestroy {
+	public i18n = inject(I18n);
+
 	/**
 	 * Accessible translations for the close and complete icons
 	 */
@@ -133,7 +136,11 @@ export class FileComponent implements OnDestroy {
 		return this.size === "lg";
 	}
 
-	constructor(protected i18n: I18n) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	public isTemplate(value: unknown): boolean {
 		return value instanceof TemplateRef;

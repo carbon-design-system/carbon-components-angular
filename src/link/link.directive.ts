@@ -1,8 +1,4 @@
-import {
-	Directive,
-	HostBinding,
-	Input
-} from "@angular/core";
+import { Directive, HostBinding, Input } from "@angular/core";
 
 /**
  * A convenience directive for applying styling to a link. Get started with importing the directive:

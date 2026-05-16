@@ -3,8 +3,8 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	Optional,
-	HostBinding
+	HostBinding,
+	inject
 } from "@angular/core";
 import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 import { Router } from "@angular/router";
@@ -81,7 +81,14 @@ export class SwitcherListItem {
 	protected _href = "#";
 	protected _target = "";
 
-	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) {}
+	protected domSanitizer = inject(DomSanitizer);
+	protected router = inject(Router, { optional: true })!;
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	navigate(event) {
 		if (this.router && this.route) {

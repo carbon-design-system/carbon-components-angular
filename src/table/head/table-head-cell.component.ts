@@ -6,7 +6,8 @@ import {
 	EventEmitter,
 	HostBinding,
 	OnChanges,
-	ViewChild
+	ViewChild,
+	inject
 } from "@angular/core";
 import { Observable, OperatorFunction } from "rxjs";
 import { I18n } from "carbon-components-angular/i18n";
@@ -197,11 +198,17 @@ export class TableHeadCell implements OnChanges {
 		return !!(this.column?.hasAILabelHeader && this.column?.template);
 	}
 
+	protected i18n = inject(I18n);
+
 	protected _sortDescendingLabel = this.i18n.getOverridable("TABLE.SORT_DESCENDING");
 	protected _sortAscendingLabel = this.i18n.getOverridable("TABLE.SORT_ASCENDING");
 	protected _filterTitle = this.i18n.getOverridable("TABLE.FILTER");
 
-	constructor(protected i18n: I18n) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngOnChanges() {
 		this.theadAction = !!(this.column && this.column.filterTemplate) || this.sort.observers.length > 0;

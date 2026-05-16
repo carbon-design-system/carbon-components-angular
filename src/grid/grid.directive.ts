@@ -8,7 +8,8 @@ import {
 	OnInit,
 	Optional,
 	QueryList,
-	SkipSelf
+	SkipSelf,
+	inject
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { GridService } from "./grid.service";
@@ -40,6 +41,7 @@ import { GridService } from "./grid.service";
 	standalone: true
 })
 export class GridDirective implements OnInit, OnDestroy {
+
 	/**
 	 * Set to `true` to condense the grid
 	 */
@@ -106,7 +108,13 @@ export class GridDirective implements OnInit, OnDestroy {
 		return this.cssGridEnabled && this.isSubgrid && this.fullWidth;
 	}
 
-	constructor(private gridService: GridService) {}
+	private gridService = inject(GridService);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngOnInit() {
 		this.subscription = this.gridService.gridObservable.subscribe((isCssGrid: boolean) => {

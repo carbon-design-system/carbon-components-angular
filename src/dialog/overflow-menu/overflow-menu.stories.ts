@@ -1,5 +1,11 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { Dialog, OverflowMenu, OverflowMenuDirective, OverflowMenuOption, OverflowMenuPane } from "../";
+import {
+	Dialog,
+	OverflowMenu,
+	OverflowMenuDirective,
+	OverflowMenuOption,
+	OverflowMenuPane
+} from "../";
 import { PLACEHOLDER_SERVICE_PROVIDER, Placeholder } from "../../placeholder";
 import { IconDirective } from "../../icon";
 import { Checkbox } from "../../checkbox";

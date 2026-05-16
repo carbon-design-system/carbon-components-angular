@@ -38,7 +38,6 @@ export default tseslint.config(
 				style: "camelCase"
 			}
 		],
-		"@angular-eslint/no-host-metadata-property": "error",
 		"@angular-eslint/no-input-rename": "error",
 		"@angular-eslint/no-inputs-metadata-property": "error",
 		// @todo - Enable v7/8 - Need to prepare a schematic

@@ -1,9 +1,5 @@
 import { moduleMetadata, Meta } from "@storybook/angular";
-import {
-	Breadcrumb,
-	BreadcrumbItemComponent,
-	BreadcrumbItem
-} from "./";
+import { Breadcrumb, BreadcrumbItemComponent, BreadcrumbItem } from "./";
 
 let breadcrumbItems;
 

@@ -1,6 +1,11 @@
 import { Component } from "@angular/core";
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { ColumnDirective, GridDirective, GridService, RowDirective } from "../../grid";
+import {
+	ColumnDirective,
+	GridDirective,
+	GridService,
+	RowDirective
+} from "../../grid";
 import { ProgressIndicator} from "../../progress-indicator";
 import { Placeholder } from "../../placeholder";
 import { Dropdown, DropdownList } from "../../dropdown";

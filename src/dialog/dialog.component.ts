@@ -7,13 +7,11 @@ import {
 	Input,
 	OnDestroy,
 	OnInit,
-	Optional,
 	Output,
-	ViewChild
+	ViewChild,
+	inject
 } from "@angular/core";
-import {
-	Subscription
-} from "rxjs";
+import {Subscription} from "rxjs";
 // the AbsolutePosition is required to import the declaration correctly
 import Position, { position, Positions } from "@carbon/utils-position";
 import { cycleTabs, getFocusElementList } from "carbon-components-angular/common";
@@ -56,6 +54,10 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 */
 	public placement: string;
 
+	protected elementRef = inject(ElementRef);
+	protected elementService = inject(ElementService);
+	protected animationFrameService = inject(AnimationFrameService, { optional: true })! ?? null;
+
 	protected visibilitySubscription = new Subscription();
 
 	protected animationFrameSubscription = new Subscription();
@@ -78,16 +80,16 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 */
 	protected placements: Positions = {};
 
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of `Dialog`.
 	 * @param elementRef
 	 * @param elementService
 	 */
-	constructor(
-		protected elementRef: ElementRef,
-		protected elementService: ElementService,
-		@Optional() protected animationFrameService: AnimationFrameService = null
-	) {}
+	constructor() {}
 
 	/**
 	 * Initialize the `Dialog`, set the placement and gap, and add a `Subscription` to resize events.

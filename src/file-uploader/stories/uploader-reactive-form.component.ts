@@ -1,8 +1,7 @@
-import {
-	Component,
+import { Component,
+	inject,
 	Input,
-	OnInit
-} from "@angular/core";
+	OnInit } from "@angular/core";
 
 import {
 	FormBuilder,
@@ -80,7 +79,7 @@ export class ReactiveFormsStory implements OnInit {
 
 	protected maxSize = 500000;
 
-	constructor(protected formBuilder: FormBuilder) {}
+	protected formBuilder = inject(FormBuilder);
 
 	ngOnInit() {
 		this.formGroup = this.formBuilder.group({

@@ -1,7 +1,8 @@
 import {
+	AfterViewInit,
 	Component,
-	OnInit,
-	AfterViewInit
+	inject,
+	OnInit
 } from "@angular/core";
 import {
 	FormGroup,
@@ -48,7 +49,7 @@ export class ReactiveFormsStory implements AfterViewInit, OnInit {
 		{ num: "four", disabled: true }
 	];
 
-	constructor(protected formBuilder: FormBuilder) {}
+	protected formBuilder = inject(FormBuilder);
 
 	changeSelected() {
 		this.formGroup.get("radioGroup")?.setValue("three");

@@ -2,7 +2,8 @@ import {
 	Component,
 	Input,
 	OnInit,
-	HostBinding
+	HostBinding,
+	inject
 } from "@angular/core";
 
 import { isObservable, of } from "rxjs";
@@ -64,6 +65,7 @@ import { NotificationService } from "./notification.service";
 })
 export class Toast extends BaseNotification implements OnInit {
 	private static toastCount = 0;
+
 	/**
 	 * Can have `type`, `title`, `subtitle`, and `caption` members.
 	 *
@@ -92,8 +94,15 @@ export class Toast extends BaseNotification implements OnInit {
 	@HostBinding("class.cds--toast-notification--low-contrast") get isLowContrast() { return this.notificationObj.lowContrast; }
 	@HostBinding("class.cds--toast-notification--hide-close-button") get isCloseHidden() { return !this.notificationObj.showClose; }
 
-	constructor(protected notificationDisplayService: NotificationDisplayService, protected i18n: I18n) {
-		super(notificationDisplayService, i18n);
+	protected notificationDisplayService: NotificationDisplayService;
+	protected i18n: I18n;
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
+		super();
 	}
 
 	ngOnInit() {

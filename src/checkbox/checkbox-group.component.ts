@@ -10,7 +10,8 @@ import {
 	OnChanges,
 	QueryList,
 	SimpleChanges,
-	TemplateRef
+	TemplateRef,
+	inject
 } from "@angular/core";
 import { NgClass, NgTemplateOutlet } from "@angular/common";
 import { IconDirective } from "carbon-components-angular/icon";
@@ -114,6 +115,7 @@ import { Checkbox } from "./checkbox.component";
 })
 export class CheckboxGroup implements OnChanges, AfterContentInit {
 	private static nextHelperId = 0;
+
 	@HostBinding("class.cds--form-item") hostFormItem = true;
 
 	@ContentChildren(forwardRef(() => Checkbox), { descendants: true }) checkboxes: QueryList<Checkbox>;
@@ -151,7 +153,13 @@ export class CheckboxGroup implements OnChanges, AfterContentInit {
 	 */
 	@Input() decorator: TemplateRef<any>;
 
-	constructor(private changeDetectorRef: ChangeDetectorRef) {}
+	private changeDetectorRef = inject(ChangeDetectorRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (changes["readOnly"] || changes["invalid"] || changes["warn"]) {

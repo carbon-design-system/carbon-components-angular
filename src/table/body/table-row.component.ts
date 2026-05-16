@@ -4,7 +4,8 @@ import {
 	Output,
 	EventEmitter,
 	HostBinding,
-	HostListener
+	HostListener,
+	inject
 } from "@angular/core";
 import { TableModel } from "../table-model.class";
 import { I18n, Overridable } from "carbon-components-angular/i18n";
@@ -245,10 +246,16 @@ export class TableRowComponent {
 		return this.enableSingleSelect && !this.showSelectionColumn ? 0 : null;
 	}
 
+	protected i18n = inject(I18n);
+
 	protected _checkboxLabel = this.i18n.getOverridable("TABLE.CHECKBOX_ROW");
 	protected _expandButtonAriaLabel = this.i18n.getOverridable("TABLE.EXPAND_BUTTON");
 
-	constructor(protected i18n: I18n) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	@HostListener("click")
 	onHostClick() {
