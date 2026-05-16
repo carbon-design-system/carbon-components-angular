@@ -58,7 +58,9 @@ import { NgClass, NgTemplateOutlet } from "@angular/common";
 	imports: [NgClass, NgTemplateOutlet]
 })
 export class ContainedList {
-	/** Used to generate unique IDs */
+	/**
+	 * Used to generate unique IDs
+	 */
 	private static count = 0;
 
 	/**

@@ -164,7 +164,9 @@ import { NgClass, NgTemplateOutlet, NgStyle } from "@angular/common";
 	imports: [NgClass, NgTemplateOutlet, NgStyle]
 })
 export class Slider implements AfterViewInit, ControlValueAccessor {
-	/** Used to generate unique IDs */
+	/**
+	 * Used to generate unique IDs
+	 */
 	private static count = 0;
 
 	/** The lower bound of our range */

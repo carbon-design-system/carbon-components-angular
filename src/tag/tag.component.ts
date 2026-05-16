@@ -36,20 +36,16 @@ export type TagType = "red" |
 	selector: "cds-tag, ibm-tag",
 	template: `
 		@if (!skeleton) {
-
 			<ng-content select="[cdsTagIcon],[ibmTagIcon]" />
 			<span class="cds--tag__label">
 				<ng-content></ng-content>
 			</span>
 			@if (decorator) {
-
 				<div class="cds--tag__decorator">
 					<ng-template [ngTemplateOutlet]="decorator"></ng-template>
 				</div>
-
-}
-
-}
+			}
+		}
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [NgTemplateOutlet],

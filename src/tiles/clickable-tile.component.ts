@@ -44,12 +44,10 @@ import { NgClass, NgTemplateOutlet } from "@angular/common";
 			[attr.aria-disabled]="disabled">
 			<ng-content></ng-content>
 			@if (decorator) {
-
 				<div class="cds--tile--inner-decorator">
 					<ng-template [ngTemplateOutlet]="decorator"></ng-template>
 				</div>
-
-}
+			}
 		</a>
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,

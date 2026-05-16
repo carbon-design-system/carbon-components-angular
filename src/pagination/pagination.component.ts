@@ -77,7 +77,6 @@ export interface PaginationTranslations {
 		@if (!skeleton) {
 			<div class="cds--pagination__left">
 			@if (showPageInput) {
-
 				<label class="cds--pagination__text" [for]="itemsPerPageSelectId">
 					{{itemsPerPageText.subject | async}}
 				</label>
@@ -144,7 +143,6 @@ export interface PaginationTranslations {
 				</span>
 			}
 			@if (showPageInput) {
-
 				<div
 					class="cds--select cds--select--inline cds--select__page-number"
 					[class.cds--select--disabled]="pageInputDisabled">

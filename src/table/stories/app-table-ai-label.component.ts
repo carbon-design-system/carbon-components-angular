@@ -36,7 +36,6 @@ function showSlugForRowIndex(i: number): boolean {
 	template: `
 		<ng-template #rowSlugTpl let-data="data">
 			@if (data?.show) {
-
 				<cds-ai-label
 					class="ai-label-container"
 					kind="default"
@@ -46,8 +45,7 @@ function showSlugForRowIndex(i: number): boolean {
 					ariaLabel="Show information">
 					` + AI_LABEL_INNER + `
 				</cds-ai-label>
-
-}
+			}
 		</ng-template>
 		<cds-table
 			[model]="model"
@@ -63,7 +61,6 @@ function showSlugForRowIndex(i: number): boolean {
 	imports: [Table, AILabelModule, IconDirective, ButtonModule]
 })
 export class TableAiLabelWithSelectionStory implements AfterViewInit {
-
 	model = new TableModel();
 	@ViewChild("rowSlugTpl") protected rowSlugTpl: TemplateRef<any>;
 
@@ -100,7 +97,6 @@ export class TableAiLabelWithSelectionStory implements AfterViewInit {
 	template: `
 		<ng-template #rowSlugTpl let-data="data">
 			@if (data?.show) {
-
 				<cds-ai-label
 					class="ai-label-container"
 					kind="default"
@@ -110,8 +106,7 @@ export class TableAiLabelWithSelectionStory implements AfterViewInit {
 					ariaLabel="Show information">
 					` + AI_LABEL_INNER + `
 				</cds-ai-label>
-
-}
+			}
 		</ng-template>
 		<cds-table
 			[model]="model"
@@ -128,7 +123,6 @@ export class TableAiLabelWithSelectionStory implements AfterViewInit {
 	imports: [Table, AILabelModule, IconDirective, ButtonModule]
 })
 export class TableAiLabelRadioSelectionStory implements AfterViewInit {
-
 	model = new TableModel();
 	@ViewChild("rowSlugTpl") protected rowSlugTpl: TemplateRef<any>;
 
@@ -165,7 +159,6 @@ export class TableAiLabelRadioSelectionStory implements AfterViewInit {
 	template: `
 		<ng-template #rowSlugTpl let-data="data">
 			@if (data?.show) {
-
 				<cds-ai-label
 					class="ai-label-container"
 					kind="default"
@@ -175,8 +168,7 @@ export class TableAiLabelRadioSelectionStory implements AfterViewInit {
 					ariaLabel="Show information">
 					` + AI_LABEL_INNER + `
 				</cds-ai-label>
-
-}
+			}
 		</ng-template>
 		<cds-table
 			[model]="model"
@@ -193,7 +185,6 @@ export class TableAiLabelRadioSelectionStory implements AfterViewInit {
 	imports: [Table, AILabelModule, IconDirective, ButtonModule]
 })
 export class TableAiLabelSelectionExpansionStory implements AfterViewInit {
-
 	model = new TableModel();
 	@ViewChild("rowSlugTpl") protected rowSlugTpl: TemplateRef<any>;
 
@@ -233,7 +224,6 @@ export class TableAiLabelSelectionExpansionStory implements AfterViewInit {
 	template: `
 		<ng-template #rowSlugTpl let-data="data">
 			@if (data?.show) {
-
 				<cds-ai-label
 					class="ai-label-container"
 					kind="default"
@@ -243,8 +233,7 @@ export class TableAiLabelSelectionExpansionStory implements AfterViewInit {
 					ariaLabel="Show information">
 					` + AI_LABEL_INNER + `
 				</cds-ai-label>
-
-}
+			}
 		</ng-template>
 		<cds-table
 			[model]="model"
@@ -261,7 +250,6 @@ export class TableAiLabelSelectionExpansionStory implements AfterViewInit {
 	imports: [Table, AILabelModule, IconDirective, ButtonModule]
 })
 export class TableAiLabelExpansionOnlyStory implements AfterViewInit {
-
 	model = new TableModel();
 	@ViewChild("rowSlugTpl") protected rowSlugTpl: TemplateRef<any>;
 
@@ -325,7 +313,6 @@ export class TableAiLabelExpansionOnlyStory implements AfterViewInit {
 	imports: [Table, AILabelModule, IconDirective, ButtonModule]
 })
 export class TableAiLabelColumnExpansionStory implements AfterViewInit {
-
 	model = new TableModel();
 	@ViewChild("attachedGroupsHeaderTpl") protected attachedGroupsHeaderTpl: TemplateRef<any>;
 
@@ -385,7 +372,6 @@ export class TableAiLabelColumnExpansionStory implements AfterViewInit {
 	imports: [Table, AILabelModule, IconDirective, ButtonModule]
 })
 export class TableAiLabelColumnSortStory implements AfterViewInit {
-
 	model = new TableModel();
 	@ViewChild("attachedGroupsHeaderTpl") protected attachedGroupsHeaderTpl: TemplateRef<any>;
 

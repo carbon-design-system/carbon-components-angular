@@ -77,7 +77,6 @@ import { IconDirective } from "carbon-components-angular/icon";
 		</fieldset>
 		<div class="cds--radio-button__validation-msg">
 			@if (invalid) {
-
 				<svg
 					cdsIcon="warning--filled"
 					size="16"
@@ -94,7 +93,6 @@ import { IconDirective } from "carbon-components-angular/icon";
 
 			}
 			@if (!invalid && warn) {
-
 				<svg
 					cdsIcon="warning--alt--filled"
 					class="cds--radio-button__invalid-icon cds--radio-button__invalid-icon--warning"
@@ -134,7 +132,6 @@ import { IconDirective } from "carbon-components-angular/icon";
 	imports: [NgClass, NgTemplateOutlet, IconDirective]
 })
 export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValueAccessor {
-
 	/**
 	 * Sets the passed in `Radio` item as the selected input within the `RadioGroup`.
 	 */

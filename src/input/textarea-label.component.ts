@@ -174,6 +174,9 @@ import { IconDirective } from "carbon-components-angular/icon";
 	imports: [NgClass, NgTemplateOutlet, IconDirective]
 })
 export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestroy {
+	/**
+	 * Used to build the id of the input item associated with the `Label`.
+	 */
 	static labelCounter = 0;
 
 	@HostBinding("class.cds--text-area__wrapper--readonly") get isReadonly() {

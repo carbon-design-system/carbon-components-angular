@@ -20,8 +20,6 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 	standalone: true
 })
 export class AILabelPopoverDirective extends PopoverContainer implements OnChanges {
-
-
 	/** Inserted by Angular inject() migration for backwards compatibility */
 	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
 	constructor(...args: unknown[]);

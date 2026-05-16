@@ -92,7 +92,6 @@ import { IconDirective } from "carbon-components-angular/icon";
 					[textInputTemplate]="inputContentTemplate" />
 			}
 			@case ('PasswordInput') {
-
 				<cds-password-label
 					[labelInputID]="labelInputID"
 					[disabled]="disabled"
