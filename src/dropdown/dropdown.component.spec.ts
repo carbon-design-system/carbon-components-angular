@@ -30,6 +30,22 @@ class DropdownTest {
 	onSelect() {}
 }
 
+@Component({
+	template: `
+	<cds-dropdown
+		placeholder="test"
+		class="custom-class"
+		[itemValueKey]="itemValueKey"
+		(selected)="onSelect()">
+		<cds-dropdown-list [items]="items"></cds-dropdown-list>
+	</cds-dropdown>`
+})
+class DropdownTestNoModel {
+	items = [{content: "one", id: 0, selected: false}, {content: "two", id: 1, selected: false}];
+	itemValueKey = undefined;
+	onSelect() {}
+}
+
 describe("Dropdown", () => {
 	let fixture, element, wrapper;
 	beforeEach(() => {
@@ -38,7 +54,8 @@ describe("Dropdown", () => {
 				Dropdown,
 				DropdownList,
 				DropdownTest,
-				ScrollableList
+				ScrollableList,
+				DropdownTestNoModel
 			],
 			imports: [
 				I18nModule,
@@ -98,5 +115,77 @@ describe("Dropdown", () => {
 	it("should keep custom classes on the host el", () => {
 		const el = fixture.debugElement.query(By.css("cds-dropdown"));
 		expect(el.nativeElement.classList.contains("custom-class")).toBe(true);
+	});
+
+	it("should ignore selected property from the items when _isUsingReactiveForms is true", () => {
+		fixture = TestBed.createComponent(DropdownTestNoModel);
+		wrapper = fixture.componentInstance;
+		wrapper.itemValueKey = "id";
+		fixture.detectChanges();
+		element = fixture.debugElement.query(By.css("cds-dropdown"));
+
+		expect(element.componentInstance._isUsingReactiveForms).toBe(false);
+		expect(element.componentInstance.view.getSelected()).toEqual([]);
+
+		element.componentInstance._isUsingReactiveForms = true;
+		wrapper.items[0].selected = true;
+		fixture.detectChanges();
+
+		expect(element.componentInstance.view.getSelected()).toEqual([]);
+	});
+
+	it("should automatically reselect the _writtenValue when items are updated and _isUsingReactiveForms is true", () => {
+		fixture = TestBed.createComponent(DropdownTestNoModel);
+		wrapper = fixture.componentInstance;
+		wrapper.itemValueKey = "id";
+		fixture.detectChanges();
+		element = fixture.debugElement.query(By.css("cds-dropdown"));
+
+		element.componentInstance._isUsingReactiveForms = true;
+		element.componentInstance.writeValue(0);
+		fixture.detectChanges();
+
+		expect(element.componentInstance.view.getSelected()[0].id).toEqual(0);
+
+		wrapper.items.push({ id: 4, content: "four", selected: false });
+		fixture.detectChanges();
+
+		expect(element.componentInstance.view.getSelected()[0].id).toEqual(0);
+	});
+
+	it("should update _writtenValue if user manually changes selection when _isUsingReactiveForms is true", () => {
+		fixture = TestBed.createComponent(DropdownTestNoModel);
+		wrapper = fixture.componentInstance;
+		wrapper.itemValueKey = "id";
+		fixture.detectChanges();
+		element = fixture.debugElement.query(By.css("cds-dropdown"));
+
+		element.componentInstance._isUsingReactiveForms = true;
+		element.componentInstance.writeValue(1);
+		fixture.detectChanges();
+		expect(element.componentInstance._writtenValue).toEqual(1);
+
+		const dropdownToggle = element.nativeElement.querySelector(".cds--list-box__field");
+		dropdownToggle.click();
+		fixture.detectChanges();
+		const dropdownOption = element.nativeElement.querySelector(".cds--list-box__menu-item");
+		dropdownOption.click();
+		fixture.detectChanges();
+
+		expect(element.componentInstance._writtenValue).toEqual(0);
+	});
+
+	it("should set _isUsingReactiveForms to true when registerOnChange is called", () => {
+		fixture = TestBed.createComponent(DropdownTestNoModel);
+		wrapper = fixture.componentInstance;
+		fixture.detectChanges();
+		element = fixture.debugElement.query(By.css("cds-dropdown"));
+
+		expect(element.componentInstance._isUsingReactiveForms).toBe(false);
+
+		element.componentInstance.registerOnChange(() => {});
+		fixture.detectChanges();
+
+		expect(element.componentInstance._isUsingReactiveForms).toBe(true);
 	});
 });

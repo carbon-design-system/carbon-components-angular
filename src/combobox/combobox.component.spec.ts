@@ -38,6 +38,27 @@ class ComboboxTest {
 	model: ListItem;
 }
 
+@Component({
+	template: `
+	<cds-combo-box
+		placeholder="placeholder"
+		label="label"
+		[items]="items"
+		[type]="type"
+		[itemValueKey]="itemValueKey">
+		<cds-dropdown-list></cds-dropdown-list>
+	</cds-combo-box>`
+})
+class ComboboxTestNoModel {
+	items = [
+		{id: "1", content: "one", selected: false},
+		{id: "2", content: "two", selected: false},
+		{id: "3", content: "three", selected: false}
+	];
+	type = "single";
+	itemValueKey = undefined;
+}
+
 describe("Combo box", () => {
 	let fixture, wrapper, element;
 	beforeEach(() => {
@@ -46,7 +67,8 @@ describe("Combo box", () => {
 				ComboBox,
 				DropdownList,
 				ComboboxTest,
-				ScrollableList
+				ScrollableList,
+				ComboboxTestNoModel
 			],
 			imports: [
 				IconModule,
@@ -208,5 +230,77 @@ describe("Combo box", () => {
 		fixture.detectChanges();
 
 		expect(wrapper.model).toEqual(["1"]);
+	});
+
+	it("should ignore selected property from the items when _isUsingReactiveForms is true", () => {
+		fixture = TestBed.createComponent(ComboboxTestNoModel);
+		wrapper = fixture.componentInstance;
+		wrapper.itemValueKey = "id";
+		fixture.detectChanges();
+		element = fixture.debugElement.query(By.css("cds-combo-box"));
+
+		expect(element.componentInstance._isUsingReactiveForms).toBe(false);
+		expect(element.componentInstance.view.getSelected()).toEqual([]);
+
+		element.componentInstance._isUsingReactiveForms = true;
+		wrapper.items[0].selected = true;
+		fixture.detectChanges();
+
+		expect(element.componentInstance.view.getSelected()).toEqual([]);
+	});
+
+	it("should automatically reselect the _writtenValue when items are updated and _isUsingReactiveForms is true", () => {
+		fixture = TestBed.createComponent(ComboboxTestNoModel);
+		wrapper = fixture.componentInstance;
+		wrapper.itemValueKey = "id";
+		fixture.detectChanges();
+		element = fixture.debugElement.query(By.css("cds-combo-box"));
+
+		element.componentInstance._isUsingReactiveForms = true;
+		element.componentInstance.writeValue("1");
+		fixture.detectChanges();
+
+		expect(element.componentInstance.view.getSelected()[0].id).toEqual("1");
+
+		wrapper.items.push({ id: "4", content: "four", selected: false });
+		fixture.detectChanges();
+
+		expect(element.componentInstance.view.getSelected()[0].id).toEqual("1");
+	});
+
+	it("should update _writtenValue if user manually changes selection when _isUsingReactiveForms is true", () => {
+		fixture = TestBed.createComponent(ComboboxTestNoModel);
+		wrapper = fixture.componentInstance;
+		wrapper.itemValueKey = "id";
+		fixture.detectChanges();
+		element = fixture.debugElement.query(By.css("cds-combo-box"));
+
+		element.componentInstance._isUsingReactiveForms = true;
+		element.componentInstance.writeValue("2");
+		fixture.detectChanges();
+		expect(element.componentInstance._writtenValue).toEqual("2");
+
+		const dropdownToggle = element.nativeElement.querySelector(".cds--list-box__field");
+		dropdownToggle.click();
+		fixture.detectChanges();
+		const dropdownOption = element.nativeElement.querySelector(".cds--list-box__menu-item");
+		dropdownOption.click();
+		fixture.detectChanges();
+
+		expect(element.componentInstance._writtenValue).toEqual("1");
+	});
+
+	it("should set _isUsingReactiveForms to true when registerOnChange is called", () => {
+		fixture = TestBed.createComponent(ComboboxTestNoModel);
+		wrapper = fixture.componentInstance;
+		fixture.detectChanges();
+		element = fixture.debugElement.query(By.css("cds-combo-box"));
+
+		expect(element.componentInstance._isUsingReactiveForms).toBe(false);
+
+		element.componentInstance.registerOnChange(() => {});
+		fixture.detectChanges();
+
+		expect(element.componentInstance._isUsingReactiveForms).toBe(true);
 	});
 });

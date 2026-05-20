@@ -22,6 +22,7 @@ import {
 	of,
 	Subscription
 } from "rxjs";
+import { isNil } from "lodash-es";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
 import { I18n } from "carbon-components-angular/i18n";
@@ -389,6 +390,8 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	// primarily used to capture and propagate input to `writeValue` before the content is available
 	private _writtenValue: any = [];
 
+	private _isUsingReactiveForms = false;
+
 	/**
 	 * Creates an instance of Dropdown.
 	 */
@@ -429,12 +432,12 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 				this.closeMenu();
 				if (event.item && event.item.selected) {
 					if (this.itemValueKey) {
-						this.propagateChange(event.item[this.itemValueKey]);
+						this._propagateChange(event.item[this.itemValueKey]);
 					} else {
-						this.propagateChange(event.item);
+						this._propagateChange(event.item);
 					}
 				} else {
-					this.propagateChange(null);
+					this._propagateChange(null);
 				}
 			}
 
@@ -442,16 +445,18 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 				// if we have a `value` selector and selected items map them appropriately
 				if (this.itemValueKey && this.view.getSelected()) {
 					const values = this.view.getSelected().map(item => item[this.itemValueKey]);
-					this.propagateChange(values);
+					this._propagateChange(values);
 					// otherwise just pass up the values from `getSelected`
 				} else {
-					this.propagateChange(this.view.getSelected());
+					this._propagateChange(this.view.getSelected());
 				}
 			}
 			// only emit selected for "organic" selections
 			if (!isUpdate(event)) {
 				this.checkForReorder();
 				this.selected.emit(event);
+			} else if (this._isUsingReactiveForms) {
+				this.writeValue(this.writtenValue);
 			}
 		});
 	}
@@ -486,8 +491,8 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		// cache the written value so we can use it in `AfterContentInit`
 		this.writtenValue = value;
 		this.view.onItemsReady(() => {
-			// propagate null/falsey as an array (deselect everything)
-			if (!value) {
+			// propagate null/undefined as an array (deselect everything)
+			if (isNil(value)) {
 				this.view.propagateSelected([value]);
 			} else if (this.type === "single") {
 				if (this.itemValueKey) {
@@ -526,6 +531,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	}
 
 	registerOnChange(fn: any) {
+		this._isUsingReactiveForms = true;
 		this.propagateChange = fn;
 	}
 
@@ -540,6 +546,12 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * function passed in by `registerOnChange`
 	 */
 	propagateChange = (_: any) => { };
+
+	// used only to update writtenValue
+	private _propagateChange(value: any) {
+		this.writtenValue = value;
+		this.propagateChange(value);
+	}
 
 	/**
 	 * `ControlValueAccessor` method to programmatically disable the dropdown.
@@ -659,7 +671,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 			item.selected = false;
 		}
 		this.selected.emit([]);
-		this.propagateChange([]);
+		this._propagateChange([]);
 	}
 
 	/**
