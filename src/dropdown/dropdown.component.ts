@@ -418,9 +418,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		if (!this.view) {
 			return;
 		}
-		if ((this.writtenValue && this.writtenValue.length) || typeof this.writtenValue === "number") {
-			this.writeValue(this.writtenValue);
-		}
+
 		this.view.type = this.type;
 		this.view.size = this.size;
 

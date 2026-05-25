@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 @Component({
 	selector: "app-mock-query-search",
@@ -6,6 +6,7 @@ import { Component } from "@angular/core";
 		<cds-combo-box
 			appendInline="true"
 			[items]="filterItems"
+			[itemValueKey]="content"
 			(search)="onSearch($event)"
 			(selected)="selected($event)">
 			<cds-dropdown-list></cds-dropdown-list>
@@ -15,7 +16,6 @@ import { Component } from "@angular/core";
 export class MockQueryCombobox {
 	filterItems: any = [];
 	currentlySelected: any;
-
 	onSearch() {
 		// Call API or search through items list
 		setTimeout(() => {
