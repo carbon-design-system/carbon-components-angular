@@ -22,7 +22,7 @@ import {
 	of,
 	Subscription
 } from "rxjs";
-import { isNil } from "lodash-es";
+import { isNull, isUndefined } from "lodash-es";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
 import { I18n } from "carbon-components-angular/i18n";
@@ -326,6 +326,10 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 */
 	@Input() dropUp: boolean;
 	/**
+	 * Set to `true` to allow null values in the dropdown ListItems.
+	 */
+	@Input() allowNullValues = false;
+	/**
 	 * Emits selection events.
 	 */
 	@Output() selected: EventEmitter<Object> = new EventEmitter<Object>();
@@ -489,8 +493,8 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		// cache the written value so we can use it in `AfterContentInit`
 		this.writtenValue = value;
 		this.view.onItemsReady(() => {
-			// propagate null/undefined as an array (deselect everything)
-			if (isNil(value)) {
+			// propagate null/undefined as an array (deselect everything) unless `allowNullValues` is true
+			if (isUndefined(value) || (isNull(value) && !this.allowNullValues)) {
 				this.view.propagateSelected([value]);
 			} else if (this.type === "single") {
 				if (this.itemValueKey) {

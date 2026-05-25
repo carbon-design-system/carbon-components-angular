@@ -36,6 +36,7 @@ class DropdownTest {
 		placeholder="test"
 		class="custom-class"
 		[itemValueKey]="itemValueKey"
+		[allowNullValues]="allowNullValues"
 		(selected)="onSelect()">
 		<cds-dropdown-list [items]="items"></cds-dropdown-list>
 	</cds-dropdown>`
@@ -43,6 +44,7 @@ class DropdownTest {
 class DropdownTestNoModel {
 	items = [{content: "one", id: 0, selected: false}, {content: "two", id: 1, selected: false}];
 	itemValueKey = undefined;
+	allowNullValues = false;
 	onSelect() {}
 }
 
@@ -187,5 +189,21 @@ describe("Dropdown", () => {
 		fixture.detectChanges();
 
 		expect(element.componentInstance._isUsingReactiveForms).toBe(true);
+	});
+
+	it("should allow null values when allowNullValues is true", () => {
+		const expectedContent = "null item";
+		fixture = TestBed.createComponent(DropdownTestNoModel);
+		wrapper = fixture.componentInstance;
+		wrapper.itemValueKey = "id";
+		wrapper.allowNullValues = true;
+		wrapper.items.push({ content: expectedContent, id: null, selected: false });
+		fixture.detectChanges();
+		element = fixture.debugElement.query(By.css("cds-dropdown"));
+		spyOn(element.componentInstance.view, "propagateSelected").and.callThrough();
+		expect(element.componentInstance.view.propagateSelected).not.toHaveBeenCalled();
+		element.componentInstance.writeValue(null);
+		expect(element.componentInstance.view.propagateSelected).toHaveBeenCalledWith([{ content: expectedContent, id: null, selected: true }]);
+		expect(element.componentInstance.view.getSelected()[0].content).toEqual(expectedContent);
 	});
 });
