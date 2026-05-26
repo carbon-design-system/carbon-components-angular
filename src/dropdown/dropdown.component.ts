@@ -396,6 +396,8 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 
 	private _isUsingReactiveForms = false;
 
+	private selectionSubscription: Subscription;
+
 	/**
 	 * Creates an instance of Dropdown.
 	 */
@@ -429,7 +431,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		// function to check if the event is organic (isUpdate === false) or programmatic
 		const isUpdate = event => event && event.isUpdate;
 
-		this.view.select.subscribe(event => {
+		this.selectionSubscription = this.view.select.subscribe(event => {
 			if (this.type === "single" && !isUpdate(event) && !Array.isArray(event)) {
 				this.closeMenu();
 				if (event.item && event.item.selected) {
@@ -484,6 +486,9 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		if (!this.appendInline) {
 			this._appendToDropdown();
 		}
+
+		this.visibilitySubscription?.unsubscribe();
+		this.selectionSubscription?.unsubscribe();
 	}
 
 	/**
@@ -521,7 +526,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 					this.view.propagateSelected(newValues);
 				} else {
 					// we can safely assume we're passing an array of `ListItem`s
-					this.view.propagateSelected(value);
+					this.view.propagateSelected(value || [value]);
 				}
 			}
 			this.checkForReorder();
