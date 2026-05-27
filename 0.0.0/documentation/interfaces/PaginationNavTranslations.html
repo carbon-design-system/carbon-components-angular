@@ -378,6 +378,11 @@ export class PaginationNav {
 	 * Number of items to show in pagination. Minimum is 4.
 	 */
 	@Input() numOfItemsToShow &#x3D; 4;
+	/**
+	 * When &#x60;true&#x60;, navigating past the last/first page wraps around to the
+	 * other end.
+	 */
+	@Input() loop &#x3D; false;
 
 	/**
 	 * Expects an object that contains some or all of:
@@ -453,11 +458,11 @@ export class PaginationNav {
 	}
 
 	get leftArrowDisabled() {
-		return this.disabled || this.currentPage &#x3D;&#x3D;&#x3D; 1;
+		return this.disabled || (!this.loop &amp;&amp; this.currentPage &#x3D;&#x3D;&#x3D; 1);
 	}
 
 	get rightArrowDisabled() {
-		return this.disabled || this.currentPage &#x3D;&#x3D;&#x3D; this.totalDataLength;
+		return this.disabled || (!this.loop &amp;&amp; this.currentPage &#x3D;&#x3D;&#x3D; this.totalDataLength);
 	}
 
 	nextItemText &#x3D; this.i18n.getOverridable(&quot;PAGINATION.NEXT&quot;);
@@ -474,11 +479,23 @@ export class PaginationNav {
 	}
 
 	public jumpToNext() {
-		this.currentPage &#x3D; this.currentPage &lt; this.totalDataLength ? this.currentPage + 1 : this.totalDataLength;
+		if (this.currentPage &lt; this.totalDataLength) {
+			this.currentPage &#x3D; this.currentPage + 1;
+		} else if (this.loop) {
+			this.currentPage &#x3D; 1;
+		} else {
+			this.currentPage &#x3D; this.totalDataLength;
+		}
 	}
 
 	public jumpToPrevious() {
-		this.currentPage &#x3D; this.currentPage &gt; 1 ? this.currentPage - 1 : 1;
+		if (this.currentPage &gt; 1) {
+			this.currentPage &#x3D; this.currentPage - 1;
+		} else if (this.loop) {
+			this.currentPage &#x3D; this.totalDataLength;
+		} else {
+			this.currentPage &#x3D; 1;
+		}
 	}
 
 	public getPages() {

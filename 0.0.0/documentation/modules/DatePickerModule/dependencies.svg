@@ -24,10 +24,6 @@
 <title>cluster_DatePickerModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-379.59 664,-379.59 664,-70 8,-70"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_DatePickerModule_declarations</title>
-<polygon fill="none" stroke="black" points="179,-189.59 179,-241.59 273,-241.59 273,-189.59 179,-189.59"/>
-</g>
 <g id="clust5" class="cluster">
 <title>cluster_DatePickerModule_exports</title>
 <polygon fill="none" stroke="black" points="231,-319.59 231,-371.59 501,-371.59 501,-319.59 231,-319.59"/>
@@ -35,6 +31,10 @@
 <g id="clust4" class="cluster">
 <title>cluster_DatePickerModule_imports</title>
 <polygon fill="none" stroke="black" points="281,-189.59 281,-241.59 656,-241.59 656,-189.59 281,-189.59"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_DatePickerModule_declarations</title>
+<polygon fill="none" stroke="black" points="179,-189.59 179,-241.59 273,-241.59 273,-189.59 179,-189.59"/>
 </g>
 <g id="clust3" class="cluster">
 <title>cluster_DatePickerModule_DatePicker_providers</title>

@@ -28113,3 +28113,7 @@ html {
   background-color: #9ef0f0;
   outline: 1px dashed #08bdba;
 }
+.aspect-ratio-story .cds--aspect-ratio {
+  padding: 1rem;
+  background: #f7f1ff;
+}

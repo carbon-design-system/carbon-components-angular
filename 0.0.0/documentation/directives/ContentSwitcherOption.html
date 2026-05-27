@@ -190,6 +190,10 @@
                                 <a href="#selectedClass" >selectedClass</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#selectionMode" >selectionMode</a>
+                            </li>
+                            <li>
                                     <span class="modifier"></span>
                                 <a href="#switcherClass" >switcherClass</a>
                             </li>
@@ -337,7 +341,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/content-switcher/content-switcher-option.directive.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/content-switcher/content-switcher-option.directive.ts:60</a></div>
                             </td>
                         </tr>
 
@@ -704,8 +708,8 @@ Accessible from the <code>ContentSwitcher</code> <code>selected</code> emitter</
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="58"
-                            class="link-to-prism">src/content-switcher/content-switcher-option.directive.ts:58</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="65"
+                            class="link-to-prism">src/content-switcher/content-switcher-option.directive.ts:65</a></div>
                 </td>
             </tr>
 
@@ -734,8 +738,8 @@ Accessible from the <code>ContentSwitcher</code> <code>selected</code> emitter</
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="67"
-                            class="link-to-prism">src/content-switcher/content-switcher-option.directive.ts:67</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/content-switcher/content-switcher-option.directive.ts:74</a></div>
                 </td>
             </tr>
 
@@ -777,8 +781,8 @@ Accessible from the <code>ContentSwitcher</code> <code>selected</code> emitter</
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="67"
-                                    class="link-to-prism">src/content-switcher/content-switcher-option.directive.ts:67</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="74"
+                                    class="link-to-prism">src/content-switcher/content-switcher-option.directive.ts:74</a></div>
                         </td>
                     </tr>
 
@@ -853,8 +857,8 @@ Accessible from the <code>ContentSwitcher</code> <code>selected</code> emitter</
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="58"
-                                    class="link-to-prism">src/content-switcher/content-switcher-option.directive.ts:58</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="65"
+                                    class="link-to-prism">src/content-switcher/content-switcher-option.directive.ts:65</a></div>
                         </td>
                     </tr>
 
@@ -920,8 +924,8 @@ Accessible from the <code>ContentSwitcher</code> <code>selected</code> emitter</
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="79"
-                                    class="link-to-prism">src/content-switcher/content-switcher-option.directive.ts:79</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="89"
+                                    class="link-to-prism">src/content-switcher/content-switcher-option.directive.ts:89</a></div>
                         </td>
                     </tr>
 
@@ -962,7 +966,7 @@ Accessible from the <code>ContentSwitcher</code> <code>selected</code> emitter</
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/content-switcher/content-switcher-option.directive.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/content-switcher/content-switcher-option.directive.ts:60</a></div>
                         </td>
                     </tr>
 
@@ -1077,6 +1081,45 @@ Accessible from the <code>ContentSwitcher</code> <code>selected</code> emitter</
                         </td>
                     </tr>
 
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectionMode"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>selectionMode</b></span>
+                        <a href="#selectionMode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;automatic&quot; | &quot;manual&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;automatic&quot;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/content-switcher/content-switcher-option.directive.ts:58</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>When <code>automatic</code>, the focused switcher will be selected by default. For <code>manual</code>,
+user will have to manually select via Enter/space (which fire the native click handler)</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -1297,6 +1340,13 @@ export class ContentSwitcherOption implements OnInit {
 	@HostBinding(&quot;attr.aria-selected&quot;) ariaSelected &#x3D; false;
 	@HostBinding(&quot;attr.tabIndex&quot;) tabindex &#x3D; &quot;-1&quot;;
 
+	/**
+	 * @internal
+	 * When &#x60;automatic&#x60;, the focused switcher will be selected by default. For &#x60;manual&#x60;,
+	 * user will have to manually select via Enter/space (which fire the native click handler)
+	 */
+	public selectionMode: &quot;automatic&quot; | &quot;manual&quot; &#x3D; &quot;automatic&quot;;
+
 	protected _active &#x3D; false;
 
 	constructor(private renderer: Renderer2, private hostElement: ElementRef) {}
@@ -1315,14 +1365,17 @@ export class ContentSwitcherOption implements OnInit {
 		this.onFocus.emit(event);
 		// skip setting and emitting if the option is already active
 		if (this.active) { return; }
+		// In manual selection mode, focus only moves focus, not select switcher
+		if (this.selectionMode &#x3D;&#x3D;&#x3D; &quot;manual&quot;) {
+			return;
+		}
 		this.active &#x3D; true;
 		this.selected.emit(true);
 	}
 
 	/*
-	* encapsulating the content in a span with cds--content-switcher__label class
-	* to mimic what is done in the react version
-	*/
+	 * Wrap projected content in a span with the &#x60;cds--content-switcher__label&#x60; class.
+	 */
 	ngOnInit(): void {
 		const hostNativeElement &#x3D; (this.hostElement.nativeElement as HTMLElement);
 		const spanWrapper &#x3D; this.renderer.createElement(&quot;span&quot;);
