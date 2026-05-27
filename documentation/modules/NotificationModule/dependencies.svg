@@ -24,6 +24,10 @@
 <title>cluster_NotificationModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 2497,-268 2497,-70 8,-70"/>
 </g>
+<g id="clust16" class="cluster">
+<title>cluster_NotificationModule_exports</title>
+<polygon fill="none" stroke="black" points="447,-208 447,-260 1796,-260 1796,-208 447,-208"/>
+</g>
 <g id="clust18" class="cluster">
 <title>cluster_NotificationModule_providers</title>
 <polygon fill="none" stroke="black" points="2048,-78 2048,-130 2489,-130 2489,-78 2048,-78"/>
@@ -35,10 +39,6 @@
 <g id="clust15" class="cluster">
 <title>cluster_NotificationModule_imports</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-130 592,-130 592,-78 16,-78"/>
-</g>
-<g id="clust16" class="cluster">
-<title>cluster_NotificationModule_exports</title>
-<polygon fill="none" stroke="black" points="447,-208 447,-260 1796,-260 1796,-208 447,-208"/>
 </g>
 <!-- ActionableButton -->
 <g id="node1" class="node">
