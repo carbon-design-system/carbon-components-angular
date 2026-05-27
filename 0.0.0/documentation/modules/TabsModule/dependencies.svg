@@ -24,13 +24,13 @@
 <title>cluster_TabsModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-333 3346,-333 3346,-70 8,-70"/>
 </g>
-<g id="clust7" class="cluster">
-<title>cluster_TabsModule_TabHeaderComponent_providers</title>
-<polygon fill="none" stroke="black" points="2648,-78 2648,-195 3338,-195 3338,-78 2648,-78"/>
-</g>
 <g id="clust16" class="cluster">
 <title>cluster_TabsModule_imports</title>
-<polygon fill="none" stroke="black" points="2315,-143 2315,-195 2640,-195 2640,-143 2315,-143"/>
+<polygon fill="none" stroke="black" points="3013,-143 3013,-195 3338,-195 3338,-143 3013,-143"/>
+</g>
+<g id="clust7" class="cluster">
+<title>cluster_TabsModule_TabHeaderComponent_providers</title>
+<polygon fill="none" stroke="black" points="2315,-78 2315,-195 3005,-195 3005,-78 2315,-78"/>
 </g>
 <g id="clust17" class="cluster">
 <title>cluster_TabsModule_exports</title>
@@ -105,14 +105,14 @@
 <!-- TabHeaderComponent -->
 <g id="node5" class="node">
 <title>TabHeaderComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="2931.51,-187 2788.49,-187 2788.49,-151 2931.51,-151 2931.51,-187"/>
-<text text-anchor="middle" x="2860" y="-164.8" font-family="Times,serif" font-size="14.00">TabHeaderComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="2598.51,-187 2455.49,-187 2455.49,-151 2598.51,-151 2598.51,-187"/>
+<text text-anchor="middle" x="2527" y="-164.8" font-family="Times,serif" font-size="14.00">TabHeaderComponent</text>
 </g>
 <!-- TabHeaderComponent&#45;&gt;TabsModule -->
 <g id="edge7" class="edge">
 <title>TabHeaderComponent&#45;&gt;TabsModule</title>
-<path fill="none" stroke="black" d="M2860,-187.31C2860,-207.15 2860,-236 2860,-236 2860,-236 1048.36,-236 1048.36,-236"/>
-<polygon fill="black" stroke="black" points="1048.36,-232.5 1038.36,-236 1048.36,-239.5 1048.36,-232.5"/>
+<path fill="none" stroke="black" d="M2527,-187.02C2527,-204.37 2527,-228 2527,-228 2527,-228 1048.38,-228 1048.38,-228"/>
+<polygon fill="black" stroke="black" points="1048.38,-224.5 1038.38,-228 1048.38,-231.5 1048.38,-224.5"/>
 </g>
 <!-- TabHeaderGroup -->
 <g id="node6" class="node">
@@ -381,50 +381,50 @@
 <!-- { provide: TabHeaderBase, useExisting: forwardRef(() =&gt; TabHeaderComponent) } -->
 <g id="node17" class="node">
 <title>{ provide: TabHeaderBase, useExisting: forwardRef(() =&gt; TabHeaderComponent) }</title>
-<ellipse fill="#fdb462" stroke="black" cx="2993" cy="-104" rx="337.32" ry="18"/>
-<text text-anchor="middle" x="2993" y="-99.8" font-family="Times,serif" font-size="14.00">{ provide: TabHeaderBase, useExisting: forwardRef(() =&gt; TabHeaderComponent) }</text>
+<ellipse fill="#fdb462" stroke="black" cx="2660" cy="-104" rx="337.32" ry="18"/>
+<text text-anchor="middle" x="2660" y="-99.8" font-family="Times,serif" font-size="14.00">{ provide: TabHeaderBase, useExisting: forwardRef(() =&gt; TabHeaderComponent) }</text>
 </g>
 <!-- { provide: TabHeaderBase, useExisting: forwardRef(() =&gt; TabHeaderComponent) }&#45;&gt;TabHeaderComponent -->
 <g id="edge8" class="edge">
 <title>{ provide: TabHeaderBase, useExisting: forwardRef(() =&gt; TabHeaderComponent) }&#45;&gt;TabHeaderComponent</title>
-<path fill="none" stroke="black" d="M2860,-120.74C2860,-120.74 2860,-140.72 2860,-140.72"/>
-<polygon fill="black" stroke="black" points="2856.5,-140.72 2860,-150.72 2863.5,-140.72 2856.5,-140.72"/>
+<path fill="none" stroke="black" d="M2527,-120.74C2527,-120.74 2527,-140.72 2527,-140.72"/>
+<polygon fill="black" stroke="black" points="2523.5,-140.72 2527,-150.72 2530.5,-140.72 2523.5,-140.72"/>
 </g>
 <!-- I18nModule -->
 <g id="node18" class="node">
 <title>I18nModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="2631.71,-187 2628.71,-191 2607.71,-191 2604.71,-187 2546.29,-187 2546.29,-151 2631.71,-151 2631.71,-187"/>
-<text text-anchor="middle" x="2589" y="-164.8" font-family="Times,serif" font-size="14.00">I18nModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="3329.71,-187 3326.71,-191 3305.71,-191 3302.71,-187 3244.29,-187 3244.29,-151 3329.71,-151 3329.71,-187"/>
+<text text-anchor="middle" x="3287" y="-164.8" font-family="Times,serif" font-size="14.00">I18nModule</text>
 </g>
 <!-- I18nModule&#45;&gt;TabsModule -->
 <g id="edge17" class="edge">
 <title>I18nModule&#45;&gt;TabsModule</title>
-<path fill="none" stroke="black" d="M2589,-187.17C2589,-206.09 2589,-233 2589,-233 2589,-233 1048.46,-233 1048.46,-233"/>
-<polygon fill="black" stroke="black" points="1048.46,-229.5 1038.46,-233 1048.46,-236.5 1048.46,-229.5"/>
+<path fill="none" stroke="black" d="M3287,-187.31C3287,-207.15 3287,-236 3287,-236 3287,-236 1048.49,-236 1048.49,-236"/>
+<polygon fill="black" stroke="black" points="1048.49,-232.5 1038.49,-236 1048.49,-239.5 1048.49,-232.5"/>
 </g>
 <!-- TooltipModule -->
 <g id="node19" class="node">
 <title>TooltipModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="2528.27,-187 2525.27,-191 2504.27,-191 2501.27,-187 2427.73,-187 2427.73,-151 2528.27,-151 2528.27,-187"/>
-<text text-anchor="middle" x="2478" y="-164.8" font-family="Times,serif" font-size="14.00">TooltipModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="3226.27,-187 3223.27,-191 3202.27,-191 3199.27,-187 3125.73,-187 3125.73,-151 3226.27,-151 3226.27,-187"/>
+<text text-anchor="middle" x="3176" y="-164.8" font-family="Times,serif" font-size="14.00">TooltipModule</text>
 </g>
 <!-- TooltipModule&#45;&gt;TabsModule -->
 <g id="edge18" class="edge">
 <title>TooltipModule&#45;&gt;TabsModule</title>
-<path fill="none" stroke="black" d="M2478,-187.3C2478,-205.27 2478,-230 2478,-230 2478,-230 1048.58,-230 1048.58,-230"/>
-<polygon fill="black" stroke="black" points="1048.58,-226.5 1038.58,-230 1048.58,-233.5 1048.58,-226.5"/>
+<path fill="none" stroke="black" d="M3176,-187.17C3176,-206.09 3176,-233 3176,-233 3176,-233 1048.57,-233 1048.57,-233"/>
+<polygon fill="black" stroke="black" points="1048.57,-229.5 1038.57,-233 1048.57,-236.5 1048.57,-229.5"/>
 </g>
 <!-- UtilsModule -->
 <g id="node20" class="node">
 <title>UtilsModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="2409.27,-187 2406.27,-191 2385.27,-191 2382.27,-187 2322.73,-187 2322.73,-151 2409.27,-151 2409.27,-187"/>
-<text text-anchor="middle" x="2366" y="-164.8" font-family="Times,serif" font-size="14.00">UtilsModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="3107.27,-187 3104.27,-191 3083.27,-191 3080.27,-187 3020.73,-187 3020.73,-151 3107.27,-151 3107.27,-187"/>
+<text text-anchor="middle" x="3064" y="-164.8" font-family="Times,serif" font-size="14.00">UtilsModule</text>
 </g>
 <!-- UtilsModule&#45;&gt;TabsModule -->
 <g id="edge19" class="edge">
 <title>UtilsModule&#45;&gt;TabsModule</title>
-<path fill="none" stroke="black" d="M2366,-187.02C2366,-204.37 2366,-228 2366,-228 2366,-228 1048.3,-228 1048.3,-228"/>
-<polygon fill="black" stroke="black" points="1048.3,-224.5 1038.3,-228 1048.3,-231.5 1048.3,-224.5"/>
+<path fill="none" stroke="black" d="M3064,-187.3C3064,-205.27 3064,-230 3064,-230 3064,-230 1048.69,-230 1048.69,-230"/>
+<polygon fill="black" stroke="black" points="1048.69,-226.5 1038.69,-230 1048.69,-233.5 1048.69,-226.5"/>
 </g>
 </g>
 </svg>
