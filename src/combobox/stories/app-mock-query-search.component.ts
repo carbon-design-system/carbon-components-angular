@@ -6,7 +6,7 @@ import { Component, Input } from "@angular/core";
 		<cds-combo-box
 			appendInline="true"
 			[items]="filterItems"
-			[itemValueKey]="content"
+			itemValueKey="content"
 			(search)="onSearch($event)"
 			(selected)="selected($event)">
 			<cds-dropdown-list></cds-dropdown-list>
