@@ -482,7 +482,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	protected _isFocused = false;
 
 	private _writtenValue: any;
-	private _isUsingReactiveForms = false;
+	private _isUsingNgControl = false;
 
 	/**
 	 * Creates an instance of ComboBox.
@@ -561,7 +561,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 						this.view.filterBy("");
 						this.selected.emit(event.item);
 						this.closeDropdown();
-					} else if (this._isUsingReactiveForms) {
+					} else if (this._isUsingNgControl) {
 						this.writeValue(this._writtenValue);
 					}
 				}
@@ -681,7 +681,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	}
 
 	registerOnChange(fn: any) {
-		this._isUsingReactiveForms = true;
+		this._isUsingNgControl = true;
 		this.propagateChangeCallback = fn;
 	}
 

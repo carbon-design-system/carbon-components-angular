@@ -394,7 +394,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	// primarily used to capture and propagate input to `writeValue` before the content is available
 	private _writtenValue: any = [];
 
-	private _isUsingReactiveForms = false;
+	private _isUsingNgControl = false;
 
 	private selectionSubscription: Subscription;
 
@@ -459,7 +459,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 			if (!isUpdate(event)) {
 				this.checkForReorder();
 				this.selected.emit(event);
-			} else if (this._isUsingReactiveForms) {
+			} else if (this._isUsingNgControl) {
 				this.writeValue(this.writtenValue);
 			}
 		});
@@ -538,7 +538,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	}
 
 	registerOnChange(fn: any) {
-		this._isUsingReactiveForms = true;
+		this._isUsingNgControl = true;
 		this.propagateChange = fn;
 	}
 
