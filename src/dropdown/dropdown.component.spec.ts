@@ -119,31 +119,31 @@ describe("Dropdown", () => {
 		expect(el.nativeElement.classList.contains("custom-class")).toBe(true);
 	});
 
-	it("should ignore selected property from the items when _isUsingReactiveForms is true", () => {
+	it("should ignore selected property from the items when _isUsingNgControl is true", () => {
 		fixture = TestBed.createComponent(DropdownTestNoModel);
 		wrapper = fixture.componentInstance;
 		wrapper.itemValueKey = "id";
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("cds-dropdown"));
 
-		expect(element.componentInstance._isUsingReactiveForms).toBe(false);
+		expect(element.componentInstance._isUsingNgControl).toBe(false);
 		expect(element.componentInstance.view.getSelected()).toEqual([]);
 
-		element.componentInstance._isUsingReactiveForms = true;
+		element.componentInstance._isUsingNgControl = true;
 		wrapper.items[0].selected = true;
 		fixture.detectChanges();
 
 		expect(element.componentInstance.view.getSelected()).toEqual([]);
 	});
 
-	it("should automatically reselect the _writtenValue when items are updated and _isUsingReactiveForms is true", () => {
+	it("should automatically reselect the _writtenValue when items are updated and _isUsingNgControl is true", () => {
 		fixture = TestBed.createComponent(DropdownTestNoModel);
 		wrapper = fixture.componentInstance;
 		wrapper.itemValueKey = "id";
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("cds-dropdown"));
 
-		element.componentInstance._isUsingReactiveForms = true;
+		element.componentInstance._isUsingNgControl = true;
 		element.componentInstance.writeValue(0);
 		fixture.detectChanges();
 
@@ -155,14 +155,14 @@ describe("Dropdown", () => {
 		expect(element.componentInstance.view.getSelected()[0].id).toEqual(0);
 	});
 
-	it("should update _writtenValue if user manually changes selection when _isUsingReactiveForms is true", () => {
+	it("should update _writtenValue if user manually changes selection when _isUsingNgControl is true", () => {
 		fixture = TestBed.createComponent(DropdownTestNoModel);
 		wrapper = fixture.componentInstance;
 		wrapper.itemValueKey = "id";
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("cds-dropdown"));
 
-		element.componentInstance._isUsingReactiveForms = true;
+		element.componentInstance._isUsingNgControl = true;
 		element.componentInstance.writeValue(1);
 		fixture.detectChanges();
 		expect(element.componentInstance._writtenValue).toEqual(1);
@@ -177,18 +177,18 @@ describe("Dropdown", () => {
 		expect(element.componentInstance._writtenValue).toEqual(0);
 	});
 
-	it("should set _isUsingReactiveForms to true when registerOnChange is called", () => {
+	it("should set _isUsingNgControl to true when registerOnChange is called", () => {
 		fixture = TestBed.createComponent(DropdownTestNoModel);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("cds-dropdown"));
 
-		expect(element.componentInstance._isUsingReactiveForms).toBe(false);
+		expect(element.componentInstance._isUsingNgControl).toBe(false);
 
 		element.componentInstance.registerOnChange(() => {});
 		fixture.detectChanges();
 
-		expect(element.componentInstance._isUsingReactiveForms).toBe(true);
+		expect(element.componentInstance._isUsingNgControl).toBe(true);
 	});
 
 	it("should allow null values when allowNullValues is true", () => {
