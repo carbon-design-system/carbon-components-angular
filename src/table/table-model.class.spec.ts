@@ -808,4 +808,29 @@ describe("Table", () => {
 		expect(tableModel.expandedRowsCount()).toBe(0);
 		expect(tableModel.rowsExpanded).toEqual([false, false, false, false]);
 	});
+
+	it("should disable row", () => {
+		let tableModel = new TableModel();
+		tableModel.header = [
+			new TableHeaderItem({ data: "h1" }),
+			new TableHeaderItem({ data: "h2" }),
+			new TableHeaderItem({ data: "h3" }),
+		];
+		tableModel.data = [
+			[
+				new TableItem({ data: "A" }),
+				new TableItem({ data: "B" }),
+				new TableItem({ data: "C" }),
+			],
+			[
+				new TableItem({ data: "D" }),
+				new TableItem({ data: "E" }),
+				new TableItem({ data: "F" }),
+			],
+		];
+
+		tableModel.disableRow(0);
+		expect(tableModel.isRowDisabled(0)).toBeTrue();
+		expect(tableModel.isRowDisabled(1)).toBeFalse();
+	});
 });
