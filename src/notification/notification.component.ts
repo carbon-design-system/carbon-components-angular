@@ -9,6 +9,7 @@ import { I18n } from "carbon-components-angular/i18n";
 import { NotificationDisplayService } from "./notification-display.service";
 import { isObservable, of } from "rxjs";
 import { BaseNotification } from "./base-notification.component";
+import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 
 /**
  * Notification messages are displayed toward the top of the UI and do not interrupt user’s work.
@@ -29,11 +30,21 @@ import { BaseNotification } from "./base-notification.component";
 				<div
 					cdsNotificationTitle
 					*ngIf="!notificationObj.template"
-					[innerHTML]="notificationObj.title"
 					[id]="notificationID">
+					  <ng-container *ngIf="notificationObj.titleHtml; else plainTitle">
+   						 <div [innerHTML]="safeNotificationTitleHtml"></div>
+ 					   </ng-container>
+ 						 <ng-template #plainTitle>
+							{{ notificationObj.title }}
+  						</ng-template>
 				</div>
 				<div *ngIf="!notificationObj.template" cdsNotificationSubtitle>
-					<span [innerHTML]="notificationObj.message"></span>
+					 <ng-container *ngIf="notificationObj.messageHtml; else plainMessage">
+    					<span [innerHTML]="safeNotificationMessageHtml"></span>
+ 					  </ng-container>
+ 					 <ng-template #plainMessage>
+						 <span>{{ notificationObj.message }}</span>
+ 					 </ng-template>
 				</div>
 				<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj}"></ng-container>
 			</div>
@@ -65,6 +76,12 @@ export class Notification extends BaseNotification {
 			obj.closeLabel = of(obj.closeLabel);
 		}
 		this._notificationObj = Object.assign({}, this.defaultNotificationObj, obj);
+		if (this._notificationObj.titleHtml) {
+			this.safeNotificationTitleHtml = this.sanitizer.bypassSecurityTrustHtml(this._notificationObj.titleHtml);
+		}
+		if (this._notificationObj.messageHtml) {
+			this.safeNotificationMessageHtml = this.sanitizer.bypassSecurityTrustHtml(this._notificationObj.messageHtml);
+		}
 	}
 
 	notificationID = `notification-${Notification.notificationCount++}`;
@@ -79,7 +96,10 @@ export class Notification extends BaseNotification {
 	@HostBinding("class.cds--inline-notification--low-contrast") get isLowContrast() { return this.notificationObj.lowContrast; }
 	@HostBinding("class.cds--inline-notification--hide-close-button") get isCloseHidden() { return !this.notificationObj.showClose; }
 
-	constructor(protected notificationDisplayService: NotificationDisplayService, protected i18n: I18n) {
+	protected safeNotificationTitleHtml: SafeHtml;
+	protected safeNotificationMessageHtml: SafeHtml;
+
+	constructor(protected notificationDisplayService: NotificationDisplayService, protected i18n: I18n, protected sanitizer: DomSanitizer) {
 		super(notificationDisplayService, i18n);
 	}
 }
