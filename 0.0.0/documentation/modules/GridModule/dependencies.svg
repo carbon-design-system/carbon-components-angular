@@ -28,13 +28,13 @@
 <title>cluster_GridModule_declarations</title>
 <polygon fill="none" stroke="black" points="369,-237.11 369,-289.11 722,-289.11 722,-237.11 369,-237.11"/>
 </g>
-<g id="clust7" class="cluster">
-<title>cluster_GridModule_exports</title>
-<polygon fill="none" stroke="black" points="307,-367.11 307,-419.11 671,-419.11 671,-367.11 307,-367.11"/>
-</g>
 <g id="clust4" class="cluster">
 <title>cluster_GridModule_GridDirective_providers</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-224.11 1056,-224.11 1056,-78 16,-78"/>
+</g>
+<g id="clust7" class="cluster">
+<title>cluster_GridModule_exports</title>
+<polygon fill="none" stroke="black" points="307,-367.11 307,-419.11 671,-419.11 671,-367.11 307,-367.11"/>
 </g>
 <g id="clust9" class="cluster">
 <title>cluster_GridModule_providers</title>
