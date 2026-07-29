@@ -3,6 +3,7 @@ import {
 	AfterViewInit,
 	ChangeDetectorRef,
 	Component,
+	ContentChild,
 	ElementRef,
 	HostBinding,
 	Input,
@@ -12,6 +13,9 @@ import {
 	TemplateRef,
 	ViewChild
 } from "@angular/core";
+import { Subscription } from "rxjs";
+import { startWith } from "rxjs/operators";
+import { TextInput } from "./input.directive";
 
 /**
  * Get started with importing the module:
@@ -269,13 +273,20 @@ export class TextInputLabelComponent implements AfterViewInit, AfterContentInit,
 	// @ts-ignore
 	@ViewChild("wrapper", { static: false }) wrapper: ElementRef<HTMLDivElement>;
 
+	// @ts-ignore
+	@ContentChild(TextInput, { static: false }) textInput: TextInput;
+
 	@HostBinding("class.cds--form-item") labelClass = true;
 
 	@HostBinding("class.cds--text-input-wrapper") textInputWrapper = true;
 
 	// Cached reference to the input element, set once in ngAfterViewInit.
 	private _inputElement: HTMLInputElement | null = null;
-	// Cached listener so it can be removed precisely (avoids anonymous-function leak).
+
+	// RxJS subscription used when NgControl is available (template-driven & reactive forms).
+	private _subscription: Subscription | null = null;
+
+	// Fallback cached DOM listener so it can be removed precisely (avoids anonymous-function leak).
 	private _inputListener: ((e: Event) => void) | null = null;
 
 	/**
@@ -321,8 +332,7 @@ export class TextInputLabelComponent implements AfterViewInit, AfterContentInit,
 	}
 
 	/**
-	 * Attach/remove listener and seed `textCount` from the textarea's current value.
-	 * @param changes
+	 * Attach/remove listener and seed `textCount` from the input's current value.
 	 */
 	ngOnChanges(changes: SimpleChanges) {
 		if (changes.enableCounter && !changes.enableCounter.firstChange) {
@@ -351,24 +361,42 @@ export class TextInputLabelComponent implements AfterViewInit, AfterContentInit,
 	}
 
 	/**
-	 * Attaches the input event listener, ensuring it is never added twice.
+	 * Attaches the counter listener, listen for either ngControl or native DOM input
+	 * event listener
 	 */
 	private _attachCounterListener(): void {
 		this._detachCounterListener();
-		if (!this._inputElement) {
-			return;
+
+		const control = this.textInput?.ngControl;
+		if (control?.valueChanges) {
+			// NgControl listener
+			this._subscription = control.valueChanges
+				.pipe(startWith(control.value))
+				.subscribe((value: string) => {
+					this.textCount = value?.length || 0;
+					this.changeDetectorRef.markForCheck();
+				});
+		} else {
+			// Fallback DOM path
+			if (!this._inputElement) {
+				return;
+			}
+			this._inputListener = (e: Event) => {
+				this.textCount = (e.target as HTMLInputElement).value?.length || 0;
+				this.changeDetectorRef.detectChanges();
+			};
+			this._inputElement.addEventListener("input", this._inputListener);
 		}
-		this._inputListener = (e: Event) => {
-			this.textCount = (e.target as HTMLInputElement).value?.length || 0;
-			this.changeDetectorRef.detectChanges();
-		};
-		this._inputElement.addEventListener("input", this._inputListener);
 	}
 
 	/**
-	 * Removes the input event listener and clears the cached reference.
+	 * Removes the subscription (NgControl path) or removes the DOM listener.
+	 * Safe to call when neither is active.
 	 */
 	private _detachCounterListener(): void {
+		this._subscription?.unsubscribe();
+		this._subscription = null;
+
 		if (this._inputListener && this._inputElement) {
 			this._inputElement.removeEventListener("input", this._inputListener);
 			this._inputListener = null;
