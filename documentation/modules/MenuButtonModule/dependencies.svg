@@ -24,83 +24,83 @@
 <title>cluster_MenuButtonModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 570,-268 570,-70 8,-70"/>
 </g>
+<g id="clust2" class="cluster">
+<title>cluster_MenuButtonModule_declarations</title>
+<polygon fill="none" stroke="black" points="394,-78 394,-130 562,-130 562,-78 394,-78"/>
+</g>
 <g id="clust4" class="cluster">
 <title>cluster_MenuButtonModule_imports</title>
-<polygon fill="none" stroke="black" points="192,-78 192,-130 562,-130 562,-78 192,-78"/>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 386,-130 386,-78 16,-78"/>
 </g>
 <g id="clust5" class="cluster">
 <title>cluster_MenuButtonModule_exports</title>
-<polygon fill="none" stroke="black" points="220,-208 220,-260 392,-260 392,-208 220,-208"/>
-</g>
-<g id="clust2" class="cluster">
-<title>cluster_MenuButtonModule_declarations</title>
-<polygon fill="none" stroke="black" points="16,-78 16,-130 184,-130 184,-78 16,-78"/>
+<polygon fill="none" stroke="black" points="175,-208 175,-260 347,-260 347,-208 175,-208"/>
 </g>
 <!-- MenuButtonComponent -->
 <g id="node1" class="node">
 <title>MenuButtonComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="176.11,-122 23.89,-122 23.89,-86 176.11,-86 176.11,-122"/>
-<text text-anchor="middle" x="100" y="-99.8" font-family="Times,serif" font-size="14.00">MenuButtonComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="554.11,-122 401.89,-122 401.89,-86 554.11,-86 554.11,-122"/>
+<text text-anchor="middle" x="478" y="-99.8" font-family="Times,serif" font-size="14.00">MenuButtonComponent</text>
 </g>
 <!-- MenuButtonModule -->
 <g id="node2" class="node">
 <title>MenuButtonModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="371.33,-187 368.33,-191 347.33,-191 344.33,-187 240.67,-187 240.67,-151 371.33,-151 371.33,-187"/>
-<text text-anchor="middle" x="306" y="-164.8" font-family="Times,serif" font-size="14.00">MenuButtonModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="326.33,-187 323.33,-191 302.33,-191 299.33,-187 195.67,-187 195.67,-151 326.33,-151 326.33,-187"/>
+<text text-anchor="middle" x="261" y="-164.8" font-family="Times,serif" font-size="14.00">MenuButtonModule</text>
 </g>
 <!-- MenuButtonComponent&#45;&gt;MenuButtonModule -->
 <g id="edge1" class="edge">
 <title>MenuButtonComponent&#45;&gt;MenuButtonModule</title>
-<path fill="none" stroke="black" d="M100,-122.11C100,-141.34 100,-169 100,-169 100,-169 230.82,-169 230.82,-169"/>
-<polygon fill="black" stroke="black" points="230.82,-172.5 240.82,-169 230.82,-165.5 230.82,-172.5"/>
+<path fill="none" stroke="black" d="M478,-122.11C478,-141.34 478,-169 478,-169 478,-169 336.4,-169 336.4,-169"/>
+<polygon fill="black" stroke="black" points="336.4,-165.5 326.4,-169 336.4,-172.5 336.4,-165.5"/>
 </g>
 <!-- MenuButtonComponent  -->
 <g id="node6" class="node">
 <title>MenuButtonComponent </title>
-<polygon fill="#fb8072" stroke="black" points="383.61,-252 228.39,-252 228.39,-216 383.61,-216 383.61,-252"/>
-<text text-anchor="middle" x="306" y="-229.8" font-family="Times,serif" font-size="14.00">MenuButtonComponent </text>
+<polygon fill="#fb8072" stroke="black" points="338.61,-252 183.39,-252 183.39,-216 338.61,-216 338.61,-252"/>
+<text text-anchor="middle" x="261" y="-229.8" font-family="Times,serif" font-size="14.00">MenuButtonComponent </text>
 </g>
 <!-- MenuButtonModule&#45;&gt;MenuButtonComponent  -->
 <g id="edge5" class="edge">
 <title>MenuButtonModule&#45;&gt;MenuButtonComponent </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M306,-187.11C306,-187.11 306,-205.99 306,-205.99"/>
-<polygon fill="black" stroke="black" points="302.5,-205.99 306,-215.99 309.5,-205.99 302.5,-205.99"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M261,-187.11C261,-187.11 261,-205.99 261,-205.99"/>
+<polygon fill="black" stroke="black" points="257.5,-205.99 261,-215.99 264.5,-205.99 257.5,-205.99"/>
 </g>
 <!-- ButtonModule -->
 <g id="node3" class="node">
 <title>ButtonModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="553.67,-122 550.67,-126 529.67,-126 526.67,-122 456.33,-122 456.33,-86 553.67,-86 553.67,-122"/>
-<text text-anchor="middle" x="505" y="-99.8" font-family="Times,serif" font-size="14.00">ButtonModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="377.67,-122 374.67,-126 353.67,-126 350.67,-122 280.33,-122 280.33,-86 377.67,-86 377.67,-122"/>
+<text text-anchor="middle" x="329" y="-99.8" font-family="Times,serif" font-size="14.00">ButtonModule</text>
 </g>
 <!-- ButtonModule&#45;&gt;MenuButtonModule -->
 <g id="edge2" class="edge">
 <title>ButtonModule&#45;&gt;MenuButtonModule</title>
-<path fill="none" stroke="black" d="M505,-122.11C505,-141.34 505,-169 505,-169 505,-169 381.44,-169 381.44,-169"/>
-<polygon fill="black" stroke="black" points="381.44,-165.5 371.44,-169 381.44,-172.5 381.44,-165.5"/>
+<path fill="none" stroke="black" d="M303.16,-122.11C303.16,-122.11 303.16,-140.99 303.16,-140.99"/>
+<polygon fill="black" stroke="black" points="299.66,-140.99 303.16,-150.99 306.66,-140.99 299.66,-140.99"/>
 </g>
 <!-- ContextMenuModule -->
 <g id="node4" class="node">
 <title>ContextMenuModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="438.04,-122 435.04,-126 414.04,-126 411.04,-122 301.96,-122 301.96,-86 438.04,-86 438.04,-122"/>
-<text text-anchor="middle" x="370" y="-99.8" font-family="Times,serif" font-size="14.00">ContextMenuModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="262.04,-122 259.04,-126 238.04,-126 235.04,-122 125.96,-122 125.96,-86 262.04,-86 262.04,-122"/>
+<text text-anchor="middle" x="194" y="-99.8" font-family="Times,serif" font-size="14.00">ContextMenuModule</text>
 </g>
 <!-- ContextMenuModule&#45;&gt;MenuButtonModule -->
 <g id="edge3" class="edge">
 <title>ContextMenuModule&#45;&gt;MenuButtonModule</title>
-<path fill="none" stroke="black" d="M336.45,-122.11C336.45,-122.11 336.45,-140.99 336.45,-140.99"/>
-<polygon fill="black" stroke="black" points="332.95,-140.99 336.45,-150.99 339.95,-140.99 332.95,-140.99"/>
+<path fill="none" stroke="black" d="M229.05,-122.11C229.05,-122.11 229.05,-140.99 229.05,-140.99"/>
+<polygon fill="black" stroke="black" points="225.55,-140.99 229.05,-150.99 232.55,-140.99 225.55,-140.99"/>
 </g>
 <!-- IconModule -->
 <g id="node5" class="node">
 <title>IconModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="284.43,-122 281.43,-126 260.43,-126 257.43,-122 199.57,-122 199.57,-86 284.43,-86 284.43,-122"/>
-<text text-anchor="middle" x="242" y="-99.8" font-family="Times,serif" font-size="14.00">IconModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="108.43,-122 105.43,-126 84.43,-126 81.43,-122 23.57,-122 23.57,-86 108.43,-86 108.43,-122"/>
+<text text-anchor="middle" x="66" y="-99.8" font-family="Times,serif" font-size="14.00">IconModule</text>
 </g>
 <!-- IconModule&#45;&gt;MenuButtonModule -->
 <g id="edge4" class="edge">
 <title>IconModule&#45;&gt;MenuButtonModule</title>
-<path fill="none" stroke="black" d="M262.52,-122.11C262.52,-122.11 262.52,-140.99 262.52,-140.99"/>
-<polygon fill="black" stroke="black" points="259.02,-140.99 262.52,-150.99 266.02,-140.99 259.02,-140.99"/>
+<path fill="none" stroke="black" d="M66,-122.11C66,-141.34 66,-169 66,-169 66,-169 185.8,-169 185.8,-169"/>
+<polygon fill="black" stroke="black" points="185.8,-172.5 195.8,-169 185.8,-165.5 185.8,-172.5"/>
 </g>
 </g>
 </svg>
