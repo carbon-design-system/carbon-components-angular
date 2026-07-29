@@ -28,10 +28,6 @@
 <title>cluster_TilesModule_TileGroup_providers</title>
 <polygon fill="none" stroke="black" points="1413,-78 1413,-241.59 2049,-241.59 2049,-78 1413,-78"/>
 </g>
-<g id="clust12" class="cluster">
-<title>cluster_TilesModule_exports</title>
-<polygon fill="none" stroke="black" points="367,-319.59 367,-371.59 1557,-371.59 1557,-319.59 367,-319.59"/>
-</g>
 <g id="clust11" class="cluster">
 <title>cluster_TilesModule_imports</title>
 <polygon fill="none" stroke="black" points="1097,-189.59 1097,-241.59 1405,-241.59 1405,-189.59 1097,-189.59"/>
@@ -39,6 +35,10 @@
 <g id="clust2" class="cluster">
 <title>cluster_TilesModule_declarations</title>
 <polygon fill="none" stroke="black" points="16,-189.59 16,-241.59 1089,-241.59 1089,-189.59 16,-189.59"/>
+</g>
+<g id="clust12" class="cluster">
+<title>cluster_TilesModule_exports</title>
+<polygon fill="none" stroke="black" points="367,-319.59 367,-371.59 1557,-371.59 1557,-319.59 367,-319.59"/>
 </g>
 <!-- ClickableTile -->
 <g id="node1" class="node">

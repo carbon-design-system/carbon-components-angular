@@ -2177,7 +2177,7 @@ key input matching the first letter of the item in the list.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateList(items)</code>
+<code>updateList(items: <a href="../interfaces/ListItem.html" target="_self">ListItem[]</a>)</code>
                 </td>
             </tr>
 
@@ -2202,12 +2202,16 @@ key input matching the first letter of the item in the list.</p>
                                     <thead>
                                         <tr>
                                             <td>Name</td>
+                                                <td>Type</td>
                                             <td>Optional</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                                 <td>items</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ListItem.html" target="_self" >ListItem[]</a></code>
+                                            </td>
 
                                             <td>
                                                     No
@@ -3065,7 +3069,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	/**
 	 * Updates the displayed list of items and then retrieves the most current properties for the &#x60;DropdownList&#x60; from the DOM.
 	 */
-	updateList(items) {
+	updateList(items: ListItem[]) {
 		this._items &#x3D; items.map(item &#x3D;&gt; Object.assign({}, item));
 		this.displayItems &#x3D; this._items;
 		this.updateIndex();
