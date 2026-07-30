@@ -24,10 +24,6 @@
 <title>cluster_I18nModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="148,-70 148,-268 348,-268 348,-70 148,-70"/>
 </g>
-<g id="clust5" class="cluster">
-<title>cluster_I18nModule_exports</title>
-<polygon fill="none" stroke="black" points="195,-208 195,-260 301,-260 301,-208 195,-208"/>
-</g>
 <g id="clust7" class="cluster">
 <title>cluster_I18nModule_providers</title>
 <polygon fill="none" stroke="black" points="266,-78 266,-130 340,-130 340,-78 266,-78"/>
@@ -35,6 +31,10 @@
 <g id="clust2" class="cluster">
 <title>cluster_I18nModule_declarations</title>
 <polygon fill="none" stroke="black" points="156,-78 156,-130 258,-130 258,-78 156,-78"/>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_I18nModule_exports</title>
+<polygon fill="none" stroke="black" points="195,-208 195,-260 301,-260 301,-208 195,-208"/>
 </g>
 <!-- ReplacePipe -->
 <g id="node1" class="node">
