@@ -28,13 +28,13 @@
 <title>cluster_TableModule_declarations</title>
 <polygon fill="none" stroke="black" points="699,-78 699,-130 3816,-130 3816,-78 699,-78"/>
 </g>
-<g id="clust27" class="cluster">
-<title>cluster_TableModule_imports</title>
-<polygon fill="none" stroke="black" points="16,-78 16,-130 691,-130 691,-78 16,-78"/>
-</g>
 <g id="clust28" class="cluster">
 <title>cluster_TableModule_exports</title>
 <polygon fill="none" stroke="black" points="245,-208 245,-260 3444,-260 3444,-208 245,-208"/>
+</g>
+<g id="clust27" class="cluster">
+<title>cluster_TableModule_imports</title>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 691,-130 691,-78 16,-78"/>
 </g>
 <!-- ExpandedRowHover -->
 <g id="node1" class="node">
