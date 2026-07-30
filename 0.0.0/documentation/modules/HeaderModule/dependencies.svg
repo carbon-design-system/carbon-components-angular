@@ -24,227 +24,227 @@
 <title>cluster_HeaderModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 1090,-268 1090,-70 8,-70"/>
 </g>
+<g id="clust2" class="cluster">
+<title>cluster_HeaderModule_declarations</title>
+<polygon fill="none" stroke="black" points="343,-78 343,-130 1082,-130 1082,-78 343,-78"/>
+</g>
 <g id="clust10" class="cluster">
 <title>cluster_HeaderModule_imports</title>
-<polygon fill="none" stroke="black" points="763,-78 763,-130 1082,-130 1082,-78 763,-78"/>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 335,-130 335,-78 16,-78"/>
 </g>
 <g id="clust11" class="cluster">
 <title>cluster_HeaderModule_exports</title>
-<polygon fill="none" stroke="black" points="163,-208 163,-260 927,-260 927,-208 163,-208"/>
-</g>
-<g id="clust2" class="cluster">
-<title>cluster_HeaderModule_declarations</title>
-<polygon fill="none" stroke="black" points="16,-78 16,-130 755,-130 755,-78 16,-78"/>
+<polygon fill="none" stroke="black" points="173,-208 173,-260 937,-260 937,-208 173,-208"/>
 </g>
 <!-- Hamburger -->
 <g id="node1" class="node">
 <title>Hamburger</title>
-<polygon fill="#ffffb3" stroke="black" points="746.75,-122 667.25,-122 667.25,-86 746.75,-86 746.75,-122"/>
-<text text-anchor="middle" x="707" y="-99.8" font-family="Times,serif" font-size="14.00">Hamburger</text>
+<polygon fill="#ffffb3" stroke="black" points="1073.75,-122 994.25,-122 994.25,-86 1073.75,-86 1073.75,-122"/>
+<text text-anchor="middle" x="1034" y="-99.8" font-family="Times,serif" font-size="14.00">Hamburger</text>
 </g>
 <!-- HeaderModule -->
 <g id="node8" class="node">
 <title>HeaderModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="623.96,-187 620.96,-191 599.96,-191 596.96,-187 524.04,-187 524.04,-151 623.96,-151 623.96,-187"/>
-<text text-anchor="middle" x="574" y="-164.8" font-family="Times,serif" font-size="14.00">HeaderModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="633.96,-187 630.96,-191 609.96,-191 606.96,-187 534.04,-187 534.04,-151 633.96,-151 633.96,-187"/>
+<text text-anchor="middle" x="584" y="-164.8" font-family="Times,serif" font-size="14.00">HeaderModule</text>
 </g>
 <!-- Hamburger&#45;&gt;HeaderModule -->
 <g id="edge1" class="edge">
 <title>Hamburger&#45;&gt;HeaderModule</title>
-<path fill="none" stroke="black" d="M703.07,-122.19C703.07,-137.18 703.07,-156 703.07,-156 703.07,-156 634.27,-156 634.27,-156"/>
-<polygon fill="black" stroke="black" points="634.27,-152.5 624.27,-156 634.27,-159.5 634.27,-152.5"/>
+<path fill="none" stroke="black" d="M1034,-122.11C1034,-141.34 1034,-169 1034,-169 1034,-169 644.31,-169 644.31,-169"/>
+<polygon fill="black" stroke="black" points="644.31,-165.5 634.31,-169 644.31,-172.5 644.31,-165.5"/>
 </g>
 <!-- Header -->
 <g id="node2" class="node">
 <title>Header</title>
-<polygon fill="#ffffb3" stroke="black" points="649.41,-122 592.59,-122 592.59,-86 649.41,-86 649.41,-122"/>
-<text text-anchor="middle" x="621" y="-99.8" font-family="Times,serif" font-size="14.00">Header</text>
+<polygon fill="#ffffb3" stroke="black" points="976.41,-122 919.59,-122 919.59,-86 976.41,-86 976.41,-122"/>
+<text text-anchor="middle" x="948" y="-99.8" font-family="Times,serif" font-size="14.00">Header</text>
 </g>
 <!-- Header&#45;&gt;HeaderModule -->
 <g id="edge2" class="edge">
 <title>Header&#45;&gt;HeaderModule</title>
-<path fill="none" stroke="black" d="M608.39,-122.11C608.39,-122.11 608.39,-140.99 608.39,-140.99"/>
-<polygon fill="black" stroke="black" points="604.89,-140.99 608.39,-150.99 611.89,-140.99 604.89,-140.99"/>
+<path fill="none" stroke="black" d="M924.21,-122.3C924.21,-140.27 924.21,-165 924.21,-165 924.21,-165 644.2,-165 644.2,-165"/>
+<polygon fill="black" stroke="black" points="644.2,-161.5 634.2,-165 644.2,-168.5 644.2,-161.5"/>
 </g>
 <!-- HeaderAction -->
 <g id="node3" class="node">
 <title>HeaderAction</title>
-<polygon fill="#ffffb3" stroke="black" points="575.01,-122 480.99,-122 480.99,-86 575.01,-86 575.01,-122"/>
-<text text-anchor="middle" x="528" y="-99.8" font-family="Times,serif" font-size="14.00">HeaderAction</text>
+<polygon fill="#ffffb3" stroke="black" points="902.01,-122 807.99,-122 807.99,-86 902.01,-86 902.01,-122"/>
+<text text-anchor="middle" x="855" y="-99.8" font-family="Times,serif" font-size="14.00">HeaderAction</text>
 </g>
 <!-- HeaderAction&#45;&gt;HeaderModule -->
 <g id="edge3" class="edge">
 <title>HeaderAction&#45;&gt;HeaderModule</title>
-<path fill="none" stroke="black" d="M549.64,-122.11C549.64,-122.11 549.64,-140.99 549.64,-140.99"/>
-<polygon fill="black" stroke="black" points="546.14,-140.99 549.64,-150.99 553.14,-140.99 546.14,-140.99"/>
+<path fill="none" stroke="black" d="M817.35,-122.03C817.35,-138.4 817.35,-160 817.35,-160 817.35,-160 644.06,-160 644.06,-160"/>
+<polygon fill="black" stroke="black" points="644.06,-156.5 634.06,-160 644.06,-163.5 644.06,-156.5"/>
 </g>
 <!-- HeaderGlobal -->
 <g id="node4" class="node">
 <title>HeaderGlobal</title>
-<polygon fill="#ffffb3" stroke="black" points="462.01,-122 367.99,-122 367.99,-86 462.01,-86 462.01,-122"/>
-<text text-anchor="middle" x="415" y="-99.8" font-family="Times,serif" font-size="14.00">HeaderGlobal</text>
+<polygon fill="#ffffb3" stroke="black" points="789.01,-122 694.99,-122 694.99,-86 789.01,-86 789.01,-122"/>
+<text text-anchor="middle" x="742" y="-99.8" font-family="Times,serif" font-size="14.00">HeaderGlobal</text>
 </g>
 <!-- HeaderGlobal&#45;&gt;HeaderModule -->
 <g id="edge4" class="edge">
 <title>HeaderGlobal&#45;&gt;HeaderModule</title>
-<path fill="none" stroke="black" d="M441.74,-122.19C441.74,-137.18 441.74,-156 441.74,-156 441.74,-156 514,-156 514,-156"/>
-<polygon fill="black" stroke="black" points="514,-159.5 524,-156 514,-152.5 514,-159.5"/>
+<path fill="none" stroke="black" d="M721.88,-122.19C721.88,-137.18 721.88,-156 721.88,-156 721.88,-156 644.17,-156 644.17,-156"/>
+<polygon fill="black" stroke="black" points="644.17,-152.5 634.17,-156 644.17,-159.5 644.17,-152.5"/>
 </g>
 <!-- HeaderItem -->
 <g id="node5" class="node">
 <title>HeaderItem</title>
-<polygon fill="#ffffb3" stroke="black" points="350.07,-122 267.93,-122 267.93,-86 350.07,-86 350.07,-122"/>
-<text text-anchor="middle" x="309" y="-99.8" font-family="Times,serif" font-size="14.00">HeaderItem</text>
+<polygon fill="#ffffb3" stroke="black" points="677.07,-122 594.93,-122 594.93,-86 677.07,-86 677.07,-122"/>
+<text text-anchor="middle" x="636" y="-99.8" font-family="Times,serif" font-size="14.00">HeaderItem</text>
 </g>
 <!-- HeaderItem&#45;&gt;HeaderModule -->
 <g id="edge5" class="edge">
 <title>HeaderItem&#45;&gt;HeaderModule</title>
-<path fill="none" stroke="black" d="M330.37,-122.03C330.37,-138.4 330.37,-160 330.37,-160 330.37,-160 513.82,-160 513.82,-160"/>
-<polygon fill="black" stroke="black" points="513.82,-163.5 523.82,-160 513.82,-156.5 513.82,-163.5"/>
+<path fill="none" stroke="black" d="M614.47,-122.11C614.47,-122.11 614.47,-140.99 614.47,-140.99"/>
+<polygon fill="black" stroke="black" points="610.97,-140.99 614.47,-150.99 617.97,-140.99 610.97,-140.99"/>
 </g>
 <!-- HeaderMenu -->
 <g id="node6" class="node">
 <title>HeaderMenu</title>
-<polygon fill="#ffffb3" stroke="black" points="249.57,-122 160.43,-122 160.43,-86 249.57,-86 249.57,-122"/>
-<text text-anchor="middle" x="205" y="-99.8" font-family="Times,serif" font-size="14.00">HeaderMenu</text>
+<polygon fill="#ffffb3" stroke="black" points="576.57,-122 487.43,-122 487.43,-86 576.57,-86 576.57,-122"/>
+<text text-anchor="middle" x="532" y="-99.8" font-family="Times,serif" font-size="14.00">HeaderMenu</text>
 </g>
 <!-- HeaderMenu&#45;&gt;HeaderModule -->
 <g id="edge6" class="edge">
 <title>HeaderMenu&#45;&gt;HeaderModule</title>
-<path fill="none" stroke="black" d="M210.24,-122.3C210.24,-140.27 210.24,-165 210.24,-165 210.24,-165 513.8,-165 513.8,-165"/>
-<polygon fill="black" stroke="black" points="513.8,-168.5 523.8,-165 513.8,-161.5 513.8,-168.5"/>
+<path fill="none" stroke="black" d="M555.28,-122.11C555.28,-122.11 555.28,-140.99 555.28,-140.99"/>
+<polygon fill="black" stroke="black" points="551.78,-140.99 555.28,-150.99 558.78,-140.99 551.78,-140.99"/>
 </g>
 <!-- HeaderNavigation -->
 <g id="node7" class="node">
 <title>HeaderNavigation</title>
-<polygon fill="#ffffb3" stroke="black" points="142.12,-122 23.88,-122 23.88,-86 142.12,-86 142.12,-122"/>
-<text text-anchor="middle" x="83" y="-99.8" font-family="Times,serif" font-size="14.00">HeaderNavigation</text>
+<polygon fill="#ffffb3" stroke="black" points="469.12,-122 350.88,-122 350.88,-86 469.12,-86 469.12,-122"/>
+<text text-anchor="middle" x="410" y="-99.8" font-family="Times,serif" font-size="14.00">HeaderNavigation</text>
 </g>
 <!-- HeaderNavigation&#45;&gt;HeaderModule -->
 <g id="edge7" class="edge">
 <title>HeaderNavigation&#45;&gt;HeaderModule</title>
-<path fill="none" stroke="black" d="M83,-122.11C83,-141.34 83,-169 83,-169 83,-169 513.76,-169 513.76,-169"/>
-<polygon fill="black" stroke="black" points="513.76,-172.5 523.76,-169 513.76,-165.5 513.76,-172.5"/>
+<path fill="none" stroke="black" d="M450.26,-122.19C450.26,-137.18 450.26,-156 450.26,-156 450.26,-156 523.82,-156 523.82,-156"/>
+<polygon fill="black" stroke="black" points="523.82,-159.5 533.82,-156 523.82,-152.5 523.82,-159.5"/>
 </g>
 <!-- Hamburger  -->
 <g id="node12" class="node">
 <title>Hamburger </title>
-<polygon fill="#fb8072" stroke="black" points="918.75,-252 835.25,-252 835.25,-216 918.75,-216 918.75,-252"/>
-<text text-anchor="middle" x="877" y="-229.8" font-family="Times,serif" font-size="14.00">Hamburger </text>
+<polygon fill="#fb8072" stroke="black" points="928.75,-252 845.25,-252 845.25,-216 928.75,-216 928.75,-252"/>
+<text text-anchor="middle" x="887" y="-229.8" font-family="Times,serif" font-size="14.00">Hamburger </text>
 </g>
 <!-- HeaderModule&#45;&gt;Hamburger  -->
 <g id="edge11" class="edge">
 <title>HeaderModule&#45;&gt;Hamburger </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M624.08,-174C702.46,-174 845.29,-174 845.29,-174 845.29,-174 845.29,-206 845.29,-206"/>
-<polygon fill="black" stroke="black" points="841.79,-206 845.29,-216 848.79,-206 841.79,-206"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M634.15,-174C717.1,-174 873.82,-174 873.82,-174 873.82,-174 873.82,-206 873.82,-206"/>
+<polygon fill="black" stroke="black" points="870.32,-206 873.82,-216 877.32,-206 870.32,-206"/>
 </g>
 <!-- Header  -->
 <g id="node13" class="node">
 <title>Header </title>
-<polygon fill="#fb8072" stroke="black" points="816.91,-252 757.09,-252 757.09,-216 816.91,-216 816.91,-252"/>
-<text text-anchor="middle" x="787" y="-229.8" font-family="Times,serif" font-size="14.00">Header </text>
+<polygon fill="#fb8072" stroke="black" points="826.91,-252 767.09,-252 767.09,-216 826.91,-216 826.91,-252"/>
+<text text-anchor="middle" x="797" y="-229.8" font-family="Times,serif" font-size="14.00">Header </text>
 </g>
 <!-- HeaderModule&#45;&gt;Header  -->
 <g id="edge12" class="edge">
 <title>HeaderModule&#45;&gt;Header </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M624.4,-178C680.66,-178 763.92,-178 763.92,-178 763.92,-178 763.92,-205.97 763.92,-205.97"/>
-<polygon fill="black" stroke="black" points="760.42,-205.97 763.92,-215.97 767.42,-205.97 760.42,-205.97"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M634,-178C691.52,-178 778.15,-178 778.15,-178 778.15,-178 778.15,-205.97 778.15,-205.97"/>
+<polygon fill="black" stroke="black" points="774.65,-205.97 778.15,-215.97 781.65,-205.97 774.65,-205.97"/>
 </g>
 <!-- HeaderAction  -->
 <g id="node14" class="node">
 <title>HeaderAction </title>
-<polygon fill="#fb8072" stroke="black" points="739.01,-252 640.99,-252 640.99,-216 739.01,-216 739.01,-252"/>
-<text text-anchor="middle" x="690" y="-229.8" font-family="Times,serif" font-size="14.00">HeaderAction </text>
+<polygon fill="#fb8072" stroke="black" points="749.01,-252 650.99,-252 650.99,-216 749.01,-216 749.01,-252"/>
+<text text-anchor="middle" x="700" y="-229.8" font-family="Times,serif" font-size="14.00">HeaderAction </text>
 </g>
 <!-- HeaderModule&#45;&gt;HeaderAction  -->
 <g id="edge13" class="edge">
 <title>HeaderModule&#45;&gt;HeaderAction </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M624.15,-183C635.92,-183 645.1,-183 645.1,-183 645.1,-183 645.1,-205.88 645.1,-205.88"/>
-<polygon fill="black" stroke="black" points="641.6,-205.88 645.1,-215.88 648.6,-205.88 641.6,-205.88"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M634.22,-183C650.3,-183 664.01,-183 664.01,-183 664.01,-183 664.01,-205.88 664.01,-205.88"/>
+<polygon fill="black" stroke="black" points="660.51,-205.88 664.01,-215.88 667.51,-205.88 660.51,-205.88"/>
 </g>
 <!-- HeaderGlobal  -->
 <g id="node15" class="node">
 <title>HeaderGlobal </title>
-<polygon fill="#fb8072" stroke="black" points="623.01,-252 524.99,-252 524.99,-216 623.01,-216 623.01,-252"/>
-<text text-anchor="middle" x="574" y="-229.8" font-family="Times,serif" font-size="14.00">HeaderGlobal </text>
+<polygon fill="#fb8072" stroke="black" points="633.01,-252 534.99,-252 534.99,-216 633.01,-216 633.01,-252"/>
+<text text-anchor="middle" x="584" y="-229.8" font-family="Times,serif" font-size="14.00">HeaderGlobal </text>
 </g>
 <!-- HeaderModule&#45;&gt;HeaderGlobal  -->
 <g id="edge14" class="edge">
 <title>HeaderModule&#45;&gt;HeaderGlobal </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M574,-187.11C574,-187.11 574,-205.99 574,-205.99"/>
-<polygon fill="black" stroke="black" points="570.5,-205.99 574,-215.99 577.5,-205.99 570.5,-205.99"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M584,-187.11C584,-187.11 584,-205.99 584,-205.99"/>
+<polygon fill="black" stroke="black" points="580.5,-205.99 584,-215.99 587.5,-205.99 580.5,-205.99"/>
 </g>
 <!-- HeaderItem  -->
 <g id="node16" class="node">
 <title>HeaderItem </title>
-<polygon fill="#fb8072" stroke="black" points="506.57,-252 421.43,-252 421.43,-216 506.57,-216 506.57,-252"/>
-<text text-anchor="middle" x="464" y="-229.8" font-family="Times,serif" font-size="14.00">HeaderItem </text>
+<polygon fill="#fb8072" stroke="black" points="516.57,-252 431.43,-252 431.43,-216 516.57,-216 516.57,-252"/>
+<text text-anchor="middle" x="474" y="-229.8" font-family="Times,serif" font-size="14.00">HeaderItem </text>
 </g>
 <!-- HeaderModule&#45;&gt;HeaderItem  -->
 <g id="edge15" class="edge">
 <title>HeaderModule&#45;&gt;HeaderItem </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M523.64,-183C507.52,-183 493.76,-183 493.76,-183 493.76,-183 493.76,-205.88 493.76,-205.88"/>
-<polygon fill="black" stroke="black" points="490.26,-205.88 493.76,-215.88 497.26,-205.88 490.26,-205.88"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M534.01,-183C516.97,-183 502.12,-183 502.12,-183 502.12,-183 502.12,-205.88 502.12,-205.88"/>
+<polygon fill="black" stroke="black" points="498.62,-205.88 502.12,-215.88 505.62,-205.88 498.62,-205.88"/>
 </g>
 <!-- HeaderMenu  -->
 <g id="node17" class="node">
 <title>HeaderMenu </title>
-<polygon fill="#fb8072" stroke="black" points="403.07,-252 310.93,-252 310.93,-216 403.07,-216 403.07,-252"/>
-<text text-anchor="middle" x="357" y="-229.8" font-family="Times,serif" font-size="14.00">HeaderMenu </text>
+<polygon fill="#fb8072" stroke="black" points="413.07,-252 320.93,-252 320.93,-216 413.07,-216 413.07,-252"/>
+<text text-anchor="middle" x="367" y="-229.8" font-family="Times,serif" font-size="14.00">HeaderMenu </text>
 </g>
 <!-- HeaderModule&#45;&gt;HeaderMenu  -->
 <g id="edge16" class="edge">
 <title>HeaderModule&#45;&gt;HeaderMenu </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M523.98,-178C468.14,-178 385.51,-178 385.51,-178 385.51,-178 385.51,-205.97 385.51,-205.97"/>
-<polygon fill="black" stroke="black" points="382.01,-205.97 385.51,-215.97 389.01,-205.97 382.01,-205.97"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M533.8,-178C473.98,-178 381.99,-178 381.99,-178 381.99,-178 381.99,-205.97 381.99,-205.97"/>
+<polygon fill="black" stroke="black" points="378.49,-205.97 381.99,-215.97 385.49,-205.97 378.49,-205.97"/>
 </g>
 <!-- HeaderNavigation  -->
 <g id="node18" class="node">
 <title>HeaderNavigation </title>
-<polygon fill="#fb8072" stroke="black" points="293.12,-252 170.88,-252 170.88,-216 293.12,-216 293.12,-252"/>
-<text text-anchor="middle" x="232" y="-229.8" font-family="Times,serif" font-size="14.00">HeaderNavigation </text>
+<polygon fill="#fb8072" stroke="black" points="303.12,-252 180.88,-252 180.88,-216 303.12,-216 303.12,-252"/>
+<text text-anchor="middle" x="242" y="-229.8" font-family="Times,serif" font-size="14.00">HeaderNavigation </text>
 </g>
 <!-- HeaderModule&#45;&gt;HeaderNavigation  -->
 <g id="edge17" class="edge">
 <title>HeaderModule&#45;&gt;HeaderNavigation </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M523.88,-174C440.06,-174 280.51,-174 280.51,-174 280.51,-174 280.51,-206 280.51,-206"/>
-<polygon fill="black" stroke="black" points="277.01,-206 280.51,-216 284.01,-206 277.01,-206"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M533.98,-174C444.46,-174 266.11,-174 266.11,-174 266.11,-174 266.11,-206 266.11,-206"/>
+<polygon fill="black" stroke="black" points="262.61,-206 266.11,-216 269.61,-206 262.61,-206"/>
 </g>
 <!-- ButtonModule -->
 <g id="node9" class="node">
 <title>ButtonModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="1073.67,-122 1070.67,-126 1049.67,-126 1046.67,-122 976.33,-122 976.33,-86 1073.67,-86 1073.67,-122"/>
-<text text-anchor="middle" x="1025" y="-99.8" font-family="Times,serif" font-size="14.00">ButtonModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="326.67,-122 323.67,-126 302.67,-126 299.67,-122 229.33,-122 229.33,-86 326.67,-86 326.67,-122"/>
+<text text-anchor="middle" x="278" y="-99.8" font-family="Times,serif" font-size="14.00">ButtonModule</text>
 </g>
 <!-- ButtonModule&#45;&gt;HeaderModule -->
 <g id="edge8" class="edge">
 <title>ButtonModule&#45;&gt;HeaderModule</title>
-<path fill="none" stroke="black" d="M1025,-122.11C1025,-141.34 1025,-169 1025,-169 1025,-169 633.99,-169 633.99,-169"/>
-<polygon fill="black" stroke="black" points="633.99,-165.5 623.99,-169 633.99,-172.5 633.99,-165.5"/>
+<path fill="none" stroke="black" d="M311.89,-122.03C311.89,-138.4 311.89,-160 311.89,-160 311.89,-160 523.77,-160 523.77,-160"/>
+<polygon fill="black" stroke="black" points="523.77,-163.5 533.77,-160 523.77,-156.5 523.77,-163.5"/>
 </g>
 <!-- I18nModule -->
 <g id="node10" class="node">
 <title>I18nModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="958.71,-122 955.71,-126 934.71,-126 931.71,-122 873.29,-122 873.29,-86 958.71,-86 958.71,-122"/>
-<text text-anchor="middle" x="916" y="-99.8" font-family="Times,serif" font-size="14.00">I18nModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="211.71,-122 208.71,-126 187.71,-126 184.71,-122 126.29,-122 126.29,-86 211.71,-86 211.71,-122"/>
+<text text-anchor="middle" x="169" y="-99.8" font-family="Times,serif" font-size="14.00">I18nModule</text>
 </g>
 <!-- I18nModule&#45;&gt;HeaderModule -->
 <g id="edge9" class="edge">
 <title>I18nModule&#45;&gt;HeaderModule</title>
-<path fill="none" stroke="black" d="M896.01,-122.3C896.01,-140.27 896.01,-165 896.01,-165 896.01,-165 634.31,-165 634.31,-165"/>
-<polygon fill="black" stroke="black" points="634.31,-161.5 624.31,-165 634.31,-168.5 634.31,-161.5"/>
+<path fill="none" stroke="black" d="M196.27,-122.3C196.27,-140.27 196.27,-165 196.27,-165 196.27,-165 523.71,-165 523.71,-165"/>
+<polygon fill="black" stroke="black" points="523.71,-168.5 533.71,-165 523.71,-161.5 523.71,-168.5"/>
 </g>
 <!-- IconModule -->
 <g id="node11" class="node">
 <title>IconModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="855.43,-122 852.43,-126 831.43,-126 828.43,-122 770.57,-122 770.57,-86 855.43,-86 855.43,-122"/>
-<text text-anchor="middle" x="813" y="-99.8" font-family="Times,serif" font-size="14.00">IconModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="108.43,-122 105.43,-126 84.43,-126 81.43,-122 23.57,-122 23.57,-86 108.43,-86 108.43,-122"/>
+<text text-anchor="middle" x="66" y="-99.8" font-family="Times,serif" font-size="14.00">IconModule</text>
 </g>
 <!-- IconModule&#45;&gt;HeaderModule -->
 <g id="edge10" class="edge">
 <title>IconModule&#45;&gt;HeaderModule</title>
-<path fill="none" stroke="black" d="M793.87,-122.03C793.87,-138.4 793.87,-160 793.87,-160 793.87,-160 634.17,-160 634.17,-160"/>
-<polygon fill="black" stroke="black" points="634.17,-156.5 624.17,-160 634.17,-163.5 634.17,-156.5"/>
+<path fill="none" stroke="black" d="M66,-122.11C66,-141.34 66,-169 66,-169 66,-169 523.86,-169 523.86,-169"/>
+<polygon fill="black" stroke="black" points="523.86,-172.5 533.86,-169 523.86,-165.5 523.86,-172.5"/>
 </g>
 </g>
 </svg>
