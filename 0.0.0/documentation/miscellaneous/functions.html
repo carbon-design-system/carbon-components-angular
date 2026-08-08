@@ -128,6 +128,9 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
+                            <a href="#advancedFakeAsync" title="src/test-helpers/change-detection.ts" ><b>advancedFakeAsync</b>&nbsp;&nbsp;&nbsp;(src/.../change-detection.ts)</a>
+                        </li>
+                        <li>
                             <a href="#ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER_FACTORY" title="src/utils/utils.module.ts" ><b>ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER_FACTORY</b>&nbsp;&nbsp;&nbsp;(src/.../utils.module.ts)</a>
                         </li>
                         <li>
@@ -176,6 +179,9 @@
                             <a href="#getScrollbarWidth" title="src/utils/window-tools.ts" ><b>getScrollbarWidth</b>&nbsp;&nbsp;&nbsp;(src/.../window-tools.ts)</a>
                         </li>
                         <li>
+                            <a href="#hasClass" title="src/test-helpers/change-detection.ts" ><b>hasClass</b>&nbsp;&nbsp;&nbsp;(src/.../change-detection.ts)</a>
+                        </li>
+                        <li>
                             <a href="#HcModeChecker" title="src/utils/a11y.ts" ><b>HcModeChecker</b>&nbsp;&nbsp;&nbsp;(src/.../a11y.ts)</a>
                         </li>
                         <li>
@@ -209,6 +215,9 @@
                             <a href="#range" title="src/common/utils.ts" ><b>range</b>&nbsp;&nbsp;&nbsp;(src/.../utils.ts)</a>
                         </li>
                         <li>
+                            <a href="#textOf" title="src/test-helpers/change-detection.ts" ><b>textOf</b>&nbsp;&nbsp;&nbsp;(src/.../change-detection.ts)</a>
+                        </li>
+                        <li>
                             <a href="#watchFocusJump" title="src/dropdown/dropdowntools.ts" ><b>watchFocusJump</b>&nbsp;&nbsp;&nbsp;(src/.../dropdowntools.ts)</a>
                         </li>
                     </ul>
@@ -218,7 +227,254 @@
     </table>
 </section>
 
-    <h3>src/utils/utils.module.ts</h3>
+    <h3>src/test-helpers/change-detection.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="advancedFakeAsync"></a>
+                    <span class="name">
+                        <span ><b>advancedFakeAsync</b></span>
+                        <a href="#advancedFakeAsync"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>advancedFakeAsync(fixture: ComponentFixture, millis: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Helpers for the <code>change detection</code> suites, which assert that state written outside of an
+<code>@Input()</code> still reaches the DOM. Those assertions hold under <code>Default</code> and are the ones
+to re-check when a component moves to <code>OnPush</code>.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fixture</td>
+                                            <td>
+                                                        <code>ComponentFixture</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                                <td>millis</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>0</code>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hasClass"></a>
+                    <span class="name">
+                        <span ><b>hasClass</b></span>
+                        <a href="#hasClass"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>hasClass(fixture: ComponentFixture, selector: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, className: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>True when the first match carries <code>className</code>. A missing element is <code>false</code>.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fixture</td>
+                                            <td>
+                                                        <code>ComponentFixture</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>selector</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>className</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="textOf"></a>
+                    <span class="name">
+                        <span ><b>textOf</b></span>
+                        <a href="#textOf"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>textOf(fixture: ComponentFixture, selector: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Trimmed text of the first match, or <code>null</code> when nothing matches.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fixture</td>
+                                            <td>
+                                                        <code>ComponentFixture</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>selector</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>string | null</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/utils/utils.module.ts</h3>
     <section data-compodoc="block-methods">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
