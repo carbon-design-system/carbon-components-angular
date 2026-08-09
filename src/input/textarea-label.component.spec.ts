@@ -25,7 +25,7 @@ class ReactiveTextareaTest {
 			<textarea cdsTextArea></textarea>
 		</cds-textarea-label>
 	`,
-	imports: [InputModule],
+	imports: [InputModule]
 })
 class NativeTextareaTest {
 	@ViewChild(TextareaLabelComponent) label: TextareaLabelComponent;

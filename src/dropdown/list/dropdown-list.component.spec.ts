@@ -83,9 +83,9 @@ describe("Dropdown list", () => {
 		expect(fixture.nativeElement.querySelectorAll("li").length).toBe(2);
 
 		wrapper.items = [
-			<ListItem>{ content: "one", selected: false },
-			<ListItem>{ content: "two", selected: false },
-			<ListItem>{ content: "three", selected: false }
+			({ content: "one", selected: false } as ListItem),
+			({ content: "two", selected: false } as ListItem),
+			({ content: "three", selected: false } as ListItem)
 		];
 		fixture.detectChanges();
 
@@ -96,8 +96,8 @@ describe("Dropdown list", () => {
 
 	it("should mark an item active when it is passed as selected", () => {
 		wrapper.items = [
-			<ListItem>{ content: "one", selected: true },
-			<ListItem>{ content: "two", selected: false }
+			({ content: "one", selected: true } as ListItem),
+			({ content: "two", selected: false } as ListItem)
 		];
 		fixture.detectChanges();
 
@@ -122,8 +122,8 @@ describe("Dropdown list", () => {
 	it("should follow the selected item when the list is reordered", fakeAsync(() => {
 		const list = fixture.debugElement.query(By.css("cds-dropdown-list")).componentInstance;
 		wrapper.items = [
-			<ListItem>{ content: "one", selected: false },
-			<ListItem>{ content: "two", selected: true }
+			({ content: "one", selected: false } as ListItem),
+			({ content: "two", selected: true } as ListItem)
 		];
 		fixture.detectChanges();
 
