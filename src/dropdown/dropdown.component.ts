@@ -628,12 +628,6 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 */
 	propagateChange = (_: any) => {};
 
-	// used only to update writtenValue
-	private _propagateChange(value: any) {
-		this.writtenValue = value;
-		this.propagateChange(value);
-	}
-
 	/**
 	 * `ControlValueAccessor` method to programmatically disable the dropdown.
 	 *
@@ -948,5 +942,11 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		if ((this.type === "multi") && (topAfterReopen || this.selectionFeedback === "top")) {
 			this.view.reorderSelected();
 		}
+	}
+
+	// used only to update writtenValue
+	private _propagateChange(value: any) {
+		this.writtenValue = value;
+		this.propagateChange(value);
 	}
 }

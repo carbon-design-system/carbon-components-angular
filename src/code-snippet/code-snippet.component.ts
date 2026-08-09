@@ -110,7 +110,7 @@ export enum SnippetType {
 					type="button"
 					kind="primary"
 					size="md"
-					(click)="onCopyButtonClicked($event)"
+					(click)="onCopyButtonClicked()"
 					[buttonNgClass]="{
 						'cds--snippet--light': theme === 'light',
 						'cds--snippet--inline': display === 'inline',
@@ -154,7 +154,6 @@ export enum SnippetType {
 export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit {
 	public i18n = inject(I18n);
 	public eventService = inject(EventService);
-	protected changeDetectorRef = inject(ChangeDetectorRef);
 
 	@HostBinding("class.cds--snippet") get snippetClass() {
 		return this.display !== SnippetType.inline;
@@ -246,6 +245,8 @@ export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit
 
 	hasRight = false;
 	hasLeft = false;
+
+	protected changeDetectorRef = inject(ChangeDetectorRef);
 
 	/** Inserted by Angular inject() migration for backwards compatibility */
 	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major

@@ -200,7 +200,8 @@ describe("Dropdown", () => {
 		spyOn(element.componentInstance.view, "propagateSelected").and.callThrough();
 		expect(element.componentInstance.view.propagateSelected).not.toHaveBeenCalled();
 		element.componentInstance.writeValue(null);
-		expect(element.componentInstance.view.propagateSelected).toHaveBeenCalledWith([{ content: expectedContent, id: null, selected: true }]);
+		expect(element.componentInstance.view.propagateSelected)
+			.toHaveBeenCalledWith([{ content: expectedContent, id: null, selected: true }]);
 		expect(element.componentInstance.view.getSelected()[0].content).toEqual(expectedContent);
 	});
 
