@@ -3,9 +3,11 @@ import { ComponentFixture, fakeAsync, TestBed } from "@angular/core/testing";
 
 import { By } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
+import { CommonModule } from "@angular/common";
 
 import { TableModel } from "./table-model.class";
 import { Table } from "./index";
+import { TableModule } from "./table.module";
 import { TableHeaderItem } from "./table-header-item.class";
 import { TableItem } from "./table-item.class";
 import { TableContainer } from "./table-container.component";
@@ -26,7 +28,8 @@ import { advancedFakeAsync } from "../test-helpers/change-detection";
 			title="title"
 			[isDataGrid]="isDataGrid"
 			[showSelectionColumn]="showSelectionColumn">
-		</cds-table>`
+		</cds-table>`,
+	imports: [TableModule]
 })
 class TableTest implements OnInit {
 	tableModel = new TableModel();
@@ -237,7 +240,8 @@ describe("Table", () => {
 				</cds-table-toolbar-content>
 			</cds-table-toolbar>
 		</cds-table-container>
-	`
+	`,
+	imports: [TableModule, FormsModule]
 })
 class TableContainerTest {
 	@ViewChild(TableContainer) container: TableContainer;
@@ -270,8 +274,7 @@ describe("TableContainer, TableHeader and TableToolbar", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [TableContainerTest],
-			imports: [TableModule, FormsModule]
+			imports: [TableContainerTest]
 		});
 
 		fixture = TestBed.createComponent(TableContainerTest);

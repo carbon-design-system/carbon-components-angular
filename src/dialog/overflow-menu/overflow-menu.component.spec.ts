@@ -5,7 +5,6 @@ import { By } from "@angular/platform-browser";
 import { DialogModule } from "../dialog.module";
 import { UtilsModule } from "../../utils";
 import { AnimationFrameService } from "../../utils/animation-frame.service";
-import { I18nModule } from "../../i18n";
 import { PlaceholderModule } from "../../placeholder";
 import { OverflowMenu } from "./overflow-menu.component";
 import { OverflowMenuOption } from "./overflow-menu-option.component";
@@ -26,7 +25,12 @@ import { advancedFakeAsync } from "../../test-helpers/change-detection";
 		</cds-overflow-menu>
 		<ng-template #customTrigger><span class="custom-trigger">Custom</span></ng-template>
 		<cds-placeholder></cds-placeholder>
-	`
+	`,
+	imports: [
+		DialogModule,
+		UtilsModule,
+		PlaceholderModule
+	]
 })
 class OverflowMenuTest {
 	@ViewChild(OverflowMenu) overflowMenu: OverflowMenu;
@@ -69,8 +73,9 @@ describe("OverflowMenu", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [OverflowMenuTest],
-			imports: [DialogModule, UtilsModule, I18nModule, PlaceholderModule],
+			imports: [
+				OverflowMenuTest
+			],
 			// the open menu re-places itself on every animation frame, which never lets a
 			// fakeAsync timer queue drain. the dialog takes the service optionally.
 			providers: [{ provide: AnimationFrameService, useValue: null }]

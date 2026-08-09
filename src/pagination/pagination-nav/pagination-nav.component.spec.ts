@@ -122,7 +122,8 @@ describe("PaginationNav", () => {
 			[count]="count"
 			(change)="selectedPage = $event">
 		</cds-pagination-overflow>
-	`
+	`,
+	imports: [PaginationModule, I18nModule]
 })
 class PaginationOverflowTest {
 	@ViewChild(PaginationOverflow) overflow: PaginationOverflow;
@@ -137,8 +138,7 @@ describe("PaginationOverflow", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [PaginationOverflowTest],
-			imports: [PaginationModule, I18nModule]
+			imports: [PaginationOverflowTest]
 		});
 
 		fixture = TestBed.createComponent(PaginationOverflowTest);

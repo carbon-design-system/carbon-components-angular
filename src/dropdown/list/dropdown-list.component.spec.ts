@@ -143,7 +143,6 @@ describe("Dropdown multi list", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			imports: [
-				DropdownList,
 				MultiTest,
 				ScrollableList
 			]

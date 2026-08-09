@@ -17,7 +17,8 @@ import { SkeletonIcon } from "./skeleton-icon.component";
 		</cds-skeleton-text>
 		<cds-skeleton-placeholder [ai]="ai"></cds-skeleton-placeholder>
 		<cds-skeleton-icon [ai]="ai"></cds-skeleton-icon>
-	`
+	`,
+	imports: [SkeletonModule]
 })
 class SkeletonTest {
 	@ViewChild(SkeletonText) text: SkeletonText;
@@ -37,8 +38,7 @@ describe("Skeleton components", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [SkeletonTest],
-			imports: [SkeletonModule]
+			imports: [SkeletonTest]
 		});
 
 		fixture = TestBed.createComponent(SkeletonTest);

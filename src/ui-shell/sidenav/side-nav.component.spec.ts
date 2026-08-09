@@ -12,8 +12,7 @@ import { RouterModule } from "@angular/router";
 
 @Component({
 	selector: "app-foo",
-	template: "<h1>foo</h1>",
-	imports: []
+	template: "<h1>foo</h1>"
 })
 class FooComponent {}
 
@@ -51,16 +50,11 @@ describe("SideNav", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			imports: [
-				RouterModule.forRoot([
-					{
-						path: "foo",
-						component: FooComponent
-					}
-				], {
-					initialNavigation: "disabled",
-					useHash: true
-				}),
-				SideNavTest
+				SideNavTest,
+				RouterModule.forRoot(
+					[{ path: "foo", component: FooComponent }],
+					{ initialNavigation: "disabled", useHash: true }
+				)
 			]
 		});
 	});

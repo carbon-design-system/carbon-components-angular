@@ -8,7 +8,8 @@ import { NotificationDisplayService } from "./notification-display.service";
 import { advancedFakeAsync } from "../test-helpers/change-detection";
 
 @Component({
-	template: `<cds-toast [notificationObj]="notificationObj"></cds-toast>`
+	template: `<cds-toast [notificationObj]="notificationObj"></cds-toast>`,
+	imports: [Toast, I18nModule, IconModule]
 })
 class ToastTest {
 	@ViewChild(Toast) toast: Toast;
@@ -26,9 +27,8 @@ describe("Toast", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [Toast, ToastTest],
 			providers: [NotificationDisplayService],
-			imports: [I18nModule, IconModule]
+			imports: [ToastTest]
 		});
 
 		fixture = TestBed.createComponent(ToastTest);

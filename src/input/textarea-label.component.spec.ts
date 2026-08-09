@@ -11,7 +11,8 @@ import { advancedFakeAsync } from "../test-helpers/change-detection";
 		<cds-textarea-label [enableCounter]="true" [maxCount]="20" labelText="Notes">
 			<textarea cdsTextArea [formControl]="control"></textarea>
 		</cds-textarea-label>
-	`
+	`,
+	imports: [InputModule, ReactiveFormsModule]
 })
 class ReactiveTextareaTest {
 	@ViewChild(TextareaLabelComponent) label: TextareaLabelComponent;
@@ -23,7 +24,8 @@ class ReactiveTextareaTest {
 		<cds-textarea-label [enableCounter]="true" [maxCount]="20" labelText="Notes">
 			<textarea cdsTextArea></textarea>
 		</cds-textarea-label>
-	`
+	`,
+	imports: [InputModule],
 })
 class NativeTextareaTest {
 	@ViewChild(TextareaLabelComponent) label: TextareaLabelComponent;
@@ -32,8 +34,11 @@ class NativeTextareaTest {
 describe("TextareaLabel", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [ReactiveTextareaTest, NativeTextareaTest],
-			imports: [InputModule, FormsModule, ReactiveFormsModule]
+			imports: [
+				ReactiveTextareaTest,
+				NativeTextareaTest,
+				FormsModule
+			]
 		});
 	});
 

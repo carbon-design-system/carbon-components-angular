@@ -17,10 +17,7 @@ import { FormsModule } from "@angular/forms";
 		dateFormat="m/d/Y"
 		(valueChange)="onValueChange()" />
 	`,
-	imports: [
-		DatePicker,
-		FormsModule
-	]
+	imports: [DatePicker, FormsModule]
 })
 class DatePickerTest {
 	value = new Date(new Date().getFullYear(), 5, 15);

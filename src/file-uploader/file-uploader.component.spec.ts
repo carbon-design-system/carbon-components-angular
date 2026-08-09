@@ -2,8 +2,6 @@ import { FormsModule } from "@angular/forms";
 import { fakeAsync, TestBed } from "@angular/core/testing";
 import { Component } from "@angular/core";
 import { advancedFakeAsync } from "../test-helpers/change-detection";
-import { ButtonModule } from "carbon-components-angular/button";
-import { LoadingModule } from "carbon-components-angular/loading";
 import { FileUploader } from "./file-uploader.component";
 import { By } from "@angular/platform-browser";
 import { FileItem } from "./file-item.interface";
@@ -18,7 +16,8 @@ import { FileItem } from "./file-item.interface";
 			[multiple]="true"
 			[(ngModel)]="files">
 		</cds-file-uploader>
-	`
+	`,
+	imports: [FileUploader, FormsModule]
 })
 class FileUploaderTest {
 	files = null;

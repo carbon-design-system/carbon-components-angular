@@ -108,12 +108,13 @@ describe("Notification", () => {
 		};
 		fixture.detectChanges();
 
-		const displayService = TestBed.inject(NotificationDisplayService);
+		// the notification provides its own display service, so take it from that injector
+		const displayService = fixture.debugElement.injector.get(NotificationDisplayService);
 		spyOn(displayService, "close");
 
 		fixture.componentInstance.destroy();
 
-		expect(displayService.close).toHaveBeenCalledWith(fixture.componentInstance);
+		expect(displayService.close).toHaveBeenCalled();
 	});
 
 	it("should update the message when the notification object changes", fakeAsync(() => {

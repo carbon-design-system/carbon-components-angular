@@ -10,7 +10,14 @@ import { NotificationDisplayService } from "./notification-display.service";
 import { advancedFakeAsync } from "../test-helpers/change-detection";
 
 @Component({
-	template: `<cds-actionable-notification [notificationObj]="notificationObj"></cds-actionable-notification>`
+	template: `<cds-actionable-notification [notificationObj]="notificationObj"></cds-actionable-notification>`,
+	imports: [
+		ActionableNotification,
+		I18nModule,
+		IconModule,
+		LinkModule,
+		ButtonModule
+	]
 })
 class ActionableNotificationTest {
 	@ViewChild(ActionableNotification) notification: ActionableNotification;
@@ -18,7 +25,7 @@ class ActionableNotificationTest {
 		type: "info",
 		title: "Heads up",
 		message: "something happened",
-		actions: [{ text: "Undo", click: () => {} }]
+		actions: [{ text: "Undo", click: () => { } }]
 	};
 }
 
@@ -28,9 +35,10 @@ describe("ActionableNotification", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [ActionableNotification, ActionableNotificationTest],
 			providers: [NotificationDisplayService],
-			imports: [I18nModule, IconModule, LinkModule, ButtonModule]
+			imports: [
+				ActionableNotificationTest
+			]
 		});
 
 		fixture = TestBed.createComponent(ActionableNotificationTest);
@@ -57,7 +65,7 @@ describe("ActionableNotification", () => {
 	it("should render an action added to the existing notification", fakeAsync(() => {
 		expect(fixture.nativeElement.textContent).not.toContain("Retry");
 
-		setTimeout(() => wrapper.notification.notificationObj.actions.push({ text: "Retry", click: () => {} }), 250);
+		setTimeout(() => wrapper.notification.notificationObj.actions.push({ text: "Retry", click: () => { } }), 250);
 		advancedFakeAsync(fixture, 250);
 
 		expect(fixture.nativeElement.textContent).toContain("Retry");

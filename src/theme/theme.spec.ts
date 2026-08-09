@@ -22,7 +22,7 @@ describe("Theme", () => {
 
 	it("should assign theme class to div", () => {
 		TestBed.configureTestingModule({
-			imports: [TestThemeComponent, ThemeDirective]
+			imports: [TestThemeComponent]
 		});
 
 		let fixture: ComponentFixture<TestThemeComponent> = TestBed.createComponent(TestThemeComponent);

@@ -10,7 +10,8 @@ import { ExpandableTile } from "./expandable-tile.component";
 			<span cdsAboveFold class="cds--tile-content__above-the-fold">Above the fold</span>
 			<span cdsBelowFold class="cds--tile-content__below-the-fold">Below the fold</span>
 		</cds-expandable-tile>
-	`
+	`,
+	imports: [TilesModule]
 })
 class ExpandableTileTest {
 	@ViewChild(ExpandableTile) tile: ExpandableTile;
@@ -27,8 +28,7 @@ describe("ExpandableTile", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [ExpandableTileTest],
-			imports: [TilesModule]
+			imports: [ExpandableTileTest]
 		});
 
 		fixture = TestBed.createComponent(ExpandableTileTest);

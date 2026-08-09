@@ -10,7 +10,8 @@ import { CodeSnippetModule } from "./code-snippet.module";
 		<cds-code-snippet
 			[display]="display"
 			[feedbackTimeout]="feedbackTimeout">{{code}}</cds-code-snippet>
-	`
+	`,
+	imports: [CodeSnippetModule]
 })
 class CodeSnippetTest {
 	@ViewChild(CodeSnippet) snippet: CodeSnippet;
@@ -25,8 +26,9 @@ describe("CodeSnippet", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [CodeSnippetTest],
-			imports: [CodeSnippetModule]
+			imports: [
+				CodeSnippetTest
+			]
 		});
 
 		fixture = TestBed.createComponent(CodeSnippetTest);

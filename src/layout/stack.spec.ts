@@ -13,8 +13,7 @@ class TestStackComponent {}
 describe("Stack", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			imports: [TestStackComponent,
-				StackDirective]
+			imports: [TestStackComponent]
 		});
 	});
 

@@ -12,9 +12,7 @@ import { PaginationModel } from "./pagination-model.class";
 			[pagesUnknown]="pagesUnknown"
 			(selectPage)="selectPage($event)" />
 	`,
-	imports: [
-		Pagination
-	]
+	imports: [Pagination]
 })
 class PaginationTest implements OnInit {
 	model = new PaginationModel();

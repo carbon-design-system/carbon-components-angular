@@ -23,7 +23,12 @@ import { advancedFakeAsync } from "../test-helpers/change-detection";
 			<cds-tab #vp2>Vertical content 2</cds-tab>
 			<cds-tab #vp3>Vertical content 3</cds-tab>
 		</cds-tabs-vertical-grouped>
-	`
+	`,
+	imports: [
+		UtilsModule,
+		I18nModule,
+		TabsModule
+	]
 })
 class TabHeaderGroupVerticalTest {
 	@ViewChild(TabHeaderGroupVertical) group: TabHeaderGroupVertical;
@@ -42,8 +47,7 @@ describe("TabHeaderGroupVertical", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [TabHeaderGroupVerticalTest],
-			imports: [CommonModule, UtilsModule, I18nModule, TabsModule],
+			imports: [TabHeaderGroupVerticalTest],
 			schemas: [CUSTOM_ELEMENTS_SCHEMA]
 		});
 	});

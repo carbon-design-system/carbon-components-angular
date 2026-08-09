@@ -14,7 +14,8 @@ import { SwitcherListItem } from "./switcher-list-item.component";
 			<cds-switcher-list-item [active]="firstActive" href="#one">Product one</cds-switcher-list-item>
 			<cds-switcher-list-item [active]="secondActive" href="#two">Product two</cds-switcher-list-item>
 		</cds-switcher-list>
-	`
+	`,
+	imports: [UIShellModule]
 })
 class SwitcherListTest {
 	@ViewChild(SwitcherList) list: SwitcherList;
@@ -28,15 +29,9 @@ describe("SwitcherList", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [SwitcherListTest],
 			imports: [
-				UIShellModule,
-				I18nModule,
-				RouterModule.forRoot([], {
-					initialNavigation: "disabled",
-					useHash: true,
-					relativeLinkResolution: "corrected"
-				})
+				SwitcherListTest,
+				RouterModule.forRoot([], { initialNavigation: "disabled", useHash: true })
 			]
 		});
 

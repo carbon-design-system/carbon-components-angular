@@ -35,7 +35,8 @@ describe("Tile", () => {
 			<cds-selection-tile value="one">One</cds-selection-tile>
 			<cds-selection-tile value="two">Two</cds-selection-tile>
 		</cds-tile-group>
-	`
+	`,
+	imports: [TilesModule]
 })
 class TileGroupTest {
 	@ViewChild(TileGroup) group: TileGroup;
@@ -48,8 +49,7 @@ describe("TileGroup", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [TileGroupTest],
-			imports: [TilesModule]
+			imports: [TileGroupTest]
 		});
 	});
 

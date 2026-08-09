@@ -15,10 +15,7 @@ import { Tab } from "./tab.component";
 			<cds-tab heading="three">Tab Content 3</cds-tab>
 		</cds-tabs>
 	`,
-	imports: [
-		Tabs,
-		Tab
-	]
+	imports: [Tabs, Tab]
 })
 class TabsTest {
 	isNavigation = true;

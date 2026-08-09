@@ -15,9 +15,7 @@ import { UtilsModule } from "../utils/utils.module";
 			[max]="max"
 			[min]="min" />
 	`,
-	imports: [
-		Slider
-	]
+	imports: [Slider]
 })
 class SliderTest {
 	disabled = false;
