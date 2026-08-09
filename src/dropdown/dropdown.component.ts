@@ -20,7 +20,12 @@ import {
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
 // Observable import is required here so typescript can compile correctly
-import { Observable, of, Subscription } from "rxjs";
+import {
+	Observable,
+	of,
+	Subscription
+} from "rxjs";
+import { isNull, isUndefined } from "lodash-es";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
 import { I18n } from "carbon-components-angular/i18n";
@@ -373,6 +378,10 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 */
 	@Input() dropUp: boolean;
 	/**
+	 * Set to `true` to allow null values in the dropdown ListItems.
+	 */
+	@Input() allowNullValues = false;
+	/**
 	 * Emits selection events.
 	 */
 	@Output() selected: EventEmitter<Object> = new EventEmitter<Object>();
@@ -459,6 +468,10 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	// primarily used to capture and propagate input to `writeValue` before the content is available
 	private _writtenValue: any = [];
 
+	private _isUsingNgControl = false;
+
+	private selectionSubscription: Subscription;
+
 	/** Inserted by Angular inject() migration for backwards compatibility */
 	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
 	constructor(...args: unknown[]);
@@ -485,26 +498,24 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		if (!this.view) {
 			return;
 		}
-		if ((this.writtenValue && this.writtenValue.length) || typeof this.writtenValue === "number") {
-			this.writeValue(this.writtenValue);
-		}
+
 		this.view.type = this.type;
 		this.view.size = this.size;
 
 		// function to check if the event is organic (isUpdate === false) or programmatic
 		const isUpdate = event => event && event.isUpdate;
 
-		this.view.select.subscribe(event => {
+		this.selectionSubscription = this.view.select.subscribe(event => {
 			if (this.type === "single" && !isUpdate(event) && !Array.isArray(event)) {
 				this.closeMenu();
 				if (event.item && event.item.selected) {
 					if (this.itemValueKey) {
-						this.propagateChange(event.item[this.itemValueKey]);
+						this._propagateChange(event.item[this.itemValueKey]);
 					} else {
-						this.propagateChange(event.item);
+						this._propagateChange(event.item);
 					}
 				} else {
-					this.propagateChange(null);
+					this._propagateChange(null);
 				}
 			}
 
@@ -512,16 +523,18 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 				// if we have a `value` selector and selected items map them appropriately
 				if (this.itemValueKey && this.view.getSelected()) {
 					const values = this.view.getSelected().map(item => item[this.itemValueKey]);
-					this.propagateChange(values);
+					this._propagateChange(values);
 					// otherwise just pass up the values from `getSelected`
 				} else {
-					this.propagateChange(this.view.getSelected());
+					this._propagateChange(this.view.getSelected());
 				}
 			}
 			// only emit selected for "organic" selections
 			if (!isUpdate(event)) {
 				this.checkForReorder();
 				this.selected.emit(event);
+			} else if (this._isUsingNgControl) {
+				this.writeValue(this.writtenValue);
 			}
 		});
 	}
@@ -547,6 +560,9 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		if (!this.appendInline) {
 			this._appendToDropdown();
 		}
+
+		this.visibilitySubscription?.unsubscribe();
+		this.selectionSubscription?.unsubscribe();
 	}
 
 	/**
@@ -556,8 +572,8 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		// cache the written value so we can use it in `AfterContentInit`
 		this.writtenValue = value;
 		this.view.onItemsReady(() => {
-			// propagate null/falsey as an array (deselect everything)
-			if (!value) {
+			// propagate null/undefined as an array (deselect everything) unless `allowNullValues` is true
+			if (isUndefined(value) || (isNull(value) && !this.allowNullValues)) {
 				this.view.propagateSelected([value]);
 			} else if (this.type === "single") {
 				if (this.itemValueKey) {
@@ -584,7 +600,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 					this.view.propagateSelected(newValues);
 				} else {
 					// we can safely assume we're passing an array of `ListItem`s
-					this.view.propagateSelected(value);
+					this.view.propagateSelected(value || [value]);
 				}
 			}
 			this.checkForReorder();
@@ -596,6 +612,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	}
 
 	registerOnChange(fn: any) {
+		this._isUsingNgControl = true;
 		this.propagateChange = fn;
 	}
 
@@ -610,6 +627,12 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * function passed in by `registerOnChange`
 	 */
 	propagateChange = (_: any) => {};
+
+	// used only to update writtenValue
+	private _propagateChange(value: any) {
+		this.writtenValue = value;
+		this.propagateChange(value);
+	}
 
 	/**
 	 * `ControlValueAccessor` method to programmatically disable the dropdown.
@@ -729,7 +752,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 			item.selected = false;
 		}
 		this.selected.emit([]);
-		this.propagateChange([]);
+		this._propagateChange([]);
 	}
 
 	/**

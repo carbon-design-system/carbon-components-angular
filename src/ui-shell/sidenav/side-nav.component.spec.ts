@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
-import { TestBed, waitForAsync } from "@angular/core/testing";
+import { fakeAsync, TestBed, waitForAsync } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
+import { advancedFakeAsync } from "../../test-helpers/change-detection";
 
 
 import { SideNav } from "./sidenav.component";
@@ -19,10 +20,15 @@ class FooComponent {}
 @Component({
 	template: `
 		<cds-sidenav [allowExpansion]="allowExpansion" [hidden]="hidden">
-			<cds-sidenav-menu title="Example Title" />
-			<cds-sidenav-item [route]="route"
+			<cds-sidenav-item
+				[route]="route"
 				[useRouter]="useRouter"
-				(navigation)="onNavigation($event)" />
+				(navigation)="onNavigation($event)">
+			</cds-sidenav-item>
+			<cds-sidenav-menu title="Example Title">
+				<cds-sidenav-item [active]="firstItemActive">One</cds-sidenav-item>
+				<cds-sidenav-item [active]="secondItemActive">Two</cds-sidenav-item>
+			</cds-sidenav-menu>
 		</cds-sidenav>
 	`,
 	imports: [SideNav, SideNavItem, SideNavMenu, RouterModule]
@@ -33,6 +39,8 @@ class SideNavTest {
 	allowExpansion = false;
 	statusPromise = null;
 	useRouter = false;
+	firstItemActive = false;
+	secondItemActive = false;
 	onNavigation(event) {
 		this.statusPromise = event;
 	}
@@ -99,7 +107,7 @@ describe("SideNav", () => {
 
 		it("should set the sidenav-menu title to Example Title", () => {
 			fixture.detectChanges();
-			element = fixture.debugElement.query(By.css("cds-sidenav-menu"));
+			element = fixture.debugElement.query(By.css(".cds--side-nav__submenu-title"));
 			expect(element.nativeElement.textContent).toEqual("Example Title");
 		});
 
@@ -146,7 +154,7 @@ describe("SideNav", () => {
 
 		it("should set the sidenav-menu title to Example Title", () => {
 			fixture.detectChanges();
-			element = fixture.debugElement.query(By.css("cds-sidenav-menu"));
+			element = fixture.debugElement.query(By.css(".cds--side-nav__submenu-title"));
 			expect(element.nativeElement.textContent).toEqual("Example Title");
 		});
 
@@ -167,4 +175,37 @@ describe("SideNav", () => {
 			expect(element.componentInstance.expanded).toBe(false);
 		});
 	});
+
+	it("should mark the menu active when one of its items is selected", fakeAsync(() => {
+		const menuFixture = TestBed.createComponent(SideNavTest);
+		menuFixture.detectChanges();
+		// let the deferred subscription setup run before touching the items
+		advancedFakeAsync(menuFixture);
+
+		const menu = menuFixture.debugElement.query(By.directive(SideNavMenu));
+		expect(menu.componentInstance.hasActiveChild).toBe(false);
+		expect(menu.nativeElement.classList).not.toContain("cds--side-nav__item--active");
+
+		menuFixture.componentInstance.secondItemActive = true;
+		advancedFakeAsync(menuFixture);
+
+		expect(menu.componentInstance.hasActiveChild).toBe(true);
+		expect(menu.nativeElement.classList).toContain("cds--side-nav__item--active");
+	}));
+
+	it("should clear the active menu when the item is deselected", fakeAsync(() => {
+		const menuFixture = TestBed.createComponent(SideNavTest);
+		menuFixture.componentInstance.firstItemActive = true;
+		menuFixture.detectChanges();
+		advancedFakeAsync(menuFixture);
+
+		const menu = menuFixture.debugElement.query(By.directive(SideNavMenu));
+		expect(menu.nativeElement.classList).toContain("cds--side-nav__item--active");
+
+		menuFixture.componentInstance.firstItemActive = false;
+		advancedFakeAsync(menuFixture);
+
+		expect(menu.componentInstance.hasActiveChild).toBe(false);
+		expect(menu.nativeElement.classList).not.toContain("cds--side-nav__item--active");
+	}));
 });

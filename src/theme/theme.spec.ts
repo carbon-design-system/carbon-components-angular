@@ -36,7 +36,7 @@ describe("Theme", () => {
 		expect(directiveEl.nativeElement.classList.contains("cds--layer-one")).toBeTruthy();
 	});
 
-	it("should reset nested layer level", () => {
+	it("should reset nested layer level", async () => {
 		TestBed.overrideComponent(TestThemeComponent, {
 			set: {
 				template: `
@@ -50,20 +50,20 @@ describe("Theme", () => {
 			}
 		});
 
-		TestBed.compileComponents().then(() => {
-			let fixture: ComponentFixture<TestThemeComponent> = TestBed.createComponent(TestThemeComponent);
-			fixture.detectChanges();
+		await TestBed.compileComponents();
 
-			const directiveEl = fixture.debugElement.query(By.directive(ThemeDirective)).nativeElement;
-			expect(directiveEl.querySelector("div").classList.contains("cds--layer-two")).toBeTruthy();
-		});
+		let fixture: ComponentFixture<TestThemeComponent> = TestBed.createComponent(TestThemeComponent);
+		fixture.detectChanges();
+
+		const directiveEl = fixture.debugElement.query(By.directive(ThemeDirective)).nativeElement;
+		expect(directiveEl.querySelector("div").classList.contains("cds--layer-two")).toBeTruthy();
 	});
 
 	/**
 	 * @todo Remove this test when `ibmTheme` is removed
 	 * v6
 	 */
-	it("should work with deprecated `ibmTheme` input property", () => {
+	it("should work with deprecated `ibmTheme` input property", async () => {
 		TestBed.overrideComponent(TestThemeComponent, {
 			set: {
 				template: `
@@ -72,13 +72,13 @@ describe("Theme", () => {
 			}
 		});
 
-		TestBed.compileComponents().then(() => {
-			let fixture: ComponentFixture<TestThemeComponent> = TestBed.createComponent(TestThemeComponent);
-			fixture.detectChanges();
+		await TestBed.compileComponents();
 
-			const directiveEl = fixture.debugElement.query(By.directive(ThemeDirective));
-			expect(directiveEl.nativeElement.classList.contains("cds--g100")).toBeTruthy();
-			expect(directiveEl.nativeElement.classList.contains("cds--layer-one")).toBeTruthy();
-		});
+		let fixture: ComponentFixture<TestThemeComponent> = TestBed.createComponent(TestThemeComponent);
+		fixture.detectChanges();
+
+		const directiveEl = fixture.debugElement.query(By.directive(ThemeDirective));
+		expect(directiveEl.nativeElement.classList.contains("cds--g100")).toBeTruthy();
+		expect(directiveEl.nativeElement.classList.contains("cds--layer-one")).toBeTruthy();
 	});
 });

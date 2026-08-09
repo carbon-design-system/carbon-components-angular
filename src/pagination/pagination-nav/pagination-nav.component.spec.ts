@@ -1,7 +1,12 @@
-import { TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import { Component, type OnInit } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { I18nModule } from "../../i18n";
 import { PaginationNav } from "./index";
+import { PaginationOverflow } from "./pagination-overflow.component";
+import { PaginationModule } from "../index";
 import { PaginationModel } from "../pagination-model.class";
 
 @Component({
@@ -107,5 +112,84 @@ describe("PaginationNav", () => {
 		fixture.detectChanges();
 		expect(buttonBackward.disabled).toBe(true);
 		expect(paginationComponent.componentInstance.currentPage).toBe(5);
+	});
+});
+
+@Component({
+	template: `
+		<cds-pagination-overflow
+			[fromIndex]="fromIndex"
+			[count]="count"
+			(change)="selectedPage = $event">
+		</cds-pagination-overflow>
+	`
+})
+class PaginationOverflowTest {
+	@ViewChild(PaginationOverflow) overflow: PaginationOverflow;
+	fromIndex = 0;
+	count = 5;
+	selectedPage: number = null;
+}
+
+describe("PaginationOverflow", () => {
+	let fixture: ComponentFixture<PaginationOverflowTest>;
+	let wrapper: PaginationOverflowTest;
+
+	beforeEach(() => {
+		TestBed.configureTestingModule({
+			declarations: [PaginationOverflowTest],
+			imports: [PaginationModule, I18nModule]
+		});
+
+		fixture = TestBed.createComponent(PaginationOverflowTest);
+		fixture.detectChanges();
+		wrapper = fixture.componentInstance;
+	});
+
+	it("should work", () => {
+		expect(wrapper.overflow instanceof PaginationOverflow).toBe(true);
+	});
+
+	it("should render a select with an option per page in the overflow", () => {
+		const options = fixture.nativeElement.querySelectorAll("select option:not([hidden])");
+		expect(options.length).toBe(5);
+		expect(options[0].textContent.trim()).toBe("1");
+		expect(options[4].textContent.trim()).toBe("5");
+	});
+
+	it("should emit the selected page on change", () => {
+		const select = fixture.nativeElement.querySelector("select");
+		select.selectedIndex = 3;
+		select.dispatchEvent(new Event("change"));
+		fixture.detectChanges();
+
+		expect(wrapper.selectedPage).toBe(3);
+	});
+
+	it("should render more options as the page count grows", () => {
+		expect(fixture.nativeElement.querySelectorAll("select option:not([hidden])").length).toBe(5);
+
+		wrapper.count = 9;
+		fixture.detectChanges();
+
+		expect(fixture.nativeElement.querySelectorAll("select option:not([hidden])").length).toBe(9);
+	});
+
+	it("should renumber the options when the starting index moves", () => {
+		wrapper.fromIndex = 10;
+		fixture.detectChanges();
+
+		const options = fixture.nativeElement.querySelectorAll("select option:not([hidden])");
+		expect(options.length).toBe(5);
+		expect(options[0].textContent.trim()).toBe("11");
+		expect(options[4].textContent.trim()).toBe("15");
+	});
+
+	it("should collapse to a single nav item when the count drops to one", () => {
+		wrapper.count = 1;
+		fixture.detectChanges();
+
+		expect(fixture.nativeElement.querySelector("select")).toBeFalsy();
+		expect(fixture.nativeElement.querySelector("cds-pagination-nav-item")).toBeTruthy();
 	});
 });

@@ -1,4 +1,5 @@
-import { Directive, HostBinding, Input } from "@angular/core";
+import { Directive, HostBinding, Input, Optional, Self } from "@angular/core";
+import { NgControl } from "@angular/forms";
 
 /**
  * A directive for applying styling to an input element.
@@ -64,4 +65,5 @@ export class TextInput {
 		return this.invalid ? true : undefined;
 	}
 
+	constructor(@Self() @Optional() public ngControl: NgControl) {}
 }

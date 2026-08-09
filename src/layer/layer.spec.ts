@@ -62,7 +62,7 @@ describe("Layer", () => {
 	 * @todo Remove this test when `ibmLayer` is removed
 	 * v6
 	 */
-	it("should work with deprecated `ibmLayer` input property", () => {
+	it("should work with deprecated `ibmLayer` input property", async () => {
 		TestBed.overrideComponent(TestNestedLayerComponent, {
 			set: {
 				template: `
@@ -73,11 +73,11 @@ describe("Layer", () => {
 			}
 		});
 
-		TestBed.compileComponents().then(() => {
-			let fixture = TestBed.createComponent(TestNestedLayerComponent);
-			fixture.detectChanges();
-			const directiveEl = fixture.debugElement.query(By.directive(LayerDirective));
-			expect(directiveEl.nativeElement.querySelector("div").className.includes("cds--layer-three")).toBeTruthy();
-		});
+		await TestBed.compileComponents();
+
+		let fixture = TestBed.createComponent(TestNestedLayerComponent);
+		fixture.detectChanges();
+		const directiveEl = fixture.debugElement.query(By.directive(LayerDirective));
+		expect(directiveEl.nativeElement.querySelector("div").className.includes("cds--layer-three")).toBeTruthy();
 	});
 });

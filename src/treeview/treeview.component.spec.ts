@@ -9,6 +9,8 @@ import { By } from "@angular/platform-browser";
 
 import { TreeViewComponent } from "./treeview.component";
 import { TreeNodeComponent } from "./tree-node.component";
+import { TreeViewService } from "./treeview.service";
+import { advancedFakeAsync } from "../test-helpers/change-detection";
 
 @Component({
 	template: `
@@ -25,12 +27,14 @@ class TreeviewTestComponent {
 		{
 			id: "1",
 			value: "Artificial intelligence",
-			label: "Artificial intelligence"
+			label: "Artificial intelligence",
+			selectable: true
 		},
 		{
 			id: "2",
 			value: "Blockchain",
-			label: "Blockchain"
+			label: "Blockchain",
+			selectable: true
 		},
 		{
 			id: "bus-auto",
@@ -54,7 +58,6 @@ class TreeviewTestComponent {
 	];
 	onSelect() {}
 }
-
 
 describe("Treeview", () => {
 	let component: TreeviewTestComponent;
@@ -116,5 +119,49 @@ describe("Treeview", () => {
 		nodes[0].nativeElement.querySelector(".cds--tree-node__label").dispatchEvent(new Event("click"));
 		tick();
 		expect(selectSpy).toHaveBeenCalled();
+	}));
+
+	it("should deselect the previously selected node", fakeAsync(() => {
+		nodes[0].nativeElement.querySelector(".cds--tree-node__label").dispatchEvent(new Event("click"));
+		advancedFakeAsync(fixture);
+
+		expect(nodes[0].componentInstance.selected).toBe(true);
+		expect(nodes[0].nativeElement.querySelector(".cds--tree-node").classList)
+			.toContain("cds--tree-node--selected");
+
+		nodes[1].nativeElement.querySelector(".cds--tree-node__label").dispatchEvent(new Event("click"));
+		advancedFakeAsync(fixture);
+
+		expect(nodes[0].componentInstance.selected).toBe(false);
+		expect(nodes[0].nativeElement.querySelector(".cds--tree-node").classList)
+			.not.toContain("cds--tree-node--selected");
+		expect(nodes[1].nativeElement.querySelector(".cds--tree-node").classList)
+			.toContain("cds--tree-node--selected");
+	}));
+
+	it("should update aria-selected and tabindex when the selection changes", fakeAsync(() => {
+		nodes[0].nativeElement.querySelector(".cds--tree-node__label").dispatchEvent(new Event("click"));
+		advancedFakeAsync(fixture);
+
+		expect(nodes[0].nativeElement.querySelector(".cds--tree-node").getAttribute("aria-selected")).toBe("true");
+		expect(nodes[0].nativeElement.querySelector(".cds--tree-node").getAttribute("tabindex")).toBe("0");
+
+		nodes[1].nativeElement.querySelector(".cds--tree-node__label").dispatchEvent(new Event("click"));
+		advancedFakeAsync(fixture);
+
+		expect(nodes[0].nativeElement.querySelector(".cds--tree-node").getAttribute("aria-selected")).toBe("false");
+		expect(nodes[0].nativeElement.querySelector(".cds--tree-node").getAttribute("tabindex")).toBe("-1");
+		expect(nodes[1].nativeElement.querySelector(".cds--tree-node").getAttribute("aria-selected")).toBe("true");
+	}));
+
+	it("should select the node the service selects", fakeAsync(() => {
+		const treeViewService = tree.injector.get(TreeViewService);
+
+		treeViewService.selectNode(component.tree[1] as any);
+		advancedFakeAsync(fixture);
+
+		expect(nodes[1].componentInstance.selected).toBe(true);
+		expect(nodes[1].nativeElement.querySelector(".cds--tree-node").classList)
+			.toContain("cds--tree-node--selected");
 	}));
 });

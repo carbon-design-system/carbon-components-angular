@@ -1,6 +1,9 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
-import { TestBed } from "@angular/core/testing";
-import { By	 } from "@angular/platform-browser";
+import { fakeAsync, TestBed } from "@angular/core/testing";
+import { By } from "@angular/platform-browser";
+import { advancedFakeAsync } from "../test-helpers/change-detection";
+import { I18nModule } from "../i18n";
+import { UtilsModule } from "../utils";
 import { Tabs } from "./tabs.component";
 import { Tab } from "./tab.component";
 
@@ -32,6 +35,12 @@ describe("Tabs", () => {
 	const arrowLeft = new KeyboardEvent("keydown", {
 		"key": "ArrowLeft"
 	});
+
+	function buildTabs() {
+		fixture = TestBed.createComponent(TabsTest);
+		fixture.detectChanges();
+		return fixture.debugElement.queryAll(By.directive(Tab));
+	}
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -119,4 +128,42 @@ describe("Tabs", () => {
 			expect(tab.tabIndex).toBe(0);
 		});
 	});
+
+	it("should activate the first tab on init", fakeAsync(() => {
+		const tabElements = buildTabs();
+		expect(tabElements[0].componentInstance.active).toBe(false);
+
+		advancedFakeAsync(fixture);
+
+		expect(tabElements[0].componentInstance.active).toBe(true);
+		expect(tabElements[0].nativeElement.getAttribute("hidden")).toBeNull();
+		expect(tabElements[0].nativeElement.style.display).toBe("block");
+		expect(tabElements[0].nativeElement.textContent.trim()).toBe("Tab Content 1");
+	}));
+
+	it("should keep the inactive tabs hidden", fakeAsync(() => {
+		const tabElements = buildTabs();
+		advancedFakeAsync(fixture);
+
+		expect(tabElements[1].componentInstance.active).toBe(false);
+		expect(tabElements[1].nativeElement.getAttribute("hidden")).toBe("");
+		expect(tabElements[1].nativeElement.style.display).toBe("none");
+	}));
+
+	it("should move the active state between tabs when a header is clicked", fakeAsync(() => {
+		const tabElements = buildTabs();
+		advancedFakeAsync(fixture);
+
+		fixture.nativeElement.querySelectorAll(".cds--tabs__nav-item")[1].click();
+		advancedFakeAsync(fixture);
+
+		expect(tabElements[0].componentInstance.active).toBe(false);
+		expect(tabElements[1].componentInstance.active).toBe(true);
+		expect(tabElements[0].nativeElement.getAttribute("hidden")).toBe("");
+		expect(tabElements[1].nativeElement.getAttribute("hidden")).toBeNull();
+
+		const headerButtons = fixture.nativeElement.querySelectorAll(".cds--tabs__nav-item");
+		expect(headerButtons[0].classList).not.toContain("cds--tabs__nav-item--selected");
+		expect(headerButtons[1].classList).toContain("cds--tabs__nav-item--selected");
+	}));
 });
