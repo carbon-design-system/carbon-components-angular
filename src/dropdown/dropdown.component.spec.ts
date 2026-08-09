@@ -217,7 +217,7 @@ describe("Dropdown", () => {
 		dropdown.view.select.emit({ item: { content: "one", id: 0, selected: true } });
 		advancedFakeAsync(fixture);
 
-		expect(dropdown.menuIsClosed).toBe(true);
+		expect(dropdown.isOpen).toBe(false);
 		expect(hasClass(fixture, ".cds--list-box", "cds--list-box--expanded")).toBe(false);
 		expect(fixture.nativeElement.querySelector(".cds--list-box__field").getAttribute("aria-expanded")).toBe("false");
 	}));
@@ -257,7 +257,7 @@ describe("Dropdown", () => {
 		document.body.click();
 		advancedFakeAsync(fixture);
 
-		expect(dropdown.menuIsClosed).toBe(true);
+		expect(dropdown.isOpen).toBe(false);
 		expect(hasClass(fixture, ".cds--list-box", "cds--list-box--expanded")).toBe(false);
 	}));
 

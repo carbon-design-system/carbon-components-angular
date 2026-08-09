@@ -432,6 +432,9 @@ export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestr
 					}
 				}
 				this.textCount = this._countValue(el.value || "");
+				// the listener is attached to the DOM directly, so nothing marks this view
+				// dirty on its own
+				this.changeDetectorRef.markForCheck();
 			};
 			this._textareaElement.addEventListener("input", this._inputListener);
 		}

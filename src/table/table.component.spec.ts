@@ -227,9 +227,11 @@ describe("Table", () => {
 		<cds-table-container [aiEnabled]="aiEnabled">
 			<cds-table-header>
 				<h4>{{title}}</h4>
-				<cds-table-header-decorator *ngIf="showDecorator">
-					<span class="decorator-content">AI</span>
-				</cds-table-header-decorator>
+				@if (showDecorator) {
+					<cds-table-header-decorator>
+						<span class="decorator-content">AI</span>
+					</cds-table-header-decorator>
+				}
 			</cds-table-header>
 			<cds-table-toolbar [model]="model" [size]="size" (cancel)="onCancel()">
 				<cds-table-toolbar-content>

@@ -101,7 +101,7 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 				'cds--dropdown--sm cds--list-box--sm': size === 'sm',
 				'cds--dropdown--md cds--list-box--md': size === 'md',
 				'cds--dropdown--lg cds--list-box--lg': size === 'lg',
-				'cds--list-box--expanded': !menuIsClosed,
+				'cds--list-box--expanded': isOpen,
 				'cds--list-box--invalid': invalid
 			}"
 			[attr.data-invalid]="invalid ? true : null">
@@ -113,8 +113,8 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 				[id]="id"
 				type="button"
 				class="cds--list-box__field"
-				[ngClass]="{'a': !menuIsClosed}"
-				[attr.aria-expanded]="!menuIsClosed"
+				[ngClass]="{'a': isOpen}"
+				[attr.aria-expanded]="isOpen"
 				[attr.aria-disabled]="disabled"
 				aria-haspopup="listbox"
 				(click)="disabled || readonly ? $event.stopPropagation() : toggleMenu()"
@@ -158,7 +158,7 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 							cdsIcon="chevron--down"
 							size="16"
 							[attr.aria-label]="menuButtonLabel"
-							[ngClass]="{'cds--list-box__menu-icon--open': !menuIsClosed }">
+							[ngClass]="{'cds--list-box__menu-icon--open': isOpen }">
 						</svg>
 					}
 				</span>
@@ -187,7 +187,7 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 				[ngClass]="{
 					'cds--list-box--up': this.dropUp !== null && this.dropUp !== undefined ? dropUp : _dropUp
 				}">
-				@if (!menuIsClosed) {
+				@if (isOpen) {
 					<ng-content></ng-content>
 				}
 			</div>
@@ -853,6 +853,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 
 		this._dropUp = false;
 		this.isOpen = true;
+		this.changeDetectorRef.markForCheck();
 
 		// move the dropdown list to the body if we're not appending inline
 		// and position it relative to the dropdown wrapper
@@ -893,6 +894,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		// return early if the menu is already closed
 		if (!this.isOpen) { return; }
 		this.isOpen = false;
+		this.changeDetectorRef.markForCheck();
 		this.checkForReorder();
 		this.onClose.emit();
 		this.close.emit();

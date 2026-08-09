@@ -33,6 +33,13 @@ describe("FileUploader", () => {
 		});
 	});
 
+	// ngModel needs one pass to notice the new set and a tick to hand it to the uploader
+	function setFiles(next: Set<FileItem>) {
+		wrapper.files = next;
+		fixture.detectChanges();
+		advancedFakeAsync(fixture);
+	}
+
 	function fileItem(name: string, state: "edit" | "upload" | "complete" = "edit"): FileItem {
 		return {
 			uploaded: false,
@@ -145,8 +152,7 @@ describe("FileUploader", () => {
 		advancedFakeAsync(fixture);
 		expect(fixture.nativeElement.querySelectorAll("cds-file").length).toBe(0);
 
-		wrapper.files.add(fileItem("first.txt"));
-		fixture.detectChanges();
+		setFiles(new Set([fileItem("first.txt")]));
 
 		expect(fixture.nativeElement.querySelectorAll("cds-file").length).toBe(1);
 		expect(fixture.nativeElement.textContent).toContain("first.txt");
@@ -160,12 +166,10 @@ describe("FileUploader", () => {
 		advancedFakeAsync(fixture);
 
 		const item = fileItem("first.txt");
-		wrapper.files.add(item);
-		fixture.detectChanges();
+		setFiles(new Set([item]));
 		expect(fixture.nativeElement.querySelectorAll("cds-file").length).toBe(1);
 
-		wrapper.files.delete(item);
-		fixture.detectChanges();
+		setFiles(new Set<FileItem>());
 
 		expect(fixture.nativeElement.querySelectorAll("cds-file").length).toBe(0);
 	}));
@@ -179,12 +183,12 @@ describe("FileUploader", () => {
 		advancedFakeAsync(fixture);
 
 		const item = fileItem("first.txt", "upload");
-		wrapper.files.add(item);
-		fixture.detectChanges();
+		setFiles(new Set([item]));
 		expect(fixture.nativeElement.querySelector("cds-loading")).toBeTruthy();
 
-		setTimeout(() => item.state = "complete", 300);
+		// same reason: the completed upload arrives as a new item
 		advancedFakeAsync(fixture, 300);
+		setFiles(new Set([{ ...item, state: "complete" }]));
 
 		expect(fixture.nativeElement.querySelector("cds-loading")).toBeFalsy();
 		expect(fixture.nativeElement.querySelector(".cds--file-complete")).toBeTruthy();
@@ -198,15 +202,13 @@ describe("FileUploader", () => {
 		advancedFakeAsync(fixture);
 
 		const item = fileItem("first.txt");
-		wrapper.files.add(item);
-		fixture.detectChanges();
+		setFiles(new Set([item]));
 		expect(fixture.nativeElement.querySelector(".cds--form-requirement")).toBeFalsy();
 
-		setTimeout(() => {
-			item.invalid = true;
-			item.invalidText = "file too large";
-		}, 200);
+		// cds-file is OnPush and holds the item by reference, so validation has to hand
+		// over a new item rather than mutating the one already rendered
 		advancedFakeAsync(fixture, 200);
+		setFiles(new Set([{ ...item, invalid: true, invalidText: "file too large" }]));
 
 		expect(fixture.nativeElement.querySelector(".cds--form-requirement")).toBeTruthy();
 		expect(fixture.nativeElement.textContent).toContain("file too large");

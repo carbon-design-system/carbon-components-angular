@@ -529,9 +529,10 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		}
 
 		this.list.nativeElement.focus();
-		setTimeout(() => {
-			this.highlightedItem = this.getItemId(this.index);
-		});
+		// `index` is resolved synchronously above, and both callers already defer
+		// `initFocus` until the list is rendered, so there's nothing left to wait for
+		this.highlightedItem = this.getItemId(this.index);
+		this.changeDetectorRef.markForCheck();
 	}
 
 	updateIndex() {
@@ -572,9 +573,9 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 					this.blurIntent.emit("top");
 				}
 			}
-			setTimeout(() => {
-				this.highlightedItem = this.getItemId(this.index);
-			});
+			// `getNextElement`/`getPrevElement` update `index` synchronously, and this
+			// runs inside the keydown handler, so the following check picks it up
+			this.highlightedItem = this.getItemId(this.index);
 		}
 	}
 
@@ -632,10 +633,12 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 
 	reorderSelected(moveFocus = true): void {
 		this.displayItems = [...this.getSelected(), ...this.getListItems().filter(item => !item.selected)];
+		this.changeDetectorRef.markForCheck();
 		if (moveFocus) {
 			setTimeout(() => {
 				this.updateIndex();
 				this.highlightedItem = this.getItemId(this.index);
+				this.changeDetectorRef.markForCheck();
 			});
 		}
 	}

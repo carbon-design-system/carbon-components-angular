@@ -1,6 +1,7 @@
 import {
 	AfterViewInit,
 	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	HostBinding,
 	Input,
@@ -153,6 +154,7 @@ export enum SnippetType {
 export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit {
 	public i18n = inject(I18n);
 	public eventService = inject(EventService);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
 
 	@HostBinding("class.cds--snippet") get snippetClass() {
 		return this.display !== SnippetType.inline;
@@ -296,9 +298,11 @@ export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit
 				.writeText(this.code.nativeElement.innerText || this.code.nativeElement.textContent).then(() => {
 					this.showFeedback = true;
 					this.animating = true;
+					this.changeDetectorRef.markForCheck();
 					setTimeout(() => {
 						this.showFeedback = false;
 						this.animating = false;
+						this.changeDetectorRef.markForCheck();
 					}, this.feedbackTimeout);
 				});
 		}
@@ -315,6 +319,7 @@ export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit
 			this.eventService.on(window as any, "resize", () => {
 				this.canExpand();
 				this.handleScroll();
+				this.changeDetectorRef.markForCheck();
 			});
 		}
 	}

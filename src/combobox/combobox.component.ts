@@ -610,10 +610,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 				}
 			});
 			// update the rest of combobox with any pre-selected items
-			// setTimeout just defers the call to the next check cycle
-			setTimeout(() => {
-				this.updateSelected();
-			});
+			this.updateSelected();
 
 			this.view.blurIntent.pipe(filter(v => v === "top")).subscribe(() => {
 				this.elementRef.nativeElement.querySelector(".cds--text-input").focus();
@@ -747,6 +744,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	public updatePills() {
 		this.pills = this.view.getSelected() || [];
 		this.checkForReorder();
+		// reached from the view select subscription, which marks nothing dirty
+		this.cdr.markForCheck();
 	}
 
 	public clearSelected(event) {
