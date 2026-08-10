@@ -524,6 +524,9 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 
 	protected _isFocused = false;
 
+	private _writtenValue: any;
+	private _isUsingNgControl = false;
+
 	/** Inserted by Angular inject() migration for backwards compatibility */
 	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
 	constructor(...args: unknown[]);
@@ -567,10 +570,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 					if (!isUpdate(event)) {
 						if (this.itemValueKey && this.view.getSelected()) {
 							const values = this.view.getSelected().map(item => item[this.itemValueKey]);
-							this.propagateChangeCallback(values);
+							this._propagateChange(values);
 						// otherwise just pass up the values from `getSelected`
 						} else {
-							this.propagateChangeCallback(this.view.getSelected());
+							this._propagateChange(this.view.getSelected());
 						}
 						this.selected.emit(event);
 					}
@@ -582,15 +585,15 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 
 						if (!isUpdate(event)) {
 							if (this.itemValueKey) {
-								this.propagateChangeCallback(event.item[this.itemValueKey]);
+								this._propagateChange(event.item[this.itemValueKey]);
 							} else {
-								this.propagateChangeCallback(event.item);
+								this._propagateChange(event.item);
 							}
 						}
 					} else {
 						this.selectedValue = "";
 						if (!isUpdate(event)) {
-							this.propagateChangeCallback(null);
+							this._propagateChange(null);
 						}
 					}
 					// not guarding these since the nativeElement has to be loaded
@@ -601,14 +604,13 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 						this.view.filterBy("");
 						this.selected.emit(event.item);
 						this.closeDropdown();
+					} else if (this._isUsingNgControl) {
+						this.writeValue(this._writtenValue);
 					}
 				}
 			});
 			// update the rest of combobox with any pre-selected items
-			// setTimeout just defers the call to the next check cycle
-			setTimeout(() => {
-				this.updateSelected();
-			});
+			this.updateSelected();
 
 			this.view.blurIntent.pipe(filter(v => v === "top")).subscribe(() => {
 				this.elementRef.nativeElement.querySelector(".cds--text-input").focus();
@@ -676,6 +678,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 * propagates the value provided from ngModel
 	 */
 	writeValue(value: any) {
+		this._writtenValue = value;
+
 		if (this.type === "single") {
 			if (this.itemValueKey) {
 				// clone the specified item and update its state
@@ -712,6 +716,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	}
 
 	registerOnChange(fn: any) {
+		this._isUsingNgControl = true;
 		this.propagateChangeCallback = fn;
 	}
 
@@ -734,6 +739,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	public updatePills() {
 		this.pills = this.view.getSelected() || [];
 		this.checkForReorder();
+		// reached from the view select subscription, which marks nothing dirty
+		this.cdr.markForCheck();
 	}
 
 	public clearSelected(event) {
@@ -743,7 +750,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 			}
 			return item;
 		});
-		this.view.items = this.items;
+		this.view.propagateSelected([]);
 		this.updatePills();
 		/**
 		 * @todo - In next major version update to the following:
@@ -758,9 +765,9 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		// in case there are disabled items they should be mapped according to itemValueKey
 		if (this.itemValueKey && selected) {
 			const values = selected.map((item) => item[this.itemValueKey]);
-			this.propagateChangeCallback(values);
+			this._propagateChange(values);
 		} else {
-			this.propagateChangeCallback(selected);
+			this._propagateChange(selected);
 		}
 
 		this.selected.emit(selected as any);
@@ -984,5 +991,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		if ((this.type === "multi") && (topAfterReopen || this.selectionFeedback === "top")) {
 			this.view.reorderSelected(true);
 		}
+	}
+
+	private _propagateChange(value: any) {
+		this._writtenValue = value;
+		this.propagateChangeCallback(value);
 	}
 }

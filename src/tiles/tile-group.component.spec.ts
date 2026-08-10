@@ -37,7 +37,7 @@ describe("TileGroup", () => {
 
 		beforeEach(waitForAsync(() => {
 			TestBed.configureTestingModule({
-				imports: [TilesModule, SingleSelectHostComponent]
+				imports: [SingleSelectHostComponent]
 			}).compileComponents();
 		}));
 

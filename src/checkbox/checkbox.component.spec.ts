@@ -15,10 +15,7 @@ import CheckboxExportedTest from "./checkbox-exported-tests";
 		[indeterminate]="indeterminate"
 		[(ngModel)]="model" />
 	`,
-	imports: [
-		Checkbox,
-		FormsModule
-	]
+	imports: [Checkbox, FormsModule]
 })
 class CheckboxTest {
 	model = false;
@@ -34,7 +31,9 @@ const testingSetup = (checkboxComponent) => {
 	// configureTestingModule normally happens in `beforeEach`, but needed here because
 	// Exported Tests need access to the compiled component into the `fixture` variable
 	TestBed.configureTestingModule({
-		imports: [CheckboxTest]
+		imports: [
+			CheckboxTest
+		]
 	});
 
 	return TestBed.createComponent(checkboxComponent);

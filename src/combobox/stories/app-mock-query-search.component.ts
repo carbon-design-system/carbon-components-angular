@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 import { DropdownList } from "carbon-components-angular/dropdown";
 import { ComboBox } from "../combobox.component";
@@ -10,6 +10,7 @@ import { ComboBox } from "../combobox.component";
 		<cds-combo-box
 			appendInline="true"
 			[items]="filterItems"
+			itemValueKey="content"
 			(search)="onSearch($event)"
 			(selected)="selected($event)">
 			<cds-dropdown-list></cds-dropdown-list>
@@ -19,7 +20,6 @@ import { ComboBox } from "../combobox.component";
 export class MockQueryCombobox {
 	filterItems: any = [];
 	currentlySelected: any;
-
 	onSearch() {
 		// Call API or search through items list
 		setTimeout(() => {

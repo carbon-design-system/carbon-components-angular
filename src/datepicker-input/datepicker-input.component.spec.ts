@@ -16,10 +16,7 @@ import { DatePickerInput } from "./datepicker-input.component";
 			(valueChange)="valueChange($event)"
 			[(ngModel)]="model" />
 		`,
-	imports: [
-		DatePickerInput,
-		FormsModule
-	]
+	imports: [DatePickerInput, FormsModule]
 })
 class DatePickerInputTest {
 	model = null;

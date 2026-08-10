@@ -28,7 +28,7 @@ class TestInlineLinkComponent {
 describe("Link", () => {
 	it("should create a Link", () => {
 		TestBed.configureTestingModule({
-			imports: [TestLinkComponent, Link]
+			imports: [TestLinkComponent]
 		});
 
 		let fixture: ComponentFixture<TestLinkComponent> = TestBed.createComponent(TestLinkComponent);
@@ -45,7 +45,7 @@ describe("Link", () => {
 
 	it("should create a disabled link", () => {
 		TestBed.configureTestingModule({
-			imports: [TestDisabledLinkComponent, Link]
+			imports: [TestDisabledLinkComponent]
 		});
 
 		let fixture: ComponentFixture<TestDisabledLinkComponent> = TestBed.createComponent(TestDisabledLinkComponent);
@@ -59,7 +59,7 @@ describe("Link", () => {
 
 	it("should create an inline link", () => {
 		TestBed.configureTestingModule({
-			imports: [TestInlineLinkComponent, Link]
+			imports: [TestInlineLinkComponent]
 		});
 
 		let fixture: ComponentFixture<TestInlineLinkComponent> = TestBed.createComponent(TestInlineLinkComponent);

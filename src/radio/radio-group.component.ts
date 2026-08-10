@@ -10,13 +10,15 @@ import {
 	HostBinding,
 	AfterViewInit,
 	HostListener,
-	TemplateRef
+	TemplateRef,
+	OnDestroy
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { Radio } from "./radio.component";
 import { RadioChange } from "./radio-change.class";
 import { NgClass, NgTemplateOutlet } from "@angular/common";
 import { IconDirective } from "carbon-components-angular/icon";
+import { Subscription } from "rxjs/internal/Subscription";
 
 /**
  * Get started with importing the components:
@@ -131,7 +133,8 @@ import { IconDirective } from "carbon-components-angular/icon";
 	],
 	imports: [NgClass, NgTemplateOutlet, IconDirective]
 })
-export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValueAccessor {
+export class RadioGroup implements AfterContentInit, AfterViewInit, OnDestroy, ControlValueAccessor {
+
 	/**
 	 * Sets the passed in `Radio` item as the selected input within the `RadioGroup`.
 	 */
@@ -315,6 +318,8 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	 */
 	protected _name = `radio-group-${RadioGroup.radioGroupCount++}`;
 
+	private subscription = new Subscription();
+
 	/**
 	 * Updates the selected `Radio` to be checked (selected).
 	 */
@@ -387,17 +392,27 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 	 */
 	writeValue(value: any) {
 		this.value = value;
-		setTimeout(() => {
-			this.updateSelectedRadioFromValue();
-			this.checkSelectedRadio();
-		});
 	}
 
 	ngAfterContentInit() {
-		this.radios.changes.subscribe(() => {
-			this.updateRadios();
-			this.updateRadioChangeHandler();
-		});
+		this.subscription.add(
+			this.radios.changes.subscribe(() => {
+				if (this.value) {
+					if (this.selected) {
+						this._selected = null;
+					}
+					this.updateSelectedRadioFromValue();
+					this.checkSelectedRadio();
+				}
+				this.updateRadios();
+				this.updateRadioChangeHandler();
+			})
+		);
+
+		if (this.value) {
+			this.updateSelectedRadioFromValue();
+			this.checkSelectedRadio();
+		}
 
 		this.updateChildren();
 		this.updateRadioChangeHandler();
@@ -405,6 +420,10 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, ControlValue
 
 	ngAfterViewInit() {
 		this.updateRadios();
+	}
+
+	ngOnDestroy() {
+		this.subscription.unsubscribe();
 	}
 
 	/**

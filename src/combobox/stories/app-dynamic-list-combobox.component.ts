@@ -7,6 +7,7 @@ import { DropdownList } from "carbon-components-angular/dropdown";
 	template: `
 		<cds-combo-box
 			[(items)]="items"
+			itemValueKey="content"
 			type="multi"
 			(selected)="updateSelected($event)">
 			<cds-dropdown-list></cds-dropdown-list>

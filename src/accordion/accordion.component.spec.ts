@@ -16,10 +16,7 @@ import { Accordion } from "./accordion.component";
 			test-content
 		</cds-accordion-item>
 	</cds-accordion>`,
-	imports: [
-		Accordion,
-		AccordionItem
-	]
+	imports: [Accordion, AccordionItem]
 })
 class AccordionTest {
 	disabled = false;

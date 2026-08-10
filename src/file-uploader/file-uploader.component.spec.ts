@@ -1,6 +1,7 @@
 import { FormsModule } from "@angular/forms";
-import { TestBed } from "@angular/core/testing";
+import { fakeAsync, TestBed } from "@angular/core/testing";
 import { Component } from "@angular/core";
+import { advancedFakeAsync } from "../test-helpers/change-detection";
 import { FileUploader } from "./file-uploader.component";
 import { By } from "@angular/platform-browser";
 import { FileItem } from "./file-item.interface";
@@ -12,13 +13,11 @@ import { FileItem } from "./file-item.interface";
 			description="description"
 			buttonText="buttonText"
 			accept=".txt"
-			multiple="true"
-			[(ngModel)]="files" />
+			[multiple]="true"
+			[(ngModel)]="files">
+		</cds-file-uploader>
 	`,
-	imports: [
-		FileUploader,
-		FormsModule
-	]
+	imports: [FileUploader, FormsModule]
 })
 class FileUploaderTest {
 	files = null;
@@ -33,6 +32,21 @@ describe("FileUploader", () => {
 			]
 		});
 	});
+
+	// ngModel needs one pass to notice the new set and a tick to hand it to the uploader
+	function setFiles(next: Set<FileItem>) {
+		wrapper.files = next;
+		fixture.detectChanges();
+		advancedFakeAsync(fixture);
+	}
+
+	function fileItem(name: string, state: "edit" | "upload" | "complete" = "edit"): FileItem {
+		return {
+			uploaded: false,
+			state,
+			file: new File(["content"], name, { type: "text/plain" })
+		} as FileItem;
+	}
 
 	it("should work", () => {
 		fixture = TestBed.createComponent(FileUploader);
@@ -128,4 +142,75 @@ describe("FileUploader", () => {
 		const filesArray: FileItem[] = Array.from(wrapper.files);
 		expect(!!filesArray.find((fileItem: FileItem) => fileItem.file.name === fileToAdd.name)).toBe(true);
 	});
+
+	it("should render a file added to the existing set", fakeAsync(() => {
+		fixture = TestBed.createComponent(FileUploaderTest);
+		wrapper = fixture.componentInstance;
+		wrapper.files = new Set<FileItem>();
+		fixture.detectChanges();
+		// let ngModel hand the set down before touching it
+		advancedFakeAsync(fixture);
+		expect(fixture.nativeElement.querySelectorAll("cds-file").length).toBe(0);
+
+		setFiles(new Set([fileItem("first.txt")]));
+
+		expect(fixture.nativeElement.querySelectorAll("cds-file").length).toBe(1);
+		expect(fixture.nativeElement.textContent).toContain("first.txt");
+	}));
+
+	it("should stop rendering files removed from the existing set", fakeAsync(() => {
+		fixture = TestBed.createComponent(FileUploaderTest);
+		wrapper = fixture.componentInstance;
+		wrapper.files = new Set<FileItem>();
+		fixture.detectChanges();
+		advancedFakeAsync(fixture);
+
+		const item = fileItem("first.txt");
+		setFiles(new Set([item]));
+		expect(fixture.nativeElement.querySelectorAll("cds-file").length).toBe(1);
+
+		setFiles(new Set<FileItem>());
+
+		expect(fixture.nativeElement.querySelectorAll("cds-file").length).toBe(0);
+	}));
+
+	it("should swap the spinner for the complete icon when an upload finishes", fakeAsync(() => {
+		fixture = TestBed.createComponent(FileUploaderTest);
+		wrapper = fixture.componentInstance;
+		wrapper.files = new Set<FileItem>();
+		fixture.detectChanges();
+		// let ngModel hand the set down before touching it
+		advancedFakeAsync(fixture);
+
+		const item = fileItem("first.txt", "upload");
+		setFiles(new Set([item]));
+		expect(fixture.nativeElement.querySelector("cds-loading")).toBeTruthy();
+
+		// same reason: the completed upload arrives as a new item
+		advancedFakeAsync(fixture, 300);
+		setFiles(new Set([{ ...item, state: "complete" }]));
+
+		expect(fixture.nativeElement.querySelector("cds-loading")).toBeFalsy();
+		expect(fixture.nativeElement.querySelector(".cds--file-complete")).toBeTruthy();
+	}));
+
+	it("should show the error text when a file turns out to be invalid", fakeAsync(() => {
+		fixture = TestBed.createComponent(FileUploaderTest);
+		wrapper = fixture.componentInstance;
+		wrapper.files = new Set<FileItem>();
+		fixture.detectChanges();
+		advancedFakeAsync(fixture);
+
+		const item = fileItem("first.txt");
+		setFiles(new Set([item]));
+		expect(fixture.nativeElement.querySelector(".cds--form-requirement")).toBeFalsy();
+
+		// cds-file is OnPush and holds the item by reference, so validation has to hand
+		// over a new item rather than mutating the one already rendered
+		advancedFakeAsync(fixture, 200);
+		setFiles(new Set([{ ...item, invalid: true, invalidText: "file too large" }]));
+
+		expect(fixture.nativeElement.querySelector(".cds--form-requirement")).toBeTruthy();
+		expect(fixture.nativeElement.textContent).toContain("file too large");
+	}));
 });
