@@ -55,7 +55,11 @@ export class TableModel implements PaginationModel {
 		this.rowsClass = new Array<string>(this._data.length);
 
 		// only create a fresh header if necessary (header doesn't exist or differs in length)
-		if (this.header == null || (this.header.length !== this._data[0].length && this._data[0].length > 0)) {
+		if (
+			this.header == null ||
+			(this.header.length !== this._data[0].length &&
+				this._data[0].length > 0)
+		) {
 			let header = new Array<TableHeaderItem>();
 			for (let i = 0; i < this._data[0].length; i++) {
 				header.push(new TableHeaderItem());
@@ -257,7 +261,7 @@ export class TableModel implements PaginationModel {
 	selectedRowsCount(): number {
 		let count = 0;
 		if (this.rowsSelected) {
-			this.rowsSelected.forEach(rowSelected => {
+			this.rowsSelected.forEach((rowSelected) => {
 				if (rowSelected) {
 					count++;
 				}
@@ -272,7 +276,7 @@ export class TableModel implements PaginationModel {
 	expandedRowsCount(): number {
 		let count = 0;
 		if (this.rowsExpanded) {
-			this.rowsExpanded.forEach(rowExpanded => {
+			this.rowsExpanded.forEach((rowExpanded) => {
 				if (rowExpanded) {
 					count++;
 				}
@@ -311,7 +315,7 @@ export class TableModel implements PaginationModel {
 		// if table empty create table with row
 		if (!this.data || this.data.length === 0 || this.data[0].length === 0) {
 			let newData = new Array<Array<TableItem>>();
-			newData.push(row ? row : [new TableItem()]);  // row or one empty one column row
+			newData.push(row ? row : [new TableItem()]); // row or one empty one column row
 			this.data = newData;
 
 			return;
@@ -406,7 +410,9 @@ export class TableModel implements PaginationModel {
 
 		const rowIndex = this.rowsIndices[rri];
 		this.rowsIndices.splice(rri, 1);
-		this.rowsIndices = this.rowsIndices.map((value) => (value > rowIndex) ? --value : value);
+		this.rowsIndices = this.rowsIndices.map((value) =>
+			value > rowIndex ? --value : value
+		);
 
 		this.dataChange.emit();
 	}
@@ -419,7 +425,7 @@ export class TableModel implements PaginationModel {
 	}
 
 	hasExpandableRows() {
-		return this.data.some(data => data.some(d => d && d.expandedData)); // checking for some in 2D array
+		return this.data.some((data) => data.some((d) => d && d.expandedData)); // checking for some in 2D array
 	}
 
 	/**
@@ -429,13 +435,13 @@ export class TableModel implements PaginationModel {
 	 */
 	expandableRowsCount() {
 		return this.data.reduce((counter, _, index) => {
-			counter = (this.isRowExpandable(index)) ? counter + 1 : counter;
+			counter = this.isRowExpandable(index) ? counter + 1 : counter;
 			return counter;
 		}, 0);
 	}
 
 	isRowExpandable(index: number) {
-		return this.data[index].some(d => d && d.expandedData);
+		return this.data[index].some((d) => d && d.expandedData);
 	}
 
 	isRowExpanded(index: number) {
@@ -498,7 +504,7 @@ export class TableModel implements PaginationModel {
 			return;
 		}
 
-		let rc = this.data.length;  // row count
+		let rc = this.data.length; // row count
 		let ci = this.realColumnIndex(index);
 
 		// append missing rows
@@ -510,7 +516,11 @@ export class TableModel implements PaginationModel {
 			// append to end
 			for (let i = 0; i < rc; i++) {
 				let row = this.data[i];
-				row.push(column == null || column[i] == null ? new TableItem() : column[i]);
+				row.push(
+					column == null || column[i] == null
+						? new TableItem()
+						: column[i]
+				);
 			}
 			// update header if not already set by user
 			if (this.header.length < this.data[0].length) {
@@ -524,7 +534,13 @@ export class TableModel implements PaginationModel {
 			// insert
 			for (let i = 0; i < rc; i++) {
 				let row = this.data[i];
-				row.splice(ci, 0, column == null || column[i] == null ? new TableItem() : column[i]);
+				row.splice(
+					ci,
+					0,
+					column == null || column[i] == null
+						? new TableItem()
+						: column[i]
+				);
 			}
 			// update header if not already set by user
 			if (this.header.length < this.data[0].length) {
@@ -596,7 +612,7 @@ export class TableModel implements PaginationModel {
 		this.pushRowStateToModelData();
 		const headerSorted = this.header[index].sorted;
 		// We only allow sorting by a single column, so reset sort state for all columns before specifying new sort state
-		this.header.forEach(column => column.sorted = false);
+		this.header.forEach((column) => (column.sorted = false));
 		if (this.header[index].sortDirection === "NONE" && headerSorted) {
 			// Restore initial order of rows
 			const oldData = this._data;
@@ -606,9 +622,12 @@ export class TableModel implements PaginationModel {
 				this._data[ri] = oldData[i];
 			}
 		} else {
-			const descending = this.header[index].sortDirection === "DESCENDING" ? -1 : 1;
+			const descending =
+				this.header[index].sortDirection === "DESCENDING" ? -1 : 1;
 			this.data.sort((a, b) => {
-				return descending * this.header[index].compare(a[index], b[index]);
+				return (
+					descending * this.header[index].compare(a[index], b[index])
+				);
 			});
 			this.header[index].sorted = true;
 		}
@@ -672,7 +691,9 @@ export class TableModel implements PaginationModel {
 	 */
 	isRowFiltered(index: number): boolean {
 		const realIndex = this.realRowIndex(index);
-		return this.header.some((item, i) => item && item.filter(this.row(realIndex)[i]));
+		return this.header.some(
+			(item, i) => item && item.filter(this.row(realIndex)[i])
+		);
 	}
 
 	/**
@@ -705,6 +726,14 @@ export class TableModel implements PaginationModel {
 
 	isRowSelected(index: number) {
 		return this.rowsSelected[index];
+	}
+
+	/**
+	 * Disable a row.
+	 */
+	disableRow(index: number) {
+		const row = this.data[index] as TableRow;
+		row.disabled = true;
 	}
 
 	/**
