@@ -6,12 +6,19 @@ import { AILabelModule } from "../ai-label";
 import { ButtonModule } from "../button";
 import { IconModule } from "../icon";
 import { AI_LABEL_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
+import { FormsModule } from "@angular/forms";
 
 export default {
 	title: "Components/Input/Text area",
 	decorators: [
 		moduleMetadata({
-			imports: [InputModule, AILabelModule, ButtonModule, IconModule]
+			imports: [
+				InputModule,
+				AILabelModule,
+				ButtonModule,
+				IconModule,
+				FormsModule
+			]
 		})
 	],
 	args: {
@@ -30,7 +37,7 @@ export default {
 		readonly: false,
 		fluid: false,
 		skeleton: false,
-		enableCounter: false,
+		enableCounter: true,
 		maxCount: 500,
 		counterMode: "character"
 	},
@@ -76,6 +83,7 @@ const Template = (args) => ({
 			[rows]="rows"
 			[cols]="cols"
 			[readonly]="readonly"
+			style="width: 100%"
 			aria-label="textarea"></textarea>
 		</cds-textarea-label>
 	`
