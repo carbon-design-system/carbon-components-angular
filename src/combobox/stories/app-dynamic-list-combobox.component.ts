@@ -5,6 +5,7 @@ import { Component, AfterViewInit } from "@angular/core";
 	template: `
 		<cds-combo-box
 			[(items)]="items"
+			itemValueKey="content"
 			type="multi"
 			(selected)="updateSelected($event)">
 			<cds-dropdown-list></cds-dropdown-list>

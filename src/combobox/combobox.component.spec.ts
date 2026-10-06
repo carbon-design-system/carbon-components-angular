@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
-import { TestBed } from "@angular/core/testing";
+import { fakeAsync, TestBed } from "@angular/core/testing";
 import { By	} from "@angular/platform-browser";
+import { advancedFakeAsync, hasClass } from "../test-helpers/change-detection";
 
 import { IconModule } from "../icon/index";
 import { I18nModule } from "../i18n/index";
@@ -13,7 +14,6 @@ import { FormsModule } from "@angular/forms";
 import { UtilsModule } from "../utils";
 import { DropdownService } from "./../dropdown/index";
 import { PlaceholderModule } from "./../placeholder/index";
-
 
 @Component({
 	template: `
@@ -38,6 +38,27 @@ class ComboboxTest {
 	model: ListItem;
 }
 
+@Component({
+	template: `
+	<cds-combo-box
+		placeholder="placeholder"
+		label="label"
+		[items]="items"
+		[type]="type"
+		[itemValueKey]="itemValueKey">
+		<cds-dropdown-list></cds-dropdown-list>
+	</cds-combo-box>`
+})
+class ComboboxTestNoModel {
+	items = [
+		{id: "1", content: "one", selected: false},
+		{id: "2", content: "two", selected: false},
+		{id: "3", content: "three", selected: false}
+	];
+	type = "single";
+	itemValueKey = undefined;
+}
+
 describe("Combo box", () => {
 	let fixture, wrapper, element;
 	beforeEach(() => {
@@ -46,7 +67,8 @@ describe("Combo box", () => {
 				ComboBox,
 				DropdownList,
 				ComboboxTest,
-				ScrollableList
+				ScrollableList,
+				ComboboxTestNoModel
 			],
 			imports: [
 				IconModule,
@@ -209,4 +231,156 @@ describe("Combo box", () => {
 
 		expect(wrapper.model).toEqual(["1"]);
 	});
+
+	it("should ignore selected property from the items when _isUsingNgControl is true", () => {
+		fixture = TestBed.createComponent(ComboboxTestNoModel);
+		wrapper = fixture.componentInstance;
+		wrapper.itemValueKey = "id";
+		fixture.detectChanges();
+		element = fixture.debugElement.query(By.css("cds-combo-box"));
+
+		expect(element.componentInstance._isUsingNgControl).toBe(false);
+		expect(element.componentInstance.view.getSelected()).toEqual([]);
+
+		element.componentInstance._isUsingNgControl = true;
+		wrapper.items[0].selected = true;
+		fixture.detectChanges();
+
+		expect(element.componentInstance.view.getSelected()).toEqual([]);
+	});
+
+	it("should automatically reselect the _writtenValue when items are updated and _isUsingNgControl is true", () => {
+		fixture = TestBed.createComponent(ComboboxTestNoModel);
+		wrapper = fixture.componentInstance;
+		wrapper.itemValueKey = "id";
+		fixture.detectChanges();
+		element = fixture.debugElement.query(By.css("cds-combo-box"));
+
+		element.componentInstance._isUsingNgControl = true;
+		element.componentInstance.writeValue("1");
+		fixture.detectChanges();
+
+		expect(element.componentInstance.view.getSelected()[0].id).toEqual("1");
+
+		wrapper.items.push({ id: "4", content: "four", selected: false });
+		fixture.detectChanges();
+
+		expect(element.componentInstance.view.getSelected()[0].id).toEqual("1");
+	});
+
+	it("should update _writtenValue if user manually changes selection when _isUsingNgControl is true", () => {
+		fixture = TestBed.createComponent(ComboboxTestNoModel);
+		wrapper = fixture.componentInstance;
+		wrapper.itemValueKey = "id";
+		fixture.detectChanges();
+		element = fixture.debugElement.query(By.css("cds-combo-box"));
+
+		element.componentInstance._isUsingNgControl = true;
+		element.componentInstance.writeValue("2");
+		fixture.detectChanges();
+		expect(element.componentInstance._writtenValue).toEqual("2");
+
+		const dropdownToggle = element.nativeElement.querySelector(".cds--list-box__field");
+		dropdownToggle.click();
+		fixture.detectChanges();
+		const dropdownOption = element.nativeElement.querySelector(".cds--list-box__menu-item");
+		dropdownOption.click();
+		fixture.detectChanges();
+
+		expect(element.componentInstance._writtenValue).toEqual("1");
+	});
+
+	it("should set _isUsingNgControl to true when registerOnChange is called", () => {
+		fixture = TestBed.createComponent(ComboboxTestNoModel);
+		wrapper = fixture.componentInstance;
+		fixture.detectChanges();
+		element = fixture.debugElement.query(By.css("cds-combo-box"));
+
+		expect(element.componentInstance._isUsingNgControl).toBe(false);
+
+		element.componentInstance.registerOnChange(() => {});
+		fixture.detectChanges();
+
+		expect(element.componentInstance._isUsingNgControl).toBe(true);
+	});
+
+	it("should show the picked item in the input", fakeAsync(() => {
+		fixture = TestBed.createComponent(ComboboxTestNoModel);
+		fixture.detectChanges();
+		const combobox = fixture.debugElement.query(By.css("cds-combo-box")).componentInstance;
+
+		combobox.openDropdown();
+		advancedFakeAsync(fixture);
+		expect(hasClass(fixture, ".cds--list-box", "cds--list-box--expanded")).toBe(true);
+
+		const listItems = combobox.view.getListItems();
+		listItems[1].selected = true;
+		combobox.view.select.emit({ item: listItems[1] });
+		advancedFakeAsync(fixture);
+
+		expect(combobox.selectedValue).toBe("two");
+		expect(fixture.nativeElement.querySelector("input.cds--text-input").value).toBe("two");
+		expect(combobox.open).toBe(false);
+		expect(hasClass(fixture, ".cds--list-box", "cds--list-box--expanded")).toBe(false);
+	}));
+
+	it("should show the clear button once an item is picked", fakeAsync(() => {
+		fixture = TestBed.createComponent(ComboboxTestNoModel);
+		fixture.detectChanges();
+		const combobox = fixture.debugElement.query(By.css("cds-combo-box")).componentInstance;
+		expect(fixture.nativeElement.querySelector(".cds--list-box__selection")).toBeFalsy();
+
+		const listItems = combobox.view.getListItems();
+		listItems[0].selected = true;
+		combobox.view.select.emit({ item: listItems[0] });
+		advancedFakeAsync(fixture);
+
+		expect(combobox.showClearButton).toBe(true);
+		expect(fixture.nativeElement.querySelector(".cds--list-box__selection")).toBeTruthy();
+	}));
+
+	it("should show the number of selected items in multi select", fakeAsync(() => {
+		fixture = TestBed.createComponent(ComboboxTestNoModel);
+		fixture.componentInstance.type = "multi";
+		fixture.detectChanges();
+		const combobox = fixture.debugElement.query(By.css("cds-combo-box")).componentInstance;
+
+		const listItems = combobox.view.getListItems();
+		listItems[0].selected = true;
+		listItems[2].selected = true;
+		combobox.view.select.emit([listItems[0], listItems[2]]);
+		advancedFakeAsync(fixture);
+
+		expect(combobox.pills.length).toBe(2);
+		expect(fixture.nativeElement.querySelector(".cds--tag__label").textContent.trim()).toBe("2");
+	}));
+
+	it("should collapse the list box when clicking outside", fakeAsync(() => {
+		fixture = TestBed.createComponent(ComboboxTestNoModel);
+		fixture.detectChanges();
+		const combobox = fixture.debugElement.query(By.css("cds-combo-box")).componentInstance;
+
+		combobox.openDropdown();
+		advancedFakeAsync(fixture);
+		expect(hasClass(fixture, ".cds--list-box", "cds--list-box--expanded")).toBe(true);
+
+		document.body.click();
+		advancedFakeAsync(fixture);
+
+		expect(combobox.open).toBe(false);
+		expect(hasClass(fixture, ".cds--list-box", "cds--list-box--expanded")).toBe(false);
+	}));
+
+	it("should add the drop up class when there is no room below", fakeAsync(() => {
+		fixture = TestBed.createComponent(ComboboxTestNoModel);
+		fixture.detectChanges();
+		const combobox = fixture.debugElement.query(By.css("cds-combo-box")).componentInstance;
+		spyOn(combobox, "_shouldDropUp").and.returnValue(true);
+
+		combobox.openDropdown();
+		advancedFakeAsync(fixture);
+
+		expect(combobox._dropUp).toBe(true);
+		expect(combobox.dropdownMenu.nativeElement.classList.contains("cds--list-box--up")).toBe(true);
+	}));
 });
