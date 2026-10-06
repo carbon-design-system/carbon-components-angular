@@ -28,6 +28,10 @@
 <title>cluster_ModalModule_providers</title>
 <polygon fill="none" stroke="black" points="1771,-78 1771,-130 2103,-130 2103,-78 1771,-78"/>
 </g>
+<g id="clust14" class="cluster">
+<title>cluster_ModalModule_exports</title>
+<polygon fill="none" stroke="black" points="472,-208 472,-260 1543,-260 1543,-208 472,-208"/>
+</g>
 <g id="clust2" class="cluster">
 <title>cluster_ModalModule_declarations</title>
 <polygon fill="none" stroke="black" points="640,-78 640,-130 1763,-130 1763,-78 640,-78"/>
@@ -35,10 +39,6 @@
 <g id="clust13" class="cluster">
 <title>cluster_ModalModule_imports</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-130 632,-130 632,-78 16,-78"/>
-</g>
-<g id="clust14" class="cluster">
-<title>cluster_ModalModule_exports</title>
-<polygon fill="none" stroke="black" points="472,-208 472,-260 1543,-260 1543,-208 472,-208"/>
 </g>
 <!-- AlertModal -->
 <g id="node1" class="node">
