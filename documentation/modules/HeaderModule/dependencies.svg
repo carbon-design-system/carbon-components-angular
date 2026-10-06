@@ -28,13 +28,13 @@
 <title>cluster_HeaderModule_declarations</title>
 <polygon fill="none" stroke="black" points="343,-78 343,-130 1082,-130 1082,-78 343,-78"/>
 </g>
-<g id="clust10" class="cluster">
-<title>cluster_HeaderModule_imports</title>
-<polygon fill="none" stroke="black" points="16,-78 16,-130 335,-130 335,-78 16,-78"/>
-</g>
 <g id="clust11" class="cluster">
 <title>cluster_HeaderModule_exports</title>
 <polygon fill="none" stroke="black" points="173,-208 173,-260 937,-260 937,-208 173,-208"/>
+</g>
+<g id="clust10" class="cluster">
+<title>cluster_HeaderModule_imports</title>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 335,-130 335,-78 16,-78"/>
 </g>
 <!-- Hamburger -->
 <g id="node1" class="node">

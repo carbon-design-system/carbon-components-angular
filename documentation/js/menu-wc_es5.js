@@ -37,4 +37,4 @@ customElements.define('compodoc-menu', /*#__PURE__*/function (_HTMLElement) {
       this.innerHTML = tp.strings;
     }
   }]);
-}( /*#__PURE__*/_wrapNativeSuper(HTMLElement)));
+}(/*#__PURE__*/_wrapNativeSuper(HTMLElement)));
