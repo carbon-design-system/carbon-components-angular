@@ -1,7 +1,8 @@
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { DebugElement, Component } from "@angular/core";
+import { advancedFakeAsync } from "../test-helpers/change-detection";
 
 import { Radio } from "./radio.component";
 import { RadioGroup } from "./radio-group.component";
@@ -9,7 +10,7 @@ import { RadioGroup } from "./radio-group.component";
 @Component({
 	selector: "test-component",
 	template: `
-	<cds-radio-group [(ngModel)]="radio">
+	<cds-radio-group [(ngModel)]="radio" [disabled]="disabled" [name]="name">
 		<cds-radio *ngFor="let one of manyRadios" [value]="one"
 			class="indent">Radio {{one}}
 		</cds-radio>
@@ -18,6 +19,8 @@ import { RadioGroup } from "./radio-group.component";
 class RadioTest {
 	manyRadios = ["one", "two", "three", "four", "five", "six"];
 	radio: string;
+	disabled = false;
+	name = "test-group";
 }
 
 describe("RadioGroup", () => {
@@ -47,6 +50,56 @@ describe("RadioGroup", () => {
 
 		expect(fixture.componentInstance.radio).toBe("one");
 	});
+
+	it("should disable every radio when the group is disabled", fakeAsync(() => {
+		const fixture = TestBed.createComponent(RadioTest);
+		fixture.componentInstance.disabled = true;
+		fixture.detectChanges();
+		advancedFakeAsync(fixture);
+
+		const inputs = fixture.nativeElement.querySelectorAll("input[type=radio]");
+		expect(inputs.length).toBe(6);
+		Array.from<HTMLInputElement>(inputs).forEach(input => expect(input.disabled).toBe(true));
+	}));
+
+	it("should re-enable every radio when the group is enabled", fakeAsync(() => {
+		const fixture = TestBed.createComponent(RadioTest);
+		fixture.componentInstance.disabled = true;
+		fixture.detectChanges();
+		advancedFakeAsync(fixture);
+
+		fixture.componentInstance.disabled = false;
+		fixture.detectChanges();
+		advancedFakeAsync(fixture);
+
+		const inputs = fixture.nativeElement.querySelectorAll("input[type=radio]");
+		Array.from<HTMLInputElement>(inputs).forEach(input => expect(input.disabled).toBe(false));
+	}));
+
+	it("should give every radio the group name", fakeAsync(() => {
+		const fixture = TestBed.createComponent(RadioTest);
+		fixture.detectChanges();
+		advancedFakeAsync(fixture);
+
+		const inputs = fixture.nativeElement.querySelectorAll("input[type=radio]");
+		Array.from<HTMLInputElement>(inputs).forEach(input => expect(input.name).toBe("test-group"));
+	}));
+
+	it("should configure radios added after the group is created", fakeAsync(() => {
+		const fixture = TestBed.createComponent(RadioTest);
+		fixture.componentInstance.disabled = true;
+		fixture.detectChanges();
+		advancedFakeAsync(fixture);
+
+		fixture.componentInstance.manyRadios = [...fixture.componentInstance.manyRadios, "seven"];
+		fixture.detectChanges();
+		advancedFakeAsync(fixture);
+
+		const inputs = fixture.nativeElement.querySelectorAll("input[type=radio]");
+		expect(inputs.length).toBe(7);
+		expect(inputs[6].disabled).toBe(true);
+		expect(inputs[6].name).toBe("test-group");
+	}));
 });
 
 describe("RadioComponent", () => {

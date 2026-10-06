@@ -12,6 +12,8 @@ import {
 	ChangeDetectorRef,
 	SimpleChanges
 } from "@angular/core";
+import { Subscription } from "rxjs";
+import { startWith } from "rxjs/operators";
 
 import { TextArea } from "./text-area.directive";
 
@@ -231,7 +233,7 @@ export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestr
 	 */
 	@Input() decorator: TemplateRef<any>;
 
-	//  Tracks current character / word count for the counter display.
+	// Tracks current character / word count for the counter display.
 	textCount = 0;
 
 	// @ts-ignore
@@ -244,7 +246,11 @@ export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestr
 
 	// Cached reference to the textarea element, set once in ngAfterViewInit.
 	private _textareaElement: HTMLTextAreaElement | null = null;
-	// Cached listener so it can be removed precisely (avoids anonymous-function leak)
+
+	// RxJS subscription used when NgControl is available (template-driven & reactive forms).
+	private _subscription: Subscription | null = null;
+
+	// Fallback DOM listener used only when no NgControl is present (plain textarea).
 	private _inputListener: ((e: Event) => void) | null = null;
 
 	/**
@@ -292,7 +298,6 @@ export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestr
 
 	/**
 	 * Attach/remove listener and seed `textCount` from the textarea's current value.
-	 * @param changes
 	 */
 	ngOnChanges(changes: SimpleChanges) {
 		if (changes.enableCounter && !changes.enableCounter.firstChange) {
@@ -341,27 +346,49 @@ export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestr
 	}
 
 	/**
-	 * Attaches the input event listener, ensuring it is never added twice.
+	 * Attaches the counter listener, listen for either ngControl or native DOM input
+	 * event listener
 	 */
 	private _attachCounterListener(): void {
 		this._detachCounterListener();
-		if (!this._textareaElement) {
-			return;
-		}
-		this._inputListener = (e: Event) => {
-			const el = e.target as HTMLTextAreaElement;
-			// Word-mode enforcement: clamp value to maxCount words on each input so
-			// the textarea never holds more words than allowed.  Character mode relies
-			// on the native `maxlength` attribute set by the developer.
-			if (this.counterMode === "word" && this.maxCount != null) {
-				const clamped = this._truncateToWordLimit(el.value || "", this.maxCount);
-				if (clamped !== el.value) {
-					el.value = clamped;
-				}
+
+		const control = this.textArea?.ngControl;
+		if (control?.valueChanges) {
+			// NgControl listener
+			this._subscription = control.valueChanges
+				.pipe(startWith(control.value))
+				.subscribe((value: string) => {
+					const raw = value || "";
+
+					if (this.counterMode === "word" && this.maxCount != null) {
+						const clamped = this._truncateToWordLimit(raw, this.maxCount);
+						if (clamped !== raw) {
+							// Write back through the control so the form model stays in sync.
+							// emitEvent false to avoid infinite loop
+							control?.control?.setValue(clamped, { emitEvent: false });
+						}
+					}
+
+					this.textCount = this._countValue(raw);
+					this.changeDetectorRef.markForCheck();
+				});
+		} else {
+			// Fallback DOM path
+			if (!this._textareaElement) {
+				return;
 			}
-			this.textCount = this._countValue(el.value || "");
-		};
-		this._textareaElement.addEventListener("input", this._inputListener);
+			this._inputListener = (e: Event) => {
+				const el = e.target as HTMLTextAreaElement;
+				if (this.counterMode === "word" && this.maxCount != null) {
+					const clamped = this._truncateToWordLimit(el.value || "", this.maxCount);
+					if (clamped !== el.value) {
+						el.value = clamped;
+					}
+				}
+				this.textCount = this._countValue(el.value || "");
+			};
+			this._textareaElement.addEventListener("input", this._inputListener);
+		}
 	}
 
 	/**
@@ -386,11 +413,14 @@ export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestr
 		return wordsSeen < limit ? value : value.slice(0, cutIndex);
 	}
 
-
 	/**
-	 * Removes the input event listener and clears the cached reference.
+	 * Removes the subscription (NgControl path) and removes the DOM listener
+	 * (fallback path). Safe to call when neither is active.
 	 */
 	private _detachCounterListener(): void {
+		this._subscription?.unsubscribe();
+		this._subscription = null;
+
 		if (this._inputListener && this._textareaElement) {
 			this._textareaElement.removeEventListener("input", this._inputListener);
 			this._inputListener = null;
