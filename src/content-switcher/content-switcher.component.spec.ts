@@ -1,6 +1,7 @@
-import { TestBed } from "@angular/core/testing";
+import { fakeAsync, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { Component } from "@angular/core";
+import { advancedFakeAsync } from "../test-helpers/change-detection";
 import { ContentSwitcher } from "./content-switcher.component";
 import { ContentSwitcherModule, ContentSwitcherOption } from "./index";
 
@@ -115,4 +116,37 @@ describe("ContentSwitcher", () => {
 			}
 		});
 	});
+
+	it("should move the selected class and aria state to the chosen option", fakeAsync(() => {
+		fixture = TestBed.createComponent(ContentSwitcherTest);
+		fixture.detectChanges();
+		advancedFakeAsync(fixture);
+
+		const first = fixture.nativeElement.querySelector("#first");
+		const second = fixture.nativeElement.querySelector("#second");
+		expect(first.classList).toContain("cds--content-switcher--selected");
+
+		second.dispatchEvent(new Event("click"));
+		advancedFakeAsync(fixture);
+
+		expect(first.classList).not.toContain("cds--content-switcher--selected");
+		expect(first.getAttribute("aria-selected")).toBe("false");
+		expect(first.getAttribute("tabIndex")).toBe("-1");
+		expect(second.classList).toContain("cds--content-switcher--selected");
+		expect(second.getAttribute("aria-selected")).toBe("true");
+	}));
+
+	it("should select the first option on init", fakeAsync(() => {
+		fixture = TestBed.createComponent(ContentSwitcherTest);
+		fixture.detectChanges();
+
+		const first = fixture.nativeElement.querySelector("#first");
+		expect(first.classList).not.toContain("cds--content-switcher--selected");
+
+		advancedFakeAsync(fixture);
+
+		expect(first.classList).toContain("cds--content-switcher--selected");
+		expect(first.getAttribute("aria-selected")).toBe("true");
+		expect(first.getAttribute("tabIndex")).toBe("0");
+	}));
 });

@@ -1,4 +1,5 @@
-import { Directive, HostBinding, Input } from "@angular/core";
+import { Directive, HostBinding, Input, Optional, Self } from "@angular/core";
+import { NgControl } from "@angular/forms";
 
 /**
  * A directive for applying styling to a textarea element.
@@ -35,4 +36,6 @@ export class TextArea {
 	@HostBinding("attr.data-invalid") get getInvalidAttr() {
 		return this.invalid ? true : undefined;
 	}
+
+	constructor(@Self() @Optional() public ngControl: NgControl) {}
 }
