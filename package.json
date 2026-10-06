@@ -85,7 +85,7 @@
     "@angular/platform-browser": "14.3.0",
     "@angular/platform-browser-dynamic": "14.3.0",
     "@angular/router": "14.3.0",
-    "@babel/core": "7.9.6",
+    "@babel/core": "7.29.6",
     "@carbon/pictograms": "^12.72.1",
     "@carbon/styles": "1.103.0",
     "@carbon/themes": "11.70.0",
