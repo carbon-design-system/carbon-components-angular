@@ -24,13 +24,13 @@
 <title>cluster_PlaceholderModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="177,-70 177,-268 319,-268 319,-70 177,-70"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_PlaceholderModule_declarations</title>
-<polygon fill="none" stroke="black" points="199,-78 199,-130 297,-130 297,-78 199,-78"/>
-</g>
 <g id="clust5" class="cluster">
 <title>cluster_PlaceholderModule_exports</title>
 <polygon fill="none" stroke="black" points="197,-208 197,-260 299,-260 299,-208 197,-208"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_PlaceholderModule_declarations</title>
+<polygon fill="none" stroke="black" points="199,-78 199,-130 297,-130 297,-78 199,-78"/>
 </g>
 <!-- Placeholder -->
 <g id="node1" class="node">
