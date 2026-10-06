@@ -28,13 +28,13 @@
 <title>cluster_SideNavModule_declarations</title>
 <polygon fill="none" stroke="black" points="126,-78 126,-130 632,-130 632,-78 126,-78"/>
 </g>
-<g id="clust8" class="cluster">
-<title>cluster_SideNavModule_exports</title>
-<polygon fill="none" stroke="black" points="120,-208 120,-260 434,-260 434,-208 120,-208"/>
-</g>
 <g id="clust7" class="cluster">
 <title>cluster_SideNavModule_imports</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-130 118,-130 118,-78 16,-78"/>
+</g>
+<g id="clust8" class="cluster">
+<title>cluster_SideNavModule_exports</title>
+<polygon fill="none" stroke="black" points="120,-208 120,-260 434,-260 434,-208 120,-208"/>
 </g>
 <!-- RouterLinkExtendedDirective -->
 <g id="node1" class="node">
