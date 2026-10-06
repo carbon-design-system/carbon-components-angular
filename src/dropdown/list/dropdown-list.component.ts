@@ -270,7 +270,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	/**
 	 * Updates the displayed list of items and then retrieves the most current properties for the `DropdownList` from the DOM.
 	 */
-	updateList(items) {
+	updateList(items: ListItem[]) {
 		this._items = items.map(item => Object.assign({}, item));
 		this.displayItems = this._items;
 		this.updateIndex();

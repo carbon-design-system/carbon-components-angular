@@ -73,7 +73,8 @@ export default {
 		dropUp: false,
 		size: "md",
 		theme: "dark",
-		fluid: false
+		fluid: false,
+		itemValueKey: "content"
 	},
 	argTypes: {
 		type: {
@@ -112,6 +113,7 @@ const Template = (args) => ({
 			[disabled]="disabled"
 			[readonly]="readonly"
 			[fluid]="fluid"
+			[itemValueKey]="itemValueKey"
 			(selected)="selected($event)"
 			(onClose)="onClose($event)">
 			<cds-dropdown-list [items]="items"></cds-dropdown-list>
@@ -146,6 +148,7 @@ const MultiTemplate = (args) => ({
 			[disabled]="disabled"
 			[readonly]="readonly"
 			[fluid]="fluid"
+			[itemValueKey]="itemValueKey"
 			(selected)="selected($event)"
 			(onClose)="onClose($event)">
 			<cds-dropdown-list [items]="items"></cds-dropdown-list>
@@ -172,6 +175,7 @@ const ReactiveTemplate = (args) => ({
 			[disabled]="disabled"
 			[items]="items"
 			[selectionFeedback]="selectionFeedback"
+			[itemValueKey]="itemValueKey"
 			(selected)="selected($event)"
 			(onClose)="onClose($event)">
 		</app-reactive-forms>
@@ -193,6 +197,7 @@ const NgTemplate = (args) => ({
 			[invalidText]="invalidText"
 			[disabled]="disabled"
 			[readonly]="readonly"
+			[itemValueKey]="itemValueKey"
 			(selected)="selected($event)"
 			(onClose)="onClose($event)">
 			<cds-dropdown-list [items]="items" [listTpl]="dropdownRenderer"></cds-dropdown-list>
@@ -228,6 +233,7 @@ const withAILabelTemplate = (args) => ({
 				[readonly]="readonly"
 				[dropUp]="false"
 				[decorator]="decoratorTpl"
+				[itemValueKey]="itemValueKey"
 				(selected)="selected($event)"
 				(onClose)="onClose($event)">
 				<cds-dropdown-list [items]="items"></cds-dropdown-list>
@@ -279,6 +285,7 @@ const multiselectWithAILabelTemplate = (args) => ({
 				[dropUp]="false"
 				[fluid]="fluid"
 				[decorator]="decoratorTpl"
+				[itemValueKey]="itemValueKey"
 				(selected)="selected($event)"
 				(onClose)="onClose($event)">
 				<cds-dropdown-list [items]="items"></cds-dropdown-list>

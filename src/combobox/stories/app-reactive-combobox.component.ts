@@ -19,7 +19,7 @@ import isEqual from "lodash-es/isEqual";
 				[size]="size"
 				[label]="label"
 				[helperText]="helperText"
-				itemValueKey="content"
+				[itemValueKey]="itemValueKey"
 				[theme]="theme"
 				[invalid]="invalid"
 				[invalidText]="invalidText"
@@ -34,7 +34,7 @@ import isEqual from "lodash-es/isEqual";
 				formControlName="multibox"
 				[label]="label"
 				[size]="size"
-				itemValueKey="content"
+				[itemValueKey]="itemValueKey"
 				[helperText]="helperText"
 				type="multi"
 				[invalid]="invalid"
@@ -58,6 +58,7 @@ export class ReactiveFormsCombobox implements OnInit {
 	@Input() helperText = "";
 	@Input() size = "md";
 	@Input() theme = "dark";
+	@Input() itemValueKey = "";
 	@Input() set items(newItems: Array<any>) {
 		if (!newItems.length) {
 			newItems = [];
