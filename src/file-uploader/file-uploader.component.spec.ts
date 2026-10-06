@@ -1,6 +1,7 @@
 import { FormsModule } from "@angular/forms";
-import { TestBed } from "@angular/core/testing";
+import { fakeAsync, TestBed } from "@angular/core/testing";
 import { Component } from "@angular/core";
+import { advancedFakeAsync } from "../test-helpers/change-detection";
 import { ButtonModule } from "carbon-components-angular/button";
 import { LoadingModule } from "carbon-components-angular/loading";
 import { FileUploader } from "./file-uploader.component";
@@ -17,7 +18,7 @@ import { FileItem } from "./file-item.interface";
 			description="description"
 			buttonText="buttonText"
 			accept=".txt"
-			multiple="true"
+			[multiple]="true"
 			[(ngModel)]="files">
 		</cds-file-uploader>
 	`
@@ -44,6 +45,14 @@ describe("FileUploader", () => {
 			]
 		});
 	});
+
+	function fileItem(name: string, state: "edit" | "upload" | "complete" = "edit"): FileItem {
+		return {
+			uploaded: false,
+			state,
+			file: new File(["content"], name, { type: "text/plain" })
+		} as FileItem;
+	}
 
 	it("should work", () => {
 		fixture = TestBed.createComponent(FileUploader);
@@ -141,5 +150,80 @@ describe("FileUploader", () => {
 		const filesArray: FileItem[] = Array.from(wrapper.files);
 		expect(!!filesArray.find((fileItem: FileItem) => fileItem.file.name === fileToAdd.name)).toBe(true);
 	});
-});
 
+	it("should render a file added to the existing set", fakeAsync(() => {
+		fixture = TestBed.createComponent(FileUploaderTest);
+		wrapper = fixture.componentInstance;
+		wrapper.files = new Set<FileItem>();
+		fixture.detectChanges();
+		// let ngModel hand the set down before touching it
+		advancedFakeAsync(fixture);
+		expect(fixture.nativeElement.querySelectorAll("cds-file").length).toBe(0);
+
+		wrapper.files.add(fileItem("first.txt"));
+		fixture.detectChanges();
+
+		expect(fixture.nativeElement.querySelectorAll("cds-file").length).toBe(1);
+		expect(fixture.nativeElement.textContent).toContain("first.txt");
+	}));
+
+	it("should stop rendering files removed from the existing set", fakeAsync(() => {
+		fixture = TestBed.createComponent(FileUploaderTest);
+		wrapper = fixture.componentInstance;
+		wrapper.files = new Set<FileItem>();
+		fixture.detectChanges();
+		advancedFakeAsync(fixture);
+
+		const item = fileItem("first.txt");
+		wrapper.files.add(item);
+		fixture.detectChanges();
+		expect(fixture.nativeElement.querySelectorAll("cds-file").length).toBe(1);
+
+		wrapper.files.delete(item);
+		fixture.detectChanges();
+
+		expect(fixture.nativeElement.querySelectorAll("cds-file").length).toBe(0);
+	}));
+
+	it("should swap the spinner for the complete icon when an upload finishes", fakeAsync(() => {
+		fixture = TestBed.createComponent(FileUploaderTest);
+		wrapper = fixture.componentInstance;
+		wrapper.files = new Set<FileItem>();
+		fixture.detectChanges();
+		// let ngModel hand the set down before touching it
+		advancedFakeAsync(fixture);
+
+		const item = fileItem("first.txt", "upload");
+		wrapper.files.add(item);
+		fixture.detectChanges();
+		expect(fixture.nativeElement.querySelector("cds-loading")).toBeTruthy();
+
+		setTimeout(() => item.state = "complete", 300);
+		advancedFakeAsync(fixture, 300);
+
+		expect(fixture.nativeElement.querySelector("cds-loading")).toBeFalsy();
+		expect(fixture.nativeElement.querySelector(".cds--file-complete")).toBeTruthy();
+	}));
+
+	it("should show the error text when a file turns out to be invalid", fakeAsync(() => {
+		fixture = TestBed.createComponent(FileUploaderTest);
+		wrapper = fixture.componentInstance;
+		wrapper.files = new Set<FileItem>();
+		fixture.detectChanges();
+		advancedFakeAsync(fixture);
+
+		const item = fileItem("first.txt");
+		wrapper.files.add(item);
+		fixture.detectChanges();
+		expect(fixture.nativeElement.querySelector(".cds--form-requirement")).toBeFalsy();
+
+		setTimeout(() => {
+			item.invalid = true;
+			item.invalidText = "file too large";
+		}, 200);
+		advancedFakeAsync(fixture, 200);
+
+		expect(fixture.nativeElement.querySelector(".cds--form-requirement")).toBeTruthy();
+		expect(fixture.nativeElement.textContent).toContain("file too large");
+	}));
+});

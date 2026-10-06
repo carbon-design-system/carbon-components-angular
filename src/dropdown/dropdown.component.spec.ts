@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
-import { TestBed } from "@angular/core/testing";
+import { fakeAsync, TestBed } from "@angular/core/testing";
 import { By	 } from "@angular/platform-browser";
+import { advancedFakeAsync, hasClass } from "../test-helpers/change-detection";
 
 import { Dropdown } from "./dropdown.component";
 import { DropdownList } from "./list/dropdown-list.component";
@@ -37,6 +38,7 @@ class DropdownTest {
 		class="custom-class"
 		[itemValueKey]="itemValueKey"
 		[allowNullValues]="allowNullValues"
+		[type]="type"
 		(selected)="onSelect()">
 		<cds-dropdown-list [items]="items"></cds-dropdown-list>
 	</cds-dropdown>`
@@ -45,6 +47,7 @@ class DropdownTestNoModel {
 	items = [{content: "one", id: 0, selected: false}, {content: "two", id: 1, selected: false}];
 	itemValueKey = undefined;
 	allowNullValues = false;
+	type = "single";
 	onSelect() {}
 }
 
@@ -206,4 +209,80 @@ describe("Dropdown", () => {
 		expect(element.componentInstance.view.propagateSelected).toHaveBeenCalledWith([{ content: expectedContent, id: null, selected: true }]);
 		expect(element.componentInstance.view.getSelected()[0].content).toEqual(expectedContent);
 	});
+
+	it("should collapse the list box when an item is picked", fakeAsync(() => {
+		fixture = TestBed.createComponent(DropdownTestNoModel);
+		fixture.detectChanges();
+		const dropdown = fixture.debugElement.query(By.css("cds-dropdown")).componentInstance;
+
+		dropdown.openMenu();
+		advancedFakeAsync(fixture);
+		expect(hasClass(fixture, ".cds--list-box", "cds--list-box--expanded")).toBe(true);
+
+		// select through the projected list, the same path a user click takes
+		dropdown.view.select.emit({ item: { content: "one", id: 0, selected: true } });
+		advancedFakeAsync(fixture);
+
+		expect(dropdown.menuIsClosed).toBe(true);
+		expect(hasClass(fixture, ".cds--list-box", "cds--list-box--expanded")).toBe(false);
+		expect(fixture.nativeElement.querySelector(".cds--list-box__field").getAttribute("aria-expanded")).toBe("false");
+	}));
+
+	it("should add the drop up class when there is no room below", fakeAsync(() => {
+		fixture = TestBed.createComponent(DropdownTestNoModel);
+		fixture.detectChanges();
+		const dropdown = fixture.debugElement.query(By.css("cds-dropdown")).componentInstance;
+		const shouldDropUp = spyOn(dropdown, "_shouldDropUp").and.returnValue(true);
+
+		dropdown.openMenu();
+		advancedFakeAsync(fixture);
+
+		const menu = dropdown.dropdownMenu.nativeElement;
+		expect(dropdown._dropUp).toBe(true);
+		expect(menu.classList.contains("cds--list-box--up")).toBe(true);
+
+		// `closeMenu` deliberately leaves `_dropUp` alone, it is re-measured on the next open
+		dropdown.closeMenu();
+		shouldDropUp.and.returnValue(false);
+		dropdown.openMenu();
+		advancedFakeAsync(fixture);
+
+		expect(dropdown._dropUp).toBe(false);
+		expect(menu.classList.contains("cds--list-box--up")).toBe(false);
+	}));
+
+	it("should collapse the list box when clicking outside", fakeAsync(() => {
+		fixture = TestBed.createComponent(DropdownTestNoModel);
+		fixture.detectChanges();
+		const dropdown = fixture.debugElement.query(By.css("cds-dropdown")).componentInstance;
+
+		dropdown.openMenu();
+		advancedFakeAsync(fixture);
+		expect(hasClass(fixture, ".cds--list-box", "cds--list-box--expanded")).toBe(true);
+
+		document.body.click();
+		advancedFakeAsync(fixture);
+
+		expect(dropdown.menuIsClosed).toBe(true);
+		expect(hasClass(fixture, ".cds--list-box", "cds--list-box--expanded")).toBe(false);
+	}));
+
+	it("should show the number of selected items in multi select", fakeAsync(() => {
+		fixture = TestBed.createComponent(DropdownTestNoModel);
+		fixture.componentInstance.type = "multi";
+		fixture.detectChanges();
+		const dropdown = fixture.debugElement.query(By.css("cds-dropdown")).componentInstance;
+
+		expect(fixture.nativeElement.querySelector(".cds--list-box__selection--multi")).toBeFalsy();
+
+		// select through the projected list itself, so `getSelectedCount()` reads a real change
+		const listItems = dropdown.view.getListItems();
+		listItems[0].selected = true;
+		dropdown.view.select.emit([listItems[0]]);
+		advancedFakeAsync(fixture);
+
+		const selectionTag = fixture.nativeElement.querySelector(".cds--list-box__selection--multi");
+		expect(selectionTag).toBeTruthy();
+		expect(selectionTag.textContent.trim()).toContain("1");
+	}));
 });
