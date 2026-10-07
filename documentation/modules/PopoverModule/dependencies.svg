@@ -24,13 +24,13 @@
 <title>cluster_PopoverModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="107,-70 107,-268 389,-268 389,-70 107,-70"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_PopoverModule_declarations</title>
-<polygon fill="none" stroke="black" points="119,-78 119,-130 377,-130 377,-78 119,-78"/>
-</g>
 <g id="clust6" class="cluster">
 <title>cluster_PopoverModule_exports</title>
 <polygon fill="none" stroke="black" points="115,-208 115,-260 381,-260 381,-208 115,-208"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_PopoverModule_declarations</title>
+<polygon fill="none" stroke="black" points="119,-78 119,-130 377,-130 377,-78 119,-78"/>
 </g>
 <!-- PopoverContainer -->
 <g id="node1" class="node">

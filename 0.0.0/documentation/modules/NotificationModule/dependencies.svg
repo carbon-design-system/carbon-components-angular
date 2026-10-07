@@ -32,13 +32,13 @@
 <title>cluster_NotificationModule_imports</title>
 <polygon fill="none" stroke="black" points="1464,-78 1464,-130 2040,-130 2040,-78 1464,-78"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_NotificationModule_declarations</title>
-<polygon fill="none" stroke="black" points="16,-78 16,-130 1456,-130 1456,-78 16,-78"/>
-</g>
 <g id="clust16" class="cluster">
 <title>cluster_NotificationModule_exports</title>
 <polygon fill="none" stroke="black" points="493,-208 493,-260 1842,-260 1842,-208 493,-208"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_NotificationModule_declarations</title>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 1456,-130 1456,-78 16,-78"/>
 </g>
 <!-- ActionableButton -->
 <g id="node1" class="node">
