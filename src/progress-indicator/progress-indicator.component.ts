@@ -61,7 +61,7 @@ import { Step } from "./progress-indicator-step.interface";
 				</svg>
 				<div class="cds--progress-text">
 					<p class="cds--progress-label">{{step.label}}</p>
-					<p *ngIf="step.secondaryLabel" class="cds--progress-optional">{{step.secondaryLabel}}</p>
+					<p *ngIf="step.secondaryLabel && !skeleton" class="cds--progress-optional">{{step.secondaryLabel}}</p>
 				</div>
 				<span class="cds--progress-line"></span>
 			</button>
