@@ -24,17 +24,17 @@
 <title>cluster_StructuredListModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-379.59 1083,-379.59 1083,-70 8,-70"/>
 </g>
-<g id="clust7" class="cluster">
-<title>cluster_StructuredListModule_imports</title>
-<polygon fill="none" stroke="black" points="975,-189.59 975,-241.59 1075,-241.59 1075,-189.59 975,-189.59"/>
+<g id="clust6" class="cluster">
+<title>cluster_StructuredListModule_StructuredList_providers</title>
+<polygon fill="none" stroke="black" points="409,-78 409,-241.59 1075,-241.59 1075,-78 409,-78"/>
 </g>
 <g id="clust8" class="cluster">
 <title>cluster_StructuredListModule_exports</title>
 <polygon fill="none" stroke="black" points="50,-319.59 50,-371.59 456,-371.59 456,-319.59 50,-319.59"/>
 </g>
-<g id="clust6" class="cluster">
-<title>cluster_StructuredListModule_StructuredList_providers</title>
-<polygon fill="none" stroke="black" points="301,-78 301,-241.59 967,-241.59 967,-78 301,-78"/>
+<g id="clust7" class="cluster">
+<title>cluster_StructuredListModule_imports</title>
+<polygon fill="none" stroke="black" points="301,-189.59 301,-241.59 401,-241.59 401,-189.59 301,-189.59"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_StructuredListModule_declarations</title>
@@ -85,14 +85,14 @@
 <!-- StructuredList -->
 <g id="node4" class="node">
 <title>StructuredList</title>
-<polygon fill="#ffffb3" stroke="black" points="543.09,-233.59 446.91,-233.59 446.91,-197.59 543.09,-197.59 543.09,-233.59"/>
-<text text-anchor="middle" x="495" y="-211.39" font-family="Times,serif" font-size="14.00">StructuredList</text>
+<polygon fill="#ffffb3" stroke="black" points="651.09,-233.59 554.91,-233.59 554.91,-197.59 651.09,-197.59 651.09,-233.59"/>
+<text text-anchor="middle" x="603" y="-211.39" font-family="Times,serif" font-size="14.00">StructuredList</text>
 </g>
 <!-- StructuredList&#45;&gt;StructuredListModule -->
 <g id="edge4" class="edge">
 <title>StructuredList&#45;&gt;StructuredListModule</title>
-<path fill="none" stroke="black" d="M446.87,-215.59C388.32,-215.59 297.21,-215.59 297.21,-215.59 297.21,-215.59 297.21,-252.48 297.21,-252.48"/>
-<polygon fill="black" stroke="black" points="293.71,-252.48 297.21,-262.48 300.71,-252.48 293.71,-252.48"/>
+<path fill="none" stroke="black" d="M603,-233.61C603,-250.96 603,-274.59 603,-274.59 603,-274.59 323.64,-274.59 323.64,-274.59"/>
+<polygon fill="black" stroke="black" points="323.64,-271.09 313.64,-274.59 323.64,-278.09 323.64,-271.09"/>
 </g>
 <!-- ListColumn  -->
 <g id="node8" class="node">
@@ -103,8 +103,8 @@
 <!-- StructuredListModule&#45;&gt;ListColumn  -->
 <g id="edge7" class="edge">
 <title>StructuredListModule&#45;&gt;ListColumn </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M313.88,-286.59C357.1,-286.59 404.38,-286.59 404.38,-286.59 404.38,-286.59 404.38,-317.57 404.38,-317.57"/>
-<polygon fill="black" stroke="black" points="400.88,-317.57 404.38,-327.57 407.88,-317.57 400.88,-317.57"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M313.88,-286.59C346.18,-286.59 377.51,-286.59 377.51,-286.59 377.51,-286.59 377.51,-317.57 377.51,-317.57"/>
+<polygon fill="black" stroke="black" points="374.01,-317.57 377.51,-327.57 381.01,-317.57 374.01,-317.57"/>
 </g>
 <!-- ListHeader  -->
 <g id="node9" class="node">
@@ -149,10 +149,10 @@
 <title>{
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: StructuredList, multi: true
 }</title>
-<ellipse fill="#fdb462" stroke="black" cx="634" cy="-127.3" rx="325.07" ry="41.09"/>
-<text text-anchor="middle" x="634" y="-139.9" font-family="Times,serif" font-size="14.00">{</text>
-<text text-anchor="middle" x="634" y="-123.1" font-family="Times,serif" font-size="14.00"> &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: StructuredList, multi: true</text>
-<text text-anchor="middle" x="634" y="-106.3" font-family="Times,serif" font-size="14.00">}</text>
+<ellipse fill="#fdb462" stroke="black" cx="742" cy="-127.3" rx="325.07" ry="41.09"/>
+<text text-anchor="middle" x="742" y="-139.9" font-family="Times,serif" font-size="14.00">{</text>
+<text text-anchor="middle" x="742" y="-123.1" font-family="Times,serif" font-size="14.00"> &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: StructuredList, multi: true</text>
+<text text-anchor="middle" x="742" y="-106.3" font-family="Times,serif" font-size="14.00">}</text>
 </g>
 <!-- {
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: StructuredList, multi: true
@@ -161,20 +161,20 @@
 <title>{
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: StructuredList, multi: true
 }&#45;&gt;StructuredList</title>
-<path fill="none" stroke="black" d="M495,-164.74C495,-164.74 495,-187.34 495,-187.34"/>
-<polygon fill="black" stroke="black" points="491.5,-187.34 495,-197.34 498.5,-187.34 491.5,-187.34"/>
+<path fill="none" stroke="black" d="M603,-164.74C603,-164.74 603,-187.34 603,-187.34"/>
+<polygon fill="black" stroke="black" points="599.5,-187.34 603,-197.34 606.5,-187.34 599.5,-187.34"/>
 </g>
 <!-- IconModule -->
 <g id="node7" class="node">
 <title>IconModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="1067.43,-233.59 1064.43,-237.59 1043.43,-237.59 1040.43,-233.59 982.57,-233.59 982.57,-197.59 1067.43,-197.59 1067.43,-233.59"/>
-<text text-anchor="middle" x="1025" y="-211.39" font-family="Times,serif" font-size="14.00">IconModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="393.43,-233.59 390.43,-237.59 369.43,-237.59 366.43,-233.59 308.57,-233.59 308.57,-197.59 393.43,-197.59 393.43,-233.59"/>
+<text text-anchor="middle" x="351" y="-211.39" font-family="Times,serif" font-size="14.00">IconModule</text>
 </g>
 <!-- IconModule&#45;&gt;StructuredListModule -->
 <g id="edge6" class="edge">
 <title>IconModule&#45;&gt;StructuredListModule</title>
-<path fill="none" stroke="black" d="M1025,-233.61C1025,-250.96 1025,-274.59 1025,-274.59 1025,-274.59 323.65,-274.59 323.65,-274.59"/>
-<polygon fill="black" stroke="black" points="323.65,-271.09 313.65,-274.59 323.65,-278.09 323.65,-271.09"/>
+<path fill="none" stroke="black" d="M308.54,-215.59C301.87,-215.59 297.12,-215.59 297.12,-215.59 297.12,-215.59 297.12,-252.48 297.12,-252.48"/>
+<polygon fill="black" stroke="black" points="293.62,-252.48 297.12,-262.48 300.62,-252.48 293.62,-252.48"/>
 </g>
 </g>
 </svg>
