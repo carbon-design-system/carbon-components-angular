@@ -671,11 +671,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		this.updateSelected();
 	}
 
-	private _propagateChange(value: any) {
-		this._writtenValue = value;
-		this.propagateChangeCallback(value);
-	}
-
 	onBlur() {
 		this.onTouchedCallback();
 	}
@@ -950,5 +945,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		if ((this.type === "multi") && (topAfterReopen || this.selectionFeedback === "top")) {
 			this.view.reorderSelected(true);
 		}
+	}
+
+	private _propagateChange(value: any) {
+		this._writtenValue = value;
+		this.propagateChangeCallback(value);
 	}
 }
