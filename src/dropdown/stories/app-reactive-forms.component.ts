@@ -30,6 +30,7 @@ import { JsonPipe } from "@angular/common";
 					[invalidText]="invalidText"
 					[theme]="theme"
 					[selectionFeedback]="selectionFeedback"
+					[itemValueKey]="itemValueKey"
 					placeholder="Multi-select"
 					value="oid"
 					(selected)="selected.emit($event)"
@@ -60,6 +61,7 @@ export class ReactiveFormsStory implements OnInit {
 	@Input() invalid = false;
 	@Input() invalidText = "";
 	@Input() selectionFeedback = "top-after-reopen";
+	@Input() itemValueKey = "";
 	@Input() set disabled(value: boolean) {
 		if (!this.formGroup) { return; }
 		if (value) {
@@ -81,6 +83,6 @@ export class ReactiveFormsStory implements OnInit {
 	}
 
 	private selectRoles() {
-		this.formGroup.get("roles")?.setValue(1);
+		this.formGroup.get("roles")?.setValue("one");
 	}
 }

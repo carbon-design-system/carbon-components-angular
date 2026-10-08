@@ -1,4 +1,5 @@
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from "@angular/core/testing";
+import { advancedFakeAsync } from "../test-helpers/change-detection";
 import { By } from "@angular/platform-browser";
 
 import { FormsModule } from "@angular/forms";
@@ -144,4 +145,17 @@ describe("Search", () => {
 		fixture.detectChanges();
 		expect(containerElement.className.includes("cds--search--light")).toEqual(true);
 	});
+
+	it("should focus the input once the search is expanded", fakeAsync(() => {
+		component.expandable = true;
+		fixture.detectChanges();
+		expect(fixture.nativeElement.querySelector(".cds--search").classList).not.toContain("cds--search--expanded");
+
+		component.openSearch();
+		advancedFakeAsync(fixture);
+
+		expect(component.active).toBe(true);
+		expect(fixture.nativeElement.querySelector(".cds--search").classList).toContain("cds--search--expanded");
+		expect(document.activeElement).toBe(inputElement);
+	}));
 });

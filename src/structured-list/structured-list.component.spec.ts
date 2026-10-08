@@ -88,4 +88,37 @@ describe("StructuredList", () => {
 		element = fixture.debugElement.query(By.css("cds-structured-list"));
 		expect(element.nativeElement.querySelector(".cds--structured-list--condensed")).toBeTruthy();
 	});
+
+	it("should deselect the previously selected row", () => {
+		fixture = TestBed.createComponent(StructuredListTest);
+		fixture.detectChanges();
+		const rows = fixture.debugElement.queryAll(By.directive(ListRow));
+		const inputs = fixture.nativeElement.querySelectorAll("input[type=radio]");
+
+		inputs[0].dispatchEvent(new Event("change"));
+		fixture.detectChanges();
+		expect(rows[0].componentInstance.selected).toBe(true);
+		expect(rows[0].nativeElement.classList).toContain("cds--structured-list-row--selected");
+
+		inputs[1].dispatchEvent(new Event("change"));
+		fixture.detectChanges();
+
+		expect(rows[0].componentInstance.selected).toBe(false);
+		expect(rows[0].nativeElement.classList).not.toContain("cds--structured-list-row--selected");
+		expect(rows[1].componentInstance.selected).toBe(true);
+		expect(rows[1].nativeElement.classList).toContain("cds--structured-list-row--selected");
+	});
+
+	it("should select the row matching a value written by the form", () => {
+		fixture = TestBed.createComponent(StructuredListTest);
+		fixture.detectChanges();
+		element = fixture.debugElement.query(By.css("cds-structured-list"));
+
+		element.componentInstance.writeValue("row2");
+		fixture.detectChanges();
+
+		const rows = fixture.debugElement.queryAll(By.directive(ListRow));
+		expect(rows[1].componentInstance.selected).toBe(true);
+		expect(rows[1].nativeElement.classList).toContain("cds--structured-list-row--selected");
+	});
 });

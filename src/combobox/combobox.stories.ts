@@ -75,7 +75,8 @@ export default {
 		selectionFeedback: "top-after-reopen",
 		size: "md",
 		theme: "dark",
-		fluid: false
+		fluid: false,
+		itemValueKey: "content"
 	},
 	argTypes: {
 		size: {
@@ -123,6 +124,7 @@ const Template = (args) => ({
 			[theme]="theme"
 			[dropUp]="dropUp"
 			[fluid]="fluid"
+			[itemValueKey]="itemValueKey"
 			(selected)="selected($event)"
 			(submit)="submit($event)"
 			(search)="search($event)"
@@ -205,6 +207,7 @@ const MultiTemplate = (args) => ({
 			[dropUp]="dropUp"
 			[appendInline]="appendInline"
 			[fluid]="fluid"
+			[itemValueKey]="itemValueKey"
 			type="multi"
 			(selected)="selected($event)"
 			(submit)="submit($event)"
@@ -236,7 +239,8 @@ const ReactiveTemplate = (args) => ({
 			[label]="label"
 			[helperText]="helperText"
 			[items]="items"
-			[theme]="theme">
+			[theme]="theme"
+			[itemValueKey]="itemValueKey">
 		</app-reactive-combobox>
 	`
 });
@@ -279,6 +283,7 @@ const withAILabelTemplate = (args) => ({
 				[dropUp]="dropUp"
 				[fluid]="fluid"
 				[decorator]="decoratorTpl"
+				[itemValueKey]="itemValueKey"
 				(selected)="selected($event)"
 				(submit)="submit($event)"
 				(search)="search($event)"

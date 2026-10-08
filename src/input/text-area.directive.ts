@@ -1,4 +1,5 @@
-import { Directive, HostBinding, Input } from "@angular/core";
+import { Directive, HostBinding, Input, inject } from "@angular/core";
+import { NgControl } from "@angular/forms";
 
 /**
  * A directive for applying styling to a textarea element.
@@ -16,6 +17,8 @@ import { Directive, HostBinding, Input } from "@angular/core";
 	standalone: true
 })
 export class TextArea {
+	ngControl = inject(NgControl, { self: true, optional: true })!;
+
 	/**
 	 * @deprecated since v5 - Use `cdsLayer` directive instead
 	 * `light` or `dark` input theme
@@ -36,4 +39,10 @@ export class TextArea {
 	@HostBinding("attr.data-invalid") get getInvalidAttr() {
 		return this.invalid ? true : undefined;
 	}
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 }

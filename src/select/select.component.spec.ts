@@ -10,10 +10,7 @@ import { Select } from "./select.component";
 			<option value="option1"> Option 1 </option>
 		</cds-select>
 		`,
-	imports: [
-		FormsModule,
-		Select
-	]
+	imports: [FormsModule, Select]
 })
 class SelectTest {
 	model = null;

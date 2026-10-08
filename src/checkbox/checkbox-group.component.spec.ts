@@ -21,7 +21,7 @@ import { CheckboxModule } from "./checkbox.module";
 			<cds-checkbox id="checkbox-label-2">Checkbox label</cds-checkbox>
 		</cds-checkbox-group>
 	`,
-	imports: [FormsModule, CheckboxModule]
+	imports: [CheckboxModule]
 })
 class GroupBasicHost {
 	helperText: string;
@@ -41,7 +41,7 @@ class GroupBasicHost {
 		</cds-checkbox-group>
 		<ng-template #decTpl><span class="decorator-stub"></span></ng-template>
 	`,
-	imports: [FormsModule, CheckboxModule]
+	imports: [CheckboxModule]
 })
 class GroupDecoratorHost {}
 
@@ -54,7 +54,7 @@ class GroupDecoratorHost {}
 			<cds-checkbox id="checkbox-a2">Checkbox 2</cds-checkbox>
 		</cds-checkbox-group>
 	`,
-	imports: [FormsModule, CheckboxModule]
+	imports: [CheckboxModule]
 })
 class GroupReadOnlyInheritBothHost {
 	groupReadOnly = false;
@@ -69,7 +69,7 @@ class GroupReadOnlyInheritBothHost {
 			<cds-checkbox id="checkbox-2">Checkbox 2</cds-checkbox>
 		</cds-checkbox-group>
 	`,
-	imports: [FormsModule, CheckboxModule]
+	imports: [CheckboxModule]
 })
 class GroupInheritanceHost {
 	groupReadOnly = false;
@@ -82,7 +82,7 @@ class GroupInheritanceHost {
 			<cds-checkbox id="checkbox-b2">Checkbox 2</cds-checkbox>
 		</cds-checkbox-group>
 	`,
-	imports: [FormsModule, CheckboxModule]
+	imports: [CheckboxModule]
 })
 class GroupInvalidInheritBothHost {
 	groupInvalid = false;
@@ -95,7 +95,7 @@ class GroupInvalidInheritBothHost {
 			<cds-checkbox id="checkbox-2">Checkbox 2</cds-checkbox>
 		</cds-checkbox-group>
 	`,
-	imports: [FormsModule, CheckboxModule]
+	imports: [CheckboxModule]
 })
 class GroupInheritanceInvalidHost {
 	groupInvalid = false;
@@ -107,7 +107,6 @@ describe("CheckboxGroup", () => {
 		TestBed.configureTestingModule({
 			imports: [
 				FormsModule,
-				CheckboxModule,
 				GroupBasicHost,
 				GroupDecoratorHost,
 				GroupReadOnlyInheritBothHost,

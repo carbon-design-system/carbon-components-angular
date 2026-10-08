@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges } from "@angular/core";
+import { NgClass } from "@angular/common";
 
 @Component({
 	selector: "cds-skeleton-text, ibm-skeleton-text",
@@ -14,7 +15,8 @@ import { Component, Input, OnChanges } from "@angular/core";
 			</p>
 		}
 	`,
-	standalone: true
+	standalone: true,
+	imports: [NgClass]
 })
 export class SkeletonText implements OnChanges {
 	@Input() lines = 5;

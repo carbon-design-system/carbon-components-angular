@@ -61,7 +61,9 @@ describe("AILabel", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			imports: [AILabelModule, TestAILabelHostComponent]
+			imports: [
+				TestAILabelHostComponent
+			]
 		});
 		fixture = TestBed.createComponent(TestAILabelHostComponent);
 		component = fixture.componentInstance;
@@ -242,7 +244,9 @@ describe("AILabelActions", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			imports: [AILabelModule, TestAILabelActionsComponent]
+			imports: [
+				TestAILabelActionsComponent
+			]
 		});
 		fixture = TestBed.createComponent(TestAILabelActionsComponent);
 		fixture.detectChanges();

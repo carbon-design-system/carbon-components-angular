@@ -1,6 +1,7 @@
 import {
 	AfterViewInit,
 	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	HostBinding,
 	Input,
@@ -109,7 +110,7 @@ export enum SnippetType {
 					type="button"
 					kind="primary"
 					size="md"
-					(click)="onCopyButtonClicked($event)"
+					(click)="onCopyButtonClicked()"
 					[buttonNgClass]="{
 						'cds--snippet--light': theme === 'light',
 						'cds--snippet--inline': display === 'inline',
@@ -245,6 +246,8 @@ export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit
 	hasRight = false;
 	hasLeft = false;
 
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+
 	/** Inserted by Angular inject() migration for backwards compatibility */
 	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
 	constructor(...args: unknown[]);
@@ -296,9 +299,11 @@ export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit
 				.writeText(this.code.nativeElement.innerText || this.code.nativeElement.textContent).then(() => {
 					this.showFeedback = true;
 					this.animating = true;
+					this.changeDetectorRef.markForCheck();
 					setTimeout(() => {
 						this.showFeedback = false;
 						this.animating = false;
+						this.changeDetectorRef.markForCheck();
 					}, this.feedbackTimeout);
 				});
 		}
@@ -315,6 +320,7 @@ export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit
 			this.eventService.on(window as any, "resize", () => {
 				this.canExpand();
 				this.handleScroll();
+				this.changeDetectorRef.markForCheck();
 			});
 		}
 	}

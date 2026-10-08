@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, fakeAsync, TestBed } from "@angular/core/testing";
 import { By	} from "@angular/platform-browser";
+import { advancedFakeAsync } from "../../test-helpers/change-detection";
 
 import { DropdownList } from "./dropdown-list.component";
 import { ListItem } from "./../list-item.interface";
@@ -77,6 +78,64 @@ describe("Dropdown list", () => {
 		const enabledEls = fixture.debugElement.queryAll(By.css(".cds--list-box__menu-item:not([disabled])"));
 		expect(enabledEls.length).toEqual(2);
 	});
+
+	it("should re-render the list when the items change", () => {
+		expect(fixture.nativeElement.querySelectorAll("li").length).toBe(2);
+
+		wrapper.items = [
+			({ content: "one", selected: false } as ListItem),
+			({ content: "two", selected: false } as ListItem),
+			({ content: "three", selected: false } as ListItem)
+		];
+		fixture.detectChanges();
+
+		const renderedItems = fixture.nativeElement.querySelectorAll("li");
+		expect(renderedItems.length).toBe(3);
+		expect(renderedItems[2].textContent.trim()).toBe("three");
+	});
+
+	it("should mark an item active when it is passed as selected", () => {
+		wrapper.items = [
+			({ content: "one", selected: true } as ListItem),
+			({ content: "two", selected: false } as ListItem)
+		];
+		fixture.detectChanges();
+
+		const renderedItems = fixture.nativeElement.querySelectorAll("li");
+		expect(renderedItems[0].classList.contains("cds--list-box__menu-item--active")).toBe(true);
+		expect(renderedItems[0].getAttribute("aria-selected")).toBe("true");
+	});
+
+	it("should highlight the selected item when the list is focused", fakeAsync(() => {
+		const list = fixture.debugElement.query(By.css("cds-dropdown-list")).componentInstance;
+		expect(fixture.nativeElement.querySelector("ul").getAttribute("aria-activedescendant")).toBeFalsy();
+
+		list.initFocus();
+		advancedFakeAsync(fixture);
+
+		expect(list.highlightedItem).toBeTruthy();
+		expect(fixture.nativeElement.querySelector("ul").getAttribute("aria-activedescendant")).toBe(list.highlightedItem);
+		expect(fixture.nativeElement.querySelector(`#${list.highlightedItem}`).classList)
+			.toContain("cds--list-box__menu-item--highlighted");
+	}));
+
+	it("should follow the selected item when the list is reordered", fakeAsync(() => {
+		const list = fixture.debugElement.query(By.css("cds-dropdown-list")).componentInstance;
+		wrapper.items = [
+			({ content: "one", selected: false } as ListItem),
+			({ content: "two", selected: true } as ListItem)
+		];
+		fixture.detectChanges();
+
+		list.reorderSelected(true);
+		advancedFakeAsync(fixture);
+
+		const renderedItems = fixture.nativeElement.querySelectorAll("li");
+		expect(renderedItems[0].textContent.trim()).toBe("two");
+		// the selected item moved to the top, so the highlight has to follow it there
+		expect(list.highlightedItem).toBe(renderedItems[0].id);
+		expect(renderedItems[0].classList).toContain("cds--list-box__menu-item--highlighted");
+	}));
 });
 
 describe("Dropdown multi list", () => {
@@ -84,7 +143,6 @@ describe("Dropdown multi list", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			imports: [
-				DropdownList,
 				MultiTest,
 				ScrollableList
 			]

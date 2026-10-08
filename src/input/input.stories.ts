@@ -4,12 +4,20 @@ import { AILabelModule } from "../ai-label";
 import { ButtonModule } from "../button";
 import { IconModule } from "../icon";
 import { AI_LABEL_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
+import { FormsModule } from "@angular/forms";
 
 export default {
 	title: "Components/Input",
 	decorators: [
 		moduleMetadata({
-			imports: [TextInput, Label, AILabelModule, ButtonModule, IconModule]
+			imports: [
+				TextInput,
+				Label,
+				AILabelModule,
+				ButtonModule,
+				IconModule,
+				FormsModule
+			]
 		})
 	],
 	args: {
