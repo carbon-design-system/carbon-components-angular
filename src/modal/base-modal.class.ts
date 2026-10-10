@@ -13,11 +13,11 @@ import {
 @Directive({
 	selector: "[cdsBaseModal], [ibmBaseModal]"
 })
-export class BaseModal {
+export class BaseModal<R = any> {
 	/**
 	 * Base event emitter to propagate close events
 	 */
-	@Output() close = new EventEmitter();
+	@Output() close = new EventEmitter<R>();
 
 	/**
 	 * Controls the open state of the modal
@@ -27,7 +27,7 @@ export class BaseModal {
 	/**
 	 * Default method to handle closing the modal
 	 */
-	closeModal(): void {
-		this.close.emit();
+	closeModal(value?: R): void {
+		this.close.emit(value);
 	}
 }

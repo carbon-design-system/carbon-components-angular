@@ -3,7 +3,8 @@ import {
 	ViewContainerRef,
 	Injector,
 	EnvironmentInjector,
-	inject
+	inject,
+	Type
 } from "@angular/core";
 import { Injectable } from "@angular/core";
 
@@ -35,24 +36,24 @@ export class PlaceholderService {
 	/**
 	 * Creates and returns component in the view.
 	 */
-	createComponent(
-		component: ComponentRef<any>,
+	createComponent<T>(
+		component: Type<T>,
 		injector: Injector,
 		id?: any,
 		environment: EnvironmentInjector = undefined
-	): ComponentRef<any> {
+	): ComponentRef<T> {
 		if (id) {
 			if (!this.viewContainerMap.has(id)) {
 				console.error(`No view container with id ${id} found`);
 				return;
 			}
-			return this.viewContainerMap.get(id).createComponent(component as any, { index: this.viewContainerMap.size, injector });
+			return this.viewContainerMap.get(id).createComponent(component, { index: this.viewContainerMap.size, injector });
 		}
 		if (!this.viewContainerRef) {
 			console.error("No view container defined! Likely due to a missing `cds-placeholder`");
 			return;
 		}
-		return this.viewContainerRef.createComponent(component as any,
+		return this.viewContainerRef.createComponent(component,
 			{
 				index: this.viewContainerRef.length,
 				injector,

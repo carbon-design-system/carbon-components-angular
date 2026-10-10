@@ -12,31 +12,33 @@ import { InputModal } from "./input-modal.component";
 	selector: "app-data-passing-modal",
 	template: `
 		<button class="cds--btn cds--btn--primary" (click)="openModal()">Open Modal</button>
-		<h3>Data passed from input modal on input change: </h3>{{ modalInputValue }}
+		<h3>Data passed from input modal on close: </h3>{{ modalInputValue }}
 	`
 })
-export class DataPassingModal implements AfterContentInit {
+export class DataPassingModal {
 	@Input() modalText = "Hello, World";
 	@Input() size = "md";
 
 	protected modalInputValue = "";
-	protected data: Observable<string> = new Subject<string>();
 
 	constructor(protected modalService: ModalService) { }
 
 	openModal() {
-		this.modalService.create({
+		const componentRef = this.modalService.create({
 			component: InputModal,
 			inputs: {
 				modalText: this.modalText,
 				inputValue: this.modalInputValue,
 				size: this.size,
-				data: this.data
 			}
 		});
-	}
 
-	ngAfterContentInit() {
-		this.data.subscribe(value => this.modalInputValue = value);
+		componentRef.instance.close.subscribe((result: string) => {
+			if (result === undefined) {
+				console.log("Modal closed without value");
+			} else {
+				this.modalInputValue = result;
+			}
+		});
 	}
 }
