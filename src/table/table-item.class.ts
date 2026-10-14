@@ -132,7 +132,7 @@ export class TableItem {
 
 		if (
 			this.data.toString &&
-			this.data.constructor !== ({}).constructor
+			this.data.toString !== ({}).toString
 		) {
 			return this.data.toString();
 		}
