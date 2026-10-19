@@ -24,107 +24,107 @@
 <title>cluster_PanelModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="31.5,-70 31.5,-268 464.5,-268 464.5,-70 31.5,-70"/>
 </g>
+<g id="clust6" class="cluster">
+<title>cluster_PanelModule_imports</title>
+<polygon fill="none" stroke="black" points="354.5,-78 354.5,-130 456.5,-130 456.5,-78 354.5,-78"/>
+</g>
 <g id="clust2" class="cluster">
 <title>cluster_PanelModule_declarations</title>
-<polygon fill="none" stroke="black" points="149.5,-78 149.5,-130 456.5,-130 456.5,-78 149.5,-78"/>
+<polygon fill="none" stroke="black" points="39.5,-78 39.5,-130 346.5,-130 346.5,-78 39.5,-78"/>
 </g>
 <g id="clust7" class="cluster">
 <title>cluster_PanelModule_exports</title>
-<polygon fill="none" stroke="black" points="90.5,-208 90.5,-260 404.5,-260 404.5,-208 90.5,-208"/>
-</g>
-<g id="clust6" class="cluster">
-<title>cluster_PanelModule_imports</title>
-<polygon fill="none" stroke="black" points="39.5,-78 39.5,-130 141.5,-130 141.5,-78 39.5,-78"/>
+<polygon fill="none" stroke="black" points="81.5,-208 81.5,-260 395.5,-260 395.5,-208 81.5,-208"/>
 </g>
 <!-- Panel -->
 <g id="node1" class="node">
 <title>Panel</title>
-<polygon fill="#ffffb3" stroke="black" points="448.5,-122 394.5,-122 394.5,-86 448.5,-86 448.5,-122"/>
-<text text-anchor="middle" x="421.5" y="-99.8" font-family="Times,serif" font-size="14.00">Panel</text>
+<polygon fill="#ffffb3" stroke="black" points="338.5,-122 284.5,-122 284.5,-86 338.5,-86 338.5,-122"/>
+<text text-anchor="middle" x="311.5" y="-99.8" font-family="Times,serif" font-size="14.00">Panel</text>
 </g>
 <!-- PanelModule -->
 <g id="node4" class="node">
 <title>PanelModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="323.65,-187 320.65,-191 299.65,-191 296.65,-187 233.35,-187 233.35,-151 323.65,-151 323.65,-187"/>
-<text text-anchor="middle" x="278.5" y="-164.8" font-family="Times,serif" font-size="14.00">PanelModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="314.65,-187 311.65,-191 290.65,-191 287.65,-187 224.35,-187 224.35,-151 314.65,-151 314.65,-187"/>
+<text text-anchor="middle" x="269.5" y="-164.8" font-family="Times,serif" font-size="14.00">PanelModule</text>
 </g>
 <!-- Panel&#45;&gt;PanelModule -->
 <g id="edge1" class="edge">
 <title>Panel&#45;&gt;PanelModule</title>
-<path fill="none" stroke="black" d="M422.5,-122.02C422.5,-139.37 422.5,-163 422.5,-163 422.5,-163 333.67,-163 333.67,-163"/>
-<polygon fill="black" stroke="black" points="333.67,-159.5 323.67,-163 333.67,-166.5 333.67,-159.5"/>
+<path fill="none" stroke="black" d="M299.66,-122.11C299.66,-122.11 299.66,-140.99 299.66,-140.99"/>
+<polygon fill="black" stroke="black" points="296.16,-140.99 299.66,-150.99 303.16,-140.99 296.16,-140.99"/>
 </g>
 <!-- SwitcherList -->
 <g id="node2" class="node">
 <title>SwitcherList</title>
-<polygon fill="#ffffb3" stroke="black" points="376.04,-122 288.96,-122 288.96,-86 376.04,-86 376.04,-122"/>
-<text text-anchor="middle" x="332.5" y="-99.8" font-family="Times,serif" font-size="14.00">SwitcherList</text>
+<polygon fill="#ffffb3" stroke="black" points="266.04,-122 178.96,-122 178.96,-86 266.04,-86 266.04,-122"/>
+<text text-anchor="middle" x="222.5" y="-99.8" font-family="Times,serif" font-size="14.00">SwitcherList</text>
 </g>
 <!-- SwitcherList&#45;&gt;PanelModule -->
 <g id="edge2" class="edge">
 <title>SwitcherList&#45;&gt;PanelModule</title>
-<path fill="none" stroke="black" d="M306.28,-122.11C306.28,-122.11 306.28,-140.99 306.28,-140.99"/>
-<polygon fill="black" stroke="black" points="302.78,-140.99 306.28,-150.99 309.78,-140.99 302.78,-140.99"/>
+<path fill="none" stroke="black" d="M245.22,-122.11C245.22,-122.11 245.22,-140.99 245.22,-140.99"/>
+<polygon fill="black" stroke="black" points="241.72,-140.99 245.22,-150.99 248.72,-140.99 241.72,-140.99"/>
 </g>
 <!-- SwitcherListItem -->
 <g id="node3" class="node">
 <title>SwitcherListItem</title>
-<polygon fill="#ffffb3" stroke="black" points="271.2,-122 157.8,-122 157.8,-86 271.2,-86 271.2,-122"/>
-<text text-anchor="middle" x="214.5" y="-99.8" font-family="Times,serif" font-size="14.00">SwitcherListItem</text>
+<polygon fill="#ffffb3" stroke="black" points="161.2,-122 47.8,-122 47.8,-86 161.2,-86 161.2,-122"/>
+<text text-anchor="middle" x="104.5" y="-99.8" font-family="Times,serif" font-size="14.00">SwitcherListItem</text>
 </g>
 <!-- SwitcherListItem&#45;&gt;PanelModule -->
 <g id="edge3" class="edge">
 <title>SwitcherListItem&#45;&gt;PanelModule</title>
-<path fill="none" stroke="black" d="M252.14,-122.11C252.14,-122.11 252.14,-140.99 252.14,-140.99"/>
-<polygon fill="black" stroke="black" points="248.64,-140.99 252.14,-150.99 255.64,-140.99 248.64,-140.99"/>
+<path fill="none" stroke="black" d="M125.12,-122.02C125.12,-139.37 125.12,-163 125.12,-163 125.12,-163 214.21,-163 214.21,-163"/>
+<polygon fill="black" stroke="black" points="214.22,-166.5 224.21,-163 214.21,-159.5 214.22,-166.5"/>
 </g>
 <!-- Panel  -->
 <g id="node6" class="node">
 <title>Panel </title>
-<polygon fill="#fb8072" stroke="black" points="396.5,-252 342.5,-252 342.5,-216 396.5,-216 396.5,-252"/>
-<text text-anchor="middle" x="369.5" y="-229.8" font-family="Times,serif" font-size="14.00">Panel </text>
+<polygon fill="#fb8072" stroke="black" points="387.5,-252 333.5,-252 333.5,-216 387.5,-216 387.5,-252"/>
+<text text-anchor="middle" x="360.5" y="-229.8" font-family="Times,serif" font-size="14.00">Panel </text>
 </g>
 <!-- PanelModule&#45;&gt;Panel  -->
 <g id="edge5" class="edge">
 <title>PanelModule&#45;&gt;Panel </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M323.67,-175C342.2,-175 359.38,-175 359.38,-175 359.38,-175 359.38,-205.98 359.38,-205.98"/>
-<polygon fill="black" stroke="black" points="355.88,-205.98 359.38,-215.98 362.88,-205.98 355.88,-205.98"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M314.85,-175C333.45,-175 350.7,-175 350.7,-175 350.7,-175 350.7,-205.98 350.7,-205.98"/>
+<polygon fill="black" stroke="black" points="347.2,-205.98 350.7,-215.98 354.2,-205.98 347.2,-205.98"/>
 </g>
 <!-- SwitcherList  -->
 <g id="node7" class="node">
 <title>SwitcherList </title>
-<polygon fill="#fb8072" stroke="black" points="324.04,-252 232.96,-252 232.96,-216 324.04,-216 324.04,-252"/>
-<text text-anchor="middle" x="278.5" y="-229.8" font-family="Times,serif" font-size="14.00">SwitcherList </text>
+<polygon fill="#fb8072" stroke="black" points="315.04,-252 223.96,-252 223.96,-216 315.04,-216 315.04,-252"/>
+<text text-anchor="middle" x="269.5" y="-229.8" font-family="Times,serif" font-size="14.00">SwitcherList </text>
 </g>
 <!-- PanelModule&#45;&gt;SwitcherList  -->
 <g id="edge6" class="edge">
 <title>PanelModule&#45;&gt;SwitcherList </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M278.5,-187.11C278.5,-187.11 278.5,-205.99 278.5,-205.99"/>
-<polygon fill="black" stroke="black" points="275,-205.99 278.5,-215.99 282,-205.99 275,-205.99"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M269.5,-187.11C269.5,-187.11 269.5,-205.99 269.5,-205.99"/>
+<polygon fill="black" stroke="black" points="266,-205.99 269.5,-215.99 273,-205.99 266,-205.99"/>
 </g>
 <!-- SwitcherListItem  -->
 <g id="node8" class="node">
 <title>SwitcherListItem </title>
-<polygon fill="#fb8072" stroke="black" points="214.7,-252 98.3,-252 98.3,-216 214.7,-216 214.7,-252"/>
-<text text-anchor="middle" x="156.5" y="-229.8" font-family="Times,serif" font-size="14.00">SwitcherListItem </text>
+<polygon fill="#fb8072" stroke="black" points="205.7,-252 89.3,-252 89.3,-216 205.7,-216 205.7,-252"/>
+<text text-anchor="middle" x="147.5" y="-229.8" font-family="Times,serif" font-size="14.00">SwitcherListItem </text>
 </g>
 <!-- PanelModule&#45;&gt;SwitcherListItem  -->
 <g id="edge7" class="edge">
 <title>PanelModule&#45;&gt;SwitcherListItem </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M233.25,-175C209.95,-175 186.38,-175 186.38,-175 186.38,-175 186.38,-205.98 186.38,-205.98"/>
-<polygon fill="black" stroke="black" points="182.88,-205.98 186.38,-215.98 189.88,-205.98 182.88,-205.98"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M224.14,-175C207.33,-175 192.29,-175 192.29,-175 192.29,-175 192.29,-205.98 192.29,-205.98"/>
+<polygon fill="black" stroke="black" points="188.79,-205.98 192.29,-215.98 195.79,-205.98 188.79,-205.98"/>
 </g>
 <!-- I18nModule -->
 <g id="node5" class="node">
 <title>I18nModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="133.21,-122 130.21,-126 109.21,-126 106.21,-122 47.79,-122 47.79,-86 133.21,-86 133.21,-122"/>
-<text text-anchor="middle" x="90.5" y="-99.8" font-family="Times,serif" font-size="14.00">I18nModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="448.21,-122 445.21,-126 424.21,-126 421.21,-122 362.79,-122 362.79,-86 448.21,-86 448.21,-122"/>
+<text text-anchor="middle" x="405.5" y="-99.8" font-family="Times,serif" font-size="14.00">I18nModule</text>
 </g>
 <!-- I18nModule&#45;&gt;PanelModule -->
 <g id="edge4" class="edge">
 <title>I18nModule&#45;&gt;PanelModule</title>
-<path fill="none" stroke="black" d="M115.63,-122.02C115.63,-139.37 115.63,-163 115.63,-163 115.63,-163 223.13,-163 223.13,-163"/>
-<polygon fill="black" stroke="black" points="223.13,-166.5 233.13,-163 223.13,-159.5 223.13,-166.5"/>
+<path fill="none" stroke="black" d="M375.2,-122.02C375.2,-139.37 375.2,-163 375.2,-163 375.2,-163 324.94,-163 324.94,-163"/>
+<polygon fill="black" stroke="black" points="324.94,-159.5 314.94,-163 324.94,-166.5 324.94,-159.5"/>
 </g>
 </g>
 </svg>
