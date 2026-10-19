@@ -16,7 +16,7 @@
     "@angular/core": "^21.2.0",
     "@angular/forms": "^21.2.0",
     "@angular/platform-browser": "^21.2.0",
-    "@angular/router": "^21.2.0",
+    "@angular/router": "^21.2.24",
     "@carbon/icons": "^11.79.0",
     "@carbon/styles": "^1.105.0",
     "carbon-components-angular": "^5.69.0",
