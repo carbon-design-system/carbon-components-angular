@@ -28,13 +28,13 @@
 <title>cluster_TimePickerModule_imports</title>
 <polygon fill="none" stroke="black" points="670,-189.59 670,-241.59 846,-241.59 846,-189.59 670,-189.59"/>
 </g>
-<g id="clust3" class="cluster">
-<title>cluster_TimePickerModule_TimePicker_providers</title>
-<polygon fill="none" stroke="black" points="16,-78 16,-241.59 662,-241.59 662,-78 16,-78"/>
-</g>
 <g id="clust5" class="cluster">
 <title>cluster_TimePickerModule_exports</title>
 <polygon fill="none" stroke="black" points="603,-319.59 603,-371.59 703,-371.59 703,-319.59 603,-319.59"/>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_TimePickerModule_TimePicker_providers</title>
+<polygon fill="none" stroke="black" points="16,-78 16,-241.59 662,-241.59 662,-78 16,-78"/>
 </g>
 <!-- TimePicker -->
 <g id="node1" class="node">
