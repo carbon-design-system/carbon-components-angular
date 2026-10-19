@@ -24,79 +24,75 @@
 <title>cluster_RadioModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-379.59 1390,-379.59 1390,-70 8,-70"/>
 </g>
-<g id="clust5" class="cluster">
-<title>cluster_RadioModule_imports</title>
-<polygon fill="none" stroke="black" points="1282,-189.59 1282,-241.59 1382,-241.59 1382,-189.59 1282,-189.59"/>
+<g id="clust6" class="cluster">
+<title>cluster_RadioModule_exports</title>
+<polygon fill="none" stroke="black" points="353,-319.59 353,-371.59 529,-371.59 529,-319.59 353,-319.59"/>
 </g>
 <g id="clust3" class="cluster">
 <title>cluster_RadioModule_Radio_providers</title>
-<polygon fill="none" stroke="black" points="674,-78 674,-241.59 1274,-241.59 1274,-78 674,-78"/>
-</g>
-<g id="clust2" class="cluster">
-<title>cluster_RadioModule_declarations</title>
-<polygon fill="none" stroke="black" points="427,-189.59 427,-241.59 529,-241.59 529,-189.59 427,-189.59"/>
+<polygon fill="none" stroke="black" points="782,-78 782,-241.59 1382,-241.59 1382,-78 782,-78"/>
 </g>
 <g id="clust4" class="cluster">
 <title>cluster_RadioModule_RadioGroup_providers</title>
-<polygon fill="none" stroke="black" points="16,-78 16,-176.59 666,-176.59 666,-78 16,-78"/>
+<polygon fill="none" stroke="black" points="124,-78 124,-241.59 774,-241.59 774,-78 124,-78"/>
 </g>
-<g id="clust6" class="cluster">
-<title>cluster_RadioModule_exports</title>
-<polygon fill="none" stroke="black" points="878,-319.59 878,-371.59 1054,-371.59 1054,-319.59 878,-319.59"/>
+<g id="clust5" class="cluster">
+<title>cluster_RadioModule_imports</title>
+<polygon fill="none" stroke="black" points="16,-189.59 16,-241.59 116,-241.59 116,-189.59 16,-189.59"/>
 </g>
 <!-- Radio -->
 <g id="node1" class="node">
 <title>Radio</title>
-<polygon fill="#ffffb3" stroke="black" points="1001,-233.59 947,-233.59 947,-197.59 1001,-197.59 1001,-233.59"/>
-<text text-anchor="middle" x="974" y="-211.39" font-family="Times,serif" font-size="14.00">Radio</text>
+<polygon fill="#ffffb3" stroke="black" points="976,-233.59 922,-233.59 922,-197.59 976,-197.59 976,-233.59"/>
+<text text-anchor="middle" x="949" y="-211.39" font-family="Times,serif" font-size="14.00">Radio</text>
 </g>
 <!-- RadioModule -->
 <g id="node3" class="node">
 <title>RadioModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="1020.49,-298.59 1017.49,-302.59 996.49,-302.59 993.49,-298.59 927.51,-298.59 927.51,-262.59 1020.49,-262.59 1020.49,-298.59"/>
-<text text-anchor="middle" x="974" y="-276.39" font-family="Times,serif" font-size="14.00">RadioModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="495.49,-298.59 492.49,-302.59 471.49,-302.59 468.49,-298.59 402.51,-298.59 402.51,-262.59 495.49,-262.59 495.49,-298.59"/>
+<text text-anchor="middle" x="449" y="-276.39" font-family="Times,serif" font-size="14.00">RadioModule</text>
 </g>
 <!-- Radio&#45;&gt;RadioModule -->
 <g id="edge1" class="edge">
 <title>Radio&#45;&gt;RadioModule</title>
-<path fill="none" stroke="black" d="M974,-233.7C974,-233.7 974,-252.58 974,-252.58"/>
-<polygon fill="black" stroke="black" points="970.5,-252.58 974,-262.58 977.5,-252.58 970.5,-252.58"/>
+<path fill="none" stroke="black" d="M949,-233.7C949,-252.93 949,-280.59 949,-280.59 949,-280.59 505.59,-280.59 505.59,-280.59"/>
+<polygon fill="black" stroke="black" points="505.59,-277.09 495.59,-280.59 505.59,-284.09 505.59,-277.09"/>
 </g>
 <!-- RadioGroup -->
 <g id="node2" class="node">
 <title>RadioGroup</title>
-<polygon fill="#ffffb3" stroke="black" points="520.71,-233.59 435.29,-233.59 435.29,-197.59 520.71,-197.59 520.71,-233.59"/>
-<text text-anchor="middle" x="478" y="-211.39" font-family="Times,serif" font-size="14.00">RadioGroup</text>
+<polygon fill="#ffffb3" stroke="black" points="491.71,-233.59 406.29,-233.59 406.29,-197.59 491.71,-197.59 491.71,-233.59"/>
+<text text-anchor="middle" x="449" y="-211.39" font-family="Times,serif" font-size="14.00">RadioGroup</text>
 </g>
 <!-- RadioGroup&#45;&gt;RadioModule -->
 <g id="edge3" class="edge">
 <title>RadioGroup&#45;&gt;RadioModule</title>
-<path fill="none" stroke="black" d="M520.79,-215.59C634.8,-215.59 937.25,-215.59 937.25,-215.59 937.25,-215.59 937.25,-252.48 937.25,-252.48"/>
-<polygon fill="black" stroke="black" points="933.75,-252.48 937.25,-262.48 940.75,-252.48 933.75,-252.48"/>
+<path fill="none" stroke="black" d="M449,-233.7C449,-233.7 449,-252.58 449,-252.58"/>
+<polygon fill="black" stroke="black" points="445.5,-252.58 449,-262.58 452.5,-252.58 445.5,-252.58"/>
 </g>
 <!-- Radio  -->
 <g id="node7" class="node">
 <title>Radio </title>
-<polygon fill="#fb8072" stroke="black" points="1046,-363.59 992,-363.59 992,-327.59 1046,-327.59 1046,-363.59"/>
-<text text-anchor="middle" x="1019" y="-341.39" font-family="Times,serif" font-size="14.00">Radio </text>
+<polygon fill="#fb8072" stroke="black" points="521,-363.59 467,-363.59 467,-327.59 521,-327.59 521,-363.59"/>
+<text text-anchor="middle" x="494" y="-341.39" font-family="Times,serif" font-size="14.00">Radio </text>
 </g>
 <!-- RadioModule&#45;&gt;Radio  -->
 <g id="edge6" class="edge">
 <title>RadioModule&#45;&gt;Radio </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1006.25,-298.7C1006.25,-298.7 1006.25,-317.58 1006.25,-317.58"/>
-<polygon fill="black" stroke="black" points="1002.75,-317.58 1006.25,-327.58 1009.75,-317.58 1002.75,-317.58"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M481.25,-298.7C481.25,-298.7 481.25,-317.58 481.25,-317.58"/>
+<polygon fill="black" stroke="black" points="477.75,-317.58 481.25,-327.58 484.75,-317.58 477.75,-317.58"/>
 </g>
 <!-- RadioGroup  -->
 <g id="node8" class="node">
 <title>RadioGroup </title>
-<polygon fill="#fb8072" stroke="black" points="974.21,-363.59 885.79,-363.59 885.79,-327.59 974.21,-327.59 974.21,-363.59"/>
-<text text-anchor="middle" x="930" y="-341.39" font-family="Times,serif" font-size="14.00">RadioGroup </text>
+<polygon fill="#fb8072" stroke="black" points="449.21,-363.59 360.79,-363.59 360.79,-327.59 449.21,-327.59 449.21,-363.59"/>
+<text text-anchor="middle" x="405" y="-341.39" font-family="Times,serif" font-size="14.00">RadioGroup </text>
 </g>
 <!-- RadioModule&#45;&gt;RadioGroup  -->
 <g id="edge7" class="edge">
 <title>RadioModule&#45;&gt;RadioGroup </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M950.93,-298.7C950.93,-298.7 950.93,-317.58 950.93,-317.58"/>
-<polygon fill="black" stroke="black" points="947.43,-317.58 950.93,-327.58 954.43,-317.58 947.43,-317.58"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M425.93,-298.7C425.93,-298.7 425.93,-317.58 425.93,-317.58"/>
+<polygon fill="black" stroke="black" points="422.43,-317.58 425.93,-327.58 429.43,-317.58 422.43,-317.58"/>
 </g>
 <!-- {
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: Radio, multi: true
@@ -105,10 +101,10 @@
 <title>{
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: Radio, multi: true
 }</title>
-<ellipse fill="#fdb462" stroke="black" cx="974" cy="-127.3" rx="292.09" ry="41.09"/>
-<text text-anchor="middle" x="974" y="-139.9" font-family="Times,serif" font-size="14.00">{</text>
-<text text-anchor="middle" x="974" y="-123.1" font-family="Times,serif" font-size="14.00"> &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: Radio, multi: true</text>
-<text text-anchor="middle" x="974" y="-106.3" font-family="Times,serif" font-size="14.00">}</text>
+<ellipse fill="#fdb462" stroke="black" cx="1082" cy="-127.3" rx="292.09" ry="41.09"/>
+<text text-anchor="middle" x="1082" y="-139.9" font-family="Times,serif" font-size="14.00">{</text>
+<text text-anchor="middle" x="1082" y="-123.1" font-family="Times,serif" font-size="14.00"> &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: Radio, multi: true</text>
+<text text-anchor="middle" x="1082" y="-106.3" font-family="Times,serif" font-size="14.00">}</text>
 </g>
 <!-- {
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: Radio, multi: true
@@ -117,8 +113,8 @@
 <title>{
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: Radio, multi: true
 }&#45;&gt;Radio</title>
-<path fill="none" stroke="black" d="M974,-168.6C974,-168.6 974,-187.26 974,-187.26"/>
-<polygon fill="black" stroke="black" points="970.5,-187.26 974,-197.26 977.5,-187.26 970.5,-187.26"/>
+<path fill="none" stroke="black" d="M949,-164.23C949,-164.23 949,-187.58 949,-187.58"/>
+<polygon fill="black" stroke="black" points="945.5,-187.58 949,-197.58 952.5,-187.58 945.5,-187.58"/>
 </g>
 <!-- {
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: RadioGroup, multi: true
@@ -127,10 +123,10 @@
 <title>{
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: RadioGroup, multi: true
 }</title>
-<ellipse fill="#fdb462" stroke="black" cx="341" cy="-127.3" rx="317.17" ry="41.09"/>
-<text text-anchor="middle" x="341" y="-139.9" font-family="Times,serif" font-size="14.00">{</text>
-<text text-anchor="middle" x="341" y="-123.1" font-family="Times,serif" font-size="14.00"> &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: RadioGroup, multi: true</text>
-<text text-anchor="middle" x="341" y="-106.3" font-family="Times,serif" font-size="14.00">}</text>
+<ellipse fill="#fdb462" stroke="black" cx="449" cy="-127.3" rx="317.17" ry="41.09"/>
+<text text-anchor="middle" x="449" y="-139.9" font-family="Times,serif" font-size="14.00">{</text>
+<text text-anchor="middle" x="449" y="-123.1" font-family="Times,serif" font-size="14.00"> &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: RadioGroup, multi: true</text>
+<text text-anchor="middle" x="449" y="-106.3" font-family="Times,serif" font-size="14.00">}</text>
 </g>
 <!-- {
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: RadioGroup, multi: true
@@ -139,20 +135,20 @@
 <title>{
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: RadioGroup, multi: true
 }&#45;&gt;RadioGroup</title>
-<path fill="none" stroke="black" d="M478,-164.74C478,-164.74 478,-187.34 478,-187.34"/>
-<polygon fill="black" stroke="black" points="474.5,-187.34 478,-197.34 481.5,-187.34 474.5,-187.34"/>
+<path fill="none" stroke="black" d="M449,-168.6C449,-168.6 449,-187.26 449,-187.26"/>
+<polygon fill="black" stroke="black" points="445.5,-187.26 449,-197.26 452.5,-187.26 445.5,-187.26"/>
 </g>
 <!-- IconModule -->
 <g id="node6" class="node">
 <title>IconModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="1374.43,-233.59 1371.43,-237.59 1350.43,-237.59 1347.43,-233.59 1289.57,-233.59 1289.57,-197.59 1374.43,-197.59 1374.43,-233.59"/>
-<text text-anchor="middle" x="1332" y="-211.39" font-family="Times,serif" font-size="14.00">IconModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="108.43,-233.59 105.43,-237.59 84.43,-237.59 81.43,-233.59 23.57,-233.59 23.57,-197.59 108.43,-197.59 108.43,-233.59"/>
+<text text-anchor="middle" x="66" y="-211.39" font-family="Times,serif" font-size="14.00">IconModule</text>
 </g>
 <!-- IconModule&#45;&gt;RadioModule -->
 <g id="edge5" class="edge">
 <title>IconModule&#45;&gt;RadioModule</title>
-<path fill="none" stroke="black" d="M1289.67,-215.59C1202.44,-215.59 1010.75,-215.59 1010.75,-215.59 1010.75,-215.59 1010.75,-252.48 1010.75,-252.48"/>
-<polygon fill="black" stroke="black" points="1007.25,-252.48 1010.75,-262.48 1014.25,-252.48 1007.25,-252.48"/>
+<path fill="none" stroke="black" d="M66,-233.7C66,-252.93 66,-280.59 66,-280.59 66,-280.59 392.42,-280.59 392.42,-280.59"/>
+<polygon fill="black" stroke="black" points="392.42,-284.09 402.42,-280.59 392.42,-277.09 392.42,-284.09"/>
 </g>
 </g>
 </svg>
