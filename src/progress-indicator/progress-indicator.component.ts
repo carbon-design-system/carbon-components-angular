@@ -41,7 +41,7 @@ import { Step } from "./progress-indicator-step.interface";
 				type="button"
 				class="cds--progress-step-button"
 				[ngClass]="{
-					'cds--progress-step-button--unclickable': !step.onClick || current === i
+					'cds--progress-step-button--unclickable': !step.onClick || current === i || skeleton
 				}"
 				[disabled]="step.disabled"
 				[attr.aria-disabled]="step.disabled"
@@ -61,7 +61,7 @@ import { Step } from "./progress-indicator-step.interface";
 				</svg>
 				<div class="cds--progress-text">
 					<p class="cds--progress-label">{{step.label}}</p>
-					<p *ngIf="step.secondaryLabel" class="cds--progress-optional">{{step.secondaryLabel}}</p>
+					<p *ngIf="step.secondaryLabel && !skeleton" class="cds--progress-optional">{{step.secondaryLabel}}</p>
 				</div>
 				<span class="cds--progress-line"></span>
 			</button>
@@ -112,6 +112,10 @@ export class ProgressIndicator {
 	 * @param index number
 	 */
 	onClick(index: number) {
+		if (this.skeleton) {
+			return;
+		}
+
 		if (index !== this.current && typeof this.steps[index].onClick === "function") {
 			this.steps[index].onClick();
 		}
