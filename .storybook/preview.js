@@ -51,7 +51,7 @@ setCompodocJson({
 	interfaces,
 	miscellaneous,
 	pipes,
-	injectables,
+	injectables
 });
 
 // Set carbon viewports options

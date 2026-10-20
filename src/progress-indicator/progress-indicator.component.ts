@@ -45,7 +45,7 @@ import { IconDirective } from "carbon-components-angular/icon";
 						type="button"
 						class="cds--progress-step-button"
 						[ngClass]="{
-							'cds--progress-step-button--unclickable': !step.onClick || current === i
+							'cds--progress-step-button--unclickable': !step.onClick || current === i || skeleton
 						}"
 						[disabled]="step.disabled"
 						[attr.aria-disabled]="step.disabled"
@@ -67,7 +67,7 @@ import { IconDirective } from "carbon-components-angular/icon";
 						</svg>
 						<div class="cds--progress-text">
 							<p class="cds--progress-label">{{step.label}}</p>
-							@if (step.secondaryLabel) {
+							@if (step.secondaryLabel && !skeleton) {
 								<p class="cds--progress-optional">{{step.secondaryLabel}}</p>
 							}
 						</div>
@@ -130,6 +130,10 @@ export class ProgressIndicator {
 	 * @param index number
 	 */
 	onClick(index: number) {
+		if (this.skeleton) {
+			return;
+		}
+
 		if (index !== this.current && typeof this.steps[index].onClick === "function") {
 			this.steps[index].onClick();
 		}
