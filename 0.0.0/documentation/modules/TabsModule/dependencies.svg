@@ -24,6 +24,10 @@
 <title>cluster_TabsModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-333 1883,-333 1883,-70 8,-70"/>
 </g>
+<g id="clust17" class="cluster">
+<title>cluster_TabsModule_exports</title>
+<polygon fill="none" stroke="black" points="276,-273 276,-325 1714,-325 1714,-273 276,-273"/>
+</g>
 <g id="clust16" class="cluster">
 <title>cluster_TabsModule_imports</title>
 <polygon fill="none" stroke="black" points="1550,-143 1550,-195 1875,-195 1875,-143 1550,-143"/>
@@ -43,10 +47,6 @@
 <g id="clust4" class="cluster">
 <title>cluster_TabsModule_IconTab_providers</title>
 <polygon fill="none" stroke="black" points="83,-78 83,-130 569,-130 569,-78 83,-78"/>
-</g>
-<g id="clust17" class="cluster">
-<title>cluster_TabsModule_exports</title>
-<polygon fill="none" stroke="black" points="276,-273 276,-325 1714,-325 1714,-273 276,-273"/>
 </g>
 <!-- BaseTabHeader -->
 <g id="node1" class="node">
