@@ -28,123 +28,123 @@
 <title>cluster_DropdownModule_imports</title>
 <polygon fill="none" stroke="black" points="1254,-189.59 1254,-241.59 1706,-241.59 1706,-189.59 1254,-189.59"/>
 </g>
-<g id="clust10" class="cluster">
-<title>cluster_DropdownModule_providers</title>
-<polygon fill="none" stroke="black" points="1068,-189.59 1068,-241.59 1246,-241.59 1246,-189.59 1068,-189.59"/>
+<g id="clust4" class="cluster">
+<title>cluster_DropdownModule_Dropdown_providers</title>
+<polygon fill="none" stroke="black" points="608,-78 608,-241.59 1246,-241.59 1246,-78 608,-78"/>
 </g>
 <g id="clust8" class="cluster">
 <title>cluster_DropdownModule_exports</title>
-<polygon fill="none" stroke="black" points="928,-319.59 928,-371.59 1434,-371.59 1434,-319.59 928,-319.59"/>
-</g>
-<g id="clust4" class="cluster">
-<title>cluster_DropdownModule_Dropdown_providers</title>
-<polygon fill="none" stroke="black" points="422,-78 422,-241.59 1060,-241.59 1060,-78 422,-78"/>
+<polygon fill="none" stroke="black" points="698,-319.59 698,-371.59 1204,-371.59 1204,-319.59 698,-319.59"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_DropdownModule_declarations</title>
-<polygon fill="none" stroke="black" points="16,-189.59 16,-241.59 414,-241.59 414,-189.59 16,-189.59"/>
+<polygon fill="none" stroke="black" points="202,-189.59 202,-241.59 600,-241.59 600,-189.59 202,-189.59"/>
+</g>
+<g id="clust10" class="cluster">
+<title>cluster_DropdownModule_providers</title>
+<polygon fill="none" stroke="black" points="16,-189.59 16,-241.59 194,-241.59 194,-189.59 16,-189.59"/>
 </g>
 <!-- AbstractDropdownView -->
 <g id="node1" class="node">
 <title>AbstractDropdownView</title>
-<polygon fill="#ffffb3" stroke="black" points="405.61,-233.59 252.39,-233.59 252.39,-197.59 405.61,-197.59 405.61,-233.59"/>
-<text text-anchor="middle" x="329" y="-211.39" font-family="Times,serif" font-size="14.00">AbstractDropdownView</text>
+<polygon fill="#ffffb3" stroke="black" points="591.61,-233.59 438.39,-233.59 438.39,-197.59 591.61,-197.59 591.61,-233.59"/>
+<text text-anchor="middle" x="515" y="-211.39" font-family="Times,serif" font-size="14.00">AbstractDropdownView</text>
 </g>
 <!-- DropdownModule -->
 <g id="node5" class="node">
 <title>DropdownModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="1216.92,-298.59 1213.92,-302.59 1192.92,-302.59 1189.92,-298.59 1097.08,-298.59 1097.08,-262.59 1216.92,-262.59 1216.92,-298.59"/>
-<text text-anchor="middle" x="1157" y="-276.39" font-family="Times,serif" font-size="14.00">DropdownModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="986.92,-298.59 983.92,-302.59 962.92,-302.59 959.92,-298.59 867.08,-298.59 867.08,-262.59 986.92,-262.59 986.92,-298.59"/>
+<text text-anchor="middle" x="927" y="-276.39" font-family="Times,serif" font-size="14.00">DropdownModule</text>
 </g>
 <!-- AbstractDropdownView&#45;&gt;DropdownModule -->
 <g id="edge1" class="edge">
 <title>AbstractDropdownView&#45;&gt;DropdownModule</title>
-<path fill="none" stroke="black" d="M329,-233.61C329,-250.96 329,-274.59 329,-274.59 329,-274.59 1087.12,-274.59 1087.12,-274.59"/>
-<polygon fill="black" stroke="black" points="1087.12,-278.09 1097.12,-274.59 1087.12,-271.09 1087.12,-278.09"/>
+<path fill="none" stroke="black" d="M592.02,-215.59C698.63,-215.59 878.18,-215.59 878.18,-215.59 878.18,-215.59 878.18,-252.48 878.18,-252.48"/>
+<polygon fill="black" stroke="black" points="874.68,-252.48 878.18,-262.48 881.68,-252.48 874.68,-252.48"/>
 </g>
 <!-- Dropdown -->
 <g id="node2" class="node">
 <title>Dropdown</title>
-<polygon fill="#ffffb3" stroke="black" points="914.87,-233.59 839.13,-233.59 839.13,-197.59 914.87,-197.59 914.87,-233.59"/>
-<text text-anchor="middle" x="877" y="-211.39" font-family="Times,serif" font-size="14.00">Dropdown</text>
+<polygon fill="#ffffb3" stroke="black" points="964.87,-233.59 889.13,-233.59 889.13,-197.59 964.87,-197.59 964.87,-233.59"/>
+<text text-anchor="middle" x="927" y="-211.39" font-family="Times,serif" font-size="14.00">Dropdown</text>
 </g>
 <!-- Dropdown&#45;&gt;DropdownModule -->
 <g id="edge2" class="edge">
 <title>Dropdown&#45;&gt;DropdownModule</title>
-<path fill="none" stroke="black" d="M877,-233.83C877,-249.16 877,-268.59 877,-268.59 877,-268.59 1087.28,-268.59 1087.28,-268.59"/>
-<polygon fill="black" stroke="black" points="1087.28,-272.09 1097.28,-268.59 1087.28,-265.09 1087.28,-272.09"/>
+<path fill="none" stroke="black" d="M927,-233.7C927,-233.7 927,-252.58 927,-252.58"/>
+<polygon fill="black" stroke="black" points="923.5,-252.58 927,-262.58 930.5,-252.58 923.5,-252.58"/>
 </g>
 <!-- DropdownList -->
 <g id="node3" class="node">
 <title>DropdownList</title>
-<polygon fill="#ffffb3" stroke="black" points="233.65,-233.59 136.35,-233.59 136.35,-197.59 233.65,-197.59 233.65,-233.59"/>
-<text text-anchor="middle" x="185" y="-211.39" font-family="Times,serif" font-size="14.00">DropdownList</text>
+<polygon fill="#ffffb3" stroke="black" points="419.65,-233.59 322.35,-233.59 322.35,-197.59 419.65,-197.59 419.65,-233.59"/>
+<text text-anchor="middle" x="371" y="-211.39" font-family="Times,serif" font-size="14.00">DropdownList</text>
 </g>
 <!-- DropdownList&#45;&gt;DropdownModule -->
 <g id="edge4" class="edge">
 <title>DropdownList&#45;&gt;DropdownModule</title>
-<path fill="none" stroke="black" d="M185,-233.7C185,-252.93 185,-280.59 185,-280.59 185,-280.59 1086.93,-280.59 1086.93,-280.59"/>
-<polygon fill="black" stroke="black" points="1086.93,-284.09 1096.93,-280.59 1086.93,-277.09 1086.93,-284.09"/>
+<path fill="none" stroke="black" d="M371,-233.6C371,-249.64 371,-270.59 371,-270.59 371,-270.59 857.23,-270.59 857.23,-270.59"/>
+<polygon fill="black" stroke="black" points="857.23,-274.09 867.23,-270.59 857.23,-267.09 857.23,-274.09"/>
 </g>
 <!-- ScrollableList -->
 <g id="node4" class="node">
 <title>ScrollableList</title>
-<polygon fill="#ffffb3" stroke="black" points="118.04,-233.59 23.96,-233.59 23.96,-197.59 118.04,-197.59 118.04,-233.59"/>
-<text text-anchor="middle" x="71" y="-211.39" font-family="Times,serif" font-size="14.00">ScrollableList</text>
+<polygon fill="#ffffb3" stroke="black" points="304.04,-233.59 209.96,-233.59 209.96,-197.59 304.04,-197.59 304.04,-233.59"/>
+<text text-anchor="middle" x="257" y="-211.39" font-family="Times,serif" font-size="14.00">ScrollableList</text>
 </g>
 <!-- ScrollableList&#45;&gt;DropdownModule -->
 <g id="edge5" class="edge">
 <title>ScrollableList&#45;&gt;DropdownModule</title>
-<path fill="none" stroke="black" d="M71,-233.87C71,-254.91 71,-286.59 71,-286.59 71,-286.59 1087.07,-286.59 1087.07,-286.59"/>
-<polygon fill="black" stroke="black" points="1087.07,-290.09 1097.07,-286.59 1087.06,-283.09 1087.07,-290.09"/>
+<path fill="none" stroke="black" d="M257,-233.86C257,-252.15 257,-277.59 257,-277.59 257,-277.59 857.25,-277.59 857.25,-277.59"/>
+<polygon fill="black" stroke="black" points="857.25,-281.09 867.25,-277.59 857.25,-274.09 857.25,-281.09"/>
 </g>
 <!-- AbstractDropdownView  -->
 <g id="node11" class="node">
 <title>AbstractDropdownView </title>
-<polygon fill="#fb8072" stroke="black" points="1425.61,-363.59 1268.39,-363.59 1268.39,-327.59 1425.61,-327.59 1425.61,-363.59"/>
-<text text-anchor="middle" x="1347" y="-341.39" font-family="Times,serif" font-size="14.00">AbstractDropdownView </text>
+<polygon fill="#fb8072" stroke="black" points="1195.61,-363.59 1038.39,-363.59 1038.39,-327.59 1195.61,-327.59 1195.61,-363.59"/>
+<text text-anchor="middle" x="1117" y="-341.39" font-family="Times,serif" font-size="14.00">AbstractDropdownView </text>
 </g>
 <!-- DropdownModule&#45;&gt;AbstractDropdownView  -->
 <g id="edge10" class="edge">
 <title>DropdownModule&#45;&gt;AbstractDropdownView </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1216.77,-292.59C1254.09,-292.59 1295.09,-292.59 1295.09,-292.59 1295.09,-292.59 1295.09,-317.35 1295.09,-317.35"/>
-<polygon fill="black" stroke="black" points="1291.59,-317.35 1295.09,-327.35 1298.59,-317.35 1291.59,-317.35"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M986.86,-291.59C1042.55,-291.59 1117,-291.59 1117,-291.59 1117,-291.59 1117,-317.31 1117,-317.31"/>
+<polygon fill="black" stroke="black" points="1113.5,-317.31 1117,-327.31 1120.5,-317.31 1113.5,-317.31"/>
 </g>
 <!-- Dropdown  -->
 <g id="node12" class="node">
 <title>Dropdown </title>
-<polygon fill="#fb8072" stroke="black" points="1250.87,-363.59 1171.13,-363.59 1171.13,-327.59 1250.87,-327.59 1250.87,-363.59"/>
-<text text-anchor="middle" x="1211" y="-341.39" font-family="Times,serif" font-size="14.00">Dropdown </text>
+<polygon fill="#fb8072" stroke="black" points="1020.87,-363.59 941.13,-363.59 941.13,-327.59 1020.87,-327.59 1020.87,-363.59"/>
+<text text-anchor="middle" x="981" y="-341.39" font-family="Times,serif" font-size="14.00">Dropdown </text>
 </g>
 <!-- DropdownModule&#45;&gt;Dropdown  -->
 <g id="edge11" class="edge">
 <title>DropdownModule&#45;&gt;Dropdown </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1194.01,-298.7C1194.01,-298.7 1194.01,-317.58 1194.01,-317.58"/>
-<polygon fill="black" stroke="black" points="1190.51,-317.58 1194.01,-327.58 1197.51,-317.58 1190.51,-317.58"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M964.01,-298.7C964.01,-298.7 964.01,-317.58 964.01,-317.58"/>
+<polygon fill="black" stroke="black" points="960.51,-317.58 964.01,-327.58 967.51,-317.58 960.51,-317.58"/>
 </g>
 <!-- DropdownList  -->
 <g id="node13" class="node">
 <title>DropdownList </title>
-<polygon fill="#fb8072" stroke="black" points="1153.65,-363.59 1052.35,-363.59 1052.35,-327.59 1153.65,-327.59 1153.65,-363.59"/>
-<text text-anchor="middle" x="1103" y="-341.39" font-family="Times,serif" font-size="14.00">DropdownList </text>
+<polygon fill="#fb8072" stroke="black" points="923.65,-363.59 822.35,-363.59 822.35,-327.59 923.65,-327.59 923.65,-363.59"/>
+<text text-anchor="middle" x="873" y="-341.39" font-family="Times,serif" font-size="14.00">DropdownList </text>
 </g>
 <!-- DropdownModule&#45;&gt;DropdownList  -->
 <g id="edge12" class="edge">
 <title>DropdownModule&#45;&gt;DropdownList </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1125.43,-298.7C1125.43,-298.7 1125.43,-317.58 1125.43,-317.58"/>
-<polygon fill="black" stroke="black" points="1121.93,-317.58 1125.43,-327.58 1128.93,-317.58 1121.93,-317.58"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M895.43,-298.7C895.43,-298.7 895.43,-317.58 895.43,-317.58"/>
+<polygon fill="black" stroke="black" points="891.93,-317.58 895.43,-327.58 898.93,-317.58 891.93,-317.58"/>
 </g>
 <!-- ScrollableList  -->
 <g id="node14" class="node">
 <title>ScrollableList </title>
-<polygon fill="#fb8072" stroke="black" points="1034.04,-363.59 935.96,-363.59 935.96,-327.59 1034.04,-327.59 1034.04,-363.59"/>
-<text text-anchor="middle" x="985" y="-341.39" font-family="Times,serif" font-size="14.00">ScrollableList </text>
+<polygon fill="#fb8072" stroke="black" points="804.04,-363.59 705.96,-363.59 705.96,-327.59 804.04,-327.59 804.04,-363.59"/>
+<text text-anchor="middle" x="755" y="-341.39" font-family="Times,serif" font-size="14.00">ScrollableList </text>
 </g>
 <!-- DropdownModule&#45;&gt;ScrollableList  -->
 <g id="edge13" class="edge">
 <title>DropdownModule&#45;&gt;ScrollableList </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1096.84,-292.59C1047.24,-292.59 985,-292.59 985,-292.59 985,-292.59 985,-317.35 985,-317.35"/>
-<polygon fill="black" stroke="black" points="981.5,-317.35 985,-327.35 988.5,-317.35 981.5,-317.35"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M866.84,-291.59C817.24,-291.59 755,-291.59 755,-291.59 755,-291.59 755,-317.31 755,-317.31"/>
+<polygon fill="black" stroke="black" points="751.5,-317.31 755,-327.31 758.5,-317.31 751.5,-317.31"/>
 </g>
 <!-- {
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: Dropdown, multi: true
@@ -153,10 +153,10 @@
 <title>{
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: Dropdown, multi: true
 }</title>
-<ellipse fill="#fdb462" stroke="black" cx="741" cy="-127.3" rx="310.97" ry="41.09"/>
-<text text-anchor="middle" x="741" y="-139.9" font-family="Times,serif" font-size="14.00">{</text>
-<text text-anchor="middle" x="741" y="-123.1" font-family="Times,serif" font-size="14.00"> &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: Dropdown, multi: true</text>
-<text text-anchor="middle" x="741" y="-106.3" font-family="Times,serif" font-size="14.00">}</text>
+<ellipse fill="#fdb462" stroke="black" cx="927" cy="-127.3" rx="310.97" ry="41.09"/>
+<text text-anchor="middle" x="927" y="-139.9" font-family="Times,serif" font-size="14.00">{</text>
+<text text-anchor="middle" x="927" y="-123.1" font-family="Times,serif" font-size="14.00"> &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: Dropdown, multi: true</text>
+<text text-anchor="middle" x="927" y="-106.3" font-family="Times,serif" font-size="14.00">}</text>
 </g>
 <!-- {
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: Dropdown, multi: true
@@ -165,8 +165,8 @@
 <title>{
  &#160;&#160;&#160;provide: NG_VALUE_ACCESSOR, useExisting: Dropdown, multi: true
 }&#45;&gt;Dropdown</title>
-<path fill="none" stroke="black" d="M877,-164.48C877,-164.48 877,-187.22 877,-187.22"/>
-<polygon fill="black" stroke="black" points="873.5,-187.22 877,-197.22 880.5,-187.22 873.5,-187.22"/>
+<path fill="none" stroke="black" d="M927,-168.6C927,-168.6 927,-187.26 927,-187.26"/>
+<polygon fill="black" stroke="black" points="923.5,-187.26 927,-197.26 930.5,-187.26 923.5,-187.26"/>
 </g>
 <!-- I18nModule -->
 <g id="node7" class="node">
@@ -177,8 +177,8 @@
 <!-- I18nModule&#45;&gt;DropdownModule -->
 <g id="edge6" class="edge">
 <title>I18nModule&#45;&gt;DropdownModule</title>
-<path fill="none" stroke="black" d="M1655,-233.87C1655,-254.91 1655,-286.59 1655,-286.59 1655,-286.59 1227.07,-286.59 1227.07,-286.59"/>
-<polygon fill="black" stroke="black" points="1227.07,-283.09 1217.07,-286.59 1227.07,-290.09 1227.07,-283.09"/>
+<path fill="none" stroke="black" d="M1655,-233.72C1655,-254.16 1655,-284.59 1655,-284.59 1655,-284.59 996.88,-284.59 996.88,-284.59"/>
+<polygon fill="black" stroke="black" points="996.88,-281.09 986.88,-284.59 996.88,-288.09 996.88,-281.09"/>
 </g>
 <!-- IconModule -->
 <g id="node8" class="node">
@@ -189,8 +189,8 @@
 <!-- IconModule&#45;&gt;DropdownModule -->
 <g id="edge7" class="edge">
 <title>IconModule&#45;&gt;DropdownModule</title>
-<path fill="none" stroke="black" d="M1552,-233.7C1552,-252.93 1552,-280.59 1552,-280.59 1552,-280.59 1226.99,-280.59 1226.99,-280.59"/>
-<polygon fill="black" stroke="black" points="1226.99,-277.09 1216.99,-280.59 1226.99,-284.09 1226.99,-277.09"/>
+<path fill="none" stroke="black" d="M1552,-233.86C1552,-252.15 1552,-277.59 1552,-277.59 1552,-277.59 996.93,-277.59 996.93,-277.59"/>
+<polygon fill="black" stroke="black" points="996.93,-274.09 986.93,-277.59 996.93,-281.09 996.93,-274.09"/>
 </g>
 <!-- PlaceholderModule -->
 <g id="node9" class="node">
@@ -201,8 +201,8 @@
 <!-- PlaceholderModule&#45;&gt;DropdownModule -->
 <g id="edge8" class="edge">
 <title>PlaceholderModule&#45;&gt;DropdownModule</title>
-<path fill="none" stroke="black" d="M1395.87,-233.61C1395.87,-250.96 1395.87,-274.59 1395.87,-274.59 1395.87,-274.59 1226.97,-274.59 1226.97,-274.59"/>
-<polygon fill="black" stroke="black" points="1226.97,-271.09 1216.97,-274.59 1226.97,-278.09 1226.97,-271.09"/>
+<path fill="none" stroke="black" d="M1429,-233.6C1429,-249.64 1429,-270.59 1429,-270.59 1429,-270.59 997.05,-270.59 997.05,-270.59"/>
+<polygon fill="black" stroke="black" points="997.05,-267.09 987.05,-270.59 997.05,-274.09 997.05,-267.09"/>
 </g>
 <!-- UtilsModule -->
 <g id="node10" class="node">
@@ -213,20 +213,20 @@
 <!-- UtilsModule&#45;&gt;DropdownModule -->
 <g id="edge9" class="edge">
 <title>UtilsModule&#45;&gt;DropdownModule</title>
-<path fill="none" stroke="black" d="M1321.74,-233.83C1321.74,-249.16 1321.74,-268.59 1321.74,-268.59 1321.74,-268.59 1226.94,-268.59 1226.94,-268.59"/>
-<polygon fill="black" stroke="black" points="1226.94,-265.09 1216.94,-268.59 1226.94,-272.09 1226.94,-265.09"/>
+<path fill="none" stroke="black" d="M1261.63,-215.59C1172.24,-215.59 975.82,-215.59 975.82,-215.59 975.82,-215.59 975.82,-252.48 975.82,-252.48"/>
+<polygon fill="black" stroke="black" points="972.32,-252.48 975.82,-262.48 979.32,-252.48 972.32,-252.48"/>
 </g>
 <!-- DropdownService -->
 <g id="node15" class="node">
 <title>DropdownService</title>
-<ellipse fill="#fdb462" stroke="black" cx="1157" cy="-215.59" rx="81.08" ry="18"/>
-<text text-anchor="middle" x="1157" y="-211.39" font-family="Times,serif" font-size="14.00">DropdownService</text>
+<ellipse fill="#fdb462" stroke="black" cx="105" cy="-215.59" rx="81.08" ry="18"/>
+<text text-anchor="middle" x="105" y="-211.39" font-family="Times,serif" font-size="14.00">DropdownService</text>
 </g>
 <!-- DropdownService&#45;&gt;DropdownModule -->
 <g id="edge14" class="edge">
 <title>DropdownService&#45;&gt;DropdownModule</title>
-<path fill="none" stroke="black" d="M1157,-233.7C1157,-233.7 1157,-252.58 1157,-252.58"/>
-<polygon fill="black" stroke="black" points="1153.5,-252.58 1157,-262.58 1160.5,-252.58 1153.5,-252.58"/>
+<path fill="none" stroke="black" d="M105,-233.72C105,-254.16 105,-284.59 105,-284.59 105,-284.59 857.22,-284.59 857.22,-284.59"/>
+<polygon fill="black" stroke="black" points="857.22,-288.09 867.22,-284.59 857.22,-281.09 857.22,-288.09"/>
 </g>
 </g>
 </svg>
