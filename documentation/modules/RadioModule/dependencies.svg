@@ -24,6 +24,10 @@
 <title>cluster_RadioModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-379.59 1282,-379.59 1282,-70 8,-70"/>
 </g>
+<g id="clust6" class="cluster">
+<title>cluster_RadioModule_exports</title>
+<polygon fill="none" stroke="black" points="478,-319.59 478,-371.59 654,-371.59 654,-319.59 478,-319.59"/>
+</g>
 <g id="clust3" class="cluster">
 <title>cluster_RadioModule_Radio_providers</title>
 <polygon fill="none" stroke="black" points="674,-78 674,-241.59 1274,-241.59 1274,-78 674,-78"/>
@@ -35,10 +39,6 @@
 <g id="clust2" class="cluster">
 <title>cluster_RadioModule_declarations</title>
 <polygon fill="none" stroke="black" points="331,-189.59 331,-241.59 433,-241.59 433,-189.59 331,-189.59"/>
-</g>
-<g id="clust6" class="cluster">
-<title>cluster_RadioModule_exports</title>
-<polygon fill="none" stroke="black" points="478,-319.59 478,-371.59 654,-371.59 654,-319.59 478,-319.59"/>
 </g>
 <g id="clust4" class="cluster">
 <title>cluster_RadioModule_RadioGroup_providers</title>
