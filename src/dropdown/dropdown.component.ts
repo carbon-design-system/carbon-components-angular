@@ -415,10 +415,6 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 
 	@HostBinding("class.cds--list-box__wrapper") hostWrapperClass = true;
 
-	@HostBinding("class.cds--list-box__wrapper--decorator") get hasDecorator() {
-		return !!this.decorator;
-	}
-
 	/**
 	 * Experimental: enable fluid state
 	 */
