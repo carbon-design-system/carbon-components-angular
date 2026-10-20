@@ -264,6 +264,10 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		return this.fluid && this._isFocused && !this.isOpen;
 	}
 
+	@HostBinding("class.cds--list-box__wrapper--decorator") get hasDecorator() {
+		return !!this.decorator;
+	}
+
 	@Input() id = `dropdown-${Dropdown.dropdownCount++}`;
 	/**
 	 * Label for the dropdown.
@@ -410,10 +414,6 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	@HostBinding("class.cds--dropdown__wrapper") hostClass = true;
 
 	@HostBinding("class.cds--list-box__wrapper") hostWrapperClass = true;
-
-	@HostBinding("class.cds--list-box__wrapper--decorator") get hasDecorator() {
-		return !!this.decorator;
-	}
 
 	/**
 	 * Experimental: enable fluid state
