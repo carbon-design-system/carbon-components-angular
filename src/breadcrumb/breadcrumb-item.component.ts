@@ -9,7 +9,6 @@ import {
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
-import { PlaceholderService } from "carbon-components-angular/placeholder";
 import { NgTemplateOutlet } from "@angular/common";
 
 @Component({
@@ -32,8 +31,7 @@ import { NgTemplateOutlet } from "@angular/common";
 		}
 	`,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [NgTemplateOutlet],
-	providers: [PlaceholderService]
+	imports: [NgTemplateOutlet]
 })
 export class BreadcrumbItemComponent {
 	@Input() set href(v: string) {
