@@ -9,7 +9,6 @@ import {
 } from "@angular/core";
 import { IconService } from "./icon.service";
 import { getAttributes } from "@carbon/icon-helpers";
-import { PlaceholderService } from "carbon-components-angular/placeholder";
 
 /**
  * A directive for populating a svg element based on the provided carbon icon name.
@@ -24,7 +23,6 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
  */
 @Directive({
 	selector: "[cdsIcon], [ibmIcon]",
-	providers: [PlaceholderService],
 	standalone: true
 })
 export class IconDirective implements AfterViewInit, OnChanges {
