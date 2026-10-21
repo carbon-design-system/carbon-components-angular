@@ -41,7 +41,7 @@ import {
 import { hasScrollableParents } from "carbon-components-angular/utils";
 import { NgClass, NgTemplateOutlet, AsyncPipe } from "@angular/common";
 import { IconDirective } from "carbon-components-angular/icon";
-import { PlaceholderService } from "carbon-components-angular/placeholder";
+import { PLACEHOLDER_SERVICE_PROVIDER } from "carbon-components-angular/placeholder";
 
 /**
  * Drop-down lists enable users to select one or more items from a list.
@@ -236,7 +236,7 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 			useExisting: Dropdown,
 			multi: true
 		},
-		PlaceholderService,
+		PLACEHOLDER_SERVICE_PROVIDER,
 		AnimationFrameService,
 		AnimationFrameServiceSingleton,
 		DropdownService,
@@ -425,7 +425,12 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 */
 	@Input() isOpen = false;
 
-	/** Deprecated as of v6 - Will be removed in v7 */
+	/** Deprecated as of v6 - Will be removed in v7 - Use `isOpen` instead */
+	get menuIsClosed(): boolean {
+		return !this.isOpen;
+	}
+
+	/** Deprecated as of v6 - Will be removed in v7 - Use `isOpen` instead */
 	set menuIsClosed(isClosed: boolean) {
 		this.isOpen = !isClosed;
 		this.changeDetectorRef.markForCheck();

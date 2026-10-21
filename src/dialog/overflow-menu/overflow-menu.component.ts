@@ -15,7 +15,7 @@ import { BaseIconButton, Button } from "carbon-components-angular/button";
 import { Tooltip } from "carbon-components-angular/tooltip";
 import { NgClass, NgTemplateOutlet } from "@angular/common";
 import { IconDirective } from "carbon-components-angular/icon";
-import { PlaceholderService } from "carbon-components-angular/placeholder";
+import { PLACEHOLDER_SERVICE_PROVIDER } from "carbon-components-angular/placeholder";
 
 /**
  * The OverFlow menu component encapsulates the OverFlowMenu directive, and the menu iconography into one convienent component.
@@ -98,7 +98,7 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 		}
 	`],
 	encapsulation: ViewEncapsulation.None,
-	providers: [PlaceholderService],
+	providers: [PLACEHOLDER_SERVICE_PROVIDER],
 	imports: [
 		Tooltip,
 		Button,

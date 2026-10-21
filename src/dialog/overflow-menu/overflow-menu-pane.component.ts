@@ -36,7 +36,7 @@ import { NgClass, NgTemplateOutlet } from "@angular/common";
 			<ng-template [ngTemplateOutlet]="dialogConfig.content" [ngTemplateOutletContext]="{overflowMenu: this}" />
 		</ul>
 	`,
-	providers: [I18n, EXPERIMENTAL_SERVICE_PROVIDER, AnimationFrameService, ElementService, AnimationFrameServiceSingleton],
+	providers: [EXPERIMENTAL_SERVICE_PROVIDER, AnimationFrameService, ElementService, AnimationFrameServiceSingleton],
 	imports: [NgClass, NgTemplateOutlet]
 })
 export class OverflowMenuPane extends Dialog implements AfterViewInit {
