@@ -4,6 +4,7 @@ import {
 	Output,
 	EventEmitter,
 	AfterViewInit,
+	ChangeDetectorRef,
 	inject
 } from "@angular/core";
 
@@ -219,6 +220,7 @@ export class TableHead implements AfterViewInit {
 	public scrollbarWidth = 0;
 
 	protected i18n = inject(I18n);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
 	protected _checkboxHeaderLabel = this.i18n.getOverridable("TABLE.CHECKBOX_HEADER");
 	protected _sortDescendingLabel = this.i18n.getOverridable("TABLE.SORT_DESCENDING");
 	protected _sortAscendingLabel = this.i18n.getOverridable("TABLE.SORT_ASCENDING");
@@ -233,6 +235,7 @@ export class TableHead implements AfterViewInit {
 	ngAfterViewInit() {
 		setTimeout(() => {
 			this.scrollbarWidth = getScrollbarWidth();
+			this.changeDetectorRef.markForCheck();
 		});
 	}
 

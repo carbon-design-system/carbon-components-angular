@@ -1,6 +1,7 @@
 import {
 	AfterViewInit,
 	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	ElementRef,
 	HostBinding,
@@ -63,6 +64,7 @@ export class ContextMenuComponent implements OnChanges, AfterViewInit {
 	@HostBinding("class.cds--menu--with-icons") iconClass = false;
 
 	protected elementRef = inject(ElementRef);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
 
 	/** Inserted by Angular inject() migration for backwards compatibility */
 	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
@@ -82,6 +84,7 @@ export class ContextMenuComponent implements OnChanges, AfterViewInit {
 			if (nativeElement) {
 				this.iconClass = !!nativeElement
 					.querySelector(".cds--menu-item .cds--menu-item__icon svg");
+				this.changeDetectorRef.markForCheck();
 			}
 		});
 	}

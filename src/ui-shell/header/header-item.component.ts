@@ -49,8 +49,7 @@ import { NgClass, NgTemplateOutlet } from "@angular/common";
 		NgTemplateOutlet,
 		RouterLinkActive,
 		RouterLink
-	],
-	providers: [Router]
+	]
 })
 export class HeaderItem {
 	@HostBinding("attr.role") role = "listitem";

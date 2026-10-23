@@ -316,6 +316,7 @@ export class TabHeadersVertical extends BaseTabHeader implements AfterContentIni
 				this.activeIndex = this.currentSelectedTab;
 				firstTab.doSelect();
 				this.updateOverflowState();
+				this.changeDetectorRef.markForCheck();
 			}
 		});
 	}

@@ -529,6 +529,7 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 				this.currentSelectedTab = this.tabs.toArray().indexOf(firstTab);
 				this.activeIndex = this.currentSelectedTab;
 				firstTab.doSelect();
+				this.changeDetectorRef.markForCheck();
 			}
 		});
 	}

@@ -180,7 +180,7 @@ export class Toggle implements ControlValueAccessor {
 	/**
 	 * The unique id allocated to the `Toggle`.
 	 */
-	id = "toggle-" + Toggle.toggleCount;
+	@Input() id = "toggle-" + Toggle.toggleCount;
 
 	protected changeDetectorRef = inject(ChangeDetectorRef);
 	protected i18n = inject(I18n);

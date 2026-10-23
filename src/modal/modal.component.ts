@@ -19,7 +19,7 @@ import { NgClass } from "@angular/common";
 import { cycleTabs, getFocusElementList } from "carbon-components-angular/common";
 import { BaseModalService } from "./base-modal.service";
 import { Overlay } from "./overlay.component";
-import { PlaceholderService } from "carbon-components-angular/placeholder";
+import { PLACEHOLDER_SERVICE_PROVIDER } from "carbon-components-angular/placeholder";
 
 /**
  * Component to create modals for presenting content.
@@ -110,7 +110,7 @@ export class ModalDemo {
 			</div>
 		</cds-overlay>
 	`,
-	providers: [PlaceholderService, BaseModalService],
+	providers: [PLACEHOLDER_SERVICE_PROVIDER, BaseModalService],
 	imports: [Overlay, NgClass]
 })
 export class Modal implements AfterViewInit, OnChanges, OnDestroy {

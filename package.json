@@ -83,8 +83,8 @@
     "@angular/platform-browser": "20.3.21",
     "@angular/platform-browser-dynamic": "20.3.21",
     "@angular/router": "20.3.21",
-    "@carbon/styles": "1.106.0",
-    "@carbon/pictograms": "12.72.1",
+    "@carbon/styles": "1.117.0",
+    "@carbon/pictograms": "12.86.0",
     "@commitlint/cli": "17.0.3",
     "@commitlint/config-conventional": "17.0.3",
     "@compodoc/compodoc": "1.1.26",
@@ -137,10 +137,10 @@
   },
   "dependencies": {
     "@carbon/icon-helpers": "10.74.0",
-    "@carbon/icons": "11.77.1",
+    "@carbon/icons": "11.90.0",
     "@carbon/utils-position": "1.1.4",
     "@floating-ui/dom": "1.6.13",
-    "@ibm/telemetry-js": "^1.5.0",
+    "@ibm/telemetry-js": "^1.12.0",
     "flatpickr": "4.6.13",
     "lodash-es": "4.18.1",
     "tslib": "2.3.0"

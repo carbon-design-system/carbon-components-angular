@@ -9,6 +9,7 @@ import {
 	HostListener,
 	ElementRef,
 	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	OnChanges,
 	SimpleChanges,
 	inject
@@ -92,6 +93,7 @@ export class ContentSwitcher implements AfterViewInit, OnChanges {
 	@ContentChildren(ContentSwitcherOption) options: QueryList<ContentSwitcherOption>;
 
 	protected elementRef = inject(ElementRef);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
 
 	/** Inserted by Angular inject() migration for backwards compatibility */
 	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
@@ -117,7 +119,10 @@ export class ContentSwitcher implements AfterViewInit, OnChanges {
 			const firstActive = this.options.find(option => option.active);
 			// delay setting active until the DOM has settled
 			if (!firstActive) {
-				setTimeout(() => this.options.first.active = true);
+				setTimeout(() => {
+					this.options.first.active = true;
+					this.changeDetectorRef.markForCheck();
+				});
 			}
 		}
 		// propagate selectionMode so each option can honor 'manual' selection
