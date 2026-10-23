@@ -607,6 +607,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 						this.writeValue(this._writtenValue);
 					}
 				}
+				this.cdr.markForCheck();
 			});
 			// update the rest of combobox with any pre-selected items
 			this.updateSelected();
@@ -808,6 +809,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		setTimeout(() => {
 			if (this.dropUp === null || this.dropUp === undefined) {
 				this._dropUp = this._shouldDropUp();
+				this.cdr.markForCheck();
 			}
 		}, 0);
 

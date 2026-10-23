@@ -9,6 +9,7 @@ import {
 	HostListener,
 	TemplateRef,
 	forwardRef,
+	ChangeDetectorRef,
 	inject
 } from "@angular/core";
 
@@ -156,6 +157,7 @@ export class TabHeader extends TabHeaderBase implements AfterViewInit {
 	}
 
 	private host = inject(ElementRef);
+	private changeDetectorRef = inject(ChangeDetectorRef);
 
 	/** Inserted by Angular inject() migration for backwards compatibility */
 	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
@@ -181,6 +183,7 @@ export class TabHeader extends TabHeaderBase implements AfterViewInit {
 	ngAfterViewInit() {
 		setTimeout(() => {
 			this.title = this.title ? this.title : this.host.nativeElement.textContent;
+			this.changeDetectorRef.markForCheck();
 		});
 	}
 

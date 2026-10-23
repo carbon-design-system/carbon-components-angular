@@ -5,7 +5,9 @@ import {
 	Input,
 	QueryList,
 	OnDestroy,
-	HostBinding
+	HostBinding,
+	ChangeDetectorRef,
+	inject
 } from "@angular/core";
 import { SideNavItem } from "./sidenav-item.component";
 import { Subscription } from "rxjs";
@@ -89,9 +91,12 @@ export class SideNavMenu implements AfterContentInit, OnDestroy {
 	@ContentChildren(SideNavItem) sidenavItems: QueryList<SideNavItem>;
 
 	protected activeItemsSubscription = new Subscription();
+	protected changeDetectorRef = inject(ChangeDetectorRef);
 
 	ngAfterContentInit() {
 		setTimeout(() => {
+			// the items are projected content, refreshed with the views this marks
+			this.changeDetectorRef.markForCheck();
 			this.sidenavItems.forEach(item => {
 				item.isSubMenu = true;
 				this.findActiveChildren();

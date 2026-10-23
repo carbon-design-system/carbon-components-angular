@@ -1,11 +1,13 @@
 import {
 	AfterViewInit,
+	ChangeDetectorRef,
 	Component,
 	ElementRef,
 	forwardRef,
 	HostBinding,
 	Input,
-	ViewChild
+	ViewChild,
+	inject
 } from "@angular/core";
 
 import { TabHeaderBase } from "./tab-header.directive";
@@ -175,6 +177,8 @@ export class TabHeaderComponent extends TabHeaderBase implements AfterViewInit {
 
 	@ViewChild("tabButton") tabButton: ElementRef<HTMLButtonElement>;
 
+	private changeDetectorRef = inject(ChangeDetectorRef);
+
 	ngAfterViewInit() {
 		// Mirror the deprecated directive's title-fallback behavior, but read
 		// from the inner rendered button rather than the `display: contents` host.
@@ -183,6 +187,7 @@ export class TabHeaderComponent extends TabHeaderBase implements AfterViewInit {
 				const text = this.tabButton.nativeElement.textContent?.trim();
 				if (text) {
 					this.title = text;
+					this.changeDetectorRef.markForCheck();
 				}
 			}
 		});

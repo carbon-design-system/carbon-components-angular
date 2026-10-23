@@ -1,4 +1,5 @@
 import {
+	ChangeDetectorRef,
 	ComponentRef,
 	Injector,
 	Injectable,
@@ -66,8 +67,13 @@ export class BaseModalService {
 			this.environment
 		);
 		let focusedElement = document.activeElement as HTMLElement;
+		// the component's own ChangeDetectorRef, so OnPush modals are refreshed too
+		const changeDetectorRef = component.injector.get(ChangeDetectorRef);
+		// deferred so the modal renders closed first and the open transition runs
 		setTimeout(() => {
 			component.instance.open = true;
+			// a timer isn't an Angular event, so zoneless apps must be told to re-render
+			changeDetectorRef.markForCheck();
 		});
 
 		component["previouslyFocusedElement"] = focusedElement;  // used to return focus to previously focused element
@@ -76,6 +82,8 @@ export class BaseModalService {
 			// trigger the close animation
 			tap(() => {
 				component.instance.open = false;
+				// `close` may be emitted outside an Angular event (e.g. from a timer)
+				changeDetectorRef.markForCheck();
 			}),
 			// delay closing by an arbitrary amount to allow the animation to finish
 			delay(240)

@@ -541,6 +541,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 			} else if (this._isUsingNgControl) {
 				this.writeValue(this.writtenValue);
 			}
+			this.changeDetectorRef.markForCheck();
 		});
 	}
 
@@ -874,6 +875,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		setTimeout(() => {
 			if (this.dropUp === null || this.dropUp === undefined) {
 				this._dropUp = this._shouldDropUp();
+				this.changeDetectorRef.markForCheck();
 			}
 		}, 0);
 

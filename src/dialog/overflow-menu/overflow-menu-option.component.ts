@@ -6,6 +6,7 @@ import {
 	Output,
 	EventEmitter,
 	AfterViewInit,
+	ChangeDetectorRef,
 	inject
 } from "@angular/core";
 import { NgTemplateOutlet } from "@angular/common";
@@ -141,6 +142,7 @@ Please use the \`Target\` enum exported by carbon-components-angular`);
 	public title = null;
 
 	protected elementRef = inject(ElementRef);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
 
 	protected _target: Target;
 
@@ -155,11 +157,11 @@ Please use the \`Target\` enum exported by carbon-components-angular`);
 	}
 
 	onFocus() {
-		setTimeout(() => this.tabIndex = 0);
+		setTimeout(() => this.setTabIndex(0));
 	}
 
 	onBlur() {
-		setTimeout(() => this.tabIndex = -1);
+		setTimeout(() => this.setTabIndex(-1));
 	}
 
 	ngAfterViewInit() {
@@ -168,5 +170,11 @@ Please use the \`Target\` enum exported by carbon-components-angular`);
 		if (textContainer.scrollWidth > textContainer.offsetWidth) {
 			this.title = button.textContent;
 		}
+	}
+
+	// Called from timers, ensure rerender for zoneless apps
+	protected setTabIndex(tabIndex: number) {
+		this.tabIndex = tabIndex;
+		this.changeDetectorRef.markForCheck();
 	}
 }

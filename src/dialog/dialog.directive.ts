@@ -11,6 +11,7 @@ import {
 	OnChanges,
 	HostBinding,
 	SimpleChanges,
+	ChangeDetectorRef,
 	ComponentRef,
 	inject
 } from "@angular/core";
@@ -125,6 +126,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	}
 
 	protected elementRef = inject(ElementRef);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
 	protected viewContainerRef = inject(ViewContainerRef);
 	protected dialogService = inject(DialogService);
 	protected eventService = inject(EventService);
@@ -271,6 +273,8 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		// actually open the dialog, emit events, and set the open state
 		this.dialogRef = this.dialogService.open(this.viewContainerRef, this.dialogConfig, component);
 		this.isOpen = true;
+		// opened from fromEvent subscriptions and timers, rerender for zoneless apps
+		this.changeDetectorRef.markForCheck();
 		this.onOpen.emit();
 		this.isOpenChange.emit(true);
 
@@ -283,6 +287,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 				this.dialogService.close(this.dialogRef);
 				this.dialogRef = null;
 				this.isOpen = false;
+				this.changeDetectorRef.markForCheck();
 				this.onClose.emit();
 				this.isOpenChange.emit(false);
 				subscription.unsubscribe();

@@ -11,7 +11,9 @@ import {
 	AfterViewInit,
 	HostListener,
 	TemplateRef,
-	OnDestroy
+	OnDestroy,
+	ChangeDetectorRef,
+	inject
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { Radio } from "./radio.component";
@@ -297,6 +299,8 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, OnDestroy, C
 	 * To track whether the `RadioGroup` has been initialized.
 	 */
 	protected isInitialized = false;
+
+	protected changeDetectorRef = inject(ChangeDetectorRef);
 	/**
 	 * Reflects whether or not the input is disabled and cannot be selected.
 	 */
@@ -383,6 +387,8 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, OnDestroy, C
 						radio.labelPlacement = "left";
 					}
 				});
+				// the radios are projected content, refresh view on change
+				this.changeDetectorRef.markForCheck();
 			});
 		}
 	}

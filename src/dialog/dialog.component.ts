@@ -1,5 +1,6 @@
 import {
 	AfterViewInit,
+	ChangeDetectorRef,
 	Component,
 	ElementRef,
 	EventEmitter,
@@ -55,6 +56,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	public placement: string;
 
 	protected elementRef = inject(ElementRef);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
 	protected elementService = inject(ElementService);
 	protected animationFrameService = inject(AnimationFrameService, { optional: true })! ?? null;
 
@@ -198,7 +200,10 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 
 		// update the element
 		positionService.setElement(el, pos);
-		setTimeout(() => { this.placement = dialogPlacement; });
+		setTimeout(() => {
+			this.placement = dialogPlacement;
+			this.changeDetectorRef.markForCheck();
+		});
 	}
 
 	/**
