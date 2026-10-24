@@ -24,8 +24,8 @@ import { NgClass, NgTemplateOutlet } from "@angular/common";
 				class="cds--header__menu-item"
 				tabindex="0"
 				[ngClass]="{'cds--header__menu-item--current' : isCurrentPage}"
-				[href]="href"
-				(click)="navigate($event)">
+				[routerLink]="route"
+				[routerLinkActive]="routerLinkActiveClasses">
 				<ng-container *ngTemplateOutlet="content" />
 			</a>
 		} @else {
@@ -33,8 +33,8 @@ import { NgClass, NgTemplateOutlet } from "@angular/common";
 				class="cds--header__menu-item"
 				tabindex="0"
 				[ngClass]="{'cds--header__menu-item--current' : isCurrentPage}"
-				[routerLink]="route"
-				[routerLinkActive]="routerLinkActiveClasses">
+				[href]="href"
+				(click)="navigate($event)">
 				<ng-container *ngTemplateOutlet="content" />
 			</a>
 		}
@@ -74,17 +74,15 @@ export class HeaderItem {
 	/**
 	 * String or array of string class names to apply when active
 	 */
-	@Input() activeLinkClass: string | string[] = "";
+	@Input() set activeLinkClass(v: string | string[]) {
+		this._activeLinkClass = v;
+		// Compute once per input change
+		const extra = v === "" || v == null ? [] : Array.isArray(v) ? v : [v];
+		this.routerLinkActiveClasses = ["cds--header__menu-item--current", ...extra];
+	}
 
-	protected get routerLinkActiveClasses(): string[] {
-		const base = "cds--header__menu-item--current";
-		if (this.activeLinkClass === "" || this.activeLinkClass == null) {
-			return [base];
-		}
-		const extra = Array.isArray(this.activeLinkClass)
-			? this.activeLinkClass
-			: [this.activeLinkClass];
-		return [base, ...extra];
+	get activeLinkClass() {
+		return this._activeLinkClass;
 	}
 
 	/**
@@ -110,6 +108,8 @@ export class HeaderItem {
 	@Output() navigation = new EventEmitter<Promise<boolean>>();
 
 	protected _href = "#";
+	protected _activeLinkClass: string | string[] = "";
+	protected routerLinkActiveClasses: string[] = ["cds--header__menu-item--current"];
 
 	protected domSanitizer = inject(DomSanitizer);
 	protected router = inject(Router, { optional: true })!;
