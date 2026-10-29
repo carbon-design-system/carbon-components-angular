@@ -64,16 +64,17 @@ describe("DatePicker", () => {
 		fixture = TestBed.createComponent(DatePickerTest);
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
-		fixture.whenStable().then(() => {
-			element = fixture.debugElement.query(By.css("cds-date-picker"));
-			expect(element.componentInstance.value).toBe(wrapper.value);
-			wrapper.value =  new Date(new Date().getFullYear(), 14, 50);
-			fixture.detectChanges();
-			fixture.whenStable().then(() => {
-				element = fixture.debugElement.query(By.css("cds-date-picker"));
-				expect(element.componentInstance.value).toBe(wrapper.value);
-			});
-		});
+		await fixture.whenStable();
+
+		element = fixture.debugElement.query(By.css("cds-date-picker"));
+		expect(element.componentInstance.value).toBe(wrapper.value);
+
+		wrapper.value =  new Date(new Date().getFullYear(), 14, 50);
+		fixture.detectChanges();
+		await fixture.whenStable();
+
+		element = fixture.debugElement.query(By.css("cds-date-picker"));
+		expect(element.componentInstance.value).toBe(wrapper.value);
 	});
 
 	it("should set placeholder to mm/dd/yyyy", () => {

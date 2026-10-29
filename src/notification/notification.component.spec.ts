@@ -1,4 +1,5 @@
-import { TestBed } from "@angular/core/testing";
+import { fakeAsync, TestBed } from "@angular/core/testing";
+import { advancedFakeAsync } from "../test-helpers/change-detection";
 
 import { Notification, NotificationDisplayService } from "./index";
 import { I18nModule } from "../i18n/index";
@@ -109,8 +110,44 @@ describe("Notification", () => {
 		};
 		fixture.detectChanges();
 
+		const displayService = TestBed.inject(NotificationDisplayService);
+		spyOn(displayService, "close");
+
 		fixture.componentInstance.destroy();
 
-		expect(fixture.componentInstance);
+		expect(displayService.close).toHaveBeenCalledWith(fixture.componentInstance);
 	});
+
+	it("should update the message when the notification object changes", fakeAsync(() => {
+		const fixture = TestBed.createComponent(Notification);
+		fixture.componentInstance.notificationObj = {
+			type: "info",
+			title: "Uploading",
+			message: "0% complete"
+		};
+		fixture.detectChanges();
+
+		setTimeout(() => fixture.componentInstance.notificationObj.message = "100% complete", 500);
+		advancedFakeAsync(fixture, 500);
+
+		expect(fixture.nativeElement.querySelector(".cds--inline-notification__text-wrapper span").innerHTML.trim())
+			.toBe("100% complete");
+	}));
+
+	it("should restyle the notification when the type changes", fakeAsync(() => {
+		const fixture = TestBed.createComponent(Notification);
+		fixture.componentInstance.notificationObj = {
+			type: "info",
+			title: "sample",
+			message: "sample message"
+		};
+		fixture.detectChanges();
+		expect(fixture.nativeElement.classList).toContain("cds--inline-notification--info");
+
+		setTimeout(() => fixture.componentInstance.notificationObj.type = "error", 300);
+		advancedFakeAsync(fixture, 300);
+
+		expect(fixture.nativeElement.classList).toContain("cds--inline-notification--error");
+		expect(fixture.nativeElement.classList).not.toContain("cds--inline-notification--info");
+	}));
 });

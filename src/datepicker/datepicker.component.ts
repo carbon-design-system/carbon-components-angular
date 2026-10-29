@@ -494,15 +494,6 @@ export class DatePicker implements
 		}
 	}
 
-	private isDecoratorClick(event: Event | undefined): boolean {
-		if (!event?.target) {
-			return false;
-		}
-		const t = event.target;
-		const el = t instanceof Element ? t : (t as Node).parentElement;
-		return el?.closest(".cds--date-picker-input-inner-wrapper--decorator") != null;
-	}
-
 	protected updateCalendarListeners() {
 		const calendarContainer = document.querySelectorAll(".flatpickr-calendar");
 		Array.from(calendarContainer).forEach(calendar => {
@@ -750,5 +741,14 @@ export class DatePicker implements
 				<polygon points="5,8 10,3 10.7,3.7 6.4,8 10.7,12.3 10,13 "/>
 				<rect width="16" height="16" style="fill:none" />
 			</svg>`;
+	}
+
+	private isDecoratorClick(event: Event | undefined): boolean {
+		if (!event?.target) {
+			return false;
+		}
+		const t = event.target;
+		const el = t instanceof Element ? t : (t as Node).parentElement;
+		return el?.closest(".cds--date-picker-input-inner-wrapper--decorator") != null;
 	}
 }

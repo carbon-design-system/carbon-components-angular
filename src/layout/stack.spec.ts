@@ -38,7 +38,7 @@ describe("Stack", () => {
 	 * @todo Remove this test when `ibmStack` is removed
 	 * v6
 	 */
-	it("should work with deprecated `ibmStack` input property", () => {
+	it("should work with deprecated `ibmStack` input property", async () => {
 		TestBed.overrideComponent(TestStackComponent, {
 			set: {
 				template: `
@@ -47,12 +47,12 @@ describe("Stack", () => {
 			}
 		});
 
-		TestBed.compileComponents().then(() => {
-			let fixture: ComponentFixture<TestStackComponent> = TestBed.createComponent(TestStackComponent);
-			fixture.detectChanges();
+		await TestBed.compileComponents();
 
-			const directiveEl = fixture.debugElement.query(By.directive(StackDirective));
-			expect(directiveEl.nativeElement.classList.contains("cds--stack-horizontal")).toBeTruthy();
-		});
+		let fixture: ComponentFixture<TestStackComponent> = TestBed.createComponent(TestStackComponent);
+		fixture.detectChanges();
+
+		const directiveEl = fixture.debugElement.query(By.directive(StackDirective));
+		expect(directiveEl.nativeElement.classList.contains("cds--stack-horizontal")).toBeTruthy();
 	});
 });

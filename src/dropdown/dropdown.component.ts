@@ -192,13 +192,16 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 	]
 })
 export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDestroy, ControlValueAccessor {
-	static dropdownCount = 0;
 	@HostBinding("class.cds--list-box__wrapper--fluid--invalid") get fluidInvalidClass() {
 		return this.invalid && this.fluid;
 	}
 
 	@HostBinding("class.cds--list-box__wrapper--fluid--focus") get fluidFocusClass() {
 		return this.fluid && this._isFocused && this.menuIsClosed;
+	}
+
+	@HostBinding("class.cds--list-box__wrapper--decorator") get hasDecorator() {
+		return !!this.decorator;
 	}
 
 	protected get writtenValue() {
@@ -211,6 +214,8 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		}
 		this._writtenValue = val;
 	}
+
+	static dropdownCount = 0;
 
 	@Input() id = `dropdown-${Dropdown.dropdownCount++}`;
 	/**
@@ -358,10 +363,6 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	@HostBinding("class.cds--dropdown__wrapper") hostClass = true;
 
 	@HostBinding("class.cds--list-box__wrapper") hostWrapperClass = true;
-
-	@HostBinding("class.cds--list-box__wrapper--decorator") get hasDecorator() {
-		return !!this.decorator;
-	}
 
 	/**
 	 * Experimental: enable fluid state
@@ -553,12 +554,6 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	 * function passed in by `registerOnChange`
 	 */
 	propagateChange = (_: any) => { };
-
-	// used only to update writtenValue
-	private _propagateChange(value: any) {
-		this.writtenValue = value;
-		this.propagateChange(value);
-	}
 
 	/**
 	 * `ControlValueAccessor` method to programmatically disable the dropdown.
@@ -872,5 +867,11 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 		if ((this.type === "multi") && (topAfterReopen || this.selectionFeedback === "top")) {
 			this.view.reorderSelected();
 		}
+	}
+
+	// used only to update writtenValue
+	private _propagateChange(value: any) {
+		this.writtenValue = value;
+		this.propagateChange(value);
 	}
 }

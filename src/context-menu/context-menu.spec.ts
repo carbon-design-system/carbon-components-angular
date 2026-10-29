@@ -3,8 +3,7 @@ import { TestBed } from "@angular/core/testing";
 import { ContextMenuModule } from "./context-menu.module";
 import { IconModule } from "../icon";
 import { By } from "@angular/platform-browser";
-
-
+import { ContextMenuSelectionService } from "./context-menu-selection.service";
 
 @Component({
 	template: `
@@ -15,9 +14,10 @@ import { By } from "@angular/platform-browser";
 			<cds-context-menu-divider></cds-context-menu-divider>
 			<cds-context-menu-group
 				type="checkbox"
-				label="Selection group">
-				<cds-context-menu-item type="checkbox" label="Blue"></cds-context-menu-item>
-				<cds-context-menu-item type="checkbox" label="Red" [checked]="true"></cds-context-menu-item>
+				label="Selection group"
+				[value]="checkboxGroupValue">
+				<cds-context-menu-item type="checkbox" label="Blue" value="blue"></cds-context-menu-item>
+				<cds-context-menu-item type="checkbox" label="Red" value="red" [checked]="true"></cds-context-menu-item>
 			</cds-context-menu-group>
 			<cds-context-menu-divider></cds-context-menu-divider>
 			<cds-context-menu-item label="Radio flyout">
@@ -37,6 +37,7 @@ import { By } from "@angular/platform-browser";
 class MenuTestComponent {
 	@Input() open = true;
 	radioGroupValue = "one";
+	checkboxGroupValue = ["red"];
 
 	onRadioChange(event) {}
 }
@@ -89,6 +90,9 @@ describe("Menu", () => {
 	it("should emit valueChange from group when a radio item is clicked", () => {
 		spyOn(wrapper, "onRadioChange");
 
+		const radioOne = fixture.debugElement.query(
+			By.css("cds-context-menu-item[type='radio'][value='one']")
+		);
 		const radioTwo = fixture.debugElement.query(
 			By.css("cds-context-menu-item[type='radio'][value='two']")
 		);
@@ -97,6 +101,47 @@ describe("Menu", () => {
 		fixture.detectChanges();
 
 		expect(wrapper.onRadioChange).toHaveBeenCalledWith("two");
+		expect(radioTwo.nativeElement.querySelector("svg")).toBeTruthy();
+		expect(radioOne.nativeElement.querySelector("svg")).toBeFalsy();
+	});
+
+	it("should check the radio item the selection service selects", () => {
+		const group = fixture.debugElement.query(By.css("cds-context-menu-group[type='radio']"));
+		group.injector.get(ContextMenuSelectionService).selectRadio("two");
+		fixture.detectChanges();
+
+		const radioOne = fixture.debugElement.query(
+			By.css("cds-context-menu-item[type='radio'][value='one']")
+		);
+		const radioTwo = fixture.debugElement.query(
+			By.css("cds-context-menu-item[type='radio'][value='two']")
+		);
+		expect(radioTwo.nativeElement.querySelector("svg")).toBeTruthy();
+		expect(radioOne.nativeElement.querySelector("svg")).toBeFalsy();
+	});
+
+	it("should update aria-checked when a checkbox item is toggled", () => {
+		const blue = fixture.debugElement.query(By.css("cds-context-menu-item[label='Blue']"));
+		expect(blue.nativeElement.getAttribute("aria-checked")).toBe("false");
+
+		blue.nativeElement.click();
+		fixture.detectChanges();
+
+		expect(blue.nativeElement.getAttribute("aria-checked")).toBe("true");
+		expect(blue.nativeElement.querySelector("svg")).toBeTruthy();
+	});
+
+	it("should check every checkbox item the selection service selects", () => {
+		const group = fixture.debugElement.query(By.css("cds-context-menu-group[type='checkbox']"));
+		group.injector.get(ContextMenuSelectionService).selectCheckboxes(["blue", "red"]);
+		fixture.detectChanges();
+
+		const blue = fixture.debugElement.query(By.css("cds-context-menu-item[label='Blue']"));
+		const red = fixture.debugElement.query(By.css("cds-context-menu-item[label='Red']"));
+		expect(blue.nativeElement.getAttribute("aria-checked")).toBe("true");
+		expect(red.nativeElement.getAttribute("aria-checked")).toBe("true");
+		expect(blue.nativeElement.querySelector("svg")).toBeTruthy();
+		expect(red.nativeElement.querySelector("svg")).toBeTruthy();
 	});
 
 	it("should apply appropriate attributes to the divider component", () => {
