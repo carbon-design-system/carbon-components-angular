@@ -56,8 +56,7 @@ import { NgTemplateOutlet, AsyncPipe } from "@angular/common";
 			<ng-content />
 		</header>
 	`,
-	imports: [NgTemplateOutlet, RouterLink, AsyncPipe],
-	providers: [Router]
+	imports: [NgTemplateOutlet, RouterLink, AsyncPipe]
 })
 export class Header {
 	public i18n = inject(I18n);
