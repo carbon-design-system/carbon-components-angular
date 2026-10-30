@@ -67,12 +67,11 @@ export class BaseModalService {
 			this.environment
 		);
 		let focusedElement = document.activeElement as HTMLElement;
-		// the component's own ChangeDetectorRef, so OnPush modals are refreshed too
+		// get components ChangeDetectorRef to refresh OnPush modals
 		const changeDetectorRef = component.injector.get(ChangeDetectorRef);
-		// deferred so the modal renders closed first and the open transition runs
+		// deferred so the modal renders closed so the open transition can run
 		setTimeout(() => {
 			component.instance.open = true;
-			// a timer isn't an Angular event, so zoneless apps must be told to re-render
 			changeDetectorRef.markForCheck();
 		});
 
@@ -82,7 +81,6 @@ export class BaseModalService {
 			// trigger the close animation
 			tap(() => {
 				component.instance.open = false;
-				// `close` may be emitted outside an Angular event (e.g. from a timer)
 				changeDetectorRef.markForCheck();
 			}),
 			// delay closing by an arbitrary amount to allow the animation to finish
