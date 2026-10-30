@@ -3,7 +3,6 @@ import {
 	EventEmitter,
 	HostBinding,
 	OnDestroy,
-	ChangeDetectionStrategy,
 	Input,
 	Output,
 	TemplateRef,
@@ -48,7 +47,7 @@ import { Button } from "carbon-components-angular/button";
 					<button
 						type="button"
 						cdsButton="ghost"
-						iconOnly="true"
+						[iconOnly]="true"
 						[size]="size"
 						[attr.aria-label]="translations.REMOVE_BUTTON"
 						(click)="remove.emit()"
@@ -89,7 +88,6 @@ import { Button } from "carbon-components-angular/button";
 			</div>
 		}
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [NgTemplateOutlet, IconDirective, Loading, Button]
 })
 export class FileComponent implements OnDestroy {
