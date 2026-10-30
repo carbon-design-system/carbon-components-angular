@@ -17,6 +17,8 @@ import { IconDirective } from "carbon-components-angular/icon";
 		Tile,
 		ClickableTile,
 		ClickableTileIconDirective,
+		ExpandableTileAboveFoldDirective,
+		ExpandableTileBelowFoldDirective,
 		ExpandableTile,
 		SelectionTile,
 		TileGroup
