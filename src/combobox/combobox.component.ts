@@ -30,7 +30,7 @@ import { I18n } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
 import { NgClass, NgTemplateOutlet } from "@angular/common";
 import { IconDirective } from "carbon-components-angular/icon";
-import {  PlaceholderService } from "carbon-components-angular/placeholder";
+import { PLACEHOLDER_SERVICE_PROVIDER } from "carbon-components-angular/placeholder";
 
 /**
  * Get started with importing the components:
@@ -237,8 +237,7 @@ import {  PlaceholderService } from "carbon-components-angular/placeholder";
 		DropdownService,
 		AnimationFrameService,
 		AnimationFrameServiceSingleton,
-		PlaceholderService,
-		I18n
+		PLACEHOLDER_SERVICE_PROVIDER
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [NgClass, NgTemplateOutlet, IconDirective]
@@ -608,6 +607,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 						this.writeValue(this._writtenValue);
 					}
 				}
+				this.cdr.markForCheck();
 			});
 			// update the rest of combobox with any pre-selected items
 			this.updateSelected();
@@ -809,6 +809,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		setTimeout(() => {
 			if (this.dropUp === null || this.dropUp === undefined) {
 				this._dropUp = this._shouldDropUp();
+				this.cdr.markForCheck();
 			}
 		}, 0);
 

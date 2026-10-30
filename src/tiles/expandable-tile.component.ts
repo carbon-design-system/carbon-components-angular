@@ -189,8 +189,10 @@ export class ExpandableTile implements AfterViewInit {
 		if (this.expanded) {
 			this.tileMaxHeight = this.tileContainer.nativeElement.getBoundingClientRect().height;
 		} else {
-			this.tileMaxHeight = this.element.nativeElement
-				.querySelector(".cds--tile-content__above-the-fold").getBoundingClientRect().height;
+			// match the projection selectors & class
+			const aboveFold = this.element.nativeElement
+				.querySelector(".cds--tile-content__above-the-fold, [cdsAboveFold], [ibmAboveFold]");
+			this.tileMaxHeight = aboveFold ? aboveFold.getBoundingClientRect().height : 0;
 		}
 	}
 

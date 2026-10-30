@@ -266,6 +266,7 @@ export class TabHeaderGroupVertical
 			this.activeIndex = initialIndex;
 			headers[initialIndex]?.selectTab();
 			this.updateOverflowState();
+			this.changeDetectorRef.markForCheck();
 		});
 	}
 

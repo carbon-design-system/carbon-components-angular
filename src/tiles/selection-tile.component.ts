@@ -124,7 +124,14 @@ export class SelectionTile implements AfterViewInit {
 	/**
 	 * Set by the containing `TileGroup`. Used for the `name` property on the input.
 	 */
-	name = "tile-group-unbound";
+	set name(value: string) {
+		this._name = value;
+		this.changeDetectorRef.markForCheck();
+	}
+
+	get name() {
+		return this._name;
+	}
 	/**
 	 * Defines whether or not the `SelectionTile` supports selecting multiple tiles as opposed to single
 	 * tile selection.
@@ -132,13 +139,22 @@ export class SelectionTile implements AfterViewInit {
 	 * Set to true because of the way tile group sets it up.
 	 * If it is first undefined then set to true, the type will change from radio to checkbox and deselects the inputs.
 	 */
-	multiple = true;
+	set multiple(value: boolean) {
+		this._multiple = value;
+		this.changeDetectorRef.markForCheck();
+	}
+
+	get multiple() {
+		return this._multiple;
+	}
 
 	@ViewChild("input", { static: true }) input;
 
 	// If an initial selected value is set before input exists, we save
 	// the value and check again when input exists in `AfterViewInit`.
 	protected _selected = null;
+	protected _name = "tile-group-unbound";
+	protected _multiple = true;
 
 	protected changeDetectorRef = inject(ChangeDetectorRef);
 

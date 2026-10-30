@@ -12,7 +12,7 @@ import { DialogService } from "../dialog.service";
 import { OverflowMenuPane } from "./overflow-menu-pane.component";
 import { OverflowMenuCustomPane } from "./overflow-menu-custom-pane.component";
 import { EventService } from "carbon-components-angular/utils";
-import { PlaceholderService } from "carbon-components-angular/placeholder";
+import { PLACEHOLDER_SERVICE_PROVIDER } from "carbon-components-angular/placeholder";
 
 
 /**
@@ -44,7 +44,7 @@ import { PlaceholderService } from "carbon-components-angular/placeholder";
 	providers: [
 		DialogService,
 		EventService,
-		PlaceholderService
+		PLACEHOLDER_SERVICE_PROVIDER
 	],
 	standalone: true
 })

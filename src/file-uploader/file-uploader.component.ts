@@ -1,11 +1,11 @@
 import {
+	ChangeDetectorRef,
 	Component,
 	Input,
 	Output,
 	ViewChild,
 	EventEmitter,
 	TemplateRef,
-	ChangeDetectionStrategy,
 	inject
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
@@ -33,7 +33,7 @@ const noop = () => {};
 		@if (skeleton) {
 			<div class="cds--skeleton__text" style="width: 100px"></div>
 			<div class="cds--skeleton__text" style="width: 225px"></div>
-			<button cdsButton skeleton="true"></button>
+			<button cdsButton [skeleton]="true"></button>
 		} @else {
 			<label [for]="fileUploaderId" class="cds--file--label">{{title}}</label>
 			<p class="cds--label-description" role="alert">{{description}}</p>
@@ -103,7 +103,6 @@ const noop = () => {};
 			multi: true
 		}
 	],
-	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [
 		NgClass,
 		NgTemplateOutlet,
@@ -210,6 +209,8 @@ export class FileUploader implements ControlValueAccessor {
 	protected onTouchedCallback: () => void = noop;
 	protected onChangeCallback: (_: Set<FileItem>) => void = noop;
 
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+
 	/** Inserted by Angular inject() migration for backwards compatibility */
 	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
 	constructor(...args: unknown[]);
@@ -246,6 +247,7 @@ export class FileUploader implements ControlValueAccessor {
 	writeValue(value: Set<FileItem>) {
 		if (value !== this.value) {
 			this.files = value;
+			this.changeDetectorRef.markForCheck();
 		}
 	}
 
@@ -354,5 +356,6 @@ export class FileUploader implements ControlValueAccessor {
 	 */
 	setDisabledState(isDisabled: boolean) {
 		this.disabled = isDisabled;
+		this.changeDetectorRef.markForCheck();
 	}
 }

@@ -27,6 +27,7 @@ export class TableToolbarSearch extends Search implements AfterViewInit {
 		setTimeout(() => {
 			if (this.value) {
 				this.openSearch();
+				this.changeDetectorRef.markForCheck();
 			}
 		});
 	}
