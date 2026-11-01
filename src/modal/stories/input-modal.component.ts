@@ -20,22 +20,24 @@ import { ModalService, BaseModal } from "../";
 			</section>
 			<cds-modal-footer>
 				<button class="cds--btn cds--btn--secondary" (click)="closeModal()">Cancel</button>
-				<button class="cds--btn cds--btn--primary" modal-primary-focus (click)="closeModal()">Save</button>
+				<button class="cds--btn cds--btn--primary" modal-primary-focus (click)="closeModal(outputValue)">Save</button>
 			</cds-modal-footer>
 		</cds-modal>
 	`
 })
-export class InputModal extends BaseModal {
+export class InputModal extends BaseModal<string> {
+
+	protected outputValue = this.inputValue;
+
 	constructor(
 		@Inject("modalText") public modalText,
 		@Inject("size") public size,
-		@Inject("data") public data,
 		@Inject("inputValue") public inputValue,
 		protected modalService: ModalService) {
 		super();
 	}
 
 	onChange(event) {
-		this.data.next(event.target.value);
+		this.outputValue = event.target.value;
 	}
 }
