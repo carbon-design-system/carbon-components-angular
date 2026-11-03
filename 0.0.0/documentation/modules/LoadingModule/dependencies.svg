@@ -28,13 +28,13 @@
 <title>cluster_LoadingModule_imports</title>
 <polygon fill="none" stroke="black" points="240,-78 240,-130 342,-130 342,-78 240,-78"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_LoadingModule_declarations</title>
-<polygon fill="none" stroke="black" points="154,-78 154,-130 232,-130 232,-78 154,-78"/>
-</g>
 <g id="clust5" class="cluster">
 <title>cluster_LoadingModule_exports</title>
 <polygon fill="none" stroke="black" points="207,-208 207,-260 289,-260 289,-208 207,-208"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_LoadingModule_declarations</title>
+<polygon fill="none" stroke="black" points="154,-78 154,-130 232,-130 232,-78 154,-78"/>
 </g>
 <!-- Loading -->
 <g id="node1" class="node">

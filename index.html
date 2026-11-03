@@ -48,60 +48,49 @@
     
     <link href="./sb-addons/storybook-9/manager-bundle.js" rel="modulepreload" />
       <!-- Open Graph -->
-<meta property="og:title" content="Carbon Components Angular">
-<meta property="og:description" content="An Angular implementation of the Carbon Design System for IBM.">
-<meta property="og:image" content="https://angular.carbondesignsystem.com/carbon.jpg">
-<meta property="og:url" content="https://angular.carbondesignsystem.com">
+<meta property="og:title" content="Carbon Components Angular" />
+<meta
+	property="og:description"
+	content="An Angular implementation of the Carbon Design System for IBM."
+/>
+<meta
+	property="og:image"
+	content="https://angular.carbondesignsystem.com/carbon.jpg"
+/>
+<meta property="og:url" content="https://angular.carbondesignsystem.com" />
 
 <!-- Social -->
-<meta name="twitter:title" content="Carbon Components Angular">
-<meta name="twitter:description" content="An Angular implementation of the Carbon Design System for IBM.">
-<meta name="twitter:image" content="https://angular.carbondesignsystem.com/carbon.jpg">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Carbon Components Angular" />
+<meta
+	name="twitter:description"
+	content="An Angular implementation of the Carbon Design System for IBM."
+/>
+<meta
+	name="twitter:image"
+	content="https://angular.carbondesignsystem.com/carbon.jpg"
+/>
+<meta name="twitter:card" content="summary_large_image" />
 
 <footer>
-	<dds-footer-container key="footer" disable-locale-button="true" size="micro" />
+	<dds-footer-container
+		key="footer"
+		disable-locale-button="true"
+		size="micro"
+	/>
 </footer>
 
 <script
 	key="8"
 	type="module"
-	src="https://1.www.s81c.com/common/carbon-for-ibm-dotcom/tag/v1/latest/footer.min.js">
-</script>
+	src="https://1.www.s81c.com/common/carbon-for-ibm-dotcom/tag/v1/latest/footer.min.js"
+></script>
 
 <!-- Storybook override -->
 <script>
 	document.title = "Carbon Components Angular";
 </script>
 
-<!-- Tealium/GA Set up -->
-<script type="text/javascript">
-	window._ibmAnalytics = {
-		settings: {
-			name: 'CarbonAngularStorybook',
-			isSpa: true,
-			tealiumProfileName: 'ibm-web-app',
-		},
-		onLoad: [['ibmStats.pageview', []]],
-	};
-	digitalData = {
-		page: {
-			pageInfo: {
-				ibm: {
-					siteId: 'IBM_' + _ibmAnalytics.settings.name,
-				},
-			},
-			category: {
-				primaryCategory: 'PC100',
-			},
-		},
-	};
-</script>
-<script
-	src="//1.www.s81c.com/common/stats/ibm-common.js"
-	type="text/javascript"
-	async="async">
-</script>
+<!-- Tealium/GA set up added via managerHead in main.js (see ibm-analytics.js) -->
 
 <style>
 	footer {
@@ -119,6 +108,13 @@
 		height: calc(100vh - 48px);
 	}
 </style>
+
+<!-- Tealium/GA set up -->
+<script type="text/javascript">
+	window._ibmAnalytics = {"settings":{"name":"CarbonAngularStorybook","isSpa":true,"tealiumProfileName":"ibm-web-app"},"onLoad":[["ibmStats.pageview",[]]]};
+	window.digitalData = {"page":{"pageInfo":{"ibm":{"siteId":"IBM_CarbonAngularStorybook"}},"category":{"primaryCategory":"PC100"}}};
+</script>
+<script src="https://1.www.s81c.com/common/stats/ibm-common.js" type="text/javascript" async="async"></script>
  
 
     <style>
