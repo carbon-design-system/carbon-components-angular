@@ -27,10 +27,10 @@ import { BaseNotification } from "./base-notification.component";
 		</svg>
 		<div class="cds--toast-notification__details">
 			<h3 *ngIf="!notificationObj.template" cdsToastTitle [innerHTML]="notificationObj.title"></h3>
-			<div *ngIf="!notificationObj.template" cdsToastSubtitle>
+			<div *ngIf="!notificationObj.template && notificationObj.subtitle" cdsToastSubtitle>
 				<span [innerHTML]="notificationObj.subtitle"></span>
 			</div>
-			<p *ngIf="!notificationObj.template" cdsToastCaption [innerHTML]="notificationObj.caption"></p>
+			<p *ngIf="!notificationObj.template && notificationObj.caption" cdsToastCaption [innerHTML]="notificationObj.caption"></p>
 			<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj }"></ng-container>
 		</div>
 		<button

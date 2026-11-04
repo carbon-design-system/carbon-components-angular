@@ -46,6 +46,16 @@ describe("Toast", () => {
 		expect(fixture.nativeElement.textContent).toContain("just now");
 	});
 
+	it("should not render the subtitle and caption when they are not provided", () => {
+		wrapper.notificationObj = { type: "info", title: "Uploading" };
+		fixture.detectChanges();
+
+		const element = fixture.nativeElement.querySelector("cds-toast");
+		expect(element.querySelector("[cdsToastSubtitle]")).toBeNull();
+		expect(element.querySelector("[cdsToastCaption]")).toBeNull();
+		expect(element.textContent).not.toContain("undefined");
+	});
+
 	it("should apply the host class for the notification type", () => {
 		expect(fixture.nativeElement.querySelector("cds-toast").classList)
 			.toContain("cds--toast-notification--info");
