@@ -26,8 +26,8 @@ export interface ActionableContent extends NotificationContent {
 }
 
 export interface ToastContent extends NotificationContent {
-	subtitle: string;
-	caption: string;
+	subtitle?: string;
+	caption?: string;
 }
 
 export interface NotificationAction {

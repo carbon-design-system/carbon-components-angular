@@ -36,10 +36,14 @@ import { NotificationService } from "./notification.service";
 		<div class="cds--toast-notification__details">
 			@if (!notificationObj.template) {
 				<h3 cdsToastTitle [innerHTML]="notificationObj.title"></h3>
-				<div cdsToastSubtitle>
-					<span [innerHTML]="notificationObj.subtitle"></span>
-				</div>
-				<p cdsToastCaption [innerHTML]="notificationObj.caption"></p>
+				@if (notificationObj.subtitle) {
+					<div cdsToastSubtitle>
+						<span [innerHTML]="notificationObj.subtitle"></span>
+					</div>
+				}
+				@if (notificationObj.caption) {
+					<p cdsToastCaption [innerHTML]="notificationObj.caption"></p>
+				}
 			}
 			<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj }" />
 		</div>

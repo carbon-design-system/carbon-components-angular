@@ -78,8 +78,11 @@ import { PLACEHOLDER_SERVICE_PROVIDER } from "carbon-components-angular/placehol
 					'cds--list-box--light': theme === 'light',
 					'cds--list-box--expanded': open,
 					'cds--list-box--sm': size === 'sm',
+					'cds--layout--size-sm': !fluid && size === 'sm',
 					'cds--list-box--md': size === 'md',
+					'cds--layout--size-md': !fluid && size === 'md',
 					'cds--list-box--lg': size === 'lg',
+					'cds--layout--size-lg': !fluid && size === 'lg',
 					'cds--list-box--disabled': disabled,
 					'cds--combo-box--readonly': readonly,
 					'cds--combo-box--warning cds--list-box--warning': warn,
@@ -428,7 +431,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	/**
 	 * Experimental: enable fluid state
 	 */
-	@Input() fluid = false;
+	@HostBinding("class.cds--list-box__wrapper--fluid") @Input() fluid = false;
 	/**
 	 * Emits a ListItem
 	 *
@@ -541,6 +544,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 *
 	 */
 	ngOnChanges(changes) {
+		if (this.view && (changes.size || changes.fluid)) {
+			this.view.size = this.size;
+			this.view.fluid = this.fluid;
+		}
 		if (changes.items) {
 			this.view.items = changes.items.currentValue;
 			this.updateSelected();
@@ -559,6 +566,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	ngAfterContentInit() {
 		if (this.view) {
 			this.view.type = this.type;
+			this.view.size = this.size;
+			this.view.fluid = this.fluid;
 
 			// function to check if the event is organic (isUpdate === false) or programmatic
 			const isUpdate = event => event && event.isUpdate;
