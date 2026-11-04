@@ -66,6 +66,7 @@ import { AnimationFrameService, AnimationFrameServiceSingleton } from "carbon-co
 			[id]="listId"
 			role="listbox"
 			class="cds--list-box__menu cds--multi-select"
+			[style.--cds-layout-size-height-local]="menuItemHeight"
 			(scroll)="emitScroll($event)"
 			(keydown)="navigateList($event)"
 			tabindex="0"
@@ -207,9 +208,42 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	@Input() showTitles = true;
 
 	/**
-	 * Defines the rendering size of the `DropdownList` input component.
+	 * Defines the rendering size of the `DropdownList` items.
 	 */
-	public size: "sm" | "md" | "lg" = "md";
+	set size(value: "sm" | "md" | "lg") {
+		this._size = value;
+		// Set imperatively by the parent control, so rerender
+		this.changeDetectorRef.markForCheck();
+	}
+
+	get size() {
+		return this._size;
+	}
+
+	/**
+	 * Whether the owning control uses fluid list-box sizing.
+	 */
+	set fluid(value: boolean) {
+		this._fluid = value;
+		this.changeDetectorRef.markForCheck();
+	}
+
+	get fluid() {
+		return this._fluid;
+	}
+
+	/**
+	 * The menu needs its own layout token when moved outside the list-box.
+	 * Fall back to rem values for styles versions without contextual layout tokens.
+	 */
+	get menuItemHeight(): string {
+		if (this.fluid) {
+			return "4rem";
+		}
+		const heights = { sm: "2rem", md: "2.5rem", lg: "3rem" };
+		return `var(--cds-layout-size-height-${this.size}, ${heights[this.size]})`;
+	}
+
 	public listId = `listbox-${DropdownList.listCount++}`;
 	public highlightedItem = null;
 	/**
@@ -246,6 +280,8 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * Used to wait for items in case they are passed through an observable.
 	 */
 	protected _itemsReady: Observable<boolean>;
+	protected _size: "sm" | "md" | "lg" = "md";
+	protected _fluid = false;
 
 	protected changeDetectorRef = inject(ChangeDetectorRef);
 

@@ -6,6 +6,7 @@ import {
 	ElementRef,
 	ContentChild,
 	OnInit,
+	OnChanges,
 	ViewChild,
 	AfterContentInit,
 	HostListener,
@@ -99,8 +100,11 @@ import { PLACEHOLDER_SERVICE_PROVIDER } from "carbon-components-angular/placehol
 				'cds--dropdown--invalid': invalid,
 				'cds--dropdown--warning cds--list-box--warning': warn,
 				'cds--dropdown--sm cds--list-box--sm': size === 'sm',
+				'cds--layout--size-sm': !fluid && size === 'sm',
 				'cds--dropdown--md cds--list-box--md': size === 'md',
+				'cds--layout--size-md': !fluid && size === 'md',
 				'cds--dropdown--lg cds--list-box--lg': size === 'lg',
+				'cds--layout--size-lg': !fluid && size === 'lg',
 				'cds--list-box--expanded': isOpen,
 				'cds--list-box--invalid': invalid
 			}"
@@ -251,7 +255,7 @@ import { PLACEHOLDER_SERVICE_PROVIDER } from "carbon-components-angular/placehol
 		AsyncPipe
 	]
 })
-export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDestroy, ControlValueAccessor {
+export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewInit, OnDestroy, ControlValueAccessor {
 	static dropdownCount = 0;
 
 	public i18n = inject(I18n);
@@ -487,6 +491,16 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 	constructor() {}
 
 	/**
+	 * Updates the menu sizing context, including when it is mounted outside the control.
+	 */
+	ngOnChanges(changes) {
+		if (this.view && (changes.size || changes.fluid)) {
+			this.view.size = this.size;
+			this.view.fluid = this.fluid;
+		}
+	}
+
+	/**
 	 * Updates the `type` property in the `@ContentChild`.
 	 * The `type` property specifies whether the `Dropdown` allows single selection or multi selection.
 	 */
@@ -506,6 +520,7 @@ export class Dropdown implements OnInit, AfterContentInit, AfterViewInit, OnDest
 
 		this.view.type = this.type;
 		this.view.size = this.size;
+		this.view.fluid = this.fluid;
 
 		// function to check if the event is organic (isUpdate === false) or programmatic
 		const isUpdate = event => event && event.isUpdate;
