@@ -16,11 +16,11 @@
     "@carbon/styles": "^1.54.0"
   },
   "dependencies": {
-    "@carbon/icon-helpers": "10.37.0",
-    "@carbon/icons": "11.58.0",
-    "@carbon/utils-position": "1.1.4",
-    "@floating-ui/dom": "1.6.13",
-    "@ibm/telemetry-js": "^1.5.0",
+    "@carbon/icon-helpers": "10.84.0",
+    "@carbon/icons": "11.91.0",
+    "@carbon/utils-position": "1.3.0",
+    "@floating-ui/dom": "1.8.0",
+    "@ibm/telemetry-js": "^1.12.0",
     "flatpickr": "4.6.13",
     "lodash-es": "4.18.1",
     "tslib": "2.3.0"

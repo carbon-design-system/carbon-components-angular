@@ -53,7 +53,7 @@ const Template = (args) => ({
 			<cds-context-menu-divider></cds-context-menu-divider>
 			<cds-context-menu-item type="checkbox" label="Enable magic"></cds-context-menu-item>
 			<cds-context-menu-divider></cds-context-menu-divider>
-			<cds-context-menu-group label="Selection group">
+			<cds-context-menu-group label="Selection group" type="checkbox">
 				<cds-context-menu-item type="checkbox" label="Blue"></cds-context-menu-item>
 				<cds-context-menu-item type="checkbox" label="Red" [checked]="true"></cds-context-menu-item>
 				<cds-context-menu-item type="checkbox" label="Black"></cds-context-menu-item>

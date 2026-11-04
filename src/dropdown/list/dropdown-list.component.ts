@@ -55,6 +55,7 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 			[id]="listId"
 			role="listbox"
 			class="cds--list-box__menu cds--multi-select"
+			[style.--cds-layout-size-height-local]="menuItemHeight"
 			(scroll)="emitScroll($event)"
 			(keydown)="navigateList($event)"
 			tabindex="0"
@@ -182,9 +183,23 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	@Input() showTitles = true;
 
 	/**
-	 * Defines the rendering size of the `DropdownList` input component.
+	 * Defines the rendering size of the `DropdownList` items.
 	 */
 	public size: "sm" | "md" | "lg" = "md";
+	public fluid = false;
+
+	/**
+	 * The menu needs its own layout token when moved outside the list-box.
+	 * Fall back to rem values for styles versions without contextual layout tokens.
+	 */
+	get menuItemHeight(): string {
+		if (this.fluid) {
+			return "4rem";
+		}
+		const heights = { sm: "2rem", md: "2.5rem", lg: "3rem" };
+		return `var(--cds-layout-size-height-${this.size}, ${heights[this.size]})`;
+	}
+
 	public listId = `listbox-${DropdownList.listCount++}`;
 	public highlightedItem = null;
 	/**
