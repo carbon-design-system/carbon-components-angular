@@ -33,8 +33,6 @@ import { I18n } from "carbon-components-angular/i18n";
 import { DropdownService } from "./dropdown.service";
 import {
 	AnimationFrameService,
-	AnimationFrameServiceSingleton,
-
 	ElementService,
 	EventService,
 	getScrollableParents
@@ -242,7 +240,6 @@ import { PLACEHOLDER_SERVICE_PROVIDER } from "carbon-components-angular/placehol
 		},
 		PLACEHOLDER_SERVICE_PROVIDER,
 		AnimationFrameService,
-		AnimationFrameServiceSingleton,
 		DropdownService,
 		ElementService,
 		EventService

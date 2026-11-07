@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { position } from "@carbon/utils-position";
 import { I18n } from "carbon-components-angular/i18n";
-import { AnimationFrameService, AnimationFrameServiceSingleton, ElementService } from "carbon-components-angular/utils";
+import { AnimationFrameService, ElementService } from "carbon-components-angular/utils";
 import { closestAttr } from "carbon-components-angular/utils";
 import { CloseReasons } from "../dialog-config.interface";
 import { Dialog } from "../dialog.component";
@@ -32,7 +32,7 @@ import { NgClass, NgTemplateOutlet } from "@angular/common";
 			<ng-template [ngTemplateOutlet]="dialogConfig.content" [ngTemplateOutletContext]="{overflowMenu: this}" />
 		</div>
 	`,
-	providers: [ElementService, AnimationFrameService, AnimationFrameServiceSingleton],
+	providers: [ElementService, AnimationFrameService],
 	imports: [NgClass, NgTemplateOutlet]
 })
 export class OverflowMenuCustomPane extends Dialog implements AfterViewInit {

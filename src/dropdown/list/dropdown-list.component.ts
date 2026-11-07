@@ -30,7 +30,7 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 import { NgClass, NgTemplateOutlet } from "@angular/common";
 import { IconDirective } from "carbon-components-angular/icon";
 import { DropdownService } from "../dropdown.service";
-import { AnimationFrameService, AnimationFrameServiceSingleton } from "carbon-components-angular/utils";
+import { AnimationFrameService } from "carbon-components-angular/utils";
 
 
 /**
@@ -131,8 +131,7 @@ import { AnimationFrameService, AnimationFrameServiceSingleton } from "carbon-co
 			useExisting: DropdownList
 		},
 		DropdownService,
-		AnimationFrameService,
-		AnimationFrameServiceSingleton
+		AnimationFrameService
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [NgClass, IconDirective, NgTemplateOutlet]

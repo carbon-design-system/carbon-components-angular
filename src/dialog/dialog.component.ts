@@ -16,7 +16,7 @@ import {Subscription} from "rxjs";
 // the AbsolutePosition is required to import the declaration correctly
 import Position, { position, Positions } from "@carbon/utils-position";
 import { cycleTabs, getFocusElementList } from "carbon-components-angular/common";
-import { AnimationFrameService, AnimationFrameServiceSingleton, ElementService } from "carbon-components-angular/utils";
+import { AnimationFrameService, ElementService } from "carbon-components-angular/utils";
 import { CloseMeta, CloseReasons, DialogConfig } from "./dialog-config.interface";
 import { DialogService } from "./dialog.service";
 
@@ -27,7 +27,7 @@ import { DialogService } from "./dialog.service";
 @Component({
 	selector: "cds-dialog, ibm-dialog",
 	template: "",
-	providers: [DialogService, AnimationFrameService, ElementService, AnimationFrameServiceSingleton],
+	providers: [DialogService, AnimationFrameService, ElementService],
 	standalone: true
 })
 export class Dialog implements OnInit, AfterViewInit, OnDestroy {
