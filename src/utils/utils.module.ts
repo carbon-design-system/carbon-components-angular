@@ -32,8 +32,6 @@ export const DOCUMENT_SERVICE_PROVIDER = {
 /**
  * Returns the parent `AnimationFrameServiceSingleton` instance if one exists, otherwise creates a new one.
  *
- * `ngZone` is kept for backwards compatibility; the service injects `NgZone` itself.
- *
  * @deprecated as of v6 - `AnimationFrameServiceSingleton` is `providedIn: "root"` and no longer needs to be provided manually.
  */
 export function ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER_FACTORY(parentService: AnimationFrameServiceSingleton, ngZone?: NgZone) {
