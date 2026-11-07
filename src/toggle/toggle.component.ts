@@ -1,4 +1,5 @@
 import {
+	ChangeDetectionStrategy,
 	ChangeDetectorRef,
 	Component,
 	EventEmitter,
@@ -93,6 +94,7 @@ import { NgClass, NgTemplateOutlet, AsyncPipe } from "@angular/common";
 			multi: true
 		}
 	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [NgClass, NgTemplateOutlet, AsyncPipe]
 })
 export class Toggle implements ControlValueAccessor {

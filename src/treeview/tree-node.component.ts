@@ -1,4 +1,6 @@
 import {
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	Input,
 	Output,
@@ -117,6 +119,7 @@ import { IconDirective } from "carbon-components-angular/icon";
 			}
 		</div>
 	`,
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [NgClass, IconDirective, NgTemplateOutlet]
 })
 export class TreeNodeComponent implements AfterContentChecked, OnInit, OnDestroy {
@@ -177,6 +180,7 @@ export class TreeNodeComponent implements AfterContentChecked, OnInit, OnDestroy
 	private _node;
 	private subscription: Subscription;
 	private treeViewService = inject(TreeViewService);
+	private changeDetectorRef = inject(ChangeDetectorRef);
 
 	/** Inserted by Angular inject() migration for backwards compatibility */
 	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
@@ -199,6 +203,8 @@ export class TreeNodeComponent implements AfterContentChecked, OnInit, OnDestroy
 		this.subscription = this.treeViewService.selectionObservable.subscribe((value: Map<string, Node>) => {
 			this.selected = this.selectable && value.has(this.id);
 			this.active = this.selectable && this.selected;
+			// selection is broadcast to every node, not only the one that was clicked
+			this.changeDetectorRef.markForCheck();
 		});
 	}
 

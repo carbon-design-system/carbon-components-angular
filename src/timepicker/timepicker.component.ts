@@ -1,11 +1,14 @@
 import {
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	Input,
 	Output,
 	EventEmitter,
 	HostBinding,
 	TemplateRef,
-	HostListener
+	HostListener,
+	inject
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { NgClass, NgTemplateOutlet } from "@angular/common";
@@ -82,6 +85,7 @@ import { NgClass, NgTemplateOutlet } from "@angular/common";
 			multi: true
 		}
 	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [NgClass, NgTemplateOutlet]
 })
 export class TimePicker implements ControlValueAccessor {
@@ -123,8 +127,11 @@ export class TimePicker implements ControlValueAccessor {
 	 */
 	@HostBinding("class.cds--form-item") timepickerClass = true;
 
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+
 	writeValue(value: string) {
 		this.value = value;
+		this.changeDetectorRef.markForCheck();
 	}
 
 	registerOnChange(callback: any) {
@@ -137,6 +144,7 @@ export class TimePicker implements ControlValueAccessor {
 
 	setDisabledState(isDisabled: boolean) {
 		this.disabled = isDisabled;
+		this.changeDetectorRef.markForCheck();
 	}
 
 	onChange(event) {
