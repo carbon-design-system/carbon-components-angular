@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 /**
  * Get started with importing the component:
@@ -17,7 +17,8 @@ import { Component, Input } from "@angular/core";
 			[class.cds--skeleton__placeholder--ai]="ai">
 		</div>
 	`,
-	standalone: true
+	standalone: true,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkeletonPlaceholder {
 	/**

@@ -1,4 +1,5 @@
 import {
+	ChangeDetectionStrategy,
 	Component,
 	HostBinding,
 	ViewChild,
@@ -26,7 +27,8 @@ import {
 			<span class="cds--popover-caret"></span>
 		}
 	`,
-	standalone: true
+	standalone: true,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PopoverContent implements AfterViewInit {
 	@HostBinding("class.cds--popover") popoverClass = true;

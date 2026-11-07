@@ -1,4 +1,9 @@
-import { Component, Input, OnChanges } from "@angular/core";
+import {
+	ChangeDetectionStrategy,
+	Component,
+	Input,
+	OnChanges
+} from "@angular/core";
 import { NgClass } from "@angular/common";
 
 @Component({
@@ -16,6 +21,7 @@ import { NgClass } from "@angular/common";
 		}
 	`,
 	standalone: true,
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [NgClass]
 })
 export class SkeletonText implements OnChanges {
