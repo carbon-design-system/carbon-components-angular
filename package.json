@@ -65,9 +65,6 @@
   },
   "license": "Apache-2.0",
   "author": "IBM",
-  "peerDependencies": {
-    "@carbon/styles": "^1.97.0"
-  },
   "devDependencies": {
     "@angular-devkit/build-angular": "20.3.26",
     "@angular-devkit/core": "20.3.26",
