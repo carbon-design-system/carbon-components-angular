@@ -342,6 +342,8 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		this.updateIndex();
 		this.setupFocusObservable();
 		this.doEmitSelect();
+		// items may arrive asynchronously
+		this.changeDetectorRef.markForCheck();
 	}
 
 	/**
@@ -355,12 +357,12 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 			if (this.displayItems) {
 				this.index = 0;
 			}
-			this.changeDetectorRef.markForCheck();
 		} else {
 			this.displayItems = this.getListItems();
 		}
 
 		this.updateIndex();
+		this.changeDetectorRef.markForCheck();
 	}
 
 	/**
@@ -552,6 +554,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 					}
 				}
 			}
+			this.changeDetectorRef.markForCheck();
 		});
 	}
 
@@ -664,6 +667,13 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	onItemsReady(subcription: () => void): void {
 		// this subscription will auto unsubscribe because of the `first()` pipe
 		(this._itemsReady || of(true)).pipe(first()).subscribe(subcription);
+	}
+
+	/**
+	 * Marks the list for check after the items are changed by the owning component
+	 */
+	markForCheck(): void {
+		this.changeDetectorRef.markForCheck();
 	}
 
 	reorderSelected(moveFocus = true): void {

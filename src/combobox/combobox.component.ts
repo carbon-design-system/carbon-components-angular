@@ -716,6 +716,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 			}
 		}
 		this.updateSelected();
+		this.cdr.markForCheck();
 	}
 
 	onBlur() {

@@ -622,6 +622,7 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 				}
 			}
 			this.checkForReorder();
+			this.changeDetectorRef.markForCheck();
 		});
 	}
 
@@ -703,11 +704,13 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 			this.view.getCurrentItem().selected = false;
 			let item = this.view.getNextItem();
 			if (item) { item.selected = true; }
+			this.view.markForCheck?.();
 		} else if (event.key === "ArrowUp") {
 			event.preventDefault();
 			this.view.getCurrentItem().selected = false;
 			let item = this.view.getPrevItem();
 			if (item) { item.selected = true; }
+			this.view.markForCheck?.();
 		}
 	}
 
@@ -764,6 +767,7 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 		for (const item of this.view.getListItems()) {
 			item.selected = false;
 		}
+		this.view.markForCheck?.();
 		this.selected.emit([]);
 		this._propagateChange([]);
 	}
