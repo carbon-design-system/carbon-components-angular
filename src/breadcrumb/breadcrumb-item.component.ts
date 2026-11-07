@@ -5,6 +5,7 @@ import {
 	Output,
 	EventEmitter,
 	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	inject
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
@@ -59,7 +60,17 @@ export class BreadcrumbItemComponent {
 	 */
 	@Output() navigation = new EventEmitter<Promise<boolean>>();
 
-	@Input() skeleton = false;
+	/**
+	 * Set by the parent `cds-breadcrumb`
+	 */
+	@Input() set skeleton(value: boolean) {
+		this._skeleton = value;
+		this.changeDetectorRef.markForCheck();
+	}
+
+	get skeleton() {
+		return this._skeleton;
+	}
 
 	@Input() ariaCurrent = "page";
 
@@ -68,6 +79,8 @@ export class BreadcrumbItemComponent {
 	@HostBinding("class.cds--breadcrumb-item") itemClass = true;
 
 	protected domSanitizer = inject(DomSanitizer);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+	protected _skeleton = false;
 	protected router = inject(Router, { optional: true })!;
 	protected _href: string;
 
