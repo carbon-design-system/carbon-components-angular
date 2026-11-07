@@ -655,6 +655,7 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 	 */
 	setDisabledState(isDisabled: boolean) {
 		this.disabled = isDisabled;
+		this.changeDetectorRef.markForCheck();
 	}
 
 	/**

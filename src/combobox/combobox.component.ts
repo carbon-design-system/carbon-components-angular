@@ -738,6 +738,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 */
 	setDisabledState(isDisabled: boolean) {
 		this.disabled = isDisabled;
+		this.cdr.markForCheck();
 	}
 
 	/**

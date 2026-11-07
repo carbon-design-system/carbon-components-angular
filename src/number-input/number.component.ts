@@ -1,5 +1,6 @@
 import {
 	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	EventEmitter,
 	HostBinding,
@@ -362,6 +363,7 @@ export class NumberComponent implements ControlValueAccessor {
 	}
 
 	protected i18n = inject(I18n);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
 
 	protected _isFocused = false;
 
@@ -387,6 +389,7 @@ export class NumberComponent implements ControlValueAccessor {
 	 */
 	public writeValue(value: any) {
 		this.value = value;
+		this.changeDetectorRef.markForCheck();
 	}
 
 	/**
@@ -414,6 +417,7 @@ export class NumberComponent implements ControlValueAccessor {
 	 */
 	setDisabledState(isDisabled: boolean) {
 		this.disabled = isDisabled;
+		this.changeDetectorRef.markForCheck();
 	}
 
 	/**
