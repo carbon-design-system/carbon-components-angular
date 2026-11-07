@@ -30,7 +30,7 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 import { NgClass, NgTemplateOutlet } from "@angular/common";
 import { IconDirective } from "carbon-components-angular/icon";
 import { DropdownService } from "../dropdown.service";
-import { AnimationFrameService, AnimationFrameServiceSingleton } from "carbon-components-angular/utils";
+import { AnimationFrameService } from "carbon-components-angular/utils";
 
 
 /**
@@ -131,8 +131,7 @@ import { AnimationFrameService, AnimationFrameServiceSingleton } from "carbon-co
 			useExisting: DropdownList
 		},
 		DropdownService,
-		AnimationFrameService,
-		AnimationFrameServiceSingleton
+		AnimationFrameService
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [NgClass, IconDirective, NgTemplateOutlet]
@@ -343,6 +342,8 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		this.updateIndex();
 		this.setupFocusObservable();
 		this.doEmitSelect();
+		// items may arrive asynchronously
+		this.changeDetectorRef.markForCheck();
 	}
 
 	/**
@@ -356,12 +357,12 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 			if (this.displayItems) {
 				this.index = 0;
 			}
-			this.changeDetectorRef.markForCheck();
 		} else {
 			this.displayItems = this.getListItems();
 		}
 
 		this.updateIndex();
+		this.changeDetectorRef.markForCheck();
 	}
 
 	/**
@@ -553,6 +554,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 					}
 				}
 			}
+			this.changeDetectorRef.markForCheck();
 		});
 	}
 
@@ -665,6 +667,13 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	onItemsReady(subcription: () => void): void {
 		// this subscription will auto unsubscribe because of the `first()` pipe
 		(this._itemsReady || of(true)).pipe(first()).subscribe(subcription);
+	}
+
+	/**
+	 * Marks the list for check after the items are changed by the owning component
+	 */
+	markForCheck(): void {
+		this.changeDetectorRef.markForCheck();
 	}
 
 	reorderSelected(moveFocus = true): void {

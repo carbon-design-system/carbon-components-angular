@@ -22,7 +22,6 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { filter } from "rxjs/operators";
 import {
 	AnimationFrameService,
-	AnimationFrameServiceSingleton,
 	getScrollableParents,
 	hasScrollableParents
 } from "carbon-components-angular/utils";
@@ -239,7 +238,6 @@ import { PLACEHOLDER_SERVICE_PROVIDER } from "carbon-components-angular/placehol
 		},
 		DropdownService,
 		AnimationFrameService,
-		AnimationFrameServiceSingleton,
 		PLACEHOLDER_SERVICE_PROVIDER
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -718,6 +716,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 			}
 		}
 		this.updateSelected();
+		this.cdr.markForCheck();
 	}
 
 	onBlur() {
@@ -740,6 +739,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 */
 	setDisabledState(isDisabled: boolean) {
 		this.disabled = isDisabled;
+		this.cdr.markForCheck();
 	}
 
 	/**

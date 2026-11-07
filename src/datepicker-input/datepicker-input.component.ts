@@ -7,6 +7,7 @@ import {
 	TemplateRef,
 	ViewChild,
 	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	HostBinding,
 	inject
 } from "@angular/core";
@@ -212,6 +213,7 @@ export class DatePickerInput {
 	@ViewChild("input") input: ElementRef;
 
 	protected elementRef = inject(ElementRef);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
 
 	/** Inserted by Angular inject() migration for backwards compatibility */
 	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
@@ -228,6 +230,7 @@ export class DatePickerInput {
 
 	public writeValue(value: any) {
 		this.value = value;
+		this.changeDetectorRef.markForCheck();
 	}
 
 	public registerOnChange(fn: any) {

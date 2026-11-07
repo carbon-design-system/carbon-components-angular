@@ -6,7 +6,9 @@ import {
 } from "@angular/core";
 import { Observable, Subject, from } from "rxjs";
 
-@Injectable({providedIn: "root"})
+@Injectable({
+	providedIn: "root"
+})
 export class AnimationFrameServiceSingleton implements OnDestroy {
 	public tick: Observable<number>;
 
@@ -34,7 +36,8 @@ export class AnimationFrameServiceSingleton implements OnDestroy {
 	protected doTick(frame: number) {
 		this.frameSource.next(frame);
 		this.ngZone.runOutsideAngular(() => {
-			requestAnimationFrame(this.doTick.bind(this));
+			// keep track of the latest frame so `ngOnDestroy` can cancel the loop
+			this.animationFrameId = requestAnimationFrame(this.doTick.bind(this));
 		});
 	}
 }
