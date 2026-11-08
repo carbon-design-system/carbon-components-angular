@@ -1,10 +1,13 @@
 import {
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	HostBinding,
 	ContentChildren,
 	QueryList,
 	AfterContentInit,
-	Input
+	Input,
+	inject
 } from "@angular/core";
 import { ListColumn } from "./list-column.component";
 
@@ -30,7 +33,8 @@ import { ListColumn } from "./list-column.component";
 			}
 		</div>
 	`,
-	standalone: true
+	standalone: true,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListHeader implements AfterContentInit {
 	@HostBinding("class.cds--structured-list-thead") wrapper = true;
@@ -51,9 +55,18 @@ export class ListHeader implements AfterContentInit {
 	/**
 	 * Set by the containing `StructuredList`. Adds a dummy header for the selection column when set to true.
 	 */
-	selection = false;
+	set selection(value: boolean) {
+		this._selection = value;
+		this.changeDetectorRef.markForCheck();
+	}
 
+	get selection() {
+		return this._selection;
+	}
+
+	protected changeDetectorRef = inject(ChangeDetectorRef);
 	protected _skeleton = false;
+	protected _selection = false;
 
 	ngAfterContentInit() {
 		this.columns.forEach(column => {

@@ -1,4 +1,6 @@
 import {
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	HostBinding,
 	ContentChildren,
@@ -9,7 +11,8 @@ import {
 	ViewChild,
 	ElementRef,
 	EventEmitter,
-	Output
+	Output,
+	inject
 } from "@angular/core";
 import { ListColumn } from "./list-column.component";
 import { IconDirective } from "carbon-components-angular/icon";
@@ -53,13 +56,21 @@ import { IconDirective } from "carbon-components-angular/icon";
 			</div>
 		}
 	`,
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [IconDirective]
 })
 export class ListRow implements AfterContentInit {
 	@HostBinding("class.cds--structured-list-row--focused-within") get focusClass() {
 		return this.isFocused;
 	}
-	@Input() @HostBinding("class.cds--structured-list-row--selected") selected = false;
+	@Input() @HostBinding("class.cds--structured-list-row--selected") set selected(value: boolean) {
+		this._selected = value;
+		this.changeDetectorRef.markForCheck();
+	}
+
+	get selected() {
+		return this._selected;
+	}
 	/**
 	 * Applies an accessible label to the row. Defaults to no label.
 	 */
@@ -77,11 +88,25 @@ export class ListRow implements AfterContentInit {
 	/**
 	 * Set by the containing `StructuredList`. Enables or disables row level selection features.
 	 */
-	selection = false;
+	set selection(value: boolean) {
+		this._selection = value;
+		this.changeDetectorRef.markForCheck();
+	}
+
+	get selection() {
+		return this._selection;
+	}
 	/**
 	 * Set by the containing `StructuredList`. When `selection = true`, used for the `name` property on the radio input.
 	 */
-	name = "list";
+	set name(value: string) {
+		this._name = value;
+		this.changeDetectorRef.markForCheck();
+	}
+
+	get name() {
+		return this._name;
+	}
 
 	@HostBinding("class.cds--structured-list-row") wrapper = true;
 	@HostBinding("attr.role") role = "row";
@@ -89,6 +114,11 @@ export class ListRow implements AfterContentInit {
 	@ContentChildren(ListColumn) columns: QueryList<ListColumn>;
 
 	@ViewChild("input") input: ElementRef;
+
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+	protected _selected = false;
+	protected _selection = false;
+	protected _name = "list";
 
 	private isFocused = false;
 
