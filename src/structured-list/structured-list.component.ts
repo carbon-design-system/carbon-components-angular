@@ -1,4 +1,5 @@
 import {
+	ChangeDetectionStrategy,
 	Component,
 	Input,
 	ContentChildren,
@@ -83,6 +84,7 @@ import { NgClass } from "@angular/common";
 			multi: true
 		}
 	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [NgClass]
 })
 export class StructuredList implements AfterContentInit, ControlValueAccessor {

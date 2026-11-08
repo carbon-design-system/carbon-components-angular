@@ -33,8 +33,6 @@ import { I18n } from "carbon-components-angular/i18n";
 import { DropdownService } from "./dropdown.service";
 import {
 	AnimationFrameService,
-	AnimationFrameServiceSingleton,
-
 	ElementService,
 	EventService,
 	getScrollableParents
@@ -242,7 +240,6 @@ import { PLACEHOLDER_SERVICE_PROVIDER } from "carbon-components-angular/placehol
 		},
 		PLACEHOLDER_SERVICE_PROVIDER,
 		AnimationFrameService,
-		AnimationFrameServiceSingleton,
 		DropdownService,
 		ElementService,
 		EventService
@@ -625,6 +622,7 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 				}
 			}
 			this.checkForReorder();
+			this.changeDetectorRef.markForCheck();
 		});
 	}
 
@@ -658,6 +656,7 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 	 */
 	setDisabledState(isDisabled: boolean) {
 		this.disabled = isDisabled;
+		this.changeDetectorRef.markForCheck();
 	}
 
 	/**
@@ -705,11 +704,13 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 			this.view.getCurrentItem().selected = false;
 			let item = this.view.getNextItem();
 			if (item) { item.selected = true; }
+			this.view.markForCheck?.();
 		} else if (event.key === "ArrowUp") {
 			event.preventDefault();
 			this.view.getCurrentItem().selected = false;
 			let item = this.view.getPrevItem();
 			if (item) { item.selected = true; }
+			this.view.markForCheck?.();
 		}
 	}
 
@@ -766,6 +767,7 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 		for (const item of this.view.getListItems()) {
 			item.selected = false;
 		}
+		this.view.markForCheck?.();
 		this.selected.emit([]);
 		this._propagateChange([]);
 	}

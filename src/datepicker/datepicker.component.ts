@@ -16,6 +16,7 @@ import {
 	OnInit,
 	SimpleChange,
 	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	HostBinding,
 	inject
 } from "@angular/core";
@@ -280,6 +281,7 @@ export class DatePicker implements
 
 	protected elementRef = inject(ElementRef);
 	protected i18n = inject(I18n);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
 
 	protected _value = [];
 
@@ -413,6 +415,7 @@ export class DatePicker implements
 			if (this.isFlatpickrLoaded() && this.flatpickrInstance.config) {
 				this.setDateValues(this.value);
 			}
+			this.changeDetectorRef.markForCheck();
 		});
 	}
 
@@ -425,6 +428,7 @@ export class DatePicker implements
 	 */
 	setDisabledState(isDisabled: boolean) {
 		this.disabled = isDisabled;
+		this.changeDetectorRef.markForCheck();
 	}
 
 	registerOnChange(fn: any) {

@@ -1,4 +1,5 @@
 import {
+	ChangeDetectionStrategy,
 	Component,
 	HostBinding,
 	Input,
@@ -78,6 +79,7 @@ import { IconDirective } from "carbon-components-angular/icon";
 			</div>
 		}
 	`,
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [NgTemplateOutlet, IconDirective, NgStyle, NgClass]
 })
 export class ProgressBar {

@@ -177,6 +177,7 @@ export class Search implements ControlValueAccessor {
 	 */
 	public writeValue(value: any) {
 		this.value = value;
+		this.changeDetectorRef.markForCheck();
 	}
 
 	/**

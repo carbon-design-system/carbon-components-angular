@@ -1,5 +1,6 @@
 import {
 	AfterContentInit,
+	ChangeDetectionStrategy,
 	ContentChildren,
 	Component,
 	EventEmitter,
@@ -133,6 +134,7 @@ import { Subscription } from "rxjs/internal/Subscription";
 			multi: true
 		}
 	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [NgClass, NgTemplateOutlet, IconDirective]
 })
 export class RadioGroup implements AfterContentInit, AfterViewInit, OnDestroy, ControlValueAccessor {
@@ -363,6 +365,7 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, OnDestroy, C
 	 */
 	setDisabledState(isDisabled: boolean) {
 		this.disabled = isDisabled;
+		this.changeDetectorRef.markForCheck();
 	}
 
 	/**

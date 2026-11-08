@@ -316,6 +316,8 @@ export class CodeSnippet extends BaseIconButton implements OnInit, AfterViewInit
 	ngAfterViewInit() {
 		this.canExpand();
 		this.handleScroll();
+		// Have to detect changes because the parent's dirty flag is cleared after hooks run
+		this.changeDetectorRef.detectChanges();
 		if (window) {
 			this.eventService.on(window as any, "resize", () => {
 				this.canExpand();

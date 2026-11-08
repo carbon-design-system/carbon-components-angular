@@ -1,5 +1,6 @@
 import { NgTemplateOutlet, NgClass } from "@angular/common";
 import {
+	ChangeDetectionStrategy,
 	Component,
 	Input,
 	Output,
@@ -71,6 +72,7 @@ import { TreeNodeComponent } from "./tree-node.component";
 		</div>
 	`,
 	providers: [TreeViewService],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [NgTemplateOutlet, NgClass, TreeNodeComponent]
 })
 export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {

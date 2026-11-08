@@ -10,7 +10,7 @@ import { position } from "@carbon/utils-position";
 import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular/common";
 import { I18n } from "carbon-components-angular/i18n";
 import { ExperimentalService, EXPERIMENTAL_SERVICE_PROVIDER } from "carbon-components-angular/experimental";
-import { AnimationFrameService, AnimationFrameServiceSingleton, ElementService } from "carbon-components-angular/utils";
+import { AnimationFrameService, ElementService } from "carbon-components-angular/utils";
 import { CloseReasons } from "../dialog-config.interface";
 import { closestAttr } from "carbon-components-angular/utils";
 import { NgClass, NgTemplateOutlet } from "@angular/common";
@@ -36,7 +36,7 @@ import { NgClass, NgTemplateOutlet } from "@angular/common";
 			<ng-template [ngTemplateOutlet]="dialogConfig.content" [ngTemplateOutletContext]="{overflowMenu: this}" />
 		</ul>
 	`,
-	providers: [EXPERIMENTAL_SERVICE_PROVIDER, AnimationFrameService, ElementService, AnimationFrameServiceSingleton],
+	providers: [EXPERIMENTAL_SERVICE_PROVIDER, AnimationFrameService, ElementService],
 	imports: [NgClass, NgTemplateOutlet]
 })
 export class OverflowMenuPane extends Dialog implements AfterViewInit {

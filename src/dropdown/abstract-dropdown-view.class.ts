@@ -54,6 +54,11 @@ export class AbstractDropdownView {
 	public fluid = false;
 	public listId?: string;
 	/**
+	 * Optional - Called by the owning component after it changes the state of
+	 * list items in place so `OnPush` views can re-render.
+	 */
+	markForCheck?(): void;
+	/**
 	 * Returns the `ListItem` that is subsequent to the selected item in the `DropdownList`.
 	 */
 	getNextItem(): ListItem { return; }

@@ -1,4 +1,11 @@
-import { Component, HostBinding, Input } from "@angular/core";
+import {
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
+	Component,
+	HostBinding,
+	Input,
+	inject
+} from "@angular/core";
 
 /**
  * `ListColumn` represents a single column in a `StructuredList`.
@@ -18,10 +25,21 @@ import { Component, HostBinding, Input } from "@angular/core";
 		}
 		<ng-content />
 	`,
-	standalone: true
+	standalone: true,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListColumn {
-	@Input() skeleton = false;
+	/**
+	 * Set by the containing `ListHeader`
+	 */
+	@Input() set skeleton(value: boolean) {
+		this._skeleton = value;
+		this.changeDetectorRef.markForCheck();
+	}
+
+	get skeleton() {
+		return this._skeleton;
+	}
 
 	@HostBinding("attr.role") role = "cell";
 	@HostBinding("class.cds--structured-list-th") isHeaderColumn = true;
@@ -30,4 +48,7 @@ export class ListColumn {
 	 * Applies `white-space: nowrap` to the content of this `ListColumn`
 	 */
 	@HostBinding("class.cds--structured-list-content--nowrap") @Input() nowrap = false;
+
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+	protected _skeleton = false;
 }

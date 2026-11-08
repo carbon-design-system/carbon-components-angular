@@ -206,9 +206,10 @@ export class IconMemoryCache extends IconCache {
  *
  * If needed it is possible to register an icon under a different name, via `registerAs`.
  */
-@Injectable({providedIn: "root"})
+@Injectable({
+	providedIn: "root"
+})
 export class IconService {
-
 	private iconCache: IconCache = new IconMemoryCache();
 
 	constructor() {
