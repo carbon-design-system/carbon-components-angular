@@ -46,6 +46,11 @@
         "name": "v10",
         "channel": "carbon-v10",
         "range": "4.x"
+      },
+      {
+        "name": "v5-11",
+        "channel": "v5-carbon-v11",
+        "range": "5.x"
       }
     ],
     "tagFormat": "v${version}"

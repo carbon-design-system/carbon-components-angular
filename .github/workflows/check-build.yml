@@ -2,9 +2,9 @@ name: Check build
 
 on:
   push:
-    branches: [ master, next ]
+    branches: [ master, next, v5-11 ]
   pull_request:
-    branches: [ master, next ]
+    branches: [ master, next, v5-11 ]
 
 jobs:
   build:
