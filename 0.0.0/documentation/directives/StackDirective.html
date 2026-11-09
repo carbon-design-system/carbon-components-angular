@@ -138,8 +138,8 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Stack elements horizontally or vertically using this helper directive. Get started with importing the module:</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { LayoutModule } from &#39;carbon-components-angular&#39;;</code></pre></div><p><a href="../../?path=/story/layout-stack--basic">See demo</a></p>
+                <p>Stack elements horizontally or vertically using this helper directive. Get started with importing the directive:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { StackDirective } from &#39;carbon-components-angular&#39;;</code></pre></div><p><a href="../../?path=/story/layout-stack--basic">See demo</a></p>
 
             </p>
 
@@ -156,6 +156,10 @@
                         <td class="col-md-9"><code>[cdsStack], [ibmStack]</code></td>
                     </tr>
 
+                    <tr>
+                        <td class="col-md-3">Standalone</td>
+                        <td class="col-md-9"><code>true</code></td>
+                    </tr>
 
 
 
@@ -178,6 +182,14 @@
                             <li>
                                     <span class="modifier">Private</span>
                                 <a href="#_gap" >_gap</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#hostElement" >hostElement</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#render" >render</a>
                             </li>
                         </ul>
                     </td>
@@ -258,57 +270,15 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(render: Renderer2, hostElement: ElementRef)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/layout/stack.directive.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/layout/stack.directive.ts:65</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>render</td>
-                                                  
-                                                        <td>
-                                                                    <code>Renderer2</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>hostElement</td>
-                                                  
-                                                        <td>
-                                                                    <code>ElementRef</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
 </section>
@@ -336,7 +306,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/layout/stack.directive.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/layout/stack.directive.ts:48</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -365,7 +335,7 @@ Empty string is equivalent to &quot;vertical&quot;</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/layout/stack.directive.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/layout/stack.directive.ts:53</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -392,7 +362,7 @@ Empty string is equivalent to &quot;vertical&quot;</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/layout/stack.directive.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/layout/stack.directive.ts:38</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -419,7 +389,7 @@ Empty string is equivalent to &quot;vertical&quot;</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/layout/stack.directive.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/layout/stack.directive.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -445,7 +415,7 @@ Empty string is equivalent to &quot;vertical&quot;</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/layout/stack.directive.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/layout/stack.directive.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -475,7 +445,59 @@ Empty string is equivalent to &quot;vertical&quot;</p>
             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/layout/stack.directive.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/layout/stack.directive.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hostElement"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>hostElement</b></span>
+                        <a href="#hostElement"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ElementRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/layout/stack.directive.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="render"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>render</b></span>
+                        <a href="#render"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(Renderer2)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/layout/stack.directive.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -504,7 +526,7 @@ Empty string is equivalent to &quot;vertical&quot;</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/layout/stack.directive.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/layout/stack.directive.ts:27</a></div>
                                 </td>
                             </tr>
 
@@ -526,7 +548,7 @@ Empty string is equivalent to &quot;vertical&quot;</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/layout/stack.directive.ts:26</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/layout/stack.directive.ts:31</a></div>
                                 </td>
                             </tr>
 
@@ -549,7 +571,7 @@ Empty string is equivalent to &quot;vertical&quot;</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/layout/stack.directive.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/layout/stack.directive.ts:38</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -608,7 +630,7 @@ Empty string is equivalent to &quot;vertical&quot;</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/layout/stack.directive.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/layout/stack.directive.ts:53</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -663,22 +685,27 @@ Empty string is equivalent to &quot;vertical&quot;</p>
 	ElementRef,
 	HostBinding,
 	Input,
-	Renderer2
+	Renderer2,
+	inject
 } from &quot;@angular/core&quot;;
 
 /**
- * Stack elements horizontally or vertically using this helper directive. Get started with importing the module:
+ * Stack elements horizontally or vertically using this helper directive. Get started with importing the directive:
  *
  * &#x60;&#x60;&#x60;typescript
- * import { LayoutModule } from &#x27;carbon-components-angular&#x27;;
+ * import { StackDirective } from &#x27;carbon-components-angular&#x27;;
  * &#x60;&#x60;&#x60;
  *
  * [See demo](../../?path&#x3D;/story/layout-stack--basic)
  */
 @Directive({
-	selector: &quot;[cdsStack], [ibmStack]&quot;
+	selector: &quot;[cdsStack], [ibmStack]&quot;,
+	standalone: true
 })
 export class StackDirective {
+	public render &#x3D; inject(Renderer2);
+	public hostElement &#x3D; inject(ElementRef);
+
 	@HostBinding(&quot;class.cds--stack-horizontal&quot;) get isHorizontal() {
 		return this.cdsStack &#x3D;&#x3D;&#x3D; &quot;horizontal&quot;;
 	}
@@ -715,7 +742,11 @@ export class StackDirective {
 	// Used to track previous value of gap so we can dynamically remove class
 	private _gap;
 
-	constructor(private render: Renderer2, private hostElement: ElementRef) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 }
 </code></pre>
     </div>
@@ -789,7 +820,6 @@ export class StackDirective {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

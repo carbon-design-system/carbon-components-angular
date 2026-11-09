@@ -164,6 +164,10 @@
                 <td class="col-md-9"><code>cds-table-header-decorator, ibm-table-header-decorator</code></td>
             </tr>
 
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
 
 
 
@@ -211,7 +215,8 @@
 		&lt;div class&#x3D;&quot;cds--data-table-header__decorator&quot;&gt;
 			&lt;ng-content&gt;&lt;/ng-content&gt;
 		&lt;/div&gt;
-	&#x60;
+	&#x60;,
+	standalone: true
 })
 export class TableHeaderDecorator {}
 </code></pre>
@@ -321,7 +326,6 @@ export class TableHeaderDecorator {}
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

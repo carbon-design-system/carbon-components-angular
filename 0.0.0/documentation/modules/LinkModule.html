@@ -133,18 +133,18 @@
 <title>cluster_LinkModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="135,-70 135,-268 361,-268 361,-70 135,-70"/>
 </g>
-<g id="clust6" class="cluster">
+<g id="clust3" class="cluster">
+<title>cluster_LinkModule_imports</title>
+<polygon fill="none" stroke="black" points="144,-78 144,-130 352,-130 352,-78 144,-78"/>
+</g>
+<g id="clust4" class="cluster">
 <title>cluster_LinkModule_exports</title>
 <polygon fill="none" stroke="black" points="143,-208 143,-260 353,-260 353,-208 143,-208"/>
-</g>
-<g id="clust2" class="cluster">
-<title>cluster_LinkModule_declarations</title>
-<polygon fill="none" stroke="black" points="144,-78 144,-130 352,-130 352,-78 144,-78"/>
 </g>
 <!-- Link -->
 <g id="node1" class="node">
 <title>Link</title>
-<polygon fill="#ffffb3" stroke="black" points="344,-122 290,-122 290,-86 344,-86 344,-122"/>
+<polygon fill="#8dd3c7" stroke="black" points="344,-122 341,-126 320,-126 317,-122 290,-122 290,-86 344,-86 344,-122"/>
 <text text-anchor="middle" x="317" y="-99.8" font-family="Times,serif" font-size="14.00">Link</text>
 </g>
 <!-- LinkModule -->
@@ -162,7 +162,7 @@
 <!-- LinkIconDirective -->
 <g id="node2" class="node">
 <title>LinkIconDirective</title>
-<polygon fill="#ffffb3" stroke="black" points="271.9,-122 152.1,-122 152.1,-86 271.9,-86 271.9,-122"/>
+<polygon fill="#8dd3c7" stroke="black" points="271.9,-122 268.9,-126 247.9,-126 244.9,-122 152.1,-122 152.1,-86 271.9,-86 271.9,-122"/>
 <text text-anchor="middle" x="212" y="-99.8" font-family="Times,serif" font-size="14.00">LinkIconDirective</text>
 </g>
 <!-- LinkIconDirective&#45;&gt;LinkModule -->
@@ -241,14 +241,15 @@
         <div class="container-fluid module">
             <div class="row">
                 <div class="col-sm-3">
-                    <h3>Declarations<a href="https://angular.io/api/core/NgModule#declarations" target="_blank" rel="noopener noreferrer"
-                            title="Official documentation about module declarations"><span class="icon ion-ios-information-circle-outline"></span></a></h3>
+                    <h3>Imports<a href="https://angular.io/api/core/NgModule#imports" target="_blank" rel="noopener noreferrer"
+                            title="Official documentation about module imports"><span
+                                class="icon ion-ios-information-circle-outline"></a></h3>
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <a href="../directives/Link.html">Link</a>
+                            <a href="../modules/Link.html">Link</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="../directives/LinkIconDirective.html">LinkIconDirective</a>
+                            <a href="../modules/LinkIconDirective.html">LinkIconDirective</a>
                         </li>
                     </ul>
                 </div>
@@ -280,16 +281,14 @@ import { Link } from &quot;./link.directive&quot;;
 import { LinkIconDirective } from &quot;./link-icon.directive&quot;;
 
 @NgModule({
-	declarations: [
-		Link,
-		LinkIconDirective
-	],
 	exports: [
 		Link,
 		LinkIconDirective
 	],
 	imports: [
-		CommonModule
+		CommonModule,
+		Link,
+		LinkIconDirective
 	]
 })
 export class LinkModule {}
@@ -367,7 +366,6 @@ export class LinkModule {}
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

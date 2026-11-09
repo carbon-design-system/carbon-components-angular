@@ -138,8 +138,8 @@
     <p class="comment">
         <p>Base class for <code>Notification</code>, <code>ActionableNotification</code>, &amp; <code>Toast</code>
 consisting of common functionality</p>
-<p>Get started with importing the module:</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { NotificationModule } from &#39;carbon-components-angular&#39;;</code></pre></div><p><a href="../../?path=/story/components-notification--inline-notification">See demo</a></p>
+<p>Get started with importing the component:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { Notification } from &#39;carbon-components-angular&#39;;</code></pre></div><p><a href="../../?path=/story/components-notification--inline-notification">See demo</a></p>
 
     </p>
 
@@ -171,8 +171,16 @@ consisting of common functionality</p>
                                 <a href="#defaultNotificationObj" >defaultNotificationObj</a>
                             </li>
                             <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#i18n" >i18n</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Readonly</span>
                                 <a href="#iconDictionary" >iconDictionary</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#notificationDisplayService" >notificationDisplayService</a>
                             </li>
                         </ul>
                     </td>
@@ -255,57 +263,15 @@ consisting of common functionality</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(notificationDisplayService: <a href="../injectables/NotificationDisplayService.html" target="_self">NotificationDisplayService</a>, i18n: <a href="../injectables/I18n.html" target="_self">I18n</a>)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/notification/base-notification.component.ts:65</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/notification/base-notification.component.ts:74</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>notificationDisplayService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/NotificationDisplayService.html" target="_self" >NotificationDisplayService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>i18n</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/I18n.html" target="_self" >I18n</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
 </section>
@@ -329,7 +295,7 @@ consisting of common functionality</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/notification/base-notification.component.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/notification/base-notification.component.ts:43</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -361,7 +327,7 @@ consisting of common functionality</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/notification/base-notification.component.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/notification/base-notification.component.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -404,8 +370,8 @@ consisting of common functionality</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="90"
-                                    class="link-to-prism">src/notification/base-notification.component.ts:90</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="96"
+                                    class="link-to-prism">src/notification/base-notification.component.ts:96</a></div>
                         </td>
                     </tr>
 
@@ -441,8 +407,8 @@ consisting of common functionality</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="79"
-                                    class="link-to-prism">src/notification/base-notification.component.ts:79</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="85"
+                                    class="link-to-prism">src/notification/base-notification.component.ts:85</a></div>
                         </td>
                     </tr>
 
@@ -513,8 +479,8 @@ consisting of common functionality</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="75"
-                                    class="link-to-prism">src/notification/base-notification.component.ts:75</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="81"
+                                    class="link-to-prism">src/notification/base-notification.component.ts:81</a></div>
                         </td>
                     </tr>
 
@@ -563,7 +529,7 @@ consisting of common functionality</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/notification/base-notification.component.ts:65</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/notification/base-notification.component.ts:70</a></div>
                         </td>
                     </tr>
 
@@ -589,7 +555,7 @@ consisting of common functionality</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/notification/base-notification.component.ts:44</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/notification/base-notification.component.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -628,7 +594,33 @@ consisting of common functionality</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/notification/base-notification.component.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/notification/base-notification.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="i18n"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>i18n</b></span>
+                        <a href="#i18n"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(I18n)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/notification/base-notification.component.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -667,7 +659,33 @@ consisting of common functionality</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/notification/base-notification.component.ts:47</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/notification/base-notification.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="notificationDisplayService"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>notificationDisplayService</b></span>
+                        <a href="#notificationDisplayService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(NotificationDisplayService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/notification/base-notification.component.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -696,7 +714,7 @@ consisting of common functionality</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/notification/base-notification.component.ts:34</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/notification/base-notification.component.ts:36</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -725,7 +743,8 @@ consisting of common functionality</p>
 	EventEmitter,
 	HostBinding,
 	Component,
-	ComponentRef
+	ComponentRef,
+	inject
 } from &quot;@angular/core&quot;;
 import { isObservable, Subject } from &quot;rxjs&quot;;
 import { I18n } from &quot;carbon-components-angular/i18n&quot;;
@@ -736,16 +755,17 @@ import { NotificationDisplayService } from &quot;./notification-display.service&
  * Base class for &#x60;Notification&#x60;, &#x60;ActionableNotification&#x60;, &amp; &#x60;Toast&#x60;
  * consisting of common functionality
  *
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * &#x60;&#x60;&#x60;typescript
- * import { NotificationModule } from &#x27;carbon-components-angular&#x27;;
+ * import { Notification } from &#x27;carbon-components-angular&#x27;;
  * &#x60;&#x60;&#x60;
  *
  * [See demo](../../?path&#x3D;/story/components-notification--inline-notification)
  */
 @Component({
-	template: &quot;&quot;
+	template: &quot;&quot;,
+	standalone: true
 })
 export class BaseNotification {
 	/**
@@ -775,6 +795,9 @@ export class BaseNotification {
 		&quot;warning-alt&quot;: &quot;warning--alt--filled&quot;
 	};
 
+	protected notificationDisplayService &#x3D; inject(NotificationDisplayService);
+	protected i18n &#x3D; inject(I18n);
+
 	protected defaultNotificationObj: NotificationContent &#x3D; {
 		title: &quot;&quot;,
 		message: &quot;&quot;,
@@ -786,10 +809,11 @@ export class BaseNotification {
 
 	protected _notificationObj: NotificationContent &#x3D; Object.assign({}, this.defaultNotificationObj);
 
-	constructor(
-		protected notificationDisplayService: NotificationDisplayService,
-		protected i18n: I18n
-	) { }
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	/**
 	 * Emits close event.
@@ -920,7 +944,6 @@ export class BaseNotification {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

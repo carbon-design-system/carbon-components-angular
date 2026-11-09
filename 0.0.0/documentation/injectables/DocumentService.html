@@ -479,7 +479,7 @@ import { Observable, Subscription } from &quot;rxjs&quot;;
 import { EventHandler } from &quot;./types&quot;;
 import { getEventObservable } from &quot;./event-observable&quot;;
 
-@Injectable()
+@Injectable({providedIn: &quot;root&quot;})
 export class DocumentService implements OnDestroy {
 	protected globalEvents &#x3D; new Map&lt;string, Observable&lt;Event&gt;&gt;();
 
@@ -579,7 +579,6 @@ export class DocumentService implements OnDestroy {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

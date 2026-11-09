@@ -148,6 +148,10 @@
                         <td class="col-md-9"><code>[cdsExpandedRowHover], [ibmExpandedRowHover]</code></td>
                     </tr>
 
+                    <tr>
+                        <td class="col-md-3">Standalone</td>
+                        <td class="col-md-9"><code>true</code></td>
+                    </tr>
 
 
 
@@ -232,8 +236,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="11"
-                            class="link-to-prism">src/table/expanded-row-hover.directive.ts:11</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="9"
+                            class="link-to-prism">src/table/expanded-row-hover.directive.ts:9</a></div>
                 </td>
             </tr>
 
@@ -262,8 +266,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/table/expanded-row-hover.directive.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="14"
+                            class="link-to-prism">src/table/expanded-row-hover.directive.ts:14</a></div>
                 </td>
             </tr>
 
@@ -305,8 +309,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="11"
-                                    class="link-to-prism">src/table/expanded-row-hover.directive.ts:11</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="9"
+                                    class="link-to-prism">src/table/expanded-row-hover.directive.ts:9</a></div>
                         </td>
                     </tr>
 
@@ -377,8 +381,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="16"
-                                    class="link-to-prism">src/table/expanded-row-hover.directive.ts:16</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="14"
+                                    class="link-to-prism">src/table/expanded-row-hover.directive.ts:14</a></div>
                         </td>
                     </tr>
 
@@ -427,13 +431,11 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-	Directive,
-	HostListener
-} from &quot;@angular/core&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, HostListener } from &quot;@angular/core&quot;;
 
 @Directive({
-	selector: &quot;[cdsExpandedRowHover], [ibmExpandedRowHover]&quot;
+	selector: &quot;[cdsExpandedRowHover], [ibmExpandedRowHover]&quot;,
+	standalone: true
 })
 export class ExpandedRowHover {
 	@HostListener(&quot;mouseenter&quot;, [&quot;$event&quot;])
@@ -518,7 +520,6 @@ export class ExpandedRowHover {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

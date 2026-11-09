@@ -148,6 +148,10 @@
                         <td class="col-md-9"><code>[cdsActionableButton], [ibmActionableButton]</code></td>
                     </tr>
 
+                    <tr>
+                        <td class="col-md-3">Standalone</td>
+                        <td class="col-md-9"><code>true</code></td>
+                    </tr>
 
 
 
@@ -233,7 +237,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/notification/actionable-button.directive.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/notification/actionable-button.directive.ts:9</a></div>
                         </td>
                     </tr>
 
@@ -264,7 +268,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/notification/actionable-button.directive.ts:7</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/notification/actionable-button.directive.ts:8</a></div>
                         </td>
                     </tr>
 
@@ -308,7 +312,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/notification/actionable-button.directive.ts:7</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/notification/actionable-button.directive.ts:8</a></div>
                         </td>
                     </tr>
 
@@ -349,7 +353,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/notification/actionable-button.directive.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/notification/actionable-button.directive.ts:9</a></div>
                         </td>
                     </tr>
 
@@ -366,7 +370,8 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, HostBinding } from &quot;@angular/core&quot;;
 
 @Directive({
-	selector: &quot;[cdsActionableButton], [ibmActionableButton]&quot;
+	selector: &quot;[cdsActionableButton], [ibmActionableButton]&quot;,
+	standalone: true
 })
 export class ActionableButton {
 	@HostBinding(&quot;class.cds--actionable-notification__action-button&quot;) actionableButton &#x3D; true;
@@ -444,7 +449,6 @@ export class ActionableButton {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

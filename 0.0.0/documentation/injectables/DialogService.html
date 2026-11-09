@@ -164,8 +164,16 @@
                             </li>
                             <li>
                                     <span class="modifier">Protected</span>
+                                <a href="#injector" >injector</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
                                     <span class="modifier">Static</span>
                                 <a href="#listeningForBodyClicks" >listeningForBodyClicks</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#placeholderService" >placeholderService</a>
                             </li>
                         </ul>
                     </td>
@@ -210,12 +218,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(injector: Injector, placeholderService: <a href="../injectables/PlaceholderService.html" target="_self">PlaceholderService</a>)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/dialog/dialog.service.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/dialog/dialog.service.ts:43</a></div>
                             </td>
                         </tr>
 
@@ -223,44 +231,6 @@
                     <td class="col-md-4">
                             <div class="io-description"><p>Creates an instance of <code>DialogService</code>.</p>
 </div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>injector</td>
-                                                  
-                                                        <td>
-                                                                    <code>Injector</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>placeholderService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/PlaceholderService.html" target="_self" >PlaceholderService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
                     </td>
                 </tr>
             </tbody>
@@ -292,8 +262,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="89"
-                                    class="link-to-prism">src/dialog/dialog.service.ts:89</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="97"
+                                    class="link-to-prism">src/dialog/dialog.service.ts:97</a></div>
                         </td>
                     </tr>
 
@@ -369,8 +339,8 @@ the current <code>dialogRef</code> item. Unsubscribes to the event of <code>Dial
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="30"
-                                    class="link-to-prism">src/dialog/dialog.service.ts:30</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="31"
+                                    class="link-to-prism">src/dialog/dialog.service.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -408,8 +378,8 @@ the current <code>dialogRef</code> item. Unsubscribes to the event of <code>Dial
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="51"
-                                    class="link-to-prism">src/dialog/dialog.service.ts:51</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="59"
+                                    class="link-to-prism">src/dialog/dialog.service.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -516,8 +486,8 @@ May be <code>null</code> if an <code>cds-placeholder</code> exists and <code>dia
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="119"
-                                    class="link-to-prism">src/dialog/dialog.service.ts:119</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="127"
+                                    class="link-to-prism">src/dialog/dialog.service.ts:127</a></div>
                         </td>
                     </tr>
 
@@ -566,7 +536,7 @@ and changes to it won&#39;t be considered a breaking change. Use at your own ris
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/dialog/dialog.service.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/dialog/dialog.service.ts:26</a></div>
                         </td>
                     </tr>
 
@@ -576,6 +546,32 @@ and changes to it won&#39;t be considered a breaking change. Use at your own ris
 </div>
                 </td>
             </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="injector"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>injector</b></span>
+                        <a href="#injector"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(Injector)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/dialog/dialog.service.ts:38</a></div>
+                        </td>
+                    </tr>
+
 
         </tbody>
     </table>
@@ -599,7 +595,7 @@ and changes to it won&#39;t be considered a breaking change. Use at your own ris
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/dialog/dialog.service.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/dialog/dialog.service.ts:21</a></div>
                         </td>
                     </tr>
 
@@ -609,6 +605,32 @@ and changes to it won&#39;t be considered a breaking change. Use at your own ris
 </div>
                 </td>
             </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="placeholderService"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>placeholderService</b></span>
+                        <a href="#placeholderService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(PlaceholderService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/dialog/dialog.service.ts:39</a></div>
+                        </td>
+                    </tr>
+
 
         </tbody>
     </table>
@@ -622,7 +644,8 @@ and changes to it won&#39;t be considered a breaking change. Use at your own ris
 	Injector,
 	ComponentRef,
 	Injectable,
-	ViewContainerRef
+	ViewContainerRef,
+	inject
 } from &quot;@angular/core&quot;;
 import { CloseReasons, DialogConfig } from &quot;./dialog-config.interface&quot;;
 import { PlaceholderService } from &quot;carbon-components-angular/placeholder&quot;;
@@ -654,10 +677,17 @@ export class DialogService {
 		DialogService.dialogRefs.clear();
 	}
 
+	protected injector &#x3D; inject(Injector);
+	protected placeholderService &#x3D; inject(PlaceholderService);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of &#x60;DialogService&#x60;.
 	 */
-	constructor(protected injector: Injector, protected placeholderService: PlaceholderService) {}
+	constructor() {}
 
 	/**
 	 * If &#x60;dialogRef&#x60; is defined, the Dialog is already open. If
@@ -814,7 +844,6 @@ export class DialogService {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

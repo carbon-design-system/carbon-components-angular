@@ -24,18 +24,18 @@
 <title>cluster_SkeletonModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="53,-70 53,-268 443,-268 443,-70 53,-70"/>
 </g>
-<g id="clust7" class="cluster">
+<g id="clust3" class="cluster">
+<title>cluster_SkeletonModule_imports</title>
+<polygon fill="none" stroke="black" points="66,-78 66,-130 429,-130 429,-78 66,-78"/>
+</g>
+<g id="clust4" class="cluster">
 <title>cluster_SkeletonModule_exports</title>
 <polygon fill="none" stroke="black" points="61,-208 61,-260 435,-260 435,-208 61,-208"/>
-</g>
-<g id="clust2" class="cluster">
-<title>cluster_SkeletonModule_declarations</title>
-<polygon fill="none" stroke="black" points="66,-78 66,-130 429,-130 429,-78 66,-78"/>
 </g>
 <!-- SkeletonIcon -->
 <g id="node1" class="node">
 <title>SkeletonIcon</title>
-<polygon fill="#ffffb3" stroke="black" points="420.87,-122 331.13,-122 331.13,-86 420.87,-86 420.87,-122"/>
+<polygon fill="#8dd3c7" stroke="black" points="420.87,-122 417.87,-126 396.87,-126 393.87,-122 331.13,-122 331.13,-86 420.87,-86 420.87,-122"/>
 <text text-anchor="middle" x="376" y="-99.8" font-family="Times,serif" font-size="14.00">SkeletonIcon</text>
 </g>
 <!-- SkeletonModule -->
@@ -53,7 +53,7 @@
 <!-- SkeletonPlaceholder -->
 <g id="node2" class="node">
 <title>SkeletonPlaceholder</title>
-<polygon fill="#ffffb3" stroke="black" points="313.58,-122 182.42,-122 182.42,-86 313.58,-86 313.58,-122"/>
+<polygon fill="#8dd3c7" stroke="black" points="313.58,-122 310.58,-126 289.58,-126 286.58,-122 182.42,-122 182.42,-86 313.58,-86 313.58,-122"/>
 <text text-anchor="middle" x="248" y="-99.8" font-family="Times,serif" font-size="14.00">SkeletonPlaceholder</text>
 </g>
 <!-- SkeletonPlaceholder&#45;&gt;SkeletonModule -->
@@ -65,7 +65,7 @@
 <!-- SkeletonText -->
 <g id="node3" class="node">
 <title>SkeletonText</title>
-<polygon fill="#ffffb3" stroke="black" points="164.15,-122 73.85,-122 73.85,-86 164.15,-86 164.15,-122"/>
+<polygon fill="#8dd3c7" stroke="black" points="164.15,-122 161.15,-126 140.15,-126 137.15,-122 73.85,-122 73.85,-86 164.15,-86 164.15,-122"/>
 <text text-anchor="middle" x="119" y="-99.8" font-family="Times,serif" font-size="14.00">SkeletonText</text>
 </g>
 <!-- SkeletonText&#45;&gt;SkeletonModule -->

@@ -149,6 +149,10 @@
                         <td class="col-md-3">Name</td>
                         <td class="col-md-9">i18nReplace</td>
                     </tr>
+                    <tr>
+                        <td class="col-md-3">Standalone</td>
+                        <td class="col-md-9"><code>true</code></td>
+                    </tr>
                 </tbody>
             </table>
         </section>
@@ -178,8 +182,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="8"
-                                    class="link-to-prism">src/i18n/replace.pipe.ts:8</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="9"
+                                    class="link-to-prism">src/i18n/replace.pipe.ts:9</a></div>
                         </td>
                     </tr>
 
@@ -240,7 +244,8 @@
 import { replace } from &quot;./i18n.service&quot;;
 
 @Pipe({
-	name: &quot;i18nReplace&quot;
+	name: &quot;i18nReplace&quot;,
+	standalone: true
 })
 export class ReplacePipe implements PipeTransform {
 	transform(value, variables) {
@@ -315,7 +320,6 @@ export class ReplacePipe implements PipeTransform {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

@@ -148,6 +148,10 @@
                         <td class="col-md-9"><code>[cdsModalContentText], [ibmModalContentText]</code></td>
                     </tr>
 
+                    <tr>
+                        <td class="col-md-3">Standalone</td>
+                        <td class="col-md-9"><code>true</code></td>
+                    </tr>
 
 
 
@@ -226,7 +230,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/modal/modal-content-text.directive.ts:7</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/modal/modal-content-text.directive.ts:8</a></div>
                         </td>
                     </tr>
 
@@ -270,7 +274,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/modal/modal-content-text.directive.ts:7</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/modal/modal-content-text.directive.ts:8</a></div>
                         </td>
                     </tr>
 
@@ -287,7 +291,8 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, HostBinding } from &quot;@angular/core&quot;;
 
 @Directive({
-	selector: &quot;[cdsModalContentText], [ibmModalContentText]&quot;
+	selector: &quot;[cdsModalContentText], [ibmModalContentText]&quot;,
+	standalone: true
 })
 export class ModalContentText {
 	@HostBinding(&quot;class.cds--modal-content__text&quot;) modalContentTextClass &#x3D; true;
@@ -364,7 +369,6 @@ export class ModalContentText {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

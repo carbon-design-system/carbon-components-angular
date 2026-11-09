@@ -136,8 +136,8 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Get started with importing the module:</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { TimePickerSelectModule } from &#39;carbon-components-angular&#39;;</code></pre></div><p><a href="../../?path=/story/components-time-picker-select--simple">See demo</a></p>
+        <p>Get started with importing the component:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { TimePickerSelect } from &#39;carbon-components-angular&#39;;</code></pre></div><p><a href="../../?path=/story/components-time-picker-select--simple">See demo</a></p>
 
     </p>
 
@@ -155,6 +155,10 @@
     <table class="table table-sm table-hover metadata">
         <tbody>
 
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
 
 
 
@@ -180,12 +184,20 @@
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../directives/IconDirective.html" target="_self" >IconDirective</a></code>
+                </td>
+            </tr>
 
 
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;label *ngIf&#x3D;&quot;!skeleton &amp;&amp; label&quot; [attr.for]&#x3D;&quot;id&quot; class&#x3D;&quot;cds--label cds--visually-hidden&quot;&gt;{{label}}&lt;/label&gt;
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">@if (!skeleton &amp;&amp; label) {
+	&lt;label [attr.for]&#x3D;&quot;id&quot; class&#x3D;&quot;cds--label cds--visually-hidden&quot;&gt;{{label}}&lt;/label&gt;
+}
 &lt;div class&#x3D;&quot;cds--select-input__wrapper&quot;&gt;
 	&lt;select
 		#select
@@ -194,9 +206,11 @@
 		[disabled]&#x3D;&quot;disabled&quot;
 		(change)&#x3D;&quot;onChange($event)&quot;
 		class&#x3D;&quot;cds--select-input&quot;&gt;
-		&lt;ng-content&gt;&lt;/ng-content&gt;
+		&lt;ng-content /&gt;
 	&lt;/select&gt;
-	&lt;svg cdsIcon&#x3D;&quot;chevron--down&quot; size&#x3D;&quot;16&quot; *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;cds--select__arrow&quot;&gt;&lt;/svg&gt;
+	@if (!skeleton) {
+		&lt;svg cdsIcon&#x3D;&quot;chevron--down&quot; size&#x3D;&quot;16&quot; class&#x3D;&quot;cds--select__arrow&quot;&gt;&lt;/svg&gt;
+	}
 &lt;/div&gt;
 	</code></pre></td>
             </tr>
@@ -240,6 +254,10 @@
                             <li>
                                     <span class="modifier">Protected</span>
                                 <a href="#_value" >_value</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#changeDetectorRef" >changeDetectorRef</a>
                             </li>
                             <li>
                                 <a href="#focused" >focused</a>
@@ -412,6 +430,12 @@
                             <li>
                                 <a href="#class.cds--time-picker__select" >class.cds--time-picker__select</a>
                             </li>
+                            <li>
+                                <a href="#class.cds--form-item" >class.cds--form-item</a>
+                            </li>
+                            <li>
+                                <a href="#class.cds--select--fluid" >class.cds--select--fluid</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -474,7 +498,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:52</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:57</a></code>
 </div>
                             </td>
                         </tr>
@@ -507,7 +531,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:50</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:55</a></code>
 </div>
                             </td>
                         </tr>
@@ -535,7 +559,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:65</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:70</a></code>
 </div>
                             </td>
                         </tr>
@@ -568,7 +592,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:57</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:62</a></code>
 </div>
                             </td>
                         </tr>
@@ -607,7 +631,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:63</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:68</a></code>
 </div>
                             </td>
                         </tr>
@@ -635,7 +659,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:265</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:322</a></code>
 </div>
                             </td>
                         </tr>
@@ -674,7 +698,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:230</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:287</a></code>
 </div>
                             </td>
                         </tr>
@@ -713,7 +737,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:198</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:255</a></code>
 </div>
                             </td>
                         </tr>
@@ -752,7 +776,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:260</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:317</a></code>
 </div>
                             </td>
                         </tr>
@@ -786,7 +810,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:206</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:263</a></code>
 </div>
                             </td>
                         </tr>
@@ -825,7 +849,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:255</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:312</a></code>
 </div>
                             </td>
                         </tr>
@@ -865,7 +889,7 @@ to assistive technology.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:238</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:295</a></code>
 </div>
                             </td>
                         </tr>
@@ -899,7 +923,7 @@ to assistive technology.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:210</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:267</a></code>
 </div>
                             </td>
                         </tr>
@@ -938,7 +962,7 @@ to assistive technology.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:242</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:299</a></code>
 </div>
                             </td>
                         </tr>
@@ -977,7 +1001,7 @@ to assistive technology.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:226</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:283</a></code>
 </div>
                             </td>
                         </tr>
@@ -1011,7 +1035,7 @@ to assistive technology.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:179</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:236</a></code>
 </div>
                             </td>
                         </tr>
@@ -1044,7 +1068,7 @@ to assistive technology.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:214</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:271</a></code>
 </div>
                             </td>
                         </tr>
@@ -1078,7 +1102,7 @@ to assistive technology.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:218</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:275</a></code>
 </div>
                             </td>
                         </tr>
@@ -1115,7 +1139,7 @@ to assistive technology.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:267</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:324</a></code>
 </div>
                             </td>
                         </tr>
@@ -1147,7 +1171,7 @@ to assistive technology.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/timepicker-select/timepicker-select.component.ts:47</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/timepicker-select/timepicker-select.component.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -1173,7 +1197,7 @@ to assistive technology.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/timepicker-select/timepicker-select.component.ts:69</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/timepicker-select/timepicker-select.component.ts:74</a></div>
                         </td>
                     </tr>
 
@@ -1204,7 +1228,7 @@ to assistive technology.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/timepicker-select/timepicker-select.component.ts:67</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/timepicker-select/timepicker-select.component.ts:72</a></div>
                         </td>
                     </tr>
 
@@ -1235,7 +1259,73 @@ to assistive technology.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/timepicker-select/timepicker-select.component.ts:48</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/timepicker-select/timepicker-select.component.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="class.cds--form-item"></a>
+                    <span class="name">
+                        <span ><b>class.cds--form-item</b></span>
+                        <a href="#class.cds--form-item"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/Select.html" target="_self" >Select</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:228</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="class.cds--select--fluid"></a>
+                    <span class="name">
+                        <span ><b>class.cds--select--fluid</b></span>
+                        <a href="#class.cds--select--fluid"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/Select.html" target="_self" >Select</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:232</a></code>
+</div>
                         </td>
                     </tr>
 
@@ -1271,7 +1361,7 @@ to assistive technology.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:328</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:387</a></code>
 </div>
                         </td>
                     </tr>
@@ -1327,7 +1417,7 @@ to assistive technology.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:328</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:387</a></code>
 </div>
                         </td>
                     </tr>
@@ -1372,7 +1462,7 @@ to assistive technology.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:356</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:415</a></code>
 </div>
                         </td>
                     </tr>
@@ -1447,7 +1537,7 @@ to assistive technology.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:332</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:391</a></code>
 </div>
                         </td>
                     </tr>
@@ -1516,7 +1606,7 @@ to assistive technology.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:275</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:333</a></code>
 </div>
                         </td>
                     </tr>
@@ -1559,7 +1649,7 @@ to assistive technology.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:318</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:377</a></code>
 </div>
                         </td>
                     </tr>
@@ -1631,7 +1721,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:346</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:405</a></code>
 </div>
                         </td>
                     </tr>
@@ -1704,7 +1794,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:336</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:395</a></code>
 </div>
                         </td>
                     </tr>
@@ -1777,7 +1867,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:296</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:354</a></code>
 </div>
                         </td>
                     </tr>
@@ -1852,7 +1942,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:303</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:361</a></code>
 </div>
                         </td>
                     </tr>
@@ -1927,7 +2017,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:310</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:368</a></code>
 </div>
                         </td>
                     </tr>
@@ -2002,7 +2092,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:289</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:347</a></code>
 </div>
                         </td>
                     </tr>
@@ -2085,7 +2175,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/timepicker-select/timepicker-select.component.ts:48</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/timepicker-select/timepicker-select.component.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -2120,7 +2210,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/timepicker-select/timepicker-select.component.ts:67</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/timepicker-select/timepicker-select.component.ts:72</a></div>
                         </td>
                     </tr>
 
@@ -2155,7 +2245,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/timepicker-select/timepicker-select.component.ts:47</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/timepicker-select/timepicker-select.component.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -2182,7 +2272,40 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:273</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:331</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeDetectorRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>changeDetectorRef</b></span>
+                        <a href="#changeDetectorRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ChangeDetectorRef)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/Select.html" target="_self" >Select</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:330</a></code>
 </div>
                         </td>
                     </tr>
@@ -2214,7 +2337,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:271</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:328</a></code>
 </div>
                         </td>
                     </tr>
@@ -2247,7 +2370,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:363</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:422</a></code>
 </div>
                         </td>
                     </tr>
@@ -2286,7 +2409,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:364</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:423</a></code>
 </div>
                         </td>
                     </tr>
@@ -2329,7 +2452,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:269</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:326</a></code>
 </div>
                         </td>
                     </tr>
@@ -2368,7 +2491,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:193</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/Select.html#source" target="_self" >Select:250</a></code>
 </div>
                         </td>
                     </tr>
@@ -2404,7 +2527,7 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/timepicker-select/timepicker-select.component.ts:69</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/timepicker-select/timepicker-select.component.ts:74</a></div>
                                 </td>
                             </tr>
 
@@ -2416,21 +2539,20 @@ Sends events to the change handler and emits a <code>selected</code> event.</p>
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+	ChangeDetectionStrategy,
 	Component,
 	Input,
-	Output,
-	EventEmitter,
-	HostBinding,
-	TemplateRef
+	HostBinding
 } from &quot;@angular/core&quot;;
 import { Select } from &quot;carbon-components-angular/select&quot;;
 import { NG_VALUE_ACCESSOR } from &quot;@angular/forms&quot;;
+import { IconDirective } from &quot;carbon-components-angular/icon&quot;;
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * &#x60;&#x60;&#x60;typescript
- * import { TimePickerSelectModule } from &#x27;carbon-components-angular&#x27;;
+ * import { TimePickerSelect } from &#x27;carbon-components-angular&#x27;;
  * &#x60;&#x60;&#x60;
  *
  * [See demo](../../?path&#x3D;/story/components-time-picker-select--simple)
@@ -2438,7 +2560,9 @@ import { NG_VALUE_ACCESSOR } from &quot;@angular/forms&quot;;
 @Component({
 	selector: &quot;cds-timepicker-select, ibm-timepicker-select&quot;,
 	template: &#x60;
-		&lt;label *ngIf&#x3D;&quot;!skeleton &amp;&amp; label&quot; [attr.for]&#x3D;&quot;id&quot; class&#x3D;&quot;cds--label cds--visually-hidden&quot;&gt;{{label}}&lt;/label&gt;
+		@if (!skeleton &amp;&amp; label) {
+			&lt;label [attr.for]&#x3D;&quot;id&quot; class&#x3D;&quot;cds--label cds--visually-hidden&quot;&gt;{{label}}&lt;/label&gt;
+		}
 		&lt;div class&#x3D;&quot;cds--select-input__wrapper&quot;&gt;
 			&lt;select
 				#select
@@ -2447,9 +2571,11 @@ import { NG_VALUE_ACCESSOR } from &quot;@angular/forms&quot;;
 				[disabled]&#x3D;&quot;disabled&quot;
 				(change)&#x3D;&quot;onChange($event)&quot;
 				class&#x3D;&quot;cds--select-input&quot;&gt;
-				&lt;ng-content&gt;&lt;/ng-content&gt;
+				&lt;ng-content /&gt;
 			&lt;/select&gt;
-			&lt;svg cdsIcon&#x3D;&quot;chevron--down&quot; size&#x3D;&quot;16&quot; *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;cds--select__arrow&quot;&gt;&lt;/svg&gt;
+			@if (!skeleton) {
+				&lt;svg cdsIcon&#x3D;&quot;chevron--down&quot; size&#x3D;&quot;16&quot; class&#x3D;&quot;cds--select__arrow&quot;&gt;&lt;/svg&gt;
+			}
 		&lt;/div&gt;
 	&#x60;,
 	providers: [
@@ -2458,7 +2584,9 @@ import { NG_VALUE_ACCESSOR } from &quot;@angular/forms&quot;;
 			useExisting: TimePickerSelect,
 			multi: true
 		}
-	]
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [IconDirective]
 })
 export class TimePickerSelect extends Select {
 	@HostBinding(&quot;class.cds--select&quot;) timeSelect &#x3D; true;
@@ -2517,7 +2645,7 @@ export class TimePickerSelect extends Select {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><label *ngIf="!skeleton && label" [attr.for]="id" class="cds--label cds--visually-hidden">{{label}}</label><div class="cds--select-input__wrapper">	<select		#select		[attr.id]="id"		[attr.aria-label]="ariaLabel"		[disabled]="disabled"		(change)="onChange($event)"		class="cds--select-input">		<ng-content></ng-content>	</select>	<svg cdsIcon="chevron--down" size="16" *ngIf="!skeleton" class="cds--select__arrow"></svg></div>	</div>'
+        var COMPONENT_TEMPLATE = '<div>@if (!skeleton && label) {	<label [attr.for]="id" class="cds--label cds--visually-hidden">{{label}}</label>}<div class="cds--select-input__wrapper">	<select		#select		[attr.id]="id"		[attr.aria-label]="ariaLabel"		[disabled]="disabled"		(change)="onChange($event)"		class="cds--select-input">		<ng-content />	</select>	@if (!skeleton) {		<svg cdsIcon="chevron--down" size="16" class="cds--select__arrow"></svg>	}</div>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AILabelComponent', 'selector': 'cds-ai-label, ibm-ai-label'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'CheckboxGroup', 'selector': 'cds-checkbox-group, ibm-checkbox-group'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ComboButtonComponent', 'selector': 'cds-combo-button'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-menu, cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-menu-divider, cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-menu-group, cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-menu-item, cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'IconTab', 'selector': 'cds-icon-tab, ibm-icon-tab'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'MenuButtonComponent', 'selector': 'cds-menu-button'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonIcon', 'selector': 'cds-skeleton-icon, ibm-skeleton-icon'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderComponent', 'selector': 'cds-tab-header, ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaderGroupVertical', 'selector': 'cds-tab-header-group-vertical, ibm-tab-header-group-vertical'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'TabHeadersVertical', 'selector': 'cds-tab-headers-vertical, ibm-tab-headers-vertical'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeaderDecorator', 'selector': 'cds-table-header-decorator, ibm-table-header-decorator'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'TabsVertical', 'selector': 'cds-tabs-vertical, ibm-tabs-vertical'},{'name': 'TabsVerticalGrouped', 'selector': 'cds-tabs-vertical-grouped, ibm-tabs-vertical-grouped'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TagOperationalComponent', 'selector': 'cds-tag-operational, ibm-tag-operational'},{'name': 'TagSelectableComponent', 'selector': 'cds-tag-selectable, ibm-tag-selectable'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'AILabelActions', 'selector': '[cdsAILabelActions], [ibmAILabelActions]'},{'name': 'AILabelContent', 'selector': '[cdsAILabelContent], [ibmAILabelContent]'},{'name': 'AILabelPopoverDirective', 'selector': '[cdsAILabelPopover]'},{'name': 'AspectRatioDirective', 'selector': '[cdsAspectRatio], [ibmAspectRatio]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ClickableTileIconDirective', 'selector': '[cdsClickableTileIcon], [ibmClickableTileIcon]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'LinkIconDirective', 'selector': '[ibmLinkIcon], [cdsLinkIcon]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TabHeaderBase', 'selector': ''},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TagIconDirective', 'selector': '[cdsTagIcon], [ibmTagIcon]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'TimePickerSelect'};
@@ -2594,7 +2722,6 @@ export class TimePickerSelect extends Select {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

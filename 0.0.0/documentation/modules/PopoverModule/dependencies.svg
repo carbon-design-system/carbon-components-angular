@@ -24,18 +24,18 @@
 <title>cluster_PopoverModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="107,-70 107,-268 389,-268 389,-70 107,-70"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_PopoverModule_declarations</title>
+<g id="clust3" class="cluster">
+<title>cluster_PopoverModule_imports</title>
 <polygon fill="none" stroke="black" points="119,-78 119,-130 377,-130 377,-78 119,-78"/>
 </g>
-<g id="clust6" class="cluster">
+<g id="clust4" class="cluster">
 <title>cluster_PopoverModule_exports</title>
 <polygon fill="none" stroke="black" points="115,-208 115,-260 381,-260 381,-208 115,-208"/>
 </g>
 <!-- PopoverContainer -->
 <g id="node1" class="node">
 <title>PopoverContainer</title>
-<polygon fill="#ffffb3" stroke="black" points="368.87,-122 251.13,-122 251.13,-86 368.87,-86 368.87,-122"/>
+<polygon fill="#8dd3c7" stroke="black" points="368.87,-122 365.87,-126 344.87,-126 341.87,-122 251.13,-122 251.13,-86 368.87,-86 368.87,-122"/>
 <text text-anchor="middle" x="310" y="-99.8" font-family="Times,serif" font-size="14.00">PopoverContainer</text>
 </g>
 <!-- PopoverModule -->
@@ -53,7 +53,7 @@
 <!-- PopoverContent -->
 <g id="node2" class="node">
 <title>PopoverContent</title>
-<polygon fill="#ffffb3" stroke="black" points="233.49,-122 126.51,-122 126.51,-86 233.49,-86 233.49,-122"/>
+<polygon fill="#8dd3c7" stroke="black" points="233.49,-122 230.49,-126 209.49,-126 206.49,-122 126.51,-122 126.51,-86 233.49,-86 233.49,-122"/>
 <text text-anchor="middle" x="180" y="-99.8" font-family="Times,serif" font-size="14.00">PopoverContent</text>
 </g>
 <!-- PopoverContent&#45;&gt;PopoverModule -->

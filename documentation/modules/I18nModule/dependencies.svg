@@ -24,13 +24,13 @@
 <title>cluster_I18nModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="187,-70 187,-268 309,-268 309,-70 187,-70"/>
 </g>
-<g id="clust3" class="cluster">
-<title>cluster_I18nModule_imports</title>
-<polygon fill="none" stroke="black" points="197,-78 197,-130 299,-130 299,-78 197,-78"/>
-</g>
 <g id="clust4" class="cluster">
 <title>cluster_I18nModule_exports</title>
 <polygon fill="none" stroke="black" points="195,-208 195,-260 301,-260 301,-208 195,-208"/>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_I18nModule_imports</title>
+<polygon fill="none" stroke="black" points="197,-78 197,-130 299,-130 299,-78 197,-78"/>
 </g>
 <!-- ReplacePipe -->
 <g id="node1" class="node">

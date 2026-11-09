@@ -250,19 +250,25 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { PaginationModel } from &quot;../pagination-model.class&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import type { PaginationModel } from &quot;../pagination-model.class&quot;;
 import {
 	Component,
 	Input,
 	Output,
 	EventEmitter,
-	HostBinding
+	HostBinding,
+	inject
 } from &quot;@angular/core&quot;;
 
-import { I18n, Overridable } from &quot;carbon-components-angular/i18n&quot;;
-import { ExperimentalService } from &quot;carbon-components-angular/experimental&quot;;
+import { I18n } from &quot;carbon-components-angular/i18n&quot;;
+import { ExperimentalService, EXPERIMENTAL_SERVICE_PROVIDER } from &quot;carbon-components-angular/experimental&quot;;
 import { merge } from &quot;carbon-components-angular/utils&quot;;
 import { range } from &quot;carbon-components-angular/common&quot;;
+import { IconButton } from &quot;carbon-components-angular/button&quot;;
+import { IconDirective } from &quot;carbon-components-angular/icon&quot;;
+import { PaginationNavItem } from &quot;./pagination-item.component&quot;;
+import { PaginationOverflow } from &quot;./pagination-overflow.component&quot;;
+import { AsyncPipe } from &quot;@angular/common&quot;;
 
 export interface PaginationNavTranslations {
 	NEXT: string;
@@ -270,10 +276,10 @@ export interface PaginationNavTranslations {
 }
 
 /**
- * Use pagination when you have multiple pages of data to handle. Get started with importing the module:
+ * Use pagination when you have multiple pages of data to handle. Get started with importing the component:
  *
  * &#x60;&#x60;&#x60;typescript
- * import { PaginationModule } from &#x27;carbon-components-angular&#x27;;
+ * import { PaginationNav } from &#x27;carbon-components-angular&#x27;;
  * &#x60;&#x60;&#x60;
  *
  * &#x60;&#x60;&#x60;html
@@ -315,36 +321,41 @@ export interface PaginationNavTranslations {
 						&lt;/svg&gt;
 					&lt;/cds-icon-button&gt;
 				&lt;/li&gt;
-				&lt;cds-pagination-nav-item
-					*ngIf&#x3D;&quot;this.numOfItemsToShow &gt;&#x3D; 5 || (this.numOfItemsToShow &lt;&#x3D; 4 &amp;&amp; currentPage &lt;&#x3D; 1)&quot;
-					page&#x3D;&quot;1&quot;
-					(click)&#x3D;&quot;currentPage &#x3D; 1&quot;
-					[isActive]&#x3D;&quot;currentPage &#x3D;&#x3D; 1&quot;&gt;
-				&lt;/cds-pagination-nav-item&gt;
-				&lt;cds-pagination-overflow
-					*ngIf&#x3D;&quot;frontCuts&quot;
-					[count]&#x3D;&quot;frontCuts&quot;
-					[fromIndex]&#x3D;&quot;startOffset&quot;
-					(change)&#x3D;&quot;handleOverflowSelection($event)&quot;&gt;
-				&lt;/cds-pagination-overflow&gt;
-				&lt;cds-pagination-nav-item
-					*ngFor&#x3D;&quot;let page of getPages();&quot;
-					[page]&#x3D;&quot;page&quot;
-					(click)&#x3D;&quot;currentPage &#x3D; page&quot;
-					[isActive]&#x3D;&quot;currentPage &#x3D;&#x3D; page&quot;&gt;
-				&lt;/cds-pagination-nav-item&gt;
-				&lt;cds-pagination-overflow
-					*ngIf&#x3D;&quot;backCuts&quot;
-					[count]&#x3D;&quot;backCuts&quot;
-					[fromIndex]&#x3D;&quot;totalNumbersArray.length - backCuts - 1&quot;
-					(change)&#x3D;&quot;handleOverflowSelection($event)&quot;&gt;
-				&lt;/cds-pagination-overflow&gt;
-				&lt;cds-pagination-nav-item
-					*ngIf&#x3D;&quot;totalDataLength &gt; 1&quot;
-					[page]&#x3D;&quot;totalNumbersArray.length&quot;
-					(click)&#x3D;&quot;currentPage &#x3D; totalNumbersArray.length&quot;
-					[isActive]&#x3D;&quot;currentPage &#x3D;&#x3D; totalNumbersArray.length&quot;&gt;
-				&lt;/cds-pagination-nav-item&gt;
+				@if (this.numOfItemsToShow &gt;&#x3D; 5 || (this.numOfItemsToShow &lt;&#x3D; 4 &amp;&amp; currentPage &lt;&#x3D; 1)) {
+					&lt;cds-pagination-nav-item
+						page&#x3D;&quot;1&quot;
+						(click)&#x3D;&quot;currentPage &#x3D; 1&quot;
+						[isActive]&#x3D;&quot;currentPage &#x3D;&#x3D;&#x3D; 1&quot;&gt;
+					&lt;/cds-pagination-nav-item&gt;
+				}
+				@if (frontCuts) {
+					&lt;cds-pagination-overflow
+						[count]&#x3D;&quot;frontCuts&quot;
+						[fromIndex]&#x3D;&quot;startOffset&quot;
+						(change)&#x3D;&quot;handleOverflowSelection($event)&quot;&gt;
+					&lt;/cds-pagination-overflow&gt;
+				}
+				@for (page of getPages(); track page) {
+					&lt;cds-pagination-nav-item
+						[page]&#x3D;&quot;page&quot;
+						(click)&#x3D;&quot;currentPage &#x3D; page&quot;
+						[isActive]&#x3D;&quot;currentPage &#x3D;&#x3D;&#x3D; page&quot;&gt;
+					&lt;/cds-pagination-nav-item&gt;
+				}
+				@if (backCuts) {
+					&lt;cds-pagination-overflow
+						[count]&#x3D;&quot;backCuts&quot;
+						[fromIndex]&#x3D;&quot;totalNumbersArray.length - backCuts - 1&quot;
+						(change)&#x3D;&quot;handleOverflowSelection($event)&quot;&gt;
+					&lt;/cds-pagination-overflow&gt;
+				}
+				@if (totalDataLength &gt; 1) {
+					&lt;cds-pagination-nav-item
+						[page]&#x3D;&quot;totalNumbersArray.length&quot;
+						(click)&#x3D;&quot;currentPage &#x3D; totalNumbersArray.length&quot;
+						[isActive]&#x3D;&quot;currentPage &#x3D;&#x3D;&#x3D; totalNumbersArray.length&quot;&gt;
+					&lt;/cds-pagination-nav-item&gt;
+				}
 				&lt;li class&#x3D;&quot;cds--pagination-nav__list-item&quot;&gt;
 					&lt;cds-icon-button
 						kind&#x3D;&quot;ghost&quot;
@@ -362,16 +373,26 @@ export interface PaginationNavTranslations {
 			&lt;/ul&gt;
 		&lt;/div&gt;
 	&lt;/div&gt;
-	&#x60;
+	&#x60;,
+	imports: [
+		IconButton,
+		IconDirective,
+		PaginationNavItem,
+		PaginationOverflow,
+		AsyncPipe
+	],
+	providers: [EXPERIMENTAL_SERVICE_PROVIDER]
 })
 export class PaginationNav {
 	static paginationCounter &#x3D; 0;
+
+	public i18n &#x3D; inject(I18n);
 	/**
-	 * &#x60;PaginationNavModel&#x60; with the information about pages you&#x27;re controlling.
+	 * &#x60;PaginationNavModel&#x60; with the information about pages you are controlling.
 	 */
 	@Input() model: PaginationModel;
 	/**
-	   * Set to &#x60;true&#x60; to disable the backward/forward buttons.
+	 * Set to &#x60;true&#x60; to disable the backward/forward buttons.
 	 */
 	@Input() disabled &#x3D; false;
 	/**
@@ -468,7 +489,13 @@ export class PaginationNav {
 	nextItemText &#x3D; this.i18n.getOverridable(&quot;PAGINATION.NEXT&quot;);
 	previousItemText &#x3D; this.i18n.getOverridable(&quot;PAGINATION.PREVIOUS&quot;);
 
-	constructor(protected i18n: I18n, protected experimental: ExperimentalService) {
+	protected experimental &#x3D; inject(ExperimentalService);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
 		PaginationNav.paginationCounter++;
 	}
 
@@ -503,7 +530,10 @@ export class PaginationNav {
 			return null;
 		}
 		const cuts &#x3D; this.getCuts();
-		return this.totalNumbersArray.slice(this.startOffset + cuts.front, (1 + cuts.back) * -1);
+		return this.totalNumbersArray.slice(
+			this.startOffset + cuts.front,
+			(1 + cuts.back) * -1
+		);
 	}
 
 	private getCuts(splitPoint &#x3D; null) {
@@ -600,7 +630,6 @@ export class PaginationNav {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

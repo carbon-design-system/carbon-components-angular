@@ -194,12 +194,21 @@ component’s template.</p>
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>NgClass</code>
+                                <code><a href="../directives/AILabelPopoverDirective.html" target="_self" >AILabelPopoverDirective</a></code>
+                                <code><a href="../components/IconButton.html" target="_self" >IconButton</a></code>
+                                <code><a href="../directives/IconDirective.html" target="_self" >IconDirective</a></code>
+                </td>
+            </tr>
 
 
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;ng-container *ngIf&#x3D;&quot;!revertActive&quot;&gt;
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">@if (!revertActive) {
 	&lt;span
 		#aiLabelPopoverHost
 		cdsAILabelPopover
@@ -222,7 +231,9 @@ component’s template.</p>
 			[ngClass]&#x3D;&quot;triggerClasses&quot;
 			(click)&#x3D;&quot;onTriggerClick($event)&quot;&gt;
 			&lt;span class&#x3D;&quot;cds--ai-label__text&quot;&gt;{{aiText}}&lt;/span&gt;
-			&lt;span *ngIf&#x3D;&quot;kind &#x3D;&#x3D;&#x3D; &#x27;inline&#x27; &amp;&amp; textLabel&quot; class&#x3D;&quot;cds--ai-label__additional-text&quot;&gt;{{textLabel}}&lt;/span&gt;
+			@if (kind &#x3D;&#x3D;&#x3D; &#x27;inline&#x27; &amp;&amp; textLabel) {
+				&lt;span class&#x3D;&quot;cds--ai-label__additional-text&quot;&gt;{{textLabel}}&lt;/span&gt;
+			}
 		&lt;/button&gt;
 
 		&lt;span
@@ -233,23 +244,27 @@ component’s template.</p>
 				&lt;div class&#x3D;&quot;cds--toggletip-content&quot;&gt;
 					&lt;ng-content&gt;&lt;/ng-content&gt;
 				&lt;/div&gt;
-				&lt;span *ngIf&#x3D;&quot;autoAlign&quot; class&#x3D;&quot;cds--popover-caret cds--popover--auto-align&quot;&gt;&lt;/span&gt;
+				@if (autoAlign) {
+					&lt;span class&#x3D;&quot;cds--popover-caret cds--popover--auto-align&quot;&gt;&lt;/span&gt;
+				}
 			&lt;/span&gt;
-			&lt;span *ngIf&#x3D;&quot;!autoAlign&quot; class&#x3D;&quot;cds--popover-caret&quot;&gt;&lt;/span&gt;
+			@if (!autoAlign) {
+				&lt;span class&#x3D;&quot;cds--popover-caret&quot;&gt;&lt;/span&gt;
+			}
 		&lt;/span&gt;
 	&lt;/span&gt;
-&lt;/ng-container&gt;
-
-&lt;cds-icon-button
-	*ngIf&#x3D;&quot;revertActive&quot;
-	kind&#x3D;&quot;ghost&quot;
-	size&#x3D;&quot;sm&quot;
-	[description]&#x3D;&quot;revertLabel&quot;
-	[autoAlign]&#x3D;&quot;autoAlign&quot;
-	[buttonAttributes]&#x3D;&quot;{ &#x27;aria-label&#x27;: revertLabel }&quot;
-	(click)&#x3D;&quot;onRevertButtonClick($event)&quot;&gt;
-	&lt;svg cdsIcon&#x3D;&quot;undo&quot; size&#x3D;&quot;16&quot;&gt;&lt;/svg&gt;
-&lt;/cds-icon-button&gt;
+}
+@if (revertActive) {
+	&lt;cds-icon-button
+		kind&#x3D;&quot;ghost&quot;
+		size&#x3D;&quot;sm&quot;
+		[description]&#x3D;&quot;revertLabel&quot;
+		[autoAlign]&#x3D;&quot;autoAlign&quot;
+		[buttonAttributes]&#x3D;&quot;{ &#x27;aria-label&#x27;: revertLabel }&quot;
+		(click)&#x3D;&quot;onRevertButtonClick($event)&quot;&gt;
+		&lt;svg cdsIcon&#x3D;&quot;undo&quot; size&#x3D;&quot;16&quot;&gt;&lt;/svg&gt;
+	&lt;/cds-icon-button&gt;
+}
 	</code></pre></td>
             </tr>
 
@@ -290,6 +305,10 @@ component’s template.</p>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#documentClick" >documentClick</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#elementRef" >elementRef</a>
                             </li>
                             <li>
                                     <span class="modifier">Static</span>
@@ -481,45 +500,15 @@ component’s template.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(elementRef: ElementRef)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="233" class="link-to-prism">src/ai-label/ai-label.component.ts:233</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="251" class="link-to-prism">src/ai-label/ai-label.component.ts:251</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>elementRef</td>
-                                                  
-                                                        <td>
-                                                                    <code>ElementRef</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
 </section>
@@ -547,7 +536,7 @@ component’s template.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">src/ai-label/ai-label.component.ts:184</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="196" class="link-to-prism">src/ai-label/ai-label.component.ts:196</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -574,7 +563,7 @@ component’s template.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/ai-label/ai-label.component.ts:133</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/ai-label/ai-label.component.ts:145</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -607,7 +596,7 @@ floating-ui placements.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="223" class="link-to-prism">src/ai-label/ai-label.component.ts:223</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="235" class="link-to-prism">src/ai-label/ai-label.component.ts:235</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -634,12 +623,12 @@ floating-ui placements.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>false</code>
+                        <i>Default value : </i><code>true</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/ai-label/ai-label.component.ts:153</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/ai-label/ai-label.component.ts:165</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -671,7 +660,7 @@ floating-ui placements.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/ai-label/ai-label.component.ts:138</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/ai-label/ai-label.component.ts:150</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -703,7 +692,7 @@ floating-ui placements.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/ai-label/ai-label.component.ts:143</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="155" class="link-to-prism">src/ai-label/ai-label.component.ts:155</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -735,7 +724,7 @@ floating-ui placements.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/ai-label/ai-label.component.ts:148</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/ai-label/ai-label.component.ts:160</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -767,7 +756,7 @@ floating-ui placements.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="179" class="link-to-prism">src/ai-label/ai-label.component.ts:179</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="191" class="link-to-prism">src/ai-label/ai-label.component.ts:191</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -800,7 +789,7 @@ via <code>aria-controls</code> / <code>id</code>.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/ai-label/ai-label.component.ts:158</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/ai-label/ai-label.component.ts:170</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -832,7 +821,7 @@ via <code>aria-controls</code> / <code>id</code>.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="194" class="link-to-prism">src/ai-label/ai-label.component.ts:194</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="206" class="link-to-prism">src/ai-label/ai-label.component.ts:206</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -864,7 +853,7 @@ via <code>aria-controls</code> / <code>id</code>.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="213" class="link-to-prism">src/ai-label/ai-label.component.ts:213</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="225" class="link-to-prism">src/ai-label/ai-label.component.ts:225</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -897,7 +886,7 @@ is active and can be reverted).</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="218" class="link-to-prism">src/ai-label/ai-label.component.ts:218</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="230" class="link-to-prism">src/ai-label/ai-label.component.ts:230</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -929,7 +918,7 @@ is active and can be reverted).</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="199" class="link-to-prism">src/ai-label/ai-label.component.ts:199</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="211" class="link-to-prism">src/ai-label/ai-label.component.ts:211</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -956,7 +945,7 @@ is active and can be reverted).</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/ai-label/ai-label.component.ts:189</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="201" class="link-to-prism">src/ai-label/ai-label.component.ts:201</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -986,7 +975,7 @@ is active and can be reverted).</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="173" class="link-to-prism">src/ai-label/ai-label.component.ts:173</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="185" class="link-to-prism">src/ai-label/ai-label.component.ts:185</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -1013,7 +1002,7 @@ is active and can be reverted).</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/ai-label/ai-label.component.ts:163</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/ai-label/ai-label.component.ts:175</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -1040,7 +1029,7 @@ is active and can be reverted).</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="168" class="link-to-prism">src/ai-label/ai-label.component.ts:168</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">src/ai-label/ai-label.component.ts:180</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -1067,7 +1056,7 @@ is active and can be reverted).</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="228" class="link-to-prism">src/ai-label/ai-label.component.ts:228</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="240" class="link-to-prism">src/ai-label/ai-label.component.ts:240</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -1104,7 +1093,7 @@ is active and can be reverted).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/ai-label/ai-label.component.ts:124</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/ai-label/ai-label.component.ts:136</a></div>
                         </td>
                     </tr>
 
@@ -1130,7 +1119,7 @@ is active and can be reverted).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/ai-label/ai-label.component.ts:125</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/ai-label/ai-label.component.ts:137</a></div>
                         </td>
                     </tr>
 
@@ -1165,8 +1154,8 @@ is active and can be reverted).</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="293"
-                                    class="link-to-prism">src/ai-label/ai-label.component.ts:293</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="311"
+                                    class="link-to-prism">src/ai-label/ai-label.component.ts:311</a></div>
                         </td>
                     </tr>
 
@@ -1201,8 +1190,8 @@ is active and can be reverted).</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="304"
-                                    class="link-to-prism">src/ai-label/ai-label.component.ts:304</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="322"
+                                    class="link-to-prism">src/ai-label/ai-label.component.ts:322</a></div>
                         </td>
                     </tr>
 
@@ -1279,8 +1268,8 @@ is active and can be reverted).</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="293"
-                                    class="link-to-prism">src/ai-label/ai-label.component.ts:293</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="311"
+                                    class="link-to-prism">src/ai-label/ai-label.component.ts:311</a></div>
                         </td>
                     </tr>
 
@@ -1346,8 +1335,8 @@ is active and can be reverted).</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="261"
-                                    class="link-to-prism">src/ai-label/ai-label.component.ts:261</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="279"
+                                    class="link-to-prism">src/ai-label/ai-label.component.ts:279</a></div>
                         </td>
                     </tr>
 
@@ -1383,8 +1372,8 @@ is active and can be reverted).</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="267"
-                                    class="link-to-prism">src/ai-label/ai-label.component.ts:267</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="285"
+                                    class="link-to-prism">src/ai-label/ai-label.component.ts:285</a></div>
                         </td>
                     </tr>
 
@@ -1450,8 +1439,8 @@ is active and can be reverted).</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="274"
-                                    class="link-to-prism">src/ai-label/ai-label.component.ts:274</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="292"
+                                    class="link-to-prism">src/ai-label/ai-label.component.ts:292</a></div>
                         </td>
                     </tr>
 
@@ -1487,8 +1476,8 @@ is active and can be reverted).</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="237"
-                                    class="link-to-prism">src/ai-label/ai-label.component.ts:237</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="255"
+                                    class="link-to-prism">src/ai-label/ai-label.component.ts:255</a></div>
                         </td>
                     </tr>
 
@@ -1554,8 +1543,8 @@ is active and can be reverted).</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="288"
-                                    class="link-to-prism">src/ai-label/ai-label.component.ts:288</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="306"
+                                    class="link-to-prism">src/ai-label/ai-label.component.ts:306</a></div>
                         </td>
                     </tr>
 
@@ -1621,8 +1610,8 @@ is active and can be reverted).</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="278"
-                                    class="link-to-prism">src/ai-label/ai-label.component.ts:278</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="296"
+                                    class="link-to-prism">src/ai-label/ai-label.component.ts:296</a></div>
                         </td>
                     </tr>
 
@@ -1702,7 +1691,7 @@ is active and can be reverted).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/ai-label/ai-label.component.ts:124</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/ai-label/ai-label.component.ts:136</a></div>
                         </td>
                     </tr>
 
@@ -1739,7 +1728,7 @@ is active and can be reverted).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="231" class="link-to-prism">src/ai-label/ai-label.component.ts:231</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="245" class="link-to-prism">src/ai-label/ai-label.component.ts:245</a></div>
                         </td>
                     </tr>
 
@@ -1766,7 +1755,33 @@ is active and can be reverted).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="233" class="link-to-prism">src/ai-label/ai-label.component.ts:233</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="247" class="link-to-prism">src/ai-label/ai-label.component.ts:247</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="elementRef"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>elementRef</b></span>
+                        <a href="#elementRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ElementRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="242" class="link-to-prism">src/ai-label/ai-label.component.ts:242</a></div>
                         </td>
                     </tr>
 
@@ -1798,7 +1813,7 @@ is active and can be reverted).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/ai-label/ai-label.component.ts:122</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/ai-label/ai-label.component.ts:134</a></div>
                         </td>
                     </tr>
 
@@ -1827,7 +1842,7 @@ is active and can be reverted).</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/ai-label/ai-label.component.ts:125</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/ai-label/ai-label.component.ts:137</a></div>
                                 </td>
                             </tr>
 
@@ -1849,7 +1864,7 @@ is active and can be reverted).</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="205" class="link-to-prism">src/ai-label/ai-label.component.ts:205</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="217" class="link-to-prism">src/ai-label/ai-label.component.ts:217</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1883,7 +1898,7 @@ React <code>AILabel</code> (<code>alignmentAxisOffset={isSmallIcon ? -24 : 0}</c
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="242" class="link-to-prism">src/ai-label/ai-label.component.ts:242</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="260" class="link-to-prism">src/ai-label/ai-label.component.ts:260</a></div>
                                 </td>
                             </tr>
 
@@ -1905,7 +1920,7 @@ React <code>AILabel</code> (<code>alignmentAxisOffset={isSmallIcon ? -24 : 0}</c
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="256" class="link-to-prism">src/ai-label/ai-label.component.ts:256</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="274" class="link-to-prism">src/ai-label/ai-label.component.ts:274</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1941,9 +1956,14 @@ React <code>AILabel</code> (<code>alignmentAxisOffset={isSmallIcon ? -24 : 0}</c
 	OnDestroy,
 	Output,
 	SimpleChanges,
-	ViewChild
+	ViewChild,
+	inject
 } from &quot;@angular/core&quot;;
 import { Placement } from &quot;@floating-ui/dom&quot;;
+import { NgClass } from &quot;@angular/common&quot;;
+
+import { IconButton } from &quot;carbon-components-angular/button&quot;;
+import { IconDirective } from &quot;carbon-components-angular/icon&quot;;
 
 import { AILabelPopoverDirective } from &quot;./ai-label-popover.directive&quot;;
 
@@ -1995,7 +2015,7 @@ type DeprecatedAILabelAlign &#x3D;
 	selector: &quot;cds-ai-label, ibm-ai-label&quot;,
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: &#x60;
-		&lt;ng-container *ngIf&#x3D;&quot;!revertActive&quot;&gt;
+		@if (!revertActive) {
 			&lt;span
 				#aiLabelPopoverHost
 				cdsAILabelPopover
@@ -2018,7 +2038,9 @@ type DeprecatedAILabelAlign &#x3D;
 					[ngClass]&#x3D;&quot;triggerClasses&quot;
 					(click)&#x3D;&quot;onTriggerClick($event)&quot;&gt;
 					&lt;span class&#x3D;&quot;cds--ai-label__text&quot;&gt;{{aiText}}&lt;/span&gt;
-					&lt;span *ngIf&#x3D;&quot;kind &#x3D;&#x3D;&#x3D; &#x27;inline&#x27; &amp;&amp; textLabel&quot; class&#x3D;&quot;cds--ai-label__additional-text&quot;&gt;{{textLabel}}&lt;/span&gt;
+					@if (kind &#x3D;&#x3D;&#x3D; &#x27;inline&#x27; &amp;&amp; textLabel) {
+						&lt;span class&#x3D;&quot;cds--ai-label__additional-text&quot;&gt;{{textLabel}}&lt;/span&gt;
+					}
 				&lt;/button&gt;
 
 				&lt;span
@@ -2029,24 +2051,29 @@ type DeprecatedAILabelAlign &#x3D;
 						&lt;div class&#x3D;&quot;cds--toggletip-content&quot;&gt;
 							&lt;ng-content&gt;&lt;/ng-content&gt;
 						&lt;/div&gt;
-						&lt;span *ngIf&#x3D;&quot;autoAlign&quot; class&#x3D;&quot;cds--popover-caret cds--popover--auto-align&quot;&gt;&lt;/span&gt;
+						@if (autoAlign) {
+							&lt;span class&#x3D;&quot;cds--popover-caret cds--popover--auto-align&quot;&gt;&lt;/span&gt;
+						}
 					&lt;/span&gt;
-					&lt;span *ngIf&#x3D;&quot;!autoAlign&quot; class&#x3D;&quot;cds--popover-caret&quot;&gt;&lt;/span&gt;
+					@if (!autoAlign) {
+						&lt;span class&#x3D;&quot;cds--popover-caret&quot;&gt;&lt;/span&gt;
+					}
 				&lt;/span&gt;
 			&lt;/span&gt;
-		&lt;/ng-container&gt;
-
-		&lt;cds-icon-button
-			*ngIf&#x3D;&quot;revertActive&quot;
-			kind&#x3D;&quot;ghost&quot;
-			size&#x3D;&quot;sm&quot;
-			[description]&#x3D;&quot;revertLabel&quot;
-			[autoAlign]&#x3D;&quot;autoAlign&quot;
-			[buttonAttributes]&#x3D;&quot;{ &#x27;aria-label&#x27;: revertLabel }&quot;
-			(click)&#x3D;&quot;onRevertButtonClick($event)&quot;&gt;
-			&lt;svg cdsIcon&#x3D;&quot;undo&quot; size&#x3D;&quot;16&quot;&gt;&lt;/svg&gt;
-		&lt;/cds-icon-button&gt;
-	&#x60;
+		}
+		@if (revertActive) {
+			&lt;cds-icon-button
+				kind&#x3D;&quot;ghost&quot;
+				size&#x3D;&quot;sm&quot;
+				[description]&#x3D;&quot;revertLabel&quot;
+				[autoAlign]&#x3D;&quot;autoAlign&quot;
+				[buttonAttributes]&#x3D;&quot;{ &#x27;aria-label&#x27;: revertLabel }&quot;
+				(click)&#x3D;&quot;onRevertButtonClick($event)&quot;&gt;
+				&lt;svg cdsIcon&#x3D;&quot;undo&quot; size&#x3D;&quot;16&quot;&gt;&lt;/svg&gt;
+			&lt;/cds-icon-button&gt;
+		}
+	&#x60;,
+	imports: [NgClass, AILabelPopoverDirective, IconButton, IconDirective]
 })
 export class AILabelComponent implements AfterViewInit, OnChanges, OnDestroy {
 	static labelCounter &#x3D; 0;
@@ -2080,7 +2107,7 @@ export class AILabelComponent implements AfterViewInit, OnChanges, OnDestroy {
 	/**
 	 * **Experimental**: Use floating-ui to position the tooltip.
 	 */
-	@Input() autoAlign &#x3D; false;
+	@Input() autoAlign &#x3D; true;
 
 	/**
 	 * Whether the callout is open.
@@ -2157,12 +2184,18 @@ export class AILabelComponent implements AfterViewInit, OnChanges, OnDestroy {
 	 */
 	@Output() revertClick &#x3D; new EventEmitter&lt;MouseEvent&gt;();
 
+	private elementRef &#x3D; inject(ElementRef);
+
 	@ViewChild(&quot;aiLabelPopoverHost&quot;, { read: AILabelPopoverDirective })
 	private aiLabelPopover: AILabelPopoverDirective;
 
 	private readonly documentClick &#x3D; this.handleOutsideClick.bind(this);
 
-	constructor(private elementRef: ElementRef) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	onPopoverIsOpenChange(open: boolean): void {
 		this.isOpen &#x3D; open;
@@ -2268,7 +2301,7 @@ export class AILabelComponent implements AfterViewInit, OnChanges, OnDestroy {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container *ngIf="!revertActive">	<span		#aiLabelPopoverHost		cdsAILabelPopover		class="cds--toggletip"		[isOpen]="isOpen"		(isOpenChange)="onPopoverIsOpenChange($event)"		(onOpen)="onOpen.emit($event)"		(onClose)="onClose.emit($event)"		[align]="align"		[caret]="caret"		[dropShadow]="dropShadow"		[highContrast]="highContrast"		[autoAlign]="autoAlign"		[alignmentAxisOffset]="alignmentAxisOffset">		<button			type="button"			[attr.aria-label]="computedAriaLabel"			[attr.aria-expanded]="isOpen"			[attr.aria-controls]="id"			[ngClass]="triggerClasses"			(click)="onTriggerClick($event)">			<span class="cds--ai-label__text">{{aiText}}</span>			<span *ngIf="kind === \'inline\' && textLabel" class="cds--ai-label__additional-text">{{textLabel}}</span>		</button>		<span			[id]="id"			class="cds--popover"			aria-live="polite">			<span class="cds--popover-content cds--ai-label-content">				<div class="cds--toggletip-content">					<ng-content></ng-content>				</div>				<span *ngIf="autoAlign" class="cds--popover-caret cds--popover--auto-align"></span>			</span>			<span *ngIf="!autoAlign" class="cds--popover-caret"></span>		</span>	</span></ng-container><cds-icon-button	*ngIf="revertActive"	kind="ghost"	size="sm"	[description]="revertLabel"	[autoAlign]="autoAlign"	[buttonAttributes]="{ \'aria-label\': revertLabel }"	(click)="onRevertButtonClick($event)">	<svg cdsIcon="undo" size="16"></svg></cds-icon-button>	</div>'
+        var COMPONENT_TEMPLATE = '<div>@if (!revertActive) {	<span		#aiLabelPopoverHost		cdsAILabelPopover		class="cds--toggletip"		[isOpen]="isOpen"		(isOpenChange)="onPopoverIsOpenChange($event)"		(onOpen)="onOpen.emit($event)"		(onClose)="onClose.emit($event)"		[align]="align"		[caret]="caret"		[dropShadow]="dropShadow"		[highContrast]="highContrast"		[autoAlign]="autoAlign"		[alignmentAxisOffset]="alignmentAxisOffset">		<button			type="button"			[attr.aria-label]="computedAriaLabel"			[attr.aria-expanded]="isOpen"			[attr.aria-controls]="id"			[ngClass]="triggerClasses"			(click)="onTriggerClick($event)">			<span class="cds--ai-label__text">{{aiText}}</span>			@if (kind === \'inline\' && textLabel) {				<span class="cds--ai-label__additional-text">{{textLabel}}</span>			}		</button>		<span			[id]="id"			class="cds--popover"			aria-live="polite">			<span class="cds--popover-content cds--ai-label-content">				<div class="cds--toggletip-content">					<ng-content></ng-content>				</div>				@if (autoAlign) {					<span class="cds--popover-caret cds--popover--auto-align"></span>				}			</span>			@if (!autoAlign) {				<span class="cds--popover-caret"></span>			}		</span>	</span>}@if (revertActive) {	<cds-icon-button		kind="ghost"		size="sm"		[description]="revertLabel"		[autoAlign]="autoAlign"		[buttonAttributes]="{ \'aria-label\': revertLabel }"		(click)="onRevertButtonClick($event)">		<svg cdsIcon="undo" size="16"></svg>	</cds-icon-button>}	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AILabelComponent', 'selector': 'cds-ai-label, ibm-ai-label'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'CheckboxGroup', 'selector': 'cds-checkbox-group, ibm-checkbox-group'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ComboButtonComponent', 'selector': 'cds-combo-button'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-menu, cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-menu-divider, cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-menu-group, cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-menu-item, cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'IconTab', 'selector': 'cds-icon-tab, ibm-icon-tab'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'MenuButtonComponent', 'selector': 'cds-menu-button'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonIcon', 'selector': 'cds-skeleton-icon, ibm-skeleton-icon'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderComponent', 'selector': 'cds-tab-header, ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaderGroupVertical', 'selector': 'cds-tab-header-group-vertical, ibm-tab-header-group-vertical'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'TabHeadersVertical', 'selector': 'cds-tab-headers-vertical, ibm-tab-headers-vertical'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeaderDecorator', 'selector': 'cds-table-header-decorator, ibm-table-header-decorator'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'TabsVertical', 'selector': 'cds-tabs-vertical, ibm-tabs-vertical'},{'name': 'TabsVerticalGrouped', 'selector': 'cds-tabs-vertical-grouped, ibm-tabs-vertical-grouped'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TagOperationalComponent', 'selector': 'cds-tag-operational, ibm-tag-operational'},{'name': 'TagSelectableComponent', 'selector': 'cds-tag-selectable, ibm-tag-selectable'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'AILabelActions', 'selector': '[cdsAILabelActions], [ibmAILabelActions]'},{'name': 'AILabelContent', 'selector': '[cdsAILabelContent], [ibmAILabelContent]'},{'name': 'AILabelPopoverDirective', 'selector': '[cdsAILabelPopover]'},{'name': 'AspectRatioDirective', 'selector': '[cdsAspectRatio], [ibmAspectRatio]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ClickableTileIconDirective', 'selector': '[cdsClickableTileIcon], [ibmClickableTileIcon]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'LinkIconDirective', 'selector': '[ibmLinkIcon], [cdsLinkIcon]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TabHeaderBase', 'selector': ''},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TagIconDirective', 'selector': '[cdsTagIcon], [ibmTagIcon]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'AILabelComponent'};
@@ -2345,7 +2378,6 @@ export class AILabelComponent implements AfterViewInit, OnChanges, OnDestroy {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

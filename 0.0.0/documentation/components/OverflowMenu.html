@@ -141,8 +141,8 @@
     </p>
     <p class="comment">
         <p>The OverFlow menu component encapsulates the OverFlowMenu directive, and the menu iconography into one convienent component.</p>
-<p>Get started with importing the module:</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { DialogModule } from &#39;carbon-components-angular&#39;;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;cds-overflow-menu&gt;
+<p>Get started with importing the components:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { OverflowMenu, OverflowMenuOption } from &#39;carbon-components-angular&#39;;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;cds-overflow-menu&gt;
     &lt;cds-overflow-menu-option&gt;Option 1&lt;/cds-overflow-menu-option&gt;
     &lt;cds-overflow-menu-option&gt;Option 2&lt;/cds-overflow-menu-option&gt;
 &lt;/cds-overflow-menu&gt;</code></pre></div><p><a href="../../?path=/story/components-overflow-menu--basic">See demo</a></p>
@@ -176,6 +176,12 @@
 
 
 
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                                <code><a href="../miscellaneous/variables.html#PLACEHOLDER_SERVICE_PROVIDER" target="_self" >PLACEHOLDER_SERVICE_PROVIDER</a></code>
+                </td>
+            </tr>
 
 
             <tr>
@@ -184,6 +190,17 @@
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../components/Tooltip.html" target="_self" >Tooltip</a></code>
+                                <code><a href="../directives/Button.html" target="_self" >Button</a></code>
+                                <code><a href="../directives/OverflowMenuDirective.html" target="_self" >OverflowMenuDirective</a></code>
+                            <code>NgClass</code>
+                            <code>NgTemplateOutlet</code>
+                                <code><a href="../directives/IconDirective.html" target="_self" >IconDirective</a></code>
+                </td>
+            </tr>
 
 
             <tr>
@@ -235,15 +252,20 @@
 		aria-haspopup&#x3D;&quot;true&quot;
 		type&#x3D;&quot;button&quot;
 		[placement]&#x3D;&quot;placement&quot;&gt;
-		&lt;ng-template *ngIf&#x3D;&quot;customTrigger; else defaultIcon&quot; [ngTemplateOutlet]&#x3D;&quot;customTrigger&quot;&gt;&lt;/ng-template&gt;
+		@if (customTrigger) {
+			&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;customTrigger&quot; /&gt;
+		} @else {
+			&lt;svg
+				cdsIcon&#x3D;&quot;overflow-menu--vertical&quot;
+				size&#x3D;&quot;16&quot;
+				class&#x3D;&quot;cds--overflow-menu__icon&quot;&gt;
+			&lt;/svg&gt;
+		}
 	&lt;/button&gt;
 &lt;/cds-tooltip&gt;
 
 &lt;ng-template #options&gt;
-	&lt;ng-content&gt;&lt;/ng-content&gt;
-&lt;/ng-template&gt;
-&lt;ng-template #defaultIcon&gt;
-	&lt;svg cdsIcon&#x3D;&quot;overflow-menu--vertical&quot; size&#x3D;&quot;16&quot; class&#x3D;&quot;cds--overflow-menu__icon&quot;&gt;&lt;/svg&gt;
+	&lt;ng-content /&gt;
 &lt;/ng-template&gt;
 	</code></pre></td>
             </tr>
@@ -272,6 +294,14 @@
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#elementRef" >elementRef</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#i18n" >i18n</a>
+                            </li>
                             <li>
                                     <span class="modifier"></span>
                                 <a href="#overflowMenuDirective" >overflowMenuDirective</a>
@@ -385,57 +415,15 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(elementRef: ElementRef, i18n: <a href="../injectables/I18n.html" target="_self">I18n</a>)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:121</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:148</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>elementRef</td>
-                                                  
-                                                        <td>
-                                                                    <code>ElementRef</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>i18n</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/I18n.html" target="_self" >I18n</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
 </section>
@@ -463,7 +451,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:93</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:114</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -484,7 +472,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:107</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:128</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -516,7 +504,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:95</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:116</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -542,7 +530,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:97</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:118</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -563,7 +551,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:112</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:133</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -595,7 +583,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:101</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:122</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -621,7 +609,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:99</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:120</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -647,7 +635,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:119</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:140</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -679,7 +667,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:114</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:135</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -711,7 +699,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseIconButton.html#source" target="_self" >BaseIconButton:32</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseIconButton.html#source" target="_self" >BaseIconButton:34</a></code>
 </div>
                             </td>
                         </tr>
@@ -750,7 +738,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseIconButton.html#source" target="_self" >BaseIconButton:40</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseIconButton.html#source" target="_self" >BaseIconButton:42</a></code>
 </div>
                             </td>
                         </tr>
@@ -790,7 +778,7 @@ This is not toggleable - should be assigned once</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseIconButton.html#source" target="_self" >BaseIconButton:16</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseIconButton.html#source" target="_self" >BaseIconButton:18</a></code>
 </div>
                             </td>
                         </tr>
@@ -829,7 +817,7 @@ This is not toggleable - should be assigned once</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseIconButton.html#source" target="_self" >BaseIconButton:20</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseIconButton.html#source" target="_self" >BaseIconButton:22</a></code>
 </div>
                             </td>
                         </tr>
@@ -868,7 +856,7 @@ This is not toggleable - should be assigned once</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseIconButton.html#source" target="_self" >BaseIconButton:44</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseIconButton.html#source" target="_self" >BaseIconButton:46</a></code>
 </div>
                             </td>
                         </tr>
@@ -907,7 +895,7 @@ This is not toggleable - should be assigned once</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseIconButton.html#source" target="_self" >BaseIconButton:24</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseIconButton.html#source" target="_self" >BaseIconButton:26</a></code>
 </div>
                             </td>
                         </tr>
@@ -946,7 +934,7 @@ This is not toggleable - should be assigned once</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseIconButton.html#source" target="_self" >BaseIconButton:28</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseIconButton.html#source" target="_self" >BaseIconButton:30</a></code>
 </div>
                             </td>
                         </tr>
@@ -985,7 +973,7 @@ This is not toggleable - should be assigned once</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseIconButton.html#source" target="_self" >BaseIconButton:48</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseIconButton.html#source" target="_self" >BaseIconButton:50</a></code>
 </div>
                             </td>
                         </tr>
@@ -1016,7 +1004,7 @@ This is not toggleable - should be assigned once</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:103</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:124</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1049,8 +1037,8 @@ This is not toggleable - should be assigned once</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="127"
-                                    class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:127</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="154"
+                                    class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:154</a></div>
                         </td>
                     </tr>
 
@@ -1106,6 +1094,58 @@ This is not toggleable - should be assigned once</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="elementRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>elementRef</b></span>
+                        <a href="#elementRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ElementRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:144</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="i18n"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>i18n</b></span>
+                        <a href="#i18n"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(I18n)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:112</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="overflowMenuDirective"></a>
                     <span class="name">
                             <span class="modifier"></span>
@@ -1131,7 +1171,7 @@ This is not toggleable - should be assigned once</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:121</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/dialog/overflow-menu/overflow-menu.component.ts:142</a></div>
                         </td>
                     </tr>
 
@@ -1152,19 +1192,24 @@ This is not toggleable - should be assigned once</p>
 	Input,
 	Output,
 	TemplateRef,
-	ViewEncapsulation
+	ViewEncapsulation,
+	inject
 } from &quot;@angular/core&quot;;
 import { I18n } from &quot;carbon-components-angular/i18n&quot;;
 import { OverflowMenuDirective } from &quot;./overflow-menu.directive&quot;;
-import { BaseIconButton } from &quot;carbon-components-angular/button&quot;;
+import { BaseIconButton, Button } from &quot;carbon-components-angular/button&quot;;
+import { Tooltip } from &quot;carbon-components-angular/tooltip&quot;;
+import { NgClass, NgTemplateOutlet } from &quot;@angular/common&quot;;
+import { IconDirective } from &quot;carbon-components-angular/icon&quot;;
+import { PLACEHOLDER_SERVICE_PROVIDER } from &quot;carbon-components-angular/placeholder&quot;;
 
 /**
  * The OverFlow menu component encapsulates the OverFlowMenu directive, and the menu iconography into one convienent component.
  *
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * &#x60;&#x60;&#x60;typescript
- * import { DialogModule } from &#x27;carbon-components-angular&#x27;;
+ * import { OverflowMenu, OverflowMenuOption } from &#x27;carbon-components-angular&#x27;;
  * &#x60;&#x60;&#x60;
  *
  * &#x60;&#x60;&#x60;html
@@ -1205,15 +1250,20 @@ import { BaseIconButton } from &quot;carbon-components-angular/button&quot;;
 				aria-haspopup&#x3D;&quot;true&quot;
 				type&#x3D;&quot;button&quot;
 				[placement]&#x3D;&quot;placement&quot;&gt;
-				&lt;ng-template *ngIf&#x3D;&quot;customTrigger; else defaultIcon&quot; [ngTemplateOutlet]&#x3D;&quot;customTrigger&quot;&gt;&lt;/ng-template&gt;
+				@if (customTrigger) {
+					&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;customTrigger&quot; /&gt;
+				} @else {
+					&lt;svg
+						cdsIcon&#x3D;&quot;overflow-menu--vertical&quot;
+						size&#x3D;&quot;16&quot;
+						class&#x3D;&quot;cds--overflow-menu__icon&quot;&gt;
+					&lt;/svg&gt;
+				}
 			&lt;/button&gt;
 		&lt;/cds-tooltip&gt;
 
 		&lt;ng-template #options&gt;
-			&lt;ng-content&gt;&lt;/ng-content&gt;
-		&lt;/ng-template&gt;
-		&lt;ng-template #defaultIcon&gt;
-			&lt;svg cdsIcon&#x3D;&quot;overflow-menu--vertical&quot; size&#x3D;&quot;16&quot; class&#x3D;&quot;cds--overflow-menu__icon&quot;&gt;&lt;/svg&gt;
+			&lt;ng-content /&gt;
 		&lt;/ng-template&gt;
 	&#x60;,
 	styles: [&#x60;
@@ -1233,9 +1283,20 @@ import { BaseIconButton } from &quot;carbon-components-angular/button&quot;;
 			transform: rotate(180deg);
 		}
 	&#x60;],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
+	providers: [PLACEHOLDER_SERVICE_PROVIDER],
+	imports: [
+		Tooltip,
+		Button,
+		OverflowMenuDirective,
+		NgClass,
+		NgTemplateOutlet,
+		IconDirective
+	]
 })
 export class OverflowMenu extends BaseIconButton {
+	public i18n &#x3D; inject(I18n);
+
 	@Input() buttonLabel &#x3D; this.i18n.get().OVERFLOW_MENU.OVERFLOW;
 
 	@Input() description &#x3D; this.i18n.get().OVERFLOW_MENU.ICON_DESCRIPTION;
@@ -1266,7 +1327,13 @@ export class OverflowMenu extends BaseIconButton {
 
 	@ContentChild(OverflowMenuDirective) overflowMenuDirective: OverflowMenuDirective;
 
-	constructor(protected elementRef: ElementRef, protected i18n: I18n) {
+	protected elementRef &#x3D; inject(ElementRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
 		super();
 	}
 
@@ -1325,7 +1392,7 @@ export class OverflowMenu extends BaseIconButton {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><cds-tooltip	class="cds--icon-tooltip"	[description]="description"	[caret]="caret"	[dropShadow]="dropShadow"	[highContrast]="highContrast"	[isOpen]="isOpen"	[align]="align"	[autoAlign]="autoAlign"	[enterDelayMs]="enterDelayMs"	[leaveDelayMs]="leaveDelayMs">	<button		cdsButton="ghost"		[cdsOverflowMenu]="options"		[ngClass]="{\'cds--overflow-menu--open\': open}"		class="cds--overflow-menu {{triggerClass}}"		[iconOnly]="true"		[attr.aria-label]="buttonLabel"		[flip]="flip"		[isOpen]="open"		(isOpenChange)="handleOpenChange($event)"		[offset]="offset"		[wrapperClass]="wrapperClass"		aria-haspopup="true"		type="button"		[placement]="placement">		<ng-template *ngIf="customTrigger; else defaultIcon" [ngTemplateOutlet]="customTrigger"></ng-template>	</button></cds-tooltip><ng-template #options>	<ng-content></ng-content></ng-template><ng-template #defaultIcon>	<svg cdsIcon="overflow-menu--vertical" size="16" class="cds--overflow-menu__icon"></svg></ng-template>	</div>'
+        var COMPONENT_TEMPLATE = '<div><cds-tooltip	class="cds--icon-tooltip"	[description]="description"	[caret]="caret"	[dropShadow]="dropShadow"	[highContrast]="highContrast"	[isOpen]="isOpen"	[align]="align"	[autoAlign]="autoAlign"	[enterDelayMs]="enterDelayMs"	[leaveDelayMs]="leaveDelayMs">	<button		cdsButton="ghost"		[cdsOverflowMenu]="options"		[ngClass]="{\'cds--overflow-menu--open\': open}"		class="cds--overflow-menu {{triggerClass}}"		[iconOnly]="true"		[attr.aria-label]="buttonLabel"		[flip]="flip"		[isOpen]="open"		(isOpenChange)="handleOpenChange($event)"		[offset]="offset"		[wrapperClass]="wrapperClass"		aria-haspopup="true"		type="button"		[placement]="placement">		@if (customTrigger) {			<ng-template [ngTemplateOutlet]="customTrigger" />		} @else {			<svg				cdsIcon="overflow-menu--vertical"				size="16"				class="cds--overflow-menu__icon">			</svg>		}	</button></cds-tooltip><ng-template #options>	<ng-content /></ng-template>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AILabelComponent', 'selector': 'cds-ai-label, ibm-ai-label'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'CheckboxGroup', 'selector': 'cds-checkbox-group, ibm-checkbox-group'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ComboButtonComponent', 'selector': 'cds-combo-button'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-menu, cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-menu-divider, cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-menu-group, cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-menu-item, cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'IconTab', 'selector': 'cds-icon-tab, ibm-icon-tab'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'MenuButtonComponent', 'selector': 'cds-menu-button'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonIcon', 'selector': 'cds-skeleton-icon, ibm-skeleton-icon'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderComponent', 'selector': 'cds-tab-header, ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaderGroupVertical', 'selector': 'cds-tab-header-group-vertical, ibm-tab-header-group-vertical'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'TabHeadersVertical', 'selector': 'cds-tab-headers-vertical, ibm-tab-headers-vertical'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeaderDecorator', 'selector': 'cds-table-header-decorator, ibm-table-header-decorator'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'TabsVertical', 'selector': 'cds-tabs-vertical, ibm-tabs-vertical'},{'name': 'TabsVerticalGrouped', 'selector': 'cds-tabs-vertical-grouped, ibm-tabs-vertical-grouped'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TagOperationalComponent', 'selector': 'cds-tag-operational, ibm-tag-operational'},{'name': 'TagSelectableComponent', 'selector': 'cds-tag-selectable, ibm-tag-selectable'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'AILabelActions', 'selector': '[cdsAILabelActions], [ibmAILabelActions]'},{'name': 'AILabelContent', 'selector': '[cdsAILabelContent], [ibmAILabelContent]'},{'name': 'AILabelPopoverDirective', 'selector': '[cdsAILabelPopover]'},{'name': 'AspectRatioDirective', 'selector': '[cdsAspectRatio], [ibmAspectRatio]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ClickableTileIconDirective', 'selector': '[cdsClickableTileIcon], [ibmClickableTileIcon]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'LinkIconDirective', 'selector': '[ibmLinkIcon], [cdsLinkIcon]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TabHeaderBase', 'selector': ''},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TagIconDirective', 'selector': '[cdsTagIcon], [ibmTagIcon]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'OverflowMenu'};
@@ -1402,7 +1469,6 @@ export class OverflowMenu extends BaseIconButton {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

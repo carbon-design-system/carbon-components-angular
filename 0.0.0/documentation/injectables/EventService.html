@@ -152,6 +152,10 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Protected</span>
+                                <a href="#documentService" >documentService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
                                 <a href="#subscriptions" >subscriptions</a>
                             </li>
                             <li>
@@ -197,45 +201,15 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(documentService: <a href="../injectables/DocumentService.html" target="_self">DocumentService</a>)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/utils/event.service.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/utils/event.service.ts:17</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>documentService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/DocumentService.html" target="_self" >DocumentService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
 </section>
@@ -265,8 +239,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="34"
-                                    class="link-to-prism">src/utils/event.service.ts:34</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="40"
+                                    class="link-to-prism">src/utils/event.service.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -302,8 +276,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="15"
-                                    class="link-to-prism">src/utils/event.service.ts:15</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="21"
+                                    class="link-to-prism">src/utils/event.service.ts:21</a></div>
                         </td>
                     </tr>
 
@@ -393,8 +367,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="30"
-                                    class="link-to-prism">src/utils/event.service.ts:30</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="36"
+                                    class="link-to-prism">src/utils/event.service.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -462,6 +436,32 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="documentService"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>documentService</b></span>
+                        <a href="#documentService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(DocumentService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/utils/event.service.ts:9</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="subscriptions"></a>
                     <span class="name">
                             <span class="modifier">Protected</span>
@@ -477,7 +477,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/utils/event.service.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/utils/event.service.ts:11</a></div>
                         </td>
                     </tr>
 
@@ -503,7 +503,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/utils/event.service.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/utils/event.service.ts:13</a></div>
                         </td>
                     </tr>
 
@@ -516,7 +516,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, OnDestroy } from &quot;@angular/core&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, OnDestroy, inject } from &quot;@angular/core&quot;;
 import { Observable, Subscription } from &quot;rxjs&quot;;
 import { DocumentService } from &quot;./document.service&quot;;
 import { EventHandler } from &quot;./types&quot;;
@@ -524,11 +524,17 @@ import { getEventObservable } from &quot;./event-observable&quot;;
 
 @Injectable()
 export class EventService implements OnDestroy {
+	protected documentService &#x3D; inject(DocumentService);
+
 	protected subscriptions &#x3D; new Subscription();
 
 	protected targets &#x3D; new WeakMap&lt;HTMLElement | Element | Document, Map&lt;string, Observable&lt;Event&gt;&gt;&gt;();
 
-	constructor(protected documentService: DocumentService) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	on(targetElement: HTMLElement | Element, eventType: string, callback: EventHandler) {
 		if (!this.targets.has(targetElement)) {
@@ -624,7 +630,6 @@ export class EventService implements OnDestroy {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

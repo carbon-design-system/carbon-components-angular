@@ -166,6 +166,14 @@ Used to implement a popover or tooltip.</p>
 
 
 
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                                <code><a href="../injectables/DialogService.html" target="_self" >DialogService</a></code>
+                                <code><a href="../injectables/AnimationFrameService.html" target="_self" >AnimationFrameService</a></code>
+                                <code><a href="../injectables/ElementService.html" target="_self" >ElementService</a></code>
+                </td>
+            </tr>
 
 
             <tr>
@@ -173,6 +181,10 @@ Used to implement a popover or tooltip.</p>
                 <td class="col-md-9"><code>cds-dialog, ibm-dialog</code></td>
             </tr>
 
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
 
 
 
@@ -208,7 +220,15 @@ Used to implement a popover or tooltip.</p>
                             </li>
                             <li>
                                     <span class="modifier">Protected</span>
+                                <a href="#animationFrameService" >animationFrameService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
                                 <a href="#animationFrameSubscription" >animationFrameSubscription</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#changeDetectorRef" >changeDetectorRef</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -217,6 +237,14 @@ Used to implement a popover or tooltip.</p>
                             <li>
                                     <span class="modifier"></span>
                                 <a href="#dialog" >dialog</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#elementRef" >elementRef</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#elementService" >elementService</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -335,12 +363,12 @@ Used to implement a popover or tooltip.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(elementRef: ElementRef, elementService: <a href="../injectables/ElementService.html" target="_self">ElementService</a>, animationFrameService: <a href="../injectables/AnimationFrameService.html" target="_self">AnimationFrameService</a>)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/dialog/dialog.component.ts:77</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/dialog/dialog.component.ts:87</a></div>
                             </td>
                         </tr>
 
@@ -348,56 +376,6 @@ Used to implement a popover or tooltip.</p>
                     <td class="col-md-4">
                             <div class="io-description"><p>Creates an instance of <code>Dialog</code>.</p>
 </div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>elementRef</td>
-                                                  
-                                                        <td>
-                                                                    <code>ElementRef</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>elementService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/ElementService.html" target="_self" >ElementService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>animationFrameService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/AnimationFrameService.html" target="_self" >AnimationFrameService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
                     </td>
                 </tr>
             </tbody>
@@ -422,7 +400,7 @@ Used to implement a popover or tooltip.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/dialog/dialog.component.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/dialog/dialog.component.ts:42</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -453,7 +431,7 @@ explicitly defined.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/dialog/dialog.component.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/dialog/dialog.component.ts:37</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -492,8 +470,8 @@ explicitly defined.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="229"
-                                    class="link-to-prism">src/dialog/dialog.component.ts:229</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="237"
+                                    class="link-to-prism">src/dialog/dialog.component.ts:237</a></div>
                         </td>
                     </tr>
 
@@ -556,8 +534,8 @@ explicitly defined.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="206"
-                                    class="link-to-prism">src/dialog/dialog.component.ts:206</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="214"
+                                    class="link-to-prism">src/dialog/dialog.component.ts:214</a></div>
                         </td>
                     </tr>
 
@@ -620,8 +598,8 @@ explicitly defined.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="157"
-                                    class="link-to-prism">src/dialog/dialog.component.ts:157</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="162"
+                                    class="link-to-prism">src/dialog/dialog.component.ts:162</a></div>
                         </td>
                     </tr>
 
@@ -669,8 +647,8 @@ NOTE: this does <em>not</em> guarantee the dialog will be positioned, simply tha
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="229"
-                                    class="link-to-prism">src/dialog/dialog.component.ts:229</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="237"
+                                    class="link-to-prism">src/dialog/dialog.component.ts:237</a></div>
                         </td>
                     </tr>
 
@@ -737,8 +715,8 @@ NOTE: this does <em>not</em> guarantee the dialog will be positioned, simply tha
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="242"
-                                    class="link-to-prism">src/dialog/dialog.component.ts:242</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="250"
+                                    class="link-to-prism">src/dialog/dialog.component.ts:250</a></div>
                         </td>
                     </tr>
 
@@ -819,8 +797,8 @@ NOTE: this does <em>not</em> guarantee the dialog will be positioned, simply tha
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="206"
-                                    class="link-to-prism">src/dialog/dialog.component.ts:206</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="214"
+                                    class="link-to-prism">src/dialog/dialog.component.ts:214</a></div>
                         </td>
                     </tr>
 
@@ -888,8 +866,8 @@ NOTE: this does <em>not</em> guarantee the dialog will be positioned, simply tha
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="105"
-                                    class="link-to-prism">src/dialog/dialog.component.ts:105</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="111"
+                                    class="link-to-prism">src/dialog/dialog.component.ts:111</a></div>
                         </td>
                     </tr>
 
@@ -928,8 +906,8 @@ in respect to the parent element.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="249"
-                                    class="link-to-prism">src/dialog/dialog.component.ts:249</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="257"
+                                    class="link-to-prism">src/dialog/dialog.component.ts:257</a></div>
                         </td>
                     </tr>
 
@@ -967,8 +945,8 @@ in respect to the parent element.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="93"
-                                    class="link-to-prism">src/dialog/dialog.component.ts:93</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="99"
+                                    class="link-to-prism">src/dialog/dialog.component.ts:99</a></div>
                         </td>
                     </tr>
 
@@ -1006,8 +984,8 @@ in respect to the parent element.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="151"
-                                    class="link-to-prism">src/dialog/dialog.component.ts:151</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="156"
+                                    class="link-to-prism">src/dialog/dialog.component.ts:156</a></div>
                         </td>
                     </tr>
 
@@ -1045,8 +1023,8 @@ in respect to the parent element.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="162"
-                                    class="link-to-prism">src/dialog/dialog.component.ts:162</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="167"
+                                    class="link-to-prism">src/dialog/dialog.component.ts:167</a></div>
                         </td>
                     </tr>
 
@@ -1102,7 +1080,7 @@ in respect to the parent element.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/dialog/dialog.component.ts:65</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/dialog/dialog.component.ts:71</a></div>
                         </td>
                     </tr>
 
@@ -1113,6 +1091,32 @@ to not obscure the content beneath.</p>
 </div>
                 </td>
             </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="animationFrameService"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>animationFrameService</b></span>
+                        <a href="#animationFrameService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(AnimationFrameService, { optional: true })! ?? null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/dialog/dialog.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
 
         </tbody>
     </table>
@@ -1131,6 +1135,32 @@ to not obscure the content beneath.</p>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>new Subscription()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/dialog/dialog.component.ts:65</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeDetectorRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>changeDetectorRef</b></span>
+                        <a href="#changeDetectorRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ChangeDetectorRef)</code>
                     </td>
                 </tr>
                     <tr>
@@ -1167,7 +1197,7 @@ to not obscure the content beneath.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/dialog/dialog.component.ts:50</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/dialog/dialog.component.ts:51</a></div>
                         </td>
                     </tr>
 
@@ -1209,7 +1239,7 @@ to not obscure the content beneath.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/dialog/dialog.component.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/dialog/dialog.component.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -1219,6 +1249,58 @@ to not obscure the content beneath.</p>
 </div>
                 </td>
             </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="elementRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>elementRef</b></span>
+                        <a href="#elementRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ElementRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/dialog/dialog.component.ts:58</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="elementService"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>elementService</b></span>
+                        <a href="#elementService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ElementService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/dialog/dialog.component.ts:60</a></div>
+                        </td>
+                    </tr>
+
 
         </tbody>
     </table>
@@ -1242,7 +1324,7 @@ to not obscure the content beneath.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/dialog/dialog.component.ts:55</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/dialog/dialog.component.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -1280,7 +1362,7 @@ to not obscure the content beneath.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/dialog/dialog.component.ts:77</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/dialog/dialog.component.ts:83</a></div>
                         </td>
                     </tr>
 
@@ -1312,7 +1394,7 @@ to not obscure the content beneath.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/dialog/dialog.component.ts:57</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/dialog/dialog.component.ts:63</a></div>
                         </td>
                     </tr>
 
@@ -1326,27 +1408,26 @@ to not obscure the content beneath.</p>
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-	Component,
-	Input,
-	Output,
-	EventEmitter,
-	ElementRef,
-	ViewChild,
-	OnInit,
 	AfterViewInit,
-	OnDestroy,
+	ChangeDetectorRef,
+	Component,
+	ElementRef,
+	EventEmitter,
 	HostListener,
-	Optional
+	Input,
+	OnDestroy,
+	OnInit,
+	Output,
+	ViewChild,
+	inject
 } from &quot;@angular/core&quot;;
-import {
-	Observable,
-	Subscription
-} from &quot;rxjs&quot;;
+import {Subscription} from &quot;rxjs&quot;;
 // the AbsolutePosition is required to import the declaration correctly
-import Position, { position, AbsolutePosition, Positions } from &quot;@carbon/utils-position&quot;;
+import Position, { position, Positions } from &quot;@carbon/utils-position&quot;;
 import { cycleTabs, getFocusElementList } from &quot;carbon-components-angular/common&quot;;
-import { CloseMeta, CloseReasons, DialogConfig } from &quot;./dialog-config.interface&quot;;
 import { AnimationFrameService, ElementService } from &quot;carbon-components-angular/utils&quot;;
+import { CloseMeta, CloseReasons, DialogConfig } from &quot;./dialog-config.interface&quot;;
+import { DialogService } from &quot;./dialog.service&quot;;
 
 /**
  * Implements a &#x60;Dialog&#x60; that can be positioned anywhere on the page.
@@ -1354,7 +1435,9 @@ import { AnimationFrameService, ElementService } from &quot;carbon-components-an
  */
 @Component({
 	selector: &quot;cds-dialog, ibm-dialog&quot;,
-	template: &quot;&quot;
+	template: &quot;&quot;,
+	providers: [DialogService, AnimationFrameService, ElementService],
+	standalone: true
 })
 export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	/**
@@ -1381,6 +1464,11 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 */
 	public placement: string;
 
+	protected elementRef &#x3D; inject(ElementRef);
+	protected changeDetectorRef &#x3D; inject(ChangeDetectorRef);
+	protected elementService &#x3D; inject(ElementService);
+	protected animationFrameService &#x3D; inject(AnimationFrameService, { optional: true })! ?? null;
+
 	protected visibilitySubscription &#x3D; new Subscription();
 
 	protected animationFrameSubscription &#x3D; new Subscription();
@@ -1403,16 +1491,16 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 */
 	protected placements: Positions &#x3D; {};
 
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of &#x60;Dialog&#x60;.
 	 * @param elementRef
 	 * @param elementService
 	 */
-	constructor(
-		protected elementRef: ElementRef,
-		protected elementService: ElementService,
-		@Optional() protected animationFrameService: AnimationFrameService &#x3D; null
-	) {}
+	constructor() {}
 
 	/**
 	 * Initialize the &#x60;Dialog&#x60;, set the placement and gap, and add a &#x60;Subscription&#x60; to resize events.
@@ -1463,8 +1551,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 							reason: CloseReasons.hidden
 						});
 					}
-				}
-			);
+				});
 		}
 
 		this.placeDialog();
@@ -1522,7 +1609,10 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 
 		// update the element
 		positionService.setElement(el, pos);
-		setTimeout(() &#x3D;&gt; { this.placement &#x3D; dialogPlacement; });
+		setTimeout(() &#x3D;&gt; {
+			this.placement &#x3D; dialogPlacement;
+			this.changeDetectorRef.markForCheck();
+		});
 	}
 
 	/**
@@ -1687,7 +1777,6 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

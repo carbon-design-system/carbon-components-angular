@@ -610,10 +610,10 @@ class CheckboxExportedTests extends ComponentTests {
 							afterClickState
 						});
 					}),
-					runComparison: results &#x3D;&gt; {
-					// tslint:disable-next-line
+				runComparison: results &#x3D;&gt; {
+					// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 					expect(results.initialState).to.be.false;
-					// tslint:disable-next-line
+					// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 					expect(results.afterClickState).to.be.true;
 				}
 			}
@@ -692,7 +692,6 @@ export default CheckboxExportedTests;
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

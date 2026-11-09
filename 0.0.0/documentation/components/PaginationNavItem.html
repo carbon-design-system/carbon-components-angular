@@ -169,6 +169,12 @@
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>NgClass</code>
+                </td>
+            </tr>
 
 
 
@@ -257,7 +263,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/pagination/pagination-nav/pagination-item.component.ts:46</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/pagination/pagination-nav/pagination-item.component.ts:49</a></div>
                             </td>
                         </tr>
 
@@ -288,7 +294,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/pagination/pagination-nav/pagination-item.component.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/pagination/pagination-nav/pagination-item.component.ts:43</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -320,7 +326,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/pagination/pagination-nav/pagination-item.component.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/pagination/pagination-nav/pagination-item.component.ts:38</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -350,7 +356,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/pagination/pagination-nav/pagination-item.component.ts:46</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/pagination/pagination-nav/pagination-item.component.ts:49</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -376,6 +382,7 @@
 	Output,
 	EventEmitter
 } from &quot;@angular/core&quot;;
+import { NgClass } from &quot;@angular/common&quot;;
 
 /**
  * Used to present a single navigation item in a pagination list
@@ -399,7 +406,8 @@
 				{{page}}
 			&lt;/button&gt;
 		&lt;/li&gt;
-	&#x60;
+	&#x60;,
+	imports: [NgClass]
 })
 export class PaginationNavItem {
 	/**
@@ -415,6 +423,7 @@ export class PaginationNavItem {
 	/**
 	 * Emits click event
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() click &#x3D; new EventEmitter&lt;number&gt;();
 
 	constructor() {}
@@ -526,7 +535,6 @@ export class PaginationNavItem {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

@@ -190,26 +190,35 @@
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../components/Tooltip.html" target="_self" >Tooltip</a></code>
+                            <code>NgClass</code>
+                            <code>NgTemplateOutlet</code>
+                </td>
+            </tr>
 
 
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;cds-tooltip
-	*ngIf&#x3D;&quot;iconOnly; else plainButton&quot;
-	align&#x3D;&quot;bottom&quot;
-	[autoAlign]&#x3D;&quot;true&quot;
-	class&#x3D;&quot;cds--icon-tooltip&quot;
-	[description]&#x3D;&quot;iconLabel&quot;
-	[enterDelayMs]&#x3D;&quot;enterDelayMs&quot;
-	[leaveDelayMs]&#x3D;&quot;leaveDelayMs&quot;
-	[isOpen]&#x3D;&quot;isTooltipOpen&quot;
-	[disabled]&#x3D;&quot;disabled&quot;&gt;
-	&lt;ng-container *ngTemplateOutlet&#x3D;&quot;tabButtonTemplate&quot;&gt;&lt;/ng-container&gt;
-&lt;/cds-tooltip&gt;
-&lt;ng-template #plainButton&gt;
-	&lt;ng-container *ngTemplateOutlet&#x3D;&quot;tabButtonTemplate&quot;&gt;&lt;/ng-container&gt;
-&lt;/ng-template&gt;
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">@if (iconOnly) {
+	&lt;cds-tooltip
+		align&#x3D;&quot;bottom&quot;
+		[autoAlign]&#x3D;&quot;true&quot;
+		class&#x3D;&quot;cds--icon-tooltip&quot;
+		[description]&#x3D;&quot;iconLabel&quot;
+		[enterDelayMs]&#x3D;&quot;enterDelayMs&quot;
+		[leaveDelayMs]&#x3D;&quot;leaveDelayMs&quot;
+		[isOpen]&#x3D;&quot;isTooltipOpen&quot;
+		[disabled]&#x3D;&quot;disabled&quot;&gt;
+		&lt;ng-container *ngTemplateOutlet&#x3D;&quot;tabButtonTemplate&quot; /&gt;
+	&lt;/cds-tooltip&gt;
+} @else {
+	&lt;ng-container *ngTemplateOutlet&#x3D;&quot;tabButtonTemplate&quot; /&gt;
+}
+
 &lt;ng-template #tabButtonTemplate&gt;
 	&lt;button
 		#tabButton
@@ -231,63 +240,70 @@
 		[disabled]&#x3D;&quot;disabled&quot;
 		(click)&#x3D;&quot;onTabButtonClick()&quot;
 		(keydown)&#x3D;&quot;onTabButtonKeyDown($event)&quot;&gt;
-		&lt;ng-container *ngIf&#x3D;&quot;iconOnly; else labeledTab&quot;&gt;
+		@if (iconOnly) {
 			&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;icon&quot;&gt;&lt;/ng-container&gt;
-			&lt;span
-				*ngIf&#x3D;&quot;!disabled &amp;&amp; badgeIndicator&quot;
-				class&#x3D;&quot;cds--badge-indicator&quot;
-				aria-hidden&#x3D;&quot;true&quot;&gt;
-			&lt;/span&gt;
-		&lt;/ng-container&gt;
-		&lt;ng-template #labeledTab&gt;
+			@if (!disabled &amp;&amp; badgeIndicator) {
+				&lt;span
+					class&#x3D;&quot;cds--badge-indicator&quot;
+					aria-hidden&#x3D;&quot;true&quot;&gt;
+				&lt;/span&gt;
+			}
+		} @else {
 			&lt;div class&#x3D;&quot;cds--tabs__nav-item-label-wrapper&quot;&gt;
-				&lt;div *ngIf&#x3D;&quot;dismissable &amp;&amp; icon&quot; class&#x3D;&quot;cds--tabs__nav-item--icon-left&quot;&gt;
-					&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;icon&quot;&gt;&lt;/ng-container&gt;
-				&lt;/div&gt;
+				@if (dismissable &amp;&amp; icon) {
+					&lt;div class&#x3D;&quot;cds--tabs__nav-item--icon-left&quot;&gt;
+						&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;icon&quot;&gt;&lt;/ng-container&gt;
+					&lt;/div&gt;
+				}
 				&lt;span class&#x3D;&quot;cds--tabs__nav-item-label&quot;&gt;
 					&lt;ng-content&gt;&lt;/ng-content&gt;
 				&lt;/span&gt;
-				&lt;div *ngIf&#x3D;&quot;!dismissable &amp;&amp; icon&quot; class&#x3D;&quot;cds--tabs__nav-item--icon&quot;&gt;
-					&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;icon&quot;&gt;&lt;/ng-container&gt;
+				@if (!dismissable &amp;&amp; icon) {
+					&lt;div class&#x3D;&quot;cds--tabs__nav-item--icon&quot;&gt;
+						&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;icon&quot;&gt;&lt;/ng-container&gt;
+					&lt;/div&gt;
+				}
+			&lt;/div&gt;
+			@if (secondaryLabel) {
+				&lt;div
+					class&#x3D;&quot;cds--tabs__nav-item-secondary-label&quot;
+					[attr.title]&#x3D;&quot;secondaryLabel&quot;&gt;
+					{{ secondaryLabel }}
 				&lt;/div&gt;
-			&lt;/div&gt;
-			&lt;div
-				*ngIf&#x3D;&quot;secondaryLabel&quot;
-				class&#x3D;&quot;cds--tabs__nav-item-secondary-label&quot;
-				[attr.title]&#x3D;&quot;secondaryLabel&quot;&gt;
-				{{ secondaryLabel }}
-			&lt;/div&gt;
-		&lt;/ng-template&gt;
+			}
+		}
 	&lt;/button&gt;
 &lt;/ng-template&gt;
-&lt;div *ngIf&#x3D;&quot;dismissable&quot; class&#x3D;&quot;cds--tabs__nav-item--close&quot;&gt;
-	&lt;button
-		type&#x3D;&quot;button&quot;
-		class&#x3D;&quot;cds--tabs__nav-item--close-icon&quot;
-		[attr.tabindex]&#x3D;&quot;-1&quot;
-		[attr.aria-disabled]&#x3D;&quot;disabled&quot;
-		[attr.aria-hidden]&#x3D;&quot;!(active &amp;&amp; !disabled)&quot;
-		[ngClass]&#x3D;&quot;{
-			&#x27;cds--tabs__nav-item--close-icon--selected&#x27;: active,
-			&#x27;cds--tabs__nav-item--close-icon--disabled&#x27;: disabled
-		}&quot;
-		[disabled]&#x3D;&quot;disabled&quot;
-		[attr.title]&#x3D;&quot;closeButtonTitle&quot;
-		(click)&#x3D;&quot;onClose($event)&quot;&gt;
-		&lt;svg
-			focusable&#x3D;&quot;false&quot;
-			preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
-			xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
-			fill&#x3D;&quot;currentColor&quot;
-			width&#x3D;&quot;16&quot;
-			height&#x3D;&quot;16&quot;
-			viewBox&#x3D;&quot;0 0 32 32&quot;
-			[attr.aria-label]&#x3D;&quot;closeButtonAriaLabel&quot;
-			[attr.aria-hidden]&#x3D;&quot;!(active &amp;&amp; !disabled)&quot;&gt;
-			&lt;path d&#x3D;&quot;M17.4141 16L24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z&quot;&gt;&lt;/path&gt;
-		&lt;/svg&gt;
-	&lt;/button&gt;
-&lt;/div&gt;
+@if (dismissable) {
+	&lt;div class&#x3D;&quot;cds--tabs__nav-item--close&quot;&gt;
+		&lt;button
+			type&#x3D;&quot;button&quot;
+			class&#x3D;&quot;cds--tabs__nav-item--close-icon&quot;
+			[attr.tabindex]&#x3D;&quot;-1&quot;
+			[attr.aria-disabled]&#x3D;&quot;disabled&quot;
+			[attr.aria-hidden]&#x3D;&quot;!(active &amp;&amp; !disabled)&quot;
+			[ngClass]&#x3D;&quot;{
+				&#x27;cds--tabs__nav-item--close-icon--selected&#x27;: active,
+				&#x27;cds--tabs__nav-item--close-icon--disabled&#x27;: disabled
+			}&quot;
+			[disabled]&#x3D;&quot;disabled&quot;
+			[attr.title]&#x3D;&quot;closeButtonTitle&quot;
+			(click)&#x3D;&quot;onClose($event)&quot;&gt;
+			&lt;svg
+				focusable&#x3D;&quot;false&quot;
+				preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
+				xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+				fill&#x3D;&quot;currentColor&quot;
+				width&#x3D;&quot;16&quot;
+				height&#x3D;&quot;16&quot;
+				viewBox&#x3D;&quot;0 0 32 32&quot;
+				[attr.aria-label]&#x3D;&quot;closeButtonAriaLabel&quot;
+				[attr.aria-hidden]&#x3D;&quot;!(active &amp;&amp; !disabled)&quot;&gt;
+				&lt;path d&#x3D;&quot;M17.4141 16L24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z&quot;&gt;&lt;/path&gt;
+			&lt;/svg&gt;
+		&lt;/button&gt;
+	&lt;/div&gt;
+}
 	</code></pre></td>
             </tr>
 
@@ -315,6 +331,10 @@
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#changeDetectorRef" >changeDetectorRef</a>
+                            </li>
                             <li>
                                     <span class="modifier"></span>
                                 <a href="#displayContents" >displayContents</a>
@@ -503,7 +523,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/tabs/tab-header.component.ts:141</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/tabs/tab-header.component.ts:154</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -535,7 +555,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/tabs/tab-header.component.ts:149</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/tabs/tab-header.component.ts:162</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -562,7 +582,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/tabs/tab-header.component.ts:153</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="166" class="link-to-prism">src/tabs/tab-header.component.ts:166</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -589,7 +609,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/tabs/tab-header.component.ts:137</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/tabs/tab-header.component.ts:150</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -621,7 +641,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/tabs/tab-header.component.ts:133</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/tabs/tab-header.component.ts:146</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -653,7 +673,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/tabs/tab-header.component.ts:145</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/tabs/tab-header.component.ts:158</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -685,7 +705,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/tabs/tab-header.component.ts:161</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="174" class="link-to-prism">src/tabs/tab-header.component.ts:174</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -712,7 +732,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/tabs/tab-header.component.ts:157</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/tabs/tab-header.component.ts:170</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -750,7 +770,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/TabHeaderBase.html#source" target="_self" >TabHeaderBase:53</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/TabHeaderBase.html#source" target="_self" >TabHeaderBase:55</a></code>
 </div>
                             </td>
                         </tr>
@@ -784,7 +804,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/TabHeaderBase.html#source" target="_self" >TabHeaderBase:28</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/TabHeaderBase.html#source" target="_self" >TabHeaderBase:30</a></code>
 </div>
                             </td>
                         </tr>
@@ -823,7 +843,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/TabHeaderBase.html#source" target="_self" >TabHeaderBase:58</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/TabHeaderBase.html#source" target="_self" >TabHeaderBase:60</a></code>
 </div>
                             </td>
                         </tr>
@@ -862,7 +882,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/TabHeaderBase.html#source" target="_self" >TabHeaderBase:74</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/TabHeaderBase.html#source" target="_self" >TabHeaderBase:76</a></code>
 </div>
                             </td>
                         </tr>
@@ -896,7 +916,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/TabHeaderBase.html#source" target="_self" >TabHeaderBase:63</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/TabHeaderBase.html#source" target="_self" >TabHeaderBase:65</a></code>
 </div>
                             </td>
                         </tr>
@@ -930,7 +950,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/TabHeaderBase.html#source" target="_self" >TabHeaderBase:79</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/TabHeaderBase.html#source" target="_self" >TabHeaderBase:81</a></code>
 </div>
                             </td>
                         </tr>
@@ -964,7 +984,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/TabHeaderBase.html#source" target="_self" >TabHeaderBase:44</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/TabHeaderBase.html#source" target="_self" >TabHeaderBase:46</a></code>
 </div>
                             </td>
                         </tr>
@@ -998,7 +1018,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/TabHeaderBase.html#source" target="_self" >TabHeaderBase:69</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/TabHeaderBase.html#source" target="_self" >TabHeaderBase:71</a></code>
 </div>
                             </td>
                         </tr>
@@ -1033,7 +1053,7 @@ Only displayed when the parent group is using <code>type=&quot;contained&quot;</
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/TabHeaderBase.html#source" target="_self" >TabHeaderBase:84</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/TabHeaderBase.html#source" target="_self" >TabHeaderBase:86</a></code>
 </div>
                             </td>
                         </tr>
@@ -1070,7 +1090,7 @@ Only displayed when the parent group is using <code>type=&quot;contained&quot;</
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/TabHeaderBase.html#source" target="_self" >TabHeaderBase:89</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/TabHeaderBase.html#source" target="_self" >TabHeaderBase:91</a></code>
 </div>
                             </td>
                         </tr>
@@ -1104,7 +1124,7 @@ Only displayed when the parent group is using <code>type=&quot;contained&quot;</
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/TabHeaderBase.html#source" target="_self" >TabHeaderBase:94</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/TabHeaderBase.html#source" target="_self" >TabHeaderBase:96</a></code>
 </div>
                             </td>
                         </tr>
@@ -1142,7 +1162,7 @@ Only displayed when the parent group is using <code>type=&quot;contained&quot;</
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/tabs/tab-header.component.ts:163</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="176" class="link-to-prism">src/tabs/tab-header.component.ts:176</a></div>
                         </td>
                     </tr>
 
@@ -1183,7 +1203,7 @@ Only displayed when the parent group is using <code>type=&quot;contained&quot;</
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/TabHeaderBase.html#source" target="_self" >TabHeaderBase:183</a></code>
+                                <div class="io-line">Defined in         <code><a href="../directives/TabHeaderBase.html#source" target="_self" >TabHeaderBase:199</a></code>
 </div>
                         </td>
                     </tr>
@@ -1222,8 +1242,8 @@ Only displayed when the parent group is using <code>type=&quot;contained&quot;</
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="167"
-                                    class="link-to-prism">src/tabs/tab-header.component.ts:167</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="182"
+                                    class="link-to-prism">src/tabs/tab-header.component.ts:182</a></div>
                         </td>
                     </tr>
 
@@ -1259,8 +1279,8 @@ Only displayed when the parent group is using <code>type=&quot;contained&quot;</
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="204"
-                                    class="link-to-prism">src/tabs/tab-header.component.ts:204</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="220"
+                                    class="link-to-prism">src/tabs/tab-header.component.ts:220</a></div>
                         </td>
                     </tr>
 
@@ -1328,8 +1348,8 @@ Only displayed when the parent group is using <code>type=&quot;contained&quot;</
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="187"
-                                    class="link-to-prism">src/tabs/tab-header.component.ts:187</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="203"
+                                    class="link-to-prism">src/tabs/tab-header.component.ts:203</a></div>
                         </td>
                     </tr>
 
@@ -1365,8 +1385,8 @@ Only displayed when the parent group is using <code>type=&quot;contained&quot;</
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="194"
-                                    class="link-to-prism">src/tabs/tab-header.component.ts:194</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="210"
+                                    class="link-to-prism">src/tabs/tab-header.component.ts:210</a></div>
                         </td>
                     </tr>
 
@@ -1440,7 +1460,7 @@ Only displayed when the parent group is using <code>type=&quot;contained&quot;</
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/TabHeaderBase.html#source" target="_self" >TabHeaderBase:106</a></code>
+                                <div class="io-line">Defined in         <code><a href="../directives/TabHeaderBase.html#source" target="_self" >TabHeaderBase:108</a></code>
 </div>
                         </td>
                     </tr>
@@ -1465,6 +1485,32 @@ Only displayed when the parent group is using <code>type=&quot;contained&quot;</
     <h3 id="inputs">
         Properties
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeDetectorRef"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>changeDetectorRef</b></span>
+                        <a href="#changeDetectorRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ChangeDetectorRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">src/tabs/tab-header.component.ts:180</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -1499,7 +1545,7 @@ Only displayed when the parent group is using <code>type=&quot;contained&quot;</
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/tabs/tab-header.component.ts:163</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="176" class="link-to-prism">src/tabs/tab-header.component.ts:176</a></div>
                         </td>
                     </tr>
 
@@ -1535,7 +1581,7 @@ Only displayed when the parent group is using <code>type=&quot;contained&quot;</
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/tabs/tab-header.component.ts:165</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/tabs/tab-header.component.ts:178</a></div>
                         </td>
                     </tr>
 
@@ -1567,7 +1613,7 @@ Only displayed when the parent group is using <code>type=&quot;contained&quot;</
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/TabHeaderBase.html#source" target="_self" >TabHeaderBase:96</a></code>
+                                <div class="io-line">Defined in         <code><a href="../directives/TabHeaderBase.html#source" target="_self" >TabHeaderBase:98</a></code>
 </div>
                         </td>
                     </tr>
@@ -1597,7 +1643,7 @@ Only displayed when the parent group is using <code>type=&quot;contained&quot;</
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="212" class="link-to-prism">src/tabs/tab-header.component.ts:212</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="228" class="link-to-prism">src/tabs/tab-header.component.ts:228</a></div>
                                 </td>
                             </tr>
 
@@ -1619,7 +1665,7 @@ Only displayed when the parent group is using <code>type=&quot;contained&quot;</
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="219" class="link-to-prism">src/tabs/tab-header.component.ts:219</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="235" class="link-to-prism">src/tabs/tab-header.component.ts:235</a></div>
                                 </td>
                             </tr>
 
@@ -1632,15 +1678,20 @@ Only displayed when the parent group is using <code>type=&quot;contained&quot;</
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
 	AfterViewInit,
+	ChangeDetectorRef,
 	Component,
 	ElementRef,
 	forwardRef,
 	HostBinding,
 	Input,
-	ViewChild
+	ViewChild,
+	inject
 } from &quot;@angular/core&quot;;
 
 import { TabHeaderBase } from &quot;./tab-header.directive&quot;;
+
+import { Tooltip } from &quot;carbon-components-angular/tooltip&quot;;
+import { NgClass, NgTemplateOutlet } from &quot;@angular/common&quot;;
 
 /**
  * Tab header with template for label, optional icon, secondary label, badge, and dismissable close.
@@ -1659,25 +1710,25 @@ import { TabHeaderBase } from &quot;./tab-header.directive&quot;;
 @Component({
 	selector: &quot;cds-tab-header, ibm-tab-header&quot;,
 	providers: [
-		// tslint:disable-next-line:no-forward-ref
 		{ provide: TabHeaderBase, useExisting: forwardRef(() &#x3D;&gt; TabHeaderComponent) }
 	],
 	template: &#x60;
-		&lt;cds-tooltip
-			*ngIf&#x3D;&quot;iconOnly; else plainButton&quot;
-			align&#x3D;&quot;bottom&quot;
-			[autoAlign]&#x3D;&quot;true&quot;
-			class&#x3D;&quot;cds--icon-tooltip&quot;
-			[description]&#x3D;&quot;iconLabel&quot;
-			[enterDelayMs]&#x3D;&quot;enterDelayMs&quot;
-			[leaveDelayMs]&#x3D;&quot;leaveDelayMs&quot;
-			[isOpen]&#x3D;&quot;isTooltipOpen&quot;
-			[disabled]&#x3D;&quot;disabled&quot;&gt;
-			&lt;ng-container *ngTemplateOutlet&#x3D;&quot;tabButtonTemplate&quot;&gt;&lt;/ng-container&gt;
-		&lt;/cds-tooltip&gt;
-		&lt;ng-template #plainButton&gt;
-			&lt;ng-container *ngTemplateOutlet&#x3D;&quot;tabButtonTemplate&quot;&gt;&lt;/ng-container&gt;
-		&lt;/ng-template&gt;
+		@if (iconOnly) {
+			&lt;cds-tooltip
+				align&#x3D;&quot;bottom&quot;
+				[autoAlign]&#x3D;&quot;true&quot;
+				class&#x3D;&quot;cds--icon-tooltip&quot;
+				[description]&#x3D;&quot;iconLabel&quot;
+				[enterDelayMs]&#x3D;&quot;enterDelayMs&quot;
+				[leaveDelayMs]&#x3D;&quot;leaveDelayMs&quot;
+				[isOpen]&#x3D;&quot;isTooltipOpen&quot;
+				[disabled]&#x3D;&quot;disabled&quot;&gt;
+				&lt;ng-container *ngTemplateOutlet&#x3D;&quot;tabButtonTemplate&quot; /&gt;
+			&lt;/cds-tooltip&gt;
+		} @else {
+			&lt;ng-container *ngTemplateOutlet&#x3D;&quot;tabButtonTemplate&quot; /&gt;
+		}
+
 		&lt;ng-template #tabButtonTemplate&gt;
 			&lt;button
 				#tabButton
@@ -1699,64 +1750,72 @@ import { TabHeaderBase } from &quot;./tab-header.directive&quot;;
 				[disabled]&#x3D;&quot;disabled&quot;
 				(click)&#x3D;&quot;onTabButtonClick()&quot;
 				(keydown)&#x3D;&quot;onTabButtonKeyDown($event)&quot;&gt;
-				&lt;ng-container *ngIf&#x3D;&quot;iconOnly; else labeledTab&quot;&gt;
+				@if (iconOnly) {
 					&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;icon&quot;&gt;&lt;/ng-container&gt;
-					&lt;span
-						*ngIf&#x3D;&quot;!disabled &amp;&amp; badgeIndicator&quot;
-						class&#x3D;&quot;cds--badge-indicator&quot;
-						aria-hidden&#x3D;&quot;true&quot;&gt;
-					&lt;/span&gt;
-				&lt;/ng-container&gt;
-				&lt;ng-template #labeledTab&gt;
+					@if (!disabled &amp;&amp; badgeIndicator) {
+						&lt;span
+							class&#x3D;&quot;cds--badge-indicator&quot;
+							aria-hidden&#x3D;&quot;true&quot;&gt;
+						&lt;/span&gt;
+					}
+				} @else {
 					&lt;div class&#x3D;&quot;cds--tabs__nav-item-label-wrapper&quot;&gt;
-						&lt;div *ngIf&#x3D;&quot;dismissable &amp;&amp; icon&quot; class&#x3D;&quot;cds--tabs__nav-item--icon-left&quot;&gt;
-							&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;icon&quot;&gt;&lt;/ng-container&gt;
-						&lt;/div&gt;
+						@if (dismissable &amp;&amp; icon) {
+							&lt;div class&#x3D;&quot;cds--tabs__nav-item--icon-left&quot;&gt;
+								&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;icon&quot;&gt;&lt;/ng-container&gt;
+							&lt;/div&gt;
+						}
 						&lt;span class&#x3D;&quot;cds--tabs__nav-item-label&quot;&gt;
 							&lt;ng-content&gt;&lt;/ng-content&gt;
 						&lt;/span&gt;
-						&lt;div *ngIf&#x3D;&quot;!dismissable &amp;&amp; icon&quot; class&#x3D;&quot;cds--tabs__nav-item--icon&quot;&gt;
-							&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;icon&quot;&gt;&lt;/ng-container&gt;
+						@if (!dismissable &amp;&amp; icon) {
+							&lt;div class&#x3D;&quot;cds--tabs__nav-item--icon&quot;&gt;
+								&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;icon&quot;&gt;&lt;/ng-container&gt;
+							&lt;/div&gt;
+						}
+					&lt;/div&gt;
+					@if (secondaryLabel) {
+						&lt;div
+							class&#x3D;&quot;cds--tabs__nav-item-secondary-label&quot;
+							[attr.title]&#x3D;&quot;secondaryLabel&quot;&gt;
+							{{ secondaryLabel }}
 						&lt;/div&gt;
-					&lt;/div&gt;
-					&lt;div
-						*ngIf&#x3D;&quot;secondaryLabel&quot;
-						class&#x3D;&quot;cds--tabs__nav-item-secondary-label&quot;
-						[attr.title]&#x3D;&quot;secondaryLabel&quot;&gt;
-						{{ secondaryLabel }}
-					&lt;/div&gt;
-				&lt;/ng-template&gt;
+					}
+				}
 			&lt;/button&gt;
 		&lt;/ng-template&gt;
-		&lt;div *ngIf&#x3D;&quot;dismissable&quot; class&#x3D;&quot;cds--tabs__nav-item--close&quot;&gt;
-			&lt;button
-				type&#x3D;&quot;button&quot;
-				class&#x3D;&quot;cds--tabs__nav-item--close-icon&quot;
-				[attr.tabindex]&#x3D;&quot;-1&quot;
-				[attr.aria-disabled]&#x3D;&quot;disabled&quot;
-				[attr.aria-hidden]&#x3D;&quot;!(active &amp;&amp; !disabled)&quot;
-				[ngClass]&#x3D;&quot;{
-					&#x27;cds--tabs__nav-item--close-icon--selected&#x27;: active,
-					&#x27;cds--tabs__nav-item--close-icon--disabled&#x27;: disabled
-				}&quot;
-				[disabled]&#x3D;&quot;disabled&quot;
-				[attr.title]&#x3D;&quot;closeButtonTitle&quot;
-				(click)&#x3D;&quot;onClose($event)&quot;&gt;
-				&lt;svg
-					focusable&#x3D;&quot;false&quot;
-					preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
-					xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
-					fill&#x3D;&quot;currentColor&quot;
-					width&#x3D;&quot;16&quot;
-					height&#x3D;&quot;16&quot;
-					viewBox&#x3D;&quot;0 0 32 32&quot;
-					[attr.aria-label]&#x3D;&quot;closeButtonAriaLabel&quot;
-					[attr.aria-hidden]&#x3D;&quot;!(active &amp;&amp; !disabled)&quot;&gt;
-					&lt;path d&#x3D;&quot;M17.4141 16L24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z&quot;&gt;&lt;/path&gt;
-				&lt;/svg&gt;
-			&lt;/button&gt;
-		&lt;/div&gt;
-	&#x60;
+		@if (dismissable) {
+			&lt;div class&#x3D;&quot;cds--tabs__nav-item--close&quot;&gt;
+				&lt;button
+					type&#x3D;&quot;button&quot;
+					class&#x3D;&quot;cds--tabs__nav-item--close-icon&quot;
+					[attr.tabindex]&#x3D;&quot;-1&quot;
+					[attr.aria-disabled]&#x3D;&quot;disabled&quot;
+					[attr.aria-hidden]&#x3D;&quot;!(active &amp;&amp; !disabled)&quot;
+					[ngClass]&#x3D;&quot;{
+						&#x27;cds--tabs__nav-item--close-icon--selected&#x27;: active,
+						&#x27;cds--tabs__nav-item--close-icon--disabled&#x27;: disabled
+					}&quot;
+					[disabled]&#x3D;&quot;disabled&quot;
+					[attr.title]&#x3D;&quot;closeButtonTitle&quot;
+					(click)&#x3D;&quot;onClose($event)&quot;&gt;
+					&lt;svg
+						focusable&#x3D;&quot;false&quot;
+						preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
+						xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+						fill&#x3D;&quot;currentColor&quot;
+						width&#x3D;&quot;16&quot;
+						height&#x3D;&quot;16&quot;
+						viewBox&#x3D;&quot;0 0 32 32&quot;
+						[attr.aria-label]&#x3D;&quot;closeButtonAriaLabel&quot;
+						[attr.aria-hidden]&#x3D;&quot;!(active &amp;&amp; !disabled)&quot;&gt;
+						&lt;path d&#x3D;&quot;M17.4141 16L24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z&quot;&gt;&lt;/path&gt;
+					&lt;/svg&gt;
+				&lt;/button&gt;
+			&lt;/div&gt;
+		}
+	&#x60;,
+	imports: [Tooltip, NgClass, NgTemplateOutlet]
 })
 export class TabHeaderComponent extends TabHeaderBase implements AfterViewInit {
 	/**
@@ -1796,6 +1855,8 @@ export class TabHeaderComponent extends TabHeaderBase implements AfterViewInit {
 
 	@ViewChild(&quot;tabButton&quot;) tabButton: ElementRef&lt;HTMLButtonElement&gt;;
 
+	private changeDetectorRef &#x3D; inject(ChangeDetectorRef);
+
 	ngAfterViewInit() {
 		// Mirror the deprecated directive&#x27;s title-fallback behavior, but read
 		// from the inner rendered button rather than the &#x60;display: contents&#x60; host.
@@ -1804,6 +1865,7 @@ export class TabHeaderComponent extends TabHeaderBase implements AfterViewInit {
 				const text &#x3D; this.tabButton.nativeElement.textContent?.trim();
 				if (text) {
 					this.title &#x3D; text;
+					this.changeDetectorRef.markForCheck();
 				}
 			}
 		});
@@ -1883,7 +1945,7 @@ export class TabHeaderComponent extends TabHeaderBase implements AfterViewInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><cds-tooltip	*ngIf="iconOnly; else plainButton"	align="bottom"	[autoAlign]="true"	class="cds--icon-tooltip"	[description]="iconLabel"	[enterDelayMs]="enterDelayMs"	[leaveDelayMs]="leaveDelayMs"	[isOpen]="isTooltipOpen"	[disabled]="disabled">	<ng-container *ngTemplateOutlet="tabButtonTemplate"></ng-container></cds-tooltip><ng-template #plainButton>	<ng-container *ngTemplateOutlet="tabButtonTemplate"></ng-container></ng-template><ng-template #tabButtonTemplate>	<button		#tabButton		type="button"		role="tab"		class="cds--tabs__nav-item cds--tabs__nav-link"		[ngClass]="{			\'cds--tabs__nav-item--selected\': active,			\'cds--tabs__nav-item--disabled\': disabled,			\'cds--tabs__nav-item--icon-only\': iconOnly,			\'cds--tabs__nav-item--icon-only__20\': iconOnly && iconSize === \'lg\'		}"		[attr.aria-selected]="active"		[attr.aria-disabled]="disabled"		[attr.aria-controls]="paneReference?.id || null"		[attr.aria-label]="iconOnly ? iconLabel : null"		[attr.tabindex]="active ? 0 : -1"		[attr.title]="resolvedTitle"		[disabled]="disabled"		(click)="onTabButtonClick()"		(keydown)="onTabButtonKeyDown($event)">		<ng-container *ngIf="iconOnly; else labeledTab">			<ng-container [ngTemplateOutlet]="icon"></ng-container>			<span				*ngIf="!disabled && badgeIndicator"				class="cds--badge-indicator"				aria-hidden="true">			</span>		</ng-container>		<ng-template #labeledTab>			<div class="cds--tabs__nav-item-label-wrapper">				<div *ngIf="dismissable && icon" class="cds--tabs__nav-item--icon-left">					<ng-container [ngTemplateOutlet]="icon"></ng-container>				</div>				<span class="cds--tabs__nav-item-label">					<ng-content></ng-content>				</span>				<div *ngIf="!dismissable && icon" class="cds--tabs__nav-item--icon">					<ng-container [ngTemplateOutlet]="icon"></ng-container>				</div>			</div>			<div				*ngIf="secondaryLabel"				class="cds--tabs__nav-item-secondary-label"				[attr.title]="secondaryLabel">				{{ secondaryLabel }}			</div>		</ng-template>	</button></ng-template><div *ngIf="dismissable" class="cds--tabs__nav-item--close">	<button		type="button"		class="cds--tabs__nav-item--close-icon"		[attr.tabindex]="-1"		[attr.aria-disabled]="disabled"		[attr.aria-hidden]="!(active && !disabled)"		[ngClass]="{			\'cds--tabs__nav-item--close-icon--selected\': active,			\'cds--tabs__nav-item--close-icon--disabled\': disabled		}"		[disabled]="disabled"		[attr.title]="closeButtonTitle"		(click)="onClose($event)">		<svg			focusable="false"			preserveAspectRatio="xMidYMid meet"			xmlns="http://www.w3.org/2000/svg"			fill="currentColor"			width="16"			height="16"			viewBox="0 0 32 32"			[attr.aria-label]="closeButtonAriaLabel"			[attr.aria-hidden]="!(active && !disabled)">			<path d="M17.4141 16L24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z"></path>		</svg>	</button></div>	</div>'
+        var COMPONENT_TEMPLATE = '<div>@if (iconOnly) {	<cds-tooltip		align="bottom"		[autoAlign]="true"		class="cds--icon-tooltip"		[description]="iconLabel"		[enterDelayMs]="enterDelayMs"		[leaveDelayMs]="leaveDelayMs"		[isOpen]="isTooltipOpen"		[disabled]="disabled">		<ng-container *ngTemplateOutlet="tabButtonTemplate" />	</cds-tooltip>} @else {	<ng-container *ngTemplateOutlet="tabButtonTemplate" />}<ng-template #tabButtonTemplate>	<button		#tabButton		type="button"		role="tab"		class="cds--tabs__nav-item cds--tabs__nav-link"		[ngClass]="{			\'cds--tabs__nav-item--selected\': active,			\'cds--tabs__nav-item--disabled\': disabled,			\'cds--tabs__nav-item--icon-only\': iconOnly,			\'cds--tabs__nav-item--icon-only__20\': iconOnly && iconSize === \'lg\'		}"		[attr.aria-selected]="active"		[attr.aria-disabled]="disabled"		[attr.aria-controls]="paneReference?.id || null"		[attr.aria-label]="iconOnly ? iconLabel : null"		[attr.tabindex]="active ? 0 : -1"		[attr.title]="resolvedTitle"		[disabled]="disabled"		(click)="onTabButtonClick()"		(keydown)="onTabButtonKeyDown($event)">		@if (iconOnly) {			<ng-container [ngTemplateOutlet]="icon"></ng-container>			@if (!disabled && badgeIndicator) {				<span					class="cds--badge-indicator"					aria-hidden="true">				</span>			}		} @else {			<div class="cds--tabs__nav-item-label-wrapper">				@if (dismissable && icon) {					<div class="cds--tabs__nav-item--icon-left">						<ng-container [ngTemplateOutlet]="icon"></ng-container>					</div>				}				<span class="cds--tabs__nav-item-label">					<ng-content></ng-content>				</span>				@if (!dismissable && icon) {					<div class="cds--tabs__nav-item--icon">						<ng-container [ngTemplateOutlet]="icon"></ng-container>					</div>				}			</div>			@if (secondaryLabel) {				<div					class="cds--tabs__nav-item-secondary-label"					[attr.title]="secondaryLabel">					{{ secondaryLabel }}				</div>			}		}	</button></ng-template>@if (dismissable) {	<div class="cds--tabs__nav-item--close">		<button			type="button"			class="cds--tabs__nav-item--close-icon"			[attr.tabindex]="-1"			[attr.aria-disabled]="disabled"			[attr.aria-hidden]="!(active && !disabled)"			[ngClass]="{				\'cds--tabs__nav-item--close-icon--selected\': active,				\'cds--tabs__nav-item--close-icon--disabled\': disabled			}"			[disabled]="disabled"			[attr.title]="closeButtonTitle"			(click)="onClose($event)">			<svg				focusable="false"				preserveAspectRatio="xMidYMid meet"				xmlns="http://www.w3.org/2000/svg"				fill="currentColor"				width="16"				height="16"				viewBox="0 0 32 32"				[attr.aria-label]="closeButtonAriaLabel"				[attr.aria-hidden]="!(active && !disabled)">				<path d="M17.4141 16L24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z"></path>			</svg>		</button>	</div>}	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AILabelComponent', 'selector': 'cds-ai-label, ibm-ai-label'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'CheckboxGroup', 'selector': 'cds-checkbox-group, ibm-checkbox-group'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ComboButtonComponent', 'selector': 'cds-combo-button'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-menu, cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-menu-divider, cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-menu-group, cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-menu-item, cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'IconTab', 'selector': 'cds-icon-tab, ibm-icon-tab'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'MenuButtonComponent', 'selector': 'cds-menu-button'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonIcon', 'selector': 'cds-skeleton-icon, ibm-skeleton-icon'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderComponent', 'selector': 'cds-tab-header, ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaderGroupVertical', 'selector': 'cds-tab-header-group-vertical, ibm-tab-header-group-vertical'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'TabHeadersVertical', 'selector': 'cds-tab-headers-vertical, ibm-tab-headers-vertical'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeaderDecorator', 'selector': 'cds-table-header-decorator, ibm-table-header-decorator'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'TabsVertical', 'selector': 'cds-tabs-vertical, ibm-tabs-vertical'},{'name': 'TabsVerticalGrouped', 'selector': 'cds-tabs-vertical-grouped, ibm-tabs-vertical-grouped'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TagOperationalComponent', 'selector': 'cds-tag-operational, ibm-tag-operational'},{'name': 'TagSelectableComponent', 'selector': 'cds-tag-selectable, ibm-tag-selectable'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'AILabelActions', 'selector': '[cdsAILabelActions], [ibmAILabelActions]'},{'name': 'AILabelContent', 'selector': '[cdsAILabelContent], [ibmAILabelContent]'},{'name': 'AILabelPopoverDirective', 'selector': '[cdsAILabelPopover]'},{'name': 'AspectRatioDirective', 'selector': '[cdsAspectRatio], [ibmAspectRatio]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ClickableTileIconDirective', 'selector': '[cdsClickableTileIcon], [ibmClickableTileIcon]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'LinkIconDirective', 'selector': '[ibmLinkIcon], [cdsLinkIcon]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TabHeaderBase', 'selector': ''},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TagIconDirective', 'selector': '[cdsTagIcon], [ibmTagIcon]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'TabHeaderComponent'};
@@ -1960,7 +2022,6 @@ export class TabHeaderComponent extends TabHeaderBase implements AfterViewInit {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

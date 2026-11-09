@@ -24,18 +24,18 @@
 <title>cluster_IconModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="184,-70 184,-268 312,-268 312,-70 184,-70"/>
 </g>
-<g id="clust5" class="cluster">
+<g id="clust4" class="cluster">
 <title>cluster_IconModule_exports</title>
 <polygon fill="none" stroke="black" points="192,-208 192,-260 304,-260 304,-208 192,-208"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_IconModule_declarations</title>
+<g id="clust3" class="cluster">
+<title>cluster_IconModule_imports</title>
 <polygon fill="none" stroke="black" points="194,-78 194,-130 302,-130 302,-78 194,-78"/>
 </g>
 <!-- IconDirective -->
 <g id="node1" class="node">
 <title>IconDirective</title>
-<polygon fill="#ffffb3" stroke="black" points="294.46,-122 201.54,-122 201.54,-86 294.46,-86 294.46,-122"/>
+<polygon fill="#8dd3c7" stroke="black" points="294.46,-122 291.46,-126 270.46,-126 267.46,-122 201.54,-122 201.54,-86 294.46,-86 294.46,-122"/>
 <text text-anchor="middle" x="248" y="-99.8" font-family="Times,serif" font-size="14.00">IconDirective</text>
 </g>
 <!-- IconModule -->

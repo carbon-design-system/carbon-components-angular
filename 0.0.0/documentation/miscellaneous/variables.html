@@ -152,7 +152,7 @@
                             <a href="#AI_LABEL_STORY_STYLES" title="src/storybook/ai-label-story-shared.ts" ><b>AI_LABEL_STORY_STYLES</b>&nbsp;&nbsp;&nbsp;(src/.../ai-label-story-shared.ts)</a>
                         </li>
                         <li>
-                            <a href="#ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER" title="src/utils/utils.module.ts" ><b>ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER</b>&nbsp;&nbsp;&nbsp;(src/.../utils.module.ts)</a>
+                            <a href="#ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER" title="src/utils/utils.module.ts" class="deprecated-name"><b>ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER</b>&nbsp;&nbsp;&nbsp;(src/.../utils.module.ts)</a>
                         </li>
                         <li>
                             <a href="#carbonFlatpickrMonthSelectPlugin" title="src/datepicker/carbon-flatpickr-month-select.ts" ><b>carbonFlatpickrMonthSelectPlugin</b>&nbsp;&nbsp;&nbsp;(src/.../carbon-flatpickr-month-select.ts)</a>
@@ -173,7 +173,7 @@
                             <a href="#defaults" title="src/checkbox/checkbox-exported-tests.ts" ><b>defaults</b>&nbsp;&nbsp;&nbsp;(src/.../checkbox-exported-tests.ts)</a>
                         </li>
                         <li>
-                            <a href="#DOCUMENT_SERVICE_PROVIDER" title="src/utils/utils.module.ts" ><b>DOCUMENT_SERVICE_PROVIDER</b>&nbsp;&nbsp;&nbsp;(src/.../utils.module.ts)</a>
+                            <a href="#DOCUMENT_SERVICE_PROVIDER" title="src/utils/utils.module.ts" class="deprecated-name"><b>DOCUMENT_SERVICE_PROVIDER</b>&nbsp;&nbsp;&nbsp;(src/.../utils.module.ts)</a>
                         </li>
                         <li>
                             <a href="#EXPERIMENTAL_SERVICE_PROVIDER" title="src/experimental/experimental.module.ts" ><b>EXPERIMENTAL_SERVICE_PROVIDER</b>&nbsp;&nbsp;&nbsp;(src/.../experimental.module.ts)</a>
@@ -188,10 +188,10 @@
                             <a href="#hasScrollableParents" title="src/utils/scroll.ts" ><b>hasScrollableParents</b>&nbsp;&nbsp;&nbsp;(src/.../scroll.ts)</a>
                         </li>
                         <li>
-                            <a href="#I18N_SERVICE_PROVIDER" title="src/i18n/i18n.module.ts" ><b>I18N_SERVICE_PROVIDER</b>&nbsp;&nbsp;&nbsp;(src/.../i18n.module.ts)</a>
+                            <a href="#I18N_SERVICE_PROVIDER" title="src/i18n/i18n.module.ts" class="deprecated-name"><b>I18N_SERVICE_PROVIDER</b>&nbsp;&nbsp;&nbsp;(src/.../i18n.module.ts)</a>
                         </li>
                         <li>
-                            <a href="#ICON_SERVICE_PROVIDER" title="src/icon/icon.module.ts" ><b>ICON_SERVICE_PROVIDER</b>&nbsp;&nbsp;&nbsp;(src/.../icon.module.ts)</a>
+                            <a href="#ICON_SERVICE_PROVIDER" title="src/icon/icon.module.ts" class="deprecated-name"><b>ICON_SERVICE_PROVIDER</b>&nbsp;&nbsp;&nbsp;(src/.../icon.module.ts)</a>
                         </li>
                         <li>
                             <a href="#isScrollableElement" title="src/utils/scroll.ts" ><b>isScrollableElement</b>&nbsp;&nbsp;&nbsp;(src/.../scroll.ts)</a>
@@ -215,7 +215,7 @@
                             <a href="#noop" title="src/file-uploader/file-uploader.component.ts" ><b>noop</b>&nbsp;&nbsp;&nbsp;(src/.../file-uploader.component.ts)</a>
                         </li>
                         <li>
-                            <a href="#PLACEHOLDER_SERVICE_PROVIDER" title="src/placeholder/placeholder.module.ts" ><b>PLACEHOLDER_SERVICE_PROVIDER</b>&nbsp;&nbsp;&nbsp;(src/.../placeholder.module.ts)</a>
+                            <a href="#PLACEHOLDER_SERVICE_PROVIDER" title="src/placeholder/placeholder.service.ts" ><b>PLACEHOLDER_SERVICE_PROVIDER</b>&nbsp;&nbsp;&nbsp;(src/.../placeholder.service.ts)</a>
                         </li>
                         <li>
                             <a href="#REL" title="src/dialog/overflow-menu/overflow-menu-option.component.ts" ><b>REL</b>&nbsp;&nbsp;&nbsp;(src/.../overflow-menu-option.component.ts)</a>
@@ -533,9 +533,14 @@
                 <td class="col-md-4">
                     <a name="ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER"></a>
                     <span class="name">
-                        <span ><b>ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER</b></span>
+                        <span class="deprecated-name"><b>ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER</b></span>
                         <a href="#ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER"><span class="icon ion-ios-link"></span></a>
                     </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4 deprecated">
+                    as of v6 - `AnimationFrameServiceSingleton` is `providedIn: "root"` and no longer needs to be provided manually.
                 </td>
             </tr>
                 <tr>
@@ -554,6 +559,12 @@
                     </td>
                 </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Ensures a single <code>AnimationFrameServiceSingleton</code> so there is only one <code>requestAnimationFrame</code> loop.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -563,9 +574,14 @@
                 <td class="col-md-4">
                     <a name="DOCUMENT_SERVICE_PROVIDER"></a>
                     <span class="name">
-                        <span ><b>DOCUMENT_SERVICE_PROVIDER</b></span>
+                        <span class="deprecated-name"><b>DOCUMENT_SERVICE_PROVIDER</b></span>
                         <a href="#DOCUMENT_SERVICE_PROVIDER"><span class="icon ion-ios-link"></span></a>
                     </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4 deprecated">
+                    as of v6 - `DocumentService` is `providedIn: "root"` and no longer needs to be provided manually.
                 </td>
             </tr>
                 <tr>
@@ -584,6 +600,12 @@
                     </td>
                 </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Ensures a single <code>DocumentService</code> instance so document level events are handled once.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -616,7 +638,6 @@
 			0,
 			fp.monthElements.length,
 			...fp.monthElements.map(() &#x3D;&gt; {
-				// eslint-disable-next-line no-underscore-dangle
 				const monthElement &#x3D; fp._createElement(
 					&quot;span&quot;,
 					config.classFlatpickrCurrentMonth
@@ -1148,9 +1169,14 @@ If the element has an overflow set as part of its computed style it can scroll.<
                 <td class="col-md-4">
                     <a name="I18N_SERVICE_PROVIDER"></a>
                     <span class="name">
-                        <span ><b>I18N_SERVICE_PROVIDER</b></span>
+                        <span class="deprecated-name"><b>I18N_SERVICE_PROVIDER</b></span>
                         <a href="#I18N_SERVICE_PROVIDER"><span class="icon ion-ios-link"></span></a>
                     </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4 deprecated">
+                    as of v6 - `I18n` is `providedIn: "root"` and no longer needs to be provided manually.
                 </td>
             </tr>
                 <tr>
@@ -1169,6 +1195,12 @@ If the element has an overflow set as part of its computed style it can scroll.<
                     </td>
                 </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Ensures a single <code>I18n</code> instance so translations stay consistent across the app.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -1181,9 +1213,14 @@ If the element has an overflow set as part of its computed style it can scroll.<
                 <td class="col-md-4">
                     <a name="ICON_SERVICE_PROVIDER"></a>
                     <span class="name">
-                        <span ><b>ICON_SERVICE_PROVIDER</b></span>
+                        <span class="deprecated-name"><b>ICON_SERVICE_PROVIDER</b></span>
                         <a href="#ICON_SERVICE_PROVIDER"><span class="icon ion-ios-link"></span></a>
                     </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4 deprecated">
+                    as of v6 - `IconService` is `providedIn: "root"` and no longer needs to be provided manually.
                 </td>
             </tr>
                 <tr>
@@ -1202,6 +1239,12 @@ If the element has an overflow set as part of its computed style it can scroll.<
                     </td>
                 </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Ensures a single <code>IconService</code> instance so registered icons are available globally.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -1321,7 +1364,7 @@ If the element has an overflow set as part of its computed style it can scroll.<
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>() &#x3D;&gt; { }</code>
+                        <i>Default value : </i><code>() &#x3D;&gt; {}</code>
                     </td>
                 </tr>
 
@@ -1329,7 +1372,7 @@ If the element has an overflow set as part of its computed style it can scroll.<
         </tbody>
     </table>
 </section>
-    <h3>src/placeholder/placeholder.module.ts</h3>
+    <h3>src/placeholder/placeholder.service.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
@@ -1455,10 +1498,10 @@ service.replace(service.get(&quot;TEST&quot;), { foo: &quot;test&quot;, bar: &qu
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&quot;a[href], area[href], input:not([disabled]):not([tabindex&#x3D;\&#x27;-1\&#x27;]), &quot; +
-		&quot;button:not([disabled]):not([tabindex&#x3D;\&#x27;-1\&#x27;]),select:not([disabled]):not([tabindex&#x3D;\&#x27;-1\&#x27;]), &quot; +
-		&quot;textarea:not([disabled]):not([tabindex&#x3D;\&#x27;-1\&#x27;]), &quot; +
-		&quot;iframe, object, embed, *[tabindex]:not([tabindex&#x3D;\&#x27;-1\&#x27;]), *[contenteditable&#x3D;true]&quot;</code>
+                        <i>Default value : </i><code>&quot;a[href], area[href], input:not([disabled]):not([tabindex&#x3D;&#x27;-1&#x27;]), &quot; +
+		&quot;button:not([disabled]):not([tabindex&#x3D;&#x27;-1&#x27;]),select:not([disabled]):not([tabindex&#x3D;&#x27;-1&#x27;]), &quot; +
+		&quot;textarea:not([disabled]):not([tabindex&#x3D;&#x27;-1&#x27;]), &quot; +
+		&quot;iframe, object, embed, *[tabindex]:not([tabindex&#x3D;&#x27;-1&#x27;]), *[contenteditable&#x3D;true]&quot;</code>
                     </td>
                 </tr>
 
@@ -1656,7 +1699,6 @@ service.replace(service.get(&quot;TEST&quot;), { foo: &quot;test&quot;, bar: &qu
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

@@ -24,13 +24,13 @@
 <title>cluster_TooltipModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="75,-70 75,-268 421,-268 421,-70 75,-70"/>
 </g>
-<g id="clust3" class="cluster">
-<title>cluster_TooltipModule_imports</title>
-<polygon fill="none" stroke="black" points="83,-78 83,-130 413,-130 413,-78 83,-78"/>
-</g>
 <g id="clust4" class="cluster">
 <title>cluster_TooltipModule_exports</title>
 <polygon fill="none" stroke="black" points="134,-208 134,-260 346,-260 346,-208 134,-208"/>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_TooltipModule_imports</title>
+<polygon fill="none" stroke="black" points="83,-78 83,-130 413,-130 413,-78 83,-78"/>
 </g>
 <!-- PopoverModule -->
 <g id="node1" class="node">

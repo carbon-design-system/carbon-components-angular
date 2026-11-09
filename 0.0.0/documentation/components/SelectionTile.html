@@ -147,6 +147,10 @@
     <table class="table table-sm table-hover metadata">
         <tbody>
 
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
 
 
 
@@ -164,6 +168,15 @@
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>NgClass</code>
+                            <code>AsyncPipe</code>
+                            <code>NgTemplateOutlet</code>
+                                <code><a href="../directives/IconDirective.html" target="_self" >IconDirective</a></code>
+                </td>
+            </tr>
 
 
 
@@ -192,22 +205,23 @@
 	[attr.aria-label]&#x3D;&quot;i18n.get(&#x27;TILES.TILE&#x27;) | async&quot;&gt;
 	&lt;div class&#x3D;&quot;cds--tile__checkmark&quot;
 		[class.cds--tile__checkmark--persistent]&#x3D;&quot;multiple&quot;&gt;
-		&lt;svg *ngIf&#x3D;&quot;!selected; else selectedIcon&quot;
-			[cdsIcon]&#x3D;&quot;multiple ? &#x27;checkbox&#x27; : &#x27;checkmark&#x27;&quot;
-			size&#x3D;&quot;16&quot;&gt;
-		&lt;/svg&gt;
-		&lt;ng-template #selectedIcon&gt;
+		@if (!selected) {
+			&lt;svg
+				[cdsIcon]&#x3D;&quot;multiple ? &#x27;checkbox&#x27; : &#x27;checkmark&#x27;&quot;
+				size&#x3D;&quot;16&quot;&gt;
+			&lt;/svg&gt;
+		} @else {
 			&lt;svg [cdsIcon]&#x3D;&quot;multiple ? &#x27;checkbox--checked--filled&#x27; : &#x27;checkmark--filled&#x27;&quot; size&#x3D;&quot;16&quot;&gt;&lt;/svg&gt;
-		&lt;/ng-template&gt;
+		}
 	&lt;/div&gt;
 	&lt;div class&#x3D;&quot;cds--tile-content&quot;&gt;
 		&lt;ng-content&gt;&lt;/ng-content&gt;
 	&lt;/div&gt;
-	&lt;ng-container *ngIf&#x3D;&quot;decorator&quot;&gt;
+	@if (decorator) {
 		&lt;div class&#x3D;&quot;cds--tile--inner-decorator&quot;&gt;
 			&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;decorator&quot;&gt;&lt;/ng-template&gt;
 		&lt;/div&gt;
-	&lt;/ng-container&gt;
+	}
 &lt;/label&gt;
 	</code></pre></td>
             </tr>
@@ -238,7 +252,19 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Protected</span>
+                                <a href="#_multiple" >_multiple</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#_name" >_name</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
                                 <a href="#_selected" >_selected</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#changeDetectorRef" >changeDetectorRef</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -247,12 +273,6 @@
                             <li>
                                     <span class="modifier"></span>
                                 <a href="#input" >input</a>
-                            </li>
-                            <li>
-                                <a href="#multiple" >multiple</a>
-                            </li>
-                            <li>
-                                <a href="#name" >name</a>
                             </li>
                             <li>
                                     <span class="modifier">Static</span>
@@ -359,6 +379,12 @@
                                 <li>
                                     <a href="#selected" >selected</a>
                                 </li>
+                                <li>
+                                    <a href="#name" >name</a>
+                                </li>
+                                <li>
+                                    <a href="#multiple" >multiple</a>
+                                </li>
                             </ul>
                         </td>
                     </tr>
@@ -372,45 +398,15 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(i18n: <a href="../injectables/I18n.html" target="_self">I18n</a>)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/tiles/selection-tile.component.ts:127</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/tiles/selection-tile.component.ts:163</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>i18n</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/I18n.html" target="_self" >I18n</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
 </section>
@@ -433,7 +429,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/tiles/selection-tile.component.ts:105</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/tiles/selection-tile.component.ts:117</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -465,7 +461,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/tiles/selection-tile.component.ts:100</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/tiles/selection-tile.component.ts:112</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -497,7 +493,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/tiles/selection-tile.component.ts:110</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/tiles/selection-tile.component.ts:122</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -529,7 +525,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/tiles/selection-tile.component.ts:70</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/tiles/selection-tile.component.ts:80</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -556,7 +552,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/tiles/selection-tile.component.ts:76</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/tiles/selection-tile.component.ts:86</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -589,7 +585,7 @@ Set to <code>true</code> if this tile should be selected.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/tiles/selection-tile.component.ts:65</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/tiles/selection-tile.component.ts:75</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -610,7 +606,7 @@ Set to <code>true</code> if this tile should be selected.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/tiles/selection-tile.component.ts:91</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/tiles/selection-tile.component.ts:102</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -640,7 +636,7 @@ Set to <code>true</code> if this tile should be selected.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/tiles/selection-tile.component.ts:95</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/tiles/selection-tile.component.ts:107</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -679,8 +675,8 @@ Set to <code>true</code> if this tile should be selected.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="142"
-                                    class="link-to-prism">src/tiles/selection-tile.component.ts:142</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="179"
+                                    class="link-to-prism">src/tiles/selection-tile.component.ts:179</a></div>
                         </td>
                     </tr>
 
@@ -722,8 +718,8 @@ Set to <code>true</code> if this tile should be selected.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="142"
-                                    class="link-to-prism">src/tiles/selection-tile.component.ts:142</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="179"
+                                    class="link-to-prism">src/tiles/selection-tile.component.ts:179</a></div>
                         </td>
                     </tr>
 
@@ -785,8 +781,8 @@ Set to <code>true</code> if this tile should be selected.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="133"
-                                    class="link-to-prism">src/tiles/selection-tile.component.ts:133</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="169"
+                                    class="link-to-prism">src/tiles/selection-tile.component.ts:169</a></div>
                         </td>
                     </tr>
 
@@ -822,8 +818,8 @@ Set to <code>true</code> if this tile should be selected.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="149"
-                                    class="link-to-prism">src/tiles/selection-tile.component.ts:149</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="186"
+                                    class="link-to-prism">src/tiles/selection-tile.component.ts:186</a></div>
                         </td>
                     </tr>
 
@@ -875,6 +871,64 @@ Set to <code>true</code> if this tile should be selected.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="_multiple"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>_multiple</b></span>
+                        <a href="#_multiple"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/tiles/selection-tile.component.ts:157</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_name"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>_name</b></span>
+                        <a href="#_name"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;tile-group-unbound&quot;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/tiles/selection-tile.component.ts:156</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="_selected"></a>
                     <span class="name">
                             <span class="modifier">Protected</span>
@@ -896,7 +950,33 @@ Set to <code>true</code> if this tile should be selected.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/tiles/selection-tile.component.ts:127</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="155" class="link-to-prism">src/tiles/selection-tile.component.ts:155</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeDetectorRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>changeDetectorRef</b></span>
+                        <a href="#changeDetectorRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ChangeDetectorRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/tiles/selection-tile.component.ts:159</a></div>
                         </td>
                     </tr>
 
@@ -917,13 +997,12 @@ Set to <code>true</code> if this tile should be selected.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../injectables/I18n.html" target="_self" >I18n</a></code>
-
+                        <i>Default value : </i><code>inject(I18n)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/tiles/selection-tile.component.ts:129</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/tiles/selection-tile.component.ts:69</a></div>
                         </td>
                     </tr>
 
@@ -953,79 +1032,10 @@ Set to <code>true</code> if this tile should be selected.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/tiles/selection-tile.component.ts:123</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/tiles/selection-tile.component.ts:151</a></div>
                         </td>
                     </tr>
 
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="multiple"></a>
-                    <span class="name">
-                        <span ><b>multiple</b></span>
-                        <a href="#multiple"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>true</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/tiles/selection-tile.component.ts:120</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Defines whether or not the <code>SelectionTile</code> supports selecting multiple tiles as opposed to single
-tile selection.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="name"></a>
-                    <span class="name">
-                        <span ><b>name</b></span>
-                        <a href="#name"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&quot;tile-group-unbound&quot;</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/tiles/selection-tile.component.ts:115</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Set by the containing <code>TileGroup</code>. Used for the <code>name</code> property on the input.</p>
-</div>
-                </td>
-            </tr>
 
         </tbody>
     </table>
@@ -1054,7 +1064,7 @@ tile selection.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/tiles/selection-tile.component.ts:59</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/tiles/selection-tile.component.ts:67</a></div>
                         </td>
                     </tr>
 
@@ -1083,7 +1093,7 @@ tile selection.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/tiles/selection-tile.component.ts:85</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/tiles/selection-tile.component.ts:96</a></div>
                                 </td>
                             </tr>
 
@@ -1094,13 +1104,158 @@ tile selection.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/tiles/selection-tile.component.ts:76</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/tiles/selection-tile.component.ts:86</a></div>
                                 </td>
                             </tr>
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-description"><p>Updating the state of the input to match the state of the parameter passed in.
 Set to <code>true</code> if this tile should be selected.</p>
+</div>
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>value</td>
+                                                    
+                                                            <td>
+                                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="name"></a>
+                        <span class="name"><b>name</b><a href="#name"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>name()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/tiles/selection-tile.component.ts:132</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>name(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/tiles/selection-tile.component.ts:127</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Set by the containing <code>TileGroup</code>. Used for the <code>name</code> property on the input.</p>
+</div>
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>value</td>
+                                                    
+                                                            <td>
+                                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="multiple"></a>
+                        <span class="name"><b>multiple</b><a href="#multiple"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>multiple()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">src/tiles/selection-tile.component.ts:147</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>multiple(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/tiles/selection-tile.component.ts:142</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Defines whether or not the <code>SelectionTile</code> supports selecting multiple tiles as opposed to single
+tile selection.</p>
+<p>Set to true because of the way tile group sets it up.
+If it is first undefined then set to true, the type will change from radio to checkbox and deselects the inputs.</p>
 </div>
 
                                 <div class="io-description">
@@ -1152,9 +1307,14 @@ Set to <code>true</code> if this tile should be selected.</p>
 	ViewChild,
 	HostListener,
 	AfterViewInit,
-	TemplateRef
+	ChangeDetectorRef,
+	ChangeDetectionStrategy,
+	TemplateRef,
+	inject
 } from &quot;@angular/core&quot;;
 import { I18n } from &quot;carbon-components-angular/i18n&quot;;
+import { NgClass, AsyncPipe, NgTemplateOutlet } from &quot;@angular/common&quot;;
+import { IconDirective } from &quot;carbon-components-angular/icon&quot;;
 
 @Component({
 	selector: &quot;cds-selection-tile, ibm-selection-tile&quot;,
@@ -1182,27 +1342,32 @@ import { I18n } from &quot;carbon-components-angular/i18n&quot;;
 			[attr.aria-label]&#x3D;&quot;i18n.get(&#x27;TILES.TILE&#x27;) | async&quot;&gt;
 			&lt;div class&#x3D;&quot;cds--tile__checkmark&quot;
 				[class.cds--tile__checkmark--persistent]&#x3D;&quot;multiple&quot;&gt;
-				&lt;svg *ngIf&#x3D;&quot;!selected; else selectedIcon&quot;
-					[cdsIcon]&#x3D;&quot;multiple ? &#x27;checkbox&#x27; : &#x27;checkmark&#x27;&quot;
-					size&#x3D;&quot;16&quot;&gt;
-				&lt;/svg&gt;
-				&lt;ng-template #selectedIcon&gt;
+				@if (!selected) {
+					&lt;svg
+						[cdsIcon]&#x3D;&quot;multiple ? &#x27;checkbox&#x27; : &#x27;checkmark&#x27;&quot;
+						size&#x3D;&quot;16&quot;&gt;
+					&lt;/svg&gt;
+				} @else {
 					&lt;svg [cdsIcon]&#x3D;&quot;multiple ? &#x27;checkbox--checked--filled&#x27; : &#x27;checkmark--filled&#x27;&quot; size&#x3D;&quot;16&quot;&gt;&lt;/svg&gt;
-				&lt;/ng-template&gt;
+				}
 			&lt;/div&gt;
 			&lt;div class&#x3D;&quot;cds--tile-content&quot;&gt;
 				&lt;ng-content&gt;&lt;/ng-content&gt;
 			&lt;/div&gt;
-			&lt;ng-container *ngIf&#x3D;&quot;decorator&quot;&gt;
+			@if (decorator) {
 				&lt;div class&#x3D;&quot;cds--tile--inner-decorator&quot;&gt;
 					&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;decorator&quot;&gt;&lt;/ng-template&gt;
 				&lt;/div&gt;
-			&lt;/ng-container&gt;
+			}
 		&lt;/label&gt;
-	&#x60;
+	&#x60;,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgClass, AsyncPipe, NgTemplateOutlet, IconDirective]
 })
 export class SelectionTile implements AfterViewInit {
 	static tileCount &#x3D; 0;
+
+	public i18n &#x3D; inject(I18n);
 
 	/**
 	 * @deprecated since v5 - Use &#x60;cdsLayer&#x60; directive instead
@@ -1226,6 +1391,7 @@ export class SelectionTile implements AfterViewInit {
 		if (this.input) {
 			this.input.nativeElement.checked &#x3D; this._selected;
 		}
+		this.changeDetectorRef.markForCheck();
 	}
 
 	get selected() {
@@ -1238,6 +1404,7 @@ export class SelectionTile implements AfterViewInit {
 	/**
 	 * Internal event used to notify the containing &#x60;TileGroup&#x60; of changes.
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() change: EventEmitter&lt;Event&gt; &#x3D; new EventEmitter();
 
 	/**
@@ -1258,21 +1425,45 @@ export class SelectionTile implements AfterViewInit {
 	/**
 	 * Set by the containing &#x60;TileGroup&#x60;. Used for the &#x60;name&#x60; property on the input.
 	 */
-	name &#x3D; &quot;tile-group-unbound&quot;;
+	set name(value: string) {
+		this._name &#x3D; value;
+		this.changeDetectorRef.markForCheck();
+	}
+
+	get name() {
+		return this._name;
+	}
 	/**
 	 * Defines whether or not the &#x60;SelectionTile&#x60; supports selecting multiple tiles as opposed to single
 	 * tile selection.
+	 *
+	 * Set to true because of the way tile group sets it up.
+	 * If it is first undefined then set to true, the type will change from radio to checkbox and deselects the inputs.
 	 */
-	multiple &#x3D; true;	// Set to true because of the way tile group sets it up.
-						// If it is first undefined then set to true, the type will change from radio to checkbox and deselects the inputs.
+	set multiple(value: boolean) {
+		this._multiple &#x3D; value;
+		this.changeDetectorRef.markForCheck();
+	}
+
+	get multiple() {
+		return this._multiple;
+	}
 
 	@ViewChild(&quot;input&quot;, { static: true }) input;
 
 	// If an initial selected value is set before input exists, we save
 	// the value and check again when input exists in &#x60;AfterViewInit&#x60;.
 	protected _selected &#x3D; null;
+	protected _name &#x3D; &quot;tile-group-unbound&quot;;
+	protected _multiple &#x3D; true;
 
-	constructor(public i18n: I18n) {
+	protected changeDetectorRef &#x3D; inject(ChangeDetectorRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
 		SelectionTile.tileCount++;
 	}
 
@@ -1280,6 +1471,7 @@ export class SelectionTile implements AfterViewInit {
 		if (this.input) {
 			setTimeout(() &#x3D;&gt; {
 				this.input.nativeElement.checked &#x3D; this._selected;
+				this.changeDetectorRef.markForCheck();
 			});
 		}
 	}
@@ -1296,8 +1488,6 @@ export class SelectionTile implements AfterViewInit {
 		this.change.emit(event);
 	}
 }
-
-
 </code></pre>
     </div>
 
@@ -1328,7 +1518,7 @@ export class SelectionTile implements AfterViewInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><input	#input	[attr.tabindex]="disabled ? null : 0"	class="cds--tile-input"	[id]="id"	[disabled]="disabled"	[type]="(multiple ? \'checkbox\': \'radio\')"	[value]="value"	[name]="name"	(change)="onChange($event)"/><label	class="cds--tile cds--tile--selectable"	[for]="id"	[ngClass]="{		\'cds--tile--is-selected\' : selected,		\'cds--tile--light\': theme === \'light\',		\'cds--tile--disabled\' : disabled,		\'cds--tile--decorator\': !!decorator,		\'cds--tile--decorator-rounded\': !!decorator && hasRoundedCorners	}"	[attr.aria-label]="i18n.get(\'TILES.TILE\') | async">	<div class="cds--tile__checkmark"		[class.cds--tile__checkmark--persistent]="multiple">		<svg *ngIf="!selected; else selectedIcon"			[cdsIcon]="multiple ? \'checkbox\' : \'checkmark\'"			size="16">		</svg>		<ng-template #selectedIcon>			<svg [cdsIcon]="multiple ? \'checkbox--checked--filled\' : \'checkmark--filled\'" size="16"></svg>		</ng-template>	</div>	<div class="cds--tile-content">		<ng-content></ng-content>	</div>	<ng-container *ngIf="decorator">		<div class="cds--tile--inner-decorator">			<ng-template [ngTemplateOutlet]="decorator"></ng-template>		</div>	</ng-container></label>	</div>'
+        var COMPONENT_TEMPLATE = '<div><input	#input	[attr.tabindex]="disabled ? null : 0"	class="cds--tile-input"	[id]="id"	[disabled]="disabled"	[type]="(multiple ? \'checkbox\': \'radio\')"	[value]="value"	[name]="name"	(change)="onChange($event)"/><label	class="cds--tile cds--tile--selectable"	[for]="id"	[ngClass]="{		\'cds--tile--is-selected\' : selected,		\'cds--tile--light\': theme === \'light\',		\'cds--tile--disabled\' : disabled,		\'cds--tile--decorator\': !!decorator,		\'cds--tile--decorator-rounded\': !!decorator && hasRoundedCorners	}"	[attr.aria-label]="i18n.get(\'TILES.TILE\') | async">	<div class="cds--tile__checkmark"		[class.cds--tile__checkmark--persistent]="multiple">		@if (!selected) {			<svg				[cdsIcon]="multiple ? \'checkbox\' : \'checkmark\'"				size="16">			</svg>		} @else {			<svg [cdsIcon]="multiple ? \'checkbox--checked--filled\' : \'checkmark--filled\'" size="16"></svg>		}	</div>	<div class="cds--tile-content">		<ng-content></ng-content>	</div>	@if (decorator) {		<div class="cds--tile--inner-decorator">			<ng-template [ngTemplateOutlet]="decorator"></ng-template>		</div>	}</label>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AILabelComponent', 'selector': 'cds-ai-label, ibm-ai-label'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'CheckboxGroup', 'selector': 'cds-checkbox-group, ibm-checkbox-group'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ComboButtonComponent', 'selector': 'cds-combo-button'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-menu, cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-menu-divider, cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-menu-group, cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-menu-item, cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'IconTab', 'selector': 'cds-icon-tab, ibm-icon-tab'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'MenuButtonComponent', 'selector': 'cds-menu-button'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonIcon', 'selector': 'cds-skeleton-icon, ibm-skeleton-icon'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderComponent', 'selector': 'cds-tab-header, ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaderGroupVertical', 'selector': 'cds-tab-header-group-vertical, ibm-tab-header-group-vertical'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'TabHeadersVertical', 'selector': 'cds-tab-headers-vertical, ibm-tab-headers-vertical'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeaderDecorator', 'selector': 'cds-table-header-decorator, ibm-table-header-decorator'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'TabsVertical', 'selector': 'cds-tabs-vertical, ibm-tabs-vertical'},{'name': 'TabsVerticalGrouped', 'selector': 'cds-tabs-vertical-grouped, ibm-tabs-vertical-grouped'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TagOperationalComponent', 'selector': 'cds-tag-operational, ibm-tag-operational'},{'name': 'TagSelectableComponent', 'selector': 'cds-tag-selectable, ibm-tag-selectable'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'AILabelActions', 'selector': '[cdsAILabelActions], [ibmAILabelActions]'},{'name': 'AILabelContent', 'selector': '[cdsAILabelContent], [ibmAILabelContent]'},{'name': 'AILabelPopoverDirective', 'selector': '[cdsAILabelPopover]'},{'name': 'AspectRatioDirective', 'selector': '[cdsAspectRatio], [ibmAspectRatio]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ClickableTileIconDirective', 'selector': '[cdsClickableTileIcon], [ibmClickableTileIcon]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'LinkIconDirective', 'selector': '[ibmLinkIcon], [cdsLinkIcon]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TabHeaderBase', 'selector': ''},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TagIconDirective', 'selector': '[cdsTagIcon], [ibmTagIcon]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'SelectionTile'};
@@ -1405,7 +1595,6 @@ export class SelectionTile implements AfterViewInit {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

@@ -24,18 +24,18 @@
 <title>cluster_AspectRatioModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="162,-70 162,-268 334,-268 334,-70 162,-70"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_AspectRatioModule_declarations</title>
+<g id="clust3" class="cluster">
+<title>cluster_AspectRatioModule_imports</title>
 <polygon fill="none" stroke="black" points="171,-78 171,-130 325,-130 325,-78 171,-78"/>
 </g>
-<g id="clust5" class="cluster">
+<g id="clust4" class="cluster">
 <title>cluster_AspectRatioModule_exports</title>
 <polygon fill="none" stroke="black" points="170,-208 170,-260 326,-260 326,-208 170,-208"/>
 </g>
 <!-- AspectRatioDirective -->
 <g id="node1" class="node">
 <title>AspectRatioDirective</title>
-<polygon fill="#ffffb3" stroke="black" points="316.79,-122 179.21,-122 179.21,-86 316.79,-86 316.79,-122"/>
+<polygon fill="#8dd3c7" stroke="black" points="316.79,-122 313.79,-126 292.79,-126 289.79,-122 179.21,-122 179.21,-86 316.79,-86 316.79,-122"/>
 <text text-anchor="middle" x="248" y="-99.8" font-family="Times,serif" font-size="14.00">AspectRatioDirective</text>
 </g>
 <!-- AspectRatioModule -->

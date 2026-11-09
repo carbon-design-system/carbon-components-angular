@@ -136,18 +136,18 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Get started with importing the module:</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { ToggleModule } from &#39;carbon-components-angular&#39;;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;cds-toggle [(ngModel)]=&quot;toggleState&quot;&gt;Toggle&lt;/cds-toggle&gt;</code></pre></div><p><a href="../../?path=/story/components-toggle--basic">See demo</a></p>
+        <p>Get started with importing the component:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { Toggle } from &#39;carbon-components-angular&#39;;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;cds-toggle [(ngModel)]=&quot;toggleState&quot;&gt;Toggle&lt;/cds-toggle&gt;</code></pre></div><p><a href="../../?path=/story/components-toggle--basic">See demo</a></p>
 
     </p>
+
 
     <p class="comment">
-        <h3>Extends</h3>
+        <h3>Implements</h3>
     </p>
     <p class="comment">
-                    <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
+                <code>ControlValueAccessor</code>
     </p>
-
 
 
 <section data-compodoc="block-metadata">
@@ -155,6 +155,10 @@
     <table class="table table-sm table-hover metadata">
         <tbody>
 
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
 
 
 
@@ -180,12 +184,23 @@
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>NgClass</code>
+                            <code>NgTemplateOutlet</code>
+                            <code>AsyncPipe</code>
+                </td>
+            </tr>
 
 
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;ng-container *ngIf&#x3D;&quot;!skeleton; else skeletonTemplate;&quot;&gt;
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">@if (skeleton) {
+	&lt;div class&#x3D;&quot;cds--toggle__skeleton-circle&quot;&gt;&lt;/div&gt;
+	&lt;div class&#x3D;&quot;cds--toggle__skeleton-rectangle&quot;&gt;&lt;/div&gt;
+} @else {
 	&lt;button
 		class&#x3D;&quot;cds--toggle__button&quot;
 		[disabled]&#x3D;&quot;disabled&quot;
@@ -204,8 +219,11 @@
 			[ngClass]&#x3D;&quot;{
 				&#x27;cds--visually-hidden&#x27;: hideLabel
 			}&quot;&gt;
-			&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(label)&quot;&gt;{{label}}&lt;/ng-container&gt;
-			&lt;ng-template *ngIf&#x3D;&quot;isTemplate(label)&quot; [ngTemplateOutlet]&#x3D;&quot;label&quot;&gt;&lt;/ng-template&gt;
+			@if (isTemplate(label)) {
+				&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;label&quot; /&gt;
+			} @else {
+				{{label}}
+			}
 		&lt;/span&gt;
 		&lt;div
 			class&#x3D;&quot;cds--toggle__appearance&quot;
@@ -217,25 +235,22 @@
 				[ngClass]&#x3D;&quot;{
 					&#x27;cds--toggle__switch--checked&#x27;: checked
 				}&quot;&gt;
-				&lt;svg
-					*ngIf&#x3D;&quot;size &#x3D;&#x3D;&#x3D; &#x27;sm&#x27;&quot;
-					class&#x3D;&#x27;cds--toggle__check&#x27;
-					width&#x3D;&quot;6px&quot;
-					height&#x3D;&quot;5px&quot;
-					viewBox&#x3D;&quot;0 0 6 5&quot;&gt;
-					&lt;path d&#x3D;&quot;M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z&quot; /&gt;
-				&lt;/svg&gt;
+				@if (size &#x3D;&#x3D;&#x3D; &#x27;sm&#x27;) {
+					&lt;svg
+						class&#x3D;&#x27;cds--toggle__check&#x27;
+						width&#x3D;&quot;6px&quot;
+						height&#x3D;&quot;5px&quot;
+						viewBox&#x3D;&quot;0 0 6 5&quot;&gt;
+						&lt;path d&#x3D;&quot;M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z&quot; /&gt;
+					&lt;/svg&gt;
+				}
 			&lt;/div&gt;
 			&lt;span class&#x3D;&quot;cds--toggle__text&quot;&gt;
 				{{(hideLabel ? label : (getCheckedText() | async))}}
 			&lt;/span&gt;
 		&lt;/div&gt;
 	&lt;/label&gt;
-&lt;/ng-container&gt;
-&lt;ng-template #skeletonTemplate&gt;
-	&lt;div class&#x3D;&quot;cds--toggle__skeleton-circle&quot;&gt;&lt;/div&gt;
-	&lt;div class&#x3D;&quot;cds--toggle__skeleton-rectangle&quot;&gt;&lt;/div&gt;
-&lt;/ng-template&gt;
+}
 	</code></pre></td>
             </tr>
 
@@ -265,6 +280,10 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Protected</span>
+                                <a href="#_checked" >_checked</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
                                 <a href="#_offValues" >_offValues</a>
                             </li>
                             <li>
@@ -272,7 +291,18 @@
                                 <a href="#_onValues" >_onValues</a>
                             </li>
                             <li>
-                                <a href="#id" >id</a>
+                                    <span class="modifier">Protected</span>
+                                <a href="#changeDetectorRef" >changeDetectorRef</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#i18n" >i18n</a>
+                            </li>
+                            <li>
+                                <a href="#onTouched" >onTouched</a>
+                            </li>
+                            <li>
+                                <a href="#propagateChange" >propagateChange</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
@@ -281,38 +311,6 @@
                             <li>
                                     <span class="modifier">Static</span>
                                 <a href="#toggleCount" >toggleCount</a>
-                            </li>
-                            <li>
-                                <a href="#_checked" >_checked</a>
-                            </li>
-                            <li>
-                                <a href="#_indeterminate" >_indeterminate</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Static</span>
-                                <a href="#checkboxCount" >checkboxCount</a>
-                            </li>
-                            <li>
-                                <a href="#currentCheckboxState" >currentCheckboxState</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#helperId" >helperId</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                    <span class="modifier">Static</span>
-                                <a href="#helperIdCounter" >helperIdCounter</a>
-                            </li>
-                            <li>
-                                    <span class="modifier"></span>
-                                <a href="#inputCheckbox" >inputCheckbox</a>
-                            </li>
-                            <li>
-                                <a href="#onTouched" >onTouched</a>
-                            </li>
-                            <li>
-                                <a href="#propagateChange" >propagateChange</a>
                             </li>
                         </ul>
                     </td>
@@ -330,6 +328,10 @@
                                 <a href="#emitChangeEvent" >emitChangeEvent</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                <a href="#focusOut" >focusOut</a>
+                            </li>
+                            <li>
                                 <a href="#getCheckedText" >getCheckedText</a>
                             </li>
                             <li>
@@ -341,22 +343,6 @@
                             <li>
                                     <span class="modifier">Public</span>
                                 <a href="#isTemplate" >isTemplate</a>
-                            </li>
-                            <li>
-                                <a href="#setDisabledState" >setDisabledState</a>
-                            </li>
-                            <li>
-                                    <span class="modifier"></span>
-                                <a href="#focusOut" >focusOut</a>
-                            </li>
-                            <li>
-                                <a href="#markForCheckFromGroup" >markForCheckFromGroup</a>
-                            </li>
-                            <li>
-                                <a href="#ngAfterViewInit" >ngAfterViewInit</a>
-                            </li>
-                            <li>
-                                <a href="#onChange" >onChange</a>
                             </li>
                             <li>
                                 <a href="#onClick" >onClick</a>
@@ -374,11 +360,7 @@
                                 <a href="#setChecked" >setChecked</a>
                             </li>
                             <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#toggle" >toggle</a>
-                            </li>
-                            <li>
-                                <a href="#transitionCheckboxState" >transitionCheckboxState</a>
+                                <a href="#setDisabledState" >setDisabledState</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -400,7 +382,16 @@
                                 <a href="#ariaLabel" >ariaLabel</a>
                             </li>
                             <li>
+                                <a href="#checked" >checked</a>
+                            </li>
+                            <li>
+                                <a href="#disabled" >disabled</a>
+                            </li>
+                            <li>
                                 <a href="#hideLabel" >hideLabel</a>
+                            </li>
+                            <li>
+                                <a href="#id" >id</a>
                             </li>
                             <li>
                                 <a href="#label" >label</a>
@@ -417,54 +408,6 @@
                             <li>
                                 <a href="#skeleton" >skeleton</a>
                             </li>
-                            <li>
-                                <a href="#ariaLabelledby" >ariaLabelledby</a>
-                            </li>
-                            <li>
-                                <a href="#checked" >checked</a>
-                            </li>
-                            <li>
-                                <a href="#decorator" >decorator</a>
-                            </li>
-                            <li>
-                                <a href="#disabled" >disabled</a>
-                            </li>
-                            <li>
-                                <a href="#helperText" >helperText</a>
-                            </li>
-                            <li>
-                                <a href="#id" >id</a>
-                            </li>
-                            <li>
-                                <a href="#indeterminate" >indeterminate</a>
-                            </li>
-                            <li>
-                                <a href="#invalid" >invalid</a>
-                            </li>
-                            <li>
-                                <a href="#invalidText" >invalidText</a>
-                            </li>
-                            <li>
-                                <a href="#name" >name</a>
-                            </li>
-                            <li>
-                                <a href="#readOnly" >readOnly</a>
-                            </li>
-                            <li>
-                                <a href="#required" >required</a>
-                            </li>
-                            <li>
-                                <a href="#title" >title</a>
-                            </li>
-                            <li>
-                                <a href="#value" >value</a>
-                            </li>
-                            <li>
-                                <a href="#warn" >warn</a>
-                            </li>
-                            <li>
-                                <a href="#warnText" >warnText</a>
-                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -479,12 +422,6 @@
                         <ul class="index-list">
                             <li>
                                 <a href="#checkedChange" >checkedChange</a>
-                            </li>
-                            <li>
-                                <a href="#click" >click</a>
-                            </li>
-                            <li>
-                                <a href="#indeterminateChange" >indeterminateChange</a>
                             </li>
                         </ul>
                     </td>
@@ -535,6 +472,9 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
+                                    <a href="#checked" >checked</a>
+                                </li>
+                                <li>
                                     <a href="#offText" >offText</a>
                                 </li>
                                 <li>
@@ -559,12 +499,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(changeDetectorRef: ChangeDetectorRef, hostGroup: <a href="../interfaces/CheckboxGroupHost.html" target="_self">CheckboxGroupHost | null</a>, i18n: <a href="../injectables/I18n.html" target="_self">I18n</a>)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/toggle/toggle.component.ts:172</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="197" class="link-to-prism">src/toggle/toggle.component.ts:197</a></div>
                             </td>
                         </tr>
 
@@ -572,56 +512,6 @@
                     <td class="col-md-4">
                             <div class="io-description"><p>Creates an instance of Toggle.</p>
 </div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>changeDetectorRef</td>
-                                                  
-                                                        <td>
-                                                                    <code>ChangeDetectorRef</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>hostGroup</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../interfaces/CheckboxGroupHost.html" target="_self" >CheckboxGroupHost | null</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>i18n</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/I18n.html" target="_self" >I18n</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
                     </td>
                 </tr>
             </tbody>
@@ -644,21 +534,74 @@
 
                     </td>
                 </tr>
-                            <tr>
-                                <td class="col-md-4" colspan="2">
-                                    <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                                </td>
-                            </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:153</a></code>
-</div>
+                                    <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/toggle/toggle.component.ts:169</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Set <code>aria-label</code> property for the button when label is empty</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="checked"></a>
+                        <b>checked</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/toggle/toggle.component.ts:116</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Sets the <code>checked</code> state. <code>true</code> for on, <code>false</code> for off.
+Allows double binding with the <code>checkedChange</code> Output.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="disabled"></a>
+                        <b>disabled</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/toggle/toggle.component.ts:109</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Set to <code>true</code> for a disabled toggle.</p>
 </div>
                     </td>
                 </tr>
@@ -683,21 +626,46 @@
                         <i>Default value : </i><code>false</code>
                     </td>
                 </tr>
-                            <tr>
-                                <td class="col-md-4" colspan="2">
-                                    <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                                </td>
-                            </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:148</a></code>
-</div>
+                                    <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/toggle/toggle.component.ts:164</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Set to <code>true</code> to hide the toggle label &amp; set toggle on/off text to label.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="id"></a>
+                        <b>id</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;toggle-&quot; + Toggle.toggleCount</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="185" class="link-to-prism">src/toggle/toggle.component.ts:185</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The unique id allocated to the <code>Toggle</code>.</p>
 </div>
                     </td>
                 </tr>
@@ -719,7 +687,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/toggle/toggle.component.ts:140</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/toggle/toggle.component.ts:156</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -746,7 +714,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/toggle/toggle.component.ts:118</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/toggle/toggle.component.ts:134</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -773,7 +741,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/toggle/toggle.component.ts:130</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/toggle/toggle.component.ts:146</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -805,7 +773,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/toggle/toggle.component.ts:144</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/toggle/toggle.component.ts:160</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -835,577 +803,11 @@
                         <i>Default value : </i><code>false</code>
                     </td>
                 </tr>
-                            <tr>
-                                <td class="col-md-4" colspan="2">
-                                    <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                                </td>
-                            </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:155</a></code>
-</div>
+                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/toggle/toggle.component.ts:171</a></div>
                             </td>
                         </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="ariaLabelledby"></a>
-                        <b>ariaLabelledby</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4" colspan="2">
-                                    <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                                </td>
-                            </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:161</a></code>
-</div>
-                            </td>
-                        </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="checked"></a>
-                        <b>checked</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4" colspan="2">
-                                    <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                                </td>
-                            </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:244</a></code>
-</div>
-                            </td>
-                        </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Sets the <code>checked</code> state. <code>true</code> for checked, <code>false</code> for unchecked</p>
-<p>Allows double binding with the <code>checkedChange</code> Output.</p>
-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="decorator"></a>
-                        <b>decorator</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>TemplateRef&lt;any&gt;</code>
-
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4" colspan="2">
-                                    <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                                </td>
-                            </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:205</a></code>
-</div>
-                            </td>
-                        </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Optional <code>TemplateRef</code> (e.g. AI label) rendered next to the label text.</p>
-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="disabled"></a>
-                        <b>disabled</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>false</code>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4" colspan="2">
-                                    <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                                </td>
-                            </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:135</a></code>
-</div>
-                            </td>
-                        </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Set to <code>true</code> for a disabled checkbox.</p>
-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="helperText"></a>
-                        <b>helperText</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>string | TemplateRef&lt;any&gt;</code>
-
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4" colspan="2">
-                                    <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                                </td>
-                            </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:172</a></code>
-</div>
-                            </td>
-                        </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Optional helper text displayed below the checkbox label.
-Not shown when <code>invalid</code> or <code>warn</code> is <code>true</code>.</p>
-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="id"></a>
-                        <b>id</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x60;checkbox-${Checkbox.checkboxCount}&#x60;</code>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4" colspan="2">
-                                    <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                                </td>
-                            </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:151</a></code>
-</div>
-                            </td>
-                        </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>The unique id for the checkbox component.</p>
-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="indeterminate"></a>
-                        <b>indeterminate</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4" colspan="2">
-                                    <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                                </td>
-                            </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:212</a></code>
-</div>
-                            </td>
-                        </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Set the checkbox&#39;s indeterminate state to match the parameter and transition the view to reflect the change.</p>
-<p>Allows double binding with the <code>indeterminateChange</code> Output.</p>
-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="invalid"></a>
-                        <b>invalid</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4" colspan="2">
-                                    <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                                </td>
-                            </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:178</a></code>
-</div>
-                            </td>
-                        </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Set to <code>true</code> to show the checkbox in an invalid/error state.
-When omitted inside a <code>cds-checkbox-group</code>, the group&#39;s <code>invalid</code> value applies.</p>
-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="invalidText"></a>
-                        <b>invalidText</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>string | TemplateRef&lt;any&gt;</code>
-
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4" colspan="2">
-                                    <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                                </td>
-                            </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:183</a></code>
-</div>
-                            </td>
-                        </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>The error message displayed when <code>invalid</code> is <code>true</code>.</p>
-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="name"></a>
-                        <b>name</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4" colspan="2">
-                                    <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                                </td>
-                            </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:147</a></code>
-</div>
-                            </td>
-                        </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Sets the name attribute on the <code>input</code> element.</p>
-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="readOnly"></a>
-                        <b>readOnly</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4" colspan="2">
-                                    <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                                </td>
-                            </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:200</a></code>
-</div>
-                            </td>
-                        </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>When <code>true</code>, the checkbox cannot be toggled (matches <code>readonly</code> attribute semantics for form controls).
-When omitted inside a <code>cds-checkbox-group</code>, the group&#39;s <code>readOnly</code> value applies.</p>
-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="required"></a>
-                        <b>required</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4" colspan="2">
-                                    <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                                </td>
-                            </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:155</a></code>
-</div>
-                            </td>
-                        </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Reflects the required attribute of the <code>input</code> element.</p>
-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="title"></a>
-                        <b>title</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&quot;&quot;</code>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4" colspan="2">
-                                    <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                                </td>
-                            </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:166</a></code>
-</div>
-                            </td>
-                        </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Optional title for the <code>&lt;label&gt;</code> element.</p>
-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="value"></a>
-                        <b>value</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#CheckboxValue" target="_self" >CheckboxValue</a></code>
-
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4" colspan="2">
-                                    <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                                </td>
-                            </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:159</a></code>
-</div>
-                            </td>
-                        </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Sets the value attribute on the <code>input</code> element.</p>
-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="warn"></a>
-                        <b>warn</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4" colspan="2">
-                                    <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                                </td>
-                            </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:189</a></code>
-</div>
-                            </td>
-                        </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Set to <code>true</code> to show the checkbox in a warning state.
-When omitted inside a <code>cds-checkbox-group</code>, the group&#39;s <code>warn</code> value applies.</p>
-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="warnText"></a>
-                        <b>warnText</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>string | TemplateRef&lt;any&gt;</code>
-
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4" colspan="2">
-                                    <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                                </td>
-                            </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:194</a></code>
-</div>
-                            </td>
-                        </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>The warning message displayed when <code>warn</code> is <code>true</code> and <code>invalid</code> is <code>false</code>.</p>
-</div>
-                    </td>
-                </tr>
             </tbody>
         </table>
 </section>
@@ -1425,91 +827,15 @@ When omitted inside a <code>cds-checkbox-group</code>, the group&#39;s <code>war
 
                     </td>
                 </tr>
-                            <tr>
-                                <td class="col-md-4" colspan="2">
-                                    <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                                </td>
-                            </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:265</a></code>
-</div>
+                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/toggle/toggle.component.ts:128</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Emits an event when the value of the checkbox changes.</p>
-<p>Allows double biding with the <code>checked</code> Input.</p>
-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="click"></a>
-                        <b>click</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>EventEmitter</code>
-
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4" colspan="2">
-                                    <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                                </td>
-                            </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:258</a></code>
-</div>
-                            </td>
-                        </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Emits click event.</p>
-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="indeterminateChange"></a>
-                        <b>indeterminateChange</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>EventEmitter</code>
-
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4" colspan="2">
-                                    <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                                </td>
-                            </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:271</a></code>
-</div>
-                            </td>
-                        </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Emits event notifying other classes when a change in state occurs specifically
-on an indeterminate checkbox.</p>
+                        <div class="io-description"><p>Emits an event when the value of the toggle changes.
+Allows double binding with the <code>checked</code> Input.</p>
 </div>
                     </td>
                 </tr>
@@ -1536,7 +862,7 @@ on an indeterminate checkbox.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/toggle/toggle.component.ts:162</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/toggle/toggle.component.ts:178</a></div>
                         </td>
                     </tr>
 
@@ -1567,7 +893,7 @@ on an indeterminate checkbox.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/toggle/toggle.component.ts:157</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="173" class="link-to-prism">src/toggle/toggle.component.ts:173</a></div>
                         </td>
                     </tr>
 
@@ -1587,13 +913,13 @@ on an indeterminate checkbox.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/toggle/toggle.component.ts:158</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="174" class="link-to-prism">src/toggle/toggle.component.ts:174</a></div>
                         </td>
                     </tr>
 
@@ -1623,14 +949,8 @@ on an indeterminate checkbox.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:381</a></code>
-</div>
+                            <div class="io-line">Defined in <a href="" data-line="271"
+                                    class="link-to-prism">src/toggle/toggle.component.ts:271</a></div>
                         </td>
                     </tr>
 
@@ -1663,22 +983,62 @@ on an indeterminate checkbox.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:214</a></code>
-</div>
+                            <div class="io-line">Defined in <a href="" data-line="235"
+                                    class="link-to-prism">src/toggle/toggle.component.ts:235</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Creates instance of <code>ToggleChange</code> used to propagate the change event.</p>
+                        <div class="io-description"><p>Creates instance used to propagate the change event.</p>
 </div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="focusOut"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>focusOut</b></span>
+                        <a href="#focusOut"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>focusOut()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@HostListener(&#x27;focusout&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="271"
+                                    class="link-to-prism">src/toggle/toggle.component.ts:271</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -1708,8 +1068,8 @@ on an indeterminate checkbox.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="204"
-                                    class="link-to-prism">src/toggle/toggle.component.ts:204</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="225"
+                                    class="link-to-prism">src/toggle/toggle.component.ts:225</a></div>
                         </td>
                     </tr>
 
@@ -1745,8 +1105,8 @@ on an indeterminate checkbox.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="196"
-                                    class="link-to-prism">src/toggle/toggle.component.ts:196</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="217"
+                                    class="link-to-prism">src/toggle/toggle.component.ts:217</a></div>
                         </td>
                     </tr>
 
@@ -1782,8 +1142,8 @@ on an indeterminate checkbox.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="200"
-                                    class="link-to-prism">src/toggle/toggle.component.ts:200</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="221"
+                                    class="link-to-prism">src/toggle/toggle.component.ts:221</a></div>
                         </td>
                     </tr>
 
@@ -1821,14 +1181,8 @@ on an indeterminate checkbox.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:219</a></code>
-</div>
+                            <div class="io-line">Defined in <a href="" data-line="240"
+                                    class="link-to-prism">src/toggle/toggle.component.ts:240</a></div>
                         </td>
                     </tr>
 
@@ -1874,6 +1228,280 @@ on an indeterminate checkbox.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="onClick"></a>
+                    <span class="name">
+                        <span ><b>onClick</b></span>
+                        <a href="#onClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onClick(event: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="261"
+                                    class="link-to-prism">src/toggle/toggle.component.ts:261</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registerOnChange"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>registerOnChange</b></span>
+                        <a href="#registerOnChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>registerOnChange(fn: (value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>) => void)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="253"
+                                    class="link-to-prism">src/toggle/toggle.component.ts:253</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fn</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registerOnTouched"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>registerOnTouched</b></span>
+                        <a href="#registerOnTouched"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>registerOnTouched(fn: () => void)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="257"
+                                    class="link-to-prism">src/toggle/toggle.component.ts:257</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fn</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setChecked"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>setChecked</b></span>
+                        <a href="#setChecked"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setChecked(checked: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="279"
+                                    class="link-to-prism">src/toggle/toggle.component.ts:279</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>checked</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="setDisabledState"></a>
                     <span class="name">
                         <span ><b>setDisabledState</b></span>
@@ -1890,14 +1518,8 @@ on an indeterminate checkbox.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:192</a></code>
-</div>
+                            <div class="io-line">Defined in <a href="" data-line="212"
+                                    class="link-to-prism">src/toggle/toggle.component.ts:212</a></div>
                         </td>
                     </tr>
 
@@ -1955,669 +1577,6 @@ on an indeterminate checkbox.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="focusOut"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                        <span ><b>focusOut</b></span>
-                        <a href="#focusOut"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>focusOut()</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@HostListener(&#x27;focusout&#x27;)<br /></code>
-                </td>
-            </tr>
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:381</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="markForCheckFromGroup"></a>
-                    <span class="name">
-                        <span ><b>markForCheckFromGroup</b></span>
-                        <a href="#markForCheckFromGroup"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>markForCheckFromGroup()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:376</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Invoked by <code>CheckboxGroup</code> when group <code>readOnly</code>, <code>invalid</code>, <code>warn</code> change so <code>OnPush</code>
-checkboxes still refresh inherited state from <code>CHECKBOX_GROUP_HOST</code>.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ngAfterViewInit"></a>
-                    <span class="name">
-                        <span ><b>ngAfterViewInit</b></span>
-                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ngAfterViewInit()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:441</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Updates the checkbox if it is in the indeterminate state.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="onChange"></a>
-                    <span class="name">
-                        <span ><b>onChange</b></span>
-                        <a href="#onChange"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>onChange(event: Event)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:388</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Executes on the event of a change within <code>Checkbox</code> to block propagation.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>event</td>
-                                            <td>
-                                                        <code>Event</code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="onClick"></a>
-                    <span class="name">
-                        <span ><b>onClick</b></span>
-                        <a href="#onClick"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>onClick(event: Event)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:395</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Handles click events on the <code>Checkbox</code> and emits changes to other classes.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>event</td>
-                                            <td>
-                                                        <code>Event</code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="registerOnChange"></a>
-                    <span class="name">
-                            <span class="modifier">Public</span>
-                        <span ><b>registerOnChange</b></span>
-                        <a href="#registerOnChange"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>registerOnChange(fn: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:348</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Sets a method in order to propagate changes back to the form.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>fn</td>
-                                            <td>
-                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="registerOnTouched"></a>
-                    <span class="name">
-                            <span class="modifier">Public</span>
-                        <span ><b>registerOnTouched</b></span>
-                        <a href="#registerOnTouched"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>registerOnTouched(fn: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:356</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Registers a callback to be triggered when the control has been touched.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>fn</td>
-                                            <td>
-                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>Callback to be triggered when the checkbox is touched.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="setChecked"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>setChecked</b></span>
-                        <a href="#setChecked"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>setChecked(checked: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, resetIndeterminate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:462</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Sets checked state and optionally resets indeterminate state.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>checked</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                        <tr>
-                                                <td>resetIndeterminate</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="toggle"></a>
-                    <span class="name">
-                            <span class="modifier">Public</span>
-                        <span ><b>toggle</b></span>
-                        <a href="#toggle"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>toggle()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:325</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Toggle the selected state of the checkbox.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="transitionCheckboxState"></a>
-                    <span class="name">
-                        <span ><b>transitionCheckboxState</b></span>
-                        <a href="#transitionCheckboxState"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>transitionCheckboxState(newState: <a href="../undefineds/CheckboxState.html" target="_self">CheckboxState</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:426</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Handles changes between checkbox states.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>newState</td>
-                                            <td>
-                                                            <code><a href="../miscellaneous/enumerations.html#CheckboxState" target="_self" >CheckboxState</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="writeValue"></a>
                     <span class="name">
                             <span class="modifier">Public</span>
@@ -2629,21 +1588,15 @@ checkboxes still refresh inherited state from <code>CHECKBOX_GROUP_HOST</code>.<
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>writeValue(value: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    <code>writeValue(value)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:340</a></code>
-</div>
+                            <div class="io-line">Defined in <a href="" data-line="249"
+                                    class="link-to-prism">src/toggle/toggle.component.ts:249</a></div>
                         </td>
                     </tr>
 
@@ -2651,7 +1604,6 @@ checkboxes still refresh inherited state from <code>CHECKBOX_GROUP_HOST</code>.<
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Writes a value from <code>ngModel</code> to the component.</p>
-<p>In this case the value is the <code>checked</code> property.</p>
 </div>
 
                             <div class="io-description">
@@ -2661,7 +1613,6 @@ checkboxes still refresh inherited state from <code>CHECKBOX_GROUP_HOST</code>.<
                                     <thead>
                                         <tr>
                                             <td>Name</td>
-                                                <td>Type</td>
                                             <td>Optional</td>
                                                 <td>Description</td>
                                         </tr>
@@ -2669,9 +1620,6 @@ checkboxes still refresh inherited state from <code>CHECKBOX_GROUP_HOST</code>.<
                                     <tbody>
                                         <tr>
                                                 <td>value</td>
-                                            <td>
-                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                            </td>
 
                                             <td>
                                                     No
@@ -2707,6 +1655,32 @@ checkboxes still refresh inherited state from <code>CHECKBOX_GROUP_HOST</code>.<
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="_checked"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>_checked</b></span>
+                        <a href="#_checked"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="190" class="link-to-prism">src/toggle/toggle.component.ts:190</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="_offValues"></a>
                     <span class="name">
                             <span class="modifier">Protected</span>
@@ -2722,7 +1696,7 @@ checkboxes still refresh inherited state from <code>CHECKBOX_GROUP_HOST</code>.<
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/toggle/toggle.component.ts:171</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="192" class="link-to-prism">src/toggle/toggle.component.ts:192</a></div>
                         </td>
                     </tr>
 
@@ -2748,7 +1722,7 @@ checkboxes still refresh inherited state from <code>CHECKBOX_GROUP_HOST</code>.<
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/toggle/toggle.component.ts:172</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="193" class="link-to-prism">src/toggle/toggle.component.ts:193</a></div>
                         </td>
                     </tr>
 
@@ -2759,30 +1733,113 @@ checkboxes still refresh inherited state from <code>CHECKBOX_GROUP_HOST</code>.<
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="id"></a>
+                    <a name="changeDetectorRef"></a>
                     <span class="name">
-                        <span ><b>id</b></span>
-                        <a href="#id"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Protected</span>
+                        <span ><b>changeDetectorRef</b></span>
+                        <a href="#changeDetectorRef"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&quot;toggle-&quot; + Toggle.toggleCount</code>
+                        <i>Default value : </i><code>inject(ChangeDetectorRef)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/toggle/toggle.component.ts:169</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="187" class="link-to-prism">src/toggle/toggle.component.ts:187</a></div>
                         </td>
                     </tr>
 
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>The unique id allocated to the <code>Toggle</code>.</p>
-</div>
+                    <a name="i18n"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>i18n</b></span>
+                        <a href="#i18n"><span class="icon ion-ios-link"></span></a>
+                    </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(I18n)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="188" class="link-to-prism">src/toggle/toggle.component.ts:188</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onTouched"></a>
+                    <span class="name">
+                        <span ><b>onTouched</b></span>
+                        <a href="#onTouched"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="275" class="link-to-prism">src/toggle/toggle.component.ts:275</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="propagateChange"></a>
+                    <span class="name">
+                        <span ><b>propagateChange</b></span>
+                        <a href="#propagateChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="277" class="link-to-prism">src/toggle/toggle.component.ts:277</a></div>
+                        </td>
+                    </tr>
+
 
         </tbody>
     </table>
@@ -2814,7 +1871,7 @@ checkboxes still refresh inherited state from <code>CHECKBOX_GROUP_HOST</code>.<
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/toggle/toggle.component.ts:157</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="173" class="link-to-prism">src/toggle/toggle.component.ts:173</a></div>
                         </td>
                     </tr>
 
@@ -2846,376 +1903,13 @@ checkboxes still refresh inherited state from <code>CHECKBOX_GROUP_HOST</code>.<
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/toggle/toggle.component.ts:112</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/toggle/toggle.component.ts:104</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Variable used for creating unique ids for toggle components.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_checked"></a>
-                    <span class="name">
-                        <span ><b>_checked</b></span>
-                        <a href="#_checked"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>false</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:276</a></code>
-</div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Set to <code>true</code> if the input checkbox is selected (or checked).</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_indeterminate"></a>
-                    <span class="name">
-                        <span ><b>_indeterminate</b></span>
-                        <a href="#_indeterminate"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>false</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:280</a></code>
-</div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Set to <code>true</code> if the input checkbox is in state indeterminate.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="checkboxCount"></a>
-                    <span class="name">
-                            <span class="modifier">Static</span>
-                        <span ><b>checkboxCount</b></span>
-                        <a href="#checkboxCount"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>0</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:128</a></code>
-</div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Variable used for creating unique ids for checkbox components.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="currentCheckboxState"></a>
-                    <span class="name">
-                        <span ><b>currentCheckboxState</b></span>
-                        <a href="#currentCheckboxState"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>CheckboxState.Init</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:285</a></code>
-</div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Keeps a reference to the checkboxes current state, as defined in <code>CheckboxState</code>.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="helperId"></a>
-                    <span class="name">
-                            <span class="modifier">Readonly</span>
-                        <span ><b>helperId</b></span>
-                        <a href="#helperId"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x60;checkbox-helper-${Checkbox.helperIdCounter++}&#x60;</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:292</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="helperIdCounter"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                            <span class="modifier">Static</span>
-                        <span ><b>helperIdCounter</b></span>
-                        <a href="#helperIdCounter"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>0</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:130</a></code>
-</div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="inputCheckbox"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                        <span ><b>inputCheckbox</b></span>
-                        <a href="#inputCheckbox"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>ElementRef</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @ViewChild(&#x27;inputCheckbox&#x27;)<br />
-                        </code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:290</a></code>
-</div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Maintains a reference to the view DOM element of the <code>Checkbox</code>.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="onTouched"></a>
-                    <span class="name">
-                        <span ><b>onTouched</b></span>
-                        <a href="#onTouched"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:421</a></code>
-</div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Called when checkbox is blurred. Needed to properly implement <code>ControlValueAccessor</code>.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="propagateChange"></a>
-                    <span class="name">
-                        <span ><b>propagateChange</b></span>
-                        <a href="#propagateChange"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Inherited from         <code><a href="../components/Checkbox.html" target="_self" >Checkbox</a></code>
-</div>
-                            </td>
-                        </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/Checkbox.html#source" target="_self" >Checkbox:450</a></code>
-</div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Method set in <code>registerOnChange</code> to propagate changes back to the form.</p>
 </div>
                 </td>
             </tr>
@@ -3232,6 +1926,78 @@ checkboxes still refresh inherited state from <code>CHECKBOX_GROUP_HOST</code>.<
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="checked"></a>
+                        <span class="name"><b>checked</b><a href="#checked"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>checked()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/toggle/toggle.component.ts:120</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>checked(checked: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/toggle/toggle.component.ts:116</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Sets the <code>checked</code> state. <code>true</code> for on, <code>false</code> for off.
+Allows double binding with the <code>checkedChange</code> Output.</p>
+</div>
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>checked</td>
+                                                    
+                                                            <td>
+                                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="offText"></a>
                         <span class="name"><b>offText</b><a href="#offText"><span class="icon ion-ios-link"></span></a></span>
                     </td>
@@ -3244,7 +2010,7 @@ checkboxes still refresh inherited state from <code>CHECKBOX_GROUP_HOST</code>.<
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/toggle/toggle.component.ts:122</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/toggle/toggle.component.ts:138</a></div>
                                 </td>
                             </tr>
 
@@ -3255,7 +2021,7 @@ checkboxes still refresh inherited state from <code>CHECKBOX_GROUP_HOST</code>.<
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/toggle/toggle.component.ts:118</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/toggle/toggle.component.ts:134</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -3315,7 +2081,7 @@ checkboxes still refresh inherited state from <code>CHECKBOX_GROUP_HOST</code>.<
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/toggle/toggle.component.ts:134</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/toggle/toggle.component.ts:150</a></div>
                                 </td>
                             </tr>
 
@@ -3326,7 +2092,7 @@ checkboxes still refresh inherited state from <code>CHECKBOX_GROUP_HOST</code>.<
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/toggle/toggle.component.ts:130</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/toggle/toggle.component.ts:146</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -3386,7 +2152,7 @@ checkboxes still refresh inherited state from <code>CHECKBOX_GROUP_HOST</code>.<
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/toggle/toggle.component.ts:158</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="174" class="link-to-prism">src/toggle/toggle.component.ts:174</a></div>
                                 </td>
                             </tr>
 
@@ -3408,7 +2174,7 @@ checkboxes still refresh inherited state from <code>CHECKBOX_GROUP_HOST</code>.<
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/toggle/toggle.component.ts:162</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/toggle/toggle.component.ts:178</a></div>
                                 </td>
                             </tr>
 
@@ -3419,42 +2185,29 @@ checkboxes still refresh inherited state from <code>CHECKBOX_GROUP_HOST</code>.<
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Checkbox, CHECKBOX_GROUP_HOST, CheckboxGroupHost } from &quot;carbon-components-angular/checkbox&quot;;
-import {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+	ChangeDetectionStrategy,
 	ChangeDetectorRef,
 	Component,
-	Inject,
-	Input,
-	Optional,
+	EventEmitter,
 	HostBinding,
-	TemplateRef
+	HostListener,
+	Input,
+	Output,
+	TemplateRef,
+	inject
 } from &quot;@angular/core&quot;;
-import { NG_VALUE_ACCESSOR } from &quot;@angular/forms&quot;;
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from &quot;@angular/forms&quot;;
 
 import { I18n } from &quot;carbon-components-angular/i18n&quot;;
 import { Observable } from &quot;rxjs&quot;;
+import { NgClass, NgTemplateOutlet, AsyncPipe } from &quot;@angular/common&quot;;
 
 /**
- * @deprecated since v5 - Use boolean
- * Defines the set of states for a toggle component.
- */
-export enum ToggleState {
-	Init,
-	Checked,
-	Unchecked
-}
-
-/**
- * @todo - Toggle component will no longer extend &#x60;Checkbox&#x60; component as of v6
- * Toggle is no longer repies on using checkbox, so doesn&#x27;t make sense for us to continue inheriting ALL checkbox
- * component attributes.
- */
-
-/**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * &#x60;&#x60;&#x60;typescript
- * import { ToggleModule } from &#x27;carbon-components-angular&#x27;;
+ * import { Toggle } from &#x27;carbon-components-angular&#x27;;
  * &#x60;&#x60;&#x60;
  *
  * &#x60;&#x60;&#x60;html
@@ -3466,7 +2219,10 @@ export enum ToggleState {
 @Component({
 	selector: &quot;cds-toggle, ibm-toggle&quot;,
 	template: &#x60;
-		&lt;ng-container *ngIf&#x3D;&quot;!skeleton; else skeletonTemplate;&quot;&gt;
+		@if (skeleton) {
+			&lt;div class&#x3D;&quot;cds--toggle__skeleton-circle&quot;&gt;&lt;/div&gt;
+			&lt;div class&#x3D;&quot;cds--toggle__skeleton-rectangle&quot;&gt;&lt;/div&gt;
+		} @else {
 			&lt;button
 				class&#x3D;&quot;cds--toggle__button&quot;
 				[disabled]&#x3D;&quot;disabled&quot;
@@ -3485,8 +2241,11 @@ export enum ToggleState {
 					[ngClass]&#x3D;&quot;{
 						&#x27;cds--visually-hidden&#x27;: hideLabel
 					}&quot;&gt;
-					&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(label)&quot;&gt;{{label}}&lt;/ng-container&gt;
-					&lt;ng-template *ngIf&#x3D;&quot;isTemplate(label)&quot; [ngTemplateOutlet]&#x3D;&quot;label&quot;&gt;&lt;/ng-template&gt;
+					@if (isTemplate(label)) {
+						&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;label&quot; /&gt;
+					} @else {
+						{{label}}
+					}
 				&lt;/span&gt;
 				&lt;div
 					class&#x3D;&quot;cds--toggle__appearance&quot;
@@ -3498,25 +2257,22 @@ export enum ToggleState {
 						[ngClass]&#x3D;&quot;{
 							&#x27;cds--toggle__switch--checked&#x27;: checked
 						}&quot;&gt;
-						&lt;svg
-							*ngIf&#x3D;&quot;size &#x3D;&#x3D;&#x3D; &#x27;sm&#x27;&quot;
-							class&#x3D;&#x27;cds--toggle__check&#x27;
-							width&#x3D;&quot;6px&quot;
-							height&#x3D;&quot;5px&quot;
-							viewBox&#x3D;&quot;0 0 6 5&quot;&gt;
-							&lt;path d&#x3D;&quot;M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z&quot; /&gt;
-						&lt;/svg&gt;
+						@if (size &#x3D;&#x3D;&#x3D; &#x27;sm&#x27;) {
+							&lt;svg
+								class&#x3D;&#x27;cds--toggle__check&#x27;
+								width&#x3D;&quot;6px&quot;
+								height&#x3D;&quot;5px&quot;
+								viewBox&#x3D;&quot;0 0 6 5&quot;&gt;
+								&lt;path d&#x3D;&quot;M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z&quot; /&gt;
+							&lt;/svg&gt;
+						}
 					&lt;/div&gt;
 					&lt;span class&#x3D;&quot;cds--toggle__text&quot;&gt;
 						{{(hideLabel ? label : (getCheckedText() | async))}}
 					&lt;/span&gt;
 				&lt;/div&gt;
 			&lt;/label&gt;
-		&lt;/ng-container&gt;
-		&lt;ng-template #skeletonTemplate&gt;
-			&lt;div class&#x3D;&quot;cds--toggle__skeleton-circle&quot;&gt;&lt;/div&gt;
-			&lt;div class&#x3D;&quot;cds--toggle__skeleton-rectangle&quot;&gt;&lt;/div&gt;
-		&lt;/ng-template&gt;
+		}
 	&#x60;,
 	providers: [
 		{
@@ -3524,13 +2280,39 @@ export enum ToggleState {
 			useExisting: Toggle,
 			multi: true
 		}
-	]
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgClass, NgTemplateOutlet, AsyncPipe]
 })
-export class Toggle extends Checkbox {
+export class Toggle implements ControlValueAccessor {
 	/**
 	 * Variable used for creating unique ids for toggle components.
 	 */
 	static toggleCount &#x3D; 0;
+
+	/**
+	 * Set to &#x60;true&#x60; for a disabled toggle.
+	 */
+	@Input() disabled &#x3D; false;
+
+	/**
+	 * Sets the &#x60;checked&#x60; state. &#x60;true&#x60; for on, &#x60;false&#x60; for off.
+	 * Allows double binding with the &#x60;checkedChange&#x60; Output.
+	 */
+	@Input()
+	set checked(checked: boolean) {
+		this.setChecked(!!checked);
+	}
+
+	get checked() {
+		return this._checked;
+	}
+
+	/**
+	 * Emits an event when the value of the toggle changes.
+	 * Allows double binding with the &#x60;checked&#x60; Input.
+	 */
+	@Output() checkedChange &#x3D; new EventEmitter&lt;boolean&gt;();
 
 	/**
 	 * Text that is set on the left side of the toggle.
@@ -3587,19 +2369,23 @@ export class Toggle extends Checkbox {
 	/**
 	 * The unique id allocated to the &#x60;Toggle&#x60;.
 	 */
-	id &#x3D; &quot;toggle-&quot; + Toggle.toggleCount;
+	@Input() id &#x3D; &quot;toggle-&quot; + Toggle.toggleCount;
+
+	protected changeDetectorRef &#x3D; inject(ChangeDetectorRef);
+	protected i18n &#x3D; inject(I18n);
+
+	protected _checked &#x3D; false;
 
 	protected _offValues &#x3D; this.i18n.getOverridable(&quot;TOGGLE.OFF&quot;);
 	protected _onValues &#x3D; this.i18n.getOverridable(&quot;TOGGLE.ON&quot;);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
 	/**
 	 * Creates an instance of Toggle.
 	 */
-	constructor(
-		protected changeDetectorRef: ChangeDetectorRef,
-		@Optional() @Inject(CHECKBOX_GROUP_HOST) hostGroup: CheckboxGroupHost | null,
-		protected i18n: I18n
-	) {
-		super(changeDetectorRef, hostGroup);
+	constructor() {
 		Toggle.toggleCount++;
 	}
 
@@ -3612,6 +2398,7 @@ export class Toggle extends Checkbox {
 	 */
 	setDisabledState(isDisabled: boolean) {
 		this.disabled &#x3D; isDisabled;
+		this.changeDetectorRef.markForCheck();
 	}
 
 	getOffText(): Observable&lt;string&gt; {
@@ -3630,7 +2417,7 @@ export class Toggle extends Checkbox {
 	}
 
 	/**
-	 * Creates instance of &#x60;ToggleChange&#x60; used to propagate the change event.
+	 * Creates instance used to propagate the change event.
 	 */
 	emitChangeEvent() {
 		this.checkedChange.emit(this.checked);
@@ -3639,6 +2426,49 @@ export class Toggle extends Checkbox {
 
 	public isTemplate(value) {
 		return value instanceof TemplateRef;
+	}
+
+	/**
+	 * Writes a value from &#x60;ngModel&#x60; to the component.
+	 *
+	 * @param value boolean, corresponds to the &#x60;checked&#x60; property.
+	 */
+	public writeValue(value: unknown) {
+		this.setChecked(!!value);
+	}
+
+	public registerOnChange(fn: (value: boolean) &#x3D;&gt; void) {
+		this.propagateChange &#x3D; fn;
+	}
+
+	public registerOnTouched(fn: () &#x3D;&gt; void) {
+		this.onTouched &#x3D; fn;
+	}
+
+	onClick(event: Event) {
+		event.stopPropagation();
+		if (this.disabled) {
+			return;
+		}
+		this.setChecked(!this._checked);
+		this.emitChangeEvent();
+	}
+
+	@HostListener(&quot;focusout&quot;)
+	focusOut() {
+		this.onTouched();
+	}
+
+	onTouched: () &#x3D;&gt; void &#x3D; () &#x3D;&gt; {};
+
+	propagateChange: (value: boolean) &#x3D;&gt; void &#x3D; () &#x3D;&gt; {};
+
+	private setChecked(checked: boolean) {
+		if (checked &#x3D;&#x3D;&#x3D; this._checked) {
+			return;
+		}
+		this._checked &#x3D; checked;
+		this.changeDetectorRef.markForCheck();
 	}
 }
 </code></pre>
@@ -3671,7 +2501,7 @@ export class Toggle extends Checkbox {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container *ngIf="!skeleton; else skeletonTemplate;">	<button		class="cds--toggle__button"		[disabled]="disabled"		[id]="id"		role="switch"		type="button"		[attr.aria-checked]="checked"		(click)="onClick($event)"		[attr.aria-label]="ariaLabel">	</button>	<label		class="cds--toggle__label"		[for]="id">		<span			class="cds--toggle__label-text"			[ngClass]="{				\'cds--visually-hidden\': hideLabel			}">			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>		</span>		<div			class="cds--toggle__appearance"			[ngClass]="{				\'cds--toggle__appearance--sm\': size === \'sm\'			}">			<div				class="cds--toggle__switch"				[ngClass]="{					\'cds--toggle__switch--checked\': checked				}">				<svg					*ngIf="size === \'sm\'"					class=\'cds--toggle__check\'					width="6px"					height="5px"					viewBox="0 0 6 5">					<path d="M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z" />				</svg>			</div>			<span class="cds--toggle__text">				{{(hideLabel ? label : (getCheckedText() | async))}}			</span>		</div>	</label></ng-container><ng-template #skeletonTemplate>	<div class="cds--toggle__skeleton-circle"></div>	<div class="cds--toggle__skeleton-rectangle"></div></ng-template>	</div>'
+        var COMPONENT_TEMPLATE = '<div>@if (skeleton) {	<div class="cds--toggle__skeleton-circle"></div>	<div class="cds--toggle__skeleton-rectangle"></div>} @else {	<button		class="cds--toggle__button"		[disabled]="disabled"		[id]="id"		role="switch"		type="button"		[attr.aria-checked]="checked"		(click)="onClick($event)"		[attr.aria-label]="ariaLabel">	</button>	<label		class="cds--toggle__label"		[for]="id">		<span			class="cds--toggle__label-text"			[ngClass]="{				\'cds--visually-hidden\': hideLabel			}">			@if (isTemplate(label)) {				<ng-template [ngTemplateOutlet]="label" />			} @else {				{{label}}			}		</span>		<div			class="cds--toggle__appearance"			[ngClass]="{				\'cds--toggle__appearance--sm\': size === \'sm\'			}">			<div				class="cds--toggle__switch"				[ngClass]="{					\'cds--toggle__switch--checked\': checked				}">				@if (size === \'sm\') {					<svg						class=\'cds--toggle__check\'						width="6px"						height="5px"						viewBox="0 0 6 5">						<path d="M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z" />					</svg>				}			</div>			<span class="cds--toggle__text">				{{(hideLabel ? label : (getCheckedText() | async))}}			</span>		</div>	</label>}	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AILabelComponent', 'selector': 'cds-ai-label, ibm-ai-label'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'CheckboxGroup', 'selector': 'cds-checkbox-group, ibm-checkbox-group'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ComboButtonComponent', 'selector': 'cds-combo-button'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-menu, cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-menu-divider, cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-menu-group, cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-menu-item, cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'IconTab', 'selector': 'cds-icon-tab, ibm-icon-tab'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'MenuButtonComponent', 'selector': 'cds-menu-button'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonIcon', 'selector': 'cds-skeleton-icon, ibm-skeleton-icon'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderComponent', 'selector': 'cds-tab-header, ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaderGroupVertical', 'selector': 'cds-tab-header-group-vertical, ibm-tab-header-group-vertical'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'TabHeadersVertical', 'selector': 'cds-tab-headers-vertical, ibm-tab-headers-vertical'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeaderDecorator', 'selector': 'cds-table-header-decorator, ibm-table-header-decorator'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'TabsVertical', 'selector': 'cds-tabs-vertical, ibm-tabs-vertical'},{'name': 'TabsVerticalGrouped', 'selector': 'cds-tabs-vertical-grouped, ibm-tabs-vertical-grouped'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TagOperationalComponent', 'selector': 'cds-tag-operational, ibm-tag-operational'},{'name': 'TagSelectableComponent', 'selector': 'cds-tag-selectable, ibm-tag-selectable'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'AILabelActions', 'selector': '[cdsAILabelActions], [ibmAILabelActions]'},{'name': 'AILabelContent', 'selector': '[cdsAILabelContent], [ibmAILabelContent]'},{'name': 'AILabelPopoverDirective', 'selector': '[cdsAILabelPopover]'},{'name': 'AspectRatioDirective', 'selector': '[cdsAspectRatio], [ibmAspectRatio]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ClickableTileIconDirective', 'selector': '[cdsClickableTileIcon], [ibmClickableTileIcon]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'LinkIconDirective', 'selector': '[ibmLinkIcon], [cdsLinkIcon]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TabHeaderBase', 'selector': ''},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TagIconDirective', 'selector': '[cdsTagIcon], [ibmTagIcon]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'Toggle'};
@@ -3748,7 +2578,6 @@ export class Toggle extends Checkbox {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

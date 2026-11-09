@@ -136,8 +136,8 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Use pagination when you have multiple pages of data to handle. Get started with importing the module:</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { PaginationModule } from &#39;carbon-components-angular&#39;;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;cds-pagination-nav [model]=&quot;model&quot; (selectPage)=&quot;selectPage($event)&quot;&gt;&lt;/cds-pagination-nav&gt;</code></pre></div><p>In your <code>selectPage()</code> method set the <code>model.currentPage</code> to selected page, <em>after</em>
+        <p>Use pagination when you have multiple pages of data to handle. Get started with importing the component:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { PaginationNav } from &#39;carbon-components-angular&#39;;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;cds-pagination-nav [model]=&quot;model&quot; (selectPage)=&quot;selectPage($event)&quot;&gt;&lt;/cds-pagination-nav&gt;</code></pre></div><p>In your <code>selectPage()</code> method set the <code>model.currentPage</code> to selected page, <em>after</em>
 you load the page.</p>
 <b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">selectPage(page) {
     // ... your code to load the page goes here
@@ -166,6 +166,12 @@ you load the page.</p>
 
 
 
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                                <code><a href="../miscellaneous/variables.html#EXPERIMENTAL_SERVICE_PROVIDER" target="_self" >EXPERIMENTAL_SERVICE_PROVIDER</a></code>
+                </td>
+            </tr>
 
 
             <tr>
@@ -174,6 +180,16 @@ you load the page.</p>
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../components/IconButton.html" target="_self" >IconButton</a></code>
+                                <code><a href="../directives/IconDirective.html" target="_self" >IconDirective</a></code>
+                                <code><a href="../components/PaginationNavItem.html" target="_self" >PaginationNavItem</a></code>
+                                <code><a href="../components/PaginationOverflow.html" target="_self" >PaginationOverflow</a></code>
+                            <code>AsyncPipe</code>
+                </td>
+            </tr>
 
 
 
@@ -196,36 +212,41 @@ you load the page.</p>
 					&lt;/svg&gt;
 				&lt;/cds-icon-button&gt;
 			&lt;/li&gt;
-			&lt;cds-pagination-nav-item
-				*ngIf&#x3D;&quot;this.numOfItemsToShow &gt;&#x3D; 5 || (this.numOfItemsToShow &lt;&#x3D; 4 &amp;&amp; currentPage &lt;&#x3D; 1)&quot;
-				page&#x3D;&quot;1&quot;
-				(click)&#x3D;&quot;currentPage &#x3D; 1&quot;
-				[isActive]&#x3D;&quot;currentPage &#x3D;&#x3D; 1&quot;&gt;
-			&lt;/cds-pagination-nav-item&gt;
-			&lt;cds-pagination-overflow
-				*ngIf&#x3D;&quot;frontCuts&quot;
-				[count]&#x3D;&quot;frontCuts&quot;
-				[fromIndex]&#x3D;&quot;startOffset&quot;
-				(change)&#x3D;&quot;handleOverflowSelection($event)&quot;&gt;
-			&lt;/cds-pagination-overflow&gt;
-			&lt;cds-pagination-nav-item
-				*ngFor&#x3D;&quot;let page of getPages();&quot;
-				[page]&#x3D;&quot;page&quot;
-				(click)&#x3D;&quot;currentPage &#x3D; page&quot;
-				[isActive]&#x3D;&quot;currentPage &#x3D;&#x3D; page&quot;&gt;
-			&lt;/cds-pagination-nav-item&gt;
-			&lt;cds-pagination-overflow
-				*ngIf&#x3D;&quot;backCuts&quot;
-				[count]&#x3D;&quot;backCuts&quot;
-				[fromIndex]&#x3D;&quot;totalNumbersArray.length - backCuts - 1&quot;
-				(change)&#x3D;&quot;handleOverflowSelection($event)&quot;&gt;
-			&lt;/cds-pagination-overflow&gt;
-			&lt;cds-pagination-nav-item
-				*ngIf&#x3D;&quot;totalDataLength &gt; 1&quot;
-				[page]&#x3D;&quot;totalNumbersArray.length&quot;
-				(click)&#x3D;&quot;currentPage &#x3D; totalNumbersArray.length&quot;
-				[isActive]&#x3D;&quot;currentPage &#x3D;&#x3D; totalNumbersArray.length&quot;&gt;
-			&lt;/cds-pagination-nav-item&gt;
+			@if (this.numOfItemsToShow &gt;&#x3D; 5 || (this.numOfItemsToShow &lt;&#x3D; 4 &amp;&amp; currentPage &lt;&#x3D; 1)) {
+				&lt;cds-pagination-nav-item
+					page&#x3D;&quot;1&quot;
+					(click)&#x3D;&quot;currentPage &#x3D; 1&quot;
+					[isActive]&#x3D;&quot;currentPage &#x3D;&#x3D;&#x3D; 1&quot;&gt;
+				&lt;/cds-pagination-nav-item&gt;
+			}
+			@if (frontCuts) {
+				&lt;cds-pagination-overflow
+					[count]&#x3D;&quot;frontCuts&quot;
+					[fromIndex]&#x3D;&quot;startOffset&quot;
+					(change)&#x3D;&quot;handleOverflowSelection($event)&quot;&gt;
+				&lt;/cds-pagination-overflow&gt;
+			}
+			@for (page of getPages(); track page) {
+				&lt;cds-pagination-nav-item
+					[page]&#x3D;&quot;page&quot;
+					(click)&#x3D;&quot;currentPage &#x3D; page&quot;
+					[isActive]&#x3D;&quot;currentPage &#x3D;&#x3D;&#x3D; page&quot;&gt;
+				&lt;/cds-pagination-nav-item&gt;
+			}
+			@if (backCuts) {
+				&lt;cds-pagination-overflow
+					[count]&#x3D;&quot;backCuts&quot;
+					[fromIndex]&#x3D;&quot;totalNumbersArray.length - backCuts - 1&quot;
+					(change)&#x3D;&quot;handleOverflowSelection($event)&quot;&gt;
+				&lt;/cds-pagination-overflow&gt;
+			}
+			@if (totalDataLength &gt; 1) {
+				&lt;cds-pagination-nav-item
+					[page]&#x3D;&quot;totalNumbersArray.length&quot;
+					(click)&#x3D;&quot;currentPage &#x3D; totalNumbersArray.length&quot;
+					[isActive]&#x3D;&quot;currentPage &#x3D;&#x3D;&#x3D; totalNumbersArray.length&quot;&gt;
+				&lt;/cds-pagination-nav-item&gt;
+			}
 			&lt;li class&#x3D;&quot;cds--pagination-nav__list-item&quot;&gt;
 				&lt;cds-icon-button
 					kind&#x3D;&quot;ghost&quot;
@@ -270,6 +291,14 @@ you load the page.</p>
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#experimental" >experimental</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#i18n" >i18n</a>
+                            </li>
                             <li>
                                 <a href="#nextItemText" >nextItemText</a>
                             </li>
@@ -439,57 +468,15 @@ you load the page.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(i18n: <a href="../injectables/I18n.html" target="_self">I18n</a>, experimental: <a href="../injectables/ExperimentalService.html" target="_self">ExperimentalService</a>)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="217" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:217</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="244" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:244</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>i18n</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/I18n.html" target="_self" >I18n</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>experimental</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/ExperimentalService.html" target="_self" >ExperimentalService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
 </section>
@@ -517,7 +504,7 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:124</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:145</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -549,7 +536,7 @@ you load the page.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:133</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:154</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -577,12 +564,12 @@ other end.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:120</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:141</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p><code>PaginationNavModel</code> with the information about pages you&#39;re controlling.</p>
+                        <div class="io-description"><p><code>PaginationNavModel</code> with the information about pages you are controlling.</p>
 </div>
                     </td>
                 </tr>
@@ -609,7 +596,7 @@ other end.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:128</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:149</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -641,7 +628,7 @@ other end.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:154</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:175</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -668,7 +655,7 @@ other end.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:145</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="166" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:166</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -701,7 +688,7 @@ other end.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="173" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:173</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="194" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:194</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -735,7 +722,7 @@ data is finally loaded.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:163</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:184</a></div>
                         </td>
                     </tr>
 
@@ -761,7 +748,7 @@ data is finally loaded.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:160</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="181" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:181</a></div>
                         </td>
                     </tr>
 
@@ -787,7 +774,7 @@ data is finally loaded.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:157</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:178</a></div>
                         </td>
                     </tr>
 
@@ -824,8 +811,8 @@ data is finally loaded.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="257"
-                                    class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:257</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="287"
+                                    class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:287</a></div>
                         </td>
                     </tr>
 
@@ -897,8 +884,8 @@ data is finally loaded.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="249"
-                                    class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:249</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="276"
+                                    class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:276</a></div>
                         </td>
                     </tr>
 
@@ -934,8 +921,8 @@ data is finally loaded.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="223"
-                                    class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:223</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="250"
+                                    class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:250</a></div>
                         </td>
                     </tr>
 
@@ -999,8 +986,8 @@ data is finally loaded.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="229"
-                                    class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:229</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="256"
+                                    class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:256</a></div>
                         </td>
                     </tr>
 
@@ -1038,8 +1025,8 @@ data is finally loaded.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="239"
-                                    class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:239</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="266"
+                                    class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:266</a></div>
                         </td>
                     </tr>
 
@@ -1065,6 +1052,58 @@ data is finally loaded.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="experimental"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>experimental</b></span>
+                        <a href="#experimental"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ExperimentalService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="240" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:240</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="i18n"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>i18n</b></span>
+                        <a href="#i18n"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(I18n)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:137</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="nextItemText"></a>
                     <span class="name">
                         <span ><b>nextItemText</b></span>
@@ -1079,7 +1118,7 @@ data is finally loaded.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="216" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:216</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="237" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:237</a></div>
                         </td>
                     </tr>
 
@@ -1111,7 +1150,7 @@ data is finally loaded.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:116</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:135</a></div>
                         </td>
                     </tr>
 
@@ -1136,7 +1175,7 @@ data is finally loaded.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="217" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:217</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="238" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:238</a></div>
                         </td>
                     </tr>
 
@@ -1166,7 +1205,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:145</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="166" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:166</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1229,7 +1268,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:157</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:178</a></div>
                                 </td>
                             </tr>
 
@@ -1251,7 +1290,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:160</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="181" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:181</a></div>
                                 </td>
                             </tr>
 
@@ -1273,7 +1312,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:163</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:184</a></div>
                                 </td>
                             </tr>
 
@@ -1295,7 +1334,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:175</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="196" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:196</a></div>
                                 </td>
                             </tr>
 
@@ -1317,7 +1356,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="179" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:179</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="200" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:200</a></div>
                                 </td>
                             </tr>
 
@@ -1328,7 +1367,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:183</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:204</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1382,7 +1421,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="190" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:190</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="211" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:211</a></div>
                                 </td>
                             </tr>
 
@@ -1404,7 +1443,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="194" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:194</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="215" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:215</a></div>
                                 </td>
                             </tr>
 
@@ -1426,7 +1465,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="198" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:198</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="219" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:219</a></div>
                                 </td>
                             </tr>
 
@@ -1448,7 +1487,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="203" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:203</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="224" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:224</a></div>
                                 </td>
                             </tr>
 
@@ -1470,7 +1509,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="208" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:208</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="229" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:229</a></div>
                                 </td>
                             </tr>
 
@@ -1492,7 +1531,7 @@ data is finally loaded.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="212" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:212</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="233" class="link-to-prism">src/pagination/pagination-nav/pagination-nav.component.ts:233</a></div>
                                 </td>
                             </tr>
 
@@ -1503,19 +1542,25 @@ data is finally loaded.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { PaginationModel } from &quot;../pagination-model.class&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import type { PaginationModel } from &quot;../pagination-model.class&quot;;
 import {
 	Component,
 	Input,
 	Output,
 	EventEmitter,
-	HostBinding
+	HostBinding,
+	inject
 } from &quot;@angular/core&quot;;
 
-import { I18n, Overridable } from &quot;carbon-components-angular/i18n&quot;;
-import { ExperimentalService } from &quot;carbon-components-angular/experimental&quot;;
+import { I18n } from &quot;carbon-components-angular/i18n&quot;;
+import { ExperimentalService, EXPERIMENTAL_SERVICE_PROVIDER } from &quot;carbon-components-angular/experimental&quot;;
 import { merge } from &quot;carbon-components-angular/utils&quot;;
 import { range } from &quot;carbon-components-angular/common&quot;;
+import { IconButton } from &quot;carbon-components-angular/button&quot;;
+import { IconDirective } from &quot;carbon-components-angular/icon&quot;;
+import { PaginationNavItem } from &quot;./pagination-item.component&quot;;
+import { PaginationOverflow } from &quot;./pagination-overflow.component&quot;;
+import { AsyncPipe } from &quot;@angular/common&quot;;
 
 export interface PaginationNavTranslations {
 	NEXT: string;
@@ -1523,10 +1568,10 @@ export interface PaginationNavTranslations {
 }
 
 /**
- * Use pagination when you have multiple pages of data to handle. Get started with importing the module:
+ * Use pagination when you have multiple pages of data to handle. Get started with importing the component:
  *
  * &#x60;&#x60;&#x60;typescript
- * import { PaginationModule } from &#x27;carbon-components-angular&#x27;;
+ * import { PaginationNav } from &#x27;carbon-components-angular&#x27;;
  * &#x60;&#x60;&#x60;
  *
  * &#x60;&#x60;&#x60;html
@@ -1568,36 +1613,41 @@ export interface PaginationNavTranslations {
 						&lt;/svg&gt;
 					&lt;/cds-icon-button&gt;
 				&lt;/li&gt;
-				&lt;cds-pagination-nav-item
-					*ngIf&#x3D;&quot;this.numOfItemsToShow &gt;&#x3D; 5 || (this.numOfItemsToShow &lt;&#x3D; 4 &amp;&amp; currentPage &lt;&#x3D; 1)&quot;
-					page&#x3D;&quot;1&quot;
-					(click)&#x3D;&quot;currentPage &#x3D; 1&quot;
-					[isActive]&#x3D;&quot;currentPage &#x3D;&#x3D; 1&quot;&gt;
-				&lt;/cds-pagination-nav-item&gt;
-				&lt;cds-pagination-overflow
-					*ngIf&#x3D;&quot;frontCuts&quot;
-					[count]&#x3D;&quot;frontCuts&quot;
-					[fromIndex]&#x3D;&quot;startOffset&quot;
-					(change)&#x3D;&quot;handleOverflowSelection($event)&quot;&gt;
-				&lt;/cds-pagination-overflow&gt;
-				&lt;cds-pagination-nav-item
-					*ngFor&#x3D;&quot;let page of getPages();&quot;
-					[page]&#x3D;&quot;page&quot;
-					(click)&#x3D;&quot;currentPage &#x3D; page&quot;
-					[isActive]&#x3D;&quot;currentPage &#x3D;&#x3D; page&quot;&gt;
-				&lt;/cds-pagination-nav-item&gt;
-				&lt;cds-pagination-overflow
-					*ngIf&#x3D;&quot;backCuts&quot;
-					[count]&#x3D;&quot;backCuts&quot;
-					[fromIndex]&#x3D;&quot;totalNumbersArray.length - backCuts - 1&quot;
-					(change)&#x3D;&quot;handleOverflowSelection($event)&quot;&gt;
-				&lt;/cds-pagination-overflow&gt;
-				&lt;cds-pagination-nav-item
-					*ngIf&#x3D;&quot;totalDataLength &gt; 1&quot;
-					[page]&#x3D;&quot;totalNumbersArray.length&quot;
-					(click)&#x3D;&quot;currentPage &#x3D; totalNumbersArray.length&quot;
-					[isActive]&#x3D;&quot;currentPage &#x3D;&#x3D; totalNumbersArray.length&quot;&gt;
-				&lt;/cds-pagination-nav-item&gt;
+				@if (this.numOfItemsToShow &gt;&#x3D; 5 || (this.numOfItemsToShow &lt;&#x3D; 4 &amp;&amp; currentPage &lt;&#x3D; 1)) {
+					&lt;cds-pagination-nav-item
+						page&#x3D;&quot;1&quot;
+						(click)&#x3D;&quot;currentPage &#x3D; 1&quot;
+						[isActive]&#x3D;&quot;currentPage &#x3D;&#x3D;&#x3D; 1&quot;&gt;
+					&lt;/cds-pagination-nav-item&gt;
+				}
+				@if (frontCuts) {
+					&lt;cds-pagination-overflow
+						[count]&#x3D;&quot;frontCuts&quot;
+						[fromIndex]&#x3D;&quot;startOffset&quot;
+						(change)&#x3D;&quot;handleOverflowSelection($event)&quot;&gt;
+					&lt;/cds-pagination-overflow&gt;
+				}
+				@for (page of getPages(); track page) {
+					&lt;cds-pagination-nav-item
+						[page]&#x3D;&quot;page&quot;
+						(click)&#x3D;&quot;currentPage &#x3D; page&quot;
+						[isActive]&#x3D;&quot;currentPage &#x3D;&#x3D;&#x3D; page&quot;&gt;
+					&lt;/cds-pagination-nav-item&gt;
+				}
+				@if (backCuts) {
+					&lt;cds-pagination-overflow
+						[count]&#x3D;&quot;backCuts&quot;
+						[fromIndex]&#x3D;&quot;totalNumbersArray.length - backCuts - 1&quot;
+						(change)&#x3D;&quot;handleOverflowSelection($event)&quot;&gt;
+					&lt;/cds-pagination-overflow&gt;
+				}
+				@if (totalDataLength &gt; 1) {
+					&lt;cds-pagination-nav-item
+						[page]&#x3D;&quot;totalNumbersArray.length&quot;
+						(click)&#x3D;&quot;currentPage &#x3D; totalNumbersArray.length&quot;
+						[isActive]&#x3D;&quot;currentPage &#x3D;&#x3D;&#x3D; totalNumbersArray.length&quot;&gt;
+					&lt;/cds-pagination-nav-item&gt;
+				}
 				&lt;li class&#x3D;&quot;cds--pagination-nav__list-item&quot;&gt;
 					&lt;cds-icon-button
 						kind&#x3D;&quot;ghost&quot;
@@ -1615,16 +1665,26 @@ export interface PaginationNavTranslations {
 			&lt;/ul&gt;
 		&lt;/div&gt;
 	&lt;/div&gt;
-	&#x60;
+	&#x60;,
+	imports: [
+		IconButton,
+		IconDirective,
+		PaginationNavItem,
+		PaginationOverflow,
+		AsyncPipe
+	],
+	providers: [EXPERIMENTAL_SERVICE_PROVIDER]
 })
 export class PaginationNav {
 	static paginationCounter &#x3D; 0;
+
+	public i18n &#x3D; inject(I18n);
 	/**
-	 * &#x60;PaginationNavModel&#x60; with the information about pages you&#x27;re controlling.
+	 * &#x60;PaginationNavModel&#x60; with the information about pages you are controlling.
 	 */
 	@Input() model: PaginationModel;
 	/**
-	   * Set to &#x60;true&#x60; to disable the backward/forward buttons.
+	 * Set to &#x60;true&#x60; to disable the backward/forward buttons.
 	 */
 	@Input() disabled &#x3D; false;
 	/**
@@ -1721,7 +1781,13 @@ export class PaginationNav {
 	nextItemText &#x3D; this.i18n.getOverridable(&quot;PAGINATION.NEXT&quot;);
 	previousItemText &#x3D; this.i18n.getOverridable(&quot;PAGINATION.PREVIOUS&quot;);
 
-	constructor(protected i18n: I18n, protected experimental: ExperimentalService) {
+	protected experimental &#x3D; inject(ExperimentalService);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
 		PaginationNav.paginationCounter++;
 	}
 
@@ -1756,7 +1822,10 @@ export class PaginationNav {
 			return null;
 		}
 		const cuts &#x3D; this.getCuts();
-		return this.totalNumbersArray.slice(this.startOffset + cuts.front, (1 + cuts.back) * -1);
+		return this.totalNumbersArray.slice(
+			this.startOffset + cuts.front,
+			(1 + cuts.back) * -1
+		);
 	}
 
 	private getCuts(splitPoint &#x3D; null) {
@@ -1818,7 +1887,7 @@ export class PaginationNav {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div>	<div class="cds--pagination-nav">		<ul class="cds--pagination-nav__list">			<li class="cds--pagination-nav__list-item">				<cds-icon-button					kind="ghost"					[size]="size"					(click)="jumpToPrevious()"					[disabled]="leftArrowDisabled"					[description]="previousItemText.subject | async">					<svg						cdsIcon="caret--left"						size="16"						class="cds--btn__icon">					</svg>				</cds-icon-button>			</li>			<cds-pagination-nav-item				*ngIf="this.numOfItemsToShow >= 5 || (this.numOfItemsToShow <= 4 && currentPage <= 1)"				page="1"				(click)="currentPage = 1"				[isActive]="currentPage == 1">			</cds-pagination-nav-item>			<cds-pagination-overflow				*ngIf="frontCuts"				[count]="frontCuts"				[fromIndex]="startOffset"				(change)="handleOverflowSelection($event)">			</cds-pagination-overflow>			<cds-pagination-nav-item				*ngFor="let page of getPages();"				[page]="page"				(click)="currentPage = page"				[isActive]="currentPage == page">			</cds-pagination-nav-item>			<cds-pagination-overflow				*ngIf="backCuts"				[count]="backCuts"				[fromIndex]="totalNumbersArray.length - backCuts - 1"				(change)="handleOverflowSelection($event)">			</cds-pagination-overflow>			<cds-pagination-nav-item				*ngIf="totalDataLength > 1"				[page]="totalNumbersArray.length"				(click)="currentPage = totalNumbersArray.length"				[isActive]="currentPage == totalNumbersArray.length">			</cds-pagination-nav-item>			<li class="cds--pagination-nav__list-item">				<cds-icon-button					kind="ghost"					[size]="size"					(click)="jumpToNext()"					[disabled]="rightArrowDisabled"					[description]="nextItemText.subject | async">					<svg						cdsIcon="caret--right"						size="16"						class="cds--btn__icon">					</svg>				</cds-icon-button>			</li>		</ul>	</div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div>	<div class="cds--pagination-nav">		<ul class="cds--pagination-nav__list">			<li class="cds--pagination-nav__list-item">				<cds-icon-button					kind="ghost"					[size]="size"					(click)="jumpToPrevious()"					[disabled]="leftArrowDisabled"					[description]="previousItemText.subject | async">					<svg						cdsIcon="caret--left"						size="16"						class="cds--btn__icon">					</svg>				</cds-icon-button>			</li>			@if (this.numOfItemsToShow >= 5 || (this.numOfItemsToShow <= 4 && currentPage <= 1)) {				<cds-pagination-nav-item					page="1"					(click)="currentPage = 1"					[isActive]="currentPage === 1">				</cds-pagination-nav-item>			}			@if (frontCuts) {				<cds-pagination-overflow					[count]="frontCuts"					[fromIndex]="startOffset"					(change)="handleOverflowSelection($event)">				</cds-pagination-overflow>			}			@for (page of getPages(); track page) {				<cds-pagination-nav-item					[page]="page"					(click)="currentPage = page"					[isActive]="currentPage === page">				</cds-pagination-nav-item>			}			@if (backCuts) {				<cds-pagination-overflow					[count]="backCuts"					[fromIndex]="totalNumbersArray.length - backCuts - 1"					(change)="handleOverflowSelection($event)">				</cds-pagination-overflow>			}			@if (totalDataLength > 1) {				<cds-pagination-nav-item					[page]="totalNumbersArray.length"					(click)="currentPage = totalNumbersArray.length"					[isActive]="currentPage === totalNumbersArray.length">				</cds-pagination-nav-item>			}			<li class="cds--pagination-nav__list-item">				<cds-icon-button					kind="ghost"					[size]="size"					(click)="jumpToNext()"					[disabled]="rightArrowDisabled"					[description]="nextItemText.subject | async">					<svg						cdsIcon="caret--right"						size="16"						class="cds--btn__icon">					</svg>				</cds-icon-button>			</li>		</ul>	</div></div></div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AILabelComponent', 'selector': 'cds-ai-label, ibm-ai-label'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'CheckboxGroup', 'selector': 'cds-checkbox-group, ibm-checkbox-group'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ComboButtonComponent', 'selector': 'cds-combo-button'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-menu, cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-menu-divider, cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-menu-group, cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-menu-item, cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'IconTab', 'selector': 'cds-icon-tab, ibm-icon-tab'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'MenuButtonComponent', 'selector': 'cds-menu-button'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonIcon', 'selector': 'cds-skeleton-icon, ibm-skeleton-icon'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderComponent', 'selector': 'cds-tab-header, ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaderGroupVertical', 'selector': 'cds-tab-header-group-vertical, ibm-tab-header-group-vertical'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'TabHeadersVertical', 'selector': 'cds-tab-headers-vertical, ibm-tab-headers-vertical'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeaderDecorator', 'selector': 'cds-table-header-decorator, ibm-table-header-decorator'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'TabsVertical', 'selector': 'cds-tabs-vertical, ibm-tabs-vertical'},{'name': 'TabsVerticalGrouped', 'selector': 'cds-tabs-vertical-grouped, ibm-tabs-vertical-grouped'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TagOperationalComponent', 'selector': 'cds-tag-operational, ibm-tag-operational'},{'name': 'TagSelectableComponent', 'selector': 'cds-tag-selectable, ibm-tag-selectable'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'AILabelActions', 'selector': '[cdsAILabelActions], [ibmAILabelActions]'},{'name': 'AILabelContent', 'selector': '[cdsAILabelContent], [ibmAILabelContent]'},{'name': 'AILabelPopoverDirective', 'selector': '[cdsAILabelPopover]'},{'name': 'AspectRatioDirective', 'selector': '[cdsAspectRatio], [ibmAspectRatio]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ClickableTileIconDirective', 'selector': '[cdsClickableTileIcon], [ibmClickableTileIcon]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'LinkIconDirective', 'selector': '[ibmLinkIcon], [cdsLinkIcon]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TabHeaderBase', 'selector': ''},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TagIconDirective', 'selector': '[cdsTagIcon], [ibmTagIcon]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'PaginationNav'};
@@ -1895,7 +1964,6 @@ export class PaginationNav {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

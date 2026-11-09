@@ -24,13 +24,13 @@
 <title>cluster_MenuButtonModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="23,-70 23,-268 473,-268 473,-70 23,-70"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_MenuButtonModule_exports</title>
-<polygon fill="none" stroke="black" points="170,-208 170,-260 342,-260 342,-208 170,-208"/>
-</g>
 <g id="clust3" class="cluster">
 <title>cluster_MenuButtonModule_imports</title>
 <polygon fill="none" stroke="black" points="31,-78 31,-130 465,-130 465,-78 31,-78"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_MenuButtonModule_exports</title>
+<polygon fill="none" stroke="black" points="170,-208 170,-260 342,-260 342,-208 170,-208"/>
 </g>
 <!-- ContextMenuModule -->
 <g id="node1" class="node">

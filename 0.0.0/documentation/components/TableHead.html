@@ -176,6 +176,16 @@
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../components/TableHeadExpand.html" target="_self" >TableHeadExpand</a></code>
+                            <code>NgClass</code>
+                                <code><a href="../components/TableHeadCheckbox.html" target="_self" >TableHeadCheckbox</a></code>
+                                <code><a href="../components/TableHeadCell.html" target="_self" >TableHeadCell</a></code>
+                            <code>NgStyle</code>
+                </td>
+            </tr>
 
 
             <tr>
@@ -189,80 +199,87 @@
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;ng-container *ngIf&#x3D;&quot;model&quot;&gt;
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">@if (model) {
 	&lt;tr&gt;
-		&lt;th
-			*ngIf&#x3D;&quot;withRowAILabels &amp;&amp; model.header[0] &amp;&amp; model.header[0].visible&quot;
-			[ngStyle]&#x3D;&quot;model.header[0].style&quot;
-			cdsTableHeadCell
-			scope&#x3D;&quot;col&quot;
-			[class]&#x3D;&quot;model.header[0].className&quot;
-			[sortable]&#x3D;&quot;sortable&quot;
-			[skeleton]&#x3D;&quot;skeleton&quot;
-			[id]&#x3D;&quot;model.getId(0)&quot;
-			[column]&#x3D;&quot;model.header[0]&quot;
-			[filterTitle]&#x3D;&quot;getFilterTitle()&quot;
-			[attr.colspan]&#x3D;&quot;model.header[0].colSpan&quot;
-			[attr.rowspan]&#x3D;&quot;model.header[0].rowSpan&quot;
-			(sort)&#x3D;&quot;sort.emit(0)&quot;&gt;
-		&lt;/th&gt;
-		&lt;th
-			cdsTableHeadExpand
-			*ngIf&#x3D;&quot;model.hasExpandableRows()&quot;
-			scope&#x3D;&quot;col&quot;
-			[showExpandAllToggle]&#x3D;&quot;showExpandAllToggle&quot;
-			[ngClass]&#x3D;&quot;{&#x27;cds--table-expand-v2&#x27;: stickyHeader}&quot;
-			[id]&#x3D;&quot;model.getId(&#x27;expand&#x27;)&quot;
-			[expanded]&#x3D;&quot;model.expandableRowsCount() &#x3D;&#x3D;&#x3D; model.expandedRowsCount()&quot;
-			(expandedChange)&#x3D;&quot;onExpandAllRowsChange($event)&quot;&gt;
-		&lt;/th&gt;
-		&lt;th
-			*ngIf&#x3D;&quot;!skeleton &amp;&amp; showSelectionColumn &amp;&amp; enableSingleSelect&quot;
-			scope&#x3D;&quot;col&quot;
-			[id]&#x3D;&quot;model.getId(&#x27;select&#x27;)&quot;&gt;
-			&lt;!-- add width 0; since the carbon styles don&#x27;t seem to constrain this headers width --&gt;
-		&lt;/th&gt;
-		&lt;th
-			cdsTableHeadCheckbox
-			*ngIf&#x3D;&quot;!skeleton &amp;&amp; showSelectionColumn &amp;&amp; !enableSingleSelect&quot;
-			scope&#x3D;&quot;col&quot;
-			[checked]&#x3D;&quot;selectAllCheckbox&quot;
-			[indeterminate]&#x3D;&quot;selectAllCheckboxSomeSelected&quot;
-			[ariaLabel]&#x3D;&quot;getCheckboxHeaderLabel()&quot;
-			[skeleton]&#x3D;&quot;skeleton&quot;
-			[name]&#x3D;&quot;model.getHeaderId(&#x27;select&#x27;)&quot;
-			(change)&#x3D;&quot;onSelectAllCheckboxChange()&quot;
-			[id]&#x3D;&quot;model.getId(&#x27;select&#x27;)&quot;&gt;
-		&lt;/th&gt;
-		&lt;ng-container *ngFor&#x3D;&quot;let column of model.header; let i &#x3D; index&quot;&gt;
+		@if (withRowAILabels &amp;&amp; model.header[0] &amp;&amp; model.header[0].visible) {
 			&lt;th
-				*ngIf&#x3D;&quot;column &amp;&amp; column.visible &amp;&amp; (!withRowAILabels || i &gt; 0)&quot;
-				[ngStyle]&#x3D;&quot;column.style&quot;
+				[ngStyle]&#x3D;&quot;model.header[0].style&quot;
 				cdsTableHeadCell
 				scope&#x3D;&quot;col&quot;
-				[class]&#x3D;&quot;column.className&quot;
+				[class]&#x3D;&quot;model.header[0].className&quot;
 				[sortable]&#x3D;&quot;sortable&quot;
 				[skeleton]&#x3D;&quot;skeleton&quot;
-				[id]&#x3D;&quot;model.getId(i)&quot;
-				[column]&#x3D;&quot;column&quot;
+				[id]&#x3D;&quot;model.getId(0)&quot;
+				[column]&#x3D;&quot;model.header[0]&quot;
 				[filterTitle]&#x3D;&quot;getFilterTitle()&quot;
-				[attr.colspan]&#x3D;&quot;column.colSpan&quot;
-				[attr.rowspan]&#x3D;&quot;column.rowSpan&quot;
-				(sort)&#x3D;&quot;sort.emit(i)&quot;&gt;
+				[attr.colspan]&#x3D;&quot;model.header[0].colSpan&quot;
+				[attr.rowspan]&#x3D;&quot;model.header[0].rowSpan&quot;
+				(sort)&#x3D;&quot;sort.emit(0)&quot;&gt;
 			&lt;/th&gt;
-		&lt;/ng-container&gt;
-		&lt;th *ngIf&#x3D;&quot;!skeleton &amp;&amp; stickyHeader &amp;&amp; scrollbarWidth&quot;
-			scope&#x3D;&quot;col&quot;
-			[ngStyle]&#x3D;&quot;{&#x27;width&#x27;: scrollbarWidth + &#x27;px&#x27;, &#x27;padding&#x27;: 0, &#x27;border&#x27;: 0}&quot;&gt;
-			&lt;!--
-				Scrollbar pushes body to the left so this header column is added to push
-				the title bar the same amount and keep the header and body columns aligned.
-			--&gt;
-		&lt;/th&gt;
+		}
+		@if (model.hasExpandableRows()) {
+			&lt;th
+				cdsTableHeadExpand
+				scope&#x3D;&quot;col&quot;
+				[showExpandAllToggle]&#x3D;&quot;showExpandAllToggle&quot;
+				[ngClass]&#x3D;&quot;{&#x27;cds--table-expand-v2&#x27;: stickyHeader}&quot;
+				[id]&#x3D;&quot;model.getId(&#x27;expand&#x27;)&quot;
+				[expanded]&#x3D;&quot;model.expandableRowsCount() &#x3D;&#x3D;&#x3D; model.expandedRowsCount()&quot;
+				(expandedChange)&#x3D;&quot;onExpandAllRowsChange($event)&quot;&gt;
+			&lt;/th&gt;
+		}
+		@if (!skeleton &amp;&amp; showSelectionColumn &amp;&amp; enableSingleSelect) {
+			&lt;th
+				scope&#x3D;&quot;col&quot;
+				[id]&#x3D;&quot;model.getId(&#x27;select&#x27;)&quot;&gt;
+				&lt;!-- add width 0; since the carbon styles don&#x27;t seem to constrain this headers width --&gt;
+			&lt;/th&gt;
+		}
+		@if (!skeleton &amp;&amp; showSelectionColumn &amp;&amp; !enableSingleSelect) {
+			&lt;th
+				cdsTableHeadCheckbox
+				scope&#x3D;&quot;col&quot;
+				[checked]&#x3D;&quot;selectAllCheckbox&quot;
+				[indeterminate]&#x3D;&quot;selectAllCheckboxSomeSelected&quot;
+				[ariaLabel]&#x3D;&quot;getCheckboxHeaderLabel()&quot;
+				[skeleton]&#x3D;&quot;skeleton&quot;
+				[name]&#x3D;&quot;model.getHeaderId(&#x27;select&#x27;)&quot;
+				(change)&#x3D;&quot;onSelectAllCheckboxChange()&quot;
+				[id]&#x3D;&quot;model.getId(&#x27;select&#x27;)&quot;&gt;
+			&lt;/th&gt;
+		}
+		@for (column of model.header; track column; let i &#x3D; $index) {
+			@if (column &amp;&amp; column.visible &amp;&amp; (!withRowAILabels || i &gt; 0)) {
+				&lt;th
+					[ngStyle]&#x3D;&quot;column.style&quot;
+					cdsTableHeadCell
+					scope&#x3D;&quot;col&quot;
+					[class]&#x3D;&quot;column.className&quot;
+					[sortable]&#x3D;&quot;sortable&quot;
+					[skeleton]&#x3D;&quot;skeleton&quot;
+					[id]&#x3D;&quot;model.getId(i)&quot;
+					[column]&#x3D;&quot;column&quot;
+					[filterTitle]&#x3D;&quot;getFilterTitle()&quot;
+					[attr.colspan]&#x3D;&quot;column.colSpan&quot;
+					[attr.rowspan]&#x3D;&quot;column.rowSpan&quot;
+					(sort)&#x3D;&quot;sort.emit(i)&quot;&gt;
+				&lt;/th&gt;
+			}
+		}
+		@if (!skeleton &amp;&amp; stickyHeader &amp;&amp; scrollbarWidth) {
+			&lt;th
+				scope&#x3D;&quot;col&quot;
+				[ngStyle]&#x3D;&quot;{&#x27;width&#x27;: scrollbarWidth + &#x27;px&#x27;, &#x27;padding&#x27;: 0, &#x27;border&#x27;: 0}&quot;&gt;
+				&lt;!--
+					Scrollbar pushes body to the left so this header column is added to push
+					the title bar the same amount and keep the header and body columns aligned.
+				--&gt;
+			&lt;/th&gt;
+		}
 	&lt;/tr&gt;
-&lt;/ng-container&gt;
-&lt;ng-content&gt;&lt;/ng-content&gt;
-</code></pre></td>
+}
+&lt;ng-content /&gt;
+	</code></pre></td>
             </tr>
 
 
@@ -304,6 +321,14 @@
                             <li>
                                     <span class="modifier">Protected</span>
                                 <a href="#_sortDescendingLabel" >_sortDescendingLabel</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#changeDetectorRef" >changeDetectorRef</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#i18n" >i18n</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -462,45 +487,15 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(i18n: <a href="../injectables/I18n.html" target="_self">I18n</a>)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="206" class="link-to-prism">src/table/head/table-head.component.ts:206</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="231" class="link-to-prism">src/table/head/table-head.component.ts:231</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>i18n</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/I18n.html" target="_self" >I18n</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
 </section>
@@ -523,7 +518,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/table/head/table-head.component.ts:137</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/table/head/table-head.component.ts:156</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -549,7 +544,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/table/head/table-head.component.ts:113</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/table/head/table-head.component.ts:132</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -570,7 +565,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/table/head/table-head.component.ts:164</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">src/table/head/table-head.component.ts:183</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -591,7 +586,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/table/head/table-head.component.ts:109</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/table/head/table-head.component.ts:128</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -617,7 +612,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/table/head/table-head.component.ts:117</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/table/head/table-head.component.ts:136</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -643,7 +638,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/table/head/table-head.component.ts:115</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/table/head/table-head.component.ts:134</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -669,7 +664,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/table/head/table-head.component.ts:123</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/table/head/table-head.component.ts:142</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -695,7 +690,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/table/head/table-head.component.ts:111</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/table/head/table-head.component.ts:130</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -721,7 +716,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/table/head/table-head.component.ts:119</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/table/head/table-head.component.ts:138</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -747,7 +742,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/table/head/table-head.component.ts:129</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/table/head/table-head.component.ts:148</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -775,7 +770,7 @@ possible to set the sortable state on the header item to disable/enable sorting 
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="155" class="link-to-prism">src/table/head/table-head.component.ts:155</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="174" class="link-to-prism">src/table/head/table-head.component.ts:174</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -796,7 +791,7 @@ possible to set the sortable state on the header item to disable/enable sorting 
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/table/head/table-head.component.ts:146</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/table/head/table-head.component.ts:165</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -822,7 +817,7 @@ possible to set the sortable state on the header item to disable/enable sorting 
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/table/head/table-head.component.ts:121</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/table/head/table-head.component.ts:140</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -848,7 +843,7 @@ possible to set the sortable state on the header item to disable/enable sorting 
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/table/head/table-head.component.ts:134</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/table/head/table-head.component.ts:153</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -878,7 +873,7 @@ possible to set the sortable state on the header item to disable/enable sorting 
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="199" class="link-to-prism">src/table/head/table-head.component.ts:199</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="218" class="link-to-prism">src/table/head/table-head.component.ts:218</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -905,7 +900,7 @@ possible to set the sortable state on the header item to disable/enable sorting 
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="187" class="link-to-prism">src/table/head/table-head.component.ts:187</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="206" class="link-to-prism">src/table/head/table-head.component.ts:206</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -932,7 +927,7 @@ possible to set the sortable state on the header item to disable/enable sorting 
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="193" class="link-to-prism">src/table/head/table-head.component.ts:193</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="212" class="link-to-prism">src/table/head/table-head.component.ts:212</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -959,7 +954,7 @@ possible to set the sortable state on the header item to disable/enable sorting 
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="181" class="link-to-prism">src/table/head/table-head.component.ts:181</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="200" class="link-to-prism">src/table/head/table-head.component.ts:200</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -986,7 +981,7 @@ possible to set the sortable state on the header item to disable/enable sorting 
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/table/head/table-head.component.ts:175</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="194" class="link-to-prism">src/table/head/table-head.component.ts:194</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -1025,8 +1020,8 @@ possible to set the sortable state on the header item to disable/enable sorting 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="232"
-                                    class="link-to-prism">src/table/head/table-head.component.ts:232</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="258"
+                                    class="link-to-prism">src/table/head/table-head.component.ts:258</a></div>
                         </td>
                     </tr>
 
@@ -1062,8 +1057,8 @@ possible to set the sortable state on the header item to disable/enable sorting 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="244"
-                                    class="link-to-prism">src/table/head/table-head.component.ts:244</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="270"
+                                    class="link-to-prism">src/table/head/table-head.component.ts:270</a></div>
                         </td>
                     </tr>
 
@@ -1099,8 +1094,8 @@ possible to set the sortable state on the header item to disable/enable sorting 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="240"
-                                    class="link-to-prism">src/table/head/table-head.component.ts:240</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="266"
+                                    class="link-to-prism">src/table/head/table-head.component.ts:266</a></div>
                         </td>
                     </tr>
 
@@ -1136,8 +1131,8 @@ possible to set the sortable state on the header item to disable/enable sorting 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="236"
-                                    class="link-to-prism">src/table/head/table-head.component.ts:236</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="262"
+                                    class="link-to-prism">src/table/head/table-head.component.ts:262</a></div>
                         </td>
                     </tr>
 
@@ -1173,8 +1168,8 @@ possible to set the sortable state on the header item to disable/enable sorting 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="210"
-                                    class="link-to-prism">src/table/head/table-head.component.ts:210</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="235"
+                                    class="link-to-prism">src/table/head/table-head.component.ts:235</a></div>
                         </td>
                     </tr>
 
@@ -1210,8 +1205,8 @@ possible to set the sortable state on the header item to disable/enable sorting 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="224"
-                                    class="link-to-prism">src/table/head/table-head.component.ts:224</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="250"
+                                    class="link-to-prism">src/table/head/table-head.component.ts:250</a></div>
                         </td>
                     </tr>
 
@@ -1277,8 +1272,8 @@ possible to set the sortable state on the header item to disable/enable sorting 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="216"
-                                    class="link-to-prism">src/table/head/table-head.component.ts:216</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="242"
+                                    class="link-to-prism">src/table/head/table-head.component.ts:242</a></div>
                         </td>
                     </tr>
 
@@ -1319,7 +1314,7 @@ possible to set the sortable state on the header item to disable/enable sorting 
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="203" class="link-to-prism">src/table/head/table-head.component.ts:203</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="224" class="link-to-prism">src/table/head/table-head.component.ts:224</a></div>
                         </td>
                     </tr>
 
@@ -1345,7 +1340,7 @@ possible to set the sortable state on the header item to disable/enable sorting 
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="206" class="link-to-prism">src/table/head/table-head.component.ts:206</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="227" class="link-to-prism">src/table/head/table-head.component.ts:227</a></div>
                         </td>
                     </tr>
 
@@ -1371,7 +1366,7 @@ possible to set the sortable state on the header item to disable/enable sorting 
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="205" class="link-to-prism">src/table/head/table-head.component.ts:205</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="226" class="link-to-prism">src/table/head/table-head.component.ts:226</a></div>
                         </td>
                     </tr>
 
@@ -1397,7 +1392,59 @@ possible to set the sortable state on the header item to disable/enable sorting 
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/table/head/table-head.component.ts:204</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="225" class="link-to-prism">src/table/head/table-head.component.ts:225</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeDetectorRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>changeDetectorRef</b></span>
+                        <a href="#changeDetectorRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ChangeDetectorRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="223" class="link-to-prism">src/table/head/table-head.component.ts:223</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="i18n"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>i18n</b></span>
+                        <a href="#i18n"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(I18n)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="222" class="link-to-prism">src/table/head/table-head.component.ts:222</a></div>
                         </td>
                     </tr>
 
@@ -1429,7 +1476,7 @@ possible to set the sortable state on the header item to disable/enable sorting 
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="201" class="link-to-prism">src/table/head/table-head.component.ts:201</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="220" class="link-to-prism">src/table/head/table-head.component.ts:220</a></div>
                         </td>
                     </tr>
 
@@ -1458,7 +1505,7 @@ possible to set the sortable state on the header item to disable/enable sorting 
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/table/head/table-head.component.ts:141</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/table/head/table-head.component.ts:160</a></div>
                                 </td>
                             </tr>
 
@@ -1469,7 +1516,7 @@ possible to set the sortable state on the header item to disable/enable sorting 
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/table/head/table-head.component.ts:137</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/table/head/table-head.component.ts:156</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1527,7 +1574,7 @@ possible to set the sortable state on the header item to disable/enable sorting 
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/table/head/table-head.component.ts:150</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/table/head/table-head.component.ts:169</a></div>
                                 </td>
                             </tr>
 
@@ -1538,7 +1585,7 @@ possible to set the sortable state on the header item to disable/enable sorting 
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/table/head/table-head.component.ts:146</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/table/head/table-head.component.ts:165</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1596,7 +1643,7 @@ possible to set the sortable state on the header item to disable/enable sorting 
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/table/head/table-head.component.ts:159</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/table/head/table-head.component.ts:178</a></div>
                                 </td>
                             </tr>
 
@@ -1607,7 +1654,7 @@ possible to set the sortable state on the header item to disable/enable sorting 
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="155" class="link-to-prism">src/table/head/table-head.component.ts:155</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="174" class="link-to-prism">src/table/head/table-head.component.ts:174</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1665,7 +1712,7 @@ possible to set the sortable state on the header item to disable/enable sorting 
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="168" class="link-to-prism">src/table/head/table-head.component.ts:168</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="187" class="link-to-prism">src/table/head/table-head.component.ts:187</a></div>
                                 </td>
                             </tr>
 
@@ -1676,7 +1723,7 @@ possible to set the sortable state on the header item to disable/enable sorting 
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/table/head/table-head.component.ts:164</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">src/table/head/table-head.component.ts:183</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1728,14 +1775,19 @@ possible to set the sortable state on the header item to disable/enable sorting 
 	Input,
 	Output,
 	EventEmitter,
-	AfterViewInit
+	AfterViewInit,
+	ChangeDetectorRef,
+	inject
 } from &quot;@angular/core&quot;;
 
 import { TableModel } from &quot;../table-model.class&quot;;
 import { getScrollbarWidth } from &quot;carbon-components-angular/utils&quot;;
-import { I18n, Overridable } from &quot;carbon-components-angular/i18n&quot;;
+import { I18n } from &quot;carbon-components-angular/i18n&quot;;
 import { Observable } from &quot;rxjs&quot;;
-import { TableRowSize } from &quot;../table.types&quot;;
+import { TableHeadExpand } from &quot;./table-head-expand.component&quot;;
+import { NgClass, NgStyle } from &quot;@angular/common&quot;;
+import { TableHeadCheckbox } from &quot;./table-head-checkbox.component&quot;;
+import { TableHeadCell } from &quot;./table-head-cell.component&quot;;
 
 /**
  * A subcomponent that creates the thead of the table
@@ -1747,88 +1799,102 @@ import { TableRowSize } from &quot;../table.types&quot;;
  * &#x60;&#x60;&#x60;
  */
 @Component({
-	// tslint:disable-next-line:component-selector
+	// eslint-disable-next-line @angular-eslint/component-selector
 	selector: &quot;[cdsTableHead], [ibmTableHead]&quot;,
 	template: &#x60;
-	&lt;ng-container *ngIf&#x3D;&quot;model&quot;&gt;
-		&lt;tr&gt;
-			&lt;th
-				*ngIf&#x3D;&quot;withRowAILabels &amp;&amp; model.header[0] &amp;&amp; model.header[0].visible&quot;
-				[ngStyle]&#x3D;&quot;model.header[0].style&quot;
-				cdsTableHeadCell
-				scope&#x3D;&quot;col&quot;
-				[class]&#x3D;&quot;model.header[0].className&quot;
-				[sortable]&#x3D;&quot;sortable&quot;
-				[skeleton]&#x3D;&quot;skeleton&quot;
-				[id]&#x3D;&quot;model.getId(0)&quot;
-				[column]&#x3D;&quot;model.header[0]&quot;
-				[filterTitle]&#x3D;&quot;getFilterTitle()&quot;
-				[attr.colspan]&#x3D;&quot;model.header[0].colSpan&quot;
-				[attr.rowspan]&#x3D;&quot;model.header[0].rowSpan&quot;
-				(sort)&#x3D;&quot;sort.emit(0)&quot;&gt;
-			&lt;/th&gt;
-			&lt;th
-				cdsTableHeadExpand
-				*ngIf&#x3D;&quot;model.hasExpandableRows()&quot;
-				scope&#x3D;&quot;col&quot;
-				[showExpandAllToggle]&#x3D;&quot;showExpandAllToggle&quot;
-				[ngClass]&#x3D;&quot;{&#x27;cds--table-expand-v2&#x27;: stickyHeader}&quot;
-				[id]&#x3D;&quot;model.getId(&#x27;expand&#x27;)&quot;
-				[expanded]&#x3D;&quot;model.expandableRowsCount() &#x3D;&#x3D;&#x3D; model.expandedRowsCount()&quot;
-				(expandedChange)&#x3D;&quot;onExpandAllRowsChange($event)&quot;&gt;
-			&lt;/th&gt;
-			&lt;th
-				*ngIf&#x3D;&quot;!skeleton &amp;&amp; showSelectionColumn &amp;&amp; enableSingleSelect&quot;
-				scope&#x3D;&quot;col&quot;
-				[id]&#x3D;&quot;model.getId(&#x27;select&#x27;)&quot;&gt;
-				&lt;!-- add width 0; since the carbon styles don&#x27;t seem to constrain this headers width --&gt;
-			&lt;/th&gt;
-			&lt;th
-				cdsTableHeadCheckbox
-				*ngIf&#x3D;&quot;!skeleton &amp;&amp; showSelectionColumn &amp;&amp; !enableSingleSelect&quot;
-				scope&#x3D;&quot;col&quot;
-				[checked]&#x3D;&quot;selectAllCheckbox&quot;
-				[indeterminate]&#x3D;&quot;selectAllCheckboxSomeSelected&quot;
-				[ariaLabel]&#x3D;&quot;getCheckboxHeaderLabel()&quot;
-				[skeleton]&#x3D;&quot;skeleton&quot;
-				[name]&#x3D;&quot;model.getHeaderId(&#x27;select&#x27;)&quot;
-				(change)&#x3D;&quot;onSelectAllCheckboxChange()&quot;
-				[id]&#x3D;&quot;model.getId(&#x27;select&#x27;)&quot;&gt;
-			&lt;/th&gt;
-			&lt;ng-container *ngFor&#x3D;&quot;let column of model.header; let i &#x3D; index&quot;&gt;
-				&lt;th
-					*ngIf&#x3D;&quot;column &amp;&amp; column.visible &amp;&amp; (!withRowAILabels || i &gt; 0)&quot;
-					[ngStyle]&#x3D;&quot;column.style&quot;
-					cdsTableHeadCell
-					scope&#x3D;&quot;col&quot;
-					[class]&#x3D;&quot;column.className&quot;
-					[sortable]&#x3D;&quot;sortable&quot;
-					[skeleton]&#x3D;&quot;skeleton&quot;
-					[id]&#x3D;&quot;model.getId(i)&quot;
-					[column]&#x3D;&quot;column&quot;
-					[filterTitle]&#x3D;&quot;getFilterTitle()&quot;
-					[attr.colspan]&#x3D;&quot;column.colSpan&quot;
-					[attr.rowspan]&#x3D;&quot;column.rowSpan&quot;
-					(sort)&#x3D;&quot;sort.emit(i)&quot;&gt;
-				&lt;/th&gt;
-			&lt;/ng-container&gt;
-			&lt;th *ngIf&#x3D;&quot;!skeleton &amp;&amp; stickyHeader &amp;&amp; scrollbarWidth&quot;
-				scope&#x3D;&quot;col&quot;
-				[ngStyle]&#x3D;&quot;{&#x27;width&#x27;: scrollbarWidth + &#x27;px&#x27;, &#x27;padding&#x27;: 0, &#x27;border&#x27;: 0}&quot;&gt;
-				&lt;!--
-					Scrollbar pushes body to the left so this header column is added to push
-					the title bar the same amount and keep the header and body columns aligned.
-				--&gt;
-			&lt;/th&gt;
-		&lt;/tr&gt;
-	&lt;/ng-container&gt;
-	&lt;ng-content&gt;&lt;/ng-content&gt;
+		@if (model) {
+			&lt;tr&gt;
+				@if (withRowAILabels &amp;&amp; model.header[0] &amp;&amp; model.header[0].visible) {
+					&lt;th
+						[ngStyle]&#x3D;&quot;model.header[0].style&quot;
+						cdsTableHeadCell
+						scope&#x3D;&quot;col&quot;
+						[class]&#x3D;&quot;model.header[0].className&quot;
+						[sortable]&#x3D;&quot;sortable&quot;
+						[skeleton]&#x3D;&quot;skeleton&quot;
+						[id]&#x3D;&quot;model.getId(0)&quot;
+						[column]&#x3D;&quot;model.header[0]&quot;
+						[filterTitle]&#x3D;&quot;getFilterTitle()&quot;
+						[attr.colspan]&#x3D;&quot;model.header[0].colSpan&quot;
+						[attr.rowspan]&#x3D;&quot;model.header[0].rowSpan&quot;
+						(sort)&#x3D;&quot;sort.emit(0)&quot;&gt;
+					&lt;/th&gt;
+				}
+				@if (model.hasExpandableRows()) {
+					&lt;th
+						cdsTableHeadExpand
+						scope&#x3D;&quot;col&quot;
+						[showExpandAllToggle]&#x3D;&quot;showExpandAllToggle&quot;
+						[ngClass]&#x3D;&quot;{&#x27;cds--table-expand-v2&#x27;: stickyHeader}&quot;
+						[id]&#x3D;&quot;model.getId(&#x27;expand&#x27;)&quot;
+						[expanded]&#x3D;&quot;model.expandableRowsCount() &#x3D;&#x3D;&#x3D; model.expandedRowsCount()&quot;
+						(expandedChange)&#x3D;&quot;onExpandAllRowsChange($event)&quot;&gt;
+					&lt;/th&gt;
+				}
+				@if (!skeleton &amp;&amp; showSelectionColumn &amp;&amp; enableSingleSelect) {
+					&lt;th
+						scope&#x3D;&quot;col&quot;
+						[id]&#x3D;&quot;model.getId(&#x27;select&#x27;)&quot;&gt;
+						&lt;!-- add width 0; since the carbon styles don&#x27;t seem to constrain this headers width --&gt;
+					&lt;/th&gt;
+				}
+				@if (!skeleton &amp;&amp; showSelectionColumn &amp;&amp; !enableSingleSelect) {
+					&lt;th
+						cdsTableHeadCheckbox
+						scope&#x3D;&quot;col&quot;
+						[checked]&#x3D;&quot;selectAllCheckbox&quot;
+						[indeterminate]&#x3D;&quot;selectAllCheckboxSomeSelected&quot;
+						[ariaLabel]&#x3D;&quot;getCheckboxHeaderLabel()&quot;
+						[skeleton]&#x3D;&quot;skeleton&quot;
+						[name]&#x3D;&quot;model.getHeaderId(&#x27;select&#x27;)&quot;
+						(change)&#x3D;&quot;onSelectAllCheckboxChange()&quot;
+						[id]&#x3D;&quot;model.getId(&#x27;select&#x27;)&quot;&gt;
+					&lt;/th&gt;
+				}
+				@for (column of model.header; track column; let i &#x3D; $index) {
+					@if (column &amp;&amp; column.visible &amp;&amp; (!withRowAILabels || i &gt; 0)) {
+						&lt;th
+							[ngStyle]&#x3D;&quot;column.style&quot;
+							cdsTableHeadCell
+							scope&#x3D;&quot;col&quot;
+							[class]&#x3D;&quot;column.className&quot;
+							[sortable]&#x3D;&quot;sortable&quot;
+							[skeleton]&#x3D;&quot;skeleton&quot;
+							[id]&#x3D;&quot;model.getId(i)&quot;
+							[column]&#x3D;&quot;column&quot;
+							[filterTitle]&#x3D;&quot;getFilterTitle()&quot;
+							[attr.colspan]&#x3D;&quot;column.colSpan&quot;
+							[attr.rowspan]&#x3D;&quot;column.rowSpan&quot;
+							(sort)&#x3D;&quot;sort.emit(i)&quot;&gt;
+						&lt;/th&gt;
+					}
+				}
+				@if (!skeleton &amp;&amp; stickyHeader &amp;&amp; scrollbarWidth) {
+					&lt;th
+						scope&#x3D;&quot;col&quot;
+						[ngStyle]&#x3D;&quot;{&#x27;width&#x27;: scrollbarWidth + &#x27;px&#x27;, &#x27;padding&#x27;: 0, &#x27;border&#x27;: 0}&quot;&gt;
+						&lt;!--
+							Scrollbar pushes body to the left so this header column is added to push
+							the title bar the same amount and keep the header and body columns aligned.
+						--&gt;
+					&lt;/th&gt;
+				}
+			&lt;/tr&gt;
+		}
+		&lt;ng-content /&gt;
 	&#x60;,
 	styles: [&#x60;
 		.cds--table-expand-v2 {
 			padding-left: 2.5rem;
 		}
-	&#x60;]
+	&#x60;],
+	imports: [
+		TableHeadExpand,
+		NgClass,
+		TableHeadCheckbox,
+		TableHeadCell,
+		NgStyle
+	]
 })
 export class TableHead implements AfterViewInit {
 	@Input() model: TableModel;
@@ -1925,16 +1991,23 @@ export class TableHead implements AfterViewInit {
 
 	public scrollbarWidth &#x3D; 0;
 
+	protected i18n &#x3D; inject(I18n);
+	protected changeDetectorRef &#x3D; inject(ChangeDetectorRef);
 	protected _checkboxHeaderLabel &#x3D; this.i18n.getOverridable(&quot;TABLE.CHECKBOX_HEADER&quot;);
 	protected _sortDescendingLabel &#x3D; this.i18n.getOverridable(&quot;TABLE.SORT_DESCENDING&quot;);
 	protected _sortAscendingLabel &#x3D; this.i18n.getOverridable(&quot;TABLE.SORT_ASCENDING&quot;);
 	protected _filterTitle &#x3D; this.i18n.getOverridable(&quot;TABLE.FILTER&quot;);
 
-	constructor(protected i18n: I18n) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngAfterViewInit() {
 		setTimeout(() &#x3D;&gt; {
 			this.scrollbarWidth &#x3D; getScrollbarWidth();
+			this.changeDetectorRef.markForCheck();
 		});
 	}
 
@@ -2008,7 +2081,7 @@ export class TableHead implements AfterViewInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container *ngIf="model">	<tr>		<th			*ngIf="withRowAILabels && model.header[0] && model.header[0].visible"			[ngStyle]="model.header[0].style"			cdsTableHeadCell			scope="col"			[class]="model.header[0].className"			[sortable]="sortable"			[skeleton]="skeleton"			[id]="model.getId(0)"			[column]="model.header[0]"			[filterTitle]="getFilterTitle()"			[attr.colspan]="model.header[0].colSpan"			[attr.rowspan]="model.header[0].rowSpan"			(sort)="sort.emit(0)">		</th>		<th			cdsTableHeadExpand			*ngIf="model.hasExpandableRows()"			scope="col"			[showExpandAllToggle]="showExpandAllToggle"			[ngClass]="{\'cds--table-expand-v2\': stickyHeader}"			[id]="model.getId(\'expand\')"			[expanded]="model.expandableRowsCount() === model.expandedRowsCount()"			(expandedChange)="onExpandAllRowsChange($event)">		</th>		<th			*ngIf="!skeleton && showSelectionColumn && enableSingleSelect"			scope="col"			[id]="model.getId(\'select\')">			<!-- add width 0; since the carbon styles don\'t seem to constrain this headers width -->		</th>		<th			cdsTableHeadCheckbox			*ngIf="!skeleton && showSelectionColumn && !enableSingleSelect"			scope="col"			[checked]="selectAllCheckbox"			[indeterminate]="selectAllCheckboxSomeSelected"			[ariaLabel]="getCheckboxHeaderLabel()"			[skeleton]="skeleton"			[name]="model.getHeaderId(\'select\')"			(change)="onSelectAllCheckboxChange()"			[id]="model.getId(\'select\')">		</th>		<ng-container *ngFor="let column of model.header; let i = index">			<th				*ngIf="column && column.visible && (!withRowAILabels || i > 0)"				[ngStyle]="column.style"				cdsTableHeadCell				scope="col"				[class]="column.className"				[sortable]="sortable"				[skeleton]="skeleton"				[id]="model.getId(i)"				[column]="column"				[filterTitle]="getFilterTitle()"				[attr.colspan]="column.colSpan"				[attr.rowspan]="column.rowSpan"				(sort)="sort.emit(i)">			</th>		</ng-container>		<th *ngIf="!skeleton && stickyHeader && scrollbarWidth"			scope="col"			[ngStyle]="{\'width\': scrollbarWidth + \'px\', \'padding\': 0, \'border\': 0}">			<!--				Scrollbar pushes body to the left so this header column is added to push				the title bar the same amount and keep the header and body columns aligned.			-->		</th>	</tr></ng-container><ng-content></ng-content></div>'
+        var COMPONENT_TEMPLATE = '<div>@if (model) {	<tr>		@if (withRowAILabels && model.header[0] && model.header[0].visible) {			<th				[ngStyle]="model.header[0].style"				cdsTableHeadCell				scope="col"				[class]="model.header[0].className"				[sortable]="sortable"				[skeleton]="skeleton"				[id]="model.getId(0)"				[column]="model.header[0]"				[filterTitle]="getFilterTitle()"				[attr.colspan]="model.header[0].colSpan"				[attr.rowspan]="model.header[0].rowSpan"				(sort)="sort.emit(0)">			</th>		}		@if (model.hasExpandableRows()) {			<th				cdsTableHeadExpand				scope="col"				[showExpandAllToggle]="showExpandAllToggle"				[ngClass]="{\'cds--table-expand-v2\': stickyHeader}"				[id]="model.getId(\'expand\')"				[expanded]="model.expandableRowsCount() === model.expandedRowsCount()"				(expandedChange)="onExpandAllRowsChange($event)">			</th>		}		@if (!skeleton && showSelectionColumn && enableSingleSelect) {			<th				scope="col"				[id]="model.getId(\'select\')">				<!-- add width 0; since the carbon styles don\'t seem to constrain this headers width -->			</th>		}		@if (!skeleton && showSelectionColumn && !enableSingleSelect) {			<th				cdsTableHeadCheckbox				scope="col"				[checked]="selectAllCheckbox"				[indeterminate]="selectAllCheckboxSomeSelected"				[ariaLabel]="getCheckboxHeaderLabel()"				[skeleton]="skeleton"				[name]="model.getHeaderId(\'select\')"				(change)="onSelectAllCheckboxChange()"				[id]="model.getId(\'select\')">			</th>		}		@for (column of model.header; track column; let i = $index) {			@if (column && column.visible && (!withRowAILabels || i > 0)) {				<th					[ngStyle]="column.style"					cdsTableHeadCell					scope="col"					[class]="column.className"					[sortable]="sortable"					[skeleton]="skeleton"					[id]="model.getId(i)"					[column]="column"					[filterTitle]="getFilterTitle()"					[attr.colspan]="column.colSpan"					[attr.rowspan]="column.rowSpan"					(sort)="sort.emit(i)">				</th>			}		}		@if (!skeleton && stickyHeader && scrollbarWidth) {			<th				scope="col"				[ngStyle]="{\'width\': scrollbarWidth + \'px\', \'padding\': 0, \'border\': 0}">				<!--					Scrollbar pushes body to the left so this header column is added to push					the title bar the same amount and keep the header and body columns aligned.				-->			</th>		}	</tr>}<ng-content />	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AILabelComponent', 'selector': 'cds-ai-label, ibm-ai-label'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'CheckboxGroup', 'selector': 'cds-checkbox-group, ibm-checkbox-group'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ComboButtonComponent', 'selector': 'cds-combo-button'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-menu, cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-menu-divider, cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-menu-group, cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-menu-item, cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'IconTab', 'selector': 'cds-icon-tab, ibm-icon-tab'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'MenuButtonComponent', 'selector': 'cds-menu-button'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonIcon', 'selector': 'cds-skeleton-icon, ibm-skeleton-icon'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderComponent', 'selector': 'cds-tab-header, ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaderGroupVertical', 'selector': 'cds-tab-header-group-vertical, ibm-tab-header-group-vertical'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'TabHeadersVertical', 'selector': 'cds-tab-headers-vertical, ibm-tab-headers-vertical'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeaderDecorator', 'selector': 'cds-table-header-decorator, ibm-table-header-decorator'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'TabsVertical', 'selector': 'cds-tabs-vertical, ibm-tabs-vertical'},{'name': 'TabsVerticalGrouped', 'selector': 'cds-tabs-vertical-grouped, ibm-tabs-vertical-grouped'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TagOperationalComponent', 'selector': 'cds-tag-operational, ibm-tag-operational'},{'name': 'TagSelectableComponent', 'selector': 'cds-tag-selectable, ibm-tag-selectable'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'AILabelActions', 'selector': '[cdsAILabelActions], [ibmAILabelActions]'},{'name': 'AILabelContent', 'selector': '[cdsAILabelContent], [ibmAILabelContent]'},{'name': 'AILabelPopoverDirective', 'selector': '[cdsAILabelPopover]'},{'name': 'AspectRatioDirective', 'selector': '[cdsAspectRatio], [ibmAspectRatio]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ClickableTileIconDirective', 'selector': '[cdsClickableTileIcon], [ibmClickableTileIcon]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'LinkIconDirective', 'selector': '[ibmLinkIcon], [cdsLinkIcon]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TabHeaderBase', 'selector': ''},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TagIconDirective', 'selector': '[cdsTagIcon], [ibmTagIcon]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'TableHead'};
@@ -2085,7 +2158,6 @@ export class TableHead implements AfterViewInit {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

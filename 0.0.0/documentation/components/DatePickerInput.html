@@ -141,6 +141,10 @@
     <table class="table table-sm table-hover metadata">
         <tbody>
 
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
 
 
 
@@ -166,102 +170,134 @@
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>NgClass</code>
+                            <code>NgTemplateOutlet</code>
+                                <code><a href="../directives/IconDirective.html" target="_self" >IconDirective</a></code>
+                </td>
+            </tr>
 
 
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">	&lt;div class&#x3D;&quot;cds--form-item&quot;&gt;
-		&lt;div class&#x3D;&quot;cds--date-picker&quot;
-			[ngClass]&#x3D;&quot;{
-				&#x27;cds--date-picker--simple&#x27; : type &#x3D;&#x3D;&#x3D; &#x27;simple&#x27;,
-				&#x27;cds--date-picker--single&#x27; : type &#x3D;&#x3D;&#x3D; &#x27;single&#x27;,
-				&#x27;cds--date-picker--range&#x27; : type &#x3D;&#x3D;&#x3D; &#x27;range&#x27;,
-				&#x27;cds--date-picker--light&#x27; : theme &#x3D;&#x3D;&#x3D; &#x27;light&#x27;,
-				&#x27;cds--skeleton&#x27; : skeleton
-			}&quot;&gt;
-			&lt;div class&#x3D;&quot;cds--date-picker-container&quot;&gt;
-				&lt;!-- Skeleton structure --&gt;
-				&lt;ng-container *ngIf&#x3D;&quot;skeleton&quot;&gt;
-					&lt;span class&#x3D;&quot;cds--label cds--skeleton&quot;&gt;&lt;/span&gt;
-					&lt;div class&#x3D;&quot;cds--date-picker__input cds--skeleton&quot;&gt;&lt;/div&gt;
-				&lt;/ng-container&gt;
-				&lt;label
-					*ngIf&#x3D;&quot;label &amp;&amp; !skeleton&quot;
-					[for]&#x3D;&quot;id&quot;
-					class&#x3D;&quot;cds--label&quot;
-					[ngClass]&#x3D;&quot;{&#x27;cds--label--disabled&#x27;: disabled}&quot;&gt;
-					&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(label)&quot;&gt;{{label}}&lt;/ng-container&gt;
-					&lt;ng-template *ngIf&#x3D;&quot;isTemplate(label)&quot; [ngTemplateOutlet]&#x3D;&quot;label&quot;&gt;&lt;/ng-template&gt;
-				&lt;/label&gt;
-				&lt;div class&#x3D;&quot;cds--date-picker-input__wrapper&quot;
-					*ngIf&#x3D;&quot;!skeleton&quot;
-					[ngClass]&#x3D;&quot;{
-						&#x27;cds--date-picker-input__wrapper--invalid&#x27;: invalid,
-						&#x27;cds--date-picker-input__wrapper--warn&#x27;: warn,
-						&#x27;cds--date-picker-input__wrapper--decorator&#x27;: !!decorator
-					}&quot;&gt;
-					&lt;span&gt;
-						&lt;input
-							#input
-							autocomplete&#x3D;&quot;off&quot;
-							type&#x3D;&quot;text&quot;
-							class&#x3D;&quot;cds--date-picker__input&quot;
-							[ngClass]&#x3D;&quot;{
-								&#x27;cds--date-picker__input--sm&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;sm&#x27;,
-								&#x27;cds--date-picker__input--md&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;md&#x27;,
-								&#x27;cds--date-picker__input--lg&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;lg&#x27;
-							}&quot;
-							[attr.data-invalid]&#x3D;&quot;invalid ? true : undefined&quot;
-							[value]&#x3D;&quot;value&quot;
-							[pattern]&#x3D;&quot;pattern&quot;
-							[placeholder]&#x3D;&quot;placeholder&quot;
-							[id]&#x3D;&quot;id&quot;
-							[disabled]&#x3D;&quot;disabled&quot;
-							[readonly]&#x3D;&quot;readonly&quot;
-							(change)&#x3D;&quot;onChange($event)&quot;/&gt;
-						&lt;ng-container *ngIf&#x3D;&quot;decorator&quot;&gt;
-							&lt;div class&#x3D;&quot;cds--date-picker-input-inner-wrapper--decorator&quot;&gt;
-								&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;decorator&quot;&gt;&lt;/ng-template&gt;
-							&lt;/div&gt;
-						&lt;/ng-container&gt;
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;cds--date-picker&quot;
+	[ngClass]&#x3D;&quot;{
+		&#x27;cds--date-picker--simple&#x27; : type &#x3D;&#x3D;&#x3D; &#x27;simple&#x27;,
+		&#x27;cds--date-picker--single&#x27; : type &#x3D;&#x3D;&#x3D; &#x27;single&#x27;,
+		&#x27;cds--date-picker--range&#x27; : type &#x3D;&#x3D;&#x3D; &#x27;range&#x27;,
+		&#x27;cds--date-picker--light&#x27; : theme &#x3D;&#x3D;&#x3D; &#x27;light&#x27;,
+		&#x27;cds--skeleton&#x27; : skeleton
+	}&quot;&gt;
+	&lt;div class&#x3D;&quot;cds--date-picker-container&quot;&gt;
+		&lt;!-- Skeleton structure --&gt;
+		@if (skeleton) {
+			&lt;span class&#x3D;&quot;cds--label cds--skeleton&quot;&gt;&lt;/span&gt;
+			&lt;div class&#x3D;&quot;cds--date-picker__input cds--skeleton&quot;&gt;&lt;/div&gt;
+		}
+		@if (label &amp;&amp; !skeleton) {
+			&lt;label
+				[for]&#x3D;&quot;id&quot;
+				class&#x3D;&quot;cds--label&quot;
+				[ngClass]&#x3D;&quot;{&#x27;cds--label--disabled&#x27;: disabled}&quot;&gt;
+				@if (!isTemplate(label)) {
+					{{label}}
+				}
+				@if (isTemplate(label)) {
+					&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;label&quot;&gt;&lt;/ng-template&gt;
+				}
+			&lt;/label&gt;
+		}
+		@if (!skeleton) {
+			&lt;div class&#x3D;&quot;cds--date-picker-input__wrapper&quot;
+				[ngClass]&#x3D;&quot;{
+					&#x27;cds--date-picker-input__wrapper--invalid&#x27;: invalid,
+					&#x27;cds--date-picker-input__wrapper--warn&#x27;: warn,
+					&#x27;cds--date-picker-input__wrapper--decorator&#x27;: !!decorator
+				}&quot;&gt;
+				&lt;span&gt;
+					&lt;input
+						#input
+						autocomplete&#x3D;&quot;off&quot;
+						type&#x3D;&quot;text&quot;
+						class&#x3D;&quot;cds--date-picker__input&quot;
+						[ngClass]&#x3D;&quot;{
+							&#x27;cds--date-picker__input--sm&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;sm&#x27;,
+							&#x27;cds--date-picker__input--md&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;md&#x27;,
+							&#x27;cds--date-picker__input--lg&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;lg&#x27;
+						}&quot;
+						[attr.data-invalid]&#x3D;&quot;invalid ? true : undefined&quot;
+						[value]&#x3D;&quot;value&quot;
+						[pattern]&#x3D;&quot;pattern&quot;
+						[placeholder]&#x3D;&quot;placeholder&quot;
+						[id]&#x3D;&quot;id&quot;
+						[disabled]&#x3D;&quot;disabled&quot;
+						[readonly]&#x3D;&quot;readonly&quot;
+						(change)&#x3D;&quot;onChange($event)&quot;/&gt;
+					@if (decorator) {
+						&lt;div class&#x3D;&quot;cds--date-picker-input-inner-wrapper--decorator&quot;&gt;
+							&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;decorator&quot;&gt;&lt;/ng-template&gt;
+						&lt;/div&gt;
+					}
+					@if (type !&#x3D;&#x3D; &#x27;simple&#x27; &amp;&amp; !warn &amp;&amp; !invalid) {
 						&lt;svg
-							*ngIf&#x3D;&quot;type !&#x3D;&#x3D; &#x27;simple&#x27; &amp;&amp; !warn &amp;&amp; !invalid&quot;
 							cdsIcon&#x3D;&quot;calendar&quot;
 							size&#x3D;&quot;16&quot;
 							class&#x3D;&quot;cds--date-picker__icon&quot;&gt;
 						&lt;/svg&gt;
+					}
+					@if (invalid) {
 						&lt;svg
-							*ngIf&#x3D;&quot;invalid&quot;
 							class&#x3D;&quot;cds--date-picker__icon cds--date-picker__icon--invalid&quot;
 							cdsIcon&#x3D;&quot;warning--filled&quot;
 							size&#x3D;&quot;16&quot;&gt;
 						&lt;/svg&gt;
+					}
+					@if (!invalid &amp;&amp; warn) {
 						&lt;svg
-							*ngIf&#x3D;&quot;!invalid &amp;&amp; warn&quot;
 							cdsIcon&#x3D;&quot;warning--alt--filled&quot;
 							size&#x3D;&quot;16&quot;
 							class&#x3D;&quot;cds--date-picker__icon cds--date-picker__icon--warn&quot;&gt;
 						&lt;/svg&gt;
-					&lt;/span&gt;
-				&lt;/div&gt;
-				&lt;div
-					*ngIf&#x3D;&quot;helperText &amp;&amp; !invalid &amp;&amp; !warn&quot;
-					class&#x3D;&quot;cds--form__helper-text&quot;
-					[ngClass]&#x3D;&quot;{&#x27;cds--form__helper-text--disabled&#x27;: disabled}&quot;&gt;
-					&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(helperText)&quot;&gt;{{helperText}}&lt;/ng-container&gt;
-					&lt;ng-template *ngIf&#x3D;&quot;isTemplate(helperText)&quot; [ngTemplateOutlet]&#x3D;&quot;helperText&quot;&gt;&lt;/ng-template&gt;
-				&lt;/div&gt;
-				&lt;div *ngIf&#x3D;&quot;invalid&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
-					&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(invalidText)&quot;&gt;{{invalidText}}&lt;/ng-container&gt;
-					&lt;ng-template *ngIf&#x3D;&quot;isTemplate(invalidText)&quot; [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
-				&lt;/div&gt;
-				&lt;div *ngIf&#x3D;&quot;!invalid &amp;&amp; warn&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
-					&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(warnText)&quot;&gt;{{warnText}}&lt;/ng-container&gt;
-					&lt;ng-template *ngIf&#x3D;&quot;isTemplate(warnText)&quot; [ngTemplateOutlet]&#x3D;&quot;warnText&quot;&gt;&lt;/ng-template&gt;
-				&lt;/div&gt;
+					}
+				&lt;/span&gt;
 			&lt;/div&gt;
-		&lt;/div&gt;
+		}
+		@if (helperText &amp;&amp; !invalid &amp;&amp; !warn) {
+			&lt;div
+				class&#x3D;&quot;cds--form__helper-text&quot;
+				[ngClass]&#x3D;&quot;{&#x27;cds--form__helper-text--disabled&#x27;: disabled}&quot;&gt;
+				@if (!isTemplate(helperText)) {
+					{{helperText}}
+				}
+				@if (isTemplate(helperText)) {
+					&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;helperText&quot;&gt;&lt;/ng-template&gt;
+				}
+			&lt;/div&gt;
+		}
+		@if (invalid) {
+			&lt;div class&#x3D;&quot;cds--form-requirement&quot;&gt;
+				@if (!isTemplate(invalidText)) {
+					{{invalidText}}
+				}
+				@if (isTemplate(invalidText)) {
+					&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
+				}
+			&lt;/div&gt;
+		}
+		@if (!invalid &amp;&amp; warn) {
+			&lt;div class&#x3D;&quot;cds--form-requirement&quot;&gt;
+				@if (!isTemplate(warnText)) {
+					{{warnText}}
+				}
+				@if (isTemplate(warnText)) {
+					&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;warnText&quot;&gt;&lt;/ng-template&gt;
+				}
+			&lt;/div&gt;
+		}
+	&lt;/div&gt;
 &lt;/div&gt;
 	</code></pre></td>
             </tr>
@@ -291,9 +327,22 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#changeDetectorRef" >changeDetectorRef</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Static</span>
                                 <a href="#datePickerCount" >datePickerCount</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#elementRef" >elementRef</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#hostFormItemClass" >hostFormItemClass</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
@@ -421,6 +470,20 @@
                     </td>
                 </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostBindings</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#class.cds--form-item" >class.cds--form-item</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
         </tbody>
@@ -433,45 +496,15 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(elementRef: ElementRef)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:178</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="220" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:220</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>elementRef</td>
-                                                  
-                                                        <td>
-                                                                    <code>ElementRef</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
 </section>
@@ -494,7 +527,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:170</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="205" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:205</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -526,7 +559,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:142</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="177" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:177</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -552,7 +585,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:126</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:161</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -573,7 +606,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:165</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="200" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:200</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -605,7 +638,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:124</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:159</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -631,7 +664,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:148</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:183</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -658,7 +691,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:152</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="187" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:187</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -685,7 +718,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:128</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:163</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -711,7 +744,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:132</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="167" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:167</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -737,7 +770,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:130</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:165</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -763,7 +796,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:144</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="179" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:179</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -789,7 +822,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="176" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:176</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="211" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:211</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -815,7 +848,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:172</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="207" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:207</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -841,7 +874,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:140</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:175</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -867,7 +900,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:122</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:157</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -900,7 +933,7 @@ Internal purposes only.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="174" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:174</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="209" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:209</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -926,7 +959,7 @@ Internal purposes only.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:156</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="191" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:191</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -953,7 +986,7 @@ Internal purposes only.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:160</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="195" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:195</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -983,11 +1016,44 @@ Internal purposes only.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:134</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:169</a></div>
                             </td>
                         </tr>
             </tbody>
         </table>
+</section>
+    <section data-compodoc="block-properties">
+    <h3>HostBindings</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="class.cds--form-item"></a>
+                    <span class="name">
+                        <span ><b>class.cds--form-item</b></span>
+                        <a href="#class.cds--form-item"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>true</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:151</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
 </section>
 
 
@@ -1018,8 +1084,8 @@ Internal purposes only.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="205"
-                                    class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:205</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="248"
+                                    class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:248</a></div>
                         </td>
                     </tr>
 
@@ -1081,8 +1147,8 @@ Internal purposes only.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="182"
-                                    class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:182</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="224"
+                                    class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:224</a></div>
                         </td>
                     </tr>
 
@@ -1146,8 +1212,8 @@ Internal purposes only.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="193"
-                                    class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:193</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="236"
+                                    class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:236</a></div>
                         </td>
                     </tr>
 
@@ -1215,8 +1281,8 @@ Internal purposes only.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="197"
-                                    class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:197</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="240"
+                                    class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:240</a></div>
                         </td>
                     </tr>
 
@@ -1284,8 +1350,8 @@ Internal purposes only.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="189"
-                                    class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:189</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="231"
+                                    class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:231</a></div>
                         </td>
                     </tr>
 
@@ -1341,6 +1407,32 @@ Internal purposes only.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="changeDetectorRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>changeDetectorRef</b></span>
+                        <a href="#changeDetectorRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ChangeDetectorRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="216" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:216</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="datePickerCount"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
@@ -1363,7 +1455,69 @@ Internal purposes only.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:117</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:149</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="elementRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>elementRef</b></span>
+                        <a href="#elementRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ElementRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="215" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:215</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hostFormItemClass"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>hostFormItemClass</b></span>
+                        <a href="#hostFormItemClass"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @HostBinding(&#x27;class.cds--form-item&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:151</a></div>
                         </td>
                     </tr>
 
@@ -1399,7 +1553,7 @@ Internal purposes only.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:178</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="213" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:213</a></div>
                         </td>
                     </tr>
 
@@ -1430,7 +1584,7 @@ Internal purposes only.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="201" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:201</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="244" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:244</a></div>
                         </td>
                     </tr>
 
@@ -1455,7 +1609,7 @@ Internal purposes only.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="203" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:203</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="246" class="link-to-prism">src/datepicker-input/datepicker-input.component.ts:246</a></div>
                         </td>
                     </tr>
 
@@ -1475,14 +1629,19 @@ Internal purposes only.</p>
 	EventEmitter,
 	ElementRef,
 	TemplateRef,
-	ViewChild
+	ViewChild,
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
+	HostBinding,
+	inject
 } from &quot;@angular/core&quot;;
 import { NG_VALUE_ACCESSOR } from &quot;@angular/forms&quot;;
+import { NgClass, NgTemplateOutlet } from &quot;@angular/common&quot;;
+import { IconDirective } from &quot;carbon-components-angular/icon&quot;;
 
 @Component({
 	selector: &quot;cds-date-picker-input, ibm-date-picker-input&quot;,
 	template: &#x60;
-	&lt;div class&#x3D;&quot;cds--form-item&quot;&gt;
 		&lt;div class&#x3D;&quot;cds--date-picker&quot;
 			[ngClass]&#x3D;&quot;{
 				&#x27;cds--date-picker--simple&#x27; : type &#x3D;&#x3D;&#x3D; &#x27;simple&#x27;,
@@ -1493,87 +1652,112 @@ import { NG_VALUE_ACCESSOR } from &quot;@angular/forms&quot;;
 			}&quot;&gt;
 			&lt;div class&#x3D;&quot;cds--date-picker-container&quot;&gt;
 				&lt;!-- Skeleton structure --&gt;
-				&lt;ng-container *ngIf&#x3D;&quot;skeleton&quot;&gt;
+				@if (skeleton) {
 					&lt;span class&#x3D;&quot;cds--label cds--skeleton&quot;&gt;&lt;/span&gt;
 					&lt;div class&#x3D;&quot;cds--date-picker__input cds--skeleton&quot;&gt;&lt;/div&gt;
-				&lt;/ng-container&gt;
-				&lt;label
-					*ngIf&#x3D;&quot;label &amp;&amp; !skeleton&quot;
-					[for]&#x3D;&quot;id&quot;
-					class&#x3D;&quot;cds--label&quot;
-					[ngClass]&#x3D;&quot;{&#x27;cds--label--disabled&#x27;: disabled}&quot;&gt;
-					&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(label)&quot;&gt;{{label}}&lt;/ng-container&gt;
-					&lt;ng-template *ngIf&#x3D;&quot;isTemplate(label)&quot; [ngTemplateOutlet]&#x3D;&quot;label&quot;&gt;&lt;/ng-template&gt;
-				&lt;/label&gt;
-				&lt;div class&#x3D;&quot;cds--date-picker-input__wrapper&quot;
-					*ngIf&#x3D;&quot;!skeleton&quot;
-					[ngClass]&#x3D;&quot;{
-						&#x27;cds--date-picker-input__wrapper--invalid&#x27;: invalid,
-						&#x27;cds--date-picker-input__wrapper--warn&#x27;: warn,
-						&#x27;cds--date-picker-input__wrapper--decorator&#x27;: !!decorator
-					}&quot;&gt;
-					&lt;span&gt;
-						&lt;input
-							#input
-							autocomplete&#x3D;&quot;off&quot;
-							type&#x3D;&quot;text&quot;
-							class&#x3D;&quot;cds--date-picker__input&quot;
-							[ngClass]&#x3D;&quot;{
-								&#x27;cds--date-picker__input--sm&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;sm&#x27;,
-								&#x27;cds--date-picker__input--md&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;md&#x27;,
-								&#x27;cds--date-picker__input--lg&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;lg&#x27;
-							}&quot;
-							[attr.data-invalid]&#x3D;&quot;invalid ? true : undefined&quot;
-							[value]&#x3D;&quot;value&quot;
-							[pattern]&#x3D;&quot;pattern&quot;
-							[placeholder]&#x3D;&quot;placeholder&quot;
-							[id]&#x3D;&quot;id&quot;
-							[disabled]&#x3D;&quot;disabled&quot;
-							[readonly]&#x3D;&quot;readonly&quot;
-							(change)&#x3D;&quot;onChange($event)&quot;/&gt;
-						&lt;ng-container *ngIf&#x3D;&quot;decorator&quot;&gt;
-							&lt;div class&#x3D;&quot;cds--date-picker-input-inner-wrapper--decorator&quot;&gt;
-								&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;decorator&quot;&gt;&lt;/ng-template&gt;
-							&lt;/div&gt;
-						&lt;/ng-container&gt;
-						&lt;svg
-							*ngIf&#x3D;&quot;type !&#x3D;&#x3D; &#x27;simple&#x27; &amp;&amp; !warn &amp;&amp; !invalid&quot;
-							cdsIcon&#x3D;&quot;calendar&quot;
-							size&#x3D;&quot;16&quot;
-							class&#x3D;&quot;cds--date-picker__icon&quot;&gt;
-						&lt;/svg&gt;
-						&lt;svg
-							*ngIf&#x3D;&quot;invalid&quot;
-							class&#x3D;&quot;cds--date-picker__icon cds--date-picker__icon--invalid&quot;
-							cdsIcon&#x3D;&quot;warning--filled&quot;
-							size&#x3D;&quot;16&quot;&gt;
-						&lt;/svg&gt;
-						&lt;svg
-							*ngIf&#x3D;&quot;!invalid &amp;&amp; warn&quot;
-							cdsIcon&#x3D;&quot;warning--alt--filled&quot;
-							size&#x3D;&quot;16&quot;
-							class&#x3D;&quot;cds--date-picker__icon cds--date-picker__icon--warn&quot;&gt;
-						&lt;/svg&gt;
-					&lt;/span&gt;
-				&lt;/div&gt;
-				&lt;div
-					*ngIf&#x3D;&quot;helperText &amp;&amp; !invalid &amp;&amp; !warn&quot;
-					class&#x3D;&quot;cds--form__helper-text&quot;
-					[ngClass]&#x3D;&quot;{&#x27;cds--form__helper-text--disabled&#x27;: disabled}&quot;&gt;
-					&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(helperText)&quot;&gt;{{helperText}}&lt;/ng-container&gt;
-					&lt;ng-template *ngIf&#x3D;&quot;isTemplate(helperText)&quot; [ngTemplateOutlet]&#x3D;&quot;helperText&quot;&gt;&lt;/ng-template&gt;
-				&lt;/div&gt;
-				&lt;div *ngIf&#x3D;&quot;invalid&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
-					&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(invalidText)&quot;&gt;{{invalidText}}&lt;/ng-container&gt;
-					&lt;ng-template *ngIf&#x3D;&quot;isTemplate(invalidText)&quot; [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
-				&lt;/div&gt;
-				&lt;div *ngIf&#x3D;&quot;!invalid &amp;&amp; warn&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
-					&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(warnText)&quot;&gt;{{warnText}}&lt;/ng-container&gt;
-					&lt;ng-template *ngIf&#x3D;&quot;isTemplate(warnText)&quot; [ngTemplateOutlet]&#x3D;&quot;warnText&quot;&gt;&lt;/ng-template&gt;
-				&lt;/div&gt;
+				}
+				@if (label &amp;&amp; !skeleton) {
+					&lt;label
+						[for]&#x3D;&quot;id&quot;
+						class&#x3D;&quot;cds--label&quot;
+						[ngClass]&#x3D;&quot;{&#x27;cds--label--disabled&#x27;: disabled}&quot;&gt;
+						@if (!isTemplate(label)) {
+							{{label}}
+						}
+						@if (isTemplate(label)) {
+							&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;label&quot;&gt;&lt;/ng-template&gt;
+						}
+					&lt;/label&gt;
+				}
+				@if (!skeleton) {
+					&lt;div class&#x3D;&quot;cds--date-picker-input__wrapper&quot;
+						[ngClass]&#x3D;&quot;{
+							&#x27;cds--date-picker-input__wrapper--invalid&#x27;: invalid,
+							&#x27;cds--date-picker-input__wrapper--warn&#x27;: warn,
+							&#x27;cds--date-picker-input__wrapper--decorator&#x27;: !!decorator
+						}&quot;&gt;
+						&lt;span&gt;
+							&lt;input
+								#input
+								autocomplete&#x3D;&quot;off&quot;
+								type&#x3D;&quot;text&quot;
+								class&#x3D;&quot;cds--date-picker__input&quot;
+								[ngClass]&#x3D;&quot;{
+									&#x27;cds--date-picker__input--sm&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;sm&#x27;,
+									&#x27;cds--date-picker__input--md&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;md&#x27;,
+									&#x27;cds--date-picker__input--lg&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;lg&#x27;
+								}&quot;
+								[attr.data-invalid]&#x3D;&quot;invalid ? true : undefined&quot;
+								[value]&#x3D;&quot;value&quot;
+								[pattern]&#x3D;&quot;pattern&quot;
+								[placeholder]&#x3D;&quot;placeholder&quot;
+								[id]&#x3D;&quot;id&quot;
+								[disabled]&#x3D;&quot;disabled&quot;
+								[readonly]&#x3D;&quot;readonly&quot;
+								(change)&#x3D;&quot;onChange($event)&quot;/&gt;
+							@if (decorator) {
+								&lt;div class&#x3D;&quot;cds--date-picker-input-inner-wrapper--decorator&quot;&gt;
+									&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;decorator&quot;&gt;&lt;/ng-template&gt;
+								&lt;/div&gt;
+							}
+							@if (type !&#x3D;&#x3D; &#x27;simple&#x27; &amp;&amp; !warn &amp;&amp; !invalid) {
+								&lt;svg
+									cdsIcon&#x3D;&quot;calendar&quot;
+									size&#x3D;&quot;16&quot;
+									class&#x3D;&quot;cds--date-picker__icon&quot;&gt;
+								&lt;/svg&gt;
+							}
+							@if (invalid) {
+								&lt;svg
+									class&#x3D;&quot;cds--date-picker__icon cds--date-picker__icon--invalid&quot;
+									cdsIcon&#x3D;&quot;warning--filled&quot;
+									size&#x3D;&quot;16&quot;&gt;
+								&lt;/svg&gt;
+							}
+							@if (!invalid &amp;&amp; warn) {
+								&lt;svg
+									cdsIcon&#x3D;&quot;warning--alt--filled&quot;
+									size&#x3D;&quot;16&quot;
+									class&#x3D;&quot;cds--date-picker__icon cds--date-picker__icon--warn&quot;&gt;
+								&lt;/svg&gt;
+							}
+						&lt;/span&gt;
+					&lt;/div&gt;
+				}
+				@if (helperText &amp;&amp; !invalid &amp;&amp; !warn) {
+					&lt;div
+						class&#x3D;&quot;cds--form__helper-text&quot;
+						[ngClass]&#x3D;&quot;{&#x27;cds--form__helper-text--disabled&#x27;: disabled}&quot;&gt;
+						@if (!isTemplate(helperText)) {
+							{{helperText}}
+						}
+						@if (isTemplate(helperText)) {
+							&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;helperText&quot;&gt;&lt;/ng-template&gt;
+						}
+					&lt;/div&gt;
+				}
+				@if (invalid) {
+					&lt;div class&#x3D;&quot;cds--form-requirement&quot;&gt;
+						@if (!isTemplate(invalidText)) {
+							{{invalidText}}
+						}
+						@if (isTemplate(invalidText)) {
+							&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
+						}
+					&lt;/div&gt;
+				}
+				@if (!invalid &amp;&amp; warn) {
+					&lt;div class&#x3D;&quot;cds--form-requirement&quot;&gt;
+						@if (!isTemplate(warnText)) {
+							{{warnText}}
+						}
+						@if (isTemplate(warnText)) {
+							&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;warnText&quot;&gt;&lt;/ng-template&gt;
+						}
+					&lt;/div&gt;
+				}
 			&lt;/div&gt;
 		&lt;/div&gt;
-&lt;/div&gt;
 	&#x60;,
 	providers: [
 		{
@@ -1581,10 +1765,15 @@ import { NG_VALUE_ACCESSOR } from &quot;@angular/forms&quot;;
 			useExisting: DatePickerInput,
 			multi: true
 		}
-	]
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgClass, NgTemplateOutlet, IconDirective]
 })
 export class DatePickerInput {
 	private static datePickerCount &#x3D; 0;
+
+	@HostBinding(&quot;class.cds--form-item&quot;) readonly hostFormItemClass &#x3D; true;
+
 	/**
 	 * Select a calendar type for the &#x60;model&#x60;.
 	 * Internal purposes only.
@@ -1647,7 +1836,14 @@ export class DatePickerInput {
 
 	@ViewChild(&quot;input&quot;) input: ElementRef;
 
-	constructor(protected elementRef: ElementRef) { }
+	protected elementRef &#x3D; inject(ElementRef);
+	protected changeDetectorRef &#x3D; inject(ChangeDetectorRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	onChange(event) {
 		this.value &#x3D; event.target.value;
@@ -1658,6 +1854,7 @@ export class DatePickerInput {
 
 	public writeValue(value: any) {
 		this.value &#x3D; value;
+		this.changeDetectorRef.markForCheck();
 	}
 
 	public registerOnChange(fn: any) {
@@ -1668,9 +1865,9 @@ export class DatePickerInput {
 		this.onTouched &#x3D; fn;
 	}
 
-	onTouched: () &#x3D;&gt; any &#x3D; () &#x3D;&gt; { };
+	onTouched: () &#x3D;&gt; any &#x3D; () &#x3D;&gt; {};
 
-	propagateChange &#x3D; (_: any) &#x3D;&gt; { };
+	propagateChange &#x3D; (_: any) &#x3D;&gt; {};
 
 	public isTemplate(value) {
 		return value instanceof TemplateRef;
@@ -1706,7 +1903,7 @@ export class DatePickerInput {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div>	<div class="cds--form-item">		<div class="cds--date-picker"			[ngClass]="{				\'cds--date-picker--simple\' : type === \'simple\',				\'cds--date-picker--single\' : type === \'single\',				\'cds--date-picker--range\' : type === \'range\',				\'cds--date-picker--light\' : theme === \'light\',				\'cds--skeleton\' : skeleton			}">			<div class="cds--date-picker-container">				<!-- Skeleton structure -->				<ng-container *ngIf="skeleton">					<span class="cds--label cds--skeleton"></span>					<div class="cds--date-picker__input cds--skeleton"></div>				</ng-container>				<label					*ngIf="label && !skeleton"					[for]="id"					class="cds--label"					[ngClass]="{\'cds--label--disabled\': disabled}">					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>				</label>				<div class="cds--date-picker-input__wrapper"					*ngIf="!skeleton"					[ngClass]="{						\'cds--date-picker-input__wrapper--invalid\': invalid,						\'cds--date-picker-input__wrapper--warn\': warn,						\'cds--date-picker-input__wrapper--decorator\': !!decorator					}">					<span>						<input							#input							autocomplete="off"							type="text"							class="cds--date-picker__input"							[ngClass]="{								\'cds--date-picker__input--sm\': size === \'sm\',								\'cds--date-picker__input--md\': size === \'md\',								\'cds--date-picker__input--lg\': size === \'lg\'							}"							[attr.data-invalid]="invalid ? true : undefined"							[value]="value"							[pattern]="pattern"							[placeholder]="placeholder"							[id]="id"							[disabled]="disabled"							[readonly]="readonly"							(change)="onChange($event)"/>						<ng-container *ngIf="decorator">							<div class="cds--date-picker-input-inner-wrapper--decorator">								<ng-template [ngTemplateOutlet]="decorator"></ng-template>							</div>						</ng-container>						<svg							*ngIf="type !== \'simple\' && !warn && !invalid"							cdsIcon="calendar"							size="16"							class="cds--date-picker__icon">						</svg>						<svg							*ngIf="invalid"							class="cds--date-picker__icon cds--date-picker__icon--invalid"							cdsIcon="warning--filled"							size="16">						</svg>						<svg							*ngIf="!invalid && warn"							cdsIcon="warning--alt--filled"							size="16"							class="cds--date-picker__icon cds--date-picker__icon--warn">						</svg>					</span>				</div>				<div					*ngIf="helperText && !invalid && !warn"					class="cds--form__helper-text"					[ngClass]="{\'cds--form__helper-text--disabled\': disabled}">					<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>					<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>				</div>				<div *ngIf="invalid" class="cds--form-requirement">					<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>					<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>				</div>				<div *ngIf="!invalid && warn" class="cds--form-requirement">					<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>					<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>				</div>			</div>		</div></div>	</div>'
+        var COMPONENT_TEMPLATE = '<div><div class="cds--date-picker"	[ngClass]="{		\'cds--date-picker--simple\' : type === \'simple\',		\'cds--date-picker--single\' : type === \'single\',		\'cds--date-picker--range\' : type === \'range\',		\'cds--date-picker--light\' : theme === \'light\',		\'cds--skeleton\' : skeleton	}">	<div class="cds--date-picker-container">		<!-- Skeleton structure -->		@if (skeleton) {			<span class="cds--label cds--skeleton"></span>			<div class="cds--date-picker__input cds--skeleton"></div>		}		@if (label && !skeleton) {			<label				[for]="id"				class="cds--label"				[ngClass]="{\'cds--label--disabled\': disabled}">				@if (!isTemplate(label)) {					{{label}}				}				@if (isTemplate(label)) {					<ng-template [ngTemplateOutlet]="label"></ng-template>				}			</label>		}		@if (!skeleton) {			<div class="cds--date-picker-input__wrapper"				[ngClass]="{					\'cds--date-picker-input__wrapper--invalid\': invalid,					\'cds--date-picker-input__wrapper--warn\': warn,					\'cds--date-picker-input__wrapper--decorator\': !!decorator				}">				<span>					<input						#input						autocomplete="off"						type="text"						class="cds--date-picker__input"						[ngClass]="{							\'cds--date-picker__input--sm\': size === \'sm\',							\'cds--date-picker__input--md\': size === \'md\',							\'cds--date-picker__input--lg\': size === \'lg\'						}"						[attr.data-invalid]="invalid ? true : undefined"						[value]="value"						[pattern]="pattern"						[placeholder]="placeholder"						[id]="id"						[disabled]="disabled"						[readonly]="readonly"						(change)="onChange($event)"/>					@if (decorator) {						<div class="cds--date-picker-input-inner-wrapper--decorator">							<ng-template [ngTemplateOutlet]="decorator"></ng-template>						</div>					}					@if (type !== \'simple\' && !warn && !invalid) {						<svg							cdsIcon="calendar"							size="16"							class="cds--date-picker__icon">						</svg>					}					@if (invalid) {						<svg							class="cds--date-picker__icon cds--date-picker__icon--invalid"							cdsIcon="warning--filled"							size="16">						</svg>					}					@if (!invalid && warn) {						<svg							cdsIcon="warning--alt--filled"							size="16"							class="cds--date-picker__icon cds--date-picker__icon--warn">						</svg>					}				</span>			</div>		}		@if (helperText && !invalid && !warn) {			<div				class="cds--form__helper-text"				[ngClass]="{\'cds--form__helper-text--disabled\': disabled}">				@if (!isTemplate(helperText)) {					{{helperText}}				}				@if (isTemplate(helperText)) {					<ng-template [ngTemplateOutlet]="helperText"></ng-template>				}			</div>		}		@if (invalid) {			<div class="cds--form-requirement">				@if (!isTemplate(invalidText)) {					{{invalidText}}				}				@if (isTemplate(invalidText)) {					<ng-template [ngTemplateOutlet]="invalidText"></ng-template>				}			</div>		}		@if (!invalid && warn) {			<div class="cds--form-requirement">				@if (!isTemplate(warnText)) {					{{warnText}}				}				@if (isTemplate(warnText)) {					<ng-template [ngTemplateOutlet]="warnText"></ng-template>				}			</div>		}	</div></div>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AILabelComponent', 'selector': 'cds-ai-label, ibm-ai-label'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'CheckboxGroup', 'selector': 'cds-checkbox-group, ibm-checkbox-group'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ComboButtonComponent', 'selector': 'cds-combo-button'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-menu, cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-menu-divider, cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-menu-group, cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-menu-item, cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'IconTab', 'selector': 'cds-icon-tab, ibm-icon-tab'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'MenuButtonComponent', 'selector': 'cds-menu-button'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonIcon', 'selector': 'cds-skeleton-icon, ibm-skeleton-icon'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderComponent', 'selector': 'cds-tab-header, ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaderGroupVertical', 'selector': 'cds-tab-header-group-vertical, ibm-tab-header-group-vertical'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'TabHeadersVertical', 'selector': 'cds-tab-headers-vertical, ibm-tab-headers-vertical'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeaderDecorator', 'selector': 'cds-table-header-decorator, ibm-table-header-decorator'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'TabsVertical', 'selector': 'cds-tabs-vertical, ibm-tabs-vertical'},{'name': 'TabsVerticalGrouped', 'selector': 'cds-tabs-vertical-grouped, ibm-tabs-vertical-grouped'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TagOperationalComponent', 'selector': 'cds-tag-operational, ibm-tag-operational'},{'name': 'TagSelectableComponent', 'selector': 'cds-tag-selectable, ibm-tag-selectable'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'AILabelActions', 'selector': '[cdsAILabelActions], [ibmAILabelActions]'},{'name': 'AILabelContent', 'selector': '[cdsAILabelContent], [ibmAILabelContent]'},{'name': 'AILabelPopoverDirective', 'selector': '[cdsAILabelPopover]'},{'name': 'AspectRatioDirective', 'selector': '[cdsAspectRatio], [ibmAspectRatio]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ClickableTileIconDirective', 'selector': '[cdsClickableTileIcon], [ibmClickableTileIcon]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'LinkIconDirective', 'selector': '[ibmLinkIcon], [cdsLinkIcon]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TabHeaderBase', 'selector': ''},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TagIconDirective', 'selector': '[cdsTagIcon], [ibmTagIcon]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'DatePickerInput'};
@@ -1783,7 +1980,6 @@ export class DatePickerInput {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

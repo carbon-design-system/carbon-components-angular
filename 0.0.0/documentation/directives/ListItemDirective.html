@@ -155,6 +155,10 @@
                         <td class="col-md-9"><code>[cdsListItem], [ibmListItem]</code></td>
                     </tr>
 
+                    <tr>
+                        <td class="col-md-3">Standalone</td>
+                        <td class="col-md-9"><code>true</code></td>
+                    </tr>
 
 
 
@@ -233,7 +237,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/list/list-item.directive.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/list/list-item.directive.ts:11</a></div>
                         </td>
                     </tr>
 
@@ -277,7 +281,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/list/list-item.directive.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/list/list-item.directive.ts:11</a></div>
                         </td>
                     </tr>
 
@@ -297,7 +301,8 @@
  * Applies list styling to the item it is used on. Best used with &#x60;li&#x60;s.
  */
 @Directive({
-	selector: &quot;[cdsListItem], [ibmListItem]&quot;
+	selector: &quot;[cdsListItem], [ibmListItem]&quot;,
+	standalone: true
 })
 export class ListItemDirective {
 	@HostBinding(&quot;class.cds--list__item&quot;) wrapper &#x3D; true;
@@ -374,7 +379,6 @@ export class ListItemDirective {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

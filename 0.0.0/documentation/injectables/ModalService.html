@@ -168,7 +168,6 @@ Uses PlaceholderService to track open instances, and for it&#39;s placeholder vi
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Public</span>
                                 <a href="#placeholderService" >placeholderService</a>
                             </li>
                             <li>
@@ -219,12 +218,12 @@ Uses PlaceholderService to track open instances, and for it&#39;s placeholder vi
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(placeholderService: <a href="../injectables/PlaceholderService.html" target="_self">PlaceholderService</a>)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/modal/modal.service.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/modal/modal.service.ts:22</a></div>
                             </td>
                         </tr>
 
@@ -232,32 +231,6 @@ Uses PlaceholderService to track open instances, and for it&#39;s placeholder vi
                     <td class="col-md-4">
                             <div class="io-description"><p>Creates an instance of <code>ModalService</code>.</p>
 </div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>placeholderService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/PlaceholderService.html" target="_self" >PlaceholderService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
                     </td>
                 </tr>
             </tbody>
@@ -289,8 +262,8 @@ Uses PlaceholderService to track open instances, and for it&#39;s placeholder vi
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="42"
-                                    class="link-to-prism">src/modal/modal.service.ts:42</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="48"
+                                    class="link-to-prism">src/modal/modal.service.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -389,7 +362,7 @@ click: clickFunction,
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/BaseModalService.html#source" target="_self" >BaseModalService:47</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/BaseModalService.html#source" target="_self" >BaseModalService:54</a></code>
 </div>
                         </td>
                     </tr>
@@ -473,7 +446,7 @@ click: clickFunction,
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/BaseModalService.html#source" target="_self" >BaseModalService:95</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/BaseModalService.html#source" target="_self" >BaseModalService:107</a></code>
 </div>
                         </td>
                     </tr>
@@ -535,7 +508,6 @@ When called without parameters it destroys the most recently created/top most mo
                 <td class="col-md-4">
                     <a name="placeholderService"></a>
                     <span class="name">
-                            <span class="modifier">Public</span>
                         <span ><b>placeholderService</b></span>
                         <a href="#placeholderService"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -555,7 +527,7 @@ When called without parameters it destroys the most recently created/top most mo
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/BaseModalService.html#source" target="_self" >BaseModalService:21</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/BaseModalService.html#source" target="_self" >BaseModalService:18</a></code>
 </div>
                         </td>
                     </tr>
@@ -594,7 +566,7 @@ When called without parameters it destroys the most recently created/top most mo
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/BaseModalService.html#source" target="_self" >BaseModalService:36</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/BaseModalService.html#source" target="_self" >BaseModalService:39</a></code>
 </div>
                         </td>
                     </tr>
@@ -650,7 +622,7 @@ the root services.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/BaseModalService.html#source" target="_self" >BaseModalService:19</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/BaseModalService.html#source" target="_self" >BaseModalService:20</a></code>
 </div>
                         </td>
                     </tr>
@@ -664,7 +636,7 @@ the root services.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, ViewContainerRef } from &quot;@angular/core&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, ViewContainerRef, inject } from &quot;@angular/core&quot;;
 import { AlertModal } from &quot;./alert-modal.component&quot;;
 import { AlertModalData } from &quot;./alert-modal.interface&quot;;
 import { PlaceholderService } from &quot;carbon-components-angular/placeholder&quot;;
@@ -681,11 +653,17 @@ import { BaseModalService } from &quot;./base-modal.service&quot;;
  */
 @Injectable()
 export class ModalService extends BaseModalService {
+	placeholderService: PlaceholderService;
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of &#x60;ModalService&#x60;.
 	 */
-	constructor(public placeholderService: PlaceholderService) {
-		super(placeholderService);
+	constructor() {
+		super();
 	}
 
 	/**
@@ -716,13 +694,12 @@ export class ModalService extends BaseModalService {
 				hasScrollingContent: data.hasScrollingContent !&#x3D;&#x3D; undefined ? data.hasScrollingContent : null,
 				size: data.size,
 				buttons: data.buttons || [],
-				close: data.close || (() &#x3D;&gt; { }),
+				close: data.close || (() &#x3D;&gt; {}),
 				showCloseButton: data.showCloseButton
 			}
 		});
 	}
 }
-
 </code></pre>
     </div>
 
@@ -794,7 +771,6 @@ export class ModalService extends BaseModalService {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

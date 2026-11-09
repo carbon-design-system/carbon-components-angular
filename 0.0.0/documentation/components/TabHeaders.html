@@ -173,6 +173,12 @@ if content has overflow.</p>
 
 
 
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                                <code><a href="../injectables/EventService.html" target="_self" >EventService</a></code>
+                </td>
+            </tr>
 
 
             <tr>
@@ -181,6 +187,14 @@ if content has overflow.</p>
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>NgClass</code>
+                            <code>NgTemplateOutlet</code>
+                                <code><a href="../components/Tooltip.html" target="_self" >Tooltip</a></code>
+                </td>
+            </tr>
 
 
 
@@ -221,53 +235,53 @@ if content has overflow.</p>
 	[attr.aria-labelledby]&#x3D;&quot;ariaLabelledby || null&quot;
 	(scroll)&#x3D;&quot;handleScroll()&quot;&gt;
 	&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;contentBefore&quot;&gt;&lt;/ng-container&gt;
-	&lt;ng-container *ngFor&#x3D;&quot;let tab of tabs; let i &#x3D; index;&quot;&gt;
-		&lt;cds-tooltip
-			*ngIf&#x3D;&quot;tab.iconOnly; else inlineTabItem&quot;
-			align&#x3D;&quot;bottom&quot;
-			[autoAlign]&#x3D;&quot;true&quot;
-			class&#x3D;&quot;cds--icon-tooltip&quot;
-			[description]&#x3D;&quot;tab.iconLabel&quot;
-			[enterDelayMs]&#x3D;&quot;tab.enterDelayMs ?? 100&quot;
-			[leaveDelayMs]&#x3D;&quot;tab.leaveDelayMs ?? 300&quot;
-			[isOpen]&#x3D;&quot;tab.isTooltipOpen&quot;
-			[disabled]&#x3D;&quot;tab.disabled&quot;&gt;
+	@for (tab of tabs; track tab; let i &#x3D; $index) {
+		@if (tab.iconOnly) {
+			&lt;cds-tooltip
+				align&#x3D;&quot;bottom&quot;
+				[autoAlign]&#x3D;&quot;true&quot;
+				class&#x3D;&quot;cds--icon-tooltip&quot;
+				[description]&#x3D;&quot;tab.iconLabel&quot;
+				[enterDelayMs]&#x3D;&quot;tab.enterDelayMs ?? 100&quot;
+				[leaveDelayMs]&#x3D;&quot;tab.leaveDelayMs ?? 300&quot;
+				[isOpen]&#x3D;&quot;tab.isTooltipOpen&quot;
+				[disabled]&#x3D;&quot;tab.disabled&quot;&gt;
+				&lt;ng-container *ngTemplateOutlet&#x3D;&quot;tabItemTpl; context: { tab: tab, i: i }&quot;&gt;&lt;/ng-container&gt;
+			&lt;/cds-tooltip&gt;
+		} @else {
 			&lt;ng-container *ngTemplateOutlet&#x3D;&quot;tabItemTpl; context: { tab: tab, i: i }&quot;&gt;&lt;/ng-container&gt;
-		&lt;/cds-tooltip&gt;
-		&lt;ng-template #inlineTabItem&gt;
-			&lt;ng-container *ngTemplateOutlet&#x3D;&quot;tabItemTpl; context: { tab: tab, i: i }&quot;&gt;&lt;/ng-container&gt;
-		&lt;/ng-template&gt;
-		&lt;div
-			*ngIf&#x3D;&quot;dismissable&quot;
-			class&#x3D;&quot;cds--tabs__nav-item--close&quot;&gt;
-			&lt;button
-				type&#x3D;&quot;button&quot;
-				[attr.tabindex]&#x3D;&quot;-1&quot;
-				[attr.aria-disabled]&#x3D;&quot;tab.disabled&quot;
-				[attr.aria-hidden]&#x3D;&quot;!(tab.active &amp;&amp; !tab.disabled)&quot;
-				[disabled]&#x3D;&quot;tab.disabled&quot;
-				class&#x3D;&quot;cds--tabs__nav-item--close-icon&quot;
-				[ngClass]&#x3D;&quot;{
-					&#x27;cds--tabs__nav-item--close-icon--selected&#x27;: tab.active,
-					&#x27;cds--tabs__nav-item--close-icon--disabled&#x27;: tab.disabled
-				}&quot;
-				[attr.title]&#x3D;&quot;getCloseTitle(tab)&quot;
-				(click)&#x3D;&quot;handleClose($event, tab, i)&quot;&gt;
-				&lt;svg
-					focusable&#x3D;&quot;false&quot;
-					preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
-					xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
-					fill&#x3D;&quot;currentColor&quot;
-					width&#x3D;&quot;16&quot;
-					height&#x3D;&quot;16&quot;
-					viewBox&#x3D;&quot;0 0 32 32&quot;
-					[attr.aria-label]&#x3D;&quot;tab.closeButtonAriaLabel&quot;
-					[attr.aria-hidden]&#x3D;&quot;!(tab.active &amp;&amp; !tab.disabled)&quot;&gt;
-					&lt;path d&#x3D;&quot;M17.4141 16L24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z&quot;&gt;&lt;/path&gt;
-				&lt;/svg&gt;
-			&lt;/button&gt;
-		&lt;/div&gt;
-	&lt;/ng-container&gt;
+		}
+		@if (dismissable) {
+			&lt;div class&#x3D;&quot;cds--tabs__nav-item--close&quot;&gt;
+				&lt;button
+					type&#x3D;&quot;button&quot;
+					[attr.tabindex]&#x3D;&quot;-1&quot;
+					[attr.aria-disabled]&#x3D;&quot;tab.disabled&quot;
+					[attr.aria-hidden]&#x3D;&quot;!(tab.active &amp;&amp; !tab.disabled)&quot;
+					[disabled]&#x3D;&quot;tab.disabled&quot;
+					class&#x3D;&quot;cds--tabs__nav-item--close-icon&quot;
+					[ngClass]&#x3D;&quot;{
+						&#x27;cds--tabs__nav-item--close-icon--selected&#x27;: tab.active,
+						&#x27;cds--tabs__nav-item--close-icon--disabled&#x27;: tab.disabled
+					}&quot;
+					[attr.title]&#x3D;&quot;getCloseTitle(tab)&quot;
+					(click)&#x3D;&quot;handleClose($event, tab, i)&quot;&gt;
+					&lt;svg
+						focusable&#x3D;&quot;false&quot;
+						preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
+						xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+						fill&#x3D;&quot;currentColor&quot;
+						width&#x3D;&quot;16&quot;
+						height&#x3D;&quot;16&quot;
+						viewBox&#x3D;&quot;0 0 32 32&quot;
+						[attr.aria-label]&#x3D;&quot;tab.closeButtonAriaLabel&quot;
+						[attr.aria-hidden]&#x3D;&quot;!(tab.active &amp;&amp; !tab.disabled)&quot;&gt;
+						&lt;path d&#x3D;&quot;M17.4141 16L24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z&quot;&gt;&lt;/path&gt;
+					&lt;/svg&gt;
+				&lt;/button&gt;
+			&lt;/div&gt;
+		}
+	}
 	&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;contentAfter&quot;&gt;&lt;/ng-container&gt;
 &lt;/div&gt;
 &lt;ng-template #tabItemTpl let-tab&#x3D;&quot;tab&quot; let-i&#x3D;&quot;i&quot;&gt;
@@ -294,42 +308,46 @@ if content has overflow.</p>
 		(focus)&#x3D;&quot;onTabFocus(tabItem, i)&quot;
 		(keydown)&#x3D;&quot;handleTabKeyDown($event, tab, i)&quot;
 		(click)&#x3D;&quot;selectTab(tabItem, tab, i)&quot;&gt;
-		&lt;ng-container *ngIf&#x3D;&quot;tab.iconOnly; else labeledTab&quot;&gt;
+		@if (tab.iconOnly) {
 			&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;tab.icon&quot;&gt;&lt;/ng-container&gt;
-			&lt;span
-				*ngIf&#x3D;&quot;!tab.disabled &amp;&amp; tab.badgeIndicator&quot;
-				class&#x3D;&quot;cds--badge-indicator&quot;
-				aria-hidden&#x3D;&quot;true&quot;&gt;
-			&lt;/span&gt;
-		&lt;/ng-container&gt;
-		&lt;ng-template #labeledTab&gt;
-			&lt;div class&#x3D;&quot;cds--tabs__nav-item-label-wrapper&quot;&gt;
-				&lt;div *ngIf&#x3D;&quot;dismissable &amp;&amp; tab.icon&quot; class&#x3D;&quot;cds--tabs__nav-item--icon-left&quot;&gt;
-					&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;tab.icon&quot;&gt;&lt;/ng-container&gt;
-				&lt;/div&gt;
-				&lt;span class&#x3D;&quot;cds--tabs__nav-item-label&quot;&gt;
-					&lt;ng-container *ngIf&#x3D;&quot;!tab.headingIsTemplate&quot;&gt;
-						{{ tab.heading }}
-					&lt;/ng-container&gt;
-					&lt;ng-template
-						*ngIf&#x3D;&quot;tab.headingIsTemplate&quot;
-						[ngTemplateOutlet]&#x3D;&quot;tab.heading&quot;
-						[ngTemplateOutletContext]&#x3D;&quot;{$implicit: tab.context}&quot;&gt;
-					&lt;/ng-template&gt;
+			@if (!tab.disabled &amp;&amp; tab.badgeIndicator) {
+				&lt;span
+					class&#x3D;&quot;cds--badge-indicator&quot;
+					aria-hidden&#x3D;&quot;true&quot;&gt;
 				&lt;/span&gt;
+			}
+		} @else {
+			&lt;div class&#x3D;&quot;cds--tabs__nav-item-label-wrapper&quot;&gt;
+				@if (dismissable &amp;&amp; tab.icon) {
+					&lt;div class&#x3D;&quot;cds--tabs__nav-item--icon-left&quot;&gt;
+						&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;tab.icon&quot;&gt;&lt;/ng-container&gt;
+					&lt;/div&gt;
+				}
+				&lt;span class&#x3D;&quot;cds--tabs__nav-item-label&quot;&gt;
+					@if (!tab.headingIsTemplate) {
+						{{ tab.heading }}
+					}
+					@if (tab.headingIsTemplate) {
+						&lt;ng-template
+							[ngTemplateOutlet]&#x3D;&quot;tab.heading&quot;
+							[ngTemplateOutletContext]&#x3D;&quot;{$implicit: tab.context}&quot;&gt;
+						&lt;/ng-template&gt;
+					}
+				&lt;/span&gt;
+				@if (!dismissable &amp;&amp; tab.icon) {
+					&lt;div class&#x3D;&quot;cds--tabs__nav-item--icon&quot;&gt;
+						&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;tab.icon&quot;&gt;&lt;/ng-container&gt;
+					&lt;/div&gt;
+				}
+			&lt;/div&gt;
+			@if (hasSecondaryLabelTabs &amp;&amp; tab.secondaryLabel) {
 				&lt;div
-					*ngIf&#x3D;&quot;!dismissable &amp;&amp; tab.icon&quot;
-					class&#x3D;&quot;cds--tabs__nav-item--icon&quot;&gt;
-					&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;tab.icon&quot;&gt;&lt;/ng-container&gt;
+					class&#x3D;&quot;cds--tabs__nav-item-secondary-label&quot;
+					[attr.title]&#x3D;&quot;tab.secondaryLabel&quot;&gt;
+					{{ tab.secondaryLabel }}
 				&lt;/div&gt;
-			&lt;/div&gt;
-			&lt;div
-				*ngIf&#x3D;&quot;hasSecondaryLabelTabs &amp;&amp; tab.secondaryLabel&quot;
-				class&#x3D;&quot;cds--tabs__nav-item-secondary-label&quot;
-				[attr.title]&#x3D;&quot;tab.secondaryLabel&quot;&gt;
-				{{ tab.secondaryLabel }}
-			&lt;/div&gt;
-		&lt;/ng-template&gt;
+			}
+		}
 	&lt;/button&gt;
 &lt;/ng-template&gt;
 &lt;button
@@ -401,6 +419,10 @@ if content has overflow.</p>
                                 <a href="#headerContainer" >headerContainer</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#i18n" >i18n</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Private</span>
                                 <a href="#resizeObserver" >resizeObserver</a>
                             </li>
@@ -412,11 +434,23 @@ if content has overflow.</p>
                                 <a href="#tabs" >tabs</a>
                             </li>
                             <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#changeDetectorRef" >changeDetectorRef</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Readonly</span>
                                 <a href="#clickMultiplier" >clickMultiplier</a>
                             </li>
                             <li>
                                 <a href="#currentSelectedTab" >currentSelectedTab</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#elementRef" >elementRef</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#eventService" >eventService</a>
                             </li>
                             <li>
                                     <span class="modifier">Protected</span>
@@ -429,6 +463,10 @@ if content has overflow.</p>
                             <li>
                                     <span class="modifier">Readonly</span>
                                 <a href="#OVERFLOW_BUTTON_OFFSET" >OVERFLOW_BUTTON_OFFSET</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#renderer" >renderer</a>
                             </li>
                             <li>
                                     <span class="modifier">Protected</span>
@@ -678,93 +716,15 @@ if content has overflow.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, eventService: <a href="../injectables/EventService.html" target="_self">EventService</a>, renderer: Renderer2, i18n: <a href="../injectables/I18n.html" target="_self">I18n</a>)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="263" class="link-to-prism">src/tabs/tab-headers.component.ts:263</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="278" class="link-to-prism">src/tabs/tab-headers.component.ts:278</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>elementRef</td>
-                                                  
-                                                        <td>
-                                                                    <code>ElementRef</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>changeDetectorRef</td>
-                                                  
-                                                        <td>
-                                                                    <code>ChangeDetectorRef</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>eventService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/EventService.html" target="_self" >EventService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>renderer</td>
-                                                  
-                                                        <td>
-                                                                    <code>Renderer2</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>i18n</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/I18n.html" target="_self" >I18n</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
 </section>
@@ -787,7 +747,7 @@ if content has overflow.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="216" class="link-to-prism">src/tabs/tab-headers.component.ts:216</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="227" class="link-to-prism">src/tabs/tab-headers.component.ts:227</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -819,7 +779,7 @@ if content has overflow.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="221" class="link-to-prism">src/tabs/tab-headers.component.ts:221</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="232" class="link-to-prism">src/tabs/tab-headers.component.ts:232</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -852,7 +812,7 @@ if content has overflow.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:33</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:36</a></code>
 </div>
                             </td>
                         </tr>
@@ -886,7 +846,7 @@ if content has overflow.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:37</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:40</a></code>
 </div>
                             </td>
                         </tr>
@@ -925,7 +885,7 @@ if content has overflow.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:25</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:28</a></code>
 </div>
                             </td>
                         </tr>
@@ -960,7 +920,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:46</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:49</a></code>
 </div>
                             </td>
                         </tr>
@@ -994,7 +954,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:42</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:45</a></code>
 </div>
                             </td>
                         </tr>
@@ -1033,7 +993,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:70</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:73</a></code>
 </div>
                             </td>
                         </tr>
@@ -1067,7 +1027,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:29</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:32</a></code>
 </div>
                             </td>
                         </tr>
@@ -1106,7 +1066,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:65</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:68</a></code>
 </div>
                             </td>
                         </tr>
@@ -1140,7 +1100,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:60</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:63</a></code>
 </div>
                             </td>
                         </tr>
@@ -1179,7 +1139,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:80</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:83</a></code>
 </div>
                             </td>
                         </tr>
@@ -1218,7 +1178,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:75</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:78</a></code>
 </div>
                             </td>
                         </tr>
@@ -1257,7 +1217,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:55</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:58</a></code>
 </div>
                             </td>
                         </tr>
@@ -1296,7 +1256,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:51</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:54</a></code>
 </div>
                             </td>
                         </tr>
@@ -1327,7 +1287,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="227" class="link-to-prism">src/tabs/tab-headers.component.ts:227</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="238" class="link-to-prism">src/tabs/tab-headers.component.ts:238</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -1360,7 +1320,7 @@ The emitted value is the tab index.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="259" class="link-to-prism">src/tabs/tab-headers.component.ts:259</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="270" class="link-to-prism">src/tabs/tab-headers.component.ts:270</a></div>
                         </td>
                     </tr>
 
@@ -1386,7 +1346,7 @@ The emitted value is the tab index.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="255" class="link-to-prism">src/tabs/tab-headers.component.ts:255</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="266" class="link-to-prism">src/tabs/tab-headers.component.ts:266</a></div>
                         </td>
                     </tr>
 
@@ -1418,7 +1378,7 @@ The emitted value is the tab index.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:98</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:101</a></code>
 </div>
                         </td>
                     </tr>
@@ -1456,7 +1416,7 @@ The emitted value is the tab index.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:82</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:85</a></code>
 </div>
                         </td>
                     </tr>
@@ -1489,7 +1449,7 @@ The emitted value is the tab index.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:92</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:95</a></code>
 </div>
                         </td>
                     </tr>
@@ -1522,7 +1482,7 @@ The emitted value is the tab index.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:95</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:98</a></code>
 </div>
                         </td>
                     </tr>
@@ -1555,7 +1515,7 @@ The emitted value is the tab index.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:83</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:86</a></code>
 </div>
                         </td>
                     </tr>
@@ -1588,7 +1548,7 @@ The emitted value is the tab index.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:89</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:92</a></code>
 </div>
                         </td>
                     </tr>
@@ -1621,7 +1581,7 @@ The emitted value is the tab index.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:86</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:89</a></code>
 </div>
                         </td>
                     </tr>
@@ -1657,8 +1617,8 @@ The emitted value is the tab index.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="348"
-                                    class="link-to-prism">src/tabs/tab-headers.component.ts:348</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="357"
+                                    class="link-to-prism">src/tabs/tab-headers.component.ts:357</a></div>
                         </td>
                     </tr>
 
@@ -1690,8 +1650,8 @@ The emitted value is the tab index.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="298"
-                                    class="link-to-prism">src/tabs/tab-headers.component.ts:298</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="307"
+                                    class="link-to-prism">src/tabs/tab-headers.component.ts:307</a></div>
                         </td>
                     </tr>
 
@@ -1731,8 +1691,8 @@ The emitted value is the tab index.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="478"
-                                    class="link-to-prism">src/tabs/tab-headers.component.ts:478</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="487"
+                                    class="link-to-prism">src/tabs/tab-headers.component.ts:487</a></div>
                         </td>
                     </tr>
 
@@ -1798,8 +1758,8 @@ The emitted value is the tab index.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="421"
-                                    class="link-to-prism">src/tabs/tab-headers.component.ts:421</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="430"
+                                    class="link-to-prism">src/tabs/tab-headers.component.ts:430</a></div>
                         </td>
                     </tr>
 
@@ -1844,8 +1804,8 @@ The emitted value is the tab index.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="348"
-                                    class="link-to-prism">src/tabs/tab-headers.component.ts:348</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="357"
+                                    class="link-to-prism">src/tabs/tab-headers.component.ts:357</a></div>
                         </td>
                     </tr>
 
@@ -1911,8 +1871,8 @@ The emitted value is the tab index.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="451"
-                                    class="link-to-prism">src/tabs/tab-headers.component.ts:451</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="460"
+                                    class="link-to-prism">src/tabs/tab-headers.component.ts:460</a></div>
                         </td>
                     </tr>
 
@@ -2004,8 +1964,8 @@ The emitted value is the tab index.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="363"
-                                    class="link-to-prism">src/tabs/tab-headers.component.ts:363</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="372"
+                                    class="link-to-prism">src/tabs/tab-headers.component.ts:372</a></div>
                         </td>
                     </tr>
 
@@ -2106,8 +2066,8 @@ The emitted value is the tab index.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="298"
-                                    class="link-to-prism">src/tabs/tab-headers.component.ts:298</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="307"
+                                    class="link-to-prism">src/tabs/tab-headers.component.ts:307</a></div>
                         </td>
                     </tr>
 
@@ -2171,8 +2131,8 @@ The emitted value is the tab index.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="383"
-                                    class="link-to-prism">src/tabs/tab-headers.component.ts:383</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="392"
+                                    class="link-to-prism">src/tabs/tab-headers.component.ts:392</a></div>
                         </td>
                     </tr>
 
@@ -2208,8 +2168,8 @@ The emitted value is the tab index.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="398"
-                                    class="link-to-prism">src/tabs/tab-headers.component.ts:398</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="407"
+                                    class="link-to-prism">src/tabs/tab-headers.component.ts:407</a></div>
                         </td>
                     </tr>
 
@@ -2275,8 +2235,8 @@ The emitted value is the tab index.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="378"
-                                    class="link-to-prism">src/tabs/tab-headers.component.ts:378</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="387"
+                                    class="link-to-prism">src/tabs/tab-headers.component.ts:387</a></div>
                         </td>
                     </tr>
 
@@ -2312,8 +2272,8 @@ The emitted value is the tab index.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="369"
-                                    class="link-to-prism">src/tabs/tab-headers.component.ts:369</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="378"
+                                    class="link-to-prism">src/tabs/tab-headers.component.ts:378</a></div>
                         </td>
                     </tr>
 
@@ -2349,8 +2309,8 @@ The emitted value is the tab index.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="407"
-                                    class="link-to-prism">src/tabs/tab-headers.component.ts:407</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="416"
+                                    class="link-to-prism">src/tabs/tab-headers.component.ts:416</a></div>
                         </td>
                     </tr>
 
@@ -2432,8 +2392,8 @@ The emitted value is the tab index.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="486"
-                                    class="link-to-prism">src/tabs/tab-headers.component.ts:486</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="495"
+                                    class="link-to-prism">src/tabs/tab-headers.component.ts:495</a></div>
                         </td>
                     </tr>
 
@@ -2501,8 +2461,8 @@ The emitted value is the tab index.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="432"
-                                    class="link-to-prism">src/tabs/tab-headers.component.ts:432</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="441"
+                                    class="link-to-prism">src/tabs/tab-headers.component.ts:441</a></div>
                         </td>
                     </tr>
 
@@ -2596,8 +2556,8 @@ The emitted value is the tab index.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="512"
-                                    class="link-to-prism">src/tabs/tab-headers.component.ts:512</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="521"
+                                    class="link-to-prism">src/tabs/tab-headers.component.ts:521</a></div>
                         </td>
                     </tr>
 
@@ -2641,7 +2601,7 @@ The emitted value is the tab index.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:156</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:163</a></code>
 </div>
                         </td>
                     </tr>
@@ -2732,7 +2692,7 @@ The emitted value is the tab index.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:168</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:175</a></code>
 </div>
                         </td>
                     </tr>
@@ -2805,7 +2765,7 @@ The emitted value is the tab index.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:193</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:200</a></code>
 </div>
                         </td>
                     </tr>
@@ -2850,7 +2810,7 @@ The emitted value is the tab index.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:143</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:150</a></code>
 </div>
                         </td>
                     </tr>
@@ -2897,7 +2857,7 @@ The emitted value is the tab index.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="253" class="link-to-prism">src/tabs/tab-headers.component.ts:253</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="264" class="link-to-prism">src/tabs/tab-headers.component.ts:264</a></div>
                         </td>
                     </tr>
 
@@ -2939,7 +2899,7 @@ The emitted value is the tab index.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="248" class="link-to-prism">src/tabs/tab-headers.component.ts:248</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="259" class="link-to-prism">src/tabs/tab-headers.component.ts:259</a></div>
                         </td>
                     </tr>
 
@@ -2976,7 +2936,7 @@ The emitted value is the tab index.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="244" class="link-to-prism">src/tabs/tab-headers.component.ts:244</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="255" class="link-to-prism">src/tabs/tab-headers.component.ts:255</a></div>
                         </td>
                     </tr>
 
@@ -3024,7 +2984,7 @@ The emitted value is the tab index.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:232</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:243</a></code>
 </div>
                         </td>
                     </tr>
@@ -3035,6 +2995,32 @@ The emitted value is the tab index.</p>
 </div>
                 </td>
             </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="i18n"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>i18n</b></span>
+                        <a href="#i18n"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(I18n)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="220" class="link-to-prism">src/tabs/tab-headers.component.ts:220</a></div>
+                        </td>
+                    </tr>
+
 
         </tbody>
     </table>
@@ -3058,7 +3044,7 @@ The emitted value is the tab index.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="263" class="link-to-prism">src/tabs/tab-headers.component.ts:263</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="274" class="link-to-prism">src/tabs/tab-headers.component.ts:274</a></div>
                         </td>
                     </tr>
 
@@ -3094,7 +3080,7 @@ The emitted value is the tab index.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="236" class="link-to-prism">src/tabs/tab-headers.component.ts:236</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="247" class="link-to-prism">src/tabs/tab-headers.component.ts:247</a></div>
                         </td>
                     </tr>
 
@@ -3126,7 +3112,7 @@ The emitted value is the tab index.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="240" class="link-to-prism">src/tabs/tab-headers.component.ts:240</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="251" class="link-to-prism">src/tabs/tab-headers.component.ts:251</a></div>
                         </td>
                     </tr>
 
@@ -3136,6 +3122,39 @@ The emitted value is the tab index.</p>
 </div>
                 </td>
             </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeDetectorRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>changeDetectorRef</b></span>
+                        <a href="#changeDetectorRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ChangeDetectorRef)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/BaseTabHeader.html" target="_self" >BaseTabHeader</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:120</a></code>
+</div>
+                        </td>
+                    </tr>
+
 
         </tbody>
     </table>
@@ -3170,7 +3189,7 @@ The emitted value is the tab index.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:114</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:117</a></code>
 </div>
                         </td>
                     </tr>
@@ -3203,7 +3222,7 @@ The emitted value is the tab index.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:110</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:113</a></code>
 </div>
                         </td>
                     </tr>
@@ -3214,6 +3233,72 @@ The emitted value is the tab index.</p>
 </div>
                 </td>
             </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="elementRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>elementRef</b></span>
+                        <a href="#elementRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ElementRef)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/BaseTabHeader.html" target="_self" >BaseTabHeader</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:119</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="eventService"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>eventService</b></span>
+                        <a href="#eventService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(EventService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/BaseTabHeader.html" target="_self" >BaseTabHeader</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:121</a></code>
+</div>
+                        </td>
+                    </tr>
+
 
         </tbody>
     </table>
@@ -3248,7 +3333,7 @@ The emitted value is the tab index.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:116</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:124</a></code>
 </div>
                         </td>
                     </tr>
@@ -3287,7 +3372,7 @@ The emitted value is the tab index.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:113</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:116</a></code>
 </div>
                         </td>
                     </tr>
@@ -3326,7 +3411,40 @@ The emitted value is the tab index.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:112</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:115</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="renderer"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>renderer</b></span>
+                        <a href="#renderer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(Renderer2)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/BaseTabHeader.html" target="_self" >BaseTabHeader</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:122</a></code>
 </div>
                         </td>
                     </tr>
@@ -3365,7 +3483,7 @@ The emitted value is the tab index.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:118</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:126</a></code>
 </div>
                         </td>
                     </tr>
@@ -3407,7 +3525,7 @@ The emitted value is the tab index.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:82</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:85</a></code>
 </div>
                         </td>
                     </tr>
@@ -3446,7 +3564,7 @@ The emitted value is the tab index.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:117</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:125</a></code>
 </div>
                         </td>
                     </tr>
@@ -3476,7 +3594,7 @@ The emitted value is the tab index.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="255" class="link-to-prism">src/tabs/tab-headers.component.ts:255</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="266" class="link-to-prism">src/tabs/tab-headers.component.ts:266</a></div>
                                 </td>
                             </tr>
 
@@ -3498,7 +3616,7 @@ The emitted value is the tab index.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="259" class="link-to-prism">src/tabs/tab-headers.component.ts:259</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="270" class="link-to-prism">src/tabs/tab-headers.component.ts:270</a></div>
                                 </td>
                             </tr>
 
@@ -3520,7 +3638,7 @@ The emitted value is the tab index.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="275" class="link-to-prism">src/tabs/tab-headers.component.ts:275</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="284" class="link-to-prism">src/tabs/tab-headers.component.ts:284</a></div>
                                 </td>
                             </tr>
 
@@ -3542,7 +3660,7 @@ The emitted value is the tab index.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="285" class="link-to-prism">src/tabs/tab-headers.component.ts:285</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="294" class="link-to-prism">src/tabs/tab-headers.component.ts:294</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -3582,13 +3700,16 @@ The emitted value is the tab index.</p>
 	OnDestroy,
 	OnInit,
 	ChangeDetectorRef,
-	Renderer2
+	Renderer2,
+	inject
 } from &quot;@angular/core&quot;;
 import { EventService } from &quot;carbon-components-angular/utils&quot;;
 import { I18n } from &quot;carbon-components-angular/i18n&quot;;
 
 import { BaseTabHeader } from &quot;./base-tab-header.component&quot;;
 import { Tab } from &quot;./tab.component&quot;;
+import { NgClass, NgTemplateOutlet } from &quot;@angular/common&quot;;
+import { Tooltip } from &quot;carbon-components-angular/tooltip&quot;;
 
 /**
  * The &#x60;TabHeaders&#x60; component contains the &#x60;Tab&#x60; items and controls scroll functionality
@@ -3632,53 +3753,53 @@ import { Tab } from &quot;./tab.component&quot;;
 			[attr.aria-labelledby]&#x3D;&quot;ariaLabelledby || null&quot;
 			(scroll)&#x3D;&quot;handleScroll()&quot;&gt;
 			&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;contentBefore&quot;&gt;&lt;/ng-container&gt;
-			&lt;ng-container *ngFor&#x3D;&quot;let tab of tabs; let i &#x3D; index;&quot;&gt;
-				&lt;cds-tooltip
-					*ngIf&#x3D;&quot;tab.iconOnly; else inlineTabItem&quot;
-					align&#x3D;&quot;bottom&quot;
-					[autoAlign]&#x3D;&quot;true&quot;
-					class&#x3D;&quot;cds--icon-tooltip&quot;
-					[description]&#x3D;&quot;tab.iconLabel&quot;
-					[enterDelayMs]&#x3D;&quot;tab.enterDelayMs ?? 100&quot;
-					[leaveDelayMs]&#x3D;&quot;tab.leaveDelayMs ?? 300&quot;
-					[isOpen]&#x3D;&quot;tab.isTooltipOpen&quot;
-					[disabled]&#x3D;&quot;tab.disabled&quot;&gt;
+			@for (tab of tabs; track tab; let i &#x3D; $index) {
+				@if (tab.iconOnly) {
+					&lt;cds-tooltip
+						align&#x3D;&quot;bottom&quot;
+						[autoAlign]&#x3D;&quot;true&quot;
+						class&#x3D;&quot;cds--icon-tooltip&quot;
+						[description]&#x3D;&quot;tab.iconLabel&quot;
+						[enterDelayMs]&#x3D;&quot;tab.enterDelayMs ?? 100&quot;
+						[leaveDelayMs]&#x3D;&quot;tab.leaveDelayMs ?? 300&quot;
+						[isOpen]&#x3D;&quot;tab.isTooltipOpen&quot;
+						[disabled]&#x3D;&quot;tab.disabled&quot;&gt;
+						&lt;ng-container *ngTemplateOutlet&#x3D;&quot;tabItemTpl; context: { tab: tab, i: i }&quot;&gt;&lt;/ng-container&gt;
+					&lt;/cds-tooltip&gt;
+				} @else {
 					&lt;ng-container *ngTemplateOutlet&#x3D;&quot;tabItemTpl; context: { tab: tab, i: i }&quot;&gt;&lt;/ng-container&gt;
-				&lt;/cds-tooltip&gt;
-				&lt;ng-template #inlineTabItem&gt;
-					&lt;ng-container *ngTemplateOutlet&#x3D;&quot;tabItemTpl; context: { tab: tab, i: i }&quot;&gt;&lt;/ng-container&gt;
-				&lt;/ng-template&gt;
-				&lt;div
-					*ngIf&#x3D;&quot;dismissable&quot;
-					class&#x3D;&quot;cds--tabs__nav-item--close&quot;&gt;
-					&lt;button
-						type&#x3D;&quot;button&quot;
-						[attr.tabindex]&#x3D;&quot;-1&quot;
-						[attr.aria-disabled]&#x3D;&quot;tab.disabled&quot;
-						[attr.aria-hidden]&#x3D;&quot;!(tab.active &amp;&amp; !tab.disabled)&quot;
-						[disabled]&#x3D;&quot;tab.disabled&quot;
-						class&#x3D;&quot;cds--tabs__nav-item--close-icon&quot;
-						[ngClass]&#x3D;&quot;{
-							&#x27;cds--tabs__nav-item--close-icon--selected&#x27;: tab.active,
-							&#x27;cds--tabs__nav-item--close-icon--disabled&#x27;: tab.disabled
-						}&quot;
-						[attr.title]&#x3D;&quot;getCloseTitle(tab)&quot;
-						(click)&#x3D;&quot;handleClose($event, tab, i)&quot;&gt;
-						&lt;svg
-							focusable&#x3D;&quot;false&quot;
-							preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
-							xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
-							fill&#x3D;&quot;currentColor&quot;
-							width&#x3D;&quot;16&quot;
-							height&#x3D;&quot;16&quot;
-							viewBox&#x3D;&quot;0 0 32 32&quot;
-							[attr.aria-label]&#x3D;&quot;tab.closeButtonAriaLabel&quot;
-							[attr.aria-hidden]&#x3D;&quot;!(tab.active &amp;&amp; !tab.disabled)&quot;&gt;
-							&lt;path d&#x3D;&quot;M17.4141 16L24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z&quot;&gt;&lt;/path&gt;
-						&lt;/svg&gt;
-					&lt;/button&gt;
-				&lt;/div&gt;
-			&lt;/ng-container&gt;
+				}
+				@if (dismissable) {
+					&lt;div class&#x3D;&quot;cds--tabs__nav-item--close&quot;&gt;
+						&lt;button
+							type&#x3D;&quot;button&quot;
+							[attr.tabindex]&#x3D;&quot;-1&quot;
+							[attr.aria-disabled]&#x3D;&quot;tab.disabled&quot;
+							[attr.aria-hidden]&#x3D;&quot;!(tab.active &amp;&amp; !tab.disabled)&quot;
+							[disabled]&#x3D;&quot;tab.disabled&quot;
+							class&#x3D;&quot;cds--tabs__nav-item--close-icon&quot;
+							[ngClass]&#x3D;&quot;{
+								&#x27;cds--tabs__nav-item--close-icon--selected&#x27;: tab.active,
+								&#x27;cds--tabs__nav-item--close-icon--disabled&#x27;: tab.disabled
+							}&quot;
+							[attr.title]&#x3D;&quot;getCloseTitle(tab)&quot;
+							(click)&#x3D;&quot;handleClose($event, tab, i)&quot;&gt;
+							&lt;svg
+								focusable&#x3D;&quot;false&quot;
+								preserveAspectRatio&#x3D;&quot;xMidYMid meet&quot;
+								xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+								fill&#x3D;&quot;currentColor&quot;
+								width&#x3D;&quot;16&quot;
+								height&#x3D;&quot;16&quot;
+								viewBox&#x3D;&quot;0 0 32 32&quot;
+								[attr.aria-label]&#x3D;&quot;tab.closeButtonAriaLabel&quot;
+								[attr.aria-hidden]&#x3D;&quot;!(tab.active &amp;&amp; !tab.disabled)&quot;&gt;
+								&lt;path d&#x3D;&quot;M17.4141 16L24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z&quot;&gt;&lt;/path&gt;
+							&lt;/svg&gt;
+						&lt;/button&gt;
+					&lt;/div&gt;
+				}
+			}
 			&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;contentAfter&quot;&gt;&lt;/ng-container&gt;
 		&lt;/div&gt;
 		&lt;ng-template #tabItemTpl let-tab&#x3D;&quot;tab&quot; let-i&#x3D;&quot;i&quot;&gt;
@@ -3705,42 +3826,46 @@ import { Tab } from &quot;./tab.component&quot;;
 				(focus)&#x3D;&quot;onTabFocus(tabItem, i)&quot;
 				(keydown)&#x3D;&quot;handleTabKeyDown($event, tab, i)&quot;
 				(click)&#x3D;&quot;selectTab(tabItem, tab, i)&quot;&gt;
-				&lt;ng-container *ngIf&#x3D;&quot;tab.iconOnly; else labeledTab&quot;&gt;
+				@if (tab.iconOnly) {
 					&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;tab.icon&quot;&gt;&lt;/ng-container&gt;
-					&lt;span
-						*ngIf&#x3D;&quot;!tab.disabled &amp;&amp; tab.badgeIndicator&quot;
-						class&#x3D;&quot;cds--badge-indicator&quot;
-						aria-hidden&#x3D;&quot;true&quot;&gt;
-					&lt;/span&gt;
-				&lt;/ng-container&gt;
-				&lt;ng-template #labeledTab&gt;
-					&lt;div class&#x3D;&quot;cds--tabs__nav-item-label-wrapper&quot;&gt;
-						&lt;div *ngIf&#x3D;&quot;dismissable &amp;&amp; tab.icon&quot; class&#x3D;&quot;cds--tabs__nav-item--icon-left&quot;&gt;
-							&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;tab.icon&quot;&gt;&lt;/ng-container&gt;
-						&lt;/div&gt;
-						&lt;span class&#x3D;&quot;cds--tabs__nav-item-label&quot;&gt;
-							&lt;ng-container *ngIf&#x3D;&quot;!tab.headingIsTemplate&quot;&gt;
-								{{ tab.heading }}
-							&lt;/ng-container&gt;
-							&lt;ng-template
-								*ngIf&#x3D;&quot;tab.headingIsTemplate&quot;
-								[ngTemplateOutlet]&#x3D;&quot;tab.heading&quot;
-								[ngTemplateOutletContext]&#x3D;&quot;{$implicit: tab.context}&quot;&gt;
-							&lt;/ng-template&gt;
+					@if (!tab.disabled &amp;&amp; tab.badgeIndicator) {
+						&lt;span
+							class&#x3D;&quot;cds--badge-indicator&quot;
+							aria-hidden&#x3D;&quot;true&quot;&gt;
 						&lt;/span&gt;
+					}
+				} @else {
+					&lt;div class&#x3D;&quot;cds--tabs__nav-item-label-wrapper&quot;&gt;
+						@if (dismissable &amp;&amp; tab.icon) {
+							&lt;div class&#x3D;&quot;cds--tabs__nav-item--icon-left&quot;&gt;
+								&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;tab.icon&quot;&gt;&lt;/ng-container&gt;
+							&lt;/div&gt;
+						}
+						&lt;span class&#x3D;&quot;cds--tabs__nav-item-label&quot;&gt;
+							@if (!tab.headingIsTemplate) {
+								{{ tab.heading }}
+							}
+							@if (tab.headingIsTemplate) {
+								&lt;ng-template
+									[ngTemplateOutlet]&#x3D;&quot;tab.heading&quot;
+									[ngTemplateOutletContext]&#x3D;&quot;{$implicit: tab.context}&quot;&gt;
+								&lt;/ng-template&gt;
+							}
+						&lt;/span&gt;
+						@if (!dismissable &amp;&amp; tab.icon) {
+							&lt;div class&#x3D;&quot;cds--tabs__nav-item--icon&quot;&gt;
+								&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;tab.icon&quot;&gt;&lt;/ng-container&gt;
+							&lt;/div&gt;
+						}
+					&lt;/div&gt;
+					@if (hasSecondaryLabelTabs &amp;&amp; tab.secondaryLabel) {
 						&lt;div
-							*ngIf&#x3D;&quot;!dismissable &amp;&amp; tab.icon&quot;
-							class&#x3D;&quot;cds--tabs__nav-item--icon&quot;&gt;
-							&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;tab.icon&quot;&gt;&lt;/ng-container&gt;
+							class&#x3D;&quot;cds--tabs__nav-item-secondary-label&quot;
+							[attr.title]&#x3D;&quot;tab.secondaryLabel&quot;&gt;
+							{{ tab.secondaryLabel }}
 						&lt;/div&gt;
-					&lt;/div&gt;
-					&lt;div
-						*ngIf&#x3D;&quot;hasSecondaryLabelTabs &amp;&amp; tab.secondaryLabel&quot;
-						class&#x3D;&quot;cds--tabs__nav-item-secondary-label&quot;
-						[attr.title]&#x3D;&quot;tab.secondaryLabel&quot;&gt;
-						{{ tab.secondaryLabel }}
-					&lt;/div&gt;
-				&lt;/ng-template&gt;
+					}
+				}
 			&lt;/button&gt;
 		&lt;/ng-template&gt;
 		&lt;button
@@ -3770,15 +3895,19 @@ import { Tab } from &quot;./tab.component&quot;;
 				&lt;path d&#x3D;&quot;M11 8L6 13 5.3 12.3 9.6 8 5.3 3.7 6 3z&quot;&gt;&lt;/path&gt;
 			&lt;/svg&gt;
 		&lt;/button&gt;
-	&#x60;
+	&#x60;,
+	providers: [EventService],
+	imports: [NgClass, NgTemplateOutlet, Tooltip]
 })
 
 export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnChanges, OnDestroy, OnInit {
+	public i18n &#x3D; inject(I18n);
+
 	/**
 	 * List of &#x60;Tab&#x60; components.
 	 */
 	// disable the next line because we need to rename the input
-	// tslint:disable-next-line
+	// eslint-disable-next-line @angular-eslint/no-input-rename
 	@Input(&quot;tabs&quot;) tabInput: QueryList&lt;Tab&gt;;
 
 	/**
@@ -3828,14 +3957,12 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 
 	private resizeObserver: ResizeObserver;
 
-	constructor(
-		protected elementRef: ElementRef,
-		protected changeDetectorRef: ChangeDetectorRef,
-		protected eventService: EventService,
-		protected renderer: Renderer2,
-		protected i18n: I18n
-	) {
-		super(elementRef, changeDetectorRef, eventService, renderer);
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
+		super();
 	}
 
 	get hasSecondaryLabelTabs(): boolean {
@@ -4086,6 +4213,7 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 				this.currentSelectedTab &#x3D; this.tabs.toArray().indexOf(firstTab);
 				this.activeIndex &#x3D; this.currentSelectedTab;
 				firstTab.doSelect();
+				this.changeDetectorRef.markForCheck();
 			}
 		});
 	}
@@ -4120,7 +4248,7 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><button	type="button"	(click)="handleOverflowNavClick(-1, tabs.length)"	(pointerdown)="handleOverflowNavMouseDown(-1)"	(pointerup)="handleOverflowNavMouseUp()"	(pointerleave)="handleOverflowNavMouseUp()"	(pointerout)="handleOverflowNavMouseUp()"	class="cds--tab--overflow-nav-button cds--tab--overflow-nav-button--previous"	[ngClass]="{		\'cds--tab--overflow-nav-button--hidden\': leftOverflowNavButtonHidden	}"	[attr.aria-hidden]="leftOverflowNavButtonHidden"	[attr.tabindex]="-1"	[attr.aria-label]="translations.BUTTON_ARIA_LEFT"	[attr.title]="translations.BUTTON_ARIA_LEFT">	<svg		focusable="false"		preserveAspectRatio="xMidYMid meet"		xmlns="http://www.w3.org/2000/svg"		fill="currentColor"		width="16"		height="16"		viewBox="0 0 16 16"		aria-hidden="true">		<path d="M5 8L10 3 10.7 3.7 6.4 8 10.7 12.3 10 13z"></path>	</svg></button><div	#tabList	class="cds--tab--list"	role="tablist"	[attr.aria-label]="ariaLabel || translations.HEADER_ARIA_LABEL"	[attr.aria-labelledby]="ariaLabelledby || null"	(scroll)="handleScroll()">	<ng-container [ngTemplateOutlet]="contentBefore"></ng-container>	<ng-container *ngFor="let tab of tabs; let i = index;">		<cds-tooltip			*ngIf="tab.iconOnly; else inlineTabItem"			align="bottom"			[autoAlign]="true"			class="cds--icon-tooltip"			[description]="tab.iconLabel"			[enterDelayMs]="tab.enterDelayMs ?? 100"			[leaveDelayMs]="tab.leaveDelayMs ?? 300"			[isOpen]="tab.isTooltipOpen"			[disabled]="tab.disabled">			<ng-container *ngTemplateOutlet="tabItemTpl; context: { tab: tab, i: i }"></ng-container>		</cds-tooltip>		<ng-template #inlineTabItem>			<ng-container *ngTemplateOutlet="tabItemTpl; context: { tab: tab, i: i }"></ng-container>		</ng-template>		<div			*ngIf="dismissable"			class="cds--tabs__nav-item--close">			<button				type="button"				[attr.tabindex]="-1"				[attr.aria-disabled]="tab.disabled"				[attr.aria-hidden]="!(tab.active && !tab.disabled)"				[disabled]="tab.disabled"				class="cds--tabs__nav-item--close-icon"				[ngClass]="{					\'cds--tabs__nav-item--close-icon--selected\': tab.active,					\'cds--tabs__nav-item--close-icon--disabled\': tab.disabled				}"				[attr.title]="getCloseTitle(tab)"				(click)="handleClose($event, tab, i)">				<svg					focusable="false"					preserveAspectRatio="xMidYMid meet"					xmlns="http://www.w3.org/2000/svg"					fill="currentColor"					width="16"					height="16"					viewBox="0 0 32 32"					[attr.aria-label]="tab.closeButtonAriaLabel"					[attr.aria-hidden]="!(tab.active && !tab.disabled)">					<path d="M17.4141 16L24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z"></path>				</svg>			</button>		</div>	</ng-container>	<ng-container [ngTemplateOutlet]="contentAfter"></ng-container></div><ng-template #tabItemTpl let-tab="tab" let-i="i">	<button		#tabItem		role="tab"		[attr.aria-selected]="tab.active"		[attr.tabindex]="(tab.active?0:-1)"		[attr.aria-controls]="tab.id"		[attr.aria-disabled]="tab.disabled"		[attr.aria-label]="tab.iconOnly ? tab.iconLabel : null"		[disabled]="tab.disabled"		[ngClass]="{			\'cds--tabs__nav-item--selected\': tab.active,			\'cds--tabs__nav-item--disabled\': tab.disabled,			\'cds--tabs__nav-item--icon-only\': tab.iconOnly,			\'cds--tabs__nav-item--icon-only__20\': tab.iconOnly && iconSize === \'lg\'		}"		class="cds--tabs__nav-item cds--tabs__nav-link"		type="button"		draggable="false"		id="{{tab.id}}-header"		[attr.title]="tab.iconOnly ? tab.iconLabel : (tab.title || (!tab.headingIsTemplate ? tab.heading : null))"		(focus)="onTabFocus(tabItem, i)"		(keydown)="handleTabKeyDown($event, tab, i)"		(click)="selectTab(tabItem, tab, i)">		<ng-container *ngIf="tab.iconOnly; else labeledTab">			<ng-container [ngTemplateOutlet]="tab.icon"></ng-container>			<span				*ngIf="!tab.disabled && tab.badgeIndicator"				class="cds--badge-indicator"				aria-hidden="true">			</span>		</ng-container>		<ng-template #labeledTab>			<div class="cds--tabs__nav-item-label-wrapper">				<div *ngIf="dismissable && tab.icon" class="cds--tabs__nav-item--icon-left">					<ng-container [ngTemplateOutlet]="tab.icon"></ng-container>				</div>				<span class="cds--tabs__nav-item-label">					<ng-container *ngIf="!tab.headingIsTemplate">						{{ tab.heading }}					</ng-container>					<ng-template						*ngIf="tab.headingIsTemplate"						[ngTemplateOutlet]="tab.heading"						[ngTemplateOutletContext]="{$implicit: tab.context}">					</ng-template>				</span>				<div					*ngIf="!dismissable && tab.icon"					class="cds--tabs__nav-item--icon">					<ng-container [ngTemplateOutlet]="tab.icon"></ng-container>				</div>			</div>			<div				*ngIf="hasSecondaryLabelTabs && tab.secondaryLabel"				class="cds--tabs__nav-item-secondary-label"				[attr.title]="tab.secondaryLabel">				{{ tab.secondaryLabel }}			</div>		</ng-template>	</button></ng-template><button	type="button"	(click)="handleOverflowNavClick(1, tabs.length)"	(pointerdown)="handleOverflowNavMouseDown(1)"	(pointerup)="handleOverflowNavMouseUp()"	(pointerleave)="handleOverflowNavMouseUp()"	(pointerout)="handleOverflowNavMouseUp()"	class="cds--tab--overflow-nav-button cds--tab--overflow-nav-button--next"	[ngClass]="{		\'cds--tab--overflow-nav-button--hidden\': rightOverflowNavButtonHidden	}"	[attr.aria-hidden]="rightOverflowNavButtonHidden"	[attr.tabindex]="-1"	[attr.aria-label]="translations.BUTTON_ARIA_RIGHT"	[attr.title]="translations.BUTTON_ARIA_RIGHT">	<svg		focusable="false"		preserveAspectRatio="xMidYMid meet"		xmlns="http://www.w3.org/2000/svg"		fill="currentColor"		width="16"		height="16"		viewBox="0 0 16 16"		aria-hidden="true">		<path d="M11 8L6 13 5.3 12.3 9.6 8 5.3 3.7 6 3z"></path>	</svg></button>	</div>'
+        var COMPONENT_TEMPLATE = '<div><button	type="button"	(click)="handleOverflowNavClick(-1, tabs.length)"	(pointerdown)="handleOverflowNavMouseDown(-1)"	(pointerup)="handleOverflowNavMouseUp()"	(pointerleave)="handleOverflowNavMouseUp()"	(pointerout)="handleOverflowNavMouseUp()"	class="cds--tab--overflow-nav-button cds--tab--overflow-nav-button--previous"	[ngClass]="{		\'cds--tab--overflow-nav-button--hidden\': leftOverflowNavButtonHidden	}"	[attr.aria-hidden]="leftOverflowNavButtonHidden"	[attr.tabindex]="-1"	[attr.aria-label]="translations.BUTTON_ARIA_LEFT"	[attr.title]="translations.BUTTON_ARIA_LEFT">	<svg		focusable="false"		preserveAspectRatio="xMidYMid meet"		xmlns="http://www.w3.org/2000/svg"		fill="currentColor"		width="16"		height="16"		viewBox="0 0 16 16"		aria-hidden="true">		<path d="M5 8L10 3 10.7 3.7 6.4 8 10.7 12.3 10 13z"></path>	</svg></button><div	#tabList	class="cds--tab--list"	role="tablist"	[attr.aria-label]="ariaLabel || translations.HEADER_ARIA_LABEL"	[attr.aria-labelledby]="ariaLabelledby || null"	(scroll)="handleScroll()">	<ng-container [ngTemplateOutlet]="contentBefore"></ng-container>	@for (tab of tabs; track tab; let i = $index) {		@if (tab.iconOnly) {			<cds-tooltip				align="bottom"				[autoAlign]="true"				class="cds--icon-tooltip"				[description]="tab.iconLabel"				[enterDelayMs]="tab.enterDelayMs ?? 100"				[leaveDelayMs]="tab.leaveDelayMs ?? 300"				[isOpen]="tab.isTooltipOpen"				[disabled]="tab.disabled">				<ng-container *ngTemplateOutlet="tabItemTpl; context: { tab: tab, i: i }"></ng-container>			</cds-tooltip>		} @else {			<ng-container *ngTemplateOutlet="tabItemTpl; context: { tab: tab, i: i }"></ng-container>		}		@if (dismissable) {			<div class="cds--tabs__nav-item--close">				<button					type="button"					[attr.tabindex]="-1"					[attr.aria-disabled]="tab.disabled"					[attr.aria-hidden]="!(tab.active && !tab.disabled)"					[disabled]="tab.disabled"					class="cds--tabs__nav-item--close-icon"					[ngClass]="{						\'cds--tabs__nav-item--close-icon--selected\': tab.active,						\'cds--tabs__nav-item--close-icon--disabled\': tab.disabled					}"					[attr.title]="getCloseTitle(tab)"					(click)="handleClose($event, tab, i)">					<svg						focusable="false"						preserveAspectRatio="xMidYMid meet"						xmlns="http://www.w3.org/2000/svg"						fill="currentColor"						width="16"						height="16"						viewBox="0 0 32 32"						[attr.aria-label]="tab.closeButtonAriaLabel"						[attr.aria-hidden]="!(tab.active && !tab.disabled)">						<path d="M17.4141 16L24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z"></path>					</svg>				</button>			</div>		}	}	<ng-container [ngTemplateOutlet]="contentAfter"></ng-container></div><ng-template #tabItemTpl let-tab="tab" let-i="i">	<button		#tabItem		role="tab"		[attr.aria-selected]="tab.active"		[attr.tabindex]="(tab.active?0:-1)"		[attr.aria-controls]="tab.id"		[attr.aria-disabled]="tab.disabled"		[attr.aria-label]="tab.iconOnly ? tab.iconLabel : null"		[disabled]="tab.disabled"		[ngClass]="{			\'cds--tabs__nav-item--selected\': tab.active,			\'cds--tabs__nav-item--disabled\': tab.disabled,			\'cds--tabs__nav-item--icon-only\': tab.iconOnly,			\'cds--tabs__nav-item--icon-only__20\': tab.iconOnly && iconSize === \'lg\'		}"		class="cds--tabs__nav-item cds--tabs__nav-link"		type="button"		draggable="false"		id="{{tab.id}}-header"		[attr.title]="tab.iconOnly ? tab.iconLabel : (tab.title || (!tab.headingIsTemplate ? tab.heading : null))"		(focus)="onTabFocus(tabItem, i)"		(keydown)="handleTabKeyDown($event, tab, i)"		(click)="selectTab(tabItem, tab, i)">		@if (tab.iconOnly) {			<ng-container [ngTemplateOutlet]="tab.icon"></ng-container>			@if (!tab.disabled && tab.badgeIndicator) {				<span					class="cds--badge-indicator"					aria-hidden="true">				</span>			}		} @else {			<div class="cds--tabs__nav-item-label-wrapper">				@if (dismissable && tab.icon) {					<div class="cds--tabs__nav-item--icon-left">						<ng-container [ngTemplateOutlet]="tab.icon"></ng-container>					</div>				}				<span class="cds--tabs__nav-item-label">					@if (!tab.headingIsTemplate) {						{{ tab.heading }}					}					@if (tab.headingIsTemplate) {						<ng-template							[ngTemplateOutlet]="tab.heading"							[ngTemplateOutletContext]="{$implicit: tab.context}">						</ng-template>					}				</span>				@if (!dismissable && tab.icon) {					<div class="cds--tabs__nav-item--icon">						<ng-container [ngTemplateOutlet]="tab.icon"></ng-container>					</div>				}			</div>			@if (hasSecondaryLabelTabs && tab.secondaryLabel) {				<div					class="cds--tabs__nav-item-secondary-label"					[attr.title]="tab.secondaryLabel">					{{ tab.secondaryLabel }}				</div>			}		}	</button></ng-template><button	type="button"	(click)="handleOverflowNavClick(1, tabs.length)"	(pointerdown)="handleOverflowNavMouseDown(1)"	(pointerup)="handleOverflowNavMouseUp()"	(pointerleave)="handleOverflowNavMouseUp()"	(pointerout)="handleOverflowNavMouseUp()"	class="cds--tab--overflow-nav-button cds--tab--overflow-nav-button--next"	[ngClass]="{		\'cds--tab--overflow-nav-button--hidden\': rightOverflowNavButtonHidden	}"	[attr.aria-hidden]="rightOverflowNavButtonHidden"	[attr.tabindex]="-1"	[attr.aria-label]="translations.BUTTON_ARIA_RIGHT"	[attr.title]="translations.BUTTON_ARIA_RIGHT">	<svg		focusable="false"		preserveAspectRatio="xMidYMid meet"		xmlns="http://www.w3.org/2000/svg"		fill="currentColor"		width="16"		height="16"		viewBox="0 0 16 16"		aria-hidden="true">		<path d="M11 8L6 13 5.3 12.3 9.6 8 5.3 3.7 6 3z"></path>	</svg></button>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AILabelComponent', 'selector': 'cds-ai-label, ibm-ai-label'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'CheckboxGroup', 'selector': 'cds-checkbox-group, ibm-checkbox-group'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ComboButtonComponent', 'selector': 'cds-combo-button'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-menu, cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-menu-divider, cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-menu-group, cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-menu-item, cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'IconTab', 'selector': 'cds-icon-tab, ibm-icon-tab'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'MenuButtonComponent', 'selector': 'cds-menu-button'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonIcon', 'selector': 'cds-skeleton-icon, ibm-skeleton-icon'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderComponent', 'selector': 'cds-tab-header, ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaderGroupVertical', 'selector': 'cds-tab-header-group-vertical, ibm-tab-header-group-vertical'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'TabHeadersVertical', 'selector': 'cds-tab-headers-vertical, ibm-tab-headers-vertical'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeaderDecorator', 'selector': 'cds-table-header-decorator, ibm-table-header-decorator'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'TabsVertical', 'selector': 'cds-tabs-vertical, ibm-tabs-vertical'},{'name': 'TabsVerticalGrouped', 'selector': 'cds-tabs-vertical-grouped, ibm-tabs-vertical-grouped'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TagOperationalComponent', 'selector': 'cds-tag-operational, ibm-tag-operational'},{'name': 'TagSelectableComponent', 'selector': 'cds-tag-selectable, ibm-tag-selectable'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'AILabelActions', 'selector': '[cdsAILabelActions], [ibmAILabelActions]'},{'name': 'AILabelContent', 'selector': '[cdsAILabelContent], [ibmAILabelContent]'},{'name': 'AILabelPopoverDirective', 'selector': '[cdsAILabelPopover]'},{'name': 'AspectRatioDirective', 'selector': '[cdsAspectRatio], [ibmAspectRatio]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ClickableTileIconDirective', 'selector': '[cdsClickableTileIcon], [ibmClickableTileIcon]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'LinkIconDirective', 'selector': '[ibmLinkIcon], [cdsLinkIcon]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TabHeaderBase', 'selector': ''},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TagIconDirective', 'selector': '[cdsTagIcon], [ibmTagIcon]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'TabHeaders'};
@@ -4197,7 +4325,6 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

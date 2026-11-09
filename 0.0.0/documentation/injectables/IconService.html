@@ -226,6 +226,24 @@ class MyComponent implements OnInit {
     </table>
 </section>
 
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="213" class="link-to-prism">src/icon/icon.service.ts:213</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
 
             <section data-compodoc="block-methods">
     
@@ -254,8 +272,8 @@ class MyComponent implements OnInit {
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="193"
-                                    class="link-to-prism">src/icon/icon.service.ts:193</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="320"
+                                    class="link-to-prism">src/icon/icon.service.ts:320</a></div>
                         </td>
                     </tr>
 
@@ -325,8 +343,8 @@ class MyComponent implements OnInit {
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="178"
-                                    class="link-to-prism">src/icon/icon.service.ts:178</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="305"
+                                    class="link-to-prism">src/icon/icon.service.ts:305</a></div>
                         </td>
                     </tr>
 
@@ -408,8 +426,8 @@ class MyComponent implements OnInit {
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="162"
-                                    class="link-to-prism">src/icon/icon.service.ts:162</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="289"
+                                    class="link-to-prism">src/icon/icon.service.ts:289</a></div>
                         </td>
                     </tr>
 
@@ -479,8 +497,8 @@ class MyComponent implements OnInit {
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="155"
-                                    class="link-to-prism">src/icon/icon.service.ts:155</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="282"
+                                    class="link-to-prism">src/icon/icon.service.ts:282</a></div>
                         </td>
                     </tr>
 
@@ -550,8 +568,8 @@ class MyComponent implements OnInit {
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="170"
-                                    class="link-to-prism">src/icon/icon.service.ts:170</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="297"
+                                    class="link-to-prism">src/icon/icon.service.ts:297</a></div>
                         </td>
                     </tr>
 
@@ -642,7 +660,7 @@ class MyComponent implements OnInit {
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/icon/icon.service.ts:150</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="213" class="link-to-prism">src/icon/icon.service.ts:213</a></div>
                         </td>
                     </tr>
 
@@ -657,6 +675,67 @@ class MyComponent implements OnInit {
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@angular/core&quot;;
 import { toString } from &quot;@carbon/icon-helpers&quot;;
+
+// icon imports
+import Add16 from &quot;@carbon/icons/es/add/16&quot;;
+import Add20 from &quot;@carbon/icons/es/add/20&quot;;
+import ArrowDown16 from &quot;@carbon/icons/es/arrow--down/16&quot;;
+import ArrowsVertical16 from &quot;@carbon/icons/es/arrows--vertical/16&quot;;
+import Bee16 from &quot;@carbon/icons/es/bee/16&quot;;
+import Bee20 from &quot;@carbon/icons/es/bee/20&quot;;
+import Calendar16 from &quot;@carbon/icons/es/calendar/16&quot;;
+import Carbon16 from &quot;@carbon/icons/es/carbon/16&quot;;
+import Carbon20 from &quot;@carbon/icons/es/carbon/20&quot;;
+import CaretDown16 from &quot;@carbon/icons/es/caret--down/16&quot;;
+import CaretLeft16 from &quot;@carbon/icons/es/caret--left/16&quot;;
+import CaretRight16 from &quot;@carbon/icons/es/caret--right/16&quot;;
+import CaretUp16 from &quot;@carbon/icons/es/caret--up/16&quot;;
+import Checkmark16 from &quot;@carbon/icons/es/checkmark/16&quot;;
+import CheckmarkFilled16 from &quot;@carbon/icons/es/checkmark--filled/16&quot;;
+import CheckmarkFilled20 from &quot;@carbon/icons/es/checkmark--filled/20&quot;;
+import CheckmarkOutline16 from &quot;@carbon/icons/es/checkmark--outline/16&quot;;
+import Checkbox16 from &quot;@carbon/icons/es/checkbox/16&quot;;
+import CheckboxCheckedFilled16 from &quot;@carbon/icons/es/checkbox--checked--filled/16&quot;;
+import ChevronDown16 from &quot;@carbon/icons/es/chevron--down/16&quot;;
+import ChevronRight16 from &quot;@carbon/icons/es/chevron--right/16&quot;;
+import CircleDash16 from &quot;@carbon/icons/es/circle-dash/16&quot;;
+import Close16 from &quot;@carbon/icons/es/close/16&quot;;
+import Close20 from &quot;@carbon/icons/es/close/20&quot;;
+import Copy16 from &quot;@carbon/icons/es/copy/16&quot;;
+import Copy20 from &quot;@carbon/icons/es/copy/20&quot;;
+import Data216 from &quot;@carbon/icons/es/data--2/16&quot;;
+import Data220 from &quot;@carbon/icons/es/data--2/20&quot;;
+import Document16 from &quot;@carbon/icons/es/document/16&quot;;
+import Document20 from &quot;@carbon/icons/es/document/20&quot;;
+import Download16 from &quot;@carbon/icons/es/download/16&quot;;
+import ErrorFilled16 from &quot;@carbon/icons/es/error--filled/16&quot;;
+import ErrorFilled20 from &quot;@carbon/icons/es/error--filled/20&quot;;
+import Fade16 from &quot;@carbon/icons/es/fade/16&quot;;
+import Fade20 from &quot;@carbon/icons/es/fade/20&quot;;
+import Folder16 from &quot;@carbon/icons/es/folder/16&quot;;
+import Incomplete16 from &quot;@carbon/icons/es/incomplete/16&quot;;
+import InformationFilled16 from &quot;@carbon/icons/es/information--filled/16&quot;;
+import InformationFilled20 from &quot;@carbon/icons/es/information--filled/20&quot;;
+import InformationSquareFilled20 from &quot;@carbon/icons/es/information--square--filled/20&quot;;
+import Menu16 from &quot;@carbon/icons/es/menu/16&quot;;
+import Menu20 from &quot;@carbon/icons/es/menu/20&quot;;
+import OverflowMenuVertical16 from &quot;@carbon/icons/es/overflow-menu--vertical/16&quot;;
+import OverflowMenuHorizontal16 from &quot;@carbon/icons/es/overflow-menu--horizontal/16&quot;;
+import Save16 from &quot;@carbon/icons/es/save/16&quot;;
+import Search16 from &quot;@carbon/icons/es/search/16&quot;;
+import Settings16 from &quot;@carbon/icons/es/settings/16&quot;;
+import SettingsAdjust16 from &quot;@carbon/icons/es/settings--adjust/16&quot;;
+import Subtract16 from &quot;@carbon/icons/es/subtract/16&quot;;
+import TrashCan16 from &quot;@carbon/icons/es/trash-can/16&quot;;
+import Warning16 from &quot;@carbon/icons/es/warning/16&quot;;
+import WarningFilled16 from &quot;@carbon/icons/es/warning--filled/16&quot;;
+import WarningFilled20 from &quot;@carbon/icons/es/warning--filled/20&quot;;
+import WarningAltFilled16 from &quot;@carbon/icons/es/warning--alt--filled/16&quot;;
+import WarningAltFilled20 from &quot;@carbon/icons/es/warning--alt--filled/20&quot;;
+import Undo16 from &quot;@carbon/icons/es/undo/16&quot;;
+import View16 from &quot;@carbon/icons/es/view/16&quot;;
+import ViewOff16 from &quot;@carbon/icons/es/view--off/16&quot;;
+
 
 /**
  * An object that represents a parsed icon
@@ -802,9 +881,75 @@ export class IconMemoryCache extends IconCache {
  *
  * If needed it is possible to register an icon under a different name, via &#x60;registerAs&#x60;.
  */
-@Injectable()
+@Injectable({
+	providedIn: &quot;root&quot;
+})
 export class IconService {
 	private iconCache: IconCache &#x3D; new IconMemoryCache();
+
+	constructor() {
+		this.registerAll([
+			Add16,
+			Add20,
+			ArrowDown16,
+			ArrowsVertical16,
+			Bee16,
+			Bee20,
+			Calendar16,
+			Carbon16,
+			Carbon20,
+			CaretDown16,
+			CaretLeft16,
+			CaretRight16,
+			CaretUp16,
+			Checkmark16,
+			CheckmarkFilled16,
+			CheckmarkFilled20,
+			CheckmarkOutline16,
+			Checkbox16,
+			CheckboxCheckedFilled16,
+			ChevronDown16,
+			ChevronRight16,
+			CircleDash16,
+			Close16,
+			Close20,
+			Copy16,
+			Copy20,
+			Data216,
+			Data220,
+			Document16,
+			Document20,
+			Download16,
+			ErrorFilled16,
+			ErrorFilled20,
+			Fade16,
+			Fade20,
+			Folder16,
+			Incomplete16,
+			InformationFilled16,
+			InformationFilled20,
+			InformationSquareFilled20,
+			Menu16,
+			Menu20,
+			OverflowMenuVertical16,
+			OverflowMenuHorizontal16,
+			Save16,
+			Search16,
+			Settings16,
+			SettingsAdjust16,
+			Subtract16,
+			TrashCan16,
+			Undo16,
+			View16,
+			ViewOff16,
+			Warning16,
+			WarningFilled16,
+			WarningFilled20,
+			WarningAltFilled16,
+			WarningAltFilled20
+		]);
+	}
+
 
 	/**
 	 * Registers an array of icons based on the metadata provided by &#x60;@carbon/icons&#x60;
@@ -922,7 +1067,6 @@ export class IconService {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

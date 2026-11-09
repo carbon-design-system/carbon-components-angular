@@ -139,8 +139,8 @@
             </p>
             <p class="comment">
                 <p>A directive for populating a svg element based on the provided carbon icon name.</p>
-<p>Get started with importing the module:</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { IconModule } from &#39;carbon-components-angular&#39;;</code></pre></div><p><a href="../../?path=/story/components-icon--basic">See demo</a></p>
+<p>Get started with importing the directive:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { IconDirective } from &#39;carbon-components-angular&#39;;</code></pre></div><p><a href="../../?path=/story/components-icon--basic">See demo</a></p>
 
             </p>
 
@@ -164,6 +164,10 @@
                         <td class="col-md-9"><code>[cdsIcon], [ibmIcon]</code></td>
                     </tr>
 
+                    <tr>
+                        <td class="col-md-3">Standalone</td>
+                        <td class="col-md-9"><code>true</code></td>
+                    </tr>
 
 
 
@@ -183,6 +187,14 @@
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#elementRef" >elementRef</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#iconService" >iconService</a>
+                            </li>
                             <li>
                                     <span class="modifier">Static</span>
                                 <a href="#titleIdCounter" >titleIdCounter</a>
@@ -275,57 +287,15 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(elementRef: ElementRef, iconService: <a href="../injectables/IconService.html" target="_self">IconService</a>)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/icon/icon.directive.ts:49</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/icon/icon.directive.ts:57</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>elementRef</td>
-                                                  
-                                                        <td>
-                                                                    <code>ElementRef</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>iconService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/IconService.html" target="_self" >IconService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
 </section>
@@ -353,7 +323,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/icon/icon.directive.ts:47</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/icon/icon.directive.ts:48</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -379,7 +349,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/icon/icon.directive.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/icon/icon.directive.ts:44</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -405,7 +375,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/icon/icon.directive.ts:45</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/icon/icon.directive.ts:46</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -431,7 +401,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/icon/icon.directive.ts:37</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/icon/icon.directive.ts:38</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -452,7 +422,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/icon/icon.directive.ts:31</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/icon/icon.directive.ts:34</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -478,7 +448,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/icon/icon.directive.ts:49</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/icon/icon.directive.ts:50</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -504,7 +474,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/icon/icon.directive.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/icon/icon.directive.ts:40</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -530,7 +500,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/icon/icon.directive.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/icon/icon.directive.ts:42</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -564,8 +534,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="124"
-                                    class="link-to-prism">src/icon/icon.directive.ts:124</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="129"
+                                    class="link-to-prism">src/icon/icon.directive.ts:129</a></div>
                         </td>
                     </tr>
 
@@ -601,8 +571,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="128"
-                                    class="link-to-prism">src/icon/icon.directive.ts:128</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="133"
+                                    class="link-to-prism">src/icon/icon.directive.ts:133</a></div>
                         </td>
                     </tr>
 
@@ -667,8 +637,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="56"
-                                    class="link-to-prism">src/icon/icon.directive.ts:56</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="61"
+                                    class="link-to-prism">src/icon/icon.directive.ts:61</a></div>
                         </td>
                     </tr>
 
@@ -724,6 +694,58 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="elementRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>elementRef</b></span>
+                        <a href="#elementRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ElementRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/icon/icon.directive.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="iconService"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>iconService</b></span>
+                        <a href="#iconService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(IconService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/icon/icon.directive.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="titleIdCounter"></a>
                     <span class="name">
                             <span class="modifier">Static</span>
@@ -745,7 +767,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/icon/icon.directive.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/icon/icon.directive.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -775,7 +797,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/icon/icon.directive.ts:31</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/icon/icon.directive.ts:34</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -829,7 +851,8 @@
 	ElementRef,
 	Input,
 	OnChanges,
-	SimpleChanges
+	SimpleChanges,
+	inject
 } from &quot;@angular/core&quot;;
 import { IconService } from &quot;./icon.service&quot;;
 import { getAttributes } from &quot;@carbon/icon-helpers&quot;;
@@ -837,18 +860,20 @@ import { getAttributes } from &quot;@carbon/icon-helpers&quot;;
 /**
  * A directive for populating a svg element based on the provided carbon icon name.
  *
- * Get started with importing the module:
+ * Get started with importing the directive:
  *
  * &#x60;&#x60;&#x60;typescript
- * import { IconModule } from &#x27;carbon-components-angular&#x27;;
+ * import { IconDirective } from &#x27;carbon-components-angular&#x27;;
  * &#x60;&#x60;&#x60;
  *
  * [See demo](../../?path&#x3D;/story/components-icon--basic)
  */
 @Directive({
-	selector: &quot;[cdsIcon], [ibmIcon]&quot;
+	selector: &quot;[cdsIcon], [ibmIcon]&quot;,
+	standalone: true
 })
 export class IconDirective implements AfterViewInit, OnChanges {
+	static titleIdCounter &#x3D; 0;
 
 	/**
 	 * @deprecated since v5 - Use &#x60;cdsIcon&#x60; input property instead
@@ -856,8 +881,6 @@ export class IconDirective implements AfterViewInit, OnChanges {
 	@Input() set ibmIcon(iconName: string) {
 		this.cdsIcon &#x3D; iconName;
 	}
-
-	static titleIdCounter &#x3D; 0;
 
 	@Input() cdsIcon &#x3D; &quot;&quot;;
 
@@ -873,10 +896,14 @@ export class IconDirective implements AfterViewInit, OnChanges {
 
 	@Input() isFocusable &#x3D; false;
 
-	constructor(
-		protected elementRef: ElementRef,
-		protected iconService: IconService
-	) {}
+	protected elementRef &#x3D; inject(ElementRef);
+	protected iconService &#x3D; inject(IconService);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	renderIcon(iconName: string) {
 		const root &#x3D; this.elementRef.nativeElement as HTMLElement;
@@ -1030,7 +1057,6 @@ export class IconDirective implements AfterViewInit, OnChanges {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

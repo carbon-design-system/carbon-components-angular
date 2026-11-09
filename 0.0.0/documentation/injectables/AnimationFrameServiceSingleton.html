@@ -159,6 +159,10 @@
                                 <a href="#frameSource" >frameSource</a>
                             </li>
                             <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#ngZone" >ngZone</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Public</span>
                                 <a href="#tick" >tick</a>
                             </li>
@@ -199,45 +203,15 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(ngZone: NgZone)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/utils/animation-frame.service.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/utils/animation-frame.service.ts:23</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>ngZone</td>
-                                                  
-                                                        <td>
-                                                                    <code>NgZone</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
 </section>
@@ -269,8 +243,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="27"
-                                    class="link-to-prism">src/utils/animation-frame.service.ts:27</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="36"
+                                    class="link-to-prism">src/utils/animation-frame.service.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -336,8 +310,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="23"
-                                    class="link-to-prism">src/utils/animation-frame.service.ts:23</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="32"
+                                    class="link-to-prism">src/utils/animation-frame.service.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -379,7 +353,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/utils/animation-frame.service.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/utils/animation-frame.service.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -405,7 +379,33 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/utils/animation-frame.service.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/utils/animation-frame.service.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngZone"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>ngZone</b></span>
+                        <a href="#ngZone"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(NgZone)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/utils/animation-frame.service.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -432,7 +432,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/utils/animation-frame.service.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/utils/animation-frame.service.ts:13</a></div>
                         </td>
                     </tr>
 
@@ -448,19 +448,28 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
 	Injectable,
 	OnDestroy,
-	NgZone
+	NgZone,
+	inject
 } from &quot;@angular/core&quot;;
 import { Observable, Subject, from } from &quot;rxjs&quot;;
 
-@Injectable()
+@Injectable({
+	providedIn: &quot;root&quot;
+})
 export class AnimationFrameServiceSingleton implements OnDestroy {
 	public tick: Observable&lt;number&gt;;
+
+	protected ngZone &#x3D; inject(NgZone);
 
 	protected frameSource &#x3D; new Subject&lt;number&gt;();
 
 	protected animationFrameId: number;
 
-	constructor(protected ngZone: NgZone) {
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
 		this.tick &#x3D; this.frameSource.asObservable();
 		this.ngZone.runOutsideAngular(() &#x3D;&gt; {
 			this.animationFrameId &#x3D; requestAnimationFrame(this.doTick.bind(this));
@@ -474,7 +483,8 @@ export class AnimationFrameServiceSingleton implements OnDestroy {
 	protected doTick(frame: number) {
 		this.frameSource.next(frame);
 		this.ngZone.runOutsideAngular(() &#x3D;&gt; {
-			requestAnimationFrame(this.doTick.bind(this));
+			// keep track of the latest frame so &#x60;ngOnDestroy&#x60; can cancel the loop
+			this.animationFrameId &#x3D; requestAnimationFrame(this.doTick.bind(this));
 		});
 	}
 }
@@ -483,7 +493,13 @@ export class AnimationFrameServiceSingleton implements OnDestroy {
 export class AnimationFrameService {
 	public tick: Observable&lt;number&gt;;
 
-	constructor(protected singleton: AnimationFrameServiceSingleton) {
+	protected singleton &#x3D; inject(AnimationFrameServiceSingleton);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
 		this.tick &#x3D; from(this.singleton.tick);
 	}
 }
@@ -558,7 +574,6 @@ export class AnimationFrameService {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 
