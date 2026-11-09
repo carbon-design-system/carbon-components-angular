@@ -72,24 +72,25 @@ That's it! Now we can run `npm start` and start building out our application!
   - IBMers should use our #carbon-ng Slack channel
 
 Angular version support matrix:
-| Angular | v3 | v4 | v5 |
-| ------- | -- | -- | ------------------- |
-| 6       | ✅ | ❌ | ❌                   |
-| 7       | ✅ | ✅ | ❌                   |
-| 8       | ✅ | ✅ | ❌                   |
-| 9       | ❌ | ✅ | ❌                   |
-| 10      | ❌ | ✅ | ❌                   |
-| 11      | ❌ | ✅ | ❌                   |
-| 12      | ❌ | ✅ | ❌                   |
-| 13      | ❌ | ✅ | ❌                   |
-| 14      | ❌ | ✅ | ✅                   |
-| 15      | ❌ | ✅ | ✅                   |
-| 16      | ❌ | ❌ | ✅                   |
-| 17      | ❌ | ❌ | ✅                   |
-| 18      | ❌ | ❌ | ✅                   |
-| 19      | ❌ | ❌ | ✅                   |
-| 20      | ❌ | ❌ | ✅                   |
-| 21      | ❌ | ❌ | ✅                   |
+| Angular | v3 | v4 | v5 | v6 |
+| ------- | -- | -- | -- | -- |
+| 6       | ✅ | ❌ | ❌ | ❌ |
+| 7       | ✅ | ✅ | ❌ | ❌ |
+| 8       | ✅ | ✅ | ❌ | ❌ |
+| 9       | ❌ | ✅ | ❌ | ❌ |
+| 10      | ❌ | ✅ | ❌ | ❌ |
+| 11      | ❌ | ✅ | ❌ | ❌ |
+| 12      | ❌ | ✅ | ❌ | ❌ |
+| 13      | ❌ | ✅ | ❌ | ❌ |
+| 14      | ❌ | ✅ | ✅ | ❌ |
+| 15      | ❌ | ✅ | ✅ | ❌ |
+| 16      | ❌ | ❌ | ✅ | ❌ |
+| 17      | ❌ | ❌ | ✅ | ❌ |
+| 18      | ❌ | ❌ | ✅ | ❌ |
+| 19      | ❌ | ❌ | ✅ | ❌ |
+| 20      | ❌ | ❌ | ✅ | ✅ |
+| 21      | ❌ | ❌ | ✅ | ✅ |
+| 22      | ❌ | ❌ | ✅ | ✅ |
 
 Carbon Components Angular version support matrix:
 | Carbon Components Angular version | Community support | Active support |
@@ -99,6 +100,7 @@ Carbon Components Angular version support matrix:
 | v3                                | ✅                 | ❌             |
 | v4                                | ✅                 | ❌             |
 | v5                                | ✅                 | ✅             |
+| v6                                | ✅                 | ✅             |
 
 **Not supported versions: Out of support. We plan to support our latest, and previous release. Beyond that we make no guarantees of continued support - these include v1, v2**
 
