@@ -11,7 +11,7 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    # We use Node v20 for building since CCA@v5 is using Angular 17.
+    # Node 24 matches the publish workflow (semantic-release v25 requires Node 22.14+).
     strategy:
       matrix:
         node-version: [24.x]
