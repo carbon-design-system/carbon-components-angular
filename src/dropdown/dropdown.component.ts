@@ -267,7 +267,16 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 	/**
 	 * Set to `true` to disable the dropdown.
 	 */
-	@Input() disabled = false;
+	@Input() set disabled(value: boolean) {
+		this._disabled = value;
+		if (value) {
+			this.closeMenu();
+		}
+	}
+
+	get disabled(): boolean {
+		return this._disabled;
+	}
 	/**
 	 * Set to `true` for a readonly state.
 	 */
@@ -395,6 +404,8 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 	protected onTouchedCallback: () => void = this._noop;
 
 	protected _isFocused = false;
+
+	protected _disabled = false;
 
 	// primarily used to capture and propagate input to `writeValue` before the content is available
 	private _writtenValue: any = [];
