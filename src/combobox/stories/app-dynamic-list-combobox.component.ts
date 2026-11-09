@@ -1,4 +1,6 @@
 import { Component, AfterViewInit } from "@angular/core";
+import { ComboBox } from "../combobox.component";
+import { DropdownList } from "carbon-components-angular/dropdown";
 
 @Component({
 	selector: "app-dynamic-list-combobox",
@@ -10,7 +12,8 @@ import { Component, AfterViewInit } from "@angular/core";
 			(selected)="updateSelected($event)">
 			<cds-dropdown-list></cds-dropdown-list>
 		</cds-combo-box>
-	`
+	`,
+	imports: [ComboBox, DropdownList]
 })
 export class DynamicListComboBox implements AfterViewInit {
 	items = [

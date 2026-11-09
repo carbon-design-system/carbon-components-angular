@@ -10,8 +10,11 @@ import {
 	OnChanges,
 	QueryList,
 	SimpleChanges,
-	TemplateRef
+	TemplateRef,
+	inject
 } from "@angular/core";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 import { CHECKBOX_GROUP_HOST } from "./checkbox-group-host";
 import { Checkbox } from "./checkbox.component";
 
@@ -41,59 +44,80 @@ import { Checkbox } from "./checkbox.component";
 			[attr.aria-labelledby]="legendId || fieldsetAriaLabelledby || null"
 			[attr.aria-readonly]="readOnly ? true : null"
 			[attr.aria-describedby]="(helperText && !invalid && !warn) ? helperTextId : null">
-			<legend *ngIf="legend" class="cds--label" [attr.id]="legendId || null">
-				<ng-template *ngIf="isTemplate(legend); else legendLabel" [ngTemplateOutlet]="legend"></ng-template>
-				<ng-template #legendLabel>{{legend}}</ng-template>
-				<ng-container *ngIf="decorator">
-					<div class="cds--checkbox-group-inner--decorator">
-						<ng-template [ngTemplateOutlet]="decorator"></ng-template>
-					</div>
-				</ng-container>
-			</legend>
+			@if (legend) {
+				<legend
+					class="cds--label"
+					[attr.id]="legendId || null">
+					@if (isTemplate(legend)) {
+						<ng-template [ngTemplateOutlet]="legend"></ng-template>
+					} @else {
+						{{legend}}
+					}
+					@if (decorator) {
+						<div class="cds--checkbox-group-inner--decorator">
+							<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+						</div>
+					}
+				</legend>
+			}
 			<ng-content></ng-content>
 			<div class="cds--checkbox-group__validation-msg">
-				<ng-container *ngIf="!readOnly && invalid">
+				@if (!readOnly && invalid) {
 					<svg
 						cdsIcon="warning--filled"
 						size="16"
 						class="cds--checkbox__invalid-icon">
 					</svg>
 					<div class="cds--form-requirement">
-						<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
-						<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+						@if (!isTemplate(invalidText)) {
+							{{ invalidText }}
+						}
+						@if (isTemplate(invalidText)) {
+							<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+						}
 					</div>
-				</ng-container>
-				<ng-container *ngIf="!readOnly && !invalid && warn">
+				}
+				@if (!readOnly && !invalid && warn) {
 					<svg
 						cdsIcon="warning--alt--filled"
 						size="16"
 						class="cds--checkbox__invalid-icon cds--checkbox__invalid-icon--warning">
 					</svg>
 					<div class="cds--form-requirement">
-						<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-						<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
+						@if (!isTemplate(warnText)) {
+							{{warnText}}
+						}
+						@if (isTemplate(warnText)) {
+							<ng-template [ngTemplateOutlet]="warnText"></ng-template>
+						}
 					</div>
-				</ng-container>
+				}
 			</div>
-			<div
-				*ngIf="helperText && !invalid && !warn"
-				class="cds--form__helper-text"
-				[id]="helperTextId">
-				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-			</div>
+			@if (helperText && !invalid && !warn) {
+				<div
+					class="cds--form__helper-text"
+					[id]="helperTextId">
+					@if (!isTemplate(helperText)) {
+						{{helperText}}
+					}
+					@if (isTemplate(helperText)) {
+						<ng-template [ngTemplateOutlet]="helperText"></ng-template>
+					}
+				</div>
+			}
 		</fieldset>
 	`,
 	providers: [
 		{ provide: CHECKBOX_GROUP_HOST, useExisting: CheckboxGroup }
 	],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgClass, NgTemplateOutlet, IconDirective]
 })
 export class CheckboxGroup implements OnChanges, AfterContentInit {
 	private static nextHelperId = 0;
+
 	@HostBinding("class.cds--form-item") hostFormItem = true;
 
-	// tslint:disable-next-line:no-forward-ref
 	@ContentChildren(forwardRef(() => Checkbox), { descendants: true }) checkboxes: QueryList<Checkbox>;
 
 	readonly helperTextId = `checkbox-group-helper-${CheckboxGroup.nextHelperId++}`;
@@ -129,7 +153,13 @@ export class CheckboxGroup implements OnChanges, AfterContentInit {
 	 */
 	@Input() decorator: TemplateRef<any>;
 
-	constructor(private changeDetectorRef: ChangeDetectorRef) {}
+	private changeDetectorRef = inject(ChangeDetectorRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (changes["readOnly"] || changes["invalid"] || changes["warn"]) {

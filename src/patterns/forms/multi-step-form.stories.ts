@@ -1,20 +1,24 @@
-/* tslint:disable variable-name */
-
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import {
+	Component,
+	inject,
+	OnDestroy,
+	OnInit
+} from "@angular/core";
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { GridModule } from "../../grid";
-import { UIShellModule } from "../../ui-shell";
-import { DropdownModule } from "../../dropdown";
-import { ButtonModule } from "../../button";
-import { InputModule } from "../../input";
-import { ProgressIndicatorModule } from "../../progress-indicator";
-import { BreadcrumbModule } from "../../breadcrumb";
+import { ColumnDirective, GridDirective, RowDirective } from "../../grid";
+import { Dropdown, DropdownList } from "../../dropdown";
+import { Button } from "../../button";
+import { ProgressIndicator } from "../../progress-indicator";
+import { Breadcrumb, BreadcrumbItemComponent } from "../../breadcrumb";
 import {
 	FormBuilder,
 	FormControl,
 	FormGroup,
 	ReactiveFormsModule
 } from "@angular/forms";
+import { Checkbox } from "../../checkbox";
+import { Hamburger, Header } from "../../ui-shell";
+import { Label, TextArea, TextInput } from "../../input";
 
 @Component({
 	selector: "app-multi-step-form",
@@ -52,64 +56,66 @@ import {
 						</cds-progress-indicator>
 					</div>
 				</div>
-				<div cdsCol [columnNumbers]="{'lg': 6, 'md': 6, 'sm': 6}" [ngSwitch]="currentStep">
-					<ng-container *ngSwitchCase="1">
-						<form [formGroup]="step2FormGroup">
+				<div cdsCol [columnNumbers]="{'lg': 6, 'md': 6, 'sm': 6}">
+					@switch (currentStep) {
+						@case (1) {
+							<form [formGroup]="step2FormGroup">
+								<div cdsGrid>
+									<div cdsRow>
+										<h4>Create a new workspace</h4>
+										<label class="form-label">
+											When you create a workspace, you connect IBM Cloud
+											Schematics to existing Github / Gitlab repos that host
+											your Terraform templates.
+										</label>
+									</div>
+									<div cdsRow class="form-item">
+										<cds-label>
+											Workspace name
+											<input
+												cdsText
+												[autocomplete]="false"
+												formControlName="workspaceName">
+										</cds-label>
+									</div>
+									<div cdsRow class="form-item">
+										<cds-dropdown
+											class="dropdown"
+											label="Resource group"
+											value="content"
+											formControlName="resourceGroup"
+											[dropUp]="false">
+											<cds-dropdown-list [items]="resourceGroups"></cds-dropdown-list>
+										</cds-dropdown>
+									</div>
+									<div cdsRow class="form-item">
+										<cds-label>
+											Description (optional)
+											<textarea
+												cdsTextArea
+												placeholder="What is the purpose of this workspace?"
+												formControlName="purpose"
+												[rows]="3"
+												aria-label="textarea"></textarea>
+										</cds-label>
+									</div>
+									<div cdsRow class="form-item">
+										<button cdsButton (click)="changeStep(2)">Step 3</button>
+									</div>
+								</div>
+							</form>
+						}
+						@case (2) {
 							<div cdsGrid>
 								<div cdsRow>
-									<h4>Create a new workspace</h4>
-									<label class="form-label">
-										When you create a workspace, you connect IBM Cloud
-										Schematics to existing Github / Gitlab repos that host
-										your Terraform templates.
-									</label>
+									Step 3 form!
 								</div>
 								<div cdsRow class="form-item">
-									<cds-label>
-										Workspace name
-										<input
-											cdsText
-											[autocomplete]="false"
-											formControlName="workspaceName">
-									</cds-label>
-								</div>
-								<div cdsRow class="form-item">
-									<cds-dropdown
-										class="dropdown"
-										label="Resource group"
-										value="content"
-										formControlName="resourceGroup"
-										[dropUp]="false">
-										<cds-dropdown-list [items]="resourceGroups"></cds-dropdown-list>
-									</cds-dropdown>
-								</div>
-								<div cdsRow class="form-item">
-									<cds-label>
-										Description (optional)
-										<textarea
-											cdsTextArea
-											placeholder="What is the purpose of this workspace?"
-											formControlName="purpose"
-											[rows]="3"
-											aria-label="textarea"></textarea>
-									</cds-label>
-								</div>
-								<div cdsRow class="form-item">
-									<button cdsButton (click)="changeStep(2)">Step 3</button>
+									<button cdsButton (click)="changeStep(1)">Step 2</button>
 								</div>
 							</div>
-						</form>
-					</ng-container>
-					<ng-container *ngSwitchCase="2">
-						<div cdsGrid>
-							<div cdsRow>
-								Step 3 form!
-							</div>
-							<div cdsRow class="form-item">
-								<button cdsButton (click)="changeStep(1)">Step 2</button>
-							</div>
-						</div>
-					</ng-container>
+						}
+					}
 				</div>
 			</div>
 		</div>
@@ -143,7 +149,26 @@ import {
 		.form-item {
 			margin-top: 1.5rem;
 		}
-	`]
+	`],
+	imports: [
+		GridDirective,
+		RowDirective,
+		ColumnDirective,
+		Checkbox,
+		ProgressIndicator,
+		Button,
+		Breadcrumb,
+		BreadcrumbItemComponent,
+		ReactiveFormsModule,
+		Dropdown,
+		DropdownList,
+		Header,
+		Hamburger,
+		Label,
+		TextArea,
+		TextInput
+	],
+	standalone: true
 })
 class MultiStepFormStory implements OnInit, OnDestroy {
 	public step2FormGroup: FormGroup;
@@ -178,7 +203,7 @@ class MultiStepFormStory implements OnInit, OnDestroy {
 
 	currentStep = 1;
 
-	constructor(protected formBuilder: FormBuilder) { }
+	protected formBuilder = inject(FormBuilder);
 
 	ngOnInit() {
 		document.querySelector(".sb-show-main")?.classList.add("full-page");
@@ -206,16 +231,9 @@ export default {
 	title: "Pattern/Forms",
 	decorators: [
 		moduleMetadata({
-			declarations: [ MultiStepFormStory ],
+			declarations: [  ],
 			imports: [
-				ButtonModule,
-				GridModule,
-				UIShellModule,
-				ProgressIndicatorModule,
-				BreadcrumbModule,
-				ReactiveFormsModule,
-				InputModule,
-				DropdownModule
+				MultiStepFormStory
 			]
 		})
 	]

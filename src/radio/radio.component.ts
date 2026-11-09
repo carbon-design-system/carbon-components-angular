@@ -1,13 +1,17 @@
 import {
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	Input,
 	HostBinding,
 	Output,
 	EventEmitter,
-	TemplateRef
+	TemplateRef,
+	inject
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { RadioChange } from "./radio-change.class";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
 
 /**
  * class: Radio (extends Checkbox)
@@ -25,20 +29,23 @@ import { RadioChange } from "./radio-change.class";
 @Component({
 	selector: "cds-radio, ibm-radio",
 	template: `
-		<input
-			*ngIf="!skeleton"
-			class="cds--radio-button"
-			type="radio"
-			[checked]="checked"
-			[disabled]="disabled || disabledFromGroup"
-			[name]="name"
-			[id]="id"
-			[required]="required"
-			[attr.value]="value"
-			[attr.aria-labelledby]="ariaLabelledby"
-			(change)="onChange($event)"
-			(click)="onClick($event)">
-		<div *ngIf="skeleton" class="cds--radio-button cds--skeleton"></div>
+		@if (!skeleton) {
+			<input
+				class="cds--radio-button"
+				type="radio"
+				[checked]="checked"
+				[disabled]="disabled || disabledFromGroup"
+				[name]="name"
+				[id]="id"
+				[required]="required"
+				[attr.value]="value"
+				[attr.aria-labelledby]="ariaLabelledby"
+				(change)="onChange($event)"
+				(click)="onClick($event)">
+		}
+		@if (skeleton) {
+			<div class="cds--radio-button cds--skeleton"></div>
+		}
 		<label
 			class="cds--radio-button__label"
 			[attr.aria-label]="ariaLabel"
@@ -50,11 +57,11 @@ import { RadioChange } from "./radio-change.class";
 			<span class="cds--radio-button__appearance"></span>
 			<span class="cds--radio-button__label-text">
 				<ng-content></ng-content>
-				<ng-container *ngIf="decorator">
+				@if (decorator) {
 					<div class="cds--radio-button-wrapper-inner--decorator">
 						<ng-template [ngTemplateOutlet]="decorator"></ng-template>
 					</div>
-				</ng-container>
+				}
 			</span>
 		</label>
 	`,
@@ -64,7 +71,9 @@ import { RadioChange } from "./radio-change.class";
 			useExisting: Radio,
 			multi: true
 		}
-	]
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgClass, NgTemplateOutlet]
 })
 export class Radio {
 	/**
@@ -72,9 +81,26 @@ export class Radio {
 	 */
 	static radioCount = 0;
 
-	@Input() checked = false;
+	/**
+	 * Set by the parent `RadioGroup` component when the selection changes
+	 */
+	@Input() set checked(value: boolean) {
+		this._checked = value;
+		this.changeDetectorRef.markForCheck();
+	}
 
-	@Input() name = "";
+	get checked() {
+		return this._checked;
+	}
+
+	@Input() set name(value: string) {
+		this._name = value;
+		this.changeDetectorRef.markForCheck();
+	}
+
+	get name() {
+		return this._name;
+	}
 
 	@Input() disabled = false;
 
@@ -107,7 +133,14 @@ export class Radio {
 	/**
 	 * Set to `true` for a loading table.
 	 */
-	@Input() skeleton = false;
+	@Input() set skeleton(value: boolean) {
+		this._skeleton = value;
+		this.changeDetectorRef.markForCheck();
+	}
+
+	get skeleton() {
+		return this._skeleton;
+	}
 	/**
 	 * The id for the `Radio`.
 	 */
@@ -115,6 +148,7 @@ export class Radio {
 	/**
 	 * emits when the state of the radio changes
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() change = new EventEmitter<RadioChange>();
 
 	@HostBinding("class.cds--radio-button-wrapper") hostClass = true;
@@ -137,6 +171,10 @@ export class Radio {
 	 */
 	disabledFromGroup = false;
 
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+	protected _checked = false;
+	protected _name = "";
+	protected _skeleton = false;
 	protected _labelledby = "";
 
 	/**
@@ -169,5 +207,6 @@ export class Radio {
 
 	setDisabledFromGroup(disabled: boolean) {
 		this.disabledFromGroup = disabled;
+		this.changeDetectorRef.markForCheck();
 	}
 }

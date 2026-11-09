@@ -1,4 +1,9 @@
-import { TestBed, ComponentFixture, tick, fakeAsync } from "@angular/core/testing";
+import {
+	TestBed,
+	ComponentFixture,
+	tick,
+	fakeAsync
+} from "@angular/core/testing";
 import { Component, Input, DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
 
@@ -14,7 +19,8 @@ import { Tooltip } from "./tooltip.component";
 			[autoAlign]="autoAlign">
 			<button>A</button>
 		</cds-tooltip>
-	`
+	`,
+	imports: [Tooltip]
 })
 class TestTooltipComponent {
 	@Input() isOpen = false;
@@ -31,7 +37,7 @@ describe("Tooltip", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [TestTooltipComponent, Tooltip]
+			imports: [TestTooltipComponent]
 		});
 		fixture = TestBed.createComponent(TestTooltipComponent);
 		component = fixture.componentInstance;

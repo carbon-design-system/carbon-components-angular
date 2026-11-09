@@ -3,18 +3,18 @@ import { fakeAsync, TestBed, waitForAsync } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { advancedFakeAsync } from "../../test-helpers/change-detection";
 
-import { CommonModule } from "@angular/common";
-import { I18nModule } from "./../../i18n/index";
+
 import { SideNav } from "./sidenav.component";
 import { SideNavItem } from "./sidenav-item.component";
 import { SideNavMenu } from "./sidenav-menu.component";
+import { RouterLinkExtendedDirective } from "./routerlink-extended.directive";
 import { RouterModule } from "@angular/router";
 
 @Component({
 	selector: "app-foo",
 	template: "<h1>foo</h1>"
 })
-class FooComponent { }
+class FooComponent {}
 
 @Component({
 	template: `
@@ -29,7 +29,8 @@ class FooComponent { }
 				<cds-sidenav-item [active]="secondItemActive">Two</cds-sidenav-item>
 			</cds-sidenav-menu>
 		</cds-sidenav>
-	`
+	`,
+	imports: [SideNav, SideNavItem, SideNavMenu, RouterModule]
 })
 class SideNavTest {
 	route = ["foo"];
@@ -48,27 +49,12 @@ describe("SideNav", () => {
 	let fixture, wrapper, element;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				SideNav,
-				SideNavItem,
-				SideNavMenu,
-				SideNavTest,
-				FooComponent
-			],
 			imports: [
-				CommonModule,
-				I18nModule,
-				RouterModule.forRoot([
-					{
-						path: "foo",
-						component: FooComponent
-					}
-				],
-					{
-						initialNavigation: "disabled",
-						useHash: true,
-						relativeLinkResolution: "corrected"
-					})
+				SideNavTest,
+				RouterModule.forRoot(
+					[{ path: "foo", component: FooComponent }],
+					{ initialNavigation: "disabled", useHash: true }
+				)
 			]
 		});
 	});

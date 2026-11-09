@@ -10,11 +10,15 @@ import { RadioGroup } from "./radio-group.component";
 @Component({
 	selector: "test-component",
 	template: `
-	<cds-radio-group [(ngModel)]="radio" [disabled]="disabled" [name]="name">
-		<cds-radio *ngFor="let one of manyRadios" [value]="one"
-			class="indent">Radio {{one}}
-		</cds-radio>
-	</cds-radio-group>`
+		<cds-radio-group [(ngModel)]="radio" [disabled]="disabled" [name]="name">
+			@for (one of manyRadios; track one) {
+				<cds-radio [value]="one" class="indent">
+					Radio {{one}}
+				</cds-radio>
+			}
+		</cds-radio-group>
+		`,
+	imports: [Radio, RadioGroup, FormsModule]
 })
 class RadioTest {
 	manyRadios = ["one", "two", "three", "four", "five", "six"];
@@ -26,8 +30,7 @@ class RadioTest {
 describe("RadioGroup", () => {
 	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
-			declarations: [Radio, RadioGroup, RadioTest],
-			imports: [FormsModule]
+			imports: [RadioTest]
 		}).compileComponents();
 	}));
 
@@ -110,7 +113,7 @@ describe("RadioComponent", () => {
 
 	beforeEach(waitForAsync(() => {
 		TestBed.configureTestingModule({
-			declarations: [Radio]
+			imports: [Radio]
 		}).compileComponents();
 	}));
 

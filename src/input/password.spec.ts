@@ -3,7 +3,6 @@ import { Component, DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
 
 import { PasswordInputLabelComponent, PasswordInput } from "./";
-import { Tooltip } from "../tooltip";
 
 @Component({
 	template: `
@@ -11,7 +10,8 @@ import { Tooltip } from "../tooltip";
 			Password
 			<input cdsPassword type="password">
 		</cds-password-label>
-	`
+	`,
+	imports: [PasswordInputLabelComponent, PasswordInput]
 })
 class TestPasswordInputComponent {}
 
@@ -22,7 +22,7 @@ describe("Password", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [PasswordInputLabelComponent, PasswordInput, Tooltip, TestPasswordInputComponent]
+			imports: [TestPasswordInputComponent]
 		});
 		fixture = TestBed.createComponent(TestPasswordInputComponent);
 		component = fixture.componentInstance;

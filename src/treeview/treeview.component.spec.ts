@@ -1,4 +1,9 @@
-import { TestBed, ComponentFixture, fakeAsync, tick } from "@angular/core/testing";
+import {
+	TestBed,
+	ComponentFixture,
+	fakeAsync,
+	tick
+} from "@angular/core/testing";
 import { Component, DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
 
@@ -13,9 +18,9 @@ import { advancedFakeAsync } from "../test-helpers/change-detection";
 			label="Tree view"
 			style="width: 18rem; display: block;"
 			[tree]="tree"
-			(selected)="onSelect()">
-		</cds-tree-view>
-	`
+			(selected)="onSelect()" />
+	`,
+	imports: [TreeViewComponent]
 })
 class TreeviewTestComponent {
 	tree = [
@@ -62,11 +67,7 @@ describe("Treeview", () => {
 
 	beforeEach(async () => {
 		TestBed.configureTestingModule({
-			declarations: [
-				TreeviewTestComponent,
-				TreeNodeComponent,
-				TreeViewComponent
-			]
+			imports: [TreeviewTestComponent]
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(TreeviewTestComponent);

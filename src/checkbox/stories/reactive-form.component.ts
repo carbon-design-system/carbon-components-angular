@@ -1,11 +1,11 @@
-import { Component, OnInit } from "@angular/core";
-import {
-	FormBuilder,
-	FormGroup
-} from "@angular/forms";
+import { Component, inject, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
+
+import { Checkbox } from "../checkbox.component";
 
 @Component({
 	selector: "app-reactive-forms",
+	imports: [Checkbox, ReactiveFormsModule],
 	template: `
 		<form [formGroup]="formGroup">
 			<cds-checkbox formControlName="disabledCheckbox">
@@ -22,7 +22,7 @@ import {
 export class ReactiveFormsStory implements OnInit {
 	public formGroup: FormGroup;
 
-	constructor(protected formBuilder: FormBuilder) { }
+	protected formBuilder = inject(FormBuilder);
 
 	ngOnInit() {
 		this.formGroup = this.formBuilder.group({
@@ -34,7 +34,11 @@ export class ReactiveFormsStory implements OnInit {
 	toggleDisable() {
 		const checkbox = this.formGroup.get("checkbox");
 		if (checkbox != null) {
-			checkbox.disabled ? checkbox.enable() : checkbox.disable();
+			if (checkbox.disabled) {
+				checkbox.enable();
+			} else {
+				checkbox.disable();
+			}
 		}
 	}
 }

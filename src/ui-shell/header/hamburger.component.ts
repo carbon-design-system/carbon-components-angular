@@ -2,9 +2,12 @@ import {
 	Component,
 	Output,
 	EventEmitter,
-	Input
+	Input,
+	inject
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
+import { NgClass } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 
 /**
  * A toggle for the side navigation
@@ -19,12 +22,18 @@ import { I18n } from "carbon-components-angular/i18n";
 			class="cds--header__menu-trigger cds--header__action cds--header__menu-toggle"
 			[attr.aria-label]="active ? activeTitle : inactiveTitle"
 			[attr.title]="active ? activeTitle : inactiveTitle">
-			<svg *ngIf="!active" cdsIcon="menu" size="20"></svg>
-			<svg *ngIf="active" cdsIcon="close" size="20"></svg>
+			@if (active) {
+				<svg cdsIcon="close" size="20"></svg>
+			} @else {
+				<svg cdsIcon="menu" size="20"></svg>
+			}
 		</button>
-	`
+	`,
+	imports: [NgClass, IconDirective]
 })
 export class Hamburger {
+	i18n = inject(I18n);
+
 	/**
 	 * Controls the active/selected state for the `Hamburger` menu.
 	 */
@@ -45,7 +54,11 @@ export class Hamburger {
 	 */
 	@Output() selected: EventEmitter<Object> = new EventEmitter<Object>();
 
-	constructor(public i18n: I18n) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	/**
 	 * Emit the Hamburger click event upwards.

@@ -7,36 +7,50 @@ import {
 	ElementRef,
 	HostListener,
 	ContentChild,
-	Optional,
 	OnInit,
 	AfterContentInit,
-	OnDestroy
+	OnDestroy,
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
+	inject
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { ContextMenuSelectionService } from "./context-menu-selection.service";
 import { ContextMenuComponent } from "./context-menu.component";
 import { ItemClickEvent } from "./context-menu.types";
+import { IconDirective } from "carbon-components-angular/icon";
 
 @Component({
 	selector: "cds-menu-item, cds-context-menu-item, ibm-context-menu-item",
 	template: `
 		<div class="cds--menu-item__icon">
-			<svg *ngIf="selectable && checked" cdsIcon="checkmark" size="16"></svg>
-			<svg *ngIf="!selectable && icon" [cdsIcon]="icon" size="16"></svg>
+			@if (selectable && checked) {
+				<svg cdsIcon="checkmark" size="16"></svg>
+			} @else if (!selectable && icon) {
+				<svg [cdsIcon]="icon" size="16"></svg>
+			}
 		</div>
 		<div class="cds--menu-item__label" [title]="label">{{label}}</div>
 		<div class="cds--menu-item__shortcut">
-			<ng-container *ngIf="info">{{info}}</ng-container>
-			<svg *ngIf="hasChildren" cdsIcon="caret--right" size="16"></svg>
+			@if (info) {
+				{{info}}
+			}
+			@if (hasChildren) {
+				<svg cdsIcon="caret--right" size="16"></svg>
+			}
 		</div>
-		<span *ngIf="danger && dangerDescription" class="cds--visually-hidden">{{dangerDescription}}</span>
-		<ng-content></ng-content>
+		@if (danger && dangerDescription) {
+			<span class="cds--visually-hidden">{{dangerDescription}}</span>
+		}
+		<ng-content />
 	`,
 	styles: [`
 		:host {
 			grid-template-columns: 1rem 1fr max-content;
 		}
-	`]
+	`],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [IconDirective]
 })
 export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDestroy {
 	@HostBinding("class.cds--menu-item") optionClass = true;
@@ -71,12 +85,18 @@ export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDes
 	selectable = false;
 
 	@ContentChild(ContextMenuComponent, { static: true }) childContextMenu: ContextMenuComponent;
+
+	protected elementRef = inject(ElementRef);
+	protected contextMenuSelectionService = inject(ContextMenuSelectionService, { optional: true })!;
+
+	private changeDetectorRef = inject(ChangeDetectorRef);
 	private subscriptions = new Subscription();
 
-	constructor(
-		protected elementRef: ElementRef,
-		@Optional() protected contextMenuSelectionService: ContextMenuSelectionService
-	) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngOnInit() {
 		switch (this.type) {
@@ -105,6 +125,7 @@ export class ContextMenuItemComponent implements OnInit, AfterContentInit, OnDes
 				if (this.type === "checkbox") {
 					this.handleSelection(value.includes(this.value));
 				}
+				this.changeDetectorRef.markForCheck();
 			});
 			this.subscriptions.add(subscription);
 		}

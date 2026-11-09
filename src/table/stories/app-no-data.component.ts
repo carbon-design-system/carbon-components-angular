@@ -7,6 +7,7 @@ import {
 } from "@angular/core";
 import { TableModel } from "../table-model.class";
 import { TableHeaderItem } from "../table-header-item.class";
+import { Table } from "../table.component";
 
 @Component({
 	selector: "app-no-data-table",
@@ -18,9 +19,11 @@ import { TableHeaderItem } from "../table-header-item.class";
 			[showSelectionColumn]="showSelectionColumn"
 			[striped]="striped"
 			[isDataGrid]="isDataGrid">
-			<ng-content></ng-content>
+			<ng-content />
 		</cds-table>
-	`
+	`,
+	standalone: true,
+	imports: [Table]
 })
 export class TableNoDataStory implements OnInit, OnChanges {
 	@Input() model = new TableModel();

@@ -1,15 +1,18 @@
 import {
+	ChangeDetectionStrategy,
 	Component,
 	HostBinding,
 	Input,
 	TemplateRef
 } from "@angular/core";
+import { NgTemplateOutlet, NgStyle, NgClass } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { ProgressBarModule } from 'carbon-components-angular';
+ * import { ProgressBar } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-progress-bar--basic)
@@ -17,28 +20,35 @@ import {
 @Component({
 	selector: "cds-progress-bar, ibm-progress-bar",
 	template: `
-		<div
-			*ngIf="label"
-			class="cds--progress-bar__label"
-			[ngClass]="{'cds--visually-hidden': hideLabel}"
-			[id]="id">
-			<span class="cds--progress-bar__label-text">
-				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
-			</span>
-			<svg
-				*ngIf="isFinished"
-				fill="currentColor"
-				cdsIcon="checkmark--filled"
-				class="cds--progress-bar__status-icon">
-			</svg>
-			<svg
-				*ngIf="isError"
-				fill="currentColor"
-				cdsIcon="error--filled"
-				class="cds--progress-bar__status-icon">
-			</svg>
-		</div>
+		@if (label) {
+			<div
+				class="cds--progress-bar__label"
+				[ngClass]="{'cds--visually-hidden': hideLabel}"
+				[id]="id">
+				<span class="cds--progress-bar__label-text">
+					@if (!isTemplate(label)) {
+						{{label}}
+					}
+					@if (isTemplate(label)) {
+						<ng-template [ngTemplateOutlet]="label"></ng-template>
+					}
+				</span>
+				@if (isFinished) {
+					<svg
+						fill="currentColor"
+						cdsIcon="checkmark--filled"
+						class="cds--progress-bar__status-icon">
+					</svg>
+				}
+				@if (isError) {
+					<svg
+						fill="currentColor"
+						cdsIcon="error--filled"
+						class="cds--progress-bar__status-icon">
+					</svg>
+				}
+			</div>
+		}
 		<div
 			class="cds--progress-bar__track"
 			role="progressbar"
@@ -56,14 +66,21 @@ import {
 				}">
 			</div>
 		</div>
-		<div
-			[id]="helperId"
-			*ngIf="helperText"
-			class="cds--progress-bar__helper-text">
-			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-		</div>
-	`
+		@if (helperText) {
+			<div
+				[id]="helperId"
+				class="cds--progress-bar__helper-text">
+				@if (!isTemplate(helperText)) {
+					{{helperText}}
+				}
+				@if (isTemplate(helperText)) {
+					<ng-template [ngTemplateOutlet]="helperText"></ng-template>
+				}
+			</div>
+		}
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgTemplateOutlet, IconDirective, NgStyle, NgClass]
 })
 export class ProgressBar {
 	/**

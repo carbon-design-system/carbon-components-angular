@@ -10,9 +10,16 @@ import {
 	ElementRef,
 	ViewChildren,
 	QueryList,
-	ApplicationRef
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
+	inject
 } from "@angular/core";
-import { Observable, isObservable, Subscription, of } from "rxjs";
+import {
+	Observable,
+	isObservable,
+	Subscription,
+	of
+} from "rxjs";
 import { first } from "rxjs/operators";
 
 import { I18n } from "carbon-components-angular/i18n";
@@ -20,6 +27,10 @@ import { AbstractDropdownView } from "../abstract-dropdown-view.class";
 import { ListItem } from "../list-item.interface";
 import { watchFocusJump } from "../dropdowntools";
 import { ScrollCustomEvent } from "./scroll-custom-event.interface";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
+import { DropdownService } from "../dropdown.service";
+import { AnimationFrameService } from "carbon-components-angular/utils";
 
 
 /**
@@ -61,64 +72,77 @@ import { ScrollCustomEvent } from "./scroll-custom-event.interface";
 			tabindex="0"
 			[attr.aria-label]="ariaLabel"
 			[attr.aria-activedescendant]="highlightedItem">
-			<li
-				role="option"
-				*ngFor="let item of displayItems; let i = index"
-				(click)="doClick($event, item)"
-				class="cds--list-box__menu-item"
-				[attr.aria-selected]="item.selected"
-				[id]="getItemId(i)"
-				[attr.tabindex]="highlightedItem === getItemId(i) ? 0 : null"
-				[attr.title]=" showTitles ? item.content : null"
-				[attr.disabled]="item.disabled ? true : null"
-				[ngClass]="{
-					'cds--list-box__menu-item--active': item.selected,
-					'cds--list-box__menu-item--highlighted': highlightedItem === getItemId(i)
-				}">
-				<div
-					#listItem
-					tabindex="-1"
-					class="cds--list-box__menu-item__option">
+			@for (item of displayItems; track item; let i = $index) {
+				<li
+					role="option"
+					(click)="doClick($event, item)"
+					class="cds--list-box__menu-item"
+					[attr.aria-selected]="item.selected"
+					[id]="getItemId(i)"
+					[attr.tabindex]="highlightedItem === getItemId(i) ? 0 : null"
+					[attr.title]=" showTitles ? item.content : null"
+					[attr.disabled]="item.disabled ? true : null"
+					[ngClass]="{
+						'cds--list-box__menu-item--active': item.selected,
+						'cds--list-box__menu-item--highlighted': highlightedItem === getItemId(i)
+					}">
 					<div
-						*ngIf="!listTpl && type === 'multi'"
-						class="cds--form-item cds--checkbox-wrapper">
-						<label
-							[attr.data-contained-checkbox-state]="item.selected"
-							class="cds--checkbox-label">
-							<input
-								class="cds--checkbox"
-								type="checkbox"
-								[checked]="item.selected"
-								[disabled]="item.disabled"
-								tabindex="-1">
-							<span class="cds--checkbox-appearance"></span>
-							<span class="cds--checkbox-label-text">{{item.content}}</span>
-						</label>
+						#listItem
+						tabindex="-1"
+						class="cds--list-box__menu-item__option">
+						@if (!listTpl && type === 'multi') {
+							<div class="cds--form-item cds--checkbox-wrapper">
+								<label
+									[attr.data-contained-checkbox-state]="item.selected"
+									class="cds--checkbox-label">
+									<input
+										class="cds--checkbox"
+										type="checkbox"
+										[checked]="item.selected"
+										[disabled]="item.disabled"
+										tabindex="-1">
+									<span class="cds--checkbox-appearance"></span>
+									<span class="cds--checkbox-label-text">{{item.content}}</span>
+								</label>
+							</div>
+						}
+						@if (!listTpl && type === 'single') {
+							{{item.content}}
+							<svg
+								cdsIcon="checkmark"
+								size="16"
+								class="cds--list-box__menu-item__selected-icon">
+							</svg>
+						}
+						@if (listTpl) {
+							<ng-template
+								[ngTemplateOutletContext]="{item: item}"
+								[ngTemplateOutlet]="listTpl">
+							</ng-template>
+						}
 					</div>
-					<ng-container *ngIf="!listTpl && type === 'single'">{{item.content}}</ng-container>
-					<svg
-						*ngIf="!listTpl && type === 'single'"
-						cdsIcon="checkmark"
-						size="16"
-						class="cds--list-box__menu-item__selected-icon">
-					</svg>
-					<ng-template
-						*ngIf="listTpl"
-						[ngTemplateOutletContext]="{item: item}"
-						[ngTemplateOutlet]="listTpl">
-					</ng-template>
-				</div>
-			</li>
-		</ul>`,
+				</li>
+			}
+		</ul>
+	`,
 	providers: [
 		{
 			provide: AbstractDropdownView,
 			useExisting: DropdownList
-		}
-	]
+		},
+		DropdownService,
+		AnimationFrameService
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgClass, IconDirective, NgTemplateOutlet]
 })
 export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDestroy {
 	static listCount = 0;
+
+	public i18n = inject(I18n);
+
+	public elementRef = inject(ElementRef);
+
 	@Input() ariaLabel = this.i18n.get().DROPDOWN_LIST.LABEL;
 	/**
 	 * The list items belonging to the `DropdownList`.
@@ -185,8 +209,27 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	/**
 	 * Defines the rendering size of the `DropdownList` items.
 	 */
-	public size: "sm" | "md" | "lg" = "md";
-	public fluid = false;
+	set size(value: "sm" | "md" | "lg") {
+		this._size = value;
+		// Set imperatively by the parent control, so rerender
+		this.changeDetectorRef.markForCheck();
+	}
+
+	get size() {
+		return this._size;
+	}
+
+	/**
+	 * Whether the owning control uses fluid list-box sizing.
+	 */
+	set fluid(value: boolean) {
+		this._fluid = value;
+		this.changeDetectorRef.markForCheck();
+	}
+
+	get fluid() {
+		return this._fluid;
+	}
 
 	/**
 	 * The menu needs its own layout token when moved outside the list-box.
@@ -236,11 +279,19 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 	 * Used to wait for items in case they are passed through an observable.
 	 */
 	protected _itemsReady: Observable<boolean>;
+	protected _size: "sm" | "md" | "lg" = "md";
+	protected _fluid = false;
+
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
 
 	/**
 	 * Creates an instance of `DropdownList`.
 	 */
-	constructor(public elementRef: ElementRef, protected i18n: I18n, protected appRef: ApplicationRef) {}
+	constructor() {}
 
 	/**
 	 * Retrieves array of list items and index of the selected item after view has rendered.
@@ -291,6 +342,8 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		this.updateIndex();
 		this.setupFocusObservable();
 		this.doEmitSelect();
+		// items may arrive asynchronously
+		this.changeDetectorRef.markForCheck();
 	}
 
 	/**
@@ -309,6 +362,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		}
 
 		this.updateIndex();
+		this.changeDetectorRef.markForCheck();
 	}
 
 	/**
@@ -500,6 +554,7 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 					}
 				}
 			}
+			this.changeDetectorRef.markForCheck();
 		});
 	}
 
@@ -512,9 +567,10 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		}
 
 		this.list.nativeElement.focus();
-		setTimeout(() => {
-			this.highlightedItem = this.getItemId(this.index);
-		});
+		// `index` is resolved synchronously above, and both callers already defer
+		// `initFocus` until the list is rendered, so there's nothing left to wait for
+		this.highlightedItem = this.getItemId(this.index);
+		this.changeDetectorRef.markForCheck();
 	}
 
 	updateIndex() {
@@ -550,14 +606,14 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 				}
 			} else if (event.key === "ArrowUp") {
 				if (this.hasPrevElement()) {
-					this.getPrevElement().scrollIntoView({  block: "nearest" });
+					this.getPrevElement().scrollIntoView({ block: "nearest" });
 				} else {
 					this.blurIntent.emit("top");
 				}
 			}
-			setTimeout(() => {
-				this.highlightedItem = this.getItemId(this.index);
-			});
+			// `getNextElement`/`getPrevElement` update `index` synchronously, and this
+			// runs inside the keydown handler, so the following check picks it up
+			this.highlightedItem = this.getItemId(this.index);
 		}
 	}
 
@@ -580,7 +636,6 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 			this.index = this.displayItems.indexOf(item);
 			this.highlightedItem = this.getItemId(this.index);
 			this.doEmitSelect(false);
-			this.appRef.tick();
 		}
 	}
 
@@ -614,12 +669,21 @@ export class DropdownList implements AbstractDropdownView, AfterViewInit, OnDest
 		(this._itemsReady || of(true)).pipe(first()).subscribe(subcription);
 	}
 
+	/**
+	 * Marks the list for check after the items are changed by the owning component
+	 */
+	markForCheck(): void {
+		this.changeDetectorRef.markForCheck();
+	}
+
 	reorderSelected(moveFocus = true): void {
 		this.displayItems = [...this.getSelected(), ...this.getListItems().filter(item => !item.selected)];
+		this.changeDetectorRef.markForCheck();
 		if (moveFocus) {
 			setTimeout(() => {
 				this.updateIndex();
 				this.highlightedItem = this.getItemId(this.index);
+				this.changeDetectorRef.markForCheck();
 			});
 		}
 	}

@@ -1,13 +1,13 @@
-/* tslint:disable variable-name */
 
 import {
 	AfterViewInit,
 	ChangeDetectorRef,
 	Component,
+	inject,
 	Input,
 	OnDestroy,
-	ViewChildren,
-	QueryList
+	QueryList,
+	ViewChildren
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { moduleMetadata, Meta } from "@storybook/angular";
@@ -22,27 +22,31 @@ import { TabsStoryModule } from "./stories";
  * populated before headers bind `[paneReference]`; flex order keeps the tab bar on top.
  */
 @Component({
-	// tslint:disable-next-line: component-selector
 	selector: "story-dismissable-tab-header-group",
+	imports: [TabsModule],
 	template: `
-		<cds-tab-header-group
-			*ngIf="panesReady"
-			style="order: 0"
-			[type]="type"
-			[followFocus]="followFocus"
-			[cacheActive]="cacheActive"
-			[isNavigation]="isNavigation"
-			[fullWidth]="fullWidth"
-			[dismissable]="true"
-			(tabClose)="onTabClose($event)">
-			<cds-tab-header
-				*ngFor="let tab of renderedTabs; let i = index"
-				[paneReference]="paneAt(i)"
-				[disabled]="tab.disabled">
-				{{ tab.heading }}
-			</cds-tab-header>
-		</cds-tab-header-group>
-		<cds-tab *ngFor="let tab of renderedTabs">{{ tab.content }}</cds-tab>
+		@if (panesReady) {
+			<cds-tab-header-group
+				style="order: 0"
+				[type]="type"
+				[followFocus]="followFocus"
+				[cacheActive]="cacheActive"
+				[isNavigation]="isNavigation"
+				[fullWidth]="fullWidth"
+				[dismissable]="true"
+				(tabClose)="onTabClose($event)">
+				@for (tab of renderedTabs; track tab; let i = $index) {
+					<cds-tab-header
+						[paneReference]="paneAt(i)"
+						[disabled]="tab.disabled">
+						{{ tab.heading }}
+					</cds-tab-header>
+				}
+			</cds-tab-header-group>
+		}
+		@for (tab of renderedTabs; track tab) {
+			<cds-tab>{{ tab.content }}</cds-tab>
+		}
 	`
 })
 class StoryDismissableTabHeaderGroupComponent implements AfterViewInit, OnDestroy {
@@ -71,7 +75,7 @@ class StoryDismissableTabHeaderGroupComponent implements AfterViewInit, OnDestro
 
 	private paneQueryChangesSub!: Subscription;
 
-	constructor(private cdr: ChangeDetectorRef) {}
+	private cdr = inject(ChangeDetectorRef);
 
 	ngAfterViewInit(): void {
 		this.paneQueryChangesSub = this.paneQuery.changes.subscribe(() =>
@@ -115,8 +119,7 @@ export default {
 	title: "Components/Tabs/Tab header (Fine-grained)",
 	decorators: [
 		moduleMetadata({
-			imports: [TabsStoryModule, IconModule, GridModule, TabsModule],
-			declarations: [StoryDismissableTabHeaderGroupComponent]
+			imports: [TabsStoryModule, IconModule, GridModule, TabsModule, StoryDismissableTabHeaderGroupComponent]
 		})
 	]
 } as Meta;
@@ -419,7 +422,6 @@ const headerGroupDismissable = (args) => ({
 	`
 });
 export const Dismissable = headerGroupDismissable.bind({});
-Dismissable.storyName = "Dismissable";
 Dismissable.args = {
 	followFocus: true,
 	cacheActive: true,

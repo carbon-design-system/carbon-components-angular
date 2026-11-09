@@ -2,9 +2,14 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter
+	EventEmitter,
+	inject
 } from "@angular/core";
+import { range } from "carbon-components-angular/common";
 import { I18n } from "carbon-components-angular/i18n";
+import { PaginationNavItem } from "./pagination-item.component";
+import { FormsModule } from "@angular/forms";
+import { IconDirective } from "carbon-components-angular/icon";
 
 /**
  * Used to present a selection of pages when there is an overflow
@@ -17,32 +22,39 @@ import { I18n } from "carbon-components-angular/i18n";
 @Component({
 	selector: "cds-pagination-overflow, ibm-pagination-overflow",
 	template: `
-		<li class="cds--pagination-nav__list-item" *ngIf="count > 1">
-			<div class="cds--pagination-nav__select">
-			<select
-				[attr.aria-label]="ariaLabel"
-				class="cds--pagination-nav__page cds--pagination-nav__page--select"
-				(change)="handleChange($event)">
-				<option value="" hidden></option>
-				<option
-				*ngFor="let item of countAsArray; let i = index">
-					{{fromIndex + i + 1}}
-				</option>
-			</select>
-			<div class="cds--pagination-nav__select-icon-wrapper">
-				<svg
-					cdsIcon="overflow-menu--horizontal"
-					size="16"
-					style="display: inherit"
-					class="cds--pagination-nav__select-icon">
-				</svg>
-			</div>
-			</div>
-		</li>
-		<cds-pagination-nav-item *ngIf="count === 1" [page]="fromIndex + 1"></cds-pagination-nav-item>
-	`
+		@if (count === 1) {
+			<cds-pagination-nav-item [page]="fromIndex + 1" />
+		} @else if (count > 1) {
+			<li class="cds--pagination-nav__list-item">
+				<div class="cds--pagination-nav__select">
+					<select
+						[attr.aria-label]="ariaLabel"
+						class="cds--pagination-nav__page cds--pagination-nav__page--select"
+						(change)="handleChange($event)">
+						<option value="" hidden></option>
+						@for (item of countAsArray; track item; let i = $index) {
+							<option>
+								{{fromIndex + i + 1}}
+							</option>
+						}
+					</select>
+					<div class="cds--pagination-nav__select-icon-wrapper">
+						<svg
+							cdsIcon="overflow-menu--horizontal"
+							size="16"
+							style="display: inherit"
+							class="cds--pagination-nav__select-icon">
+						</svg>
+					</div>
+				</div>
+			</li>
+		}
+	`,
+	imports: [PaginationNavItem, FormsModule, IconDirective]
 })
 export class PaginationOverflow {
+	public i18n = inject(I18n);
+
 	/**
 	 * The page for this component to dipslay
 	 */
@@ -55,13 +67,19 @@ export class PaginationOverflow {
 	/**
 	 * Emits click event
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() change = new EventEmitter<number>();
 
 	get countAsArray() {
-		return [...Array(this.count)];
+		const rangeArray = range((this.count >= 0 ? this.count + 1 : 0), 1);
+		return rangeArray;
 	}
 
-	constructor(protected i18n: I18n) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	handleChange(event) {
 		this.change.emit(+event.target.value);

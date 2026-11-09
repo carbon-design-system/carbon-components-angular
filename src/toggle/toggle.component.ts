@@ -1,39 +1,26 @@
-import { Checkbox, CHECKBOX_GROUP_HOST, CheckboxGroupHost } from "carbon-components-angular/checkbox";
 import {
+	ChangeDetectionStrategy,
 	ChangeDetectorRef,
 	Component,
-	Inject,
-	Input,
-	Optional,
+	EventEmitter,
 	HostBinding,
-	TemplateRef
+	HostListener,
+	Input,
+	Output,
+	TemplateRef,
+	inject
 } from "@angular/core";
-import { NG_VALUE_ACCESSOR } from "@angular/forms";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 import { I18n } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
+import { NgClass, NgTemplateOutlet, AsyncPipe } from "@angular/common";
 
 /**
- * @deprecated since v5 - Use boolean
- * Defines the set of states for a toggle component.
- */
-export enum ToggleState {
-	Init,
-	Checked,
-	Unchecked
-}
-
-/**
- * @todo - Toggle component will no longer extend `Checkbox` component as of v6
- * Toggle is no longer repies on using checkbox, so doesn't make sense for us to continue inheriting ALL checkbox
- * component attributes.
- */
-
-/**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { ToggleModule } from 'carbon-components-angular';
+ * import { Toggle } from 'carbon-components-angular';
  * ```
  *
  * ```html
@@ -45,7 +32,10 @@ export enum ToggleState {
 @Component({
 	selector: "cds-toggle, ibm-toggle",
 	template: `
-		<ng-container *ngIf="!skeleton; else skeletonTemplate;">
+		@if (skeleton) {
+			<div class="cds--toggle__skeleton-circle"></div>
+			<div class="cds--toggle__skeleton-rectangle"></div>
+		} @else {
 			<button
 				class="cds--toggle__button"
 				[disabled]="disabled"
@@ -64,8 +54,11 @@ export enum ToggleState {
 					[ngClass]="{
 						'cds--visually-hidden': hideLabel
 					}">
-					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
+					@if (isTemplate(label)) {
+						<ng-template [ngTemplateOutlet]="label" />
+					} @else {
+						{{label}}
+					}
 				</span>
 				<div
 					class="cds--toggle__appearance"
@@ -77,25 +70,22 @@ export enum ToggleState {
 						[ngClass]="{
 							'cds--toggle__switch--checked': checked
 						}">
-						<svg
-							*ngIf="size === 'sm'"
-							class='cds--toggle__check'
-							width="6px"
-							height="5px"
-							viewBox="0 0 6 5">
-							<path d="M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z" />
-						</svg>
+						@if (size === 'sm') {
+							<svg
+								class='cds--toggle__check'
+								width="6px"
+								height="5px"
+								viewBox="0 0 6 5">
+								<path d="M2.2 2.7L5 0 6 1 2.2 5 0 2.7 1 1.5z" />
+							</svg>
+						}
 					</div>
 					<span class="cds--toggle__text">
 						{{(hideLabel ? label : (getCheckedText() | async))}}
 					</span>
 				</div>
 			</label>
-		</ng-container>
-		<ng-template #skeletonTemplate>
-			<div class="cds--toggle__skeleton-circle"></div>
-			<div class="cds--toggle__skeleton-rectangle"></div>
-		</ng-template>
+		}
 	`,
 	providers: [
 		{
@@ -103,13 +93,39 @@ export enum ToggleState {
 			useExisting: Toggle,
 			multi: true
 		}
-	]
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgClass, NgTemplateOutlet, AsyncPipe]
 })
-export class Toggle extends Checkbox {
+export class Toggle implements ControlValueAccessor {
 	/**
 	 * Variable used for creating unique ids for toggle components.
 	 */
 	static toggleCount = 0;
+
+	/**
+	 * Set to `true` for a disabled toggle.
+	 */
+	@Input() disabled = false;
+
+	/**
+	 * Sets the `checked` state. `true` for on, `false` for off.
+	 * Allows double binding with the `checkedChange` Output.
+	 */
+	@Input()
+	set checked(checked: boolean) {
+		this.setChecked(!!checked);
+	}
+
+	get checked() {
+		return this._checked;
+	}
+
+	/**
+	 * Emits an event when the value of the toggle changes.
+	 * Allows double binding with the `checked` Input.
+	 */
+	@Output() checkedChange = new EventEmitter<boolean>();
 
 	/**
 	 * Text that is set on the left side of the toggle.
@@ -166,19 +182,23 @@ export class Toggle extends Checkbox {
 	/**
 	 * The unique id allocated to the `Toggle`.
 	 */
-	id = "toggle-" + Toggle.toggleCount;
+	@Input() id = "toggle-" + Toggle.toggleCount;
+
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+	protected i18n = inject(I18n);
+
+	protected _checked = false;
 
 	protected _offValues = this.i18n.getOverridable("TOGGLE.OFF");
 	protected _onValues = this.i18n.getOverridable("TOGGLE.ON");
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
 	/**
 	 * Creates an instance of Toggle.
 	 */
-	constructor(
-		protected changeDetectorRef: ChangeDetectorRef,
-		@Optional() @Inject(CHECKBOX_GROUP_HOST) hostGroup: CheckboxGroupHost | null,
-		protected i18n: I18n
-	) {
-		super(changeDetectorRef, hostGroup);
+	constructor() {
 		Toggle.toggleCount++;
 	}
 
@@ -191,6 +211,7 @@ export class Toggle extends Checkbox {
 	 */
 	setDisabledState(isDisabled: boolean) {
 		this.disabled = isDisabled;
+		this.changeDetectorRef.markForCheck();
 	}
 
 	getOffText(): Observable<string> {
@@ -209,7 +230,7 @@ export class Toggle extends Checkbox {
 	}
 
 	/**
-	 * Creates instance of `ToggleChange` used to propagate the change event.
+	 * Creates instance used to propagate the change event.
 	 */
 	emitChangeEvent() {
 		this.checkedChange.emit(this.checked);
@@ -218,5 +239,48 @@ export class Toggle extends Checkbox {
 
 	public isTemplate(value) {
 		return value instanceof TemplateRef;
+	}
+
+	/**
+	 * Writes a value from `ngModel` to the component.
+	 *
+	 * @param value boolean, corresponds to the `checked` property.
+	 */
+	public writeValue(value: unknown) {
+		this.setChecked(!!value);
+	}
+
+	public registerOnChange(fn: (value: boolean) => void) {
+		this.propagateChange = fn;
+	}
+
+	public registerOnTouched(fn: () => void) {
+		this.onTouched = fn;
+	}
+
+	onClick(event: Event) {
+		event.stopPropagation();
+		if (this.disabled) {
+			return;
+		}
+		this.setChecked(!this._checked);
+		this.emitChangeEvent();
+	}
+
+	@HostListener("focusout")
+	focusOut() {
+		this.onTouched();
+	}
+
+	onTouched: () => void = () => {};
+
+	propagateChange: (value: boolean) => void = () => {};
+
+	private setChecked(checked: boolean) {
+		if (checked === this._checked) {
+			return;
+		}
+		this._checked = checked;
+		this.changeDetectorRef.markForCheck();
 	}
 }

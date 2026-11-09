@@ -1,19 +1,27 @@
 import {
+	AfterViewInit,
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	ElementRef,
+	HostBinding,
 	HostListener,
 	Input,
-	SimpleChanges,
 	OnChanges,
-	HostBinding,
-	AfterViewInit
+	SimpleChanges,
+	inject
 } from "@angular/core";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { ContextMenuModule } from 'carbon-components-angular';
+ * import {
+ * 	ContextMenuDividerComponent,
+ * 	ContextMenuGroupComponent,
+ * 	ContextMenuItemComponent,
+ * 	ContextMenuComponent
+ * } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-context-menu--basic)
@@ -21,13 +29,15 @@ import {
 @Component({
 	selector: "cds-menu, cds-context-menu, ibm-context-menu",
 	template: `
-			<ng-content></ng-content>
+			<ng-content />
 	`,
 	styles: [`
 		:host {
 			display: block;
 		}
-	`]
+	`],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true
 })
 export class ContextMenuComponent implements OnChanges, AfterViewInit {
 	@Input() open = false;
@@ -53,7 +63,14 @@ export class ContextMenuComponent implements OnChanges, AfterViewInit {
 	 */
 	@HostBinding("class.cds--menu--with-icons") iconClass = false;
 
-	constructor(protected elementRef: ElementRef) { }
+	protected elementRef = inject(ElementRef);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (changes.open && changes.open.currentValue) {
@@ -67,6 +84,7 @@ export class ContextMenuComponent implements OnChanges, AfterViewInit {
 			if (nativeElement) {
 				this.iconClass = !!nativeElement
 					.querySelector(".cds--menu-item .cds--menu-item__icon svg");
+				this.changeDetectorRef.markForCheck();
 			}
 		});
 	}
@@ -84,10 +102,9 @@ export class ContextMenuComponent implements OnChanges, AfterViewInit {
 	handleNavigation(event: KeyboardEvent) {
 		const list: HTMLElement = this.elementRef.nativeElement;
 		const subMenus: HTMLElement[] = Array.from(list.querySelectorAll("cds-context-menu[role=menu]"));
-		const menuItems: HTMLElement[] = (
-			Array.from(list.querySelectorAll(".cds--menu-item")) as HTMLElement[])
-				.filter(menuItem => !subMenus.some(subMenu => subMenu.contains(menuItem))
-		);
+		const menuItems: HTMLElement[] = (Array.from(list.querySelectorAll(".cds--menu-item")) as HTMLElement[])
+			.filter(menuItem => !subMenus.some(subMenu => subMenu.contains(menuItem)));
+
 		const currentIndex = menuItems.findIndex(menuItem => parseInt(menuItem.getAttribute("tabindex"), 10) === 0);
 		const currentMenuItem = menuItems[currentIndex];
 

@@ -5,12 +5,13 @@ import {
 	TemplateRef
 } from "@angular/core";
 import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { ContainedListModule } from 'carbon-components-angular';
+ * import { ContainedList, ContainedListItem } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-contained-list--basic)
@@ -35,23 +36,31 @@ import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 			}">
 			<div class="cds--contained-list__header">
 				<div [id]="labelId" class="cds--contained-list__label">
-					<ng-container *ngIf="!isTemplate(label)">{{ label }}</ng-container>
-					<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
+					@if (isTemplate(label)) {
+						<ng-template [ngTemplateOutlet]="label" />
+					} @else {
+						{{ label }}
+					}
 				</div>
 
-				<div class="cds--contained-list__action" *ngIf="action">
-					<ng-template [ngTemplateOutlet]="action" [ngTemplateOutletContext]="{ $implicit: actionData }"></ng-template>
-				</div>
+				@if (action) {
+					<div class="cds--contained-list__action">
+						<ng-template [ngTemplateOutlet]="action" [ngTemplateOutletContext]="{ $implicit: actionData }" />
+					</div>
+				}
 			</div>
 			<div role="list" [attr.aria-labelledby]="labelId">
-				<ng-content></ng-content>
+				<ng-content />
 			</div>
 		</div>
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgClass, NgTemplateOutlet]
 })
 export class ContainedList {
-	/** Used to generate unique IDs */
+	/**
+	 * Used to generate unique IDs
+	 */
 	private static count = 0;
 
 	/**

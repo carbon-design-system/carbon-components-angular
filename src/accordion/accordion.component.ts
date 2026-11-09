@@ -3,15 +3,17 @@ import {
 	Input,
 	ContentChildren,
 	QueryList,
-	AfterContentInit
+	AfterContentInit,
+	ChangeDetectionStrategy
 } from "@angular/core";
 import { AccordionItem } from "./accordion-item.component";
+import { NgClass } from "@angular/common";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { AccordionModule } from 'carbon-components-angular';
+ * import { Accordion, AccordionItem } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-accordion--basic)
@@ -32,9 +34,11 @@ import { AccordionItem } from "./accordion-item.component";
 				'cds--accordion--flush': isFlush && align !== 'start'
 			}"
 			role="list">
-			<ng-content></ng-content>
+			<ng-content />
 		</div>
-	`
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgClass]
 })
 export class Accordion implements AfterContentInit {
 	/**

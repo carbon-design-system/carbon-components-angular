@@ -1,18 +1,23 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, inject, OnInit } from "@angular/core";
 import * as Icons from "@carbon/pictograms";
 
+import { IconDirective } from "../icon.directive";
 import { IconService } from "..";
+import { ColumnDirective, GridDirective, RowDirective } from "../../grid";
 
 @Component({
 	selector: "app-demo-many-pictograms",
+	imports: [IconDirective, GridDirective, RowDirective, ColumnDirective],
 	template: `
 		<div cdsGrid>
 			<div cdsRow>
-				<div cdsCol [columnNumbers]="{'xl': 4, 'lg': 4, 'md': 4, 'sm': 2}" *ngFor="let icon of groupedIcons" class="pictogram">
-					<svg [cdsIcon]="icon.name" size="64"></svg>
-					<div>name: <code>{{icon.name}}</code></div>
-					<div>size: <code>64</code></div>
-				</div>
+				@for (icon of groupedIcons; track icon) {
+					<div cdsCol [columnNumbers]="{'xl': 4, 'lg': 4, 'md': 4, 'sm': 2}" class="pictogram">
+						<svg [cdsIcon]="icon.name" size="64"></svg>
+						<div>name: <code>{{icon.name}}</code></div>
+						<div>size: <code>64</code></div>
+					</div>
+				}
 			</div>
 		</div>
 	`,
@@ -27,7 +32,7 @@ import { IconService } from "..";
 export class ManyPictogramsDemo implements OnInit {
 	groupedIcons: any = [];
 
-	constructor(protected iconService: IconService) { }
+	protected iconService = inject(IconService);
 
 	ngOnInit() {
 		const iconMap = new Map();

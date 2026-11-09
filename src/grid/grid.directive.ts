@@ -1,22 +1,28 @@
 import {
 	ContentChildren,
 	Directive,
+	forwardRef,
 	HostBinding,
 	Input,
 	OnDestroy,
 	OnInit,
 	Optional,
 	QueryList,
-	SkipSelf
+	SkipSelf,
+	inject
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { GridService } from "./grid.service";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the directives:
  *
  * ```typescript
- * import { GridModule } from 'carbon-components-angular';
+ * import {
+ * 	GridDirective,
+ * 	ColumnDirective,
+ * 	RowDirective
+ * } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-grid--basic)
@@ -31,9 +37,11 @@ import { GridService } from "./grid.service";
 				return parentService || new GridService();
 			}
 		}
-	]
+	],
+	standalone: true
 })
 export class GridDirective implements OnInit, OnDestroy {
+
 	/**
 	 * Set to `true` to condense the grid
 	 */
@@ -100,7 +108,13 @@ export class GridDirective implements OnInit, OnDestroy {
 		return this.cssGridEnabled && this.isSubgrid && this.fullWidth;
 	}
 
-	constructor(private gridService: GridService) {}
+	private gridService = inject(GridService);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngOnInit() {
 		this.subscription = this.gridService.gridObservable.subscribe((isCssGrid: boolean) => {
@@ -109,7 +123,7 @@ export class GridDirective implements OnInit, OnDestroy {
 	}
 
 	// Make all children grids a sub grid
-	@ContentChildren(GridDirective, { descendants: true }) set cssGridChildren(list: QueryList<GridDirective>) {
+	@ContentChildren(forwardRef(() => GridDirective), { descendants: true }) set cssGridChildren(list: QueryList<GridDirective>) {
 		if (this.cssGridEnabled) {
 			list.forEach((grid) => {
 				// Prevents initial (parent) grid element from being turned into a subgrid

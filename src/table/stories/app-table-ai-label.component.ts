@@ -4,10 +4,19 @@ import {
 	TemplateRef,
 	ViewChild
 } from "@angular/core";
+import { AILabelComponent, AILabelModule } from "../../ai-label";
 import { TableHeaderItem } from "../table-header-item.class";
 import { TableItem } from "../table-item.class";
 import { TableModel } from "../table-model.class";
+import { Table } from "../table.component";
+import { TableContainer } from "../table-container.component";
+import { TableHeader } from "../header/table-header.component";
+import { TableHeaderDecorator } from "../header/table-header-decorator.component";
+import { TableHeaderDescription } from "../header/table-header-description.directive";
+import { TableHeaderTitle } from "../header/table-header-title.directive";
 import { AI_LABEL_INNER } from "../../storybook/ai-label-story-shared";
+import { IconDirective } from "../../icon";
+import { ButtonModule } from "../../button";
 
 const DEMO_ROWS: string[][] = [
 	["Load Balancer 3", "HTTP", "3000", "Round robin", "Kevin's VM Groups", "Disabled"],
@@ -26,7 +35,7 @@ function showSlugForRowIndex(i: number): boolean {
 	selector: "app-table-ai-label-selection",
 	template: `
 		<ng-template #rowSlugTpl let-data="data">
-			<ng-container *ngIf="data?.show">
+			@if (data?.show) {
 				<cds-ai-label
 					class="ai-label-container"
 					kind="default"
@@ -36,7 +45,7 @@ function showSlugForRowIndex(i: number): boolean {
 					ariaLabel="Show information">
 					` + AI_LABEL_INNER + `
 				</cds-ai-label>
-			</ng-container>
+			}
 		</ng-template>
 		<cds-table
 			[model]="model"
@@ -47,10 +56,11 @@ function showSlugForRowIndex(i: number): boolean {
 			[isDataGrid]="true"
 			[withRowAILabels]="true">
 		</cds-table>
-	`
+	`,
+	standalone: true,
+	imports: [Table, AILabelModule, IconDirective, ButtonModule]
 })
 export class TableAiLabelWithSelectionStory implements AfterViewInit {
-
 	model = new TableModel();
 	@ViewChild("rowSlugTpl") protected rowSlugTpl: TemplateRef<any>;
 
@@ -86,7 +96,7 @@ export class TableAiLabelWithSelectionStory implements AfterViewInit {
 	selector: "app-table-ai-label-radio",
 	template: `
 		<ng-template #rowSlugTpl let-data="data">
-			<ng-container *ngIf="data?.show">
+			@if (data?.show) {
 				<cds-ai-label
 					class="ai-label-container"
 					kind="default"
@@ -96,7 +106,7 @@ export class TableAiLabelWithSelectionStory implements AfterViewInit {
 					ariaLabel="Show information">
 					` + AI_LABEL_INNER + `
 				</cds-ai-label>
-			</ng-container>
+			}
 		</ng-template>
 		<cds-table
 			[model]="model"
@@ -108,10 +118,11 @@ export class TableAiLabelWithSelectionStory implements AfterViewInit {
 			[isDataGrid]="true"
 			[withRowAILabels]="true">
 		</cds-table>
-	`
+	`,
+	standalone: true,
+	imports: [Table, AILabelModule, IconDirective, ButtonModule]
 })
 export class TableAiLabelRadioSelectionStory implements AfterViewInit {
-
 	model = new TableModel();
 	@ViewChild("rowSlugTpl") protected rowSlugTpl: TemplateRef<any>;
 
@@ -147,7 +158,7 @@ export class TableAiLabelRadioSelectionStory implements AfterViewInit {
 	selector: "app-table-ai-label-selection-expansion",
 	template: `
 		<ng-template #rowSlugTpl let-data="data">
-			<ng-container *ngIf="data?.show">
+			@if (data?.show) {
 				<cds-ai-label
 					class="ai-label-container"
 					kind="default"
@@ -157,7 +168,7 @@ export class TableAiLabelRadioSelectionStory implements AfterViewInit {
 					ariaLabel="Show information">
 					` + AI_LABEL_INNER + `
 				</cds-ai-label>
-			</ng-container>
+			}
 		</ng-template>
 		<cds-table
 			[model]="model"
@@ -169,10 +180,11 @@ export class TableAiLabelRadioSelectionStory implements AfterViewInit {
 			[isDataGrid]="true"
 			[withRowAILabels]="true">
 		</cds-table>
-	`
+	`,
+	standalone: true,
+	imports: [Table, AILabelModule, IconDirective, ButtonModule]
 })
 export class TableAiLabelSelectionExpansionStory implements AfterViewInit {
-
 	model = new TableModel();
 	@ViewChild("rowSlugTpl") protected rowSlugTpl: TemplateRef<any>;
 
@@ -211,7 +223,7 @@ export class TableAiLabelSelectionExpansionStory implements AfterViewInit {
 	selector: "app-table-ai-label-expansion-only",
 	template: `
 		<ng-template #rowSlugTpl let-data="data">
-			<ng-container *ngIf="data?.show">
+			@if (data?.show) {
 				<cds-ai-label
 					class="ai-label-container"
 					kind="default"
@@ -221,7 +233,7 @@ export class TableAiLabelSelectionExpansionStory implements AfterViewInit {
 					ariaLabel="Show information">
 					` + AI_LABEL_INNER + `
 				</cds-ai-label>
-			</ng-container>
+			}
 		</ng-template>
 		<cds-table
 			[model]="model"
@@ -233,10 +245,11 @@ export class TableAiLabelSelectionExpansionStory implements AfterViewInit {
 			[isDataGrid]="true"
 			[withRowAILabels]="true">
 		</cds-table>
-	`
+	`,
+	standalone: true,
+	imports: [Table, AILabelModule, IconDirective, ButtonModule]
 })
 export class TableAiLabelExpansionOnlyStory implements AfterViewInit {
-
 	model = new TableModel();
 	@ViewChild("rowSlugTpl") protected rowSlugTpl: TemplateRef<any>;
 
@@ -295,10 +308,11 @@ export class TableAiLabelExpansionOnlyStory implements AfterViewInit {
 			[sortable]="true"
 			[isDataGrid]="true">
 		</cds-table>
-	`
+	`,
+	standalone: true,
+	imports: [Table, AILabelModule, IconDirective, ButtonModule]
 })
 export class TableAiLabelColumnExpansionStory implements AfterViewInit {
-
 	model = new TableModel();
 	@ViewChild("attachedGroupsHeaderTpl") protected attachedGroupsHeaderTpl: TemplateRef<any>;
 
@@ -353,10 +367,11 @@ export class TableAiLabelColumnExpansionStory implements AfterViewInit {
 			[sortable]="true"
 			[isDataGrid]="true">
 		</cds-table>
-	`
+	`,
+	standalone: true,
+	imports: [Table, AILabelModule, IconDirective, ButtonModule]
 })
 export class TableAiLabelColumnSortStory implements AfterViewInit {
-
 	model = new TableModel();
 	@ViewChild("attachedGroupsHeaderTpl") protected attachedGroupsHeaderTpl: TemplateRef<any>;
 
@@ -408,7 +423,17 @@ export class TableAiLabelColumnSortStory implements AfterViewInit {
 				[isDataGrid]="true">
 			</cds-table>
 		</cds-table-container>
-	`
+	`,
+	standalone: true,
+	imports: [
+		TableContainer,
+		TableHeader,
+		TableHeaderTitle,
+		TableHeaderDescription,
+		TableHeaderDecorator,
+		Table,
+		AILabelComponent
+	]
 })
 export class TableAiLabelFullTableStory implements AfterViewInit {
 	model = new TableModel();

@@ -1,10 +1,16 @@
-import { Component, HostBinding, Input } from "@angular/core";
+import {
+	ChangeDetectionStrategy,
+	Component,
+	HostBinding,
+	Input
+} from "@angular/core";
+import { NgTemplateOutlet } from "@angular/common";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { ButtonModule } from 'carbon-components-angular';
+ * import { ButtonSet } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-button-button-set--basic)
@@ -12,17 +18,21 @@ import { Component, HostBinding, Input } from "@angular/core";
 @Component({
 	selector: "cds-button-set, ibm-button-set",
 	template: `
-		<div *ngIf="fluid" class="cds--btn-set__fluid-inner cds--btn-set__fluid-inner--auto-stack">
-			<ng-container *ngTemplateOutlet="content"></ng-container>
-		</div>
-		<ng-container *ngIf="!fluid">
-			<ng-container *ngTemplateOutlet="content"></ng-container>
-		</ng-container>
+		@if (fluid) {
+			<div class="cds--btn-set__fluid-inner cds--btn-set__fluid-inner--auto-stack">
+				<ng-container *ngTemplateOutlet="content"></ng-container>
+			</div>
+		}
+		@if (!fluid) {
+			<ng-container *ngTemplateOutlet="content" />
+		}
 
 		<ng-template #content>
-			<ng-content></ng-content>
+			<ng-content />
 		</ng-template>
-	`
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgTemplateOutlet]
 })
 export class ButtonSet {
 	@HostBinding("class.cds--btn-set") buttonSetClass = true;

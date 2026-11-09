@@ -8,20 +8,24 @@ import {
 	AfterViewInit,
 	HostListener,
 	ElementRef,
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	OnChanges,
-	SimpleChanges
+	SimpleChanges,
+	inject
 } from "@angular/core";
 import { ContentSwitcherOption } from "./content-switcher-option.directive";
 import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular/common";
+import { NgClass } from "@angular/common";
 
 /**
  * The content switcher can be used for toggling between distinct options.
  * Similar to tabs, but without an associated content panel.
  *
- * Get started with importing the module:
+ * Get started with importing the components and directives:
  *
  * ```typescript
- * import { ContentSwitcherModule } from 'carbon-components-angular';
+ * import { ContentSwitcher, ContentSwitcherOption } from 'carbon-components-angular';
  * ```
  *
  * ```html
@@ -47,9 +51,11 @@ import { isFocusInLastItem, isFocusInFirstItem } from "carbon-components-angular
 				'cds--content-switcher--low-contrast': lowContrast
 			}"
 			role="tablist">
-			<ng-content></ng-content>
+			<ng-content />
 		</div>
-	`
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgClass]
 })
 export class ContentSwitcher implements AfterViewInit, OnChanges {
 	@Input() ariaLabel = "content switcher";
@@ -86,7 +92,14 @@ export class ContentSwitcher implements AfterViewInit, OnChanges {
 
 	@ContentChildren(ContentSwitcherOption) options: QueryList<ContentSwitcherOption>;
 
-	constructor(protected elementRef: ElementRef) {}
+	protected elementRef = inject(ElementRef);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (this.options) {
@@ -106,7 +119,10 @@ export class ContentSwitcher implements AfterViewInit, OnChanges {
 			const firstActive = this.options.find(option => option.active);
 			// delay setting active until the DOM has settled
 			if (!firstActive) {
-				setTimeout(() => this.options.first.active = true);
+				setTimeout(() => {
+					this.options.first.active = true;
+					this.changeDetectorRef.markForCheck();
+				});
 			}
 		}
 		// propagate selectionMode so each option can honor 'manual' selection

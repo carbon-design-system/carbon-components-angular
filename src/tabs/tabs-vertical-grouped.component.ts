@@ -1,8 +1,4 @@
-import {
-	Component,
-	HostBinding,
-	Input
-} from "@angular/core";
+import { Component, HostBinding, Input } from "@angular/core";
 
 /**
  * `TabsVerticalGrouped` is the vertical-orientation counterpart of the
@@ -26,7 +22,8 @@ import {
  */
 @Component({
 	selector: "cds-tabs-vertical-grouped, ibm-tabs-vertical-grouped",
-	template: `<ng-content></ng-content>`
+	template: `<ng-content />`,
+	standalone: true
 })
 export class TabsVerticalGrouped {
 	/**

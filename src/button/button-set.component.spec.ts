@@ -10,7 +10,8 @@ import { ButtonSet } from "./button-set.component";
 			<button cdsButton="secondary">Cancel</button>
 			<button cdsButton="primary">Save</button>
 		</cds-button-set>
-	`
+	`,
+	imports: [ButtonModule]
 })
 class ButtonSetTest {
 	@ViewChild(ButtonSet) buttonSet: ButtonSet;
@@ -24,8 +25,9 @@ describe("ButtonSet", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [ButtonSetTest],
-			imports: [ButtonModule]
+			imports: [
+				ButtonSetTest
+			]
 		});
 
 		fixture = TestBed.createComponent(ButtonSetTest);

@@ -1,8 +1,8 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import { ButtonModule } from "../button";
-import { IconModule, IconService } from "../icon";
+import { IconButton } from "../button";
+import { IconDirective, IconService } from "../icon";
 import { ContainedListItem } from "./contained-list-item.component";
 import Apple16 from "@carbon/icons/es/apple/16";
 import Fish16 from "@carbon/icons/es/fish/16";
@@ -12,7 +12,7 @@ import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 @Component({
 	template: `
 		<ng-template #label>
-	  		<h1>My contained list</h1>
+			<h1>My contained list</h1>
 		</ng-template>
 
 		<ng-template #action>
@@ -38,10 +38,22 @@ import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
 				<ng-container ibmContainedListItemButton>Clickable list item</ng-container>
 			</cds-contained-list-item>
 		</cds-contained-list>
-	`
+	`,
+	imports: [
+		ContainedList,
+		ContainedListItem,
+		IconDirective,
+		IconButton
+	]
 })
 class WrapperComponent {
-	constructor(private iconService: IconService) {
+	private iconService = inject(IconService);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
 		this.iconService.registerAll([Apple16, Fish16]);
 	}
 }
@@ -52,8 +64,7 @@ describe("ContainedList", () => {
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			declarations: [ContainedList, ContainedListItem, WrapperComponent],
-			imports: [IconModule, ButtonModule]
+			imports: [WrapperComponent]
 		}).compileComponents();
 
 		fixture = TestBed.createComponent(ContainedList);
@@ -115,7 +126,8 @@ describe("ContainedList", () => {
 			const wrapperFixture: ComponentFixture<WrapperComponent> = TestBed.createComponent(WrapperComponent);
 			wrapperFixture.detectChanges();
 
-			const actionElementRef = wrapperFixture.nativeElement.querySelector(".cds--contained-list .cds--contained-list__action ibm-icon-button");
+			const actionElementRef = wrapperFixture.nativeElement
+				.querySelector(".cds--contained-list .cds--contained-list__action ibm-icon-button");
 			expect(actionElementRef).toBeTruthy();
 		});
 	});
@@ -129,7 +141,7 @@ describe("ContainedList", () => {
 			expect(listItemElement.nativeElement.textContent.trim()).toBe("List item");
 		});
 
-		it("should render the icon", () => {
+		it("should render the icon from template ref", () => {
 			const wrapperFixture: ComponentFixture<WrapperComponent> = TestBed.createComponent(WrapperComponent);
 			wrapperFixture.detectChanges();
 
@@ -137,11 +149,13 @@ describe("ContainedList", () => {
 			expect(iconElement).toBeTruthy();
 		});
 
-		it("should render the icon", () => {
+		it("should render the icon from string ref", () => {
 			const wrapperFixture: ComponentFixture<WrapperComponent> = TestBed.createComponent(WrapperComponent);
 			wrapperFixture.detectChanges();
 
-			const iconElement = wrapperFixture.debugElement.query(By.css(".cds--contained-list-item:nth-child(3) svg[ng-reflect-ibm-icon='apple']"));
+			const iconElement = wrapperFixture.debugElement.query(
+				By.css(".cds--contained-list-item:nth-child(3) .cds--contained-list-item__icon svg")
+			);
 			expect(iconElement).toBeTruthy();
 		});
 

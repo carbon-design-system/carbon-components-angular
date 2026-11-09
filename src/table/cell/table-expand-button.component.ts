@@ -3,23 +3,28 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	HostBinding
+	HostBinding,
+	inject
 } from "@angular/core";
-import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
+import { IconDirective } from "carbon-components-angular/icon";
+import { AsyncPipe } from "@angular/common";
 
 @Component({
-	// tslint:disable-next-line: component-selector
+	// eslint-disable-next-line @angular-eslint/component-selector
 	selector: "[cdsTableExpandButton], [ibmTableExpandButton]",
 	template: `
-		<button
-			*ngIf="expandable"
-			class="cds--table-expand__button"
-			[attr.aria-label]="getAriaLabel() | async"
-			(click)="expandRow.emit()">
-			<svg cdsIcon="chevron--right" size="16" class="cds--table-expand__svg"></svg>
-		</button>
-	`
+		@if (expandable) {
+			<button
+				class="cds--table-expand__button"
+				[attr.aria-label]="getAriaLabel() | async"
+				(click)="expandRow.emit()">
+				<svg cdsIcon="chevron--right" size="16" class="cds--table-expand__svg"></svg>
+			</button>
+		}
+	`,
+	imports: [IconDirective, AsyncPipe]
 })
 export class TableExpandButton {
 	/**
@@ -51,9 +56,15 @@ export class TableExpandButton {
 
 	@Output() expandRow = new EventEmitter<void>();
 
+	protected i18n = inject(I18n);
+
 	protected _ariaLabel = this.i18n.getOverridable("TABLE.EXPAND_BUTTON");
 
-	constructor(protected i18n: I18n) { }
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	getAriaLabel(): Observable<string> {
 		return this._ariaLabel.subject;

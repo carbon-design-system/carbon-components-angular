@@ -9,6 +9,7 @@ import { Component } from "@angular/core";
 		<div class="cds--data-table-header__decorator">
 			<ng-content></ng-content>
 		</div>
-	`
+	`,
+	standalone: true
 })
 export class TableHeaderDecorator {}

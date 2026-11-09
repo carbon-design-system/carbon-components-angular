@@ -1,9 +1,12 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { TagModule, Tag } from "./";
-import { IconModule } from "../icon";
-import { PopoverModule } from "../popover";
+import {
+	Tag,
+	TagFilter,
+	TagOperationalComponent,
+	TagSelectableComponent
+} from "./";
+import { IconDirective } from "../icon";
+import { PopoverContainer, PopoverContent } from "../popover";
 import { AILabelModule } from "../ai-label";
 import { ButtonModule } from "../button";
 import { AI_LABEL_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
@@ -13,9 +16,13 @@ export default {
 	decorators: [
 		moduleMetadata({
 			imports: [
-				TagModule,
-				IconModule,
-				PopoverModule,
+				Tag,
+				IconDirective,
+				PopoverContainer,
+				PopoverContent,
+				TagOperationalComponent,
+				TagFilter,
+				TagSelectableComponent,
 				AILabelModule,
 				ButtonModule
 			]

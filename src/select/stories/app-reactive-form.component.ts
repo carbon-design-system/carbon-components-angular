@@ -1,12 +1,16 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, inject, OnInit } from "@angular/core";
 import {
 	FormGroup,
 	FormBuilder,
-	FormControl
+	FormControl,
+	ReactiveFormsModule
 } from "@angular/forms";
+
+import { Select } from "../select.component";
 
 @Component({
 	selector: "app-reactive-form",
+	imports: [Select, ReactiveFormsModule],
 	template: `
 		<form [formGroup]="formGroup">
 			<cds-select formControlName="selecterino">
@@ -28,7 +32,7 @@ import {
 export class ReactiveFormsSelect implements OnInit {
 	public formGroup: FormGroup;
 
-	constructor(protected formBuilder: FormBuilder) { }
+	protected formBuilder = inject(FormBuilder);
 
 	clearSelection() {
 		this.formGroup.get("selecterino")?.setValue("default");

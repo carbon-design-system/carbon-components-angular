@@ -12,24 +12,30 @@ import {
 	AfterContentInit,
 	HostBinding,
 	TemplateRef,
-	OnDestroy
+	OnDestroy,
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
+	inject
 } from "@angular/core";
-import { AbstractDropdownView, DropdownService } from "carbon-components-angular/dropdown";
-import { ListItem } from "carbon-components-angular/dropdown";
+import { AbstractDropdownView, DropdownService, ListItem } from "carbon-components-angular/dropdown";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { filter } from "rxjs/operators";
 import {
+	AnimationFrameService,
 	getScrollableParents,
 	hasScrollableParents
 } from "carbon-components-angular/utils";
-import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
+import { PLACEHOLDER_SERVICE_PROVIDER } from "carbon-components-angular/placeholder";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { ComboBoxModule } from 'carbon-components-angular';
+ * import { ComboBox, DropdownList } from 'carbon-components-angular';
  * ```
  *
  * ComboBoxes are similar to dropdowns, except a combobox provides an input field for users to search items and (optionally) add their own.
@@ -48,18 +54,22 @@ import { Observable } from "rxjs";
 				'cds--list-box__wrapper--fluid--focus': fluid && _isFocused,
 				'cds--list-box__wrapper--decorator': !!decorator
 			}">
-			<label
-				*ngIf="label"
-				[for]="id"
-				[id]="labelId"
-				class="cds--label"
-				[ngClass]="{
-					'cds--label--disabled': disabled,
-					'cds--visually-hidden': hideLabel
-				}">
-				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
-			</label>
+			@if (label) {
+				<label
+					[for]="id"
+					[id]="labelId"
+					class="cds--label"
+					[ngClass]="{
+						'cds--label--disabled': disabled,
+						'cds--visually-hidden': hideLabel
+					}">
+					@if (isTemplate(label)) {
+						<ng-template [ngTemplateOutlet]="label" />
+					} @else {
+						{{label}}
+					}
+				</label>
+			}
 			<div
 				#listbox
 				[ngClass]="{
@@ -83,35 +93,36 @@ import { Observable } from "rxjs";
 					class="cds--list-box__field"
 					(click)="toggleDropdown()"
 					(blur)="onBlur()">
-					<div
-						*ngIf="type === 'multi' && pills.length > 0"
-						class="cds--tag cds--tag--filter cds--tag--high-contrast"
-						[ngClass]="{'cds--tag--disabled': disabled || readonly}">
-						<span class="cds--tag__label">{{ pills.length }}</span>
-						<button
-							type="button"
-							(click)="clearSelected($event)"
-							(blur)="onBlur()"
-							(keydown.enter)="clearSelected($event)"
-							class="cds--tag__close-icon"
-							tabindex="0"
-							[title]="clearSelectionsTitle"
-							[disabled]="disabled || readonly"
-							[attr.aria-label]="clearSelectionAria">
-							<svg
-								focusable="false"
-								preserveAspectRatio="xMidYMid meet"
-								style="will-change: transform;"
-								role="img"
-								xmlns="http://www.w3.org/2000/svg"
-								width="16"
-								height="16"
-								viewBox="0 0 16 16"
-								aria-hidden="true">
-								<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>
-							</svg>
-						</button>
-					</div>
+					@if (type === 'multi' && pills.length > 0) {
+						<div
+							class="cds--tag cds--tag--filter cds--tag--high-contrast"
+							[ngClass]="{'cds--tag--disabled': disabled || readonly}">
+							<span class="cds--tag__label">{{ pills.length }}</span>
+							<button
+								type="button"
+								(click)="clearSelected($event)"
+								(blur)="onBlur()"
+								(keydown.enter)="clearSelected($event)"
+								class="cds--tag__close-icon"
+								tabindex="0"
+								[title]="clearSelectionsTitle"
+								[disabled]="disabled || readonly"
+								[attr.aria-label]="clearSelectionAria">
+								<svg
+									focusable="false"
+									preserveAspectRatio="xMidYMid meet"
+									style="will-change: transform;"
+									role="img"
+									xmlns="http://www.w3.org/2000/svg"
+									width="16"
+									height="16"
+									viewBox="0 0 16 16"
+									aria-hidden="true">
+									<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>
+								</svg>
+							</button>
+						</div>
+					}
 					<input
 						#input
 						type="text"
@@ -135,30 +146,32 @@ import { Observable } from "rxjs";
 						[attr.aria-controls]="open ? view?.listId : null"
 						[attr.aria-autocomplete]="autocomplete"
 						[placeholder]="placeholder"/>
-					<svg
-						*ngIf="invalid"
-						cdsIcon="warning--filled"
-						size="16"
-						class="cds--list-box__invalid-icon">
-					</svg>
-					<svg
-						*ngIf="!invalid && warn"
-						cdsIcon="warning--alt--filled"
-						size="16"
-						class="cds--list-box__invalid-icon cds--list-box__invalid-icon--warning">
-					</svg>
-					<div
-						*ngIf="showClearButton"
-						role="button"
-						class="cds--list-box__selection"
-						tabindex="0"
-						[attr.aria-label]="clearSelectionAria"
-						[title]="clearSelectionTitle"
-						(keyup.enter)="clearInput($event)"
-						(click)="clearInput($event)"
-						(blur)="onBlur()">
-						<svg cdsIcon="close" size="16"></svg>
-					</div>
+					@if (invalid) {
+						<svg
+							cdsIcon="warning--filled"
+							size="16"
+							class="cds--list-box__invalid-icon">
+						</svg>
+					} @else if (warn) {
+						<svg
+							cdsIcon="warning--alt--filled"
+							size="16"
+							class="cds--list-box__invalid-icon cds--list-box__invalid-icon--warning">
+						</svg>
+					}
+					@if (showClearButton) {
+						<div
+							role="button"
+							class="cds--list-box__selection"
+							tabindex="0"
+							[attr.aria-label]="clearSelectionAria"
+							[title]="clearSelectionTitle"
+							(keyup.enter)="clearInput($event)"
+							(click)="clearInput($event)"
+							(blur)="onBlur()">
+							<svg cdsIcon="close" size="16"></svg>
+						</div>
+					}
 					<button
 						type="button"
 						role="button"
@@ -170,35 +183,51 @@ import { Observable } from "rxjs";
 						<svg cdsIcon="chevron--down" size="16"></svg>
 					</button>
 				</div>
-				<ng-container *ngIf="decorator">
+				@if (decorator) {
 					<div class="cds--list-box__inner-wrapper--decorator">
 						<ng-template [ngTemplateOutlet]="decorator"></ng-template>
 					</div>
-				</ng-container>
+				}
 				<div
 					#dropdownMenu
 					[ngClass]="{
 						'cds--list-box--up': this.dropUp !== null && this.dropUp !== undefined ? dropUp : _dropUp
 					}">
-					<ng-content *ngIf="open"></ng-content>
+					@if (open) {
+						<ng-content />
+					}
 				</div>
 			</div>
-			<hr *ngIf="fluid" class="cds--list-box__divider" />
-			<div
-				*ngIf="helperText && !invalid && !warn && !fluid"
-				class="cds--form__helper-text"
-				[ngClass]="{'cds--form__helper-text--disabled': disabled}">
-				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-			</div>
-			<div *ngIf="invalid" class="cds--form-requirement">
-				<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
-				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-			</div>
-			<div *ngIf="!invalid && warn" class="cds--form-requirement">
-				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
-			</div>
+			@if (fluid) {
+				<hr class="cds--list-box__divider" />
+			}
+			@if (invalid) {
+				<div class="cds--form-requirement">
+					@if (isTemplate(invalidText)) {
+						<ng-template [ngTemplateOutlet]="invalidText" />
+					} @else {
+						{{ invalidText }}
+					}
+				</div>
+			} @else if (warn) {
+				<div class="cds--form-requirement">
+					@if (isTemplate(warnText)) {
+						<ng-template [ngTemplateOutlet]="warnText" />
+					} @else {
+						{{warnText}}
+					}
+				</div>
+			} @else if (helperText && !fluid) {
+				<div
+					class="cds--form__helper-text"
+					[ngClass]="{'cds--form__helper-text--disabled': disabled}">
+					@if (isTemplate(helperText)) {
+						<ng-template [ngTemplateOutlet]="helperText" />
+					} @else {
+						{{helperText}}
+					}
+				</div>
+			}
 		</div>
 	`,
 	providers: [
@@ -206,10 +235,17 @@ import { Observable } from "rxjs";
 			provide: NG_VALUE_ACCESSOR,
 			useExisting: ComboBox,
 			multi: true
-		}
-	]
+		},
+		DropdownService,
+		AnimationFrameService,
+		PLACEHOLDER_SERVICE_PROVIDER
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgClass, NgTemplateOutlet, IconDirective]
 })
 export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnDestroy {
+	static comboBoxCount = 0;
+
 	/**
 	 * Text to show when nothing is selected.
 	 */
@@ -280,7 +316,6 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	get clearSelectionAria() {
 		return this._clearSelectionAria.value;
 	}
-	static comboBoxCount = 0;
 	@Input() id = `combobox-${ComboBox.comboBoxCount++}`;
 	@Input() labelId = `combobox-label-${ComboBox.comboBoxCount++}`;
 	/**
@@ -433,6 +468,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 * }
 	 * ```
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() submit = new EventEmitter<{
 		items: ListItem[],
 		index: number,
@@ -470,6 +506,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 */
 	_dropUp = false;
 
+	protected elementRef = inject(ElementRef);
+	protected dropdownService = inject(DropdownService);
+	protected i18n = inject(I18n);
+	protected cdr = inject(ChangeDetectorRef);
 	protected noop = this._noop.bind(this);
 	protected onTouchedCallback: () => void = this._noop;
 	protected propagateChangeCallback: (_: any) => void = this._noop;
@@ -487,14 +527,14 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	private _writtenValue: any;
 	private _isUsingNgControl = false;
 
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of ComboBox.
 	 */
-	constructor(
-		protected elementRef: ElementRef,
-		protected dropdownService: DropdownService,
-		protected i18n: I18n
-	) {}
+	constructor() {}
 
 	/**
 	 * Lifecycle hook.
@@ -574,12 +614,10 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 						this.writeValue(this._writtenValue);
 					}
 				}
+				this.cdr.markForCheck();
 			});
 			// update the rest of combobox with any pre-selected items
-			// setTimeout just defers the call to the next check cycle
-			setTimeout(() => {
-				this.updateSelected();
-			});
+			this.updateSelected();
 
 			this.view.blurIntent.pipe(filter(v => v === "top")).subscribe(() => {
 				this.elementRef.nativeElement.querySelector(".cds--text-input").focus();
@@ -678,6 +716,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 			}
 		}
 		this.updateSelected();
+		this.cdr.markForCheck();
 	}
 
 	onBlur() {
@@ -700,6 +739,7 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	 */
 	setDisabledState(isDisabled: boolean) {
 		this.disabled = isDisabled;
+		this.cdr.markForCheck();
 	}
 
 	/**
@@ -708,6 +748,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 	public updatePills() {
 		this.pills = this.view.getSelected() || [];
 		this.checkForReorder();
+		// reached from the view select subscription, which marks nothing dirty
+		this.cdr.markForCheck();
 	}
 
 	public clearSelected(event) {
@@ -753,6 +795,8 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		}
 
 		document.removeEventListener("click", this.outsideClick, true);
+
+		this.cdr.markForCheck();
 	}
 
 	/**
@@ -774,8 +818,11 @@ export class ComboBox implements OnChanges, AfterViewInit, AfterContentInit, OnD
 		setTimeout(() => {
 			if (this.dropUp === null || this.dropUp === undefined) {
 				this._dropUp = this._shouldDropUp();
+				this.cdr.markForCheck();
 			}
 		}, 0);
+
+		this.cdr.markForCheck();
 	}
 
 	/**

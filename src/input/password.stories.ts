@@ -1,14 +1,12 @@
-/* tslint:disable variable-name */
-
 import { FormsModule } from "@angular/forms";
 import { Meta, moduleMetadata } from "@storybook/angular";
-import { InputModule, PasswordInputLabelComponent } from ".";
+import { PasswordInput, PasswordInputLabelComponent } from ".";
 
 export default {
 	title: "Components/Input/Password",
 	decorators: [
 		moduleMetadata({
-			imports: [InputModule, FormsModule]
+			imports: [FormsModule, PasswordInput]
 		})
 	],
 	args: {

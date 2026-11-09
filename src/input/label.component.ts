@@ -8,18 +8,24 @@ import {
 	ViewChild,
 	ContentChild,
 	AfterContentInit,
-	ChangeDetectorRef
+	ChangeDetectorRef,
+	inject
 } from "@angular/core";
 
 import { TextArea } from "./text-area.directive";
 import { TextInput } from "./input.directive";
 import { PasswordInput } from "./password.directive";
+import { TextareaLabelComponent } from "./textarea-label.component";
+import { TextInputLabelComponent } from "./text-input-label.component";
+import { PasswordInputLabelComponent } from "./password-input-label.component";
+import { NgTemplateOutlet, NgClass } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { InputModule } from 'carbon-components-angular';
+ * import { Label } from 'carbon-components-angular';
  * ```
  *
  * To prevent attribute drilling, use `ibm-text-label` or `ibm-textarea-label` components
@@ -37,15 +43,16 @@ import { PasswordInput } from "./password.directive";
 	selector: "cds-label, ibm-label",
 	template: `
 		<ng-template #inputContentTemplate>
-			<ng-content select="input,textarea,div"></ng-content>
+			<ng-content select="input,textarea,div" />
 		</ng-template>
 
 		<ng-template #labelContentTemplate>
-			<ng-content></ng-content>
+			<ng-content />
 		</ng-template>
 
-		<ng-container [ngSwitch]="type">
-			<ng-container *ngSwitchCase="'TextArea'">
+
+		@switch (type) {
+			@case ('TextArea') {
 				<cds-textarea-label
 					[labelInputID]="labelInputID"
 					[disabled]="disabled"
@@ -62,10 +69,9 @@ import { PasswordInput } from "./password.directive";
 					[counterMode]="counterMode"
 					[decorator]="decorator"
 					[labelTemplate]="labelContentTemplate"
-					[textAreaTemplate]="inputContentTemplate">
-				</cds-textarea-label>
-			</ng-container>
-			<ng-container *ngSwitchCase="'TextInput'">
+					[textAreaTemplate]="inputContentTemplate" />
+			}
+			@case ('TextInput') {
 				<cds-text-label
 					[labelInputID]="labelInputID"
 					[disabled]="disabled"
@@ -83,10 +89,9 @@ import { PasswordInput } from "./password.directive";
 					[maxCount]="maxCount"
 					[decorator]="decorator"
 					[labelTemplate]="labelContentTemplate"
-					[textInputTemplate]="inputContentTemplate">
-				</cds-text-label>
-			</ng-container>
-			<ng-container *ngSwitchCase="'PasswordInput'">
+					[textInputTemplate]="inputContentTemplate" />
+			}
+			@case ('PasswordInput') {
 				<cds-password-label
 					[labelInputID]="labelInputID"
 					[disabled]="disabled"
@@ -100,13 +105,12 @@ import { PasswordInput } from "./password.directive";
 					[hideLabel]="hideLabel"
 					[inline]="inline"
 					[labelTemplate]="labelContentTemplate"
-					[passwordInputTemplate]="inputContentTemplate">
-				</cds-password-label>
-			</ng-container>
-			<ng-container *ngSwitchDefault>
-				<ng-template [ngTemplateOutlet]="default"></ng-template>
-			</ng-container>
-		</ng-container>
+					[passwordInputTemplate]="inputContentTemplate" />
+			}
+			@default {
+				<ng-template [ngTemplateOutlet]="default" />
+			}
+		}
 
 		<ng-template #default>
 			<label
@@ -117,7 +121,7 @@ import { PasswordInput } from "./password.directive";
 					'cds--label--disabled': disabled,
 					'cds--skeleton': skeleton
 				}">
-				<ng-template [ngTemplateOutlet]="labelContentTemplate"></ng-template>
+				<ng-template [ngTemplateOutlet]="labelContentTemplate" />
 			</label>
 			<div
 				class="cds--text-input__field-wrapper"
@@ -126,42 +130,60 @@ import { PasswordInput } from "./password.directive";
 				}"
 				[attr.data-invalid]="(invalid ? true : null)"
 				#wrapper>
-				<svg
-					*ngIf="invalid"
-					cdsIcon="warning--filled"
-					size="16"
-					class="cds--text-input__invalid-icon">
-				</svg>
-				<svg
-					*ngIf="!invalid && warn"
-					cdsIcon="warning--alt--filled"
-					size="16"
-					class="cds--text-input__invalid-icon cds--text-input__invalid-icon--warning">
-				</svg>
-				<ng-template [ngTemplateOutlet]="inputContentTemplate"></ng-template>
+				@if (invalid) {
+					<svg
+						cdsIcon="warning--filled"
+						size="16"
+						class="cds--text-input__invalid-icon">
+					</svg>
+				} @else if (warn) {
+					<svg
+						cdsIcon="warning--alt--filled"
+						size="16"
+						class="cds--text-input__invalid-icon cds--text-input__invalid-icon--warning">
+					</svg>
+				}
+				<ng-template [ngTemplateOutlet]="inputContentTemplate" />
 			</div>
-			<div
-				*ngIf="!skeleton && helperText && !invalid && !warn"
-				class="cds--form__helper-text"
-				[ngClass]="{'cds--form__helper-text--disabled': disabled}">
-				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-			</div>
-			<div *ngIf="invalid" class="cds--form-requirement">
-				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
-				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-			</div>
-			<div *ngIf="!invalid && warn" class="cds--form-requirement">
-				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
-			</div>
+			@if (invalid) {
+				<div class="cds--form-requirement">
+					@if (isTemplate(invalidText)) {
+						<ng-template [ngTemplateOutlet]="invalidText" />
+					} @else {
+						{{invalidText}}
+					}
+				</div>
+			} @else if (warn) {
+				<div class="cds--form-requirement">
+					@if (isTemplate(warnText)) {
+						<ng-template [ngTemplateOutlet]="warnText" />
+					} @else {
+						{{warnText}}
+					}
+				</div>
+			} @else if(helperText && !skeleton) {
+				<div
+					class="cds--form__helper-text"
+					[ngClass]="{'cds--form__helper-text--disabled': disabled}">
+					@if (isTemplate(helperText)) {
+						<ng-template [ngTemplateOutlet]="helperText" />
+					} @else {
+						{{helperText}}
+					}
+				</div>
+			}
 		</ng-template>
-	`
+	`,
+	imports: [
+		NgTemplateOutlet,
+		NgClass,
+		TextareaLabelComponent,
+		TextInputLabelComponent,
+		PasswordInputLabelComponent,
+		IconDirective
+	]
 })
 export class Label implements AfterContentInit, AfterViewInit {
-	/**
-	 * Used to build the id of the input item associated with the `Label`.
-	 */
 	static labelCounter = 0;
 	/**
 	 * The id of the input item associated with the `Label`. This value is also used to associate the `Label` with
@@ -245,11 +267,9 @@ export class Label implements AfterContentInit, AfterViewInit {
 
 	@ContentChild(TextArea) textArea: TextArea;
 
-	// @ts-ignore
 	@ContentChild(TextInput, { static: false }) textInput: TextInput;
 
-	@ContentChild(PasswordInput, { static: false })
-	passwordInput: PasswordInput;
+	@ContentChild(PasswordInput, { static: false }) passwordInput: PasswordInput;
 
 	@HostBinding("class.cds--form-item") get labelClass() {
 		return this.type === undefined;
@@ -257,10 +277,16 @@ export class Label implements AfterContentInit, AfterViewInit {
 
 	type: "TextArea" | "TextInput" | "PasswordInput";
 
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of Label.
 	 */
-	constructor(protected changeDetectorRef: ChangeDetectorRef) {}
+	constructor() {}
 
 	/**
 	 * Update wrapper class if a textarea is hosted.

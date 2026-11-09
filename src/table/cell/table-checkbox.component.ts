@@ -2,29 +2,35 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter
+	EventEmitter,
+	inject
 } from "@angular/core";
-import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { TableItem } from "../table-item.class";
 import { TableRow } from "../table-row.class";
 import { Observable } from "rxjs";
 import { TableRowSize } from "../table.types";
+import { Checkbox } from "carbon-components-angular/checkbox";
+import { AsyncPipe } from "@angular/common";
+import { ReplacePipe } from "carbon-components-angular/i18n";
 
 @Component({
-	// tslint:disable-next-line: component-selector
+	// eslint-disable-next-line @angular-eslint/component-selector
 	selector: "[cdsTableCheckbox], [ibmTableCheckbox]",
 	template: `
-		<cds-checkbox
-			*ngIf="!skeleton"
-			inline="true"
-			[name]="name"
-			[checked]="selected"
-			[disabled]="disabled"
-			(checkedChange)="selectedChange.emit()"
-			[hideLabel]="true">
-				{{getLabel() | i18nReplace:getSelectionLabelValue(row) | async}}
-		</cds-checkbox>
-	`
+		@if (!skeleton) {
+			<cds-checkbox
+				inline="true"
+				[name]="name"
+				[checked]="selected"
+				[disabled]="disabled"
+				(checkedChange)="selectedChange.emit()"
+				[hideLabel]="true">
+					{{getLabel() | i18nReplace:getSelectionLabelValue(row) | async}}
+			</cds-checkbox>
+		}
+	`,
+	imports: [Checkbox, AsyncPipe, ReplacePipe]
 })
 export class TableCheckbox {
 	@Input() row: TableItem[];
@@ -70,9 +76,15 @@ export class TableCheckbox {
 	 */
 	@Output() selectedChange = new EventEmitter();
 
+	protected i18n = inject(I18n);
+
 	protected _label = this.i18n.getOverridable("TABLE.CHECKBOX_ROW");
 
-	constructor(protected i18n: I18n) { }
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	getSelectionLabelValue(row: TableItem[]) {
 		if (!this.selectionLabelColumn) {

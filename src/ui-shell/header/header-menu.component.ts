@@ -4,10 +4,13 @@ import {
 	HostListener,
 	ElementRef,
 	TemplateRef,
-	HostBinding
+	HostBinding,
+	inject
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { HeaderItemInterface } from "./header-navigation-items.interface";
+import { NgTemplateOutlet } from "@angular/common";
+import { HeaderItem } from "./header-item.component";
 
 /**
  * Dropdown menu container for navigation items.
@@ -23,30 +26,32 @@ import { HeaderItemInterface } from "./header-navigation-items.interface";
 			[attr.aria-expanded]="expanded"
 			(click)="navigate($event)">
 			{{title}}
-			<ng-template *ngIf="icon; else defaultIcon" [ngTemplateOutlet]="icon"></ng-template>
-			<ng-template #defaultIcon>
+			@if (icon) {
+				<ng-template [ngTemplateOutlet]="icon" />
+			} @else {
 				<svg class="cds--header__menu-arrow" width="12" height="7" aria-hidden="true">
 					<path d="M6.002 5.55L11.27 0l.726.685L6.003 7 0 .685.726 0z" />
 				</svg>
-			</ng-template>
+			}
 		</a>
 		<div class="cds--header__menu" [attr.aria-label]="title">
-			<ng-content></ng-content>
-			<ng-container *ngFor="let headerItem of headerItems">
+			<ng-content />
+			@for (headerItem of headerItems; track headerItem) {
 				<cds-header-item
 					[href]="headerItem.href"
 					[route]="headerItem.route"
 					[routeExtras]="headerItem.routeExtras">
 					{{ headerItem.content }}
 				</cds-header-item>
-			</ng-container>
+			}
 		</div>
 	`,
 	styles: [`
 		:host {
 			display: list-item;
 		}
-	`]
+	`],
+	imports: [NgTemplateOutlet, HeaderItem]
 })
 export class HeaderMenu {
 	@HostBinding("class.cds--header__submenu") subMenu = true;
@@ -80,7 +85,14 @@ export class HeaderMenu {
 
 	protected _href = "#";
 
-	constructor(protected domSanitizer: DomSanitizer, protected elementRef: ElementRef) { }
+	protected domSanitizer = inject(DomSanitizer);
+	protected elementRef = inject(ElementRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	@HostListener("click")
 	onClick() {

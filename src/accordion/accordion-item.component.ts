@@ -4,8 +4,13 @@ import {
 	HostBinding,
 	Output,
 	TemplateRef,
-	EventEmitter
+	EventEmitter,
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
+	inject
 } from "@angular/core";
+import { NgTemplateOutlet, NgClass } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 
 @Component({
 	selector: "cds-accordion-item, ibm-accordion-item",
@@ -18,27 +23,27 @@ import {
 			(click)="toggleExpanded()"
 			class="cds--accordion__heading">
 			<svg cdsIcon="chevron--right" size="16" class="cds--accordion__arrow"></svg>
-			<p *ngIf="!isTemplate(title)"
-				class="cds--accordion__title"
-				[ngClass]="{
-					'cds--skeleton__text': skeleton
-				}">
-				{{!skeleton ? title : null}}
-			</p>
-			<ng-template
-				*ngIf="isTemplate(title)"
-				[ngTemplateOutlet]="title"
-				[ngTemplateOutletContext]="context">
-			</ng-template>
+			@if (isTemplate(title)) {
+				<ng-template [ngTemplateOutlet]="title" [ngTemplateOutletContext]="context" />
+			} @else {
+				<p
+					class="cds--accordion__title"
+					[ngClass]="{
+						'cds--skeleton__text': skeleton
+					}">
+					{{!skeleton ? title : null}}
+				</p>
+			}
 		</button>
 		<div class="cds--accordion__wrapper">
 			<div [id]="id" class="cds--accordion__content">
-				<ng-content *ngIf="!skeleton; else skeletonTemplate"></ng-content>
-				<ng-template #skeletonTemplate>
+				@if (skeleton) {
 					<p class="cds--skeleton__text" style="width: 90%"></p>
 					<p class="cds--skeleton__text" style="width: 80%"></p>
 					<p class="cds--skeleton__text" style="width: 95%"></p>
-				</ng-template>
+				} @else {
+					<ng-content />
+				}
 			</div>
 		</div>
 	`,
@@ -46,7 +51,9 @@ import {
 		:host {
 			display: list-item;
 		}
-	`]
+	`],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [IconDirective, NgTemplateOutlet, NgClass]
 })
 export class AccordionItem {
 	static accordionItemCount = 0;
@@ -63,9 +70,6 @@ export class AccordionItem {
 	}
 	@HostBinding("attr.role") role = "listitem";
 
-	protected _itemDisabled = false;
-	protected _parentDisabled = false;
-
 	@Input() set disabled(value: boolean) {
 		this._itemDisabled = value;
 	}
@@ -74,9 +78,21 @@ export class AccordionItem {
 		return this._parentDisabled || this._itemDisabled;
 	}
 
+	protected _itemDisabled = false;
+	protected _parentDisabled = false;
+
+	private changeDetector = inject(ChangeDetectorRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
+
 	// Called by Accordion to cascade disabled without overwriting the item `disabled` input.
 	setParentDisabled(value: boolean): void {
 		this._parentDisabled = value;
+		this.changeDetector.markForCheck();
 	}
 
 	public toggleExpanded() {

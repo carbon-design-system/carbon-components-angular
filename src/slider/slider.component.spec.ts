@@ -3,18 +3,19 @@ import { TestBed } from "@angular/core/testing";
 import { By	} from "@angular/platform-browser";
 
 import { Slider } from "./slider.component";
-import { CommonModule } from "@angular/common";
+
 import { UtilsModule } from "../utils/utils.module";
 
 @Component({
 	template: `
-	<cds-slider
-		[shiftMultiplier]="shiftMultiplier"
-		(valueChange)="onValueChange()"
-		[disabled]="disabled"
-		[max]="max"
-		[min]="min">
-	</cds-slider>`
+		<cds-slider
+			[shiftMultiplier]="shiftMultiplier"
+			(valueChange)="onValueChange()"
+			[disabled]="disabled"
+			[max]="max"
+			[min]="min" />
+	`,
+	imports: [Slider]
 })
 class SliderTest {
 	disabled = false;
@@ -28,13 +29,8 @@ describe("Slider", () => {
 	let fixture, element, wrapper;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				Slider,
-				SliderTest
-			],
 			imports: [
-				CommonModule,
-				UtilsModule
+				SliderTest
 			]
 		});
 	});

@@ -17,18 +17,33 @@ import {
 	SimpleChanges,
 	TemplateRef,
 	ViewChild,
-	ViewContainerRef
+	ViewContainerRef,
+	inject
 } from "@angular/core";
 import { Subscription } from "rxjs";
-import {
-	autoUpdate,
-	computePosition,
-	flip
-} from "@floating-ui/dom";
+import { autoUpdate, computePosition, flip } from "@floating-ui/dom";
 import { ContextMenuItemComponent, ItemClickEvent } from "carbon-components-angular/context-menu";
+import { Button, IconButton } from "carbon-components-angular/button";
+import { IconDirective } from "carbon-components-angular/icon";
+import { ContextMenuComponent } from "carbon-components-angular/context-menu";
 
 type ComboButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom-start" | "bottom-end";
 
+/**
+ * Get started with importing the components:
+ *
+ * ```typescript
+ * import { ComboButtonComponent, ContextMenuItemComponent } from 'carbon-components-angular';
+ * ```
+ *
+ * ```html
+ * <cds-combo-button>
+ * 	<cds-menu-item label="First action"></cds-menu-item>
+ * </cds-combo-button>
+ * ```
+ *
+ * [See demo](../../?path=/story/components-combo-button--basic)
+ */
 @Component({
 	selector: "cds-combo-button",
 	template: `
@@ -68,11 +83,17 @@ type ComboButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom
 				[size]="size"
 				[open]="open"
 				[attr.id]="comboId">
-				<ng-content select="cds-menu-item, cds-menu-divider"></ng-content>
+				<ng-content select="cds-menu-item, cds-menu-divider" />
 			</cds-menu>
 		</ng-template>
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [
+		Button,
+		IconButton,
+		IconDirective,
+		ContextMenuComponent
+	]
 })
 export class ComboButtonComponent implements OnChanges, AfterViewInit, OnDestroy {
 	static comboButtonCounter = 0;
@@ -110,6 +131,11 @@ export class ComboButtonComponent implements OnChanges, AfterViewInit, OnDestroy
 
 	@ViewChild("menuTemplate") menuTemplate: TemplateRef<any>;
 
+	protected ngZone = inject(NgZone);
+	protected renderer = inject(Renderer2);
+	protected hostElement = inject(ElementRef);
+	protected viewContainerRef = inject(ViewContainerRef);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
 	protected documentClick = this.handleFocusOut.bind(this);
 	protected unmountFloatingElement: Function;
 
@@ -117,13 +143,11 @@ export class ComboButtonComponent implements OnChanges, AfterViewInit, OnDestroy
 	private _alignment: ComboButtonPlacement = "bottom";
 	private menuRef: HTMLElement;
 
-	constructor(
-		protected ngZone: NgZone,
-		protected renderer: Renderer2,
-		protected hostElement: ElementRef,
-		protected viewContainerRef: ViewContainerRef,
-		protected changeDetectorRef: ChangeDetectorRef
-	) { }
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 
 	/**

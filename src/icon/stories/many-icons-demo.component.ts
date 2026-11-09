@@ -1,19 +1,25 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, inject, OnInit } from "@angular/core";
 import * as Icons from "@carbon/icons";
 
+import { IconDirective } from "../icon.directive";
 import { IconService } from "../";
 
 @Component({
 	selector: "app-demo-many-icon",
+	imports: [IconDirective],
 	template: `
 		<table>
-			<tr *ngFor="let group of groupedIcons">
-				<td *ngFor="let icon of group">
-					<svg [cdsIcon]="icon.name" [size]="icon.size"></svg>
-					<div>name: <code>{{icon.name}}</code></div>
-					<div>size: <code>{{icon.size}}</code></div>
-				</td>
-			</tr>
+			@for (group of groupedIcons; track group) {
+				<tr>
+					@for (icon of group; track icon) {
+						<td>
+							<svg [cdsIcon]="icon.name" [size]="icon.size"></svg>
+							<div>name: <code>{{icon.name}}</code></div>
+							<div>size: <code>{{icon.size}}</code></div>
+						</td>
+					}
+				</tr>
+			}
 		</table>
 	`,
 	styles: [
@@ -28,7 +34,7 @@ import { IconService } from "../";
 export class ManyIconDemo implements OnInit {
 	groupedIcons: any = [];
 
-	constructor(protected iconService: IconService) { }
+	protected iconService = inject(IconService);
 
 	ngOnInit() {
 		const iconMap = new Map();

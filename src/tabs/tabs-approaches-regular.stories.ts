@@ -1,4 +1,3 @@
-/* tslint:disable variable-name */
 
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { GridModule } from "../grid/grid.module";
@@ -219,17 +218,17 @@ const cdsTabsDismissable = (args) => ({
 			[type]="type"
 			[dismissable]="true"
 			(tabClose)="onTabClose($event)">
-			<cds-tab
-				*ngFor="let tab of renderedTabs"
-				[heading]="tab.heading"
-				[disabled]="tab.disabled">
-				{{ tab.content }}
-			</cds-tab>
+			@for (tab of renderedTabs; track tab.heading) {
+				<cds-tab
+					[heading]="tab.heading"
+					[disabled]="tab.disabled">
+					{{ tab.content }}
+				</cds-tab>
+			}
 		</cds-tabs>
 	`
 });
 export const Dismissable = cdsTabsDismissable.bind({});
-Dismissable.storyName = "Dismissable";
 Dismissable.args = {
 	type: "line" as "line" | "contained"
 };

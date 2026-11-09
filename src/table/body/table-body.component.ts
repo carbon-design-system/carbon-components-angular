@@ -2,72 +2,85 @@ import {
 	Component,
 	Input,
 	EventEmitter,
-	Output
+	Output,
+	inject
 } from "@angular/core";
 import { TableModel } from "../table-model.class";
-import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
 import { TableRowSize } from "../table.types";
+import { TableRowComponent } from "./table-row.component";
+import { NgClass } from "@angular/common";
+import { TableExpandedRow } from "./table-expanded-row.component";
+import { ExpandedRowHover } from "../expanded-row-hover.directive";
 
 @Component({
-	// tslint:disable-next-line: component-selector
+	// eslint-disable-next-line @angular-eslint/component-selector
 	selector: "[cdsTableBody], [ibmTableBody]",
 	template: `
-		<ng-container *ngIf="model">
-			<ng-container *ngFor="let row of model.data; let i = index">
-				<tr
-					cdsTableRow
-					[model]="model"
-					[row]="row"
-					[size]="size"
-					[selected]="model.isRowSelected(i)"
-					[expandable]="model.isRowExpandable(i)"
-					[expanded]="model.isRowExpanded(i)"
-					[checkboxLabel]="getCheckboxRowLabel()"
-					[expandButtonAriaLabel]="getExpandButtonAriaLabel()"
-					[showSelectionColumn]="showSelectionColumn"
-					[enableSingleSelect]="enableSingleSelect"
-					[skeleton]="skeleton"
-					[withRowAILabels]="withRowAILabels"
-					(selectRow)="onRowCheckboxChange(i)"
-					(deselectRow)="onRowCheckboxChange(i)"
-					(expandRow)="model.expandRow(i, !model.isRowExpanded(i))"
-					(rowClick)="onRowClick(i)"
-					*ngIf="!model.isRowFiltered(i)"
-					[class]="(model.rowsClass[i] ? model.rowsClass[i] : null)"
-					[ngClass]="{
-						'tbody_row--success': !model.isRowSelected(i) && model.getRowContext(i) === 'success',
-						'tbody_row--warning': !model.isRowSelected(i) && model.getRowContext(i) === 'warning',
-						'tbody_row--info': !model.isRowSelected(i) && model.getRowContext(i) === 'info',
-						'tbody_row--error': !model.isRowSelected(i) && model.getRowContext(i) === 'error'
-					}">
-				</tr>
-				<tr
-					*ngIf="model.isRowExpandable(i) && !shouldExpandAsTable(row) && !model.isRowFiltered(i)"
-					cdsTableExpandedRow
-					cdsExpandedRowHover
-					[row]="row"
-					[expanded]="model.isRowExpanded(i)"
-					[skeleton]="skeleton">
-				</tr>
-				<ng-container
-					*ngIf="model.isRowExpandable(i) && shouldExpandAsTable(row) && model.isRowExpanded(i) && !model.isRowFiltered(i)">
+		@if (model) {
+			@for (row of model.data; track row; let i = $index) {
+				@if (!model.isRowFiltered(i)) {
 					<tr
-						*ngFor="let expandedDataRow of firstExpandedDataInRow(row)"
 						cdsTableRow
 						[model]="model"
-						[showSelectionColumnCheckbox]="false"
-						[showSelectionColumn]="showSelectionColumn"
-						[row]="expandedDataRow"
+						[row]="row"
 						[size]="size"
+						[selected]="model.isRowSelected(i)"
+						[expandable]="model.isRowExpandable(i)"
+						[expanded]="model.isRowExpanded(i)"
+						[checkboxLabel]="getCheckboxRowLabel()"
+						[expandButtonAriaLabel]="getExpandButtonAriaLabel()"
+						[showSelectionColumn]="showSelectionColumn"
+						[enableSingleSelect]="enableSingleSelect"
 						[skeleton]="skeleton"
-						[withRowAILabels]="withRowAILabels">
+						[withRowAILabels]="withRowAILabels"
+						(selectRow)="onRowCheckboxChange(i)"
+						(deselectRow)="onRowCheckboxChange(i)"
+						(expandRow)="model.expandRow(i, !model.isRowExpanded(i))"
+						(rowClick)="onRowClick(i)"
+						[class]="(model.rowsClass[i] ? model.rowsClass[i] : null)"
+						[ngClass]="{
+							'tbody_row--success': !model.isRowSelected(i) && model.getRowContext(i) === 'success',
+							'tbody_row--warning': !model.isRowSelected(i) && model.getRowContext(i) === 'warning',
+							'tbody_row--info': !model.isRowSelected(i) && model.getRowContext(i) === 'info',
+							'tbody_row--error': !model.isRowSelected(i) && model.getRowContext(i) === 'error'
+						}">
 					</tr>
-				</ng-container>
-			</ng-container>
-		</ng-container>
-		<ng-content></ng-content>
-	`
+				}
+				@if (model.isRowExpandable(i) && !shouldExpandAsTable(row) && !model.isRowFiltered(i)) {
+					<tr
+						cdsTableExpandedRow
+						cdsExpandedRowHover
+						[row]="row"
+						[expanded]="model.isRowExpanded(i)"
+						[skeleton]="skeleton">
+					</tr>
+				}
+				@if (model.isRowExpandable(i) && shouldExpandAsTable(row) && model.isRowExpanded(i) && !model.isRowFiltered(i)) {
+					@for (expandedDataRow of firstExpandedDataInRow(row); track expandedDataRow) {
+						<tr
+							cdsTableRow
+							[model]="model"
+							[showSelectionColumnCheckbox]="false"
+							[showSelectionColumn]="showSelectionColumn"
+							[row]="expandedDataRow"
+							[size]="size"
+							[skeleton]="skeleton"
+							[withRowAILabels]="withRowAILabels">
+						</tr>
+					}
+				}
+			}
+		}
+		<ng-content />
+	`,
+	imports: [
+		TableRowComponent,
+		NgClass,
+		TableExpandedRow,
+		ExpandedRowHover
+	]
 })
 export class TableBody {
 	@Input() model: TableModel;
@@ -143,10 +156,16 @@ export class TableBody {
 	 */
 	@Output() rowClick = new EventEmitter<number>();
 
+	protected i18n = inject(I18n);
+
 	protected _checkboxRowLabel = this.i18n.getOverridable("TABLE.CHECKBOX_ROW");
 	protected _expandButtonAriaLabel = this.i18n.getOverridable("TABLE.EXPAND_BUTTON");
 
-	constructor(protected i18n: I18n) { }
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	/**
 	 * Triggered when a single row is clicked.

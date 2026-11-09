@@ -11,24 +11,22 @@ import { RouterLinkExtendedDirective } from "./routerlink-extended.directive";
 
 export { SideNavItemInterface } from "./sidenav-item.interface";
 
-export {
-	SideNav,
-	SideNavItem,
-	SideNavMenu
-};
+export { SideNav, SideNavItem, SideNavMenu };
 
 @NgModule({
-	declarations: [
+	imports: [
+		CommonModule,
+		I18nModule,
+		RouterModule,
 		SideNav,
 		SideNavItem,
 		SideNavMenu,
 		RouterLinkExtendedDirective
 	],
-	imports: [CommonModule, I18nModule, RouterModule],
 	exports: [
 		SideNav,
 		SideNavItem,
 		SideNavMenu
 	]
 })
-export class SideNavModule { }
+export class SideNavModule {}

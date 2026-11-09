@@ -20,7 +20,8 @@ import { TableExpandButton } from "./table-expand-button.component";
 				</tr>
 			</tbody>
 		</table>
-	`
+	`,
+	imports: [TableModule]
 })
 class TableCellsTest {
 	@ViewChild(TableCheckbox) checkbox: TableCheckbox;
@@ -44,8 +45,7 @@ describe("Table cell components", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [TableCellsTest],
-			imports: [TableModule]
+			imports: [TableCellsTest]
 		});
 
 		fixture = TestBed.createComponent(TableCellsTest);

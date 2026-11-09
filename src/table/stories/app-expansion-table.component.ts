@@ -8,6 +8,8 @@ import {
 import { TableModel } from "../table-model.class";
 import { TableItem } from "../table-item.class";
 import { TableHeaderItem } from "../table-header-item.class";
+import { Table } from "../table.component";
+import { Button } from "carbon-components-angular/button";
 
 class CustomHeaderItem extends TableHeaderItem {
 	// used for custom sorting
@@ -54,7 +56,9 @@ class CustomHeaderItem extends TableHeaderItem {
 		<button cdsButton="primary" size="sm" (click)="model.expandAllRows(true)">Expand all rows</button>
 
 		<button cdsButton="secondary" size="sm" (click)="model.expandAllRows(false)">Collapse all rows</button>
-	`
+	`,
+	standalone: true,
+	imports: [Table, Button]
 })
 export class ExpansionTableStory implements AfterViewInit {
 	@Input() model = new TableModel();
@@ -103,7 +107,10 @@ export class ExpansionTableStory implements AfterViewInit {
 				}),
 				new TableItem({ data: "swer" })
 			],
-			[new TableItem({ data: "Name 2" }), new TableItem({ data: { name: "Alice", surname: "Bob" }, template: this.customTableItemTemplate })],
+			[
+				new TableItem({ data: "Name 2" }),
+				new TableItem({ data: { name: "Alice", surname: "Bob" }, template: this.customTableItemTemplate })
+			],
 			[new TableItem({ data: "Name 4" }), new TableItem({ data: "twer" })],
 			[new TableItem({ data: "Name 5" }), new TableItem({data: "twer"})],
 			[new TableItem({ data: "Name 6" }), new TableItem({data: "twer"})],
@@ -123,6 +130,7 @@ export class ExpansionTableStory implements AfterViewInit {
 	}
 
 	onRowClick(index: number) {
+		// eslint-disable-next-line no-console
 		console.log("Row item selected:", index);
 	}
 

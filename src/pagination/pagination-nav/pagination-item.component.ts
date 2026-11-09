@@ -4,6 +4,7 @@ import {
 	Output,
 	EventEmitter
 } from "@angular/core";
+import { NgClass } from "@angular/common";
 
 /**
  * Used to present a single navigation item in a pagination list
@@ -27,7 +28,8 @@ import {
 				{{page}}
 			</button>
 		</li>
-	`
+	`,
+	imports: [NgClass]
 })
 export class PaginationNavItem {
 	/**
@@ -43,6 +45,7 @@ export class PaginationNavItem {
 	/**
 	 * Emits click event
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() click = new EventEmitter<number>();
 
 	constructor() {}

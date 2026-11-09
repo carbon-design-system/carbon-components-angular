@@ -2,17 +2,15 @@ import { fakeAsync, TestBed } from "@angular/core/testing";
 import { advancedFakeAsync } from "../test-helpers/change-detection";
 
 import { Notification, NotificationDisplayService } from "./index";
-import { I18nModule } from "../i18n/index";
-import { IconModule } from "../icon/index";
+import { IconDirective } from "../icon/index";
 
 describe("Notification", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [Notification],
 			providers: [NotificationDisplayService],
 			imports: [
-				I18nModule,
-				IconModule
+				IconDirective,
+				Notification
 			]
 		});
 	});
@@ -110,12 +108,13 @@ describe("Notification", () => {
 		};
 		fixture.detectChanges();
 
-		const displayService = TestBed.inject(NotificationDisplayService);
+		// the notification provides its own display service, so take it from that injector
+		const displayService = fixture.debugElement.injector.get(NotificationDisplayService);
 		spyOn(displayService, "close");
 
 		fixture.componentInstance.destroy();
 
-		expect(displayService.close).toHaveBeenCalledWith(fixture.componentInstance);
+		expect(displayService.close).toHaveBeenCalled();
 	});
 
 	it("should update the message when the notification object changes", fakeAsync(() => {

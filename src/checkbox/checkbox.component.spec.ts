@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
@@ -10,14 +9,13 @@ import CheckboxExportedTest from "./checkbox-exported-tests";
 
 @Component({
 	template: `
-	<cds-checkbox
-		[hideLabel]="hideLabel"
+	<cds-checkbox [hideLabel]="hideLabel"
 		(checkedChange)="onChange()"
 		(indeterminateChange)="onIndeterminateChange()"
 		[indeterminate]="indeterminate"
-		[(ngModel)]="model">
-	</cds-checkbox>
-	`
+		[(ngModel)]="model" />
+	`,
+	imports: [Checkbox, FormsModule]
 })
 class CheckboxTest {
 	model = false;
@@ -33,8 +31,9 @@ const testingSetup = (checkboxComponent) => {
 	// configureTestingModule normally happens in `beforeEach`, but needed here because
 	// Exported Tests need access to the compiled component into the `fixture` variable
 	TestBed.configureTestingModule({
-		declarations: [Checkbox, CheckboxTest],
-		imports: [CommonModule, FormsModule]
+		imports: [
+			CheckboxTest
+		]
 	});
 
 	return TestBed.createComponent(checkboxComponent);
@@ -101,7 +100,6 @@ describe("Checkbox", () => {
 		element = setupFixture.debugElement.query(By.css("cds-checkbox"));
 		setupFixture.detectChanges();
 		const instance = new CheckboxExportedTest({});
-		// tslint:disable-next-line
 		new BDDTestParser((instance as any).tests, setupFixture.debugElement.nativeElement);
 	});
 });

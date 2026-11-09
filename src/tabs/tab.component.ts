@@ -7,6 +7,7 @@ import {
 	HostBinding,
 	TemplateRef
 } from "@angular/core";
+import { NgStyle, NgTemplateOutlet } from "@angular/common";
 
 /**
 * The `Tab` component is a child of the `Tabs` component.
@@ -54,15 +55,16 @@ import {
 @Component({
 	selector: "cds-tab, ibm-tab",
 	template: `
-		<ng-container *ngIf="shouldRender()">
-			<ng-template
-				*ngIf="isTemplate(tabContent)"
-				[ngTemplateOutlet]="tabContent"
-				[ngTemplateOutletContext]="{ $implicit: templateContext }">
-			</ng-template>
-			<ng-content></ng-content>
-		</ng-container>
-	`
+		@if (shouldRender()) {
+			@if (isTemplate(tabContent)) {
+				<ng-template
+					[ngTemplateOutlet]="tabContent"
+					[ngTemplateOutletContext]="{ $implicit: templateContext }" />
+			}
+			<ng-content />
+		}
+	`,
+	imports: [NgTemplateOutlet]
 })
 export class Tab implements OnInit {
 	@HostBinding("attr.id") get hostId() {

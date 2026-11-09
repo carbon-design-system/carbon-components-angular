@@ -20,7 +20,8 @@ import { CheckboxModule } from "./checkbox.module";
 			<cds-checkbox id="checkbox-label-1">Checkbox label</cds-checkbox>
 			<cds-checkbox id="checkbox-label-2">Checkbox label</cds-checkbox>
 		</cds-checkbox-group>
-	`
+	`,
+	imports: [CheckboxModule]
 })
 class GroupBasicHost {
 	helperText: string;
@@ -39,7 +40,8 @@ class GroupBasicHost {
 			<cds-checkbox id="c1">One</cds-checkbox>
 		</cds-checkbox-group>
 		<ng-template #decTpl><span class="decorator-stub"></span></ng-template>
-	`
+	`,
+	imports: [CheckboxModule]
 })
 class GroupDecoratorHost {}
 
@@ -51,7 +53,8 @@ class GroupDecoratorHost {}
 			<cds-checkbox id="checkbox-a1">Checkbox 1</cds-checkbox>
 			<cds-checkbox id="checkbox-a2">Checkbox 2</cds-checkbox>
 		</cds-checkbox-group>
-	`
+	`,
+	imports: [CheckboxModule]
 })
 class GroupReadOnlyInheritBothHost {
 	groupReadOnly = false;
@@ -65,7 +68,8 @@ class GroupReadOnlyInheritBothHost {
 			<cds-checkbox id="checkbox-1" [readOnly]="false">Checkbox 1</cds-checkbox>
 			<cds-checkbox id="checkbox-2">Checkbox 2</cds-checkbox>
 		</cds-checkbox-group>
-	`
+	`,
+	imports: [CheckboxModule]
 })
 class GroupInheritanceHost {
 	groupReadOnly = false;
@@ -77,7 +81,8 @@ class GroupInheritanceHost {
 			<cds-checkbox id="checkbox-b1">Checkbox 1</cds-checkbox>
 			<cds-checkbox id="checkbox-b2">Checkbox 2</cds-checkbox>
 		</cds-checkbox-group>
-	`
+	`,
+	imports: [CheckboxModule]
 })
 class GroupInvalidInheritBothHost {
 	groupInvalid = false;
@@ -89,7 +94,8 @@ class GroupInvalidInheritBothHost {
 			<cds-checkbox id="checkbox-1" [invalid]="false">Checkbox 1</cds-checkbox>
 			<cds-checkbox id="checkbox-2">Checkbox 2</cds-checkbox>
 		</cds-checkbox-group>
-	`
+	`,
+	imports: [CheckboxModule]
 })
 class GroupInheritanceInvalidHost {
 	groupInvalid = false;
@@ -99,8 +105,8 @@ describe("CheckboxGroup", () => {
 	beforeEach(() => {
 		TestBed.resetTestingModule();
 		TestBed.configureTestingModule({
-			imports: [FormsModule, CheckboxModule],
-			declarations: [
+			imports: [
+				FormsModule,
 				GroupBasicHost,
 				GroupDecoratorHost,
 				GroupReadOnlyInheritBothHost,

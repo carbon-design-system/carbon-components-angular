@@ -2,14 +2,16 @@ import {
 	Component,
 	HostBinding,
 	Input,
+	ChangeDetectionStrategy,
 	TemplateRef
 } from "@angular/core";
+import { NgTemplateOutlet } from "@angular/common";
 
 /**
- * Build application's tiles using this component. Get started with importing the module:
+ * Build application's tiles using this component. Get started with importing the component:
  *
  * ```typescript
- * import { TilesModule } from 'carbon-components-angular';
+ * import { Tile } from 'carbon-components-angular';
  * ```
  *
  * ```html
@@ -23,13 +25,16 @@ import {
 @Component({
 	selector: "cds-tile, ibm-tile",
 	template: `
-		<ng-content></ng-content>
-		<ng-container *ngIf="decorator">
+		<ng-content />
+		@if (decorator) {
 			<div class="cds--tile--inner-decorator">
 				<ng-template [ngTemplateOutlet]="decorator"></ng-template>
 			</div>
-		</ng-container>
-	`
+		}
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgTemplateOutlet],
+	standalone: true
 })
 export class Tile {
 	@HostBinding("class.cds--tile") tileClass = true;

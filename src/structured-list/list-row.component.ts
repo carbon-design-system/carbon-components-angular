@@ -1,4 +1,6 @@
 import {
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	HostBinding,
 	ContentChildren,
@@ -9,9 +11,11 @@ import {
 	ViewChild,
 	ElementRef,
 	EventEmitter,
-	Output
+	Output,
+	inject
 } from "@angular/core";
 import { ListColumn } from "./list-column.component";
+import { IconDirective } from "carbon-components-angular/icon";
 
 /**
  * `ListRow` provides a container for the `ListColumn`s that make up the body of a structured list.
@@ -34,8 +38,8 @@ import { ListColumn } from "./list-column.component";
 @Component({
 	selector: "cds-list-row, ibm-list-row",
 	template: `
-		<ng-content></ng-content>
-		<ng-container *ngIf="selection">
+		<ng-content />
+		@if (selection) {
 			<input
 				#input
 				class="cds--structured-list-input cds--visually-hidden"
@@ -46,18 +50,27 @@ import { ListColumn } from "./list-column.component";
 				(focus)="handleFocus(true)"
 				(blur)="handleFocus(false)"
 				(change)="onChange($event)"
-				[checked]="selected"/>
+				[checked]="selected" />
 			<div class="cds--structured-list-td">
 				<svg cdsIcon="checkmark--filled" size="16" class="cds--structured-list-svg"></svg>
 			</div>
-		</ng-container>
-	`
+		}
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [IconDirective]
 })
 export class ListRow implements AfterContentInit {
 	@HostBinding("class.cds--structured-list-row--focused-within") get focusClass() {
 		return this.isFocused;
 	}
-	@Input() @HostBinding("class.cds--structured-list-row--selected") selected = false;
+	@Input() @HostBinding("class.cds--structured-list-row--selected") set selected(value: boolean) {
+		this._selected = value;
+		this.changeDetectorRef.markForCheck();
+	}
+
+	get selected() {
+		return this._selected;
+	}
 	/**
 	 * Applies an accessible label to the row. Defaults to no label.
 	 */
@@ -69,16 +82,31 @@ export class ListRow implements AfterContentInit {
 	/**
 	 * Internal event used to notify the containing `StructuredList` of changes.
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() change: EventEmitter<Event> = new EventEmitter();
 
 	/**
 	 * Set by the containing `StructuredList`. Enables or disables row level selection features.
 	 */
-	selection = false;
+	set selection(value: boolean) {
+		this._selection = value;
+		this.changeDetectorRef.markForCheck();
+	}
+
+	get selection() {
+		return this._selection;
+	}
 	/**
 	 * Set by the containing `StructuredList`. When `selection = true`, used for the `name` property on the radio input.
 	 */
-	name = "list";
+	set name(value: string) {
+		this._name = value;
+		this.changeDetectorRef.markForCheck();
+	}
+
+	get name() {
+		return this._name;
+	}
 
 	@HostBinding("class.cds--structured-list-row") wrapper = true;
 	@HostBinding("attr.role") role = "row";
@@ -86,6 +114,11 @@ export class ListRow implements AfterContentInit {
 	@ContentChildren(ListColumn) columns: QueryList<ListColumn>;
 
 	@ViewChild("input") input: ElementRef;
+
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+	protected _selected = false;
+	protected _selection = false;
+	protected _name = "list";
 
 	private isFocused = false;
 

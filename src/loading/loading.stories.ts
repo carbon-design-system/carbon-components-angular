@@ -1,15 +1,8 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { LoadingModule, Loading } from "./";
+import { Loading } from "./";
 
 export default {
 	title: "Components/Loading",
-	decorators: [
-		moduleMetadata({
-			imports: [LoadingModule]
-		})
-	],
 	component: Loading
 } as Meta;
 

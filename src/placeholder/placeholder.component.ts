@@ -3,9 +3,10 @@ import {
 	OnInit,
 	ViewContainerRef,
 	ViewChild,
-	Input
+	Input,
+	inject
 } from "@angular/core";
-import { PlaceholderService } from "./placeholder.service";
+import { PlaceholderService, PLACEHOLDER_SERVICE_PROVIDER } from "./placeholder.service";
 
 /**
  * Using a modal, dialog (Tooltip, OverflowMenu), or any other component that draws out of the normal page flow
@@ -19,19 +20,27 @@ import { PlaceholderService } from "./placeholder.service";
  */
 @Component({
 	selector: "cds-placeholder, ibm-placeholder",
-	template: `<div #placeholder></div>`
+	template: `<div #placeholder></div>`,
+	providers: [PLACEHOLDER_SERVICE_PROVIDER],
+	standalone: true
 })
 export class Placeholder implements OnInit {
+	placeholderService = inject(PlaceholderService);
+
 	@Input() id: any;
 	/**
 	 * Maintains a reference to the view DOM element of the `Placeholder`.
 	 */
 	@ViewChild("placeholder", { read: ViewContainerRef, static: true }) viewContainerRef: ViewContainerRef;
 
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of `Placeholder`.
 	 */
-	constructor(public placeholderService: PlaceholderService) { }
+	constructor() {}
 
 	/**
 	 * Registers the components view with `PlaceholderService`

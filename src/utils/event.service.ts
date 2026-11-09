@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from "@angular/core";
+import { Injectable, OnDestroy, inject } from "@angular/core";
 import { Observable, Subscription } from "rxjs";
 import { DocumentService } from "./document.service";
 import { EventHandler } from "./types";
@@ -6,11 +6,17 @@ import { getEventObservable } from "./event-observable";
 
 @Injectable()
 export class EventService implements OnDestroy {
+	protected documentService = inject(DocumentService);
+
 	protected subscriptions = new Subscription();
 
 	protected targets = new WeakMap<HTMLElement | Element | Document, Map<string, Observable<Event>>>();
 
-	constructor(protected documentService: DocumentService) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	on(targetElement: HTMLElement | Element, eventType: string, callback: EventHandler) {
 		if (!this.targets.has(targetElement)) {

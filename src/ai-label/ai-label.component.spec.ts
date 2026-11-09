@@ -1,4 +1,9 @@
-import { TestBed, ComponentFixture, fakeAsync, tick } from "@angular/core/testing";
+import {
+	TestBed,
+	ComponentFixture,
+	fakeAsync,
+	tick
+} from "@angular/core/testing";
 import { Component, DebugElement, Input } from "@angular/core";
 import { By } from "@angular/platform-browser";
 
@@ -23,7 +28,8 @@ import { AILabelActions } from "./ai-label-actions.directive";
 			(revertClick)="onRevert($event)">
 			<p class="ai-label-projection">Child content</p>
 		</cds-ai-label>
-	`
+	`,
+	imports: [AILabelModule]
 })
 class TestAILabelHostComponent {
 	@Input() id = "test-ai-label-id";
@@ -42,7 +48,8 @@ class TestAILabelHostComponent {
 }
 
 @Component({
-	template: `<div cdsAILabelActions class="actions-host"></div>`
+	template: `<div cdsAILabelActions class="actions-host"></div>`,
+	imports: [AILabelModule]
 })
 class TestAILabelActionsComponent {}
 
@@ -54,8 +61,9 @@ describe("AILabel", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			imports: [AILabelModule],
-			declarations: [TestAILabelHostComponent]
+			imports: [
+				TestAILabelHostComponent
+			]
 		});
 		fixture = TestBed.createComponent(TestAILabelHostComponent);
 		component = fixture.componentInstance;
@@ -236,8 +244,9 @@ describe("AILabelActions", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			imports: [AILabelModule],
-			declarations: [TestAILabelActionsComponent]
+			imports: [
+				TestAILabelActionsComponent
+			]
 		});
 		fixture = TestBed.createComponent(TestAILabelActionsComponent);
 		fixture.detectChanges();

@@ -1,4 +1,5 @@
 import {
+	ChangeDetectionStrategy,
 	Component,
 	EventEmitter,
 	HostBinding,
@@ -7,7 +8,8 @@ import {
 	OnDestroy,
 	OnInit,
 	Output,
-	SimpleChanges
+	SimpleChanges,
+	inject
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { ContextMenuSelectionService } from "./context-menu-selection.service";
@@ -16,10 +18,12 @@ import { ContextMenuSelectionService } from "./context-menu-selection.service";
 	selector: "cds-menu-group, cds-context-menu-group, ibm-context-menu-group",
 	template: `
 		<ul role="group" [attr.aria-label]="label">
-			<ng-content></ng-content>
+			<ng-content />
 		</ul>
 	`,
-	providers: [ContextMenuSelectionService]
+	providers: [ContextMenuSelectionService],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true
 })
 export class ContextMenuGroupComponent implements OnInit, OnChanges, OnDestroy {
 	@HostBinding("class.cds--menu-item-radio-group") get radioGroup() {  return this.type === "radio"; }
@@ -30,9 +34,15 @@ export class ContextMenuGroupComponent implements OnInit, OnChanges, OnDestroy {
 	@Input() type: null | "radio" | "checkbox" = null;
 	@Output() valueChange = new EventEmitter<any[]>();
 
+	protected contextMenuSelectionService = inject(ContextMenuSelectionService);
+
 	private subscription = new Subscription();
 
-	constructor(protected contextMenuSelectionService: ContextMenuSelectionService) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngOnInit() {
 		const { selectionObservable } = this.contextMenuSelectionService;

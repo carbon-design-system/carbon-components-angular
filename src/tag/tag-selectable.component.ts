@@ -11,14 +11,15 @@ import {
 @Component({
 	selector: "cds-tag-selectable, ibm-tag-selectable",
 	template: `
-		<ng-container *ngIf="!skeleton">
-			<ng-content select="[cdsTagIcon],[ibmTagIcon]"></ng-content>
+		@if (!skeleton) {
+			<ng-content select="[cdsTagIcon],[ibmTagIcon]" />
 			<span class="cds--tag__label">
-				<ng-content></ng-content>
+				<ng-content />
 			</span>
-		</ng-container>
+		}
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true
 })
 export class TagSelectableComponent {
 	@HostBinding("attr.role") role = "button";
@@ -44,7 +45,7 @@ export class TagSelectableComponent {
 
 	/**
 	 * @todo
-	 * Remove `cds--tag--${this.size}` in v7
+	 * Remove `cds--tag--${this.size}` in Carbon v12
 	 */
 	@HostBinding("attr.class") get attrClass() {
 		const disabledClass = this.disabled ? "cds--tag--disabled" : "";

@@ -2,8 +2,10 @@ import {
 	Component,
 	Input,
 	HostBinding,
+	ChangeDetectionStrategy,
 	TemplateRef
 } from "@angular/core";
+import { NgTemplateOutlet } from "@angular/common";
 
 /**
  * Supported tag types for carbon v10
@@ -22,10 +24,10 @@ export type TagType = "red" |
 	"outline";
 
 /**
- * Component that represents a tag for labelling/categorizing using keywords. Get started with importing the module:
+ * Component that represents a tag for labelling/categorizing using keywords. Get started with importing the component:
  *
  * ```typescript
- * import { TagModule } from 'carbon-components-angular';
+ * import { Tag } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-tag--basic)
@@ -33,18 +35,21 @@ export type TagType = "red" |
 @Component({
 	selector: "cds-tag, ibm-tag",
 	template: `
-		<ng-container *ngIf="!skeleton">
-			<ng-content select="[cdsTagIcon],[ibmTagIcon]"></ng-content>
+		@if (!skeleton) {
+			<ng-content select="[cdsTagIcon],[ibmTagIcon]" />
 			<span class="cds--tag__label">
 				<ng-content></ng-content>
 			</span>
-			<ng-container *ngIf="decorator">
+			@if (decorator) {
 				<div class="cds--tag__decorator">
 					<ng-template [ngTemplateOutlet]="decorator"></ng-template>
 				</div>
-			</ng-container>
-		</ng-container>
-	`
+			}
+		}
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgTemplateOutlet],
+	standalone: true
 })
 export class Tag {
 	/**
@@ -68,7 +73,7 @@ export class Tag {
 
 	/**
 	 * @todo
-	 * Remove `cds--tag--${this.size}` in v7
+	 * Remove `cds--tag--${this.size}` in in Carbon v12
 	 */
 	@HostBinding("attr.class") get attrClass() {
 		const skeletonClass = this.skeleton ? "cds--skeleton" : "";

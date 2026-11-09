@@ -1,13 +1,11 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { ProgressIndicatorModule, ProgressIndicator } from "./";
+import { ProgressIndicator } from "./";
 
 export default {
 	title: "Components/Progress Indicator",
 	decorators: [
 		moduleMetadata({
-			imports: [ProgressIndicatorModule]
+			imports: [ProgressIndicator]
 		})
 	],
 	component: ProgressIndicator

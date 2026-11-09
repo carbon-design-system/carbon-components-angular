@@ -6,9 +6,14 @@ import {
 	ViewChild,
 	HostListener,
 	AfterViewInit,
-	TemplateRef
+	ChangeDetectorRef,
+	ChangeDetectionStrategy,
+	TemplateRef,
+	inject
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
+import { NgClass, AsyncPipe, NgTemplateOutlet } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 
 @Component({
 	selector: "cds-selection-tile, ibm-selection-tile",
@@ -36,27 +41,32 @@ import { I18n } from "carbon-components-angular/i18n";
 			[attr.aria-label]="i18n.get('TILES.TILE') | async">
 			<div class="cds--tile__checkmark"
 				[class.cds--tile__checkmark--persistent]="multiple">
-				<svg *ngIf="!selected; else selectedIcon"
-					[cdsIcon]="multiple ? 'checkbox' : 'checkmark'"
-					size="16">
-				</svg>
-				<ng-template #selectedIcon>
+				@if (!selected) {
+					<svg
+						[cdsIcon]="multiple ? 'checkbox' : 'checkmark'"
+						size="16">
+					</svg>
+				} @else {
 					<svg [cdsIcon]="multiple ? 'checkbox--checked--filled' : 'checkmark--filled'" size="16"></svg>
-				</ng-template>
+				}
 			</div>
 			<div class="cds--tile-content">
 				<ng-content></ng-content>
 			</div>
-			<ng-container *ngIf="decorator">
+			@if (decorator) {
 				<div class="cds--tile--inner-decorator">
 					<ng-template [ngTemplateOutlet]="decorator"></ng-template>
 				</div>
-			</ng-container>
+			}
 		</label>
-	`
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgClass, AsyncPipe, NgTemplateOutlet, IconDirective]
 })
 export class SelectionTile implements AfterViewInit {
 	static tileCount = 0;
+
+	public i18n = inject(I18n);
 
 	/**
 	 * @deprecated since v5 - Use `cdsLayer` directive instead
@@ -80,6 +90,7 @@ export class SelectionTile implements AfterViewInit {
 		if (this.input) {
 			this.input.nativeElement.checked = this._selected;
 		}
+		this.changeDetectorRef.markForCheck();
 	}
 
 	get selected() {
@@ -92,6 +103,7 @@ export class SelectionTile implements AfterViewInit {
 	/**
 	 * Internal event used to notify the containing `TileGroup` of changes.
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() change: EventEmitter<Event> = new EventEmitter();
 
 	/**
@@ -112,21 +124,45 @@ export class SelectionTile implements AfterViewInit {
 	/**
 	 * Set by the containing `TileGroup`. Used for the `name` property on the input.
 	 */
-	name = "tile-group-unbound";
+	set name(value: string) {
+		this._name = value;
+		this.changeDetectorRef.markForCheck();
+	}
+
+	get name() {
+		return this._name;
+	}
 	/**
 	 * Defines whether or not the `SelectionTile` supports selecting multiple tiles as opposed to single
 	 * tile selection.
+	 *
+	 * Set to true because of the way tile group sets it up.
+	 * If it is first undefined then set to true, the type will change from radio to checkbox and deselects the inputs.
 	 */
-	multiple = true;	// Set to true because of the way tile group sets it up.
-						// If it is first undefined then set to true, the type will change from radio to checkbox and deselects the inputs.
+	set multiple(value: boolean) {
+		this._multiple = value;
+		this.changeDetectorRef.markForCheck();
+	}
+
+	get multiple() {
+		return this._multiple;
+	}
 
 	@ViewChild("input", { static: true }) input;
 
 	// If an initial selected value is set before input exists, we save
 	// the value and check again when input exists in `AfterViewInit`.
 	protected _selected = null;
+	protected _name = "tile-group-unbound";
+	protected _multiple = true;
 
-	constructor(public i18n: I18n) {
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
 		SelectionTile.tileCount++;
 	}
 
@@ -134,6 +170,7 @@ export class SelectionTile implements AfterViewInit {
 		if (this.input) {
 			setTimeout(() => {
 				this.input.nativeElement.checked = this._selected;
+				this.changeDetectorRef.markForCheck();
 			});
 		}
 	}
@@ -150,5 +187,3 @@ export class SelectionTile implements AfterViewInit {
 		this.change.emit(event);
 	}
 }
-
-

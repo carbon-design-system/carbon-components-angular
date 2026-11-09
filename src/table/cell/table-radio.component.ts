@@ -3,26 +3,31 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	HostBinding
+	HostBinding,
+	inject
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 import { TableItem } from "../table-item.class";
 import { TableRow } from "../table-row.class";
 import { Observable } from "rxjs";
+import { Radio } from "carbon-components-angular/radio";
+import { AsyncPipe } from "@angular/common";
+import { ReplacePipe } from "carbon-components-angular/i18n";
 
 @Component({
-	// tslint:disable-next-line: component-selector
+	// eslint-disable-next-line @angular-eslint/component-selector
 	selector: "[cdsTableRadio], [ibmTableRadio]",
 	template: `
-		<cds-radio
-			*ngIf="!skeleton"
-			[attr.aria-label]="getLabel() | i18nReplace:getSelectionLabelValue(row) | async"
-			[ariaLabel]="getLabel() | i18nReplace:getSelectionLabelValue(row) | async"
-			[checked]="selected"
-			[disabled]="disabled"
-			(change)="change.emit()">
-		</cds-radio>
-	`
+		@if (!skeleton) {
+			<cds-radio
+				[attr.aria-label]="getLabel() | i18nReplace:getSelectionLabelValue(row) | async"
+				[ariaLabel]="getLabel() | i18nReplace:getSelectionLabelValue(row) | async"
+				[checked]="selected"
+				[disabled]="disabled"
+				(change)="change.emit()" />
+		}
+	`,
+	imports: [Radio, AsyncPipe, ReplacePipe]
 })
 export class TableRadio {
 	@Input() row: any[];
@@ -62,11 +67,18 @@ export class TableRadio {
 	/**
 	 * Emits if a single row is selected.
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() change = new EventEmitter();
+
+	protected i18n = inject(I18n);
 
 	protected _label = this.i18n.getOverridable("TABLE.CHECKBOX_ROW");
 
-	constructor(protected i18n: I18n) { }
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	getSelectionLabelValue(row: TableItem[]) {
 		if (!this.selectionLabelColumn) {

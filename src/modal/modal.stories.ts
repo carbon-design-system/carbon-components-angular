@@ -1,11 +1,16 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { PlaceholderModule } from "../placeholder";
+import { PLACEHOLDER_SERVICE_PROVIDER, Placeholder } from "../placeholder";
+import {
+	Modal,
+	ModalContent,
+	ModalContentText,
+	ModalFooter,
+	ModalHeader,
+	ModalHeaderHeading,
+	ModalHeaderLabel
+} from "./";
 import { InputModule } from "../input";
-import { ButtonModule } from "../button";
 import { IconModule } from "../icon";
-import { ModalModule, Modal } from "./";
 import { AILabelModule } from "../ai-label";
 import { AI_LABEL_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
 
@@ -17,29 +22,46 @@ import {
 	AlertModalStory,
 	SampleFormModal
 } from "./stories";
+import { ButtonModule } from "../button";
 
 export default {
 	title: "Components/Modal",
 	decorators: [
 		moduleMetadata({
-			declarations: [
+			imports: [
+				// imports for the modals
+				Modal,
+				ModalHeader,
+				ModalFooter,
+				ModalContent,
+				ModalContentText,
+				ModalHeaderHeading,
+				ModalHeaderLabel,
+				Placeholder,
+				// stories
 				ModalStory,
 				SampleModal,
 				InputModal,
 				DataPassingModal,
 				AlertModalStory,
-				SampleFormModal
-			],
-			imports: [
-				ModalModule,
-				InputModule,
-				ButtonModule,
+				SampleFormModal,
 				IconModule,
-				PlaceholderModule,
-				AILabelModule
-			]
+				InputModule,
+				AILabelModule,
+				ButtonModule
+			],
+			providers: [PLACEHOLDER_SERVICE_PROVIDER]
 		})
-	]
+	],
+	parameters:{
+		docs: {
+			story: {
+				inline: false,
+				height: "30rem"
+			}
+		},
+		layout: "centered"
+	}
 } as Meta;
 
 const Template = (args) => ({

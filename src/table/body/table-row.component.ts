@@ -4,49 +4,56 @@ import {
 	Output,
 	EventEmitter,
 	HostBinding,
-	HostListener
+	HostListener,
+	inject
 } from "@angular/core";
 import { TableModel } from "../table-model.class";
 import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { TableItem } from "../table-item.class";
 import { Observable } from "rxjs";
 import { TableRowSize } from "../table.types";
+import { TableExpandButton } from "../cell/table-expand-button.component";
+import { TableCheckbox } from "../cell/table-checkbox.component";
+import { TableRadio } from "../cell/table-radio.component";
+import { TableData } from "../cell/table-data.component";
+import { NgStyle } from "@angular/common";
 
 @Component({
-	// tslint:disable-next-line: component-selector
+	// eslint-disable-next-line @angular-eslint/component-selector
 	selector: "[cdsTableRow], [ibmTableRow]",
 	template: `
-		<ng-container *ngIf="model">
-			<td
-				*ngIf="withRowAILabels && row[0] && model.getHeader(0) && model.getHeader(0).visible"
-				cdsTableData
-				[headers]="model.getHeaderId(0, row[0].colSpan)"
-				[item]="row[0]"
-				[title]="row[0].title"
-				[class]="cellClassNames(0, row[0])"
-				[ngStyle]="model.getHeader(0).style"
-				[skeleton]="skeleton"
-				[attr.colspan]="row[0].colSpan"
-				[attr.rowspan]="row[0].rowSpan"
-				(click)="onRowClick()"
-				(keydown.enter)="onRowClick()">
-			</td>
-			<td
-				*ngIf="model.hasExpandableRows()"
-				cdsTableExpandButton
-				class="cds--table-expand-v2"
-				[expanded]="expanded"
-				[expandable]="expandable"
-				[skeleton]="skeleton"
-				[ariaLabel]="getExpandButtonAriaLabel()"
-				[headers]="model.getHeaderId('expand')"
-				(expandRow)="expandRow.emit()">
-			</td>
-			<ng-container *ngIf="!skeleton && showSelectionColumn && !enableSingleSelect">
+		@if (model) {
+			@if (withRowAILabels && row[0] && model.getHeader(0) && model.getHeader(0).visible) {
 				<td
-					*ngIf="!showSelectionColumnCheckbox; else tableCheckboxTemplate">
+					cdsTableData
+					[headers]="model.getHeaderId(0, row[0].colSpan)"
+					[item]="row[0]"
+					[title]="row[0].title"
+					[class]="cellClassNames(0, row[0])"
+					[ngStyle]="model.getHeader(0).style"
+					[skeleton]="skeleton"
+					[attr.colspan]="row[0].colSpan"
+					[attr.rowspan]="row[0].rowSpan"
+					(click)="onRowClick()"
+					(keydown.enter)="onRowClick()">
 				</td>
-				<ng-template #tableCheckboxTemplate>
+			}
+			@if (model.hasExpandableRows()) {
+				<td
+					cdsTableExpandButton
+					class="cds--table-expand-v2"
+					[expanded]="expanded"
+					[expandable]="expandable"
+					[skeleton]="skeleton"
+					[ariaLabel]="getExpandButtonAriaLabel()"
+					[headers]="model.getHeaderId('expand')"
+					(expandRow)="expandRow.emit()">
+				</td>
+			}
+			@if (!skeleton && showSelectionColumn && !enableSingleSelect) {
+				@if (!showSelectionColumnCheckbox) {
+					<td></td>
+				} @else {
 					<td
 						cdsTableCheckbox
 						class="cds--table-column-checkbox"
@@ -58,50 +65,60 @@ import { TableRowSize } from "../table.types";
 						[headers]="model.getHeaderId('select')"
 						(selectedChange)="onSelectionChange()">
 					</td>
-				</ng-template>
-			</ng-container>
-			<td
-				*ngIf="!skeleton && showSelectionColumn && enableSingleSelect"
-				cdsTableRadio
-				[selected]="selected"
-				[label]="getCheckboxLabel()"
-				[row]="row"
-				[skeleton]="skeleton"
-				[headers]="model.getHeaderId('select')"
-				(change)="onSelectionChange()">
-			</td>
-			<ng-container *ngFor="let item of row; let j = index">
+				}
+			}
+			@if (!skeleton && showSelectionColumn && enableSingleSelect) {
 				<td
-					*ngIf="(!withRowAILabels || j > 0) && item && model.getHeader(j) && model.getHeader(j).visible"
-					cdsTableData
-					[headers]="model.getHeaderId(j, item.colSpan)"
-					[item]="item"
-					[title]="item.title"
-					[class]="cellClassNames(j, item)"
-					[ngStyle]="model.getHeader(j).style"
+					cdsTableRadio
+					[selected]="selected"
+					[label]="getCheckboxLabel()"
+					[row]="row"
 					[skeleton]="skeleton"
-					[attr.colspan]="item.colSpan"
-					[attr.rowspan]="item.rowSpan"
-					(click)="onRowClick()"
-					(keydown.enter)="onRowClick()">
+					[headers]="model.getHeaderId('select')"
+					(change)="onSelectionChange()">
 				</td>
-				<td
-					*ngIf="(!withRowAILabels || j > 0) && item && model.getHeader(j) == null"
-					cdsTableData
-					[headers]="model.getHeaderId(j, item.colSpan)"
-					[item]="item"
-					[title]="item.title"
-					[class]="cellClassNames(j, item)"
-					[skeleton]="skeleton"
-					[attr.colspan]="item.colSpan"
-					[attr.rowspan]="item.rowSpan"
-					(click)="onRowClick()"
-					(keydown.enter)="onRowClick()">
-				</td>
-			</ng-container>
-		</ng-container>
-		<ng-content></ng-content>
-	`
+			}
+			@for (item of row; track item; let j = $index) {
+				@if ((!withRowAILabels || j > 0) && item && model.getHeader(j) && model.getHeader(j).visible) {
+					<td
+						cdsTableData
+						[headers]="model.getHeaderId(j, item.colSpan)"
+						[item]="item"
+						[title]="item.title"
+						[class]="cellClassNames(j, item)"
+						[ngStyle]="model.getHeader(j).style"
+						[skeleton]="skeleton"
+						[attr.colspan]="item.colSpan"
+						[attr.rowspan]="item.rowSpan"
+						(click)="onRowClick()"
+						(keydown.enter)="onRowClick()">
+					</td>
+				}
+				@if ((!withRowAILabels || j > 0) && item && model.getHeader(j) == null) {
+					<td
+						cdsTableData
+						[headers]="model.getHeaderId(j, item.colSpan)"
+						[item]="item"
+						[title]="item.title"
+						[class]="cellClassNames(j, item)"
+						[skeleton]="skeleton"
+						[attr.colspan]="item.colSpan"
+						[attr.rowspan]="item.rowSpan"
+						(click)="onRowClick()"
+						(keydown.enter)="onRowClick()">
+					</td>
+				}
+			}
+		}
+		<ng-content />
+	`,
+	imports: [
+		TableExpandButton,
+		TableCheckbox,
+		TableRadio,
+		TableData,
+		NgStyle
+	]
 })
 export class TableRowComponent {
 	/**
@@ -229,10 +246,16 @@ export class TableRowComponent {
 		return this.enableSingleSelect && !this.showSelectionColumn ? 0 : null;
 	}
 
+	protected i18n = inject(I18n);
+
 	protected _checkboxLabel = this.i18n.getOverridable("TABLE.CHECKBOX_ROW");
 	protected _expandButtonAriaLabel = this.i18n.getOverridable("TABLE.EXPAND_BUTTON");
 
-	constructor(protected i18n: I18n) { }
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	@HostListener("click")
 	onHostClick() {

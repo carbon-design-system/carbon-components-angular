@@ -5,8 +5,11 @@ import {
 	ElementRef,
 	Output,
 	EventEmitter,
-	AfterViewInit
+	AfterViewInit,
+	ChangeDetectorRef,
+	inject
 } from "@angular/core";
+import { NgTemplateOutlet } from "@angular/common";
 
 /**
  * Available HTML anchor targets
@@ -38,41 +41,42 @@ const REL = "noreferrer noopener";
 @Component({
 	selector: "cds-overflow-menu-option, ibm-overflow-menu-option",
 	template: `
-		<button
-			*ngIf="!href"
-			class="cds--overflow-menu-options__btn {{innerClass}}"
-			role="menuitem"
-			[tabindex]="tabIndex"
-			(focus)="onFocus()"
-			(blur)="onBlur()"
-			(click)="onClick()"
-			[disabled]="disabled"
-			[attr.title]="title">
-			<ng-container *ngTemplateOutlet="tempOutlet"></ng-container>
-		</button>
-
-		<a
-			*ngIf="href"
-			class="cds--overflow-menu-options__btn {{innerClass}}"
-			role="menuitem"
-			[tabindex]="tabIndex"
-			(focus)="onFocus()"
-			(blur)="onBlur()"
-			(click)="onClick()"
-			[attr.disabled]="disabled"
-			[href]="href"
-			[attr.target]="target"
-			[attr.rel]="rel"
-			[attr.title]="title">
-			<ng-container *ngTemplateOutlet="tempOutlet"></ng-container>
-		</a>
+		@if (href) {
+			<a
+				class="cds--overflow-menu-options__btn {{innerClass}}"
+				role="menuitem"
+				[tabindex]="tabIndex"
+				(focus)="onFocus()"
+				(blur)="onBlur()"
+				(click)="onClick()"
+				[attr.disabled]="disabled"
+				[href]="href"
+				[attr.target]="target"
+				[attr.rel]="rel"
+				[attr.title]="title">
+				<ng-container *ngTemplateOutlet="tempOutlet" />
+			</a>
+		} @else {
+			<button
+				class="cds--overflow-menu-options__btn {{innerClass}}"
+				role="menuitem"
+				[tabindex]="tabIndex"
+				(focus)="onFocus()"
+				(blur)="onBlur()"
+				(click)="onClick()"
+				[disabled]="disabled"
+				[attr.title]="title">
+				<ng-container *ngTemplateOutlet="tempOutlet" />
+			</button>
+		}
 
 		<ng-template #tempOutlet>
 			<div class="cds--overflow-menu-options__option-content">
-				<ng-content></ng-content>
+				<ng-content />
 			</div>
 		</ng-template>
-	`
+	`,
+	imports: [NgTemplateOutlet]
 })
 export class OverflowMenuOption implements AfterViewInit {
 	@HostBinding("class.cds--overflow-menu-options__option") optionClass = true;
@@ -108,8 +112,7 @@ export class OverflowMenuOption implements AfterViewInit {
 	 */
 	@Input() set target(value: Target) {
 		if (!Object.values(Target).includes(value)) {
-			console.warn(
-`\`target\` must have one of the following values: ${Object.values(Target).join(", ")}.
+			console.warn(`\`target\` must have one of the following values: ${Object.values(Target).join(", ")}.
 Please use the \`Target\` enum exported by carbon-components-angular`);
 			return;
 		}
@@ -138,20 +141,27 @@ Please use the \`Target\` enum exported by carbon-components-angular`);
 	// change after checked errors
 	public title = null;
 
+	protected elementRef = inject(ElementRef);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+
 	protected _target: Target;
 
-	constructor(protected elementRef: ElementRef) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	onClick() {
 		this.selected.emit();
 	}
 
 	onFocus() {
-		setTimeout(() => this.tabIndex = 0);
+		setTimeout(() => this.setTabIndex(0));
 	}
 
 	onBlur() {
-		setTimeout(() => this.tabIndex = -1);
+		setTimeout(() => this.setTabIndex(-1));
 	}
 
 	ngAfterViewInit() {
@@ -160,5 +170,11 @@ Please use the \`Target\` enum exported by carbon-components-angular`);
 		if (textContainer.scrollWidth > textContainer.offsetWidth) {
 			this.title = button.textContent;
 		}
+	}
+
+	// Called from timers, ensure rerender for zoneless apps
+	protected setTabIndex(tabIndex: number) {
+		this.tabIndex = tabIndex;
+		this.changeDetectorRef.markForCheck();
 	}
 }

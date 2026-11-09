@@ -14,13 +14,14 @@ import { Observable } from "rxjs";
  * ex: `providers: [{provide: AbstractDropdownView, useExisting: forwardRef(() => MyDropdownView)}]`
  */
 @Directive({
-	selector: "[cdsAbstractDropdownView], [ibmAbstractDropdownView]"
+	selector: "[cdsAbstractDropdownView], [ibmAbstractDropdownView]",
+	standalone: true
 })
 export class AbstractDropdownView {
 	/**
 	 * The items to be displayed in the list within the `AbstractDropDownView`.
 	 */
-	@Input() set items(value: Array<ListItem> | Observable<Array<ListItem>>) { }
+	@Input() set items(value: Array<ListItem> | Observable<Array<ListItem>>) {}
 
 	get items(): Array<ListItem> | Observable<Array<ListItem>> { return; }
 	/**
@@ -52,6 +53,11 @@ export class AbstractDropdownView {
 	 */
 	public fluid = false;
 	public listId?: string;
+	/**
+	 * Optional - Called by the owning component after it changes the state of
+	 * list items in place so `OnPush` views can re-render.
+	 */
+	markForCheck?(): void;
 	/**
 	 * Returns the `ListItem` that is subsequent to the selected item in the `DropdownList`.
 	 */

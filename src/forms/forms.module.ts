@@ -29,4 +29,4 @@ import { ButtonModule } from "carbon-components-angular/button";
 		ButtonModule
 	]
 })
-export class NFormsModule { }
+export class NFormsModule {}

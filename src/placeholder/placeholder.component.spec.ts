@@ -6,12 +6,14 @@ import { Placeholder } from "./placeholder.component";
 import { PlaceholderService } from "./placeholder.service";
 
 @Component({
-	template: `<span class="dynamic-content">dynamically inserted</span>`
+	template: `<span class="dynamic-content">dynamically inserted</span>`,
+	imports: [PlaceholderModule]
 })
 class DynamicContent {}
 
 @Component({
-	template: `<cds-placeholder></cds-placeholder>`
+	template: `<cds-placeholder></cds-placeholder>`,
+	imports: [PlaceholderModule]
 })
 class PlaceholderTest {
 	@ViewChild(Placeholder) placeholder: Placeholder;
@@ -24,8 +26,10 @@ describe("Placeholder", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [PlaceholderTest, DynamicContent],
-			imports: [PlaceholderModule],
+			imports: [
+				PlaceholderTest,
+				DynamicContent
+			],
 			providers: [PlaceholderService]
 		});
 

@@ -1,7 +1,8 @@
 import {
 	Component,
 	Input,
-	HostBinding
+	HostBinding,
+	inject
 } from "@angular/core";
 
 import { NotificationContent } from "./notification-content.interface";
@@ -9,6 +10,10 @@ import { I18n } from "carbon-components-angular/i18n";
 import { NotificationDisplayService } from "./notification-display.service";
 import { isObservable, of } from "rxjs";
 import { BaseNotification } from "./base-notification.component";
+import { IconDirective } from "carbon-components-angular/icon";
+import { NotificationTitle } from "./notification-title.directive";
+import { NotificationSubtitle } from "./notification-subtitle.directive";
+import { NgTemplateOutlet, AsyncPipe } from "@angular/common";
 
 /**
  * Notification messages are displayed toward the top of the UI and do not interrupt user’s work.
@@ -19,37 +24,49 @@ import { BaseNotification } from "./base-notification.component";
 	selector: "cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification",
 	template: `
 		<div class="cds--inline-notification__details">
-			<svg
-				[cdsIcon]="iconDictionary[notificationObj.type]"
-				size="20"
-				*ngIf="notificationObj.type"
-				class="cds--inline-notification__icon">
-			</svg>
+			@if (notificationObj.type) {
+				<svg
+					[cdsIcon]="iconDictionary[notificationObj.type]"
+					size="20"
+					class="cds--inline-notification__icon">
+				</svg>
+			}
 			<div class="cds--inline-notification__text-wrapper">
-				<div
-					cdsNotificationTitle
-					*ngIf="!notificationObj.template"
-					[innerHTML]="notificationObj.title"
-					[id]="notificationID">
-				</div>
-				<div *ngIf="!notificationObj.template" cdsNotificationSubtitle>
-					<span [innerHTML]="notificationObj.message"></span>
-				</div>
+				@if (!notificationObj.template) {
+					<div
+						cdsNotificationTitle
+						[innerHTML]="notificationObj.title"
+						[id]="notificationID">
+					</div>
+					<div cdsNotificationSubtitle>
+						<span [innerHTML]="notificationObj.message"></span>
+					</div>
+				}
 				<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj}"></ng-container>
 			</div>
 		</div>
-		<button
-			*ngIf="!isCloseHidden"
-			(click)="onClose()"
-			class="cds--inline-notification__close-button"
-			[attr.aria-label]="notificationObj.closeLabel | async"
-			type="button">
-			<svg cdsIcon="close" size="16" class="cds--inline-notification__close-icon"></svg>
-		</button>
-	`
+		@if (!isCloseHidden) {
+			<button
+				(click)="onClose()"
+				class="cds--inline-notification__close-button"
+				[attr.aria-label]="notificationObj.closeLabel | async"
+				type="button">
+				<svg cdsIcon="close" size="16" class="cds--inline-notification__close-icon"></svg>
+			</button>
+		}
+	`,
+	providers: [NotificationDisplayService],
+	imports: [
+		IconDirective,
+		NotificationTitle,
+		NotificationSubtitle,
+		NgTemplateOutlet,
+		AsyncPipe
+	]
 })
 export class Notification extends BaseNotification {
 	private static notificationCount = 0;
+
 	/**
 	 * Can have `type`, `title`, and `message` members.
 	 *
@@ -79,7 +96,14 @@ export class Notification extends BaseNotification {
 	@HostBinding("class.cds--inline-notification--low-contrast") get isLowContrast() { return this.notificationObj.lowContrast; }
 	@HostBinding("class.cds--inline-notification--hide-close-button") get isCloseHidden() { return !this.notificationObj.showClose; }
 
-	constructor(protected notificationDisplayService: NotificationDisplayService, protected i18n: I18n) {
-		super(notificationDisplayService, i18n);
+	protected notificationDisplayService: NotificationDisplayService;
+	protected i18n: I18n;
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
+		super();
 	}
 }

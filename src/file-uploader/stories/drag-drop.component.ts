@@ -2,8 +2,12 @@ import { Component, Input } from "@angular/core";
 import { FileItem } from "../";
 import * as fileType from "file-type";
 
+import { Button } from "carbon-components-angular/button";
+import { FileUploader } from "../file-uploader.component";
+
 @Component({
 	selector: "app-drop-file-uploader",
+	imports: [FileUploader, Button],
 	template: `
 		<cds-file-uploader
 			[title]="title"
@@ -21,13 +25,14 @@ import * as fileType from "file-type";
 			(filesChange)="onDropped($event)"
 			[disabled]="disabled">
 		</cds-file-uploader>
-		<button
-			cdsButton
-			*ngIf="files && files.size > 0"
-			(click)="onUpload()"
-			style="margin-top:20px">
-			Upload
-		</button>
+		@if (files && files.size > 0) {
+			<button
+				cdsButton
+				(click)="onUpload()"
+				style="margin-top:20px">
+				Upload
+			</button>
+		}
 	`
 })
 export class DragAndDropStory {
@@ -86,6 +91,7 @@ export class DragAndDropStory {
 			filePromiseArray.filter(filePromise => filePromise.accept)
 				.map(acceptedFile => acceptedFile.file))
 			.then(acceptedFiles => this.files = new Set<any>(acceptedFiles))
+			// eslint-disable-next-line no-console
 			.catch(error => console.log(error));
 	}
 
@@ -97,6 +103,7 @@ export class DragAndDropStory {
 					setTimeout(() => {
 						fileItem.state = "complete";
 						fileItem.uploaded = true;
+						// eslint-disable-next-line no-console
 						console.log(fileItem);
 					}, 1500);
 				}

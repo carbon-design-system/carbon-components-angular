@@ -1,9 +1,9 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
+import { LayerDirective } from "../layer";
+import { IconDirective } from "../icon";
+import { ClickableTile } from "./";
 import { LayerModule } from "../layer";
 import { IconModule } from "../icon";
-import { TilesModule, ClickableTile } from "./";
 import { AILabelModule } from "../ai-label";
 import { ButtonModule } from "../button";
 import { AI_LABEL_INNER, AI_LABEL_STORY_STYLES } from "../storybook/ai-label-story-shared";
@@ -13,7 +13,9 @@ export default {
 	decorators: [
 		moduleMetadata({
 			imports: [
-				TilesModule,
+				ClickableTile,
+				LayerDirective,
+				IconDirective,
 				LayerModule,
 				IconModule,
 				AILabelModule,

@@ -1,8 +1,6 @@
-/* tslint:disable variable-name */
-
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { CheckboxModule, Checkbox } from "./";
+import { Checkbox } from "./";
 import { ReactiveFormsStory } from "./stories";
 import { AILabelModule } from "../ai-label";
 import { ButtonModule } from "../button";
@@ -13,14 +11,14 @@ export default {
 	title: "Components/Checkbox",
 	decorators: [
 		moduleMetadata({
-			declarations: [ReactiveFormsStory],
 			imports: [
 				FormsModule,
 				ReactiveFormsModule,
-				CheckboxModule,
-				AILabelModule,
+				Checkbox,
 				ButtonModule,
-				IconModule
+				AILabelModule,
+				IconModule,
+				ReactiveFormsStory
 			]
 		})
 	],

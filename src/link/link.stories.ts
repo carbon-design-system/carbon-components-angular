@@ -1,15 +1,13 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { LinkModule, Link } from "./";
+import { Link } from "./";
 
-import { IconModule } from "../icon";
+import { IconDirective } from "../icon";
 
 export default {
 	title: "Components/Link",
 	decorators: [
 		moduleMetadata({
-			imports: [LinkModule, IconModule]
+			imports: [Link, IconDirective]
 		})
 	],
 	component: Link

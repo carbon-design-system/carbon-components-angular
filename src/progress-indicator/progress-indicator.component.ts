@@ -1,17 +1,21 @@
 import {
+	ChangeDetectionStrategy,
 	Component,
+	EventEmitter,
 	Input,
 	Output,
-	EventEmitter
+	inject
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 import { Step } from "./progress-indicator-step.interface";
+import { NgClass } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { ProgressIndicatorModule } from 'carbon-components-angular';
+ * import { ProgressIndicator } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-progress-indicator--basic)
@@ -19,64 +23,64 @@ import { Step } from "./progress-indicator-step.interface";
 @Component({
 	selector: "cds-progress-indicator, ibm-progress-indicator",
 	template: `
-	<ul
-		data-progress
-		data-progress-current
-		class="cds--progress"
-		[ngClass]="{
-			'cds--skeleton': skeleton,
-			'cds--progress--vertical': (orientation === 'vertical'),
-			'cds--progress--space-equal': spacing === 'equal' && orientation !== 'vertical'
-		}">
-		<li
-			class="cds--progress-step"
-			*ngFor="let step of steps; let i = index"
+		<ul
+			data-progress
+			data-progress-current
+			class="cds--progress"
 			[ngClass]="{
-				'cds--progress-step--disabled' : step.disabled,
-				'cds--progress-step--complete' : step.complete,
-				'cds--progress-step--incomplete' : !step.complete && i !== current,
-				'cds--progress-step--current': i === current
+				'cds--skeleton': skeleton,
+				'cds--progress--vertical': (orientation === 'vertical'),
+				'cds--progress--space-equal': spacing === 'equal' && orientation !== 'vertical'
 			}">
-			<button
-				type="button"
-				class="cds--progress-step-button"
-				[ngClass]="{
-					'cds--progress-step-button--unclickable': !step.onClick || current === i || skeleton
-				}"
-				[disabled]="step.disabled"
-				[attr.aria-disabled]="step.disabled"
-				[tabindex]="(current !== i && step.onClick && !step.disabled) ? 0 : -1"
-				[title]="step.label"
-				(click)="onClick(i)">
-				<span class="cds--assistive-text">
-					{{this.translations[getCurrentState(i)?.toUpperCase()]}}
-				</span>
-				<svg
-					[cdsIcon]="statusIcons[getCurrentState(i)]"
-					size="16"
+			@for (step of steps; track step; let i = $index) {
+				<li
+					class="cds--progress-step"
 					[ngClass]="{
-						'cds--progress__warning': step.invalid && i !== current
+						'cds--progress-step--disabled' : step.disabled,
+						'cds--progress-step--complete' : step.complete,
+						'cds--progress-step--incomplete' : !step.complete && i !== current,
+						'cds--progress-step--current': i === current
 					}">
-					<title *ngIf="step.description">{{step.description}}</title>
-				</svg>
-				<div class="cds--progress-text">
-					<p class="cds--progress-label">{{step.label}}</p>
-					<p *ngIf="step.secondaryLabel && !skeleton" class="cds--progress-optional">{{step.secondaryLabel}}</p>
-				</div>
-				<span class="cds--progress-line"></span>
-			</button>
-		</li>
-	</ul>
-	`
+					<button
+						type="button"
+						class="cds--progress-step-button"
+						[ngClass]="{
+							'cds--progress-step-button--unclickable': !step.onClick || current === i || skeleton
+						}"
+						[disabled]="step.disabled"
+						[attr.aria-disabled]="step.disabled"
+						[tabindex]="(current !== i && step.onClick && !step.disabled) ? 0 : -1"
+						[title]="step.label"
+						(click)="onClick(i)">
+						<span class="cds--assistive-text">
+							{{this.translations[getCurrentState(i)?.toUpperCase()]}}
+						</span>
+						<svg
+							[cdsIcon]="statusIcons[getCurrentState(i)]"
+							size="16"
+							[ngClass]="{
+								'cds--progress__warning': step.invalid && i !== current
+							}">
+							@if (step.description) {
+								<title>{{step.description}}</title>
+							}
+						</svg>
+						<div class="cds--progress-text">
+							<p class="cds--progress-label">{{step.label}}</p>
+							@if (step.secondaryLabel && !skeleton) {
+								<p class="cds--progress-optional">{{step.secondaryLabel}}</p>
+							}
+						</div>
+						<span class="cds--progress-line"></span>
+					</button>
+				</li>
+			}
+		</ul>
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgClass, IconDirective]
 })
 export class ProgressIndicator {
-	@Input() get current() {
-		return this._current;
-	}
-	set current(current: number) {
-		this._current = current;
-		this.setProgressIndicatorStates();
-	}
 	static skeletonSteps(stepCount: number) {
 		const steps = [];
 		for (let i = 0; i < stepCount; i++) {
@@ -84,6 +88,16 @@ export class ProgressIndicator {
 		}
 
 		return steps;
+	}
+
+	public i18n = inject(I18n);
+
+	@Input() get current() {
+		return this._current;
+	}
+	set current(current: number) {
+		this._current = current;
+		this.setProgressIndicatorStates();
 	}
 
 	@Input() steps: Array<Step>;
@@ -104,7 +118,11 @@ export class ProgressIndicator {
 
 	private _current: number;
 
-	constructor(protected i18n: I18n) { }
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	/**
 	 * Executes click function if `onClick` exists for step

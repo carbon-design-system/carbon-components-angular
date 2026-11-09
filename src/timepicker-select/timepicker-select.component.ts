@@ -1,19 +1,18 @@
 import {
+	ChangeDetectionStrategy,
 	Component,
 	Input,
-	Output,
-	EventEmitter,
-	HostBinding,
-	TemplateRef
+	HostBinding
 } from "@angular/core";
 import { Select } from "carbon-components-angular/select";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
+import { IconDirective } from "carbon-components-angular/icon";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { TimePickerSelectModule } from 'carbon-components-angular';
+ * import { TimePickerSelect } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-time-picker-select--simple)
@@ -21,7 +20,9 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 @Component({
 	selector: "cds-timepicker-select, ibm-timepicker-select",
 	template: `
-		<label *ngIf="!skeleton && label" [attr.for]="id" class="cds--label cds--visually-hidden">{{label}}</label>
+		@if (!skeleton && label) {
+			<label [attr.for]="id" class="cds--label cds--visually-hidden">{{label}}</label>
+		}
 		<div class="cds--select-input__wrapper">
 			<select
 				#select
@@ -30,9 +31,11 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 				[disabled]="disabled"
 				(change)="onChange($event)"
 				class="cds--select-input">
-				<ng-content></ng-content>
+				<ng-content />
 			</select>
-			<svg cdsIcon="chevron--down" size="16" *ngIf="!skeleton" class="cds--select__arrow"></svg>
+			@if (!skeleton) {
+				<svg cdsIcon="chevron--down" size="16" class="cds--select__arrow"></svg>
+			}
 		</div>
 	`,
 	providers: [
@@ -41,7 +44,9 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 			useExisting: TimePickerSelect,
 			multi: true
 		}
-	]
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [IconDirective]
 })
 export class TimePickerSelect extends Select {
 	@HostBinding("class.cds--select") timeSelect = true;

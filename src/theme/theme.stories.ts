@@ -1,13 +1,11 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { ThemeModule, ThemeDirective } from "./";
+import { ThemeDirective } from "./";
 
 export default {
 	title: "Components/Theme",
 	decorators: [
 		moduleMetadata({
-			imports: [ThemeModule]
+			imports: [ThemeDirective]
 		})
 	],
 	component: ThemeDirective

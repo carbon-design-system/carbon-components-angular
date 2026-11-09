@@ -1,11 +1,18 @@
 import {
 	Component,
-	Inject,
 	ViewChild,
 	AfterViewInit,
-	Optional
+	inject
 } from "@angular/core";
 import { BaseModal } from "./base-modal.class";
+import { Modal } from "./modal.component";
+import { ModalHeader } from "./modal-header.component";
+import { ModalHeaderLabel } from "./modal-header-label.directive";
+import { ModalHeaderHeading } from "./modal-header-heading.directive";
+import { ModalContent } from "./modal-content.directive";
+import { ModalFooter } from "./modal-footer.component";
+import { Button } from "carbon-components-angular/button";
+import { BaseModalService } from "./base-modal.service";
 
 /**
  * Component to create standard modals for presenting content or asking for user's input.
@@ -62,36 +69,52 @@ import { BaseModal } from "./base-modal.class";
 			<div cdsModalContent #modalContent>
 				<p [innerHTML]="content"></p>
 			</div>
-			<cds-modal-footer *ngIf="buttons.length > 0">
-				<ng-container *ngFor="let button of buttons; let i = index">
-					<button
-						[cdsButton]="button.type"
-						(click)="buttonClicked(i)"
-						[id]="button.id"
-						[attr.modal-primary-focus]="(button.type.indexOf('primary') !== -1 ? '' : null)">
-						{{button.text}}
-					</button>
-				</ng-container>
-			</cds-modal-footer>
+			@if (buttons.length > 0) {
+				<cds-modal-footer>
+					@for (button of buttons; track button.id; let i = $index) {
+						<button
+							[cdsButton]="button.type"
+							(click)="buttonClicked(i)"
+							[id]="button.id"
+							[attr.modal-primary-focus]="(button.type.indexOf('primary') !== -1 ? '' : null)">
+							{{button.text}}
+						</button>
+					}
+				</cds-modal-footer>
+			}
 		</cds-modal>
-	`
+	`,
+	providers: [BaseModalService],
+	imports: [
+		Modal,
+		ModalHeader,
+		ModalHeaderLabel,
+		ModalHeaderHeading,
+		ModalContent,
+		ModalFooter,
+		Button
+	]
 })
 export class AlertModal extends BaseModal implements AfterViewInit {
+	type = inject<any>("type" as any, { optional: true })! ?? "default";
+	label = inject<string>("label" as any, { optional: true })!;
+	title = inject<string>("title" as any, { optional: true })!;
+	content = inject<string>("content" as any, { optional: true })!;
+	size = inject<string>("size" as any, { optional: true })!;
+	hasScrollingContent = inject<boolean>("hasScrollingContent" as any, { optional: true })! ?? null;
+	buttons = inject<any>("buttons" as any, { optional: true })! ?? [];
+	onClose = inject<Function>("close" as any, { optional: true })!;
+	showCloseButton = inject<any>("showCloseButton" as any, { optional: true })! ?? true;
+
 	@ViewChild("modalContent", { static: true }) modalContent: { nativeElement: any; };
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
 	/**
 	 * Creates an instance of `AlertModal`.
 	 */
-	constructor(
-		@Optional() @Inject("type") public type = "default",
-		@Optional() @Inject("label") public label: string,
-		@Optional() @Inject("title") public title: string,
-		@Optional() @Inject("content") public content: string,
-		@Optional() @Inject("size") public size: string,
-		@Optional() @Inject("hasScrollingContent") public hasScrollingContent: boolean = null,
-		@Optional() @Inject("buttons") public buttons = [],
-		@Optional() @Inject("close") public onClose: Function,
-		@Optional() @Inject("showCloseButton") public showCloseButton = true
-	) {
+	constructor() {
 		super();
 		for (let i = 0; i < this.buttons.length; i++) {
 			const button = this.buttons[i];

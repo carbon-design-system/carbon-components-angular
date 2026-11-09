@@ -1,7 +1,8 @@
 import {
 	Component,
-	OnInit,
-	Input
+	inject,
+	Input,
+	OnInit
 } from "@angular/core";
 import { TableModel } from "../table-model.class";
 import { TableHeaderItem } from "../table-header-item.class";
@@ -10,6 +11,16 @@ import { TableItem } from "../table-item.class";
 import { IconService } from "../../icon/icon.service";
 import Add16 from "@carbon/icons/es/add/16";
 import Filter16 from "@carbon/icons/es/filter/16";
+import { Table } from "../table.component";
+import { Button } from "../../button";
+import { Checkbox } from "../../checkbox";
+import { OverflowMenu, OverflowMenuOption, OverflowMenuDirective } from "../../dialog";
+import { IconDirective } from "../../icon";
+import { TableHeader } from "../header/table-header.component";
+import { TableContainer } from "../table-container.component";
+import { TableToolbarContent } from "../toolbar/table-toolbar-content.component";
+import { TableToolbarSearch } from "../toolbar/table-toolbar-search.component";
+import { TableToolbar } from "../toolbar/table-toolbar.component";
 
 @Component({
 	selector: "app-model-filter-table",
@@ -53,7 +64,7 @@ import Filter16 from "@carbon/icons/es/filter/16";
 			[stickyHeader]="stickyHeader"
 			[striped]="striped"
 			[isDataGrid]="isDataGrid">
-			<ng-content></ng-content>
+			<ng-content />
 		</cds-table>
 	</cds-table-container>
 
@@ -82,7 +93,22 @@ import Filter16 from "@carbon/icons/es/filter/16";
 			</cds-checkbox>
 		</div>
 	</ng-template>
-	`
+	`,
+	standalone: true,
+	imports: [
+		Table,
+		TableContainer,
+		TableHeader,
+		TableToolbar,
+		TableToolbarContent,
+		TableToolbarSearch,
+		IconDirective,
+		Button,
+		OverflowMenu,
+		OverflowMenuOption,
+		OverflowMenuDirective,
+		Checkbox
+	]
 })
 export class FilterWithModelStory implements OnInit {
 	@Input() size = "md";
@@ -142,11 +168,7 @@ export class FilterWithModelStory implements OnInit {
 		]
 	];
 
-	constructor(protected iconService: IconService) {
-		this.iconService.registerAll([
-			Add16, Filter16
-		]);
-	}
+	protected iconService = inject(IconService);
 
 	filterNodeNames(searchString: string) {
 		this.model.data = this.dataset
@@ -165,9 +187,13 @@ export class FilterWithModelStory implements OnInit {
 
 	overflowOnClick = (event: any) => {
 		event.stopPropagation();
-	}
+	};
 
 	ngOnInit() {
+		this.iconService.registerAll([
+			Add16, Filter16
+		]);
+
 		this.model.header = [
 			new TableHeaderItem({
 				data: "Node ID"

@@ -2,10 +2,13 @@
 	"extends": "./../tsconfig.json",
 	"compilerOptions": {
 		"declarationMap": false,
-		"rootDir": "."
+		"rootDir": ".."
 	},
 	"angularCompilerOptions": {
+		"skipTemplateCodegen": true,
+		"strictMetadataEmit": false,
+		"fullTemplateTypeCheck": false,
 		"enableIvy": true,
-		"compliationMode": "partial"
+		"compilationMode": "partial"
 	}
 }

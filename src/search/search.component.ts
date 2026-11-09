@@ -1,21 +1,26 @@
 import {
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
-	Input,
-	EventEmitter,
-	Output,
-	HostBinding,
 	ElementRef,
+	EventEmitter,
+	HostBinding,
 	HostListener,
-	ViewChild
+	Input,
+	Output,
+	ViewChild,
+	inject
 } from "@angular/core";
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { I18n } from "carbon-components-angular/i18n";
+import { NgClass } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { SearchModule } from 'carbon-components-angular';
+ * import { Search } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-search--basic)
@@ -29,13 +34,17 @@ import { I18n } from "carbon-components-angular/i18n";
 			useExisting: Search,
 			multi: true
 		}
-	]
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgClass, IconDirective]
 })
 export class Search implements ControlValueAccessor {
 	/**
 	 * Variable used for creating unique ids for search components.
 	 */
 	static searchCount = 0;
+
+	public i18n = inject(I18n);
 
 	@HostBinding("class.cds--form-item") get containerClass() {
 		return !(this.toolbar || this.expandable);
@@ -142,16 +151,23 @@ export class Search implements ControlValueAccessor {
 
 	@ViewChild("input") inputRef: ElementRef;
 
+	protected elementRef = inject(ElementRef);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+
 	/**
 	 * Sets `true` when composing text via IME.
 	 */
 	protected isComposing = false;
 
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of `Search`.
 	 * @param i18n The i18n translations.
 	 */
-	constructor(protected elementRef: ElementRef, protected i18n: I18n) {
+	constructor() {
 		Search.searchCount++;
 	}
 
@@ -161,6 +177,7 @@ export class Search implements ControlValueAccessor {
 	 */
 	public writeValue(value: any) {
 		this.value = value;
+		this.changeDetectorRef.markForCheck();
 	}
 
 	/**
@@ -234,6 +251,7 @@ export class Search implements ControlValueAccessor {
 				if (this.value === "") {
 					this.active = false;
 					this.open.emit(this.active);
+					this.changeDetectorRef.markForCheck();
 				}
 			} else if (event.key === "Enter") {
 				this.openSearch();
@@ -243,6 +261,7 @@ export class Search implements ControlValueAccessor {
 		if (event.key === "Escape") {
 			if (this.value !== "") {
 				this.clearSearch();
+				this.changeDetectorRef.markForCheck();
 			}
 		}
 	}

@@ -1,19 +1,23 @@
 import {
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	Input,
 	Output,
 	EventEmitter,
 	HostBinding,
 	TemplateRef,
-	HostListener
+	HostListener,
+	inject
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { TimePickerModule } from 'carbon-components-angular';
+ * import { TimePicker } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-time-picker--simple)
@@ -21,17 +25,21 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 @Component({
 	selector: "cds-timepicker, ibm-timepicker",
 	template: `
-		<label
-		*ngIf="!skeleton && label"
-		[for]="id"
-		class="cds--label"
-		[ngClass]="{
-			'cds--label--disabled': disabled,
-			'cds--visually-hidden': hideLabel
-		}">
-			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-			<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
-		</label>
+		@if (!skeleton && label) {
+			<label
+				[for]="id"
+				class="cds--label"
+				[ngClass]="{
+					'cds--label--disabled': disabled,
+					'cds--visually-hidden': hideLabel
+				}">
+				@if (isTemplate(label)) {
+					<ng-template [ngTemplateOutlet]="label" />
+				} @else {
+					{{label}}
+				}
+			</label>
+		}
 		<div
 			class="cds--time-picker"
 			[ngClass]="{
@@ -58,12 +66,17 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 					type="text"
 					class="cds--time-picker__input-field cds--text-input">
 			</div>
-			<ng-content></ng-content>
+			<ng-content />
 		</div>
-		<div *ngIf="invalid" class="cds--form-requirement">
-			<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
-			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-		</div>
+		@if (invalid) {
+			<div class="cds--form-requirement">
+				@if (isTemplate(invalidText)) {
+					<ng-template [ngTemplateOutlet]="invalidText" />
+				} @else {
+					{{invalidText}}
+				}
+			</div>
+		}
 	`,
 	providers: [
 		{
@@ -71,7 +84,9 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 			useExisting: TimePicker,
 			multi: true
 		}
-	]
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgClass, NgTemplateOutlet]
 })
 export class TimePicker implements ControlValueAccessor {
 	/**
@@ -112,8 +127,11 @@ export class TimePicker implements ControlValueAccessor {
 	 */
 	@HostBinding("class.cds--form-item") timepickerClass = true;
 
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+
 	writeValue(value: string) {
 		this.value = value;
+		this.changeDetectorRef.markForCheck();
 	}
 
 	registerOnChange(callback: any) {
@@ -126,6 +144,7 @@ export class TimePicker implements ControlValueAccessor {
 
 	setDisabledState(isDisabled: boolean) {
 		this.disabled = isDisabled;
+		this.changeDetectorRef.markForCheck();
 	}
 
 	onChange(event) {
@@ -142,6 +161,6 @@ export class TimePicker implements ControlValueAccessor {
 		return value instanceof TemplateRef;
 	}
 
-	protected onChangeHandler = (_: any) => { };
-	protected onTouchedHandler = () => { };
+	protected onChangeHandler = (_: any) => {};
+	protected onTouchedHandler = () => {};
 }

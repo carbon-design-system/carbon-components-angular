@@ -1,15 +1,12 @@
-/* tslint:disable variable-name */
-
 import { FormsModule } from "@angular/forms";
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { TimePickerSelectModule, TimePickerSelect } from "./";
+import { TimePickerSelect } from "./";
 
 export default {
 	title: "Components/Timepicker Select",
 	decorators: [
 		moduleMetadata({
 			imports: [
-				TimePickerSelectModule,
 				FormsModule
 			]
 		})

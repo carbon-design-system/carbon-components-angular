@@ -5,9 +5,7 @@ import { advancedFakeAsync } from "../test-helpers/change-detection";
 import { I18nModule } from "../i18n";
 import { UtilsModule } from "../utils";
 import { Tabs } from "./tabs.component";
-import { CommonModule } from "@angular/common";
 import { Tab } from "./tab.component";
-import { TabHeaders } from "./tab-headers.component";
 
 @Component({
 	template: `
@@ -16,7 +14,8 @@ import { TabHeaders } from "./tab-headers.component";
 			<cds-tab heading="two">Tab Content 2</cds-tab>
 			<cds-tab heading="three">Tab Content 3</cds-tab>
 		</cds-tabs>
-	`
+	`,
+	imports: [Tabs, Tab]
 })
 class TabsTest {
 	isNavigation = true;
@@ -42,16 +41,8 @@ describe("Tabs", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				Tabs,
-				Tab,
-				TabHeaders,
-				TabsTest
-			],
 			imports: [
-				CommonModule,
-				UtilsModule,
-				I18nModule
+				TabsTest
 			],
 			schemas: [CUSTOM_ELEMENTS_SCHEMA]
 		});

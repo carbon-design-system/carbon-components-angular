@@ -1,19 +1,14 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { IconModule } from "../icon";
-import {
-	ButtonModule,
-	IconButton
-} from "./";
+import { IconDirective } from "../icon";
+import { Button, IconButton } from "./";
 
 export default {
 	title: "Components/Button/Icon Button",
 	decorators: [
 		moduleMetadata({
 			imports: [
-				ButtonModule,
-				IconModule
+				Button,
+				IconDirective
 			]
 		})
 	],
@@ -140,4 +135,3 @@ WithAutoAlign.args = {
 	align: "top",
 	isOpen: true
 };
-

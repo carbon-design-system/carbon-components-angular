@@ -4,7 +4,6 @@ import { FormsModule } from "@angular/forms";
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { I18nModule } from "../../i18n";
-import { ExperimentalModule } from "../../experimental";
 import { PaginationNav } from "./index";
 import { PaginationOverflow } from "./pagination-overflow.component";
 import { PaginationModule } from "../index";
@@ -16,9 +15,11 @@ import { PaginationModel } from "../pagination-model.class";
 			[model]="model"
 			[disabled]="disabled"
 			[numOfItemsToShow]="4"
-			(selectPage)="selectPage($event)">
-		</cds-pagination-nav>
-	`
+			(selectPage)="selectPage($event)" />
+	`,
+	imports: [
+		PaginationNav
+	]
 })
 class PaginationNavTest implements OnInit {
 	model = new PaginationModel();
@@ -38,20 +39,17 @@ describe("PaginationNav", () => {
 	let fixture, wrapper, paginationComponent;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [ PaginationNavTest ],
 			imports: [
-				CommonModule,
-				FormsModule,
-				PaginationModule,
-				I18nModule,
-				ExperimentalModule
+				PaginationNavTest
 			]
 		});
 	});
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(PaginationNavTest);
-		paginationComponent = fixture.debugElement.query(By.css("cds-pagination-nav"));
+		paginationComponent = fixture.debugElement.query(
+			By.css("cds-pagination-nav")
+		);
 	});
 
 	it("should work", () => {
@@ -72,7 +70,9 @@ describe("PaginationNav", () => {
 		wrapper = fixture.componentInstance;
 		spyOn(wrapper, "selectPage").and.callThrough();
 		fixture.detectChanges();
-		const navItems = paginationComponent.queryAll(By.css("cds-pagination-nav-item"));
+		const navItems = paginationComponent.queryAll(
+			By.css("cds-pagination-nav-item")
+		);
 		navItems[1].nativeElement.click();
 		expect(wrapper.selectPage).toHaveBeenCalled();
 		expect(wrapper.model.currentPage).toBe(2);
@@ -122,7 +122,8 @@ describe("PaginationNav", () => {
 			[count]="count"
 			(change)="selectedPage = $event">
 		</cds-pagination-overflow>
-	`
+	`,
+	imports: [PaginationModule, I18nModule]
 })
 class PaginationOverflowTest {
 	@ViewChild(PaginationOverflow) overflow: PaginationOverflow;
@@ -137,8 +138,7 @@ describe("PaginationOverflow", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [PaginationOverflowTest],
-			imports: [PaginationModule, I18nModule]
+			imports: [PaginationOverflowTest]
 		});
 
 		fixture = TestBed.createComponent(PaginationOverflowTest);

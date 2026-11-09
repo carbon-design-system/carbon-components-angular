@@ -1,7 +1,5 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { InlineLoadingModule, InlineLoading } from "./";
+import { InlineLoading } from "./";
 
 import { InlineLoadingStory } from "./stories";
 
@@ -9,8 +7,7 @@ export default {
 	title: "Components/Inline loading",
 	decorators: [
 		moduleMetadata({
-			declarations: [InlineLoadingStory],
-			imports: [InlineLoadingModule]
+			imports: [InlineLoading, InlineLoadingStory]
 		})
 	],
 	args: {

@@ -7,33 +7,42 @@ import {
 	Output,
 	TemplateRef
 } from "@angular/core";
+import { NgTemplateOutlet } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 
 @Component({
 	selector: "cds-contained-list-item, ibm-contained-list-item",
 	template: `
-		<ng-container *ngIf="clickable">
+		@if (clickable) {
 			<button
 				class="cds--contained-list-item__content"
 				type="button"
 				[disabled]="disabled"
 				(click)="onClick()">
-				<ng-content select="[cdsContainedListItemButton],[ibmContainedListItemButton]"></ng-content>
+				<ng-content select="[cdsContainedListItemButton],[ibmContainedListItemButton]" />
 			</button>
-		</ng-container>
-		<ng-container *ngIf="!clickable">
+		} @else {
 			<div class="cds--contained-list-item__content">
-				<div *ngIf="icon" class="cds--contained-list-item__icon">
-					<ng-container *ngIf="!isTemplate(icon)"><svg [ibmIcon]="icon" size="16"></svg></ng-container>
-					<ng-template *ngIf="isTemplate(icon)" [ngTemplateOutlet]="icon"></ng-template>
-				</div>
-				<ng-content></ng-content>
+				@if (icon) {
+					<div class="cds--contained-list-item__icon">
+						@if (isTemplate(icon)) {
+							<ng-template [ngTemplateOutlet]="icon" />
+						} @else {
+							<svg [ibmIcon]="icon" size="16"></svg>
+						}
+					</div>
+				}
+				<ng-content />
 			</div>
-		</ng-container>
-		<div class="cds--contained-list-item__action" *ngIf="action">
-			<ng-template [ngTemplateOutlet]="action" [ngTemplateOutletContext]="{ $implicit: actionData }"></ng-template>
-		</div>
+		}
+		@if (action) {
+			<div class="cds--contained-list-item__action">
+				<ng-template [ngTemplateOutlet]="action" [ngTemplateOutletContext]="{ $implicit: actionData }" />
+			</div>
+		}
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgTemplateOutlet, IconDirective]
 })
 export class ContainedListItem {
 	/**
@@ -68,6 +77,7 @@ export class ContainedListItem {
 	/**
 	 * Emits click event.
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() click = new EventEmitter<void>();
 
 	/**

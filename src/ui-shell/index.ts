@@ -1,4 +1,4 @@
-export * from "./header/header.module";
-export * from "./sidenav/sidenav.module";
-export * from "./panel/panel.module";
+export * from "./header";
+export * from "./sidenav";
+export * from "./panel";
 export * from "./ui-shell.module";

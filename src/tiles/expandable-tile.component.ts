@@ -4,10 +4,20 @@ import {
 	ElementRef,
 	AfterViewInit,
 	ViewChild,
-	TemplateRef
+	ChangeDetectionStrategy,
+	TemplateRef,
+	inject
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 import { merge } from "carbon-components-angular/utils";
+import {
+	NgClass,
+	NgStyle,
+	NgTemplateOutlet,
+	AsyncPipe
+} from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
+import { Tile } from "./tile.component";
 
 export interface ExpandableTileTranslations {
 	EXPAND: string;
@@ -15,10 +25,10 @@ export interface ExpandableTileTranslations {
 }
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { TilesModule } from 'carbon-components-angular';
+ * import { ExpandableTile } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-tiles-expandable--basic)
@@ -26,34 +36,35 @@ export interface ExpandableTileTranslations {
 @Component({
 	selector: "cds-expandable-tile, ibm-expandable-tile",
 	template: `
-		<button
-			*ngIf="!interactive"
-			class="cds--tile cds--tile--expandable"
-			[ngClass]="{
-				'cds--tile--is-expanded' : expanded,
-				'cds--tile--light': theme === 'light'
-			}"
-			[ngStyle]="{'max-height': expandedHeight + 'px'}"
-			type="button"
-			(click)="onClick()"
-			[attr.aria-expanded]="expanded"
-			[attr.title]="(expanded ? collapse.subject : expand.subject) | async">
+		@if (!interactive) {
+			<button
+				class="cds--tile cds--tile--expandable"
+				[ngClass]="{
+					'cds--tile--is-expanded' : expanded,
+					'cds--tile--light': theme === 'light'
+				}"
+				[ngStyle]="{'max-height': expandedHeight + 'px'}"
+				type="button"
+				(click)="onClick()"
+				[attr.aria-expanded]="expanded"
+				[attr.title]="(expanded ? collapse.subject : expand.subject) | async">
 				<ng-container *ngTemplateOutlet="expandableTileContent"></ng-container>
-		</button>
-
-		<div
-			*ngIf="interactive"
-			class="cds--tile cds--tile--expandable cds--tile--expandable--interactive"
-			[ngClass]="{
-				'cds--tile--is-expanded' : expanded,
-				'cds--tile--light': theme === 'light',
-				'cds--tile--decorator': !!decorator,
-				'cds--tile--decorator-rounded': !!decorator && hasRoundedCorners
-			}"
-			[ngStyle]="{'max-height': expandedHeight + 'px'}"
-			[attr.title]="(expanded ? collapse.subject : expand.subject) | async">
-			<ng-container *ngTemplateOutlet="expandableTileContent"></ng-container>
-		</div>
+			</button>
+		}
+		@if (interactive) {
+			<div
+				class="cds--tile cds--tile--expandable cds--tile--expandable--interactive"
+				[ngClass]="{
+					'cds--tile--is-expanded' : expanded,
+					'cds--tile--light': theme === 'light',
+					'cds--tile--decorator': !!decorator,
+					'cds--tile--decorator-rounded': !!decorator && hasRoundedCorners
+				}"
+				[ngStyle]="{'max-height': expandedHeight + 'px'}"
+				[attr.title]="(expanded ? collapse.subject : expand.subject) | async">
+				<ng-container *ngTemplateOutlet="expandableTileContent"></ng-container>
+			</div>
+		}
 
 		<ng-template #chevronIcon>
 			<svg cdsIcon="chevron--down" size="16"></svg>
@@ -61,34 +72,47 @@ export interface ExpandableTileTranslations {
 
 		<ng-template #expandableTileContent>
 			<div #container>
-				<ng-container *ngIf="interactive && decorator">
+				@if (interactive && decorator) {
 					<div class="cds--tile--inner-decorator">
 						<ng-template [ngTemplateOutlet]="decorator"></ng-template>
 					</div>
-				</ng-container>
+				}
 				<div class="cds--tile-content">
 					<ng-content select="[cdsAboveFold],[ibmAboveFold],.cds--tile-content__above-the-fold"></ng-content>
 				</div>
-				<div *ngIf="!interactive" class="cds--tile__chevron">
-					<ng-container *ngTemplateOutlet="chevronIcon"></ng-container>
-				</div>
-				<button
-					*ngIf="interactive"
-					class="cds--tile__chevron cds--tile__chevron--interactive"
-					type="button"
-					(click)="onClick()"
-					[attr.aria-expanded]="expanded"
-					[attr.aria-label]="(expanded ? collapse.subject : expand.subject) | async">
-					<ng-container *ngTemplateOutlet="chevronIcon"></ng-container>
-				</button>
+				@if (!interactive) {
+					<div class="cds--tile__chevron">
+						<ng-container *ngTemplateOutlet="chevronIcon"></ng-container>
+					</div>
+				}
+				@if (interactive) {
+					<button
+						class="cds--tile__chevron cds--tile__chevron--interactive"
+						type="button"
+						(click)="onClick()"
+						[attr.aria-expanded]="expanded"
+						[attr.aria-label]="(expanded ? collapse.subject : expand.subject) | async">
+						<ng-container *ngTemplateOutlet="chevronIcon"></ng-container>
+					</button>
+				}
 				<div class="cds--tile-content">
 					<ng-content select="[cdsBelowFold],[ibmBelowFold],.cds--tile-content__below-the-fold"></ng-content>
 				</div>
 			</div>
 		</ng-template>
-	`
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [
+		NgClass,
+		NgStyle,
+		NgTemplateOutlet,
+		IconDirective,
+		AsyncPipe
+	]
 })
 export class ExpandableTile implements AfterViewInit {
+	public i18n = inject(I18n);
+
 	/**
 	 * @deprecated since v5 - Use `cdsLayer` directive instead
 	 * Set to `"light"` to apply the light style
@@ -138,7 +162,13 @@ export class ExpandableTile implements AfterViewInit {
 	expand = this.i18n.getOverridable("TILES.EXPAND");
 	collapse = this.i18n.getOverridable("TILES.COLLAPSE");
 
-	constructor(protected i18n: I18n, protected element: ElementRef) {}
+	protected element = inject(ElementRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngAfterViewInit() {
 		this.updateMaxHeight();
@@ -159,7 +189,10 @@ export class ExpandableTile implements AfterViewInit {
 		if (this.expanded) {
 			this.tileMaxHeight = this.tileContainer.nativeElement.getBoundingClientRect().height;
 		} else {
-			this.tileMaxHeight = this.element.nativeElement.querySelector(".cds--tile-content__above-the-fold").getBoundingClientRect().height;
+			// match the projection selectors & class
+			const aboveFold = this.element.nativeElement
+				.querySelector(".cds--tile-content__above-the-fold, [cdsAboveFold], [ibmAboveFold]");
+			this.tileMaxHeight = aboveFold ? aboveFold.getBoundingClientRect().height : 0;
 		}
 	}
 

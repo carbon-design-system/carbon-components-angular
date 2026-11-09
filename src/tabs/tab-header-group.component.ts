@@ -15,7 +15,8 @@ import {
 	ViewChild,
 	OnInit,
 	OnDestroy,
-	Renderer2
+	Renderer2,
+	inject
 } from "@angular/core";
 
 import { Subscription } from "rxjs";
@@ -24,6 +25,7 @@ import { I18n } from "carbon-components-angular/i18n";
 
 import { TabHeaderBase } from "./tab-header.directive";
 import { BaseTabHeader } from "./base-tab-header.component";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
 
 @Component({
 	selector: "cds-tab-header-group, ibm-tab-header-group",
@@ -63,9 +65,9 @@ import { BaseTabHeader } from "./base-tab-header.component";
 			[attr.aria-labelledby]="ariaLabelledby || null"
 			(scroll)="handleScroll()"
 			#tabList>
-			<ng-container [ngTemplateOutlet]="contentBefore"></ng-container>
-			<ng-content></ng-content>
-			<ng-container [ngTemplateOutlet]="contentAfter"></ng-container>
+			<ng-container [ngTemplateOutlet]="contentBefore" />
+			<ng-content />
+			<ng-container [ngTemplateOutlet]="contentAfter" />
 		</div>
 		<button
 			type="button"
@@ -95,9 +97,12 @@ import { BaseTabHeader } from "./base-tab-header.component";
 				<path d="M11 8L6 13 5.3 12.3 9.6 8 5.3 3.7 6 3z"></path>
 			</svg>
 		</button>
-	`
+	`,
+	providers: [EventService],
+	imports: [NgClass, NgTemplateOutlet]
 })
 export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, OnChanges, OnInit, OnDestroy {
+	public i18n = inject(I18n);
 
 	@HostBinding("class.cds--tabs--full-width") get fullWidthClass() {
 		return this.distributeWidth;
@@ -166,14 +171,12 @@ export class TabHeaderGroup extends BaseTabHeader implements AfterContentInit, O
 	 */
 	activeIndex: number | null = null;
 
-	constructor(
-		protected elementRef: ElementRef,
-		protected changeDetectorRef: ChangeDetectorRef,
-		protected eventService: EventService,
-		protected renderer: Renderer2,
-		protected i18n: I18n
-	) {
-		super(elementRef, changeDetectorRef, eventService, renderer);
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
+		super();
 	}
 
 	@HostListener("keydown", ["$event"])

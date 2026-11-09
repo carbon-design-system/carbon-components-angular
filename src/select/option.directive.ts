@@ -1,8 +1,9 @@
 import { Directive, HostBinding } from "@angular/core";
 
 @Directive({
-	// tslint:disable-next-line
-	selector: "option"
+	// eslint-disable-next-line @angular-eslint/directive-selector
+	selector: "option",
+	standalone: true
 })
 export class Option {
 	@HostBinding("class") inputClass = "cds--select-option";

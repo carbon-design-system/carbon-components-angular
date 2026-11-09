@@ -10,17 +10,18 @@ import {
 	Input,
 	NgZone,
 	OnDestroy,
-	Renderer2
+	Renderer2,
+	inject
 } from "@angular/core";
 import { fromEvent, Subscription } from "rxjs";
-import { PopoverContainer } from "carbon-components-angular/popover";
+import { PopoverContainer, PopoverContent } from "carbon-components-angular/popover";
 import { ToggletipButton } from "./toggletip-button.directive";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { ToggletipModule } from 'carbon-components-angular';
+ * import { Toggletip } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-toggletip--basic)
@@ -29,11 +30,12 @@ import { ToggletipButton } from "./toggletip-button.directive";
 	selector: "cds-toggletip, ibm-toggletip",
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<ng-content select="[cdsToggletipButton]"></ng-content>
+		<ng-content select="[cdsToggletipButton]" />
 		<cds-popover-content [attr.id]="id" aria-live="polite">
-			<ng-content select="[cdsToggletipContent]"></ng-content>
+			<ng-content select="[cdsToggletipContent]" />
 		</cds-popover-content>
-	`
+	`,
+	imports: [PopoverContent]
 })
 export class Toggletip extends PopoverContainer implements AfterViewInit, OnDestroy {
 	static toggletipCounter = 0;
@@ -46,15 +48,15 @@ export class Toggletip extends PopoverContainer implements AfterViewInit, OnDest
 	@ContentChild(ToggletipButton, { read: ElementRef }) btn!: ElementRef;
 
 	documentClick = this.handleFocusOut.bind(this);
+
 	private subscription: Subscription;
 
-	constructor(
-		protected hostElement: ElementRef,
-		protected ngZone: NgZone,
-		protected renderer: Renderer2,
-		protected changeDetectorRef: ChangeDetectorRef
-	) {
-		super(hostElement, ngZone, renderer, changeDetectorRef);
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
+		super();
 		this.highContrast = true;
 		this.dropShadow = false;
 	}
@@ -95,7 +97,7 @@ export class Toggletip extends PopoverContainer implements AfterViewInit, OnDest
 	}
 
 	handleFocusOut(event) {
-		if (!this.hostElement.nativeElement.contains(event.target)) {
+		if (!this.elementRef.nativeElement.contains(event.target)) {
 			this.handleExpansion(false, event);
 		}
 	}

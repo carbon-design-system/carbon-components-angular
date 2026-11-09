@@ -1,8 +1,6 @@
-/* tslint:disable variable-name */
-
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { RadioModule, RadioGroup, Radio } from "./";
+import { RadioGroup, Radio } from "./";
 
 import { ReactiveFormsStory } from "./stories";
 import { AILabelModule } from "../ai-label";
@@ -14,14 +12,15 @@ export default {
 	title: "Components/Radio",
 	decorators: [
 		moduleMetadata({
-			declarations: [ReactiveFormsStory],
 			imports: [
 				FormsModule,
 				ReactiveFormsModule,
-				RadioModule,
+				Radio,
+				RadioGroup,
 				AILabelModule,
 				ButtonModule,
-				IconModule
+				IconModule,
+				ReactiveFormsStory
 			]
 		})
 	],

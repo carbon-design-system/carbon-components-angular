@@ -14,13 +14,15 @@ import {
 	OnDestroy,
 	OnInit,
 	ChangeDetectorRef,
-	Renderer2
+	Renderer2,
+	inject
 } from "@angular/core";
 import { EventService } from "carbon-components-angular/utils";
 import { I18n } from "carbon-components-angular/i18n";
 
 import { BaseTabHeader } from "./base-tab-header.component";
 import { Tab } from "./tab.component";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
 
 const VERTICAL_TAB_HEIGHT = 64;
 
@@ -32,7 +34,9 @@ const VERTICAL_TAB_HEIGHT = 64;
 @Component({
 	selector: "cds-tab-headers-vertical, ibm-tab-headers-vertical",
 	template: `
-		<div *ngIf="isOverflowingTop" class="cds--tab--list-gradient_top"></div>
+		@if (isOverflowingTop) {
+			<div class="cds--tab--list-gradient_top"></div>
+		}
 		<div
 			#tabList
 			class="cds--tab--list"
@@ -40,50 +44,57 @@ const VERTICAL_TAB_HEIGHT = 64;
 			[attr.aria-label]="ariaLabel || translations.HEADER_ARIA_LABEL"
 			[attr.aria-labelledby]="ariaLabelledby || null">
 			<ng-container [ngTemplateOutlet]="contentBefore"></ng-container>
-			<button
-				*ngFor="let tab of tabs; let i = index;"
-				#tabItem
-				role="tab"
-				[attr.aria-selected]="tab.active"
-				[attr.tabindex]="(tab.active?0:-1)"
-				[attr.aria-controls]="tab.id"
-				[attr.aria-disabled]="tab.disabled"
-				[disabled]="tab.disabled"
-				[ngClass]="{
-					'cds--tabs__nav-item--selected': tab.active,
-					'cds--tabs__nav-item--disabled': tab.disabled
-				}"
-				class="cds--tabs__nav-item cds--tabs__nav-link"
-				type="button"
-				draggable="false"
-				id="{{tab.id}}-header"
-				[attr.title]="tab.title || (!tab.headingIsTemplate ? tab.heading : null)"
-				(focus)="onTabFocus(i)"
-				(click)="selectTab(tab, i)">
-				<div class="cds--tabs__nav-item-label-wrapper">
-					<span class="cds--tabs__nav-item-label">
-						<ng-container *ngIf="!tab.headingIsTemplate">
-							{{ tab.heading }}
-						</ng-container>
-						<ng-template
-							*ngIf="tab.headingIsTemplate"
-							[ngTemplateOutlet]="tab.heading"
-							[ngTemplateOutletContext]="{$implicit: tab.context}">
-						</ng-template>
-					</span>
-				</div>
-			</button>
+			@for (tab of tabs; track tab; let i = $index) {
+				<button
+					#tabItem
+					role="tab"
+					[attr.aria-selected]="tab.active"
+					[attr.tabindex]="(tab.active?0:-1)"
+					[attr.aria-controls]="tab.id"
+					[attr.aria-disabled]="tab.disabled"
+					[disabled]="tab.disabled"
+					[ngClass]="{
+						'cds--tabs__nav-item--selected': tab.active,
+						'cds--tabs__nav-item--disabled': tab.disabled
+					}"
+					class="cds--tabs__nav-item cds--tabs__nav-link"
+					type="button"
+					draggable="false"
+					id="{{tab.id}}-header"
+					[attr.title]="tab.title || (!tab.headingIsTemplate ? tab.heading : null)"
+					(focus)="onTabFocus(i)"
+					(click)="selectTab(tab, i)">
+					<div class="cds--tabs__nav-item-label-wrapper">
+						<span class="cds--tabs__nav-item-label">
+							@if (!tab.headingIsTemplate) {
+								{{ tab.heading }}
+							}
+							@if (tab.headingIsTemplate) {
+								<ng-template
+									[ngTemplateOutlet]="tab.heading"
+									[ngTemplateOutletContext]="{$implicit: tab.context}">
+								</ng-template>
+							}
+						</span>
+					</div>
+				</button>
+			}
 			<ng-container [ngTemplateOutlet]="contentAfter"></ng-container>
 		</div>
-		<div *ngIf="isOverflowingBottom" class="cds--tab--list-gradient_bottom"></div>
-	`
+		@if (isOverflowingBottom) {
+			<div class="cds--tab--list-gradient_bottom"></div>
+		}
+	`,
+	imports: [NgClass, NgTemplateOutlet]
 })
 export class TabHeadersVertical extends BaseTabHeader implements AfterContentInit, OnChanges, OnDestroy, OnInit {
+	public i18n = inject(I18n);
+
 	/**
 	 * List of `Tab` components.
 	 */
-	// disable the next line because we need to rename the input
-	// tslint:disable-next-line
+	// Template/API uses `[tabs]`; property name differs to avoid clashing with the `tabs` field populated from content.
+	// eslint-disable-next-line @angular-eslint/no-input-rename -- intentional alias for public `[tabs]` binding
 	@Input("tabs") tabInput: QueryList<Tab>;
 
 	/**
@@ -119,14 +130,12 @@ export class TabHeadersVertical extends BaseTabHeader implements AfterContentIni
 
 	private resizeObserver: ResizeObserver;
 
-	constructor(
-		protected elementRef: ElementRef,
-		protected changeDetectorRef: ChangeDetectorRef,
-		protected eventService: EventService,
-		protected renderer: Renderer2,
-		protected i18n: I18n
-	) {
-		super(elementRef, changeDetectorRef, eventService, renderer);
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
+		super();
 		this.type = "contained";
 	}
 
@@ -307,6 +316,7 @@ export class TabHeadersVertical extends BaseTabHeader implements AfterContentIni
 				this.activeIndex = this.currentSelectedTab;
 				firstTab.doSelect();
 				this.updateOverflowState();
+				this.changeDetectorRef.markForCheck();
 			}
 		});
 	}

@@ -1,5 +1,6 @@
 import {
 	AfterViewInit,
+	ChangeDetectionStrategy,
 	Component,
 	ElementRef,
 	EventEmitter,
@@ -7,16 +8,20 @@ import {
 	Output,
 	Renderer2,
 	TemplateRef,
-	ViewChild
+	ViewChild,
+	inject
 } from "@angular/core";
 import { BaseIconButton } from "./base-icon-button.component";
 import { ButtonSize, ButtonType } from "./button.types";
+import { Tooltip } from "carbon-components-angular/tooltip";
+import { NgClass } from "@angular/common";
+import { Button } from "./button.directive";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { ButtonModule } from 'carbon-components-angular';
+ * import { IconButton } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-button-icon-button--basic)
@@ -50,12 +55,16 @@ import { ButtonSize, ButtonType } from "./button.types";
 			(click)="emitClickEvent($event)"
 			(focus)="focus.emit($event)"
 			(blur)="blur.emit($event)">
-			<ng-content></ng-content>
+			<ng-content />
 		</button>
 	</cds-tooltip>
-	`
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [Tooltip, NgClass, Button]
 })
 export class IconButton extends BaseIconButton implements AfterViewInit {
+	static iconButtonCounter = 0;
+
 	/**
 	 * Pass global carbon classes to icon button
 	 */
@@ -90,8 +99,6 @@ export class IconButton extends BaseIconButton implements AfterViewInit {
 	get buttonAttributes() {
 		return this.buttonAttributes;
 	}
-
-	static iconButtonCounter = 0;
 
 	@ViewChild("button") button: ElementRef;
 
@@ -131,8 +138,11 @@ export class IconButton extends BaseIconButton implements AfterViewInit {
 	/**
 	 * Common button events
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() click = new EventEmitter<Event>();
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() focus = new EventEmitter<Event>();
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() blur = new EventEmitter<Event>();
 	/**
 	 * Event to emit when click event is fired from tooltip
@@ -141,8 +151,13 @@ export class IconButton extends BaseIconButton implements AfterViewInit {
 
 	private classList: { [key: string]: boolean } = {};
 	private attributeList: { [key: string]: string } = {};
+	private renderer = inject(Renderer2);
 
-	constructor(private renderer: Renderer2) {
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
 		super();
 	}
 

@@ -4,13 +4,15 @@ import {
 	ViewContainerRef,
 	Input,
 	TemplateRef,
-	HostListener
+	HostListener,
+	inject
 } from "@angular/core";
 import { DialogDirective } from "../dialog.directive";
 import { DialogService } from "../dialog.service";
 import { OverflowMenuPane } from "./overflow-menu-pane.component";
 import { OverflowMenuCustomPane } from "./overflow-menu-custom-pane.component";
 import { EventService } from "carbon-components-angular/utils";
+import { PLACEHOLDER_SERVICE_PROVIDER } from "carbon-components-angular/placeholder";
 
 
 /**
@@ -40,8 +42,11 @@ import { EventService } from "carbon-components-angular/utils";
 	selector: "[cdsOverflowMenu], [ibmOverflowMenu]",
 	exportAs: "overflowMenu",
 	providers: [
-		DialogService
-	]
+		DialogService,
+		EventService,
+		PLACEHOLDER_SERVICE_PROVIDER
+	],
+	standalone: true
 })
 export class OverflowMenuDirective extends DialogDirective {
 	/**
@@ -70,16 +75,20 @@ export class OverflowMenuDirective extends DialogDirective {
 	 */
 	@Input() customPane = false;
 
+	protected elementRef: ElementRef;
+	protected viewContainerRef: ViewContainerRef;
+	protected dialogService: DialogService;
+	protected eventService: EventService;
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of `OverflowMenuDirective`.
 	 */
-	constructor(
-		protected elementRef: ElementRef,
-		protected viewContainerRef: ViewContainerRef,
-		protected dialogService: DialogService,
-		protected eventService: EventService
-	) {
-		super(elementRef, viewContainerRef, dialogService, eventService);
+	constructor() {
+		super();
 	}
 
 	updateConfig() {

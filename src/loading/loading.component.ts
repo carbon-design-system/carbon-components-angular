@@ -1,11 +1,18 @@
-import { Component, Input, HostBinding } from "@angular/core";
+import {
+	ChangeDetectionStrategy,
+	Component,
+	HostBinding,
+	Input,
+	inject
+} from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
+import { NgClass } from "@angular/common";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { LoadingModule } from 'carbon-components-angular';
+ * import { Loading } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-loading--basic)
@@ -25,9 +32,13 @@ import { I18n } from "carbon-components-angular/i18n";
 				<circle class="cds--loading__stroke" cx="50%" cy="50%" r="44" />
 			</svg>
 		</div>
-	`
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgClass]
 })
 export class Loading {
+	public i18n = inject(I18n);
+
 	/**
 	 * Accessible title for the loading circle.
 	 * Defaults to the `LOADING.TITLE` value from the i18n service.
@@ -49,5 +60,9 @@ export class Loading {
 	 */
 	@Input() @HostBinding("class.cds--loading-overlay") overlay = false;
 
-	constructor(protected i18n: I18n) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 }

@@ -1,7 +1,5 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { InputModule, TextInputLabelComponent } from "./";
+import { Label, TextInput, TextInputLabelComponent } from "./";
 import { AILabelModule } from "../ai-label";
 import { ButtonModule } from "../button";
 import { IconModule } from "../icon";
@@ -13,7 +11,8 @@ export default {
 	decorators: [
 		moduleMetadata({
 			imports: [
-				InputModule,
+				TextInput,
+				Label,
 				AILabelModule,
 				ButtonModule,
 				IconModule,

@@ -8,19 +8,21 @@ import {
 	ContentChildren,
 	QueryList,
 	OnDestroy,
-	TemplateRef
+	TemplateRef,
+	ChangeDetectionStrategy
 } from "@angular/core";
 import { SelectionTile } from "./selection-tile.component";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { TileSelection } from "./tile-selection.interface";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
+import { NgTemplateOutlet } from "@angular/common";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { TilesModule } from 'carbon-components-angular';
+ * import { Tile, TileGroup } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-tiles-grouped--selectable)
@@ -29,11 +31,16 @@ import { takeUntil } from "rxjs/operators";
 	selector: "cds-tile-group, ibm-tile-group",
 	template: `
 		<fieldset>
-			<legend *ngIf="legend" class="cds--label">
-				<ng-template *ngIf="isTemplate(legend); else legendLabel;" [ngTemplateOutlet]="legend"></ng-template>
-				<ng-template #legendLabel>{{legend}}</ng-template>
-			</legend>
-			<ng-content select="ibm-selection-tile,cds-selection-tile"></ng-content>
+			@if (legend) {
+				<legend class="cds--label">
+					@if (isTemplate(legend)) {
+						<ng-template [ngTemplateOutlet]="legend" />
+					} @else {
+						{{legend}}
+					}
+				</legend>
+			}
+			<ng-content select="ibm-selection-tile,cds-selection-tile" />
 		</fieldset>`,
 	providers: [
 		{
@@ -41,7 +48,9 @@ import { takeUntil } from "rxjs/operators";
 			useExisting: TileGroup,
 			multi: true
 		}
-	]
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgTemplateOutlet]
 })
 export class TileGroup implements AfterContentInit, OnDestroy {
 	static tileGroupCount = 0;
@@ -81,9 +90,9 @@ export class TileGroup implements AfterContentInit, OnDestroy {
 		TileGroup.tileGroupCount++;
 	}
 
-	onChange = (_: any) => { };
+	onChange = (_: any) => {};
 
-	onTouched = () => { };
+	onTouched = () => {};
 
 	ngAfterContentInit() {
 		const updateTiles = () => {
@@ -98,6 +107,14 @@ export class TileGroup implements AfterContentInit, OnDestroy {
 					tile.change
 						.pipe(takeUntil(this.unsubscribeTiles$))
 						.subscribe(() => {
+							if (!this.multiple) {
+								this.selectionTiles.forEach(otherTile => {
+									if (otherTile !== tile) {
+										otherTile.selected = false;
+									}
+								});
+								tile.selected = true;
+							}
 							this.selected.emit({
 								value: tile.value,
 								selected: tile.selected,

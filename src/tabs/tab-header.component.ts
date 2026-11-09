@@ -1,14 +1,19 @@
 import {
 	AfterViewInit,
+	ChangeDetectorRef,
 	Component,
 	ElementRef,
 	forwardRef,
 	HostBinding,
 	Input,
-	ViewChild
+	ViewChild,
+	inject
 } from "@angular/core";
 
 import { TabHeaderBase } from "./tab-header.directive";
+
+import { Tooltip } from "carbon-components-angular/tooltip";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
 
 /**
  * Tab header with template for label, optional icon, secondary label, badge, and dismissable close.
@@ -27,25 +32,25 @@ import { TabHeaderBase } from "./tab-header.directive";
 @Component({
 	selector: "cds-tab-header, ibm-tab-header",
 	providers: [
-		// tslint:disable-next-line:no-forward-ref
 		{ provide: TabHeaderBase, useExisting: forwardRef(() => TabHeaderComponent) }
 	],
 	template: `
-		<cds-tooltip
-			*ngIf="iconOnly; else plainButton"
-			align="bottom"
-			[autoAlign]="true"
-			class="cds--icon-tooltip"
-			[description]="iconLabel"
-			[enterDelayMs]="enterDelayMs"
-			[leaveDelayMs]="leaveDelayMs"
-			[isOpen]="isTooltipOpen"
-			[disabled]="disabled">
-			<ng-container *ngTemplateOutlet="tabButtonTemplate"></ng-container>
-		</cds-tooltip>
-		<ng-template #plainButton>
-			<ng-container *ngTemplateOutlet="tabButtonTemplate"></ng-container>
-		</ng-template>
+		@if (iconOnly) {
+			<cds-tooltip
+				align="bottom"
+				[autoAlign]="true"
+				class="cds--icon-tooltip"
+				[description]="iconLabel"
+				[enterDelayMs]="enterDelayMs"
+				[leaveDelayMs]="leaveDelayMs"
+				[isOpen]="isTooltipOpen"
+				[disabled]="disabled">
+				<ng-container *ngTemplateOutlet="tabButtonTemplate" />
+			</cds-tooltip>
+		} @else {
+			<ng-container *ngTemplateOutlet="tabButtonTemplate" />
+		}
+
 		<ng-template #tabButtonTemplate>
 			<button
 				#tabButton
@@ -67,64 +72,72 @@ import { TabHeaderBase } from "./tab-header.directive";
 				[disabled]="disabled"
 				(click)="onTabButtonClick()"
 				(keydown)="onTabButtonKeyDown($event)">
-				<ng-container *ngIf="iconOnly; else labeledTab">
+				@if (iconOnly) {
 					<ng-container [ngTemplateOutlet]="icon"></ng-container>
-					<span
-						*ngIf="!disabled && badgeIndicator"
-						class="cds--badge-indicator"
-						aria-hidden="true">
-					</span>
-				</ng-container>
-				<ng-template #labeledTab>
+					@if (!disabled && badgeIndicator) {
+						<span
+							class="cds--badge-indicator"
+							aria-hidden="true">
+						</span>
+					}
+				} @else {
 					<div class="cds--tabs__nav-item-label-wrapper">
-						<div *ngIf="dismissable && icon" class="cds--tabs__nav-item--icon-left">
-							<ng-container [ngTemplateOutlet]="icon"></ng-container>
-						</div>
+						@if (dismissable && icon) {
+							<div class="cds--tabs__nav-item--icon-left">
+								<ng-container [ngTemplateOutlet]="icon"></ng-container>
+							</div>
+						}
 						<span class="cds--tabs__nav-item-label">
 							<ng-content></ng-content>
 						</span>
-						<div *ngIf="!dismissable && icon" class="cds--tabs__nav-item--icon">
-							<ng-container [ngTemplateOutlet]="icon"></ng-container>
+						@if (!dismissable && icon) {
+							<div class="cds--tabs__nav-item--icon">
+								<ng-container [ngTemplateOutlet]="icon"></ng-container>
+							</div>
+						}
+					</div>
+					@if (secondaryLabel) {
+						<div
+							class="cds--tabs__nav-item-secondary-label"
+							[attr.title]="secondaryLabel">
+							{{ secondaryLabel }}
 						</div>
-					</div>
-					<div
-						*ngIf="secondaryLabel"
-						class="cds--tabs__nav-item-secondary-label"
-						[attr.title]="secondaryLabel">
-						{{ secondaryLabel }}
-					</div>
-				</ng-template>
+					}
+				}
 			</button>
 		</ng-template>
-		<div *ngIf="dismissable" class="cds--tabs__nav-item--close">
-			<button
-				type="button"
-				class="cds--tabs__nav-item--close-icon"
-				[attr.tabindex]="-1"
-				[attr.aria-disabled]="disabled"
-				[attr.aria-hidden]="!(active && !disabled)"
-				[ngClass]="{
-					'cds--tabs__nav-item--close-icon--selected': active,
-					'cds--tabs__nav-item--close-icon--disabled': disabled
-				}"
-				[disabled]="disabled"
-				[attr.title]="closeButtonTitle"
-				(click)="onClose($event)">
-				<svg
-					focusable="false"
-					preserveAspectRatio="xMidYMid meet"
-					xmlns="http://www.w3.org/2000/svg"
-					fill="currentColor"
-					width="16"
-					height="16"
-					viewBox="0 0 32 32"
-					[attr.aria-label]="closeButtonAriaLabel"
-					[attr.aria-hidden]="!(active && !disabled)">
-					<path d="M17.4141 16L24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z"></path>
-				</svg>
-			</button>
-		</div>
-	`
+		@if (dismissable) {
+			<div class="cds--tabs__nav-item--close">
+				<button
+					type="button"
+					class="cds--tabs__nav-item--close-icon"
+					[attr.tabindex]="-1"
+					[attr.aria-disabled]="disabled"
+					[attr.aria-hidden]="!(active && !disabled)"
+					[ngClass]="{
+						'cds--tabs__nav-item--close-icon--selected': active,
+						'cds--tabs__nav-item--close-icon--disabled': disabled
+					}"
+					[disabled]="disabled"
+					[attr.title]="closeButtonTitle"
+					(click)="onClose($event)">
+					<svg
+						focusable="false"
+						preserveAspectRatio="xMidYMid meet"
+						xmlns="http://www.w3.org/2000/svg"
+						fill="currentColor"
+						width="16"
+						height="16"
+						viewBox="0 0 32 32"
+						[attr.aria-label]="closeButtonAriaLabel"
+						[attr.aria-hidden]="!(active && !disabled)">
+						<path d="M17.4141 16L24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z"></path>
+					</svg>
+				</button>
+			</div>
+		}
+	`,
+	imports: [Tooltip, NgClass, NgTemplateOutlet]
 })
 export class TabHeaderComponent extends TabHeaderBase implements AfterViewInit {
 	/**
@@ -164,6 +177,8 @@ export class TabHeaderComponent extends TabHeaderBase implements AfterViewInit {
 
 	@ViewChild("tabButton") tabButton: ElementRef<HTMLButtonElement>;
 
+	private changeDetectorRef = inject(ChangeDetectorRef);
+
 	ngAfterViewInit() {
 		// Mirror the deprecated directive's title-fallback behavior, but read
 		// from the inner rendered button rather than the `display: contents` host.
@@ -172,6 +187,7 @@ export class TabHeaderComponent extends TabHeaderBase implements AfterViewInit {
 				const text = this.tabButton.nativeElement.textContent?.trim();
 				if (text) {
 					this.title = text;
+					this.changeDetectorRef.markForCheck();
 				}
 			}
 		});

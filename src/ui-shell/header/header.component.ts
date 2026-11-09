@@ -1,14 +1,15 @@
 import {
 	Component,
 	Input,
-	Optional,
 	Output,
 	EventEmitter,
-	TemplateRef
+	TemplateRef,
+	inject
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
-import { Router } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { I18n } from "carbon-components-angular/i18n";
+import { NgTemplateOutlet, AsyncPipe } from "@angular/common";
 
 /**
  * A fixed header and navigation.
@@ -23,40 +24,43 @@ import { I18n } from "carbon-components-angular/i18n";
 		<header
 			class="cds--header"
 			[attr.aria-label]="brand + ' ' + name">
-			<a
-				*ngIf="skipTo"
-				class="cds--skip-to-content"
-				[href]="skipTo"
-				tabindex="0">
-				{{ i18n.get("UI_SHELL.SKIP_TO") | async }}
-			</a>
-			<ng-content select="cds-hamburger,ibm-hamburger"></ng-content>
-			<ng-template
-				*ngIf="isTemplate(brand)"
-				[ngTemplateOutlet]="brand">
-			</ng-template>
-			<ng-container *ngIf="!isTemplate(brand)" [ngSwitch]="useRouter">
+			@if (skipTo) {
 				<a
-					*ngSwitchCase="false"
-					class="cds--header__name"
-					[href]="href"
-					(click)="navigate($event)">
-					<span class="cds--header__name--prefix">{{brand}}&nbsp;</span>
-					{{name}}
+					class="cds--skip-to-content"
+					[href]="skipTo"
+					tabindex="0">
+					{{ i18n.get("UI_SHELL.SKIP_TO") | async }}
 				</a>
-				<a
-					*ngSwitchCase="true"
-					class="cds--header__name"
-					[routerLink]="route">
-					<span class="cds--header__name--prefix">{{brand}}&nbsp;</span>
-					{{name}}
-				</a>
-			</ng-container>
-			<ng-content></ng-content>
+			}
+			<ng-content select="cds-hamburger,ibm-hamburger" />
+			@if (isTemplate(brand)) {
+				<ng-template [ngTemplateOutlet]="brand" />
+			} @else {
+				@if (useRouter) {
+					<a
+						class="cds--header__name"
+						[routerLink]="route">
+						<span class="cds--header__name--prefix">{{brand}}&nbsp;</span>
+						{{name}}
+					</a>
+				} @else {
+					<a
+						class="cds--header__name"
+						[href]="href"
+						(click)="navigate($event)">
+						<span class="cds--header__name--prefix">{{brand}}&nbsp;</span>
+						{{name}}
+					</a>
+				}
+			}
+			<ng-content />
 		</header>
-	`
+	`,
+	imports: [NgTemplateOutlet, RouterLink, AsyncPipe]
 })
 export class Header {
+	public i18n = inject(I18n);
+
 	/**
 	 * ID in the main body content to jump to. Used by keyboard and screen reader users to skip the header content.
 	 */
@@ -104,10 +108,14 @@ export class Header {
 
 	protected _href = "#";
 
-	constructor(
-		public i18n: I18n,
-		protected domSanitizer: DomSanitizer,
-		@Optional() protected router: Router) { }
+	protected domSanitizer = inject(DomSanitizer);
+	protected router = inject(Router, { optional: true })!;
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	public isTemplate(value) {
 		return value instanceof TemplateRef;

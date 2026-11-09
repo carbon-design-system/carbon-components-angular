@@ -9,11 +9,7 @@ import { I18nModule } from "../i18n/index";
 import { ListItem } from "./../dropdown/list-item.interface";
 import { ComboBox } from "./combobox.component";
 import { DropdownList } from "./../dropdown/list/dropdown-list.component";
-import { ScrollableList } from "./../dropdown/scrollable-list.directive";
 import { FormsModule } from "@angular/forms";
-import { UtilsModule } from "../utils";
-import { DropdownService } from "./../dropdown/index";
-import { PlaceholderModule } from "./../placeholder/index";
 
 @Component({
 	template: `
@@ -24,14 +20,19 @@ import { PlaceholderModule } from "./../placeholder/index";
 		[(ngModel)]="model"
 		[type]="type"
 		[itemValueKey]="itemValueKey">
-		<cds-dropdown-list></cds-dropdown-list>
-	</cds-combo-box>`
+		<cds-dropdown-list />
+	</cds-combo-box>`,
+	imports: [
+		ComboBox,
+		DropdownList,
+		FormsModule
+	]
 })
 class ComboboxTest {
 	items = [
-		{id: "1", content: "one", selected: false},
-		{id: "2", content: "two", selected: false},
-		{id: "3", content: "three", selected: false}
+		{ id: "1", content: "one", selected: false },
+		{ id: "2", content: "two", selected: false },
+		{ id: "3", content: "three", selected: false }
 	];
 	type = "single";
 	itemValueKey = undefined;
@@ -47,7 +48,11 @@ class ComboboxTest {
 		[type]="type"
 		[itemValueKey]="itemValueKey">
 		<cds-dropdown-list></cds-dropdown-list>
-	</cds-combo-box>`
+	</cds-combo-box>`,
+	imports: [
+		ComboBox,
+		DropdownList
+	]
 })
 class ComboboxTestNoModel {
 	items = [
@@ -63,21 +68,10 @@ describe("Combo box", () => {
 	let fixture, wrapper, element;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				ComboBox,
-				DropdownList,
-				ComboboxTest,
-				ScrollableList,
-				ComboboxTestNoModel
-			],
 			imports: [
-				IconModule,
-				I18nModule,
-				FormsModule,
-				UtilsModule,
-				PlaceholderModule
-			],
-			providers: [ DropdownService ]
+				ComboboxTest,
+				ComboboxTestNoModel
+			]
 		});
 	});
 
@@ -177,7 +171,11 @@ describe("Combo box", () => {
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("cds-combo-box"));
-		expect(element.nativeElement.textContent).toBe("label");
+		/**
+		 * @todo
+		 * Verify if new control flow syntax still requires `space` preceding and succeeding label
+		 */
+		expect(element.nativeElement.textContent).toBe(" label ");
 	});
 
 	it("should set placeholder to 'placeholder'", () => {
@@ -200,9 +198,9 @@ describe("Combo box", () => {
 		textInput.dispatchEvent(new Event("input"));
 
 		wrapper.items = [
-			{id: "4", content: "four", selected: false},
-			{id: "5", content: "five", selected: false},
-			{id: "6", content: "six", selected: false}
+			{ id: "4", content: "four", selected: false },
+			{ id: "5", content: "five", selected: false },
+			{ id: "6", content: "six", selected: false }
 		];
 
 		fixture.detectChanges();

@@ -10,18 +10,22 @@ import {
 	ViewChild,
 	ContentChild,
 	ChangeDetectorRef,
-	SimpleChanges
+	ChangeDetectionStrategy,
+	SimpleChanges,
+	inject
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { startWith } from "rxjs/operators";
 
 import { TextArea } from "./text-area.directive";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component and directive:
  *
  * ```typescript
- * import { InputModule } from 'carbon-components-angular';
+ * import { TextareaLabelComponent, TextArea, } from 'carbon-components-angular';
  * ```
  *
  * ```html
@@ -36,11 +40,11 @@ import { TextArea } from "./text-area.directive";
 @Component({
 	selector: "cds-textarea-label, ibm-textarea-label",
 	template: `
-		<ng-container *ngIf="skeleton">
+		@if (skeleton) {
 			<span class="cds--label cds--skeleton"></span>
 			<div class="cds--text-area cds--skeleton"></div>
-		</ng-container>
-		<ng-container *ngIf="!skeleton">
+		}
+		@if (!skeleton) {
 			<div class="cds--text-area__label-wrapper">
 				<label
 					[for]="labelInputID"
@@ -50,18 +54,20 @@ import { TextArea } from "./text-area.directive";
 						'cds--label--disabled': disabled,
 						'cds--visually-hidden': hideLabel
 					}">
-					<ng-template *ngIf="labelTemplate; else labelContent" [ngTemplateOutlet]="labelTemplate"></ng-template>
-					<ng-template #labelContent>
+					@if (labelTemplate) {
+						<ng-template [ngTemplateOutlet]="labelTemplate"></ng-template>
+					} @else {
 						<ng-content></ng-content>
-					</ng-template>
+					}
 				</label>
-				<span
-					*ngIf="enableCounter && maxCount"
-					class="cds--label"
-					[ngClass]="{'cds--label--disabled': disabled}"
-					aria-hidden="true">
-					{{textCount}}/{{maxCount}}
-				</span>
+				@if (enableCounter && maxCount) {
+					<span
+						class="cds--label"
+						[ngClass]="{'cds--label--disabled': disabled}"
+						aria-hidden="true">
+						{{textCount}}/{{maxCount}}
+					</span>
+				}
 			</div>
 			<div
 				class="cds--text-area__wrapper"
@@ -71,71 +77,109 @@ import { TextArea } from "./text-area.directive";
 				}"
 				[attr.data-invalid]="(invalid ? true : null)"
 				#wrapper>
-				<svg
-					*ngIf="!fluid && invalid"
-					cdsIcon="warning--filled"
-					size="16"
-					class="cds--text-area__invalid-icon">
-				</svg>
-				<svg
-					*ngIf="!fluid && !invalid && warn"
-					cdsIcon="warning--alt--filled"
-					size="16"
-					class="cds--text-area__invalid-icon cds--text-area__invalid-icon--warning">
-				</svg>
-				<ng-template *ngIf="textAreaTemplate; else textAreaContent" [ngTemplateOutlet]="textAreaTemplate"></ng-template>
-				<ng-template #textAreaContent>
+				@if (!fluid && invalid) {
+					<svg
+						cdsIcon="warning--filled"
+						size="16"
+						class="cds--text-area__invalid-icon">
+					</svg>
+				}
+				@if (!fluid && !invalid && warn) {
+					<svg
+						cdsIcon="warning--alt--filled"
+						size="16"
+						class="cds--text-area__invalid-icon cds--text-area__invalid-icon--warning">
+					</svg>
+				}
+				@if (textAreaTemplate) {
+					<ng-template [ngTemplateOutlet]="textAreaTemplate"></ng-template>
+				} @else {
 					<ng-content select="[cdsTextArea],[ibmTextArea],textarea"></ng-content>
-				</ng-template>
-				<ng-container *ngIf="decorator">
+				}
+				@if (decorator) {
 					<div class="cds--text-area__inner-wrapper--decorator">
 						<ng-template [ngTemplateOutlet]="decorator"></ng-template>
 					</div>
-				</ng-container>
+				}
 
-				<ng-container *ngIf="fluid">
+				@if (fluid) {
 					<hr class="cds--text-area__divider" />
-					<div *ngIf="invalid" class="cds--form-requirement">
-						<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
-						<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-						<svg
-							cdsIcon="warning--filled"
-							size="16"
-							class="cds--text-area__invalid-icon">
-						</svg>
-					</div>
-					<div *ngIf="!invalid && warn" class="cds--form-requirement">
-						<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-						<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
-						<svg
-							cdsIcon="warning--alt--filled"
-							size="16"
-							class="cds--text-area__invalid-icon cds--text-area__invalid-icon--warning">
-						</svg>
-					</div>
-				</ng-container>
+					@if (invalid) {
+						<div class="cds--form-requirement">
+							@if (!isTemplate(invalidText)) {
+								{{invalidText}}
+							}
+							@if (isTemplate(invalidText)) {
+								<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+							}
+							<svg
+								cdsIcon="warning--filled"
+								size="16"
+								class="cds--text-area__invalid-icon">
+							</svg>
+						</div>
+					}
+					@if (!invalid && warn) {
+						<div class="cds--form-requirement">
+							@if (!isTemplate(warnText)) {
+								{{warnText}}
+							}
+							@if (isTemplate(warnText)) {
+								<ng-template [ngTemplateOutlet]="warnText"></ng-template>
+							}
+							<svg
+								cdsIcon="warning--alt--filled"
+								size="16"
+								class="cds--text-area__invalid-icon cds--text-area__invalid-icon--warning">
+							</svg>
+						</div>
+					}
+				}
 			</div>
-			<ng-container *ngIf="!fluid">
-				<div
-					*ngIf="helperText && !invalid && !warn"
-					class="cds--form__helper-text"
-					[ngClass]="{'cds--form__helper-text--disabled': disabled}">
-					<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-					<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-				</div>
-				<div *ngIf="invalid" class="cds--form-requirement">
-					<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
-					<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-				</div>
-				<div *ngIf="!invalid && warn" class="cds--form-requirement">
-					<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-					<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
-				</div>
-			</ng-container>
-		</ng-container>
-	`
+			@if (!fluid) {
+				@if (helperText && !invalid && !warn) {
+					<div
+						class="cds--form__helper-text"
+						[ngClass]="{'cds--form__helper-text--disabled': disabled}">
+						@if (!isTemplate(helperText)) {
+							{{helperText}}
+						}
+						@if (isTemplate(helperText)) {
+							<ng-template [ngTemplateOutlet]="helperText"></ng-template>
+						}
+					</div>
+				}
+				@if (invalid) {
+					<div class="cds--form-requirement">
+						@if (!isTemplate(invalidText)) {
+							{{invalidText}}
+						}
+						@if (isTemplate(invalidText)) {
+							<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+						}
+					</div>
+				}
+				@if (!invalid && warn) {
+					<div class="cds--form-requirement">
+						@if (!isTemplate(warnText)) {
+							{{warnText}}
+						}
+						@if (isTemplate(warnText)) {
+							<ng-template [ngTemplateOutlet]="warnText"></ng-template>
+						}
+					</div>
+				}
+			}
+		}
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgClass, NgTemplateOutlet, IconDirective]
 })
 export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestroy {
+	/**
+	 * Used to build the id of the input item associated with the `Label`.
+	 */
+	static labelCounter = 0;
 
 	@HostBinding("class.cds--text-area__wrapper--readonly") get isReadonly() {
 		return this.wrapper?.nativeElement.querySelector("textarea")?.readOnly ?? false;
@@ -148,10 +192,6 @@ export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestr
 	@HostBinding("class.cds--text-area--fluid__skeleton") get fluidSkeletonClass() {
 		return this.fluid && this.skeleton;
 	}
-	/**
-	 * Used to build the id of the input item associated with the `Label`.
-	 */
-	static labelCounter = 0;
 	/**
 	 * The id of the input item associated with the `Label`. This value is also used to associate the `Label` with
 	 * its input counterpart through the 'for' attribute.
@@ -244,6 +284,8 @@ export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestr
 
 	@HostBinding("class.cds--form-item") labelClass = true;
 
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+
 	// Cached reference to the textarea element, set once in ngAfterViewInit.
 	private _textareaElement: HTMLTextAreaElement | null = null;
 
@@ -253,10 +295,14 @@ export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestr
 	// Fallback DOM listener used only when no NgControl is present (plain textarea).
 	private _inputListener: ((e: Event) => void) | null = null;
 
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of Label.
 	 */
-	constructor(protected changeDetectorRef: ChangeDetectorRef) {}
+	constructor() {}
 
 	/**
 	 * Sets the id on the input item associated with the `Label` and attaches the
@@ -386,6 +432,9 @@ export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestr
 					}
 				}
 				this.textCount = this._countValue(el.value || "");
+				// the listener is attached to the DOM directly, so nothing marks this view
+				// dirty on its own
+				this.changeDetectorRef.markForCheck();
 			};
 			this._textareaElement.addEventListener("input", this._inputListener);
 		}

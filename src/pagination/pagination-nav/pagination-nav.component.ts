@@ -1,16 +1,22 @@
-import { PaginationModel } from "../pagination-model.class";
+import type { PaginationModel } from "../pagination-model.class";
 import {
 	Component,
 	Input,
 	Output,
 	EventEmitter,
-	HostBinding
+	HostBinding,
+	inject
 } from "@angular/core";
 
-import { I18n, Overridable } from "carbon-components-angular/i18n";
-import { ExperimentalService } from "carbon-components-angular/experimental";
+import { I18n } from "carbon-components-angular/i18n";
+import { ExperimentalService, EXPERIMENTAL_SERVICE_PROVIDER } from "carbon-components-angular/experimental";
 import { merge } from "carbon-components-angular/utils";
 import { range } from "carbon-components-angular/common";
+import { IconButton } from "carbon-components-angular/button";
+import { IconDirective } from "carbon-components-angular/icon";
+import { PaginationNavItem } from "./pagination-item.component";
+import { PaginationOverflow } from "./pagination-overflow.component";
+import { AsyncPipe } from "@angular/common";
 
 export interface PaginationNavTranslations {
 	NEXT: string;
@@ -18,10 +24,10 @@ export interface PaginationNavTranslations {
 }
 
 /**
- * Use pagination when you have multiple pages of data to handle. Get started with importing the module:
+ * Use pagination when you have multiple pages of data to handle. Get started with importing the component:
  *
  * ```typescript
- * import { PaginationModule } from 'carbon-components-angular';
+ * import { PaginationNav } from 'carbon-components-angular';
  * ```
  *
  * ```html
@@ -63,36 +69,41 @@ export interface PaginationNavTranslations {
 						</svg>
 					</cds-icon-button>
 				</li>
-				<cds-pagination-nav-item
-					*ngIf="this.numOfItemsToShow >= 5 || (this.numOfItemsToShow <= 4 && currentPage <= 1)"
-					page="1"
-					(click)="currentPage = 1"
-					[isActive]="currentPage == 1">
-				</cds-pagination-nav-item>
-				<cds-pagination-overflow
-					*ngIf="frontCuts"
-					[count]="frontCuts"
-					[fromIndex]="startOffset"
-					(change)="handleOverflowSelection($event)">
-				</cds-pagination-overflow>
-				<cds-pagination-nav-item
-					*ngFor="let page of getPages();"
-					[page]="page"
-					(click)="currentPage = page"
-					[isActive]="currentPage == page">
-				</cds-pagination-nav-item>
-				<cds-pagination-overflow
-					*ngIf="backCuts"
-					[count]="backCuts"
-					[fromIndex]="totalNumbersArray.length - backCuts - 1"
-					(change)="handleOverflowSelection($event)">
-				</cds-pagination-overflow>
-				<cds-pagination-nav-item
-					*ngIf="totalDataLength > 1"
-					[page]="totalNumbersArray.length"
-					(click)="currentPage = totalNumbersArray.length"
-					[isActive]="currentPage == totalNumbersArray.length">
-				</cds-pagination-nav-item>
+				@if (this.numOfItemsToShow >= 5 || (this.numOfItemsToShow <= 4 && currentPage <= 1)) {
+					<cds-pagination-nav-item
+						page="1"
+						(click)="currentPage = 1"
+						[isActive]="currentPage === 1">
+					</cds-pagination-nav-item>
+				}
+				@if (frontCuts) {
+					<cds-pagination-overflow
+						[count]="frontCuts"
+						[fromIndex]="startOffset"
+						(change)="handleOverflowSelection($event)">
+					</cds-pagination-overflow>
+				}
+				@for (page of getPages(); track page) {
+					<cds-pagination-nav-item
+						[page]="page"
+						(click)="currentPage = page"
+						[isActive]="currentPage === page">
+					</cds-pagination-nav-item>
+				}
+				@if (backCuts) {
+					<cds-pagination-overflow
+						[count]="backCuts"
+						[fromIndex]="totalNumbersArray.length - backCuts - 1"
+						(change)="handleOverflowSelection($event)">
+					</cds-pagination-overflow>
+				}
+				@if (totalDataLength > 1) {
+					<cds-pagination-nav-item
+						[page]="totalNumbersArray.length"
+						(click)="currentPage = totalNumbersArray.length"
+						[isActive]="currentPage === totalNumbersArray.length">
+					</cds-pagination-nav-item>
+				}
 				<li class="cds--pagination-nav__list-item">
 					<cds-icon-button
 						kind="ghost"
@@ -110,16 +121,26 @@ export interface PaginationNavTranslations {
 			</ul>
 		</div>
 	</div>
-	`
+	`,
+	imports: [
+		IconButton,
+		IconDirective,
+		PaginationNavItem,
+		PaginationOverflow,
+		AsyncPipe
+	],
+	providers: [EXPERIMENTAL_SERVICE_PROVIDER]
 })
 export class PaginationNav {
 	static paginationCounter = 0;
+
+	public i18n = inject(I18n);
 	/**
-	 * `PaginationNavModel` with the information about pages you're controlling.
+	 * `PaginationNavModel` with the information about pages you are controlling.
 	 */
 	@Input() model: PaginationModel;
 	/**
-	   * Set to `true` to disable the backward/forward buttons.
+	 * Set to `true` to disable the backward/forward buttons.
 	 */
 	@Input() disabled = false;
 	/**
@@ -216,7 +237,13 @@ export class PaginationNav {
 	nextItemText = this.i18n.getOverridable("PAGINATION.NEXT");
 	previousItemText = this.i18n.getOverridable("PAGINATION.PREVIOUS");
 
-	constructor(protected i18n: I18n, protected experimental: ExperimentalService) {
+	protected experimental = inject(ExperimentalService);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
 		PaginationNav.paginationCounter++;
 	}
 
@@ -251,7 +278,10 @@ export class PaginationNav {
 			return null;
 		}
 		const cuts = this.getCuts();
-		return this.totalNumbersArray.slice(this.startOffset + cuts.front, (1 + cuts.back) * -1);
+		return this.totalNumbersArray.slice(
+			this.startOffset + cuts.front,
+			(1 + cuts.back) * -1
+		);
 	}
 
 	private getCuts(splitPoint = null) {

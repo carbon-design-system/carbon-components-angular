@@ -13,7 +13,10 @@ import {
 	OnDestroy,
 	HostBinding,
 	TemplateRef,
-	AfterViewInit
+	AfterViewInit,
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
+	inject
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
@@ -27,10 +30,17 @@ import { isNull, isUndefined } from "lodash-es";
 
 import { AbstractDropdownView } from "./abstract-dropdown-view.class";
 import { I18n } from "carbon-components-angular/i18n";
-import { ListItem } from "./list-item.interface";
 import { DropdownService } from "./dropdown.service";
-import { ElementService, getScrollableParents } from "carbon-components-angular/utils";
+import {
+	AnimationFrameService,
+	ElementService,
+	EventService,
+	getScrollableParents
+} from "carbon-components-angular/utils";
 import { hasScrollableParents } from "carbon-components-angular/utils";
+import { NgClass, NgTemplateOutlet, AsyncPipe } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
+import { PLACEHOLDER_SERVICE_PROVIDER } from "carbon-components-angular/placeholder";
 
 /**
  * Drop-down lists enable users to select one or more items from a list.
@@ -46,10 +56,10 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
  * - `[appendInline]="false"` will always append to the body/`cds-placeholder`
  * - `[appendInline]="true"` will always append inline (next to the dropdown button)
  *
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { DropdownModule } from 'carbon-components-angular';
+ * import { Dropdown, DropdownList } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-dropdown--basic)
@@ -57,169 +67,207 @@ import { hasScrollableParents } from "carbon-components-angular/utils";
 @Component({
 	selector: "cds-dropdown, ibm-dropdown",
 	template: `
-	<label
-		*ngIf="label && !skeleton"
-		[for]="id"
-		class="cds--label"
-		[ngClass]="{
-			'cds--label--disabled': disabled,
-			'cds--visually-hidden': hideLabel
-		}">
-		<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-		<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
-	</label>
-	<div
-		class="cds--list-box"
-		[ngClass]="{
-			'cds--dropdown': type !== 'multi' && !(skeleton && fluid),
-			'cds--multiselect': type === 'multi',
-			'cds--multi-select--selected': type === 'multi' && getSelectedCount() > 0,
-			'cds--dropdown--light': theme === 'light',
-			'cds--list-box--light': theme === 'light',
-			'cds--list-box--inline': inline,
-			'cds--skeleton': skeleton,
-			'cds--dropdown--disabled cds--list-box--disabled': disabled,
-			'cds--dropdown--readonly': readonly,
-			'cds--dropdown--invalid': invalid,
-			'cds--dropdown--warning cds--list-box--warning': warn,
-			'cds--dropdown--sm cds--list-box--sm': size === 'sm',
-			'cds--layout--size-sm': !fluid && size === 'sm',
-			'cds--dropdown--md cds--list-box--md': size === 'md',
-			'cds--layout--size-md': !fluid && size === 'md',
-			'cds--dropdown--lg cds--list-box--lg': size === 'lg',
-			'cds--layout--size-lg': !fluid && size === 'lg',
-			'cds--list-box--expanded': !menuIsClosed,
-			'cds--list-box--invalid': invalid
-		}"
-		[attr.data-invalid]="invalid ? true : null">
-		<div *ngIf="skeleton && fluid" class="cds--list-box__label"></div>
-		<button
-			#dropdownButton
-			[id]="id"
-			type="button"
-			class="cds--list-box__field"
-			[ngClass]="{'a': !menuIsClosed}"
-			[attr.aria-expanded]="!menuIsClosed"
-			[attr.aria-disabled]="disabled"
-			aria-haspopup="listbox"
-			(click)="disabled || readonly ? $event.stopPropagation() : toggleMenu()"
-			(focus)="fluid ? handleFocus($event) : null"
-			(blur)="fluid ? handleFocus($event) : onBlur()"
-			[attr.disabled]="disabled ? true : null">
-			<div
-				(click)="clearSelected()"
-				(keydown.enter)="clearSelected()"
-				*ngIf="type === 'multi' && getSelectedCount() > 0"
-				class="cds--list-box__selection cds--tag--filter cds--list-box__selection--multi"
-				tabindex="0"
-				[title]="clearText">
-				{{getSelectedCount()}}
-				<svg
-					focusable="false"
-					preserveAspectRatio="xMidYMid meet"
-					style="will-change: transform;"
-					role="img"
-					xmlns="http://www.w3.org/2000/svg"
-					width="16"
-					height="16"
-					viewBox="0 0 16 16"
-					aria-hidden="true">
-					<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>
-				</svg>
-			</div>
-			<span *ngIf="isRenderString()" class="cds--list-box__label">{{getDisplayStringValue() | async}}</span>
-			<ng-template
-				*ngIf="!isRenderString()"
-				[ngTemplateOutletContext]="getRenderTemplateContext()"
-				[ngTemplateOutlet]="displayValue">
-			</ng-template>
-			<span class="cds--list-box__menu-icon">
-				<svg
-					*ngIf="!skeleton"
-					cdsIcon="chevron--down"
-					size="16"
-					[attr.aria-label]="menuButtonLabel"
-					[ngClass]="{'cds--list-box__menu-icon--open': !menuIsClosed }">
-				</svg>
-			</span>
-		</button>
-		<ng-container *ngIf="decorator">
-			<div class="cds--list-box__inner-wrapper--decorator">
-				<ng-template [ngTemplateOutlet]="decorator"></ng-template>
-			</div>
-		</ng-container>
-		<svg
-			*ngIf="invalid"
-			class="cds--list-box__invalid-icon"
-			cdsIcon="warning--filled"
-			size="16">
-		</svg>
-		<svg
-			*ngIf="!invalid && warn"
-			cdsIcon="warning--alt--filled"
-			size="16"
-			class="cds--list-box__invalid-icon cds--list-box__invalid-icon--warning">
-		</svg>
+		@if (label && !skeleton) {
+			<label
+				[for]="id"
+				class="cds--label"
+				[ngClass]="{
+					'cds--label--disabled': disabled,
+					'cds--visually-hidden': hideLabel
+				}">
+				@if (!isTemplate(label)) {
+					{{label}}
+				}
+				@if (isTemplate(label)) {
+					<ng-template [ngTemplateOutlet]="label"></ng-template>
+				}
+			</label>
+		}
 		<div
-			#dropdownMenu
+			class="cds--list-box"
 			[ngClass]="{
-				'cds--list-box--up': this.dropUp !== null && this.dropUp !== undefined ? dropUp : _dropUp
-			}">
-			<ng-content *ngIf="!menuIsClosed"></ng-content>
+				'cds--dropdown': type !== 'multi' && !(skeleton && fluid),
+				'cds--multiselect': type === 'multi',
+				'cds--multi-select--selected': type === 'multi' && getSelectedCount() > 0,
+				'cds--dropdown--light': theme === 'light',
+				'cds--list-box--light': theme === 'light',
+				'cds--list-box--inline': inline,
+				'cds--skeleton': skeleton,
+				'cds--dropdown--disabled cds--list-box--disabled': disabled,
+				'cds--dropdown--readonly': readonly,
+				'cds--dropdown--invalid': invalid,
+				'cds--dropdown--warning cds--list-box--warning': warn,
+				'cds--dropdown--sm cds--list-box--sm': size === 'sm',
+				'cds--layout--size-sm': !fluid && size === 'sm',
+				'cds--dropdown--md cds--list-box--md': size === 'md',
+				'cds--layout--size-md': !fluid && size === 'md',
+				'cds--dropdown--lg cds--list-box--lg': size === 'lg',
+				'cds--layout--size-lg': !fluid && size === 'lg',
+				'cds--list-box--expanded': isOpen,
+				'cds--list-box--invalid': invalid
+			}"
+			[attr.data-invalid]="invalid ? true : null">
+			@if (skeleton && fluid) {
+				<div class="cds--list-box__label"></div>
+			}
+			<button
+				#dropdownButton
+				[id]="id"
+				type="button"
+				class="cds--list-box__field"
+				[ngClass]="{'a': isOpen}"
+				[attr.aria-expanded]="isOpen"
+				[attr.aria-disabled]="disabled"
+				aria-haspopup="listbox"
+				(click)="disabled || readonly ? $event.stopPropagation() : toggleMenu()"
+				(focus)="fluid ? handleFocus($event) : null"
+				(blur)="fluid ? handleFocus($event) : onBlur()"
+				[attr.disabled]="disabled ? true : null">
+				@if (type === 'multi' && getSelectedCount() > 0) {
+					<div
+						(click)="clearSelected()"
+						(keydown.enter)="clearSelected()"
+						class="cds--list-box__selection cds--tag--filter cds--list-box__selection--multi"
+						tabindex="0"
+						[title]="clearText">
+						{{getSelectedCount()}}
+						<svg
+							focusable="false"
+							preserveAspectRatio="xMidYMid meet"
+							style="will-change: transform;"
+							role="img"
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							viewBox="0 0 16 16"
+							aria-hidden="true">
+							<path d="M12 4.7l-.7-.7L8 7.3 4.7 4l-.7.7L7.3 8 4 11.3l.7.7L8 8.7l3.3 3.3.7-.7L8.7 8z"></path>
+						</svg>
+					</div>
+				}
+				@if (isRenderString()) {
+					<span class="cds--list-box__label">{{getDisplayStringValue() | async}}</span>
+				}
+				@if (!isRenderString()) {
+					<ng-template
+						[ngTemplateOutletContext]="getRenderTemplateContext()"
+						[ngTemplateOutlet]="displayValue">
+					</ng-template>
+				}
+				<span class="cds--list-box__menu-icon">
+					@if (!skeleton) {
+						<svg
+							cdsIcon="chevron--down"
+							size="16"
+							[attr.aria-label]="menuButtonLabel"
+							[ngClass]="{'cds--list-box__menu-icon--open': isOpen }">
+						</svg>
+					}
+				</span>
+			</button>
+			@if (decorator) {
+				<div class="cds--list-box__inner-wrapper--decorator">
+					<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+				</div>
+			}
+			@if (invalid) {
+				<svg
+					class="cds--list-box__invalid-icon"
+					cdsIcon="warning--filled"
+					size="16">
+				</svg>
+			}
+			@if (!invalid && warn) {
+				<svg
+					cdsIcon="warning--alt--filled"
+					size="16"
+					class="cds--list-box__invalid-icon cds--list-box__invalid-icon--warning">
+				</svg>
+			}
+			<div
+				#dropdownMenu
+				[ngClass]="{
+					'cds--list-box--up': this.dropUp !== null && this.dropUp !== undefined ? dropUp : _dropUp
+				}">
+				@if (isOpen) {
+					<ng-content></ng-content>
+				}
+			</div>
 		</div>
-	</div>
-	<hr *ngIf="fluid" class="cds--list-box__divider" />
-	<div
-		*ngIf="helperText && !invalid && !warn && !skeleton && !fluid"
-		class="cds--form__helper-text"
-		[ngClass]="{
-			'cds--form__helper-text--disabled': disabled
-		}">
-		<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-		<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-	</div>
-	<div *ngIf="invalid" class="cds--form-requirement">
-		<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
-		<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-	</div>
-	<div *ngIf="!invalid && warn" class="cds--form-requirement">
-		<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-		<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
-	</div>
+		@if (fluid) {
+			<hr class="cds--list-box__divider" />
+		}
+		@if (helperText && !invalid && !warn && !skeleton && !fluid) {
+			<div
+				class="cds--form__helper-text"
+				[ngClass]="{
+					'cds--form__helper-text--disabled': disabled
+				}">
+				@if (!isTemplate(helperText)) {
+					{{helperText}}
+				}
+				@if (isTemplate(helperText)) {
+					<ng-template [ngTemplateOutlet]="helperText"></ng-template>
+				}
+			</div>
+		}
+		@if (invalid) {
+			<div class="cds--form-requirement">
+				@if (!isTemplate(invalidText)) {
+					{{ invalidText }}
+				}
+				@if (isTemplate(invalidText)) {
+					<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+				}
+			</div>
+		}
+		@if (!invalid && warn) {
+			<div class="cds--form-requirement">
+				@if (!isTemplate(warnText)) {
+					{{warnText}}
+				}
+				@if (isTemplate(warnText)) {
+					<ng-template [ngTemplateOutlet]="warnText"></ng-template>
+				}
+			</div>
+		}
 	`,
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
 			useExisting: Dropdown,
 			multi: true
-		}
+		},
+		PLACEHOLDER_SERVICE_PROVIDER,
+		AnimationFrameService,
+		DropdownService,
+		ElementService,
+		EventService
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [
+		NgClass,
+		NgTemplateOutlet,
+		IconDirective,
+		AsyncPipe
 	]
 })
 export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewInit, OnDestroy, ControlValueAccessor {
+	static dropdownCount = 0;
+
+	public i18n = inject(I18n);
+
 	@HostBinding("class.cds--list-box__wrapper--fluid--invalid") get fluidInvalidClass() {
 		return this.invalid && this.fluid;
 	}
 
 	@HostBinding("class.cds--list-box__wrapper--fluid--focus") get fluidFocusClass() {
-		return this.fluid && this._isFocused && this.menuIsClosed;
+		return this.fluid && this._isFocused && !this.isOpen;
 	}
 
 	@HostBinding("class.cds--list-box__wrapper--decorator") get hasDecorator() {
 		return !!this.decorator;
 	}
-
-	protected get writtenValue() {
-		return this._writtenValue;
-	}
-
-	protected set writtenValue(val: any[]) {
-		if (val && val.length === 0) {
-			this.clearSelected();
-		}
-		this._writtenValue = val;
-	}
-
-	static dropdownCount = 0;
 
 	@Input() id = `dropdown-${Dropdown.dropdownCount++}`;
 	/**
@@ -302,8 +350,8 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 	 */
 	@Input() invalidText: string | TemplateRef<any>;
 	/**
-	  * Set to `true` to show a warning (contents set by warningText)
-	  */
+	* Set to `true` to show a warning (contents set by warningText)
+	*/
 	@Input() warn = false;
 	/**
 	 * Sets the warning text
@@ -385,7 +433,18 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 	/**
 	 * Set to `true` if the dropdown is closed (not expanded).
 	 */
-	menuIsClosed = true;
+	@Input() isOpen = false;
+
+	/** Deprecated as of v6 - Will be removed in v7 - Use `isOpen` instead */
+	get menuIsClosed(): boolean {
+		return !this.isOpen;
+	}
+
+	/** Deprecated as of v6 - Will be removed in v7 - Use `isOpen` instead */
+	set menuIsClosed(isClosed: boolean) {
+		this.isOpen = !isClosed;
+		this.changeDetectorRef.markForCheck();
+	}
 
 	/**
 	 * controls whether the `drop-up` class is applied
@@ -398,6 +457,22 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 	outsideClick = this._outsideClick.bind(this);
 	outsideKey = this._outsideKey.bind(this);
 	keyboardNav = this._keyboardNav.bind(this);
+
+	protected elementRef = inject(ElementRef);
+	protected dropdownService = inject(DropdownService);
+	protected elementService = inject(ElementService);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+
+	protected get writtenValue() {
+		return this._writtenValue;
+	}
+
+	protected set writtenValue(val: any[]) {
+		if (val && val.length === 0) {
+			this.clearSelected();
+		}
+		this._writtenValue = val;
+	}
 
 	protected visibilitySubscription = new Subscription();
 
@@ -414,14 +489,14 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 
 	private selectionSubscription: Subscription;
 
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of Dropdown.
 	 */
-	constructor(
-		protected elementRef: ElementRef,
-		protected i18n: I18n,
-		protected dropdownService: DropdownService,
-		protected elementService: ElementService) {}
+	constructor() {}
 
 	/**
 	 * Updates the menu sizing context, including when it is mounted outside the control.
@@ -489,6 +564,7 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 			} else if (this._isUsingNgControl) {
 				this.writeValue(this.writtenValue);
 			}
+			this.changeDetectorRef.markForCheck();
 		});
 	}
 
@@ -557,6 +633,7 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 				}
 			}
 			this.checkForReorder();
+			this.changeDetectorRef.markForCheck();
 		});
 	}
 
@@ -579,7 +656,7 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 	/**
 	 * function passed in by `registerOnChange`
 	 */
-	propagateChange = (_: any) => { };
+	propagateChange = (_: any) => {};
 
 	/**
 	 * `ControlValueAccessor` method to programmatically disable the dropdown.
@@ -590,6 +667,7 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 	 */
 	setDisabledState(isDisabled: boolean) {
 		this.disabled = isDisabled;
+		this.changeDetectorRef.markForCheck();
 	}
 
 	/**
@@ -601,14 +679,14 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 			return;
 		}
 
-		if ((event.key === "Escape") && !this.menuIsClosed) {
+		if ((event.key === "Escape") && this.isOpen) {
 			event.stopImmediatePropagation();  // don't unintentionally close other widgets that listen for Escape
 		}
 		if (event.key === "Escape") {
 			event.preventDefault();
 			this.closeMenu();
 			this.dropdownButton.nativeElement.focus();
-		} else if (this.menuIsClosed && (event.key === " " || event.key === "ArrowDown" || event.key === "ArrowUp")) {
+		} else if (!this.isOpen && (event.key === " " || event.key === "ArrowDown" || event.key === "ArrowUp")) {
 			if (this.disableArrowKeys && (event.key === "ArrowDown" || event.key === "ArrowUp")) {
 				return;
 			}
@@ -616,17 +694,17 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 			this.openMenu();
 		}
 
-		if (!this.menuIsClosed && event.key === "Tab" && this.dropdownMenu.nativeElement.contains(event.target as Node)) {
+		if (this.isOpen && event.key === "Tab" && this.dropdownMenu.nativeElement.contains(event.target as Node)) {
 			this.closeMenu();
 		}
 
-		if (!this.menuIsClosed && event.key === "Tab" && event.shiftKey) {
+		if (this.isOpen && event.key === "Tab" && event.shiftKey) {
 			this.closeMenu();
 		}
 
 		if (this.type === "multi") { return; }
 
-		if (this.menuIsClosed) {
+		if (!this.isOpen) {
 			this.closedDropdownNavigation(event);
 		}
 	}
@@ -637,11 +715,13 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 			this.view.getCurrentItem().selected = false;
 			let item = this.view.getNextItem();
 			if (item) { item.selected = true; }
+			this.view.markForCheck?.();
 		} else if (event.key === "ArrowUp") {
 			event.preventDefault();
 			this.view.getCurrentItem().selected = false;
 			let item = this.view.getPrevItem();
 			if (item) { item.selected = true; }
+			this.view.markForCheck?.();
 		}
 	}
 
@@ -698,6 +778,7 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 		for (const item of this.view.getListItems()) {
 			item.selected = false;
 		}
+		this.view.markForCheck?.();
 		this.selected.emit([]);
 		this._propagateChange([]);
 	}
@@ -710,7 +791,7 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 		return false;
 	}
 
-	_noop() { }
+	_noop() {}
 	/**
 	 * Handles clicks outside of the `Dropdown`.
 	 */
@@ -723,7 +804,7 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 		}
 	}
 	_outsideKey(event) {
-		if (!this.menuIsClosed && event.key === "Tab" && this.dropdownMenu.nativeElement.contains(event.target as Node)) {
+		if (this.isOpen && event.key === "Tab" && this.dropdownMenu.nativeElement.contains(event.target as Node)) {
 			this.closeMenu();
 		}
 	}
@@ -731,14 +812,14 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 	 * Handles keyboard events so users are controlling the `Dropdown` instead of unintentionally controlling outside elements.
 	 */
 	_keyboardNav(event: KeyboardEvent) {
-		if (event.key === "Escape" && !this.menuIsClosed) {
+		if (event.key === "Escape" && this.isOpen) {
 			event.stopImmediatePropagation();  // don't unintentionally close modal if inside of it
 		}
 		if (event.key === "Escape") {
 			event.preventDefault();
 			this.closeMenu();
 			this.dropdownButton.nativeElement.focus();
-		} else if (!this.menuIsClosed && event.key === "Tab") {
+		} else if (this.isOpen && event.key === "Tab") {
 			// this way focus will start on the next focusable item from the dropdown
 			// not the top of the body!
 			this.dropdownButton.nativeElement.focus();
@@ -760,7 +841,7 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 	 */
 	_appendToBody() {
 		const lightClass = this.theme === "light" ? " cds--list-box--light" : "";
-		const expandedClass = !this.menuIsClosed ? " cds--list-box--expanded" : "";
+		const expandedClass = this.isOpen ? " cds--list-box--expanded" : "";
 		this.dropdownService.appendToBody(
 			this.dropdownButton.nativeElement,
 			this.dropdownMenu.nativeElement,
@@ -799,7 +880,8 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 		}
 
 		this._dropUp = false;
-		this.menuIsClosed = false;
+		this.isOpen = true;
+		this.changeDetectorRef.markForCheck();
 
 		// move the dropdown list to the body if we're not appending inline
 		// and position it relative to the dropdown wrapper
@@ -821,6 +903,7 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 		setTimeout(() => {
 			if (this.dropUp === null || this.dropUp === undefined) {
 				this._dropUp = this._shouldDropUp();
+				this.changeDetectorRef.markForCheck();
 			}
 		}, 0);
 
@@ -838,8 +921,9 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 	 */
 	closeMenu() {
 		// return early if the menu is already closed
-		if (this.menuIsClosed) { return; }
-		this.menuIsClosed = true;
+		if (!this.isOpen) { return; }
+		this.isOpen = false;
+		this.changeDetectorRef.markForCheck();
 		this.checkForReorder();
 		this.onClose.emit();
 		this.close.emit();
@@ -867,7 +951,7 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 	 * Controls toggling menu states between open/expanded and closed/collapsed.
 	 */
 	toggleMenu() {
-		if (this.menuIsClosed) {
+		if (!this.isOpen) {
 			this.openMenu();
 		} else {
 			this.closeMenu();
@@ -889,7 +973,7 @@ export class Dropdown implements OnInit, OnChanges, AfterContentInit, AfterViewI
 	 * Controls when it's needed to apply the selection feedback
 	 */
 	protected checkForReorder() {
-		const topAfterReopen = this.menuIsClosed && this.selectionFeedback === "top-after-reopen";
+		const topAfterReopen = !this.isOpen && this.selectionFeedback === "top-after-reopen";
 		if ((this.type === "multi") && (topAfterReopen || this.selectionFeedback === "top")) {
 			this.view.reorderSelected();
 		}

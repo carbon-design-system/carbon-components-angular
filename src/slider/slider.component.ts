@@ -10,18 +10,20 @@ import {
 	TemplateRef,
 	ViewChildren,
 	QueryList,
-	ChangeDetectorRef
+	ChangeDetectorRef,
+	inject
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { EventService } from "carbon-components-angular/utils";
+import { NgClass, NgTemplateOutlet, NgStyle } from "@angular/common";
 
 /**
  * Used to select from ranges of values. [See here](https://www.carbondesignsystem.com/components/slider/usage) for usage information.
  *
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { SliderModule } from 'carbon-components-angular';
+ * import { Slider } from 'carbon-components-angular';
  * ```
  *
  * The simplest possible slider usage looks something like:
@@ -62,21 +64,38 @@ import { EventService } from "carbon-components-angular/utils";
 @Component({
 	selector: "cds-slider, ibm-slider",
 	template: `
-		<ng-container *ngIf="!skeleton; else skeletonTemplate">
-			<label
-				*ngIf="label"
-				[for]="id"
-				[id]="labelId"
-				class="cds--label"
-				[ngClass]="{'cds--label--disabled': disabled}">
-				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
-			</label>
+		@if(skeleton) {
+			@if (label) {
+				<label class="cds--label cds--skeleton"></label>
+			}
+			<div class="cds--slider-container cds--skeleton">
+				<span class="cds--slider__range-label"></span>
+				<div class="cds--slider">
+					<div class="cds--slider__thumb"></div>
+					<div class="cds--slider__track"></div>
+					<div class="cds--slider__filled-track"></div>
+				</div>
+				<span class="cds--slider__range-label"></span>
+			</div>
+		} @else {
+			@if (label) {
+				<label
+					[for]="id"
+					[id]="labelId"
+					class="cds--label"
+					[ngClass]="{'cds--label--disabled': disabled}">
+					@if (isTemplate(label)) {
+						<ng-template [ngTemplateOutlet]="label" />
+					} @else {
+						{{label}}
+					}
+				</label>
+			}
 			<div
 				class="cds--slider-container"
 				[ngClass]="{ 'cds--slider-container--readonly': readonly }">
 				<label [id]="bottomRangeId" class="cds--slider__range-label">
-					<ng-content select="[minLabel]"></ng-content>
+					<ng-content select="[minLabel]" />
 				</label>
 				<div
 					class="cds--slider"
@@ -85,7 +104,22 @@ import { EventService } from "carbon-components-angular/utils";
 						'cds--slider--disabled': disabled,
 						'cds--slider--readonly': readonly
 					}">
-					<ng-container *ngIf="!isRange()">
+					@if (isRange()) {
+						@for (thumb of value; track trackThumbsBy(i, thumb); let i = $index) {
+							<div class="cds--slider__thumb-wrapper" [ngStyle]="{insetInlineStart: getFractionComplete(thumb) * 100 + '%'}">
+								<div
+									#thumbs
+									role="slider"
+									[id]="id + (i > 0 ? '-' + i : '')"
+									[attr.aria-labelledby]="labelId"
+									class="cds--slider__thumb"
+									tabindex="0"
+									(mousedown)="onMouseDown($event, i)"
+									(keydown)="onKeyDown($event, i)">
+								</div>
+							</div>
+						}
+					} @else {
 						<div class="cds--slider__thumb-wrapper"
 							[ngStyle]="{insetInlineStart: getFractionComplete(value) * 100 + '%'}">
 							<div
@@ -99,31 +133,9 @@ import { EventService } from "carbon-components-angular/utils";
 								(keydown)="onKeyDown($event)">
 							</div>
 						</div>
-					</ng-container>
-					<ng-container *ngIf="isRange()">
-						<div class="cds--slider__thumb-wrapper"
-						 [ngStyle]="{insetInlineStart: getFractionComplete(thumb) * 100 + '%'}"
-						 *ngFor="let thumb of value; let i = index; trackBy: trackThumbsBy">
-							<div
-								#thumbs
-								role="slider"
-								[id]="id + (i > 0 ? '-' + i : '')"
-								[attr.aria-labelledby]="labelId"
-								class="cds--slider__thumb"
-								tabindex="0"
-								(mousedown)="onMouseDown($event, i)"
-								(keydown)="onKeyDown($event, i)">
-							</div>
-						</div>
-					</ng-container>
-					<div
-						#track
-						class="cds--slider__track">
-					</div>
-					<div
-						#filledTrack
-						class="cds--slider__filled-track">
-					</div>
+					}
+					<div #track class="cds--slider__track"></div>
+					<div #filledTrack class="cds--slider__filled-track"></div>
 					<input
 						#range
 						aria-label="slider"
@@ -135,35 +147,26 @@ import { EventService } from "carbon-components-angular/utils";
 						[value]="value.toString()">
 				</div>
 				<label [id]="topRangeId" class="cds--slider__range-label">
-					<ng-content select="[maxLabel]"></ng-content>
+					<ng-content select="[maxLabel]" />
 				</label>
-				<ng-content select="input"></ng-content>
+				<ng-content select="input" />
 			</div>
-		</ng-container>
-
-		<ng-template #skeletonTemplate>
-			<label *ngIf="label" class="cds--label cds--skeleton"></label>
-			<div class="cds--slider-container cds--skeleton">
-				<span class="cds--slider__range-label"></span>
-				<div class="cds--slider">
-					<div class="cds--slider__thumb"></div>
-					<div class="cds--slider__track"></div>
-					<div class="cds--slider__filled-track"></div>
-				</div>
-				<span class="cds--slider__range-label"></span>
-			</div>
-		</ng-template>
+		}
 	`,
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
 			useExisting: Slider,
 			multi: true
-		}
-	]
+		},
+		EventService
+	],
+	imports: [NgClass, NgTemplateOutlet, NgStyle]
 })
 export class Slider implements AfterViewInit, ControlValueAccessor {
-	/** Used to generate unique IDs */
+	/**
+	 * Used to generate unique IDs
+	 */
 	private static count = 0;
 
 	/** The lower bound of our range */
@@ -249,6 +252,7 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 		const valueToEmit = this.isRange() ? v : v[0];
 		this.propagateChange(valueToEmit);
 		this.valueChange.emit(valueToEmit);
+		this.changeDetection.markForCheck();
 	}
 
 	get value() {
@@ -307,6 +311,9 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	public topRangeId = `${this.id}-top-range`;
 	public fractionComplete = 0;
 
+	protected elementRef = inject(ElementRef);
+	protected eventService = inject(EventService);
+
 	protected isMouseDown = false;
 	protected inputs: HTMLInputElement[];
 	protected _min = 0;
@@ -317,11 +324,13 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	protected _readonly = false;
 	protected _focusedThumbIndex = 0;
 
-	constructor(
-		protected elementRef: ElementRef,
-		protected eventService: EventService,
-		private changeDetection: ChangeDetectorRef
-	) {}
+	private changeDetection = inject(ChangeDetectorRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngAfterViewInit() {
 		// bind mousemove and mouseup to the document so we don't have issues tracking the mouse
@@ -358,7 +367,7 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	}
 
 	/** Send changes back to the model */
-	propagateChange = (_: any) => { };
+	propagateChange = (_: any) => {};
 
 	/** Register a change propagation function for `ControlValueAccessor` */
 	registerOnChange(fn: any) {
@@ -366,7 +375,7 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	}
 
 	/** Callback to notify the model when our input has been touched */
-	onTouched: () => any = () => { };
+	onTouched: () => any = () => {};
 
 	/** Register a callback to notify when our input has been touched */
 	registerOnTouched(fn: any) {
@@ -398,6 +407,7 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	/** Converts a given px value to a "real" value in our range */
 	convertToValue(pxAmount) {
 		// basic concept borrowed from carbon-components
+		// eslint-disable-next-line max-len
 		// https://github.com/carbon-design-system/carbon/blob/43bf3abdc2f8bdaa38aa84e0f733adde1e1e8894/src/components/slider/slider.js#L147-L151
 		const range = this.max - this.min;
 		const trackWidth = this.track.nativeElement.getBoundingClientRect().width;

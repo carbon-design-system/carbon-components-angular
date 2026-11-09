@@ -3,7 +3,8 @@ import {
 	EventEmitter,
 	HostBinding,
 	Component,
-	ComponentRef
+	ComponentRef,
+	inject
 } from "@angular/core";
 import { isObservable, Subject } from "rxjs";
 import { I18n } from "carbon-components-angular/i18n";
@@ -14,16 +15,17 @@ import { NotificationDisplayService } from "./notification-display.service";
  * Base class for `Notification`, `ActionableNotification`, & `Toast`
  * consisting of common functionality
  *
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { NotificationModule } from 'carbon-components-angular';
+ * import { Notification } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-notification--inline-notification)
  */
 @Component({
-	template: ""
+	template: "",
+	standalone: true
 })
 export class BaseNotification {
 	/**
@@ -53,6 +55,9 @@ export class BaseNotification {
 		"warning-alt": "warning--alt--filled"
 	};
 
+	protected notificationDisplayService = inject(NotificationDisplayService);
+	protected i18n = inject(I18n);
+
 	protected defaultNotificationObj: NotificationContent = {
 		title: "",
 		message: "",
@@ -64,10 +69,11 @@ export class BaseNotification {
 
 	protected _notificationObj: NotificationContent = Object.assign({}, this.defaultNotificationObj);
 
-	constructor(
-		protected notificationDisplayService: NotificationDisplayService,
-		protected i18n: I18n
-	) { }
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	/**
 	 * Emits close event.

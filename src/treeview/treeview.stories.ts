@@ -1,21 +1,24 @@
-/* tslint:disable variable-name */
-
 import { CommonModule } from "@angular/common";
 import { Meta, moduleMetadata } from "@storybook/angular";
-import { IconModule } from "../icon";
-import { TreeNodeComponent, TreeViewComponent, TreeviewModule } from "./";
+import { IconDirective } from "../icon";
+import { TreeNodeComponent, TreeViewComponent } from "./";
 import { IconTreeviewDemoComponent } from "./stories/app-treeview-icons.component";
 
 export default {
 	title: "Components/Tree view",
 	decorators: [
 		moduleMetadata({
-			imports: [CommonModule, TreeviewModule, IconModule],
-			declarations: [IconTreeviewDemoComponent]
+			imports: [
+				CommonModule,
+				TreeViewComponent,
+				IconDirective,
+				TreeNodeComponent,
+				IconTreeviewDemoComponent
+			]
 		})
 	],
 	component: TreeViewComponent,
-	subcomponents: TreeNodeComponent,
+	subcomponents: {TreeNodeComponent},
 	args: {
 		size: "sm",
 		isMultiSelect: false
@@ -219,23 +222,23 @@ const ProjectedNodesTemplate = (args) => ({
 					[node]="node"
 					[depth]="depth"
 					[disabled]="disabled">
-					<ng-container *ngIf="node.children && node.children.length">
-						<ng-container *ngFor="let child of node.children; let i = index;">
-						<!-- Increase the depth by 1 -->
+					@if (node.children && node.children.length) {
+						@for (child of node.children; track child.id) {
+							<!-- Increase the depth by 1 -->
 							<ng-container
 								*ngTemplateOutlet="nodeTemplateRef; context: {node: child, depth: depth + 1, disabled };">
 							</ng-container>
-						</ng-container>
-					</ng-container>
+						}
+					}
 				</cds-tree-node>
 
 			</ng-template>
 
-			<ng-container *ngFor="let node of tree">
+			@for (node of tree; track node.id) {
 				<ng-container
 					*ngTemplateOutlet="nodeTemplateRef; context: {node: node, depth: 0, disabled: node.disabled };">
 				</ng-container>
-			</ng-container>
+			}
 		</cds-tree-view>
 	`
 });

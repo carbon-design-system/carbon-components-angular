@@ -11,11 +11,13 @@ import {
 	OnChanges,
 	HostBinding,
 	SimpleChanges,
-	ComponentRef
+	ChangeDetectorRef,
+	ComponentRef,
+	inject
 } from "@angular/core";
 import { DialogService } from "./dialog.service";
 import { CloseMeta, CloseReasons, DialogConfig } from "./dialog-config.interface";
-import { EventService } from "carbon-components-angular/utils";
+import {  EventService } from "carbon-components-angular/utils";
 import { Dialog } from "./dialog.component";
 import { fromEvent, Subscription } from "rxjs";
 
@@ -32,8 +34,10 @@ import { fromEvent, Subscription } from "rxjs";
 	selector: "[cdsDialog], [ibmDialog]",
 	exportAs: "dialog",
 	providers: [
-		DialogService
-	]
+		DialogService,
+		EventService
+	],
+	standalone: true
 })
 export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	static dialogCounter = 0;
@@ -121,12 +125,22 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		return this.isOpen ? this.dialogConfig.compID : null;
 	}
 
+	protected elementRef = inject(ElementRef);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+	protected viewContainerRef = inject(ViewContainerRef);
+	protected dialogService = inject(DialogService);
+	protected eventService = inject(EventService);
+
 	/**
 	 * Keeps a reference to the currently opened dialog
 	 */
 	protected dialogRef: ComponentRef<Dialog>;
 
 	private subscriptions: Subscription[] = [];
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
 
 	/**
 	 * Creates an instance of DialogDirective.
@@ -135,15 +149,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * @param dialogService
 	 * @param eventService
 	 */
-	constructor(
-		protected elementRef: ElementRef,
-		protected viewContainerRef: ViewContainerRef,
-		protected dialogService: DialogService,
-		/**
-		 * Deprecated as of v5
-		 */
-		protected eventService: EventService
-	) {}
+	constructor() {}
 
 	ngOnChanges(changes: SimpleChanges) {
 		// set the config object (this can [and should!] be added to in child classes depending on what they need)
@@ -267,6 +273,8 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		// actually open the dialog, emit events, and set the open state
 		this.dialogRef = this.dialogService.open(this.viewContainerRef, this.dialogConfig, component);
 		this.isOpen = true;
+		// opened from fromEvent subscriptions and timers, rerender for zoneless apps
+		this.changeDetectorRef.markForCheck();
 		this.onOpen.emit();
 		this.isOpenChange.emit(true);
 
@@ -279,6 +287,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 				this.dialogService.close(this.dialogRef);
 				this.dialogRef = null;
 				this.isOpen = false;
+				this.changeDetectorRef.markForCheck();
 				this.onClose.emit();
 				this.isOpenChange.emit(false);
 				subscription.unsubscribe();

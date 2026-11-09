@@ -3,29 +3,33 @@ import {
 	Input,
 	Output,
 	HostBinding,
-	EventEmitter
+	EventEmitter,
+	inject
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
+import { Checkbox } from "carbon-components-angular/checkbox";
+import { AsyncPipe } from "@angular/common";
 
 @Component({
-	// tslint:disable-next-line: component-selector
+	// eslint-disable-next-line @angular-eslint/component-selector
 	selector: "[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]",
 	template: `
-		<cds-checkbox
-			*ngIf="!skeleton"
-			inline="true"
-			[name]="name"
-			[checked]="checked"
-			[indeterminate]="indeterminate"
-			(checkedChange)="change.emit()"
-			[hideLabel]="true">
-				{{getAriaLabel() | async}}
-		</cds-checkbox>
+		@if (!skeleton) {
+			<cds-checkbox
+				[name]="name"
+				[checked]="checked"
+				[indeterminate]="indeterminate"
+				(checkedChange)="change.emit()"
+				[hideLabel]="true">
+					{{getAriaLabel() | async}}
+			</cds-checkbox>
+		}
 	`,
 	styles: [`
         :host { width: 10px; }
-    `]
+    `],
+	imports: [Checkbox, AsyncPipe]
 })
 export class TableHeadCheckbox {
 	private static tableSelectAllCount = 0;
@@ -47,13 +51,20 @@ export class TableHeadCheckbox {
 		return this._ariaLabel.value;
 	}
 
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() change = new EventEmitter<void>();
 
 	@HostBinding("class.cds--table-column-checkbox") hostClass = true;
 
+	protected i18n = inject(I18n);
+
 	protected _ariaLabel = this.i18n.getOverridable("TABLE.CHECKBOX_HEADER");
 
-	constructor(protected i18n: I18n) { }
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	getAriaLabel(): Observable<string> {
 		return this._ariaLabel.subject;

@@ -1,19 +1,19 @@
 import { TestBed } from "@angular/core/testing";
-import { FormsModule } from "@angular/forms";
 import { By } from "@angular/platform-browser";
 import { Component } from "@angular/core";
 import { TimePicker } from "./timepicker.component";
 
 @Component({
 	template: `
-	<cds-timepicker
-		theme="dark"
-		(valueChange)="onChange()"
-		[(value)]="value"
-		label="test"
-		size="lg"
-		disabled="false">
-	</cds-timepicker>`
+		<cds-timepicker
+			theme="dark"
+			(valueChange)="onChange()"
+			[(value)]="value"
+			label="test"
+			size="lg"
+			disabled="false" />
+	`,
+	imports: [TimePicker]
 })
 class TimePickerTest {
 	value = "12:12";
@@ -24,12 +24,8 @@ describe("TimePicker", () => {
 	let fixture, wrapper, element;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				TimePicker,
-				TimePickerTest
-			],
 			imports: [
-				FormsModule
+				TimePickerTest
 			]
 		});
 	});

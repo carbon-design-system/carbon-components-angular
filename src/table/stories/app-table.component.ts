@@ -8,6 +8,7 @@ import {
 import { TableModel } from "../table-model.class";
 import { TableHeaderItem } from "../table-header-item.class";
 import { TableItem } from "../table-item.class";
+import { Table } from "../table.component";
 
 @Component({
 	selector: "app-table",
@@ -25,9 +26,11 @@ import { TableItem } from "../table-item.class";
 			[isDataGrid]="isDataGrid"
 			[ariaLabelledby]="ariaLabelledby"
 			[ariaDescribedby]="ariaDescribedby">
-			<ng-content></ng-content>
+			<ng-content />
 		</cds-table>
-	`
+	`,
+	standalone: true,
+	imports: [Table]
 })
 export class TableStory implements OnInit, OnChanges {
 	@Input() model = new TableModel();
@@ -55,7 +58,9 @@ export class TableStory implements OnInit, OnChanges {
 			})
 		];
 
+		// eslint-disable-next-line no-console
 		this.model.rowsSelectedChange.subscribe(event => console.log(event));
+		// eslint-disable-next-line no-console
 		this.model.selectAllChange.subscribe(event => console.log(event ? "All rows selected!" : "All rows deselected!"));
 
 		if (!this.noData && !this.skeleton) {
@@ -80,6 +85,7 @@ export class TableStory implements OnInit, OnChanges {
 	}
 
 	onRowClick(index: number) {
+		// eslint-disable-next-line no-console
 		console.log("Row item selected:", index);
 	}
 }

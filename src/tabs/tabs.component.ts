@@ -12,6 +12,7 @@ import {
 } from "@angular/core";
 import { Tab } from "./tab.component";
 import { TabHeaders } from "./tab-headers.component";
+import { TabSkeleton } from "./tab-skeleton.component";
 
 /**
  * Build out your application's tabs using this component.
@@ -39,49 +40,50 @@ import { TabHeaders } from "./tab-headers.component";
 @Component({
 	selector: "cds-tabs, ibm-tabs",
 	template: `
-		<ng-container *ngIf="skeleton">
-			<cds-tabs-skeleton [contained]="type === 'contained'"></cds-tabs-skeleton>
-		</ng-container>
-		<ng-container *ngIf="!skeleton">
-			<cds-tab-headers
-				*ngIf="hasTabHeaders() && position === 'top'"
-				[theme]="theme"
-				[tabs]="tabs"
-				[followFocus]="followFocus"
-				[cacheActive]="cacheActive"
-				[contentBefore]="before"
-				[contentAfter]="after"
-				[ariaLabel]="ariaLabel"
-				[ariaLabelledby]="ariaLabelledby"
-				[type]="type"
-				[iconSize]="iconSize"
-				[fullWidth]="fullWidth"
-				[dismissable]="dismissable"
-				[scrollIntoView]="scrollIntoView"
-				[scrollDebounceWait]="scrollDebounceWait"
-				(tabClose)="tabClose.emit($event)">
-			</cds-tab-headers>
-			<ng-content></ng-content>
+		@if (skeleton) {
+			<cds-tabs-skeleton [contained]="type === 'contained'" />
+		}
+		@if (!skeleton) {
+			@if (hasTabHeaders() && position === 'top') {
+				<cds-tab-headers
+					[theme]="theme"
+					[tabs]="tabs"
+					[followFocus]="followFocus"
+					[cacheActive]="cacheActive"
+					[contentBefore]="before"
+					[contentAfter]="after"
+					[ariaLabel]="ariaLabel"
+					[ariaLabelledby]="ariaLabelledby"
+					[type]="type"
+					[iconSize]="iconSize"
+					[fullWidth]="fullWidth"
+					[dismissable]="dismissable"
+					[scrollIntoView]="scrollIntoView"
+					[scrollDebounceWait]="scrollDebounceWait"
+					(tabClose)="tabClose.emit($event)" />
+			}
+			<ng-content />
 			<ng-template #before>
-				<ng-content select="[before]"></ng-content>
+				<ng-content select="[before]" />
 			</ng-template>
 			<ng-template #after>
-				<ng-content select="[after]"></ng-content>
+				<ng-content select="[after]" />
 			</ng-template>
-			<cds-tab-headers
-				*ngIf="hasTabHeaders() && position === 'bottom'"
-				[tabs]="tabs"
-				[cacheActive]="cacheActive"
-				[type]="type"
-				[iconSize]="iconSize"
-				[fullWidth]="fullWidth"
-				[dismissable]="dismissable"
-				[scrollIntoView]="scrollIntoView"
-				[scrollDebounceWait]="scrollDebounceWait"
-				(tabClose)="tabClose.emit($event)">
-			</cds-tab-headers>
-		</ng-container>
-	`
+			@if (hasTabHeaders() && position === 'bottom') {
+				<cds-tab-headers
+					[tabs]="tabs"
+					[cacheActive]="cacheActive"
+					[type]="type"
+					[iconSize]="iconSize"
+					[fullWidth]="fullWidth"
+					[dismissable]="dismissable"
+					[scrollIntoView]="scrollIntoView"
+					[scrollDebounceWait]="scrollDebounceWait"
+					(tabClose)="tabClose.emit($event)" />
+			}
+		}
+	`,
+	imports: [TabSkeleton, TabHeaders]
 })
 export class Tabs implements AfterContentInit, OnChanges {
 	/**

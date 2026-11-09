@@ -5,7 +5,9 @@ import {
 	Input,
 	QueryList,
 	OnDestroy,
-	HostBinding
+	HostBinding,
+	ChangeDetectorRef,
+	inject
 } from "@angular/core";
 import { SideNavItem } from "./sidenav-item.component";
 import { Subscription } from "rxjs";
@@ -24,7 +26,7 @@ import { SideNavItemInterface } from "./sidenav-item.interface";
 			[attr.aria-expanded]="expanded"
 			type="button">
 			<div class="cds--side-nav__icon">
-				<ng-content select="svg, [icon]"></ng-content>
+				<ng-content select="svg, [icon]" />
 			</div>
 			<span class="cds--side-nav__submenu-title">{{title}}</span>
 			<div class="cds--side-nav__icon cds--side-nav__icon--small cds--side-nav__submenu-chevron">
@@ -42,8 +44,8 @@ import { SideNavItemInterface } from "./sidenav-item.interface";
 			</div>
 		</button>
 		<div class="cds--side-nav__menu" role="list">
-			<ng-content></ng-content>
-			<ng-container *ngFor="let menuItem of menuItems">
+			<ng-content />
+			@for (menuItem of menuItems; track menuItem) {
 				<cds-sidenav-item
 					[href]="menuItem.href"
 					[route]="menuItem.route"
@@ -52,9 +54,10 @@ import { SideNavItemInterface } from "./sidenav-item.interface";
 					[isSubMenu]="true">
 					{{ menuItem.content }}
 				</cds-sidenav-item>
-			</ng-container>
+			}
 		</div>
-	`
+	`,
+	imports: [SideNavItem]
 })
 export class SideNavMenu implements AfterContentInit, OnDestroy {
 	@HostBinding("class.cds--side-nav__item") navItem = true;
@@ -88,9 +91,12 @@ export class SideNavMenu implements AfterContentInit, OnDestroy {
 	@ContentChildren(SideNavItem) sidenavItems: QueryList<SideNavItem>;
 
 	protected activeItemsSubscription = new Subscription();
+	protected changeDetectorRef = inject(ChangeDetectorRef);
 
 	ngAfterContentInit() {
 		setTimeout(() => {
+			// the items are projected content, refreshed with the views this marks
+			this.changeDetectorRef.markForCheck();
 			this.sidenavItems.forEach(item => {
 				item.isSubMenu = true;
 				this.findActiveChildren();

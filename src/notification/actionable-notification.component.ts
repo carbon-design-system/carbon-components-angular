@@ -1,7 +1,8 @@
 import {
 	Component,
 	Input,
-	HostBinding
+	HostBinding,
+	inject
 } from "@angular/core";
 
 import { isObservable, of } from "rxjs";
@@ -9,6 +10,13 @@ import { ActionableContent, NotificationVariants } from "./notification-content.
 import { I18n } from "carbon-components-angular/i18n";
 import { NotificationDisplayService } from "./notification-display.service";
 import { BaseNotification } from "./base-notification.component";
+import { IconDirective } from "carbon-components-angular/icon";
+import { NgClass, NgTemplateOutlet, AsyncPipe } from "@angular/common";
+import { ActionableTitle } from "./actionable-title.directive";
+import { ActionableSubtitle } from "./actionable-subtitle.directive";
+import { Link } from "carbon-components-angular/link";
+import { ActionableButton } from "./actionable-button.directive";
+import { Button } from "carbon-components-angular/button";
 
 /**
  * Actionable notification allows for interactive elements within a notification. There are two variants offered, inline & toast.
@@ -19,57 +27,74 @@ import { BaseNotification } from "./base-notification.component";
 	selector: "cds-actionable-notification, ibm-actionable-notification",
 	template: `
 		<div class="cds--actionable-notification__details">
-			<svg
-				[cdsIcon]="iconDictionary[notificationObj.type]"
-				size="20"
-				*ngIf="notificationObj.type"
-				[ngClass]="{
-					'cds--inline-notification__icon': notificationObj.variant === 'inline',
-					'cds--toast-notification__icon': notificationObj.variant === 'toast'
-				}"
-				class="cds--actionable-notification__icon">
-			</svg>
+			@if (notificationObj.type) {
+				<svg
+					[cdsIcon]="iconDictionary[notificationObj.type]"
+					size="20"
+					[ngClass]="{
+						'cds--inline-notification__icon': notificationObj.variant === 'inline',
+						'cds--toast-notification__icon': notificationObj.variant === 'toast'
+					}"
+					class="cds--actionable-notification__icon">
+				</svg>
+			}
 			<div class="cds--actionable-notification__text-wrapper">
 				<div class="cds--actionable-notification__content">
-					<div
-						cdsActionableTitle
-						*ngIf="!notificationObj.template"
-						[id]="notificationID"
-						[innerHTML]="notificationObj.title">
-					</div>
-					<div *ngIf="!notificationObj.template" cdsActionableSubtitle>
-						<span [innerHTML]="notificationObj.message"></span>
-						<ng-container *ngFor="let link of notificationObj.links">
-							<a cdsLink [href]="link.href">{{link.text}}</a>
-						</ng-container>
-					</div>
+					@if (!notificationObj.template) {
+						<div
+							cdsActionableTitle
+							[id]="notificationID"
+							[innerHTML]="notificationObj.title">
+						</div>
+						<div cdsActionableSubtitle>
+							<span [innerHTML]="notificationObj.message"></span>
+							@for (link of notificationObj.links; track link) {
+								<a cdsLink [href]="link.href">{{link.text}}</a>
+							}
+						</div>
+					}
 					<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj }"></ng-container>
 				</div>
 			</div>
 		</div>
-		<ng-container *ngIf="!notificationObj.actionsTemplate">
+		@if (!notificationObj.actionsTemplate) {
+			@for (action of notificationObj.actions; track action) {
+				<button
+					(click)="onClick(action, $event)"
+					[cdsButton]="notificationObj.variant === 'inline' ? 'ghost' : 'tertiary'"
+					size="sm"
+					cdsActionableButton>
+					{{action.text}}
+				</button>
+			}
+		}
+		<ng-container *ngTemplateOutlet="notificationObj.actionsTemplate; context: { $implicit: notificationObj }" />
+		@if (!isCloseHidden) {
 			<button
-				*ngFor="let action of notificationObj.actions"
-				(click)="onClick(action, $event)"
-				[cdsButton]="notificationObj.variant === 'inline' ? 'ghost' : 'tertiary'"
-				size="sm"
-				cdsActionableButton>
-				{{action.text}}
+				(click)="onClose()"
+				class="cds--actionable-notification__close-button"
+				[attr.aria-label]="notificationObj.closeLabel | async"
+				type="button">
+				<svg cdsIcon="close" size="16" class="cds--actionable-notification__close-icon"></svg>
 			</button>
-		</ng-container>
-		<ng-container *ngTemplateOutlet="notificationObj.actionsTemplate; context: { $implicit: notificationObj }"></ng-container>
-		<button
-			*ngIf="!isCloseHidden"
-			(click)="onClose()"
-			class="cds--actionable-notification__close-button"
-			[attr.aria-label]="notificationObj.closeLabel | async"
-			type="button">
-			<svg cdsIcon="close" size="16" class="cds--actionable-notification__close-icon"></svg>
-		</button>
-	`
+		}
+	`,
+	providers: [NotificationDisplayService],
+	imports: [
+		IconDirective,
+		NgClass,
+		ActionableTitle,
+		ActionableSubtitle,
+		Link,
+		NgTemplateOutlet,
+		ActionableButton,
+		Button,
+		AsyncPipe
+	]
 })
 export class ActionableNotification extends BaseNotification {
 	private static notificationCount = 0;
+
 	/**
 	 * Can have `type`, `title`, and `message` members.
 	 *
@@ -93,10 +118,14 @@ export class ActionableNotification extends BaseNotification {
 	@HostBinding("class.cds--actionable-notification--toast") get toastVariant() { return this.notificationObj.variant === "toast"; }
 	@HostBinding("class.cds--actionable-notification--error") get isError() { return this.notificationObj.type === "error"; }
 	@HostBinding("class.cds--actionable-notification--info") get isInfo() { return this.notificationObj.type === "info"; }
-	@HostBinding("class.cds--actionable-notification--info-square") get isInfoSquare() { return this.notificationObj.type === "info-square"; }
+	@HostBinding("class.cds--actionable-notification--info-square") get isInfoSquare() {
+		return this.notificationObj.type === "info-square";
+	}
 	@HostBinding("class.cds--actionable-notification--success") get isSuccess() { return this.notificationObj.type === "success"; }
 	@HostBinding("class.cds--actionable-notification--warning") get isWarning() { return this.notificationObj.type === "warning"; }
-	@HostBinding("class.cds--actionable-notification--warning-alt") get isWarningAlt() { return this.notificationObj.type === "warning-alt"; }
+	@HostBinding("class.cds--actionable-notification--warning-alt") get isWarningAlt() {
+		return this.notificationObj.type === "warning-alt";
+	}
 	@HostBinding("class.cds--actionable-notification--low-contrast") get isLowContrast() { return this.notificationObj.lowContrast; }
 	@HostBinding("class.cds--actionable-notification--hide-close-button") get isCloseHidden() { return !this._notificationObj.showClose; }
 
@@ -109,7 +138,14 @@ export class ActionableNotification extends BaseNotification {
 		role: "alertdialog"
 	};
 
-	constructor(protected notificationDisplayService: NotificationDisplayService, protected i18n: I18n) {
-		super(notificationDisplayService, i18n);
+	protected notificationDisplayService: NotificationDisplayService;
+	protected i18n: I18n;
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
+		super();
 	}
 }

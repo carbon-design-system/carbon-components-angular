@@ -1,19 +1,22 @@
-import {
-	Component,
+import { Component,
+	inject,
 	Input,
-	OnInit
-} from "@angular/core";
-import { NotificationService } from "../../notification";
+	OnInit } from "@angular/core";
 
 import {
 	FormBuilder,
 	FormControl,
 	FormGroup,
+	ReactiveFormsModule,
 	Validators
 } from "@angular/forms";
 
+import { Button } from "carbon-components-angular/button";
+import { FileUploader } from "../file-uploader.component";
+
 @Component({
 	selector: "app-reactive-forms",
+	imports: [FileUploader, Button, ReactiveFormsModule],
 	template: `
 		<form [formGroup]="formGroup" (ngSubmit)="onUpload()">
 			<cds-file-uploader
@@ -29,13 +32,14 @@ import {
 				[disabled]="disabled"
 				formControlName="files">
 			</cds-file-uploader>
-			<button
-				cdsButton
-				*ngIf="formGroup.get('files').value && formGroup.get('files').value.size > 0"
-				type="submit"
-				style="margin-top: 20px">
-				Upload
-			</button>
+			@if (formGroup.get('files').value && formGroup.get('files').value.size > 0) {
+				<button
+					cdsButton
+					type="submit"
+					style="margin-top: 20px">
+					Upload
+				</button>
+			}
 		</form>
 		<form [formGroup]="disabledFormGroup" (ngSubmit)="onUpload()">
 			<cds-file-uploader
@@ -50,9 +54,11 @@ import {
 				formControlName="files">
 			</cds-file-uploader>
 			<div [id]="notificationId" style="width: 300px; margin-top: 20px"></div>
-			<button cdsButton *ngIf="disabledFormGroup.get('files').value && disabledFormGroup.get('files').value.size > 0" type="submit">
-				Upload
-			</button>
+			@if (disabledFormGroup.get('files').value && disabledFormGroup.get('files').value.size > 0) {
+				<button cdsButton type="submit">
+					Upload
+				</button>
+			}
 		</form>
 	`
 })
@@ -73,7 +79,7 @@ export class ReactiveFormsStory implements OnInit {
 
 	protected maxSize = 500000;
 
-	constructor(protected formBuilder: FormBuilder) {}
+	protected formBuilder = inject(FormBuilder);
 
 	ngOnInit() {
 		this.formGroup = this.formBuilder.group({

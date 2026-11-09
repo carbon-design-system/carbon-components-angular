@@ -1,10 +1,14 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { DialogModule, OverflowMenu } from "../";
-import { PlaceholderModule } from "../../placeholder";
-import { IconModule } from "../../icon";
-import { CheckboxModule } from "../../checkbox";
+import {
+	Dialog,
+	OverflowMenu,
+	OverflowMenuDirective,
+	OverflowMenuOption,
+	OverflowMenuPane
+} from "../";
+import { PLACEHOLDER_SERVICE_PROVIDER, Placeholder } from "../../placeholder";
+import { IconDirective } from "../../icon";
+import { Checkbox } from "../../checkbox";
 
 
 export default {
@@ -12,21 +16,32 @@ export default {
 	decorators: [
 		moduleMetadata({
 			imports: [
-				DialogModule,
-				PlaceholderModule,
-				IconModule,
-				CheckboxModule
-			]
+				Dialog,
+				Placeholder,
+				IconDirective,
+				Checkbox,
+				OverflowMenuOption,
+				OverflowMenuDirective,
+				OverflowMenuPane
+			],
+			providers: [PLACEHOLDER_SERVICE_PROVIDER]
 		})
 	],
 	args: {
-			placement: "bottom"
+		placement: "bottom"
 	},
 	argTypes: {
 		code: {
 			control: false
 		}
 	},
+	docs: {
+		story: {
+			inline: false,
+			height: "30rem"
+		}
+	},
+	layout: "centered",
 	component: OverflowMenu
 } as Meta;
 
@@ -65,11 +80,13 @@ Basic.args = {
 Basic.argTypes = {
 	click: {
 		type: "function",
+		// eslint-disable-next-line no-console
 		defaultValue: () => { console.log("clicked!"); },
 		control: false
 	},
 	selected: {
 		type: "function",
+		// eslint-disable-next-line no-console
 		defaultValue: () => { console.log("selected!"); },
 		control: false
 	}
@@ -89,10 +106,20 @@ const LinkTemplate = (args) => ({
 				<cds-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)" (click)="click($event)">
 					An example option that is really long to show what should be done to handle long text
 				</cds-overflow-menu-option>
-				<cds-overflow-menu-option href="https://www.ibm.com" target="_blank" (selected)="selected($event)">Option 2</cds-overflow-menu-option>
+				<cds-overflow-menu-option
+					href="https://www.ibm.com"
+					target="_blank"
+					(selected)="selected($event)">
+					Option 2
+				</cds-overflow-menu-option>
 				<cds-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 3</cds-overflow-menu-option>
 				<cds-overflow-menu-option href="https://www.ibm.com" (selected)="selected($event)">Option 4</cds-overflow-menu-option>
-				<cds-overflow-menu-option href="https://www.ibm.com" disabled="true" (selected)="selected($event)">Disabled</cds-overflow-menu-option>
+				<cds-overflow-menu-option
+					href="https://www.ibm.com"
+					disabled="true"
+					(selected)="selected($event)">
+					Disabled
+				</cds-overflow-menu-option>
 				<cds-overflow-menu-option href="https://www.ibm.com" type="danger" (selected)="selected($event)">
 					Danger option
 				</cds-overflow-menu-option>
@@ -112,11 +139,13 @@ WithLink.args = {
 WithLink.argTypes = {
 	click: {
 		type: "function",
+		// eslint-disable-next-line no-console
 		defaultValue: () => { console.log("clicked!"); },
 		control: false
 	},
 	selected: {
 		type: "function",
+		// eslint-disable-next-line no-console
 		defaultValue: () => { console.log("selected!"); },
 		control: false
 	}

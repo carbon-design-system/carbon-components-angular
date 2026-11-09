@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
-import { I18nModule } from "../i18n/index";
 import { Toggle } from "./toggle.component";
 
 describe("Toggle", () => {
@@ -12,8 +11,7 @@ describe("Toggle", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [Toggle],
-			imports: [I18nModule],
+			imports: [Toggle],
 			providers: []
 		});
 
@@ -30,7 +28,7 @@ describe("Toggle", () => {
 
 	it("should have button with class 'cds--toggle__button'", () => {
 		expect(buttonElement.className.includes("cds--toggle__button")).toEqual(true);
-		component.size = "sm";
+		fixture.componentRef.setInput("size", "sm");
 		fixture.detectChanges();
 		expect(buttonElement.className.includes("cds--toggle__button")).toEqual(true);
 	});
@@ -47,7 +45,7 @@ describe("Toggle", () => {
 
 	it("should display small version of toggle when size equals sm", () => {
 		expect(labelElement.querySelector("div").className.includes("cds--toggle__appearance--sm")).toEqual(false);
-		component.size = "sm";
+		fixture.componentRef.setInput("size", "sm");
 		fixture.detectChanges();
 		expect(labelElement.querySelector("div").className.includes("cds--toggle__appearance--sm")).toEqual(true);
 	});

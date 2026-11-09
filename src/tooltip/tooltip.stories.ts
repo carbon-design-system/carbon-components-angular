@@ -1,13 +1,11 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { TooltipModule, Tooltip } from "./";
+import { Tooltip } from "./";
 
 export default {
 	title: "Components/Tooltip",
 	decorators: [
 		moduleMetadata({
-			imports: [TooltipModule]
+			imports: [Tooltip]
 		})
 	],
 	args: {
@@ -22,13 +20,13 @@ export default {
 			control: false
 		},
 		onOpen: {
-			control: "Opened!"
+			action: "onOpen"
 		},
 		onClose: {
-			control: "Closed!"
+			action: "onClose"
 		},
 		isOpenChange: {
-			control: "Is Open Change!"
+			action: "isOpenChange"
 		},
 		align: {
 			options: [

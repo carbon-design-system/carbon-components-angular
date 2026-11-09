@@ -76,30 +76,36 @@
 					}
 				}
 			}
-		},
-		"carbon-components-angular-e2e": {
-			"root": "e2e",
-			"sourceRoot": "e2e",
-			"projectType": "application",
-			"architect": {
-				"e2e": {
-					"builder": "@angular-devkit/build-angular:protractor",
-					"options": {
-						"protractorConfig": "./protractor.conf.js",
-						"devServerTarget": "carbon-components-angular:serve"
-					}
-				}
-			}
 		}
 	},
 	"schematics": {
 		"@schematics/angular:component": {
 			"prefix": "ibm",
-			"style": "css"
+      "style": "css",
+      "type": "component"
 		},
 		"@schematics/angular:directive": {
-			"prefix": "ibm"
-		}
+      "prefix": "ibm",
+      "type": "directive"
+    },
+    "@schematics/angular:service": {
+      "type": "service"
+    },
+    "@schematics/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:module": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:pipe": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:resolver": {
+      "typeSeparator": "."
+    }
 	},
 	"cli": {
 		"analytics": "738e9b32-8ce4-448f-b650-921e5656f770"

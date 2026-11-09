@@ -1,16 +1,21 @@
 import {
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
-	Input,
-	HostBinding,
 	EventEmitter,
+	HostBinding,
+	HostListener,
+	Input,
 	Output,
 	TemplateRef,
-	HostListener
+	inject
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
+import { NgClass, NgTemplateOutlet, AsyncPipe } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 
 /**
  * Used to emit changes performed on number input components.
@@ -27,10 +32,10 @@ export class NumberChange {
 }
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { NumberModule } from 'carbon-components-angular';
+ * import { NumberComponent } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-number--basic)
@@ -38,7 +43,9 @@ export class NumberChange {
 @Component({
 	selector: "cds-number, ibm-number",
 	template: `
-		<label *ngIf="skeleton && label" class="cds--label cds--skeleton"></label>
+		@if (skeleton && label) {
+			<label class="cds--label cds--skeleton"></label>
+		}
 		<div
 			data-numberinput
 			[attr.data-invalid]="(invalid ? true : null)"
@@ -53,17 +60,22 @@ export class NumberChange {
 				'cds--number--md': size === 'md',
 				'cds--number--lg': size === 'lg'
 			}">
-			<label
-				*ngIf="!skeleton && label"
-				[for]="id"
-				class="cds--label"
-				[ngClass]="{
-					'cds--label--disabled': disabled,
-					'cds--visually-hidden': hideLabel
-				}">
-				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-				<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template>
-			</label>
+			@if (!skeleton && label) {
+				<label
+					[for]="id"
+					class="cds--label"
+					[ngClass]="{
+						'cds--label--disabled': disabled,
+						'cds--visually-hidden': hideLabel
+					}">
+					@if (!isTemplate(label)) {
+						{{ label }}
+					}
+					@if (isTemplate(label)) {
+						<ng-template [ngTemplateOutlet]="label"></ng-template>
+					}
+				</label>
+			}
 			<div
 				class="cds--number__input-wrapper"
 				[ngClass]="{
@@ -88,24 +100,27 @@ export class NumberChange {
 					(focus)="fluid ? handleFocus($event): null"
 					(blur)="fluid ? handleFocus($event): null"
 					(change)="onNumberInputChange($event)"/>
-				<ng-container *ngIf="decorator">
+				@if (decorator) {
 					<div class="cds--number__input-inner-wrapper--decorator">
 						<ng-template [ngTemplateOutlet]="decorator"></ng-template>
 					</div>
-				</ng-container>
-				<svg
-					*ngIf="!skeleton && invalid"
-					cdsIcon="warning--filled"
-					size="16"
-					class="cds--number__invalid">
-				</svg>
-				<svg
-					*ngIf="!skeleton && !invalid && warn"
-					cdsIcon="warning--alt--filled"
-					size="16"
-					class="cds--number__invalid cds--number__invalid--warning">
-				</svg>
-				<div *ngIf="!skeleton && !hideSteppers" class="cds--number__controls">
+				}
+				@if (!skeleton && invalid) {
+					<svg
+						cdsIcon="warning--filled"
+						size="16"
+						class="cds--number__invalid">
+					</svg>
+				}
+				@if (!skeleton && !invalid && warn) {
+					<svg
+						cdsIcon="warning--alt--filled"
+						size="16"
+						class="cds--number__invalid cds--number__invalid--warning">
+					</svg>
+				}
+				@if (!skeleton && !hideSteppers) {
+					<div class="cds--number__controls">
 					<button
 						class="cds--number__control-btn down-icon"
 						type="button"
@@ -128,26 +143,38 @@ export class NumberChange {
 						<svg cdsIcon="add" size="16"></svg>
 					</button>
 					<div class="cds--number__rule-divider"></div>
+					</div>
+				}
+			</div>
+			@if (!skeleton && invalid) {
+				<div class="cds--form-requirement">
+					@if (isTemplate(invalidText)) {
+						<ng-template [ngTemplateOutlet]="invalidText" />
+					} @else {
+						{{ invalidText }}
+					}
 				</div>
-			</div>
-			<hr *ngIf="fluid" class="cds--number-input__divider" />
-			<div
-				*ngIf="helperText && !invalid && !warn && !fluid"
-				class="cds--form__helper-text"
-				[ngClass]="{
-					'cds--form__helper-text--disabled': disabled
-				}">
-				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-			</div>
-			<div *ngIf="invalid" class="cds--form-requirement">
-				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
-				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-			</div>
-			<div *ngIf="!invalid && warn" class="cds--form-requirement">
-				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
-			</div>
+			} @else if (!skeleton && warn) {
+				<div class="cds--form-requirement">
+					@if (isTemplate(warnText)) {
+						<ng-template [ngTemplateOutlet]="warnText" />
+					} @else {
+						{{ warnText }}
+					}
+				</div>
+			} @else if (helperText && !fluid) {
+				<div
+					class="cds--form__helper-text"
+					[ngClass]="{
+						'cds--form__helper-text--disabled': disabled
+					}">
+					@if (isTemplate(helperText)) {
+						<ng-template [ngTemplateOutlet]="helperText" />
+					} @else {
+						{{ helperText }}
+					}
+				</div>
+			}
 		</div>
 	`,
 	providers: [
@@ -156,6 +183,13 @@ export class NumberChange {
 			useExisting: NumberComponent,
 			multi: true
 		}
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [
+		NgClass,
+		NgTemplateOutlet,
+		IconDirective,
+		AsyncPipe
 	]
 })
 export class NumberComponent implements ControlValueAccessor {
@@ -286,6 +320,7 @@ export class NumberComponent implements ControlValueAccessor {
 	/**
 	 * Emits event notifying other classes when a change in state occurs in the input.
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() change = new EventEmitter<NumberChange>();
 
 	@Input()
@@ -327,6 +362,9 @@ export class NumberComponent implements ControlValueAccessor {
 		return this.fluid && this.skeleton;
 	}
 
+	protected i18n = inject(I18n);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+
 	protected _isFocused = false;
 
 	protected _value = 0;
@@ -334,10 +372,14 @@ export class NumberComponent implements ControlValueAccessor {
 	protected _decrementLabel: Overridable = this.i18n.getOverridable("NUMBER.DECREMENT");
 	protected _incrementLabel: Overridable = this.i18n.getOverridable("NUMBER.INCREMENT");
 
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of `Number`.
 	 */
-	constructor(protected i18n: I18n) {
+	constructor() {
 		NumberComponent.numberCount++;
 	}
 
@@ -347,6 +389,7 @@ export class NumberComponent implements ControlValueAccessor {
 	 */
 	public writeValue(value: any) {
 		this.value = value;
+		this.changeDetectorRef.markForCheck();
 	}
 
 	/**
@@ -374,17 +417,18 @@ export class NumberComponent implements ControlValueAccessor {
 	 */
 	setDisabledState(isDisabled: boolean) {
 		this.disabled = isDisabled;
+		this.changeDetectorRef.markForCheck();
 	}
 
 	/**
 	 * Called when number input is blurred. Needed to properly implement `ControlValueAccessor`.
 	 */
-	onTouched: () => any = () => { };
+	onTouched: () => any = () => {};
 
 	/**
 	 * Method set in `registerOnChange` to propagate changes back to the form.
 	 */
-	propagateChange = (_: any) => { };
+	propagateChange = (_: any) => {};
 
 	/**
 	 * Adds `step` to the current `value`.
@@ -471,7 +515,7 @@ export class NumberComponent implements ControlValueAccessor {
 	}
 
 	handleFocus(event: FocusEvent) {
-		if ("type" in event.target && (<HTMLInputElement>event.target).type === "button") {
+		if ("type" in event.target && (event.target as HTMLInputElement).type === "button") {
 			this._isFocused = false;
 		} else {
 			this._isFocused = event.type === "focus";

@@ -1,18 +1,23 @@
-/* tslint:disable variable-name */
-
 import { importProvidersFrom } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { moduleMetadata, Meta, applicationConfig } from "@storybook/angular";
-import { SearchModule } from "../search";
-import { IconModule } from "../icon";
-import { ThemeModule } from "../theme";
-import { UIShellModule } from "./";
+import { Search } from "../search";
+import { IconDirective } from "../icon";
+import { ThemeDirective } from "../theme";
 
+import { BarComponent, FooComponent, HeaderFluidComponent } from "./stories";
 import {
-	BarComponent,
-	FooComponent,
-	HeaderFluidComponent
-} from "./stories";
+	Header,
+	Hamburger,
+	HeaderAction,
+	HeaderItem,
+	HeaderNavigation,
+	HeaderMenu,
+	HeaderGlobal
+} from "./header";
+import { SideNav, SideNavItem, SideNavMenu } from "./sidenav";
+import { CommonModule } from "@angular/common";
+import { Panel, SwitcherList, SwitcherListItem } from "./panel";
 
 export default {
 	title: "Components/UI Shell",
@@ -32,17 +37,27 @@ export default {
 			]
 		}),
 		moduleMetadata({
-			declarations: [
+			imports: [
+				ThemeDirective,
+				IconDirective,
+				Search,
+				Hamburger,
+				Header,
+				HeaderAction,
+				HeaderGlobal,
+				HeaderItem,
+				HeaderMenu,
+				HeaderNavigation,
+				Panel,
+				SideNav,
+				SideNavMenu,
+				SideNavItem,
+				SwitcherList,
+				SwitcherListItem,
+				RouterModule,
 				BarComponent,
 				FooComponent,
 				HeaderFluidComponent
-			],
-			imports: [
-				ThemeModule,
-				UIShellModule,
-				IconModule,
-				SearchModule,
-				RouterModule
 			]
 		})
 	],
@@ -69,7 +84,9 @@ const HeaderTemplate = (args) => ({
 	template: `
 		<div [cdsTheme]="theme">
 			<cds-header name="[Platform]">
-				<cds-hamburger *ngIf="hasHamburger" (click)="expanded($event)"></cds-hamburger>
+				@if (hasHamburger) {
+					<cds-hamburger (click)="expanded($event)"></cds-hamburger>
+				}
 				<cds-header-navigation>
 					<cds-header-item>Catalog</cds-header-item>
 					<cds-header-item isCurrentPage="true">Docs</cds-header-item>
@@ -92,11 +109,12 @@ const HeaderTemplate = (args) => ({
 		</div>
 	`
 });
-export const Header = HeaderTemplate.bind({});
-Header.args = {
+export const HeaderStory = HeaderTemplate.bind({});
+HeaderStory.storyName = "Header";
+HeaderStory.args = {
 	hasHamburger: true
 };
-Header.argTypes = {
+HeaderStory.argTypes = {
 	expanded: {
 		action: "Menu clicked!"
 	}
@@ -165,7 +183,9 @@ const HeaderWithTemplate = (args) => ({
 	template: `
 		<div [cdsTheme]="theme">
 			<cds-header name="[Platform]" [brand]="brandTemplate">
-				<cds-hamburger *ngIf="hasHamburger" (click)="expanded($event)"></cds-hamburger>
+				@if (hasHamburger) {
+					<cds-hamburger (click)="expanded($event)"></cds-hamburger>
+				}
 				<cds-header-navigation>
 					<cds-header-item>Catalog</cds-header-item>
 					<cds-header-item>Docs</cds-header-item>
@@ -188,7 +208,7 @@ const HeaderWithTemplate = (args) => ({
 		</div>
 		<ng-template #brandTemplate>
 			<a class="cds--header__name">
-				<svg cdsIcon="carbon" size="32" style="stroke:white;fill:white"></svg>
+				<svg cdsIcon="carbon" size="16"></svg>
 				<span class="cds--header__name--prefix">IBM</span>
 				[Platform]
 			</a>
@@ -372,7 +392,9 @@ const TogetherTemplate = (args) => ({
 	template: `
 		<div>
 			<cds-header name="[Platform]">
-				<cds-hamburger *ngIf="hasHamburger" [active]="active" (selected)="active = !active"></cds-hamburger>
+				@if (hasHamburger) {
+					<cds-hamburger [active]="active" (selected)="active = !active"></cds-hamburger>
+				}
 				<cds-header-navigation>
 					<cds-header-item>Catalog</cds-header-item>
 					<cds-header-item>Docs</cds-header-item>
@@ -498,7 +520,9 @@ const ModelTemplate = (args) => ({
 	template: `
 		<div [cdsTheme]="theme">
 			<cds-header name="[Platform]">
-				<cds-hamburger *ngIf="hasHamburger" [active]="active" (selected)="active = !active"></cds-hamburger>
+				@if (hasHamburger) {
+					<cds-hamburger [active]="active" (selected)="active = !active"></cds-hamburger>
+				}
 				<cds-header-navigation [navigationItems]="headerItems">
 				</cds-header-navigation>
 				<cds-header-global>

@@ -1,14 +1,9 @@
-/* tslint:disable variable-name */
-
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { ComboBoxModule, ComboBox } from "./";
+import { ComboBox } from "./";
 
-import {
-	DynamicListComboBox,
-	ReactiveFormsCombobox,
-	MockQueryCombobox
-} from "./stories";
+import { DynamicListComboBox, ReactiveFormsCombobox, MockQueryCombobox } from "./stories";
+import { DropdownList } from "../dropdown";
 import { AILabelModule } from "../ai-label";
 import { ButtonModule } from "../button";
 import { IconModule } from "../icon";
@@ -18,19 +13,19 @@ export default {
 	title: "Components/Combobox",
 	decorators: [
 		moduleMetadata({
-			declarations: [
-				DynamicListComboBox,
-				ReactiveFormsCombobox,
-				MockQueryCombobox
-			],
 			imports: [
 				FormsModule,
 				ReactiveFormsModule,
-				ComboBoxModule,
+				ComboBox,
+				DropdownList,
 				AILabelModule,
 				ButtonModule,
-				IconModule
+				IconModule,
+				DynamicListComboBox,
+				ReactiveFormsCombobox,
+				MockQueryCombobox
 			]
+
 		})
 	],
 	args: {

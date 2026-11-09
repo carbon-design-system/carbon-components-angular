@@ -3,8 +3,6 @@ import { By } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { Component } from "@angular/core";
 import { DatePickerInput } from "./datepicker-input.component";
-import { IconModule } from "../icon/index";
-import { CommonModule } from "@angular/common";
 
 @Component({
 	template: `
@@ -16,9 +14,9 @@ import { CommonModule } from "@angular/common";
 			[invalid]="invalid"
 			invalidText="invalid text"
 			(valueChange)="valueChange($event)"
-			[(ngModel)]="model">
-		</cds-date-picker-input>
-		`
+			[(ngModel)]="model" />
+		`,
+	imports: [DatePickerInput, FormsModule]
 })
 class DatePickerInputTest {
 	model = null;
@@ -34,14 +32,8 @@ describe("Select", () => {
 	let fixture, wrapper, element;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				DatePickerInput,
-				DatePickerInputTest
-			],
 			imports: [
-				CommonModule,
-				IconModule,
-				FormsModule
+				DatePickerInputTest
 			]
 		});
 	});
@@ -68,7 +60,11 @@ describe("Select", () => {
 		fixture = TestBed.createComponent(DatePickerInputTest);
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("cds-date-picker-input"));
-		expect(element.nativeElement.querySelector(".cds--label").textContent).toBe("label");
+		/**
+		 * @todo
+		 * Verify if new control flow syntax still requires `space` preceding and succeeding label
+		 */
+		expect(element.nativeElement.querySelector(".cds--label").textContent).toBe(" label ");
 	});
 
 	it("should set placeholder to mm/dd/yyyy", () => {
@@ -94,7 +90,7 @@ describe("Select", () => {
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("cds-date-picker-input"));
 		expect(element.nativeElement.querySelector(".cds--form-requirement")).toBeTruthy();
-		expect(element.nativeElement.querySelector(".cds--form-requirement").textContent).toBe("invalid text");
+		expect(element.nativeElement.querySelector(".cds--form-requirement").textContent).toBe(" invalid text ");
 	});
 
 	it("should set theme to dark", () => {

@@ -16,6 +16,7 @@ import { Directive } from "@angular/core";
  * ```
  */
 @Directive({
-	selector: "[cdsAILabelContent], [ibmAILabelContent]"
+	selector: "[cdsAILabelContent], [ibmAILabelContent]",
+	standalone: true
 })
 export class AILabelContent {}

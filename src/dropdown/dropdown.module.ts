@@ -14,12 +14,6 @@ import { UtilsModule } from "carbon-components-angular/utils";
 import { IconModule } from "carbon-components-angular/icon";
 
 @NgModule({
-	declarations: [
-		Dropdown,
-		DropdownList,
-		ScrollableList,
-		AbstractDropdownView
-	],
 	exports: [
 		Dropdown,
 		DropdownList,
@@ -32,7 +26,11 @@ import { IconModule } from "carbon-components-angular/icon";
 		I18nModule,
 		PlaceholderModule,
 		UtilsModule,
-		IconModule
+		IconModule,
+		Dropdown,
+		DropdownList,
+		ScrollableList,
+		AbstractDropdownView
 	],
 	providers: [ DropdownService ]
 })

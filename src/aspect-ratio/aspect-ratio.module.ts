@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { AspectRatioDirective } from "./aspect-ratio.directive";
 
 @NgModule({
-	declarations: [AspectRatioDirective],
+	imports: [AspectRatioDirective],
 	exports: [AspectRatioDirective]
 })
 export class AspectRatioModule {}

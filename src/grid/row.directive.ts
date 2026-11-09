@@ -1,11 +1,8 @@
-import {
-	Directive,
-	HostBinding,
-	Input
-} from "@angular/core";
+import { Directive, HostBinding, Input } from "@angular/core";
 
 @Directive({
-	selector: "[cdsRow], [ibmRow]"
+	selector: "[cdsRow], [ibmRow]",
+	standalone: true
 })
 export class RowDirective {
 	@HostBinding("class.cds--row") baseClass = true;

@@ -5,7 +5,6 @@ import {
 	Component,
 	ContentChildren,
 	ElementRef,
-	forwardRef,
 	HostBinding,
 	Input,
 	NgZone,
@@ -16,19 +15,31 @@ import {
 	SimpleChanges,
 	TemplateRef,
 	ViewChild,
-	ViewContainerRef
+	ViewContainerRef,
+	inject
 } from "@angular/core";
 
-import {
-	autoUpdate,
-	computePosition,
-	flip
-} from "@floating-ui/dom";
+import { autoUpdate, computePosition, flip } from "@floating-ui/dom";
 import { ContextMenuItemComponent, ItemClickEvent } from "carbon-components-angular/context-menu";
 import { Subscription } from "rxjs";
+import { NgClass } from "@angular/common";
+import { Button } from "carbon-components-angular/button";
+import { IconDirective } from "carbon-components-angular/icon";
+import { ContextMenuComponent } from "carbon-components-angular/context-menu";
 
 type MenuButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom-start" | "bottom-end";
 
+
+/**
+ *
+ * Get started with importing the components:
+ *
+ * ```typescript
+ * import { MenuButtonComponent, ContextMenuItemComponent } from 'carbon-components-angular';
+ * ```
+ *
+ * [See demo](../../?path=/story/components-menu-button--basic)
+ */
 @Component({
 	selector: "cds-menu-button",
 	template: `
@@ -66,11 +77,17 @@ type MenuButtonPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom-
 					'cds--menu-top-start': this.menuAlignment === 'top-start',
 					'cds--menu-top-end': this.menuAlignment === 'top-end'
 				}">
-				<ng-content select="cds-menu-item, cds-menu-divider"></ng-content>
+				<ng-content select="cds-menu-item, cds-menu-divider" />
 			</cds-menu>
 		</ng-template>
 	`,
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [
+		NgClass,
+		Button,
+		IconDirective,
+		ContextMenuComponent
+	]
 })
 export class MenuButtonComponent implements OnChanges, AfterViewInit, OnDestroy {
 	static menuButtonCounter = 0;
@@ -101,6 +118,12 @@ export class MenuButtonComponent implements OnChanges, AfterViewInit, OnDestroy 
 	@ViewChild("reference", { static: true }) referenceElement: ElementRef<HTMLButtonElement>;
 	@ViewChild("menuTemplate") menuTemplate: TemplateRef<any>;
 
+	protected ngZone = inject(NgZone);
+	protected renderer = inject(Renderer2);
+	protected hostElement = inject(ElementRef);
+	protected viewContainerRef = inject(ViewContainerRef);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+
 	protected documentClick = this.handleFocusOut.bind(this);
 	protected unmountFloatingElement: Function;
 
@@ -108,13 +131,11 @@ export class MenuButtonComponent implements OnChanges, AfterViewInit, OnDestroy 
 	private _alignment: MenuButtonPlacement = "bottom";
 	private menuRef: HTMLElement;
 
-	constructor(
-		protected ngZone: NgZone,
-		protected renderer: Renderer2,
-		protected hostElement: ElementRef,
-		protected viewContainerRef: ViewContainerRef,
-		protected changeDetectorRef: ChangeDetectorRef
-	) { }
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 
 	/**

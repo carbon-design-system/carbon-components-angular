@@ -1,9 +1,7 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, componentWrapperDecorator } from "@storybook/angular";
-import { Story, Meta } from "@storybook/angular";
+import { Meta } from "@storybook/angular";
 import {
-	GridModule,
+	GridService,
 	GridDirective,
 	RowDirective,
 	ColumnDirective
@@ -13,7 +11,7 @@ export default {
 	title: "Components/Grid/CSS",
 	decorators: [
 		moduleMetadata({
-			imports: [GridModule]
+			imports: [GridDirective, ColumnDirective, RowDirective]
 		}),
 		componentWrapperDecorator((story) => `<div class="css-grid-story">${story}</div>`)
 	],

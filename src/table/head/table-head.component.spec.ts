@@ -26,7 +26,8 @@ import { advancedFakeAsync } from "../../test-helpers/change-detection";
 				(sort)="onSort($event)">
 			</thead>
 		</table>
-	`
+	`,
+	imports: [TableModule]
 })
 class TableHeadTest {
 	@ViewChild(TableHead) head: TableHead;
@@ -56,8 +57,7 @@ describe("TableHead", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [TableHeadTest],
-			imports: [TableModule]
+			imports: [TableHeadTest]
 		});
 
 		fixture = TestBed.createComponent(TableHeadTest);

@@ -4,7 +4,8 @@ import {
 	ElementRef,
 	Input,
 	OnChanges,
-	SimpleChanges
+	SimpleChanges,
+	inject
 } from "@angular/core";
 import { IconService } from "./icon.service";
 import { getAttributes } from "@carbon/icon-helpers";
@@ -12,18 +13,20 @@ import { getAttributes } from "@carbon/icon-helpers";
 /**
  * A directive for populating a svg element based on the provided carbon icon name.
  *
- * Get started with importing the module:
+ * Get started with importing the directive:
  *
  * ```typescript
- * import { IconModule } from 'carbon-components-angular';
+ * import { IconDirective } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-icon--basic)
  */
 @Directive({
-	selector: "[cdsIcon], [ibmIcon]"
+	selector: "[cdsIcon], [ibmIcon]",
+	standalone: true
 })
 export class IconDirective implements AfterViewInit, OnChanges {
+	static titleIdCounter = 0;
 
 	/**
 	 * @deprecated since v5 - Use `cdsIcon` input property instead
@@ -31,8 +34,6 @@ export class IconDirective implements AfterViewInit, OnChanges {
 	@Input() set ibmIcon(iconName: string) {
 		this.cdsIcon = iconName;
 	}
-
-	static titleIdCounter = 0;
 
 	@Input() cdsIcon = "";
 
@@ -48,10 +49,14 @@ export class IconDirective implements AfterViewInit, OnChanges {
 
 	@Input() isFocusable = false;
 
-	constructor(
-		protected elementRef: ElementRef,
-		protected iconService: IconService
-	) {}
+	protected elementRef = inject(ElementRef);
+	protected iconService = inject(IconService);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	renderIcon(iconName: string) {
 		const root = this.elementRef.nativeElement as HTMLElement;

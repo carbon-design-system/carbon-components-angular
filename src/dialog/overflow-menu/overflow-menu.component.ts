@@ -6,19 +6,24 @@ import {
 	Input,
 	Output,
 	TemplateRef,
-	ViewEncapsulation
+	ViewEncapsulation,
+	inject
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 import { OverflowMenuDirective } from "./overflow-menu.directive";
-import { BaseIconButton } from "carbon-components-angular/button";
+import { BaseIconButton, Button } from "carbon-components-angular/button";
+import { Tooltip } from "carbon-components-angular/tooltip";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
+import { PLACEHOLDER_SERVICE_PROVIDER } from "carbon-components-angular/placeholder";
 
 /**
  * The OverFlow menu component encapsulates the OverFlowMenu directive, and the menu iconography into one convienent component.
  *
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { DialogModule } from 'carbon-components-angular';
+ * import { OverflowMenu, OverflowMenuOption } from 'carbon-components-angular';
  * ```
  *
  * ```html
@@ -59,15 +64,20 @@ import { BaseIconButton } from "carbon-components-angular/button";
 				aria-haspopup="true"
 				type="button"
 				[placement]="placement">
-				<ng-template *ngIf="customTrigger; else defaultIcon" [ngTemplateOutlet]="customTrigger"></ng-template>
+				@if (customTrigger) {
+					<ng-template [ngTemplateOutlet]="customTrigger" />
+				} @else {
+					<svg
+						cdsIcon="overflow-menu--vertical"
+						size="16"
+						class="cds--overflow-menu__icon">
+					</svg>
+				}
 			</button>
 		</cds-tooltip>
 
 		<ng-template #options>
-			<ng-content></ng-content>
-		</ng-template>
-		<ng-template #defaultIcon>
-			<svg cdsIcon="overflow-menu--vertical" size="16" class="cds--overflow-menu__icon"></svg>
+			<ng-content />
 		</ng-template>
 	`,
 	styles: [`
@@ -87,9 +97,20 @@ import { BaseIconButton } from "carbon-components-angular/button";
 			transform: rotate(180deg);
 		}
 	`],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
+	providers: [PLACEHOLDER_SERVICE_PROVIDER],
+	imports: [
+		Tooltip,
+		Button,
+		OverflowMenuDirective,
+		NgClass,
+		NgTemplateOutlet,
+		IconDirective
+	]
 })
 export class OverflowMenu extends BaseIconButton {
+	public i18n = inject(I18n);
+
 	@Input() buttonLabel = this.i18n.get().OVERFLOW_MENU.OVERFLOW;
 
 	@Input() description = this.i18n.get().OVERFLOW_MENU.ICON_DESCRIPTION;
@@ -120,7 +141,13 @@ export class OverflowMenu extends BaseIconButton {
 
 	@ContentChild(OverflowMenuDirective) overflowMenuDirective: OverflowMenuDirective;
 
-	constructor(protected elementRef: ElementRef, protected i18n: I18n) {
+	protected elementRef = inject(ElementRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
 		super();
 	}
 

@@ -6,8 +6,7 @@ import { advancedFakeAsync } from "../test-helpers/change-detection";
 import { Modal } from "./modal.component";
 import { Overlay } from "./overlay.component";
 import { ModalService } from "./modal.service";
-import { I18nModule } from "../i18n/index";
-import { PlaceholderModule } from "./../placeholder/index";
+import { Placeholder } from "./../placeholder/index";
 import { BaseModalService } from "./base-modal.service";
 import { ModalModule } from "./modal.module";
 import { ModalHeader } from "./modal-header.component";
@@ -32,10 +31,9 @@ describe("Modal", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [Modal, Overlay],
 			imports: [
-				I18nModule,
-				PlaceholderModule
+				Placeholder,
+				Modal, Overlay
 			],
 			providers: [ModalService, BaseModalService]
 		});
@@ -80,7 +78,8 @@ describe("Modal", () => {
 		<cds-modal [open]="open" ariaLabel="test modal">
 			<button modal-primary-focus>focus me</button>
 		</cds-modal>
-	`
+	`,
+	imports: [Placeholder, Modal, Overlay, ModalModule]
 })
 class ModalOpenStateTest {
 	@ViewChild(Modal) modal: Modal;
@@ -93,10 +92,8 @@ describe("Modal open state", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [Modal, Overlay, ModalOpenStateTest],
 			imports: [
-				I18nModule,
-				PlaceholderModule
+				ModalOpenStateTest
 			],
 			providers: [ModalService, BaseModalService]
 		});
@@ -159,7 +156,8 @@ describe("Modal open state", () => {
 				<button cdsButton="primary">Save</button>
 			</cds-modal-footer>
 		</cds-modal>
-	`
+	`,
+	imports: [Placeholder, Modal, Overlay, ModalModule]
 })
 class ModalHeaderFooterTest {
 	@ViewChild(ModalHeader) header: ModalHeader;
@@ -175,8 +173,9 @@ describe("ModalHeader and ModalFooter", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [ModalHeaderFooterTest],
-			imports: [ModalModule, I18nModule, PlaceholderModule],
+			imports: [
+				ModalHeaderFooterTest
+			],
 			providers: [ModalService, BaseModalService]
 		});
 

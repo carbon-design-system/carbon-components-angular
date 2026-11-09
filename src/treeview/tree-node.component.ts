@@ -1,17 +1,21 @@
 import {
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	Input,
 	Output,
 	EventEmitter,
 	OnInit,
 	OnDestroy,
-	AfterContentInit,
 	TemplateRef,
-	AfterContentChecked
+	AfterContentChecked,
+	inject
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { TreeViewService } from "./treeview.service";
 import { EventOnNode, Node } from "./tree-node.types";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 
 @Component({
 	selector: "cds-tree-node",
@@ -36,87 +40,87 @@ import { EventOnNode, Node } from "./tree-node.types";
 			(focus)="emitFocusEvent($event)"
 			(blur)="emitBlurEvent($event)"
 			(keydown)="navigateTree($event)">
-			<div
-				*ngIf="!children.length"
-				class="cds--tree-node__label"
-				[style.padding-inline-start.rem]="offset"
-				[style.margin-inline-start.rem]="-offset"
-				(click)="nodeClick($event)">
-				<!-- Icon -->
-				<ng-container *ngIf="icon && !isTemplate(icon)">
-					<svg
-						class="cds--tree-node__icon"
-						[cdsIcon]="icon"
-						size="16">
-					</svg>
-				</ng-container>
-				<ng-template *ngIf="isTemplate(icon)" [ngTemplateOutlet]="icon"></ng-template>
-				<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-				<ng-template
-					*ngIf="isTemplate(label)"
-					[ngTemplateOutlet]="label"
-					[ngTemplateOutletContext]="{ $implicit: labelContext }">
-				</ng-template>
-			</div>
-			<div
-				*ngIf="children.length"
-				class="cds--tree-node__label"
-				[style.padding-inline-start.rem]="offset"
-				[style.margin-inline-start.rem]="-offset"
-				role="group"
-				(click)="nodeClick($event)">
-				<span
-					class="cds--tree-parent-node__toggle"
-					[attr.disabled]="disabled || null"
-					(click)="toggleExpanded($event)">
-					<svg
-						class="cds--tree-parent-node__toggle-icon"
-						[ngClass]="{'cds--tree-parent-node__toggle-icon--expanded' : expanded}"
-						ibmIcon="caret--down"
-						size="16">
-					</svg>
-				</span>
-				<span class="cds--tree-node__label__details">
+			@if (children.length) {
+				<div
+					class="cds--tree-node__label"
+					[style.padding-inline-start.rem]="offset"
+					[style.margin-inline-start.rem]="-offset"
+					role="group"
+					(click)="nodeClick($event)">
+					<span
+						class="cds--tree-parent-node__toggle"
+						[attr.disabled]="disabled || null"
+						(click)="toggleExpanded($event)">
+						<svg
+							class="cds--tree-parent-node__toggle-icon"
+							[ngClass]="{'cds--tree-parent-node__toggle-icon--expanded' : expanded}"
+							ibmIcon="caret--down"
+							size="16">
+						</svg>
+					</span>
+					<span class="cds--tree-node__label__details">
+						<!-- Icon -->
+						@if (isTemplate(icon)) {
+							<ng-template [ngTemplateOutlet]="icon" [ngTemplateOutletContext]="{ $implicit: iconContext }" />
+						} @else if(icon) {
+							<svg
+								class="cds--tree-node__icon"
+								[cdsIcon]="icon"
+								size="16">
+							</svg>
+						}
+						@if (isTemplate(label)) {
+							<ng-template [ngTemplateOutlet]="label" [ngTemplateOutletContext]="{ $implicit: labelContext }" />
+						} @else {
+							{{label}}
+						}
+					</span>
+				</div>
+			} @else {
+				<div
+					class="cds--tree-node__label"
+					[style.padding-inline-start.rem]="offset"
+					[style.margin-inline-start.rem]="-offset"
+					(click)="nodeClick($event)">
 					<!-- Icon -->
-					<ng-container *ngIf="icon && !isTemplate(icon)">
+					@if (isTemplate(icon)) {
+						<ng-template [ngTemplateOutlet]="icon" />
+					} @else if(icon){
 						<svg
 							class="cds--tree-node__icon"
 							[cdsIcon]="icon"
 							size="16">
 						</svg>
-					</ng-container>
-					<ng-template
-						*ngIf="isTemplate(icon)"
-						[ngTemplateOutlet]="icon"
-						[ngTemplateOutletContext]="{ $implicit: iconContext }">
-					</ng-template>
-					<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-					<ng-template
-						*ngIf="isTemplate(label)"
-						[ngTemplateOutlet]="label"
-						[ngTemplateOutletContext]="{ $implicit: labelContext }">
-					</ng-template>
-				</span>
-			</div>
-			<div
-				*ngIf="expanded"
-				role="group"
-				class="cds--tree-node__children">
-				<ng-container *ngIf="isProjected(); else notProjected">
-					<ng-content></ng-content>
-				</ng-container>
-				<ng-template #notProjected>
-					<cds-tree-node
-						*ngFor="let childNode of children"
-						[node]="childNode"
-						[depth]="depth + 1"
-						[disabled]="disabled"
-						(nodetoggle)="nodetoggle.emit($event)">
-					</cds-tree-node>
-				</ng-template>
-			</div>
+					}
+					@if (isTemplate(label)) {
+						<ng-template [ngTemplateOutlet]="label" [ngTemplateOutletContext]="{ $implicit: labelContext }" />
+					} @else {
+						{{label}}
+					}
+				</div>
+			}
+			@if (expanded) {
+				<div
+					role="group"
+					class="cds--tree-node__children">
+					@if (isProjected()) {
+						<ng-content />
+					} @else {
+						@for (childNode of children; track childNode) {
+							<cds-tree-node
+								[node]="childNode"
+								[depth]="depth + 1"
+								[disabled]="disabled"
+								(nodetoggle)="nodetoggle.emit($event)">
+							</cds-tree-node>
+						}
+					}
+				</div>
+			}
 		</div>
-	`
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgClass, IconDirective, NgTemplateOutlet]
 })
 export class TreeNodeComponent implements AfterContentChecked, OnInit, OnDestroy {
 	static treeNodeCount = 0;
@@ -175,8 +179,14 @@ export class TreeNodeComponent implements AfterContentChecked, OnInit, OnDestroy
 	offset;
 	private _node;
 	private subscription: Subscription;
+	private treeViewService = inject(TreeViewService);
+	private changeDetectorRef = inject(ChangeDetectorRef);
 
-	constructor(private treeViewService: TreeViewService) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	/**
 	 * Caclulate offset for margin/padding
@@ -193,6 +203,8 @@ export class TreeNodeComponent implements AfterContentChecked, OnInit, OnDestroy
 		this.subscription = this.treeViewService.selectionObservable.subscribe((value: Map<string, Node>) => {
 			this.selected = this.selectable && value.has(this.id);
 			this.active = this.selectable && this.selected;
+			// selection is broadcast to every node, not only the one that was clicked
+			this.changeDetectorRef.markForCheck();
 		});
 	}
 

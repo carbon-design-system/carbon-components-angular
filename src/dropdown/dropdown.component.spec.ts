@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { fakeAsync, TestBed } from "@angular/core/testing";
 import { By	 } from "@angular/platform-browser";
 import { advancedFakeAsync, hasClass } from "../test-helpers/change-detection";
@@ -6,28 +6,29 @@ import { advancedFakeAsync, hasClass } from "../test-helpers/change-detection";
 import { Dropdown } from "./dropdown.component";
 import { DropdownList } from "./list/dropdown-list.component";
 import { ListItem } from "./list-item.interface";
-import { ScrollableList } from "./scrollable-list.directive";
-import { I18nModule } from "../i18n/index";
-import { DropdownService } from "./dropdown.service";
-import { PlaceholderModule } from "./../placeholder/index";
 import { FormsModule } from "@angular/forms";
-import { UtilsModule } from "../utils/utils.module";
-import { IconModule } from "../icon/index";
 
 @Component({
 	template: `
 	<cds-dropdown
 		placeholder="test"
 		class="custom-class"
+		[isOpen]="isOpen"
 		(selected)="onSelect()"
 		[(ngModel)]="model">
-		<cds-dropdown-list [items]="items"></cds-dropdown-list>
-	</cds-dropdown>`
+		<cds-dropdown-list [items]="items" />
+	</cds-dropdown>`,
+	imports: [
+		Dropdown,
+		DropdownList,
+		FormsModule
+	]
 })
 class DropdownTest {
 	model = null;
-	items = [{content: "one", id: 0, selected: false}, {content: "two", id: 1, selected: false}];
+	items = [{ content: "one", id: 0, selected: false }, { content: "two", id: 1, selected: false }];
 	selected: ListItem;
+	@Input() isOpen = false;
 	onSelect() {}
 }
 
@@ -42,7 +43,11 @@ class DropdownTest {
 		[type]="type"
 		(selected)="onSelect()">
 		<cds-dropdown-list [items]="items"></cds-dropdown-list>
-	</cds-dropdown>`
+	</cds-dropdown>`,
+	imports: [
+		Dropdown,
+		DropdownList
+	]
 })
 class DropdownTestNoModel {
 	items = [{content: "one", id: 0, selected: false}, {content: "two", id: 1, selected: false}];
@@ -57,21 +62,10 @@ describe("Dropdown", () => {
 	let fixture, element, wrapper;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				Dropdown,
-				DropdownList,
-				DropdownTest,
-				ScrollableList,
-				DropdownTestNoModel
-			],
 			imports: [
-				I18nModule,
-				PlaceholderModule,
-				FormsModule,
-				IconModule,
-				UtilsModule
-			],
-			providers: [ DropdownService ]
+				DropdownTest,
+				DropdownTestNoModel
+			]
 		});
 	});
 
@@ -129,7 +123,7 @@ describe("Dropdown", () => {
 		spyOn(wrapper, "onSelect");
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("cds-dropdown"));
-		element.componentInstance.menuIsClosed = false;
+		fixture.componentRef.setInput("isOpen", true);
 		fixture.detectChanges();
 		element.nativeElement.querySelector(".cds--list-box__menu-item__option").click();
 		fixture.detectChanges();
@@ -235,7 +229,8 @@ describe("Dropdown", () => {
 		spyOn(element.componentInstance.view, "propagateSelected").and.callThrough();
 		expect(element.componentInstance.view.propagateSelected).not.toHaveBeenCalled();
 		element.componentInstance.writeValue(null);
-		expect(element.componentInstance.view.propagateSelected).toHaveBeenCalledWith([{ content: expectedContent, id: null, selected: true }]);
+		expect(element.componentInstance.view.propagateSelected)
+			.toHaveBeenCalledWith([{ content: expectedContent, id: null, selected: true }]);
 		expect(element.componentInstance.view.getSelected()[0].content).toEqual(expectedContent);
 	});
 
@@ -252,7 +247,7 @@ describe("Dropdown", () => {
 		dropdown.view.select.emit({ item: { content: "one", id: 0, selected: true } });
 		advancedFakeAsync(fixture);
 
-		expect(dropdown.menuIsClosed).toBe(true);
+		expect(dropdown.isOpen).toBe(false);
 		expect(hasClass(fixture, ".cds--list-box", "cds--list-box--expanded")).toBe(false);
 		expect(fixture.nativeElement.querySelector(".cds--list-box__field").getAttribute("aria-expanded")).toBe("false");
 	}));
@@ -292,7 +287,7 @@ describe("Dropdown", () => {
 		document.body.click();
 		advancedFakeAsync(fixture);
 
-		expect(dropdown.menuIsClosed).toBe(true);
+		expect(dropdown.isOpen).toBe(false);
 		expect(hasClass(fixture, ".cds--list-box", "cds--list-box--expanded")).toBe(false);
 	}));
 

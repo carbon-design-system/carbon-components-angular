@@ -1,18 +1,28 @@
-import { Component, Input, OnChanges } from "@angular/core";
+import {
+	ChangeDetectionStrategy,
+	Component,
+	Input,
+	OnChanges
+} from "@angular/core";
+import { NgClass } from "@angular/common";
 
 @Component({
 	selector: "cds-skeleton-text, ibm-skeleton-text",
 	template: `
-		<p
-			*ngFor="let width of lineWidths"
-			class="cds--skeleton__text"
-			[ngClass]="{
-				'cds--skeleton__heading': heading,
-				'cds--skeleton__text--ai': ai
-			}"
-			[style.width]="width">
-		</p>
-	`
+		@for (width of lineWidths; track width) {
+			<p
+				class="cds--skeleton__text"
+				[ngClass]="{
+					'cds--skeleton__heading': heading,
+					'cds--skeleton__text--ai': ai
+				}"
+				[style.width]="width">
+			</p>
+		}
+	`,
+	standalone: true,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgClass]
 })
 export class SkeletonText implements OnChanges {
 	@Input() lines = 5;

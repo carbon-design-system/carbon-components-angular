@@ -2,7 +2,8 @@ import {
 	Component,
 	Input,
 	OnInit,
-	HostBinding
+	HostBinding,
+	inject
 } from "@angular/core";
 
 import { isObservable, of } from "rxjs";
@@ -10,6 +11,12 @@ import { ToastContent } from "./notification-content.interface";
 import { NotificationDisplayService } from "./notification-display.service";
 import { I18n } from "carbon-components-angular/i18n";
 import { BaseNotification } from "./base-notification.component";
+import { IconDirective } from "carbon-components-angular/icon";
+import { ToastTitle } from "./toast-title.directive";
+import { ToastSubtitle } from "./toast-subtitle.directive";
+import { ToastCaption } from "./toast-caption.directive";
+import { NgTemplateOutlet, AsyncPipe } from "@angular/common";
+import { NotificationService } from "./notification.service";
 
 /**
  * Toast messages are displayed toward the top of the UI and do not interrupt user’s work.
@@ -19,32 +26,50 @@ import { BaseNotification } from "./base-notification.component";
 @Component({
 	selector: "cds-toast, ibm-toast",
 	template: `
-		<svg
-			[cdsIcon]="iconDictionary[notificationObj.type]"
-			size="20"
-			*ngIf="notificationObj.type"
-			class="cds--toast-notification__icon">
-		</svg>
+		@if (notificationObj.type) {
+			<svg
+				[cdsIcon]="iconDictionary[notificationObj.type]"
+				size="20"
+				class="cds--toast-notification__icon">
+			</svg>
+		}
 		<div class="cds--toast-notification__details">
-			<h3 *ngIf="!notificationObj.template" cdsToastTitle [innerHTML]="notificationObj.title"></h3>
-			<div *ngIf="!notificationObj.template && notificationObj.subtitle" cdsToastSubtitle>
-				<span [innerHTML]="notificationObj.subtitle"></span>
-			</div>
-			<p *ngIf="!notificationObj.template && notificationObj.caption" cdsToastCaption [innerHTML]="notificationObj.caption"></p>
-			<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj }"></ng-container>
+			@if (!notificationObj.template) {
+				<h3 cdsToastTitle [innerHTML]="notificationObj.title"></h3>
+				@if (notificationObj.subtitle) {
+					<div cdsToastSubtitle>
+						<span [innerHTML]="notificationObj.subtitle"></span>
+					</div>
+				}
+				@if (notificationObj.caption) {
+					<p cdsToastCaption [innerHTML]="notificationObj.caption"></p>
+				}
+			}
+			<ng-container *ngTemplateOutlet="notificationObj.template; context: { $implicit: notificationObj }" />
 		</div>
-		<button
-			*ngIf="!isCloseHidden"
-			class="cds--toast-notification__close-button"
-			type="button"
-			[attr.aria-label]="notificationObj.closeLabel | async"
-			(click)="onClose()">
-			<svg cdsIcon="close" size="16" class="cds--toast-notification__close-icon"></svg>
-		</button>
-	`
+		@if (!isCloseHidden) {
+			<button
+				class="cds--toast-notification__close-button"
+				type="button"
+				[attr.aria-label]="notificationObj.closeLabel | async"
+				(click)="onClose()">
+				<svg cdsIcon="close" size="16" class="cds--toast-notification__close-icon"></svg>
+			</button>
+		}
+	`,
+	providers: [NotificationDisplayService],
+	imports: [
+		IconDirective,
+		ToastTitle,
+		ToastSubtitle,
+		ToastCaption,
+		NgTemplateOutlet,
+		AsyncPipe
+	]
 })
 export class Toast extends BaseNotification implements OnInit {
 	private static toastCount = 0;
+
 	/**
 	 * Can have `type`, `title`, `subtitle`, and `caption` members.
 	 *
@@ -73,8 +98,15 @@ export class Toast extends BaseNotification implements OnInit {
 	@HostBinding("class.cds--toast-notification--low-contrast") get isLowContrast() { return this.notificationObj.lowContrast; }
 	@HostBinding("class.cds--toast-notification--hide-close-button") get isCloseHidden() { return !this.notificationObj.showClose; }
 
-	constructor(protected notificationDisplayService: NotificationDisplayService, protected i18n: I18n) {
-		super(notificationDisplayService, i18n);
+	protected notificationDisplayService: NotificationDisplayService;
+	protected i18n: I18n;
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
+		super();
 	}
 
 	ngOnInit() {

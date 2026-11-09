@@ -3,14 +3,19 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	AfterViewInit
+	AfterViewInit,
+	ChangeDetectorRef,
+	inject
 } from "@angular/core";
 
 import { TableModel } from "../table-model.class";
 import { getScrollbarWidth } from "carbon-components-angular/utils";
-import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
-import { TableRowSize } from "../table.types";
+import { TableHeadExpand } from "./table-head-expand.component";
+import { NgClass, NgStyle } from "@angular/common";
+import { TableHeadCheckbox } from "./table-head-checkbox.component";
+import { TableHeadCell } from "./table-head-cell.component";
 
 /**
  * A subcomponent that creates the thead of the table
@@ -22,88 +27,102 @@ import { TableRowSize } from "../table.types";
  * ```
  */
 @Component({
-	// tslint:disable-next-line:component-selector
+	// eslint-disable-next-line @angular-eslint/component-selector
 	selector: "[cdsTableHead], [ibmTableHead]",
 	template: `
-	<ng-container *ngIf="model">
-		<tr>
-			<th
-				*ngIf="withRowAILabels && model.header[0] && model.header[0].visible"
-				[ngStyle]="model.header[0].style"
-				cdsTableHeadCell
-				scope="col"
-				[class]="model.header[0].className"
-				[sortable]="sortable"
-				[skeleton]="skeleton"
-				[id]="model.getId(0)"
-				[column]="model.header[0]"
-				[filterTitle]="getFilterTitle()"
-				[attr.colspan]="model.header[0].colSpan"
-				[attr.rowspan]="model.header[0].rowSpan"
-				(sort)="sort.emit(0)">
-			</th>
-			<th
-				cdsTableHeadExpand
-				*ngIf="model.hasExpandableRows()"
-				scope="col"
-				[showExpandAllToggle]="showExpandAllToggle"
-				[ngClass]="{'cds--table-expand-v2': stickyHeader}"
-				[id]="model.getId('expand')"
-				[expanded]="model.expandableRowsCount() === model.expandedRowsCount()"
-				(expandedChange)="onExpandAllRowsChange($event)">
-			</th>
-			<th
-				*ngIf="!skeleton && showSelectionColumn && enableSingleSelect"
-				scope="col"
-				[id]="model.getId('select')">
-				<!-- add width 0; since the carbon styles don't seem to constrain this headers width -->
-			</th>
-			<th
-				cdsTableHeadCheckbox
-				*ngIf="!skeleton && showSelectionColumn && !enableSingleSelect"
-				scope="col"
-				[checked]="selectAllCheckbox"
-				[indeterminate]="selectAllCheckboxSomeSelected"
-				[ariaLabel]="getCheckboxHeaderLabel()"
-				[skeleton]="skeleton"
-				[name]="model.getHeaderId('select')"
-				(change)="onSelectAllCheckboxChange()"
-				[id]="model.getId('select')">
-			</th>
-			<ng-container *ngFor="let column of model.header; let i = index">
-				<th
-					*ngIf="column && column.visible && (!withRowAILabels || i > 0)"
-					[ngStyle]="column.style"
-					cdsTableHeadCell
-					scope="col"
-					[class]="column.className"
-					[sortable]="sortable"
-					[skeleton]="skeleton"
-					[id]="model.getId(i)"
-					[column]="column"
-					[filterTitle]="getFilterTitle()"
-					[attr.colspan]="column.colSpan"
-					[attr.rowspan]="column.rowSpan"
-					(sort)="sort.emit(i)">
-				</th>
-			</ng-container>
-			<th *ngIf="!skeleton && stickyHeader && scrollbarWidth"
-				scope="col"
-				[ngStyle]="{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}">
-				<!--
-					Scrollbar pushes body to the left so this header column is added to push
-					the title bar the same amount and keep the header and body columns aligned.
-				-->
-			</th>
-		</tr>
-	</ng-container>
-	<ng-content></ng-content>
+		@if (model) {
+			<tr>
+				@if (withRowAILabels && model.header[0] && model.header[0].visible) {
+					<th
+						[ngStyle]="model.header[0].style"
+						cdsTableHeadCell
+						scope="col"
+						[class]="model.header[0].className"
+						[sortable]="sortable"
+						[skeleton]="skeleton"
+						[id]="model.getId(0)"
+						[column]="model.header[0]"
+						[filterTitle]="getFilterTitle()"
+						[attr.colspan]="model.header[0].colSpan"
+						[attr.rowspan]="model.header[0].rowSpan"
+						(sort)="sort.emit(0)">
+					</th>
+				}
+				@if (model.hasExpandableRows()) {
+					<th
+						cdsTableHeadExpand
+						scope="col"
+						[showExpandAllToggle]="showExpandAllToggle"
+						[ngClass]="{'cds--table-expand-v2': stickyHeader}"
+						[id]="model.getId('expand')"
+						[expanded]="model.expandableRowsCount() === model.expandedRowsCount()"
+						(expandedChange)="onExpandAllRowsChange($event)">
+					</th>
+				}
+				@if (!skeleton && showSelectionColumn && enableSingleSelect) {
+					<th
+						scope="col"
+						[id]="model.getId('select')">
+						<!-- add width 0; since the carbon styles don't seem to constrain this headers width -->
+					</th>
+				}
+				@if (!skeleton && showSelectionColumn && !enableSingleSelect) {
+					<th
+						cdsTableHeadCheckbox
+						scope="col"
+						[checked]="selectAllCheckbox"
+						[indeterminate]="selectAllCheckboxSomeSelected"
+						[ariaLabel]="getCheckboxHeaderLabel()"
+						[skeleton]="skeleton"
+						[name]="model.getHeaderId('select')"
+						(change)="onSelectAllCheckboxChange()"
+						[id]="model.getId('select')">
+					</th>
+				}
+				@for (column of model.header; track column; let i = $index) {
+					@if (column && column.visible && (!withRowAILabels || i > 0)) {
+						<th
+							[ngStyle]="column.style"
+							cdsTableHeadCell
+							scope="col"
+							[class]="column.className"
+							[sortable]="sortable"
+							[skeleton]="skeleton"
+							[id]="model.getId(i)"
+							[column]="column"
+							[filterTitle]="getFilterTitle()"
+							[attr.colspan]="column.colSpan"
+							[attr.rowspan]="column.rowSpan"
+							(sort)="sort.emit(i)">
+						</th>
+					}
+				}
+				@if (!skeleton && stickyHeader && scrollbarWidth) {
+					<th
+						scope="col"
+						[ngStyle]="{'width': scrollbarWidth + 'px', 'padding': 0, 'border': 0}">
+						<!--
+							Scrollbar pushes body to the left so this header column is added to push
+							the title bar the same amount and keep the header and body columns aligned.
+						-->
+					</th>
+				}
+			</tr>
+		}
+		<ng-content />
 	`,
 	styles: [`
 		.cds--table-expand-v2 {
 			padding-left: 2.5rem;
 		}
-	`]
+	`],
+	imports: [
+		TableHeadExpand,
+		NgClass,
+		TableHeadCheckbox,
+		TableHeadCell,
+		NgStyle
+	]
 })
 export class TableHead implements AfterViewInit {
 	@Input() model: TableModel;
@@ -200,16 +219,23 @@ export class TableHead implements AfterViewInit {
 
 	public scrollbarWidth = 0;
 
+	protected i18n = inject(I18n);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
 	protected _checkboxHeaderLabel = this.i18n.getOverridable("TABLE.CHECKBOX_HEADER");
 	protected _sortDescendingLabel = this.i18n.getOverridable("TABLE.SORT_DESCENDING");
 	protected _sortAscendingLabel = this.i18n.getOverridable("TABLE.SORT_ASCENDING");
 	protected _filterTitle = this.i18n.getOverridable("TABLE.FILTER");
 
-	constructor(protected i18n: I18n) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngAfterViewInit() {
 		setTimeout(() => {
 			this.scrollbarWidth = getScrollbarWidth();
+			this.changeDetectorRef.markForCheck();
 		});
 	}
 

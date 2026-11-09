@@ -1,8 +1,5 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
 import {
-	ContextMenuModule,
 	ContextMenuComponent,
 	ContextMenuDividerComponent,
 	ContextMenuItemComponent,
@@ -13,7 +10,12 @@ export default {
 	title: "Components/Context Menu",
 	decorators: [
 		moduleMetadata({
-			imports: [ContextMenuModule]
+			imports: [
+				ContextMenuComponent,
+				ContextMenuDividerComponent,
+				ContextMenuItemComponent,
+				ContextMenuGroupComponent
+			]
 		})
 	],
 	args: {

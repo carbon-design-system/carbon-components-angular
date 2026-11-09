@@ -1,13 +1,6 @@
-/* tslint:disable variable-name */
-
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { moduleMetadata, Meta } from "@storybook/angular";
-import {
-	SelectModule,
-	Select,
-	Option,
-	OptGroup
-} from "./";
+import { Select, Option, OptGroup } from "./";
 
 import { ReactiveFormsSelect } from "./stories";
 import { AILabelModule } from "../ai-label";
@@ -20,14 +13,16 @@ export default {
 	decorators: [
 		moduleMetadata({
 			imports: [
-				SelectModule,
 				FormsModule,
 				ReactiveFormsModule,
 				AILabelModule,
 				ButtonModule,
-				IconModule
-			],
-			declarations: [ReactiveFormsSelect]
+				IconModule,
+				Select,
+				Option,
+				OptGroup,
+				ReactiveFormsSelect
+			]
 		})
 	],
 	args: {

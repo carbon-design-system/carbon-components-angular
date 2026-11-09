@@ -1,8 +1,6 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { FormsModule } from "@angular/forms";
-import { NumberModule, NumberComponent } from "./";
+import { NumberComponent } from "./";
 import { AILabelModule } from "../ai-label";
 import { ButtonModule } from "../button";
 import { IconModule } from "../icon";
@@ -12,7 +10,7 @@ export default {
 	title: "Components/Number Input",
 	decorators: [
 		moduleMetadata({
-			imports: [NumberModule, FormsModule, AILabelModule, ButtonModule, IconModule]
+			imports: [NumberComponent, FormsModule, AILabelModule, ButtonModule, IconModule]
 		})
 	],
 	args: {

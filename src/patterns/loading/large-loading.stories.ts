@@ -1,15 +1,16 @@
-/* tslint:disable variable-name */
-
 import { Component } from "@angular/core";
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { GridModule } from "../../grid";
-import { UIShellModule } from "../../ui-shell";
-import { ProgressIndicatorModule } from "../../progress-indicator";
-import { PlaceholderModule } from "../../placeholder";
-import { InputModule } from "../../input";
-import { DropdownModule } from "../../dropdown";
-import { LoadingModule } from "../../loading";
-import { ButtonModule } from "../../button";
+import {
+	ColumnDirective,
+	GridDirective,
+	GridService,
+	RowDirective
+} from "../../grid";
+import { ProgressIndicator} from "../../progress-indicator";
+import { Placeholder } from "../../placeholder";
+import { Dropdown, DropdownList } from "../../dropdown";
+import { Loading } from "../../loading";
+import { Button } from "../../button";
 import {
 	FormGroup,
 	FormControl,
@@ -17,6 +18,9 @@ import {
 	FormsModule,
 	ReactiveFormsModule
 } from "@angular/forms";
+import { Checkbox } from "../../checkbox";
+import { Label, TextArea, TextInput } from "../../input";
+import { Hamburger, Header } from "../../ui-shell";
 
 @Component({
 	selector: "app-sample-large-loading",
@@ -80,12 +84,13 @@ import {
 			</form>
 		</div>
 	</div>
-	<cds-loading
-		*ngIf="isLoading"
-		[isActive]="isLoading"
-		size="normal"
-		[overlay]="overlay">
-	</cds-loading>
+	@if (isLoading) {
+		<cds-loading
+			[isActive]="isLoading"
+			size="normal"
+			[overlay]="overlay">
+		</cds-loading>
+	}
 	`,
 	styles: [`
 		.header {
@@ -100,6 +105,27 @@ import {
 			width: 50%;
 		}
 	`
+	],
+	standalone: true,
+	imports: [
+		GridDirective,
+		RowDirective,
+		ColumnDirective,
+		Checkbox,
+		Dropdown,
+		DropdownList,
+		Placeholder,
+		Loading,
+		ProgressIndicator,
+		Loading,
+		FormsModule,
+		ReactiveFormsModule,
+		Button,
+		TextInput,
+		TextArea,
+		Label,
+		Header,
+		Hamburger
 	]
 })
 class SampleLargeLoading {
@@ -180,18 +206,9 @@ export default {
 	title: "Pattern/Loading",
 	decorators: [
 		moduleMetadata({
-			declarations: [SampleLargeLoading],
+			declarations: [],
 			imports: [
-				DropdownModule,
-				GridModule,
-				UIShellModule,
-				ProgressIndicatorModule,
-				PlaceholderModule,
-				InputModule,
-				LoadingModule,
-				FormsModule,
-				ReactiveFormsModule,
-				ButtonModule
+				SampleLargeLoading
 			]
 		})
 	]

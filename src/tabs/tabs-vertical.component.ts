@@ -11,6 +11,7 @@ import {
 } from "@angular/core";
 import { Tab } from "./tab.component";
 import { TabHeadersVertical } from "./tab-headers-vertical.component";
+import { TabSkeleton } from "./tab-skeleton.component";
 
 /**
  * `TabsVertical` is a vertical-orientation variant of `Tabs`. It expects a set
@@ -26,29 +27,30 @@ import { TabHeadersVertical } from "./tab-headers-vertical.component";
 @Component({
 	selector: "cds-tabs-vertical, ibm-tabs-vertical",
 	template: `
-		<ng-container *ngIf="skeleton">
-			<cds-tabs-skeleton [contained]="true"></cds-tabs-skeleton>
-		</ng-container>
-		<ng-container *ngIf="!skeleton">
-			<cds-tab-headers-vertical
-				*ngIf="hasTabHeaders()"
-				[tabs]="tabs"
-				[followFocus]="followFocus"
-				[cacheActive]="cacheActive"
-				[contentBefore]="before"
-				[contentAfter]="after"
-				[ariaLabel]="ariaLabel"
-				[ariaLabelledby]="ariaLabelledby">
-			</cds-tab-headers-vertical>
-			<ng-content></ng-content>
+		@if (skeleton) {
+			<cds-tabs-skeleton [contained]="true" />
+		}
+		@if (!skeleton) {
+			@if (hasTabHeaders()) {
+				<cds-tab-headers-vertical
+					[tabs]="tabs"
+					[followFocus]="followFocus"
+					[cacheActive]="cacheActive"
+					[contentBefore]="before"
+					[contentAfter]="after"
+					[ariaLabel]="ariaLabel"
+					[ariaLabelledby]="ariaLabelledby" />
+			}
+			<ng-content />
 			<ng-template #before>
-				<ng-content select="[before]"></ng-content>
+				<ng-content select="[before]" />
 			</ng-template>
 			<ng-template #after>
-				<ng-content select="[after]"></ng-content>
+				<ng-content select="[after]" />
 			</ng-template>
-		</ng-container>
-	`
+		}
+	`,
+	imports: [TabSkeleton, TabHeadersVertical]
 })
 export class TabsVertical implements AfterContentInit, OnChanges {
 	@HostBinding("class.cds--css-grid") cssGridClass = true;

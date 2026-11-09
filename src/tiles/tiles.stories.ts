@@ -1,9 +1,9 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
+import { LayerDirective } from "../layer";
+import { SkeletonPlaceholder, SkeletonText } from "../skeleton";
+import { Tile, TileGroup } from "./";
 import { LayerModule } from "../layer";
 import { SkeletonModule } from "../skeleton";
-import { TilesModule, Tile } from "./";
 import { AILabelModule } from "../ai-label";
 import { ButtonModule } from "../button";
 import { IconModule } from "../icon";
@@ -14,7 +14,11 @@ export default {
 	decorators: [
 		moduleMetadata({
 			imports: [
-				TilesModule,
+				Tile,
+				TileGroup,
+				LayerDirective,
+				SkeletonPlaceholder,
+				SkeletonText,
 				LayerModule,
 				SkeletonModule,
 				AILabelModule,

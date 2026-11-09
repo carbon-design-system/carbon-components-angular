@@ -1,8 +1,5 @@
-import {
-	Component,
-	forwardRef,
-	Input
-} from "@angular/core";
+import { Component, forwardRef, Input } from "@angular/core";
+import { NgTemplateOutlet } from "@angular/common";
 import { Tab } from "./tab.component";
 
 /**
@@ -18,19 +15,19 @@ import { Tab } from "./tab.component";
 @Component({
 	selector: "cds-icon-tab, ibm-icon-tab",
 	template: `
-		<ng-container *ngIf="shouldRender()">
-			<ng-template
-				*ngIf="isTemplate(tabContent)"
-				[ngTemplateOutlet]="tabContent"
-				[ngTemplateOutletContext]="{ $implicit: templateContext }">
-			</ng-template>
-			<ng-content></ng-content>
-		</ng-container>
+		@if (shouldRender()) {
+			@if (isTemplate(tabContent)) {
+				<ng-template
+					[ngTemplateOutlet]="tabContent"
+					[ngTemplateOutletContext]="{ $implicit: templateContext }" />
+			}
+			<ng-content />
+		}
 	`,
 	providers: [
-		// tslint:disable-next-line:no-forward-ref
 		{ provide: Tab, useExisting: forwardRef(() => IconTab) }
-	]
+	],
+	imports: [NgTemplateOutlet]
 })
 export class IconTab extends Tab {
 	/**

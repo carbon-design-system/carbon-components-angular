@@ -5,16 +5,17 @@ import {
 	Component,
 	ElementRef,
 	EventEmitter,
-	Inject,
 	Input,
-	Optional,
 	Output,
 	TemplateRef,
 	ViewChild,
-	HostListener
+	HostListener,
+	inject
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { CheckboxValue } from "./checkbox.types";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 import { CHECKBOX_GROUP_HOST, CheckboxGroupHost } from "./checkbox-group-host";
 
 /**
@@ -28,10 +29,10 @@ export enum CheckboxState {
 }
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { CheckboxModule } from 'carbon-components-angular';
+ * import { Checkbox } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-checkbox--basic)
@@ -72,44 +73,57 @@ export enum CheckboxState {
 				}">
 				<span [ngClass]="{'cds--visually-hidden' : hideLabel}" class="cds--checkbox-label-text">
 					<ng-content></ng-content>
-					<ng-container *ngIf="decorator">
+					@if (decorator) {
 						<div class="cds--checkbox-wrapper-inner--decorator">
 							<ng-template [ngTemplateOutlet]="decorator"></ng-template>
 						</div>
-					</ng-container>
+					}
 				</span>
 			</label>
 			<div class="cds--checkbox__validation-msg">
-				<ng-container *ngIf="!effectiveReadOnly && effectiveInvalid">
+				@if (!effectiveReadOnly && effectiveInvalid) {
 					<svg
 						cdsIcon="warning--filled"
 						size="16"
 						class="cds--checkbox__invalid-icon">
 					</svg>
 					<div class="cds--form-requirement">
-						<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>
-						<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="$any(invalidText)"></ng-template>
+						@if (!isTemplate(invalidText)) {
+							{{invalidText}}
+						}
+						@if (isTemplate(invalidText)) {
+							<ng-template [ngTemplateOutlet]="$any(invalidText)"></ng-template>
+						}
 					</div>
-				</ng-container>
-				<ng-container *ngIf="!effectiveReadOnly && !effectiveInvalid && effectiveWarn">
+				}
+				@if (!effectiveReadOnly && !effectiveInvalid && effectiveWarn) {
 					<svg
 						cdsIcon="warning--alt--filled"
 						size="16"
 						class="cds--checkbox__invalid-icon cds--checkbox__invalid-icon--warning">
 					</svg>
 					<div class="cds--form-requirement">
-						<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-						<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="$any(warnText)"></ng-template>
+						@if (!isTemplate(warnText)) {
+							{{warnText}}
+						}
+						@if (isTemplate(warnText)) {
+							<ng-template [ngTemplateOutlet]="$any(warnText)"></ng-template>
+						}
 					</div>
-				</ng-container>
+				}
 			</div>
-			<div
-				*ngIf="helperText && !effectiveInvalid && !effectiveWarn"
-				class="cds--form__helper-text"
-				[id]="helperId">
-				<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-				<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="$any(helperText)"></ng-template>
-			</div>
+			@if (helperText && !effectiveInvalid && !effectiveWarn) {
+				<div
+					class="cds--form__helper-text"
+					[id]="helperId">
+					@if (!isTemplate(helperText)) {
+						{{helperText}}
+					}
+					@if (isTemplate(helperText)) {
+						<ng-template [ngTemplateOutlet]="$any(helperText)"></ng-template>
+					}
+				</div>
+			}
 		</div>
 	`,
 	providers: [
@@ -119,14 +133,14 @@ export enum CheckboxState {
 			multi: true
 		}
 	],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgClass, NgTemplateOutlet, IconDirective]
 })
 export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	/**
 	 * Variable used for creating unique ids for checkbox components.
 	 */
 	static checkboxCount = 0;
-
 	private static helperIdCounter = 0;
 
 	/**
@@ -255,6 +269,7 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	/**
 	 * Emits click event.
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() click = new EventEmitter<void>();
 
 	/**
@@ -291,13 +306,17 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 
 	readonly helperId = `checkbox-helper-${Checkbox.helperIdCounter++}`;
 
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+	private hostGroup = inject<CheckboxGroupHost | null>(CHECKBOX_GROUP_HOST, { optional: true });
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of `Checkbox`.
 	 */
-	constructor(
-		protected changeDetectorRef: ChangeDetectorRef,
-		@Optional() @Inject(CHECKBOX_GROUP_HOST) private hostGroup: CheckboxGroupHost | null
-	) {
+	constructor() {
 		Checkbox.checkboxCount++;
 	}
 

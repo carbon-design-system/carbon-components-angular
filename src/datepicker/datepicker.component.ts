@@ -14,7 +14,11 @@ import {
 	AfterViewInit,
 	ViewChild,
 	OnInit,
-	SimpleChange
+	SimpleChange,
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
+	HostBinding,
+	inject
 } from "@angular/core";
 import rangePlugin from "flatpickr/dist/plugins/rangePlugin";
 import flatpickr from "flatpickr";
@@ -22,8 +26,9 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { carbonFlatpickrMonthSelectPlugin } from "./carbon-flatpickr-month-select";
 import * as languages from "flatpickr/dist/l10n/index";
 import { Options } from "flatpickr/dist/types/options";
-import { DatePickerInput } from "carbon-components-angular/datepicker-input";
 import { I18n } from "carbon-components-angular/i18n";
+import { NgClass } from "@angular/common";
+import { DatePickerInput } from "carbon-components-angular/datepicker-input";
 
 /**
  * Due to type error, we have to use square brackets property accessor
@@ -43,10 +48,10 @@ if (languages.default?.default["en"]?.weekdays) {
 }
 
 /**
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { DatePickerModule } from 'carbon-components-angular';
+ * import { DatePicker, DatePickerInput } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-date-picker--single)
@@ -54,7 +59,6 @@ if (languages.default?.default["en"]?.weekdays) {
 @Component({
 	selector: "cds-date-picker, ibm-date-picker",
 	template: `
-	<div class="cds--form-item">
 		<div
 			class="cds--date-picker"
 			[ngClass]="{
@@ -87,31 +91,32 @@ if (languages.default?.default["en"]?.weekdays) {
 				</cds-date-picker-input>
 			</div>
 
-			<div *ngIf="range" class="cds--date-picker-container">
-				<cds-date-picker-input
-					#rangeInput
-					[label]="rangeLabel"
-					[placeholder]="placeholder"
-					[pattern]="inputPattern"
-					[id]="id + '-rangeInput'"
-					[size]="size"
-					[type]="(range ? 'range' : 'single')"
-					[hasIcon]="(range ? true : null)"
-					[disabled]="disabled"
-					[readonly]="readonly"
-					[invalid]="rangeInvalid"
-					[invalidText]="rangeInvalidText"
-					[warn]="rangeWarn"
-					[warnText]="rangeWarnText"
-					[skeleton]="skeleton"
-					[helperText]="rangeHelperText"
-					[decorator]="rangeDecorator"
-					(valueChange)="onRangeValueChange($event)"
-					(click)="openCalendar(rangeInput, $event)">
-				</cds-date-picker-input>
-			</div>
+			@if (range) {
+				<div class="cds--date-picker-container">
+					<cds-date-picker-input
+						#rangeInput
+						[label]="rangeLabel"
+						[placeholder]="placeholder"
+						[pattern]="inputPattern"
+						[id]="id + '-rangeInput'"
+						[size]="size"
+						[type]="(range ? 'range' : 'single')"
+						[hasIcon]="(range ? true : null)"
+						[disabled]="disabled"
+						[readonly]="readonly"
+						[invalid]="rangeInvalid"
+						[invalidText]="rangeInvalidText"
+						[warn]="rangeWarn"
+						[warnText]="rangeWarnText"
+						[skeleton]="skeleton"
+						[helperText]="rangeHelperText"
+						[decorator]="rangeDecorator"
+						(valueChange)="onRangeValueChange($event)"
+						(click)="openCalendar(rangeInput, $event)">
+					</cds-date-picker-input>
+				</div>
+			}
 		</div>
-	</div>
 	`,
 	providers: [
 		{
@@ -120,7 +125,9 @@ if (languages.default?.default["en"]?.weekdays) {
 			multi: true
 		}
 	],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgClass, DatePickerInput]
 })
 export class DatePicker implements
 	OnInit,
@@ -129,6 +136,8 @@ export class DatePicker implements
 	AfterViewChecked,
 	AfterViewInit {
 	private static datePickerCount = 0;
+
+	@HostBinding("class.cds--form-item") readonly hostFormItemClass = true;
 
 	/**
 	 * Select calendar range mode
@@ -266,7 +275,13 @@ export class DatePicker implements
 	 * We are overriding onClose event even if users pass it via flatpickr options
 	 * Emits an event when date picker closes
 	 */
+	// Public API name retained for backward compatibility (Angular style guide discourages `on` prefix on outputs).
+	// eslint-disable-next-line @angular-eslint/no-output-on-prefix -- existing output name; renaming would break consumers
 	@Output() onClose: EventEmitter<any> = new EventEmitter();
+
+	protected elementRef = inject(ElementRef);
+	protected i18n = inject(I18n);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
 
 	protected _value = [];
 
@@ -307,10 +322,11 @@ export class DatePicker implements
 
 	protected flatpickrInstance = null;
 
-	constructor(
-		protected elementRef: ElementRef,
-		protected i18n: I18n
-	) { }
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngOnInit() {
 		// if i18n is set to anything other than en we'll want to change the language
@@ -399,6 +415,7 @@ export class DatePicker implements
 			if (this.isFlatpickrLoaded() && this.flatpickrInstance.config) {
 				this.setDateValues(this.value);
 			}
+			this.changeDetectorRef.markForCheck();
 		});
 	}
 
@@ -411,6 +428,7 @@ export class DatePicker implements
 	 */
 	setDisabledState(isDisabled: boolean) {
 		this.disabled = isDisabled;
+		this.changeDetectorRef.markForCheck();
 	}
 
 	registerOnChange(fn: any) {
@@ -421,9 +439,9 @@ export class DatePicker implements
 		this.onTouched = fn;
 	}
 
-	onTouched: () => any = () => { };
+	onTouched: () => any = () => {};
 
-	propagateChange = (_: any) => { };
+	propagateChange = (_: any) => {};
 
 	/**
 	 * Cleans up our flatpickr instance
@@ -660,7 +678,7 @@ export class DatePicker implements
 				singleDate = this.flatpickrInstance.parseDate(this.flatpickrInstance.selectedDates[0], this.dateFormat);
 				singleDate = this.flatpickrInstance.formatDate(singleDate, this.dateFormat);
 			// if date is not a string we can assume it's a Date and we should format
-			} else if (!!this.flatpickrInstance.selectedDates[0]) {
+			} else if (this.flatpickrInstance.selectedDates[0]) {
 				singleDate = this.flatpickrInstance.formatDate(this.flatpickrInstance.selectedDates[0], this.dateFormat);
 			}
 
@@ -672,7 +690,7 @@ export class DatePicker implements
 					rangeDate = this.flatpickrInstance.parseDate(this.flatpickrInstance.selectedDates[1].toString(), this.dateFormat);
 					rangeDate = this.flatpickrInstance.formatDate(rangeDate, this.dateFormat);
 				// if date is not a string we can assume it's a Date and we should format
-				} else if (!!this.flatpickrInstance.selectedDates[1]) {
+				} else if (this.flatpickrInstance.selectedDates[1]) {
 					rangeDate = this.flatpickrInstance.formatDate(this.flatpickrInstance.selectedDates[1], this.dateFormat);
 				}
 				setTimeout(() => {

@@ -7,23 +7,20 @@ import { Panel } from "./panel.component";
 import { SwitcherList } from "./switcher-list.component";
 import { SwitcherListItem } from "./switcher-list-item.component";
 
-export {
-	Panel,
-	SwitcherList,
-	SwitcherListItem
-};
+export { Panel, SwitcherList, SwitcherListItem };
 
 @NgModule({
-	declarations: [
+	imports: [
+		CommonModule,
+		I18nModule,
 		Panel,
 		SwitcherList,
 		SwitcherListItem
 	],
-	imports: [CommonModule, I18nModule],
 	exports: [
 		Panel,
 		SwitcherList,
 		SwitcherListItem
 	]
 })
-export class PanelModule { }
+export class PanelModule {}

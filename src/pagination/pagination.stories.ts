@@ -1,9 +1,7 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
 
 
-import { PaginationModule, Pagination } from "./";
+import { Pagination, PaginationNav } from "./";
 
 import { PaginationStory } from "./stories";
 
@@ -11,8 +9,7 @@ export default {
 	title: "Components/Pagination",
 	decorators: [
 		moduleMetadata({
-			imports: [PaginationModule],
-			declarations: [PaginationStory]
+			imports: [PaginationNav, PaginationStory]
 		})
 	],
 	component: Pagination

@@ -1,11 +1,8 @@
-/* tslint:disable variable-name */
-
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { Meta, moduleMetadata } from "@storybook/angular";
-import { ButtonModule } from "../button";
-import { IconModule } from "../icon";
-import { NotificationModule } from "../notification";
-import { FileUploader, FileUploaderModule } from "./";
+import { moduleMetadata, Meta } from "@storybook/angular";
+import { FileUploader } from "./";
+import { Notification } from "../notification";
+import { Button } from "../button";
 import {
 	CustomFileIconsModule,
 	DragAndDropStory,
@@ -14,26 +11,27 @@ import {
 	NgModelFileUploaderStory,
 	ReactiveFormsStory
 } from "./stories";
+import { IconDirective } from "../icon";
 
 export default {
 	title: "Components/File Uploader",
 	decorators: [
 		moduleMetadata({
-			declarations: [
+			imports: [
+				FileUploader,
+				FormsModule,
+				ReactiveFormsModule,
+				Notification,
+				Button,
+				CustomFileIconsModule,
+				FormsModule,
+				IconDirective,
+				ReactiveFormsModule,
 				FileUploaderStory,
 				FileUploaderWithCustomFileStory,
 				NgModelFileUploaderStory,
 				DragAndDropStory,
 				ReactiveFormsStory
-			],
-			imports: [
-				ButtonModule,
-				CustomFileIconsModule,
-				FileUploaderModule,
-				FormsModule,
-				IconModule,
-				NotificationModule,
-				ReactiveFormsModule
 			]
 		})
 	],

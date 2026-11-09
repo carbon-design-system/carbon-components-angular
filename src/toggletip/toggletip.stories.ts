@@ -1,10 +1,7 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { LinkModule } from "../link";
-import { ButtonModule } from "../button";
+import { Link } from "../link";
+import { Button } from "../button";
 import {
-	ToggletipModule,
 	Toggletip,
 	ToggletipAction,
 	ToggletipButton,
@@ -17,9 +14,13 @@ export default {
 	decorators: [
 		moduleMetadata({
 			imports: [
-				ToggletipModule,
-				LinkModule,
-				ButtonModule
+				Toggletip,
+				ToggletipAction,
+				ToggletipButton,
+				ToggletipContent,
+				ToggletipLabel,
+				Link,
+				Button
 			]
 		})
 	],
@@ -33,13 +34,13 @@ export default {
 			control: false
 		},
 		onOpen: {
-			control: "Opened!"
+			action: "onOpen"
 		},
 		onClose: {
-			control: "Closed!"
+			action: "onClose"
 		},
 		isOpenChange: {
-			control: "Is Open Change!"
+			action: "isOpenChange"
 		},
 		align: {
 			options: [

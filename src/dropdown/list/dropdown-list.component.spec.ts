@@ -6,15 +6,15 @@ import { advancedFakeAsync } from "../../test-helpers/change-detection";
 import { DropdownList } from "./dropdown-list.component";
 import { ListItem } from "./../list-item.interface";
 import { ScrollableList } from "./../scrollable-list.directive";
-import { I18nModule } from "../../i18n/index";
 
 @Component({
-	template: `<cds-dropdown-list [items]="items" (select)="onSelect($event)"></cds-dropdown-list>`
+	template: `<cds-dropdown-list [items]="items" (select)="onSelect($event)" />`,
+	imports: [DropdownList]
 })
 class DropdownListTest {
 	items = [
-		<ListItem>{content: "one", selected: false},
-		<ListItem>{content: "two", selected: false}
+		({content: "one", selected: false} as ListItem),
+		({content: "two", selected: false} as ListItem)
 	];
 	selected: ListItem;
 	onSelect(ev) {
@@ -23,12 +23,13 @@ class DropdownListTest {
 }
 
 @Component({
-	template: `<cds-dropdown-list [items]="items" (select)="onSelect($event)" type="multi"></cds-dropdown-list>`
+	template: `<cds-dropdown-list [items]="items" (select)="onSelect($event)" type="multi" />`,
+	imports: [DropdownList]
 })
 class MultiTest {
 	items = [
-		<ListItem>{content: "one", selected: false},
-		<ListItem>{content: "two", selected: false}
+		({content: "one", selected: false} as ListItem),
+		({content: "two", selected: false} as ListItem)
 	];
 	selected: ListItem[];
 	onSelect(ev) {
@@ -40,13 +41,8 @@ describe("Dropdown list", () => {
 	let fixture: ComponentFixture<DropdownListTest>, wrapper: DropdownListTest;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				DropdownList,
-				DropdownListTest,
-				ScrollableList
-			],
 			imports: [
-				I18nModule
+				DropdownListTest
 			]
 		});
 	});
@@ -72,9 +68,9 @@ describe("Dropdown list", () => {
 
 	it("should disable a list-item", () => {
 		wrapper.items = [
-			<ListItem>{content: "one", selected: false},
-			<ListItem>{content: "two", selected: false, disabled: false},
-			<ListItem>{content: "three", selected: false, disabled: true}
+			({content: "one", selected: false} as ListItem),
+			({content: "two", selected: false, disabled: false} as ListItem),
+			({content: "three", selected: false, disabled: true} as ListItem)
 		];
 		fixture.detectChanges();
 		const disabledEls = fixture.debugElement.queryAll(By.css(".cds--list-box__menu-item[disabled]"));
@@ -87,9 +83,9 @@ describe("Dropdown list", () => {
 		expect(fixture.nativeElement.querySelectorAll("li").length).toBe(2);
 
 		wrapper.items = [
-			<ListItem>{ content: "one", selected: false },
-			<ListItem>{ content: "two", selected: false },
-			<ListItem>{ content: "three", selected: false }
+			({ content: "one", selected: false } as ListItem),
+			({ content: "two", selected: false } as ListItem),
+			({ content: "three", selected: false } as ListItem)
 		];
 		fixture.detectChanges();
 
@@ -100,8 +96,8 @@ describe("Dropdown list", () => {
 
 	it("should mark an item active when it is passed as selected", () => {
 		wrapper.items = [
-			<ListItem>{ content: "one", selected: true },
-			<ListItem>{ content: "two", selected: false }
+			({ content: "one", selected: true } as ListItem),
+			({ content: "two", selected: false } as ListItem)
 		];
 		fixture.detectChanges();
 
@@ -126,8 +122,8 @@ describe("Dropdown list", () => {
 	it("should follow the selected item when the list is reordered", fakeAsync(() => {
 		const list = fixture.debugElement.query(By.css("cds-dropdown-list")).componentInstance;
 		wrapper.items = [
-			<ListItem>{ content: "one", selected: false },
-			<ListItem>{ content: "two", selected: true }
+			({ content: "one", selected: false } as ListItem),
+			({ content: "two", selected: true } as ListItem)
 		];
 		fixture.detectChanges();
 
@@ -146,13 +142,9 @@ describe("Dropdown multi list", () => {
 	let fixture: ComponentFixture<MultiTest>, wrapper: MultiTest;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				DropdownList,
+			imports: [
 				MultiTest,
 				ScrollableList
-			],
-			imports: [
-				I18nModule
 			]
 		});
 	});
@@ -185,9 +177,9 @@ describe("Dropdown multi list", () => {
 
 	it("should disable a list-item and its checkbox", () => {
 		wrapper.items = [
-			<ListItem>{content: "one", selected: false},
-			<ListItem>{content: "two", selected: false, disabled: false},
-			<ListItem>{content: "three", selected: false, disabled: true}
+			({content: "one", selected: false} as ListItem),
+			({content: "two", selected: false, disabled: false} as ListItem),
+			({content: "three", selected: false, disabled: true} as ListItem)
 		];
 		fixture.detectChanges();
 		const disabledEls = fixture.debugElement.queryAll(By.css(".cds--list-box__menu-item[disabled]"));

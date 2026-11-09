@@ -1,7 +1,13 @@
 import { Component, Input } from "@angular/core";
 
+import { Button } from "carbon-components-angular/button";
+import { IconDirective } from "carbon-components-angular/icon";
+import { Link } from "carbon-components-angular/link";
+import { FileComponent } from "../file.component";
+
 @Component({
 	selector: "app-custom-file",
+	imports: [FileComponent, Link, Button, IconDirective],
 	template: `
 		<cds-file
 			[size]="size"

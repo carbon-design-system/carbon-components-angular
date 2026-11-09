@@ -1,12 +1,5 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
-import {
-	BreadcrumbModule,
-	Breadcrumb,
-	BreadcrumbItemComponent,
-	BreadcrumbItem
-} from "./";
+import { Breadcrumb, BreadcrumbItemComponent, BreadcrumbItem } from "./";
 
 let breadcrumbItems;
 
@@ -27,7 +20,10 @@ export default {
 	title: "Components/Breadcrumb",
 	decorators: [
 		moduleMetadata({
-			imports: [BreadcrumbModule]
+			imports: [
+				Breadcrumb,
+				BreadcrumbItemComponent
+			]
 		})
 	],
 	args: {
@@ -43,8 +39,7 @@ export default {
 			control: false
 		}
 	},
-	component: Breadcrumb,
-	subcomponents: { BreadcrumbItemComponent }
+	component: Breadcrumb
 } as Meta;
 
 const Template = (args) => ({
@@ -153,4 +148,3 @@ Skeleton.parameters = {
 		disable: true
 	}
 };
-

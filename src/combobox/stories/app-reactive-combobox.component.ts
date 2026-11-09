@@ -1,17 +1,22 @@
+import { JsonPipe } from "@angular/common";
 import {
 	FormGroup,
 	FormBuilder,
-	FormControl
+	FormControl,
+	ReactiveFormsModule
 } from "@angular/forms";
-import {
-	Component,
-	OnInit,
-	Input
-} from "@angular/core";
+import { Component,
+	inject,
+	Input,
+	OnInit } from "@angular/core";
 import isEqual from "lodash-es/isEqual";
+
+import { DropdownList } from "carbon-components-angular/dropdown";
+import { ComboBox } from "../combobox.component";
 
 @Component({
 	selector: "app-reactive-combobox",
+	imports: [ComboBox, DropdownList, ReactiveFormsModule, JsonPipe],
 	template: `
 		<form [formGroup]="sampleForm" (ngSubmit)="onSubmit(sampleForm)">
 			<cds-combo-box
@@ -26,7 +31,7 @@ import isEqual from "lodash-es/isEqual";
 				[warn]="warn"
 				[warnText]="warnText"
 				[items]="_items">
-				<cds-dropdown-list></cds-dropdown-list>
+				<cds-dropdown-list />
 			</cds-combo-box>
 			selected: {{ sampleForm.get("combobox").value | json }}
 			<cds-combo-box
@@ -42,7 +47,7 @@ import isEqual from "lodash-es/isEqual";
 				[warn]="warn"
 				[warnText]="warnText"
 				[items]="_items">
-				<cds-dropdown-list></cds-dropdown-list>
+				<cds-dropdown-list />
 			</cds-combo-box>
 			selected: {{ sampleForm.get("multibox").value | json }}
 		</form>
@@ -79,7 +84,7 @@ export class ReactiveFormsCombobox implements OnInit {
 
 	_items: any[] = [];
 
-	constructor(private fb: FormBuilder) {}
+	private fb = inject(FormBuilder);
 
 	ngOnInit() {
 		this.sampleForm = this.fb.group({

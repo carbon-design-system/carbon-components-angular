@@ -1,8 +1,4 @@
-import {
-	Component,
-	OnInit,
-	Input
-} from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { TableModel } from "../table-model.class";
 import { Table } from "../index";
 
@@ -15,9 +11,11 @@ import { Table } from "../index";
 			[skeleton]="skeleton"
 			[size]="size"
 			[striped]="striped">
-			<ng-content></ng-content>
+			<ng-content />
 		</cds-table>
-	`
+	`,
+	standalone: true,
+	imports: [Table]
 })
 export class SkeletonTableStory implements OnInit {
 	@Input() size = "md";

@@ -22,7 +22,8 @@ import { HeaderAction } from "./header-action.component";
 		<cds-header-global>
 			<cds-header-action [active]="actionActive" ariaLabel="Toggle panel"></cds-header-action>
 		</cds-header-global>
-	`
+	`,
+	imports: [UIShellModule, I18nModule]
 })
 class HeaderNavigationTest {
 	@ViewChild(HeaderNavigation) navigation: HeaderNavigation;
@@ -44,15 +45,9 @@ describe("Header navigation", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [HeaderNavigationTest],
 			imports: [
-				UIShellModule,
-				I18nModule,
-				RouterModule.forRoot([], {
-					initialNavigation: "disabled",
-					useHash: true,
-					relativeLinkResolution: "corrected"
-				})
+				HeaderNavigationTest,
+				RouterModule.forRoot([], { initialNavigation: "disabled", useHash: true })
 			]
 		});
 

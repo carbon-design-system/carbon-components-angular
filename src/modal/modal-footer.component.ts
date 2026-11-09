@@ -4,8 +4,9 @@ import { Component } from "@angular/core";
 	selector: "cds-modal-footer, ibm-modal-footer",
 	template: `
 		<footer class="cds--modal-footer">
-			<ng-content></ng-content>
+			<ng-content />
 		</footer>
-	`
+	`,
+	standalone: true
 })
 export class ModalFooter {}

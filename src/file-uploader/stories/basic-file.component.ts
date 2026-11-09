@@ -1,7 +1,10 @@
 import { Component, Input } from "@angular/core";
 
+import { FileComponent } from "../file.component";
+
 @Component({
 	selector: "app-basic-file",
+	imports: [FileComponent],
 	template: `<cds-file [size]="size" [fileItem]="fileItem"></cds-file>`
 })
 export class BasicFileStory {

@@ -12,15 +12,17 @@ import {
 	Renderer2,
 	SimpleChanges,
 	TemplateRef,
-	ViewChild
+	ViewChild,
+	inject
 } from "@angular/core";
 import { PopoverContainer } from "carbon-components-angular/popover";
+import { NgTemplateOutlet } from "@angular/common";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { TooltipModule } from 'carbon-components-angular';
+ * import { Tooltip } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-tooltip--basic)
@@ -30,24 +32,33 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<span #contentWrapper>
-			<ng-content></ng-content>
+			<ng-content />
 		</span>
-		<span
-			*ngIf="description"
-			class="cds--popover"
-			[id]="id"
-			[attr.aria-hidden]="!isOpen"
-			role="tooltip">
-			<ng-container *ngIf="!disabled">
-				<span class="cds--popover-content cds--tooltip-content">
-					<ng-container *ngIf="!isTemplate(description)">{{description}}</ng-container>
-					<ng-template *ngIf="isTemplate(description)" [ngTemplateOutlet]="description" [ngTemplateOutletContext]="{ $implicit: templateContext }"></ng-template>
-					<span *ngIf="autoAlign" class="cds--popover-caret cds--popover--auto-align"></span>
-				</span>
-				<span *ngIf="!autoAlign" class="cds--popover-caret"></span>
-			</ng-container>
-		</span>
-	`
+		@if (description) {
+			<span
+				class="cds--popover"
+				[id]="id"
+				[attr.aria-hidden]="!isOpen"
+				role="tooltip">
+				@if (!disabled) {
+					<span class="cds--popover-content cds--tooltip-content">
+						@if (isTemplate(description)) {
+							<ng-template [ngTemplateOutlet]="description" [ngTemplateOutletContext]="{ $implicit: templateContext }" />
+						} @else {
+							{{description}}
+						}
+						@if (autoAlign) {
+							<span class="cds--popover-caret cds--popover--auto-align"></span>
+						}
+					</span>
+					@if (!autoAlign) {
+						<span class="cds--popover-caret"></span>
+					}
+				}
+			</span>
+		}
+	`,
+	imports: [NgTemplateOutlet]
 })
 export class Tooltip extends PopoverContainer implements OnChanges, AfterContentChecked {
 	static tooltipCount = 0;
@@ -78,15 +89,14 @@ export class Tooltip extends PopoverContainer implements OnChanges, AfterContent
 
 	@ViewChild("contentWrapper") wrapper: ElementRef<HTMLSpanElement>;
 
-	private timeoutId: any; // it should be number, but setTimeout below is matching the NodeJs type instead of the JS type
+	private timeoutId: any;
 
-	constructor(
-		protected elementRef: ElementRef,
-		protected ngZone: NgZone,
-		protected renderer: Renderer2,
-		protected changeDetectorRef: ChangeDetectorRef
-	) {
-		super(elementRef, ngZone, renderer, changeDetectorRef);
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]); // it should be number, but setTimeout below is matching the NodeJs type instead of the JS type
+
+	constructor() {
+		super();
 		this.highContrast = true;
 		this.dropShadow = false;
 	}

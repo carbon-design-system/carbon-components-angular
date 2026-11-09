@@ -5,12 +5,14 @@ import {
 	HostListener,
 	OnChanges,
 	SimpleChanges,
-	AfterViewInit
+	AfterViewInit,
+	inject
 } from "@angular/core";
 
 @Directive({
 	selector: "[cdsScrollableList], [ibmScrollableList]",
-	exportAs: "scrollable-list"
+	exportAs: "scrollable-list",
+	standalone: true
 })
 export class ScrollableList implements OnChanges, AfterViewInit {
 	/**
@@ -35,6 +37,8 @@ export class ScrollableList implements OnChanges, AfterViewInit {
 	 */
 	@Input() scrollBy = 10;
 
+	protected elementRef = inject(ElementRef);
+
 	// keeps track of the setInterval for hover scrolling
 	protected hoverScrollInterval;
 	// tracks the last touch event
@@ -43,7 +47,11 @@ export class ScrollableList implements OnChanges, AfterViewInit {
 	protected canScrollDown = false;
 	protected list = this.elementRef.nativeElement;
 
-	constructor(protected elementRef: ElementRef) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (changes.scrollEnabled) {

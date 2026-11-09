@@ -1,15 +1,12 @@
 import { Component } from "@angular/core";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
-import { FormsModule } from "@angular/forms";
-import { I18nModule } from "../i18n/index";
 import { By } from "@angular/platform-browser";
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from "@angular/platform-browser-dynamic/testing";
 
 import { Breadcrumb } from "./breadcrumb.component";
 import { BreadcrumbItemComponent } from "./breadcrumb-item.component";
-import { BreadcrumbItem } from "./breadcrumb-item.interface";
-import { OverflowMenu } from "carbon-components-angular/dialog";
+import { OverflowMenu } from "../dialog";
 
 @Component({
 	selector: "test-breadcrumb",
@@ -30,7 +27,11 @@ import { OverflowMenu } from "carbon-components-angular/dialog";
 		<cds-breadcrumb-item href="#">
 			Breadcrumb 5
 		</cds-breadcrumb-item>
-	</cds-breadcrumb>`
+	</cds-breadcrumb>`,
+	imports: [
+		Breadcrumb,
+		BreadcrumbItemComponent
+	]
 })
 class TestBreadcrumb {
 	noTrailingSlash = true;
@@ -39,11 +40,14 @@ class TestBreadcrumb {
 @Component({
 	selector: "test-breadcrumb",
 	template: `
-	<cds-breadcrumb
-		[noTrailingSlash]="noTrailingSlash"
-		[threshold]="threshold"
-		[items]="items">
-	</cds-breadcrumb>`
+		<cds-breadcrumb
+			[noTrailingSlash]="noTrailingSlash"
+			[threshold]="threshold"
+			[items]="items" />
+	`,
+	imports: [
+		Breadcrumb
+	]
 })
 class TestBreadcrumbModel {
 	noTrailingSlash = true;
@@ -63,16 +67,10 @@ describe("Breadcrumb", () => {
 
 		TestBed.configureTestingModule({
 			imports: [
-				FormsModule,
-				I18nModule
-			],
-			schemas: [CUSTOM_ELEMENTS_SCHEMA],
-			declarations: [
-				Breadcrumb,
-				BreadcrumbItemComponent,
 				TestBreadcrumb,
 				TestBreadcrumbModel
-			]
+			],
+			schemas: [CUSTOM_ELEMENTS_SCHEMA]
 		}).compileComponents();
 	}));
 

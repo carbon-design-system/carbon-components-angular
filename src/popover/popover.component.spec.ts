@@ -21,7 +21,8 @@ import { PopoverContainer, PopoverContent } from "./";
 				</div>
 			</cds-popover-content>
 		</span>
-		`
+		`,
+	imports: [PopoverContent, PopoverContainer]
 })
 class TestPopoverComponent {
 	@Input() isOpen = false;
@@ -40,7 +41,7 @@ describe("Popover", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [TestPopoverComponent, PopoverContainer, PopoverContent]
+			imports: [TestPopoverComponent]
 		});
 		fixture = TestBed.createComponent(TestPopoverComponent);
 		component = fixture.componentInstance;

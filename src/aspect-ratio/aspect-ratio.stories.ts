@@ -1,4 +1,4 @@
-/* tslint:disable variable-name */
+
 
 import { moduleMetadata, Meta, componentWrapperDecorator } from "@storybook/angular";
 import { AspectRatioModule, AspectRatioDirective } from "./";

@@ -3,16 +3,19 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	Optional,
-	TemplateRef
+	ChangeDetectionStrategy,
+	TemplateRef,
+	inject
 } from "@angular/core";
 import { Router } from "@angular/router";
+import { Link } from "carbon-components-angular/link";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
 
 /**
- * Build application's clickable tiles using this component. Get started with importing the module:
+ * Build application's clickable tiles using this component. Get started with importing the component:
  *
  * ```typescript
- * import { TilesModule } from 'carbon-components-angular';
+ * import { ClickableTile } from 'carbon-components-angular';
  * ```
  *
  * ```html
@@ -24,28 +27,31 @@ import { Router } from "@angular/router";
 @Component({
 	selector: "cds-clickable-tile, ibm-clickable-tile",
 	template: `
-	<a
-		cdsLink
-		class="cds--tile cds--tile--clickable"
-		[ngClass]="{
-			'cds--tile--light': theme === 'light',
-			'cds--tile--disabled cds--link--disabled' : disabled,
-			'cds--tile--decorator': !!decorator,
-			'cds--tile--decorator-rounded': !!decorator && hasRoundedCorners
-		}"
-		tabindex="0"
-		(click)="navigate($event)"
-		[attr.href]="disabled ? null : href"
-		[attr.target]="target"
-		[attr.rel]="rel ? rel : null"
-		[attr.aria-disabled]="disabled">
-		<ng-content></ng-content>
-		<ng-container *ngIf="decorator">
-			<div class="cds--tile--inner-decorator">
-				<ng-template [ngTemplateOutlet]="decorator"></ng-template>
-			</div>
-		</ng-container>
-	</a>`
+		<a
+			cdsLink
+			class="cds--tile cds--tile--clickable"
+			[ngClass]="{
+				'cds--tile--light': theme === 'light',
+				'cds--tile--disabled cds--link--disabled' : disabled,
+				'cds--tile--decorator': !!decorator,
+				'cds--tile--decorator-rounded': !!decorator && hasRoundedCorners
+			}"
+			tabindex="0"
+			(click)="navigate($event)"
+			[attr.href]="disabled ? null : href"
+			[attr.target]="target"
+			[attr.rel]="rel ? rel : null"
+			[attr.aria-disabled]="disabled">
+			<ng-content></ng-content>
+			@if (decorator) {
+				<div class="cds--tile--inner-decorator">
+					<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+				</div>
+			}
+		</a>
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [Link, NgClass, NgTemplateOutlet]
 })
 export class ClickableTile {
 	/**
@@ -101,7 +107,13 @@ export class ClickableTile {
 	 */
 	@Output() navigation = new EventEmitter<Promise<boolean>>();
 
-	constructor(@Optional() protected router: Router) {}
+	protected router = inject(Router, { optional: true })!;
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	navigate(event) {
 		if (this.router && this.route && !this.disabled) {

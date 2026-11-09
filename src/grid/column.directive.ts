@@ -5,15 +5,17 @@ import {
 	OnChanges,
 	OnDestroy,
 	OnInit,
-	Optional
+	inject
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { GridService } from "./grid.service";
 
 @Directive({
-	selector: "[cdsCol], [ibmCol]"
+	selector: "[cdsCol], [ibmCol]",
+	standalone: true
 })
 export class ColumnDirective implements OnInit, OnChanges, OnDestroy {
+
 	@HostBinding("class")
 	get columnClasses(): string {
 		return this._columnClasses.join(" ");
@@ -61,7 +63,13 @@ export class ColumnDirective implements OnInit, OnChanges, OnDestroy {
 	private isCssGrid = false;
 	private subscription = new Subscription();
 
-	constructor(@Optional() private gridService: GridService) {}
+	private gridService = inject(GridService, { optional: true })!;
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngOnInit() {
 		if (this.gridService) {

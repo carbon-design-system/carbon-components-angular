@@ -1,10 +1,10 @@
-import { Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { SkeletonModule } from 'carbon-components-angular';
+ * import { Skeleton } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-skeleton--basic)
@@ -15,7 +15,10 @@ import { Component, Input } from "@angular/core";
 		<div
 			class="cds--skeleton__placeholder"
 			[class.cds--skeleton__placeholder--ai]="ai">
-		</div>`
+		</div>
+	`,
+	standalone: true,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkeletonPlaceholder {
 	/**
@@ -23,3 +26,4 @@ export class SkeletonPlaceholder {
 	 */
 	@Input() ai = false;
 }
+

@@ -3,12 +3,18 @@ import {
 	Component,
 	Input,
 	Output,
-	EventEmitter
+	EventEmitter,
+	inject
 } from "@angular/core";
 
-import { I18n, Overridable } from "carbon-components-angular/i18n";
-import { ExperimentalService } from "carbon-components-angular/experimental";
+import { I18n, ReplacePipe } from "carbon-components-angular/i18n";
+import { ExperimentalService, EXPERIMENTAL_SERVICE_PROVIDER } from "carbon-components-angular/experimental";
 import { merge } from "carbon-components-angular/utils";
+import { range } from "carbon-components-angular/common";
+import { NgClass, NgStyle, AsyncPipe } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { IconDirective } from "carbon-components-angular/icon";
+import { Button } from "carbon-components-angular/button";
 
 export interface PaginationTranslations {
 	ITEMS_PER_PAGE: string;
@@ -23,10 +29,10 @@ export interface PaginationTranslations {
 }
 
 /**
- * Use pagination when you have multiple pages of data to handle. Get started with importing the module:
+ * Use pagination when you have multiple pages of data to handle. Get started with importing the component:
  *
  * ```typescript
- * import { PaginationModule } from 'carbon-components-angular';
+ * import { Pagination } from 'carbon-components-angular';
  * ```
  *
  * ```html
@@ -60,14 +66,17 @@ export interface PaginationTranslations {
 			'cds--pagination--lg': size === 'lg'
 		}">
 		<!-- left skeleton div -->
-		<div *ngIf="skeleton" class="cds--pagination__left">
-			<p class="cds--skeleton__text" style="width: 70px"></p>
-			<p class="cds--skeleton__text" style="width: 35px"></p>
-			<p class="cds--skeleton__text" style="width: 105px"></p>
-		</div>
+		@if (skeleton) {
+			<div class="cds--pagination__left">
+				<p class="cds--skeleton__text" style="width: 70px"></p>
+				<p class="cds--skeleton__text" style="width: 35px"></p>
+				<p class="cds--skeleton__text" style="width: 105px"></p>
+			</div>
+		}
 
-		<div *ngIf="!skeleton" class="cds--pagination__left">
-			<ng-container *ngIf="showPageInput">
+		@if (!skeleton) {
+			<div class="cds--pagination__left">
+			@if (showPageInput) {
 				<label class="cds--pagination__text" [for]="itemsPerPageSelectId">
 					{{itemsPerPageText.subject | async}}
 				</label>
@@ -79,12 +88,13 @@ export interface PaginationTranslations {
 						[(ngModel)]="itemsPerPage"
 						[disabled]="pageInputDisabled"
 						class="cds--select-input">
-						<option
-							class="cds--select-option"
-							*ngFor="let option of itemsPerPageOptions"
-							[value]="option">
+						@for (option of itemsPerPageOptions; track option) {
+							<option
+								class="cds--select-option"
+								[value]="option">
 								{{ option }}
-						</option>
+							</option>
+						}
 					</select>
 					<svg
 						cdsIcon="chevron--down"
@@ -95,69 +105,98 @@ export interface PaginationTranslations {
 						[attr.ariaLabel]="optionsListText.subject | async">
 					</svg>
 				</div>
-			</ng-container>
-			<span *ngIf="!pagesUnknown && totalDataLength <= 1" class="cds--pagination__text cds--pagination__items-count" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
-				{{totalItemText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}
-			</span>
-			<span *ngIf="!pagesUnknown && totalDataLength > 1" class="cds--pagination__text cds--pagination__items-count" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
-				{{totalItemsText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}
-			</span>
-			<span *ngIf="pagesUnknown" class="cds--pagination__text cds--pagination__items-count" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
-				{{totalItemsUnknownText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex } | async}}
-			</span>
+
+}
+			@if (!pagesUnknown && totalDataLength <= 1) {
+				<span class="cds--pagination__text cds--pagination__items-count" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
+					{{totalItemText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}
+				</span>
+			}
+			@if (!pagesUnknown && totalDataLength > 1) {
+				<span class="cds--pagination__text cds--pagination__items-count" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
+					{{totalItemsText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex, total: totalDataLength } | async}}
+				</span>
+			}
+			@if (pagesUnknown) {
+				<span class="cds--pagination__text cds--pagination__items-count" [ngStyle]="{'margin-left': showPageInput ? null : 0}">
+					{{totalItemsUnknownText.subject | i18nReplace:{start: startItemIndex, end: endItemIndex } | async}}
+				</span>
+			}
 		</div>
+}
 
 		<!-- right skeleton div -->
-		<div *ngIf="skeleton" class="cds--pagination__right">
-			<p class="cds--skeleton__text" style="width: 70px"></p>
-		</div>
+		@if (skeleton) {
+			<div class="cds--pagination__right">
+				<p class="cds--skeleton__text" style="width: 70px"></p>
+			</div>
+		}
 
-		<div *ngIf="!skeleton" class="cds--pagination__right">
-			<span *ngIf="pagesUnknown" class="cds--pagination__text cds--pagination__page-text">
-				<ng-container *ngIf="!showPageInput">{{currentPage}}</ng-container>
-				{{pageText.subject | async}}
-			</span>
-			<ng-container *ngIf="showPageInput">
+		@if (!skeleton) {
+			<div class="cds--pagination__right">
+			@if (pagesUnknown) {
+				<span class="cds--pagination__text cds--pagination__page-text">
+					@if (!showPageInput) {
+						{{currentPage}}
+					}
+					{{pageText.subject | async}}
+				</span>
+			}
+			@if (showPageInput) {
 				<div
 					class="cds--select cds--select--inline cds--select__page-number"
 					[class.cds--select--disabled]="pageInputDisabled">
 					<label [for]="currentPageSelectId" class="cds--label cds--visually-hidden">{{pageText.subject | async}}</label>
-					<input
-						*ngIf="pageOptions.length > pageSelectThreshold"
-						style="padding-right: 1rem; margin-right: 1rem;"
-						[id]="currentPageSelectId"
-						type="number"
-						min="1"
-						[max]="pageOptions.length"
-						class="cds--select-input"
-						[(ngModel)]="currentPage">
-					<select
-						*ngIf="pageOptions.length <= pageSelectThreshold"
-						[id]="currentPageSelectId"
-						class="cds--select-input"
-						[disabled]="pageInputDisabled"
-						[(ngModel)]="currentPage">
-						<option *ngFor="let page of pageOptions; let i = index;" class="cds--select-option" [value]="i + 1">{{i + 1}}</option>
-					</select>
-					<svg
-						*ngIf="pageOptions.length <= pageSelectThreshold"
-						cdsIcon="chevron--down"
-						size="16"
-						style="display: inherit;"
-						class="cds--select__arrow"
-						[attr.ariaLabel]="optionsListText.subject | async">
-					</svg>
+					@if (pageOptions.length > pageSelectThreshold) {
+						<input
+							style="padding-right: 1rem; margin-right: 1rem;"
+							[id]="currentPageSelectId"
+							type="number"
+							min="1"
+							[max]="pageOptions.length"
+							class="cds--select-input"
+							[(ngModel)]="currentPage">
+					}
+					@if (pageOptions.length <= pageSelectThreshold) {
+						<select
+							[id]="currentPageSelectId"
+							class="cds--select-input"
+							[disabled]="pageInputDisabled"
+							[(ngModel)]="currentPage">
+							@for (page of pageOptions; track page; let i = $index) {
+								<option class="cds--select-option" [value]="i + 1">{{i + 1}}</option>
+							}
+						</select>
+					}
+					@if (pageOptions.length <= pageSelectThreshold) {
+						<svg
+							cdsIcon="chevron--down"
+							size="16"
+							style="display: inherit;"
+							class="cds--select__arrow"
+							[attr.ariaLabel]="optionsListText.subject | async">
+						</svg>
+					}
 				</div>
-			</ng-container>
 
-			<span *ngIf="!pagesUnknown && lastPage <= 1" class="cds--pagination__text">
-				<ng-container *ngIf="!showPageInput">{{currentPage}}</ng-container>
-				{{ofLastPageText.subject | i18nReplace: {last: lastPage} | async}}
-			</span>
-			<span *ngIf="!pagesUnknown && lastPage > 1" class="cds--pagination__text">
-				<ng-container *ngIf="!showPageInput">{{currentPage}}</ng-container>
-				{{ofLastPagesText.subject | i18nReplace: {last: lastPage} | async}}
-			</span>
+}
+
+			@if (!pagesUnknown && lastPage <= 1) {
+				<span class="cds--pagination__text">
+					@if (!showPageInput) {
+						{{currentPage}}
+					}
+					{{ofLastPageText.subject | i18nReplace: {last: lastPage} | async}}
+				</span>
+			}
+			@if (!pagesUnknown && lastPage > 1) {
+				<span class="cds--pagination__text">
+					@if (!showPageInput) {
+						{{currentPage}}
+					}
+					{{ofLastPagesText.subject | i18nReplace: {last: lastPage} | async}}
+				</span>
+			}
 			<div class="cds--pagination__control-buttons">
 				<button
 					cdsButton="ghost"
@@ -190,11 +229,24 @@ export interface PaginationTranslations {
 				</button>
 			</div>
 		</div>
+}
 	</div>
-	`
+	`,
+	imports: [
+		NgClass,
+		FormsModule,
+		IconDirective,
+		NgStyle,
+		Button,
+		AsyncPipe,
+		ReplacePipe
+	],
+	providers: [EXPERIMENTAL_SERVICE_PROVIDER]
 })
 export class Pagination {
 	static paginationCounter = 0;
+
+	public i18n = inject(I18n);
 
 	/**
 	 * Set to `true` for a loading pagination component.
@@ -205,7 +257,7 @@ export class Pagination {
 	 */
 	@Input() model: PaginationModel;
 	/**
- 	 * Set to `true` to disable the backward/forward buttons.
+	 * Set to `true` to disable the backward/forward buttons.
 	 */
 	@Input() set disabled(value: boolean) {
 		this.backwardDisabled = value;
@@ -249,7 +301,7 @@ export class Pagination {
 	 * ```
 	 */
 	@Input()
-	set translations (value: PaginationTranslations) {
+	set translations(value: PaginationTranslations) {
 		const valueWithDefaults = merge(this.i18n.getMultiple("PAGINATION"), value);
 		this.itemsPerPageText.override(valueWithDefaults.ITEMS_PER_PAGE);
 		this.optionsListText.override(valueWithDefaults.OPEN_LIST_OF_OPTIONS);
@@ -340,7 +392,7 @@ export class Pagination {
 		 */
 		const numberOfPages = Math.max(Math.ceil(this.totalDataLength / this.itemsPerPage), 1);
 		if (this._pageOptions.length !== numberOfPages) {
-			this._pageOptions = Array(numberOfPages);
+			this._pageOptions = range(numberOfPages + 1, 1);
 		}
 		return this._pageOptions;
 	}
@@ -359,9 +411,15 @@ export class Pagination {
 	ofLastPagesText = this.i18n.getOverridable("PAGINATION.OF_LAST_PAGES");
 	ofLastPageText = this.i18n.getOverridable("PAGINATION.OF_LAST_PAGE");
 
+	protected experimental = inject(ExperimentalService);
+
 	protected _pageOptions = [];
 
-	constructor(protected i18n: I18n, protected experimental: ExperimentalService) {
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
 		Pagination.paginationCounter++;
 	}
 }

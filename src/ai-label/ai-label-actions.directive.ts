@@ -16,7 +16,8 @@ import { Directive, HostBinding } from "@angular/core";
  * ```
  */
 @Directive({
-	selector: "[cdsAILabelActions], [ibmAILabelActions]"
+	selector: "[cdsAILabelActions], [ibmAILabelActions]",
+	standalone: true
 })
 export class AILabelActions {
 	@HostBinding("class.cds--toggletip-actions") toggletipActions = true;

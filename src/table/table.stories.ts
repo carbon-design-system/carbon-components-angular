@@ -1,13 +1,10 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { FormsModule } from "@angular/forms";
-import { NFormsModule } from "../forms";
-import { ButtonModule } from "../button";
-import { IconModule } from "../icon/icon.module";
-import { SearchModule } from "../search";
-import { PaginationModule } from "../pagination";
-import { DialogModule } from "../dialog";
+import { NgStyle } from "@angular/common";
+import { Button } from "../button";
+import { Search } from "../search";
+import { Dialog, OverflowMenu, OverflowMenuOption } from "../dialog";
+import { TableRow } from "./table-row.class";
 import {
 	TableStory,
 	DynamicTableStory,
@@ -20,11 +17,21 @@ import {
 	TableNoDataStory
 } from "./stories";
 import {
-	TableModule,
 	TableModel,
 	TableItem,
 	TableHeaderItem,
-	TableRow
+	TableContainer,
+	TableHeader,
+	TableToolbar,
+	TableToolbarActions,
+	TableToolbarContent,
+	TableToolbarSearch,
+	TableData,
+	TableRowComponent,
+	TableDirective,
+	TableHeaderTitle,
+	TableHeadCell,
+	TableBody
 } from "./";
 
 const simpleModel = new TableModel();
@@ -82,16 +89,27 @@ export default {
 	decorators: [
 		moduleMetadata({
 			imports: [
-				NFormsModule,
 				FormsModule,
-				TableModule,
-				PaginationModule,
-				DialogModule,
-				SearchModule,
-				IconModule,
-				ButtonModule
-			],
-			declarations: [
+				Dialog,
+				Search,
+				Button,
+				TableContainer,
+				TableHeader,
+				TableToolbar,
+				TableToolbarActions,
+				TableToolbarContent,
+				TableToolbarSearch,
+				TableRowComponent,
+				OverflowMenu,
+				OverflowMenuOption,
+				TableDirective,
+				TableHeaderTitle,
+				TableHeadCell,
+				TableBody,
+				TableData,
+				NgStyle,
+
+				// stories
 				TableStory,
 				DynamicTableStory,
 				ExpansionTableStory,
@@ -219,7 +237,8 @@ const ToolbarTemplate = (args) => ({
 						<svg cdsIcon="download" size="16" class="cds--btn__icon"></svg>
 					</button>
 				</cds-table-toolbar-actions>
-				<cds-table-toolbar-content *ngIf="!toolbar.selected">
+				@if (!toolbar.selected) {
+					<cds-table-toolbar-content>
 					<cds-table-toolbar-search
 						ngDefaultControl
 						[expandable]="searchExpandable"
@@ -238,7 +257,8 @@ const ToolbarTemplate = (args) => ({
 					<button cdsButton="primary" size="sm" [tabindex]="toolbar.selected ? -1 : 0">
 						Primary button<svg cdsIcon="add" size="20" class="cds--btn__icon"></svg>
 					</button>
-				</cds-table-toolbar-content>
+					</cds-table-toolbar-content>
+				}
 			</cds-table-toolbar>
 			<!--
 			app-* components are for demo purposes only.
@@ -283,6 +303,7 @@ WithToolbar.argTypes = {
 			type: "function",
 			control: false,
 			defaultValue: () => {
+				// eslint-disable-next-line no-console
 				console.log("Custom cancel method");
 			}
 		}
@@ -312,7 +333,8 @@ const DisabledRowsTemplate = (args) => ({
 						<svg cdsIcon="download" size="16" class="cds--btn__icon"></svg>
 					</button>
 				</cds-table-toolbar-actions>
-				<cds-table-toolbar-content *ngIf="!toolbar.selected">
+				@if (!toolbar.selected) {
+					<cds-table-toolbar-content>
 					<cds-table-toolbar-search [expandable]="true"></cds-table-toolbar-search>
 					<button cdsButton="ghost" class="toolbar-action">
 						<svg cdsIcon="settings" size="16" class="cds--toolbar-action__icon"></svg>
@@ -320,7 +342,8 @@ const DisabledRowsTemplate = (args) => ({
 					<button cdsButton="primary" size="sm">
 						Primary button<svg cdsIcon="add" size="20" class="cds--btn__icon"></svg>
 					</button>
-				</cds-table-toolbar-content>
+					</cds-table-toolbar-content>
+				}
 			</cds-table-toolbar>
 			<!--
 			app-* components are for demo purposes only.
@@ -603,27 +626,30 @@ const FromComponentsTemplate = (args) => ({
 		<table cdsTable [sortable]="false">
 			<thead cdsTableHead>
 				<tr>
-					<th
-						scope="col"
-						cdsTableHeadCell
-						*ngFor="let column of model.header"
-						[column]="column">
-					</th>
+					@for (column of model.header; track column) {
+						<th
+							scope="col"
+							cdsTableHeadCell
+							[column]="column">
+						</th>
+					}
 				</tr>
 			</thead>
 			<tbody cdsTableBody>
-				<tr
-					*ngFor="let row of model.data"
-					cdsTableRow
-					[row]="row">
-					<td
-						*ngFor="let item of row; let j = index"
-						cdsTableData
-						[item]="item"
-						[class]="model.header[j].className"
-						[ngStyle]="model.header[j].style">
-					</td>
-				</tr>
+				@for (row of model.data; track row) {
+					<tr
+						cdsTableRow
+						[row]="row">
+						@for (item of row; track item) {
+							<td
+								cdsTableData
+								[item]="item"
+								[class]="model.header[$index].className"
+								[ngStyle]="model.header[$index].style">
+							</td>
+						}
+					</tr>
+				}
 			</tbody>
 		</table>
 	`

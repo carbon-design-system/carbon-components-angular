@@ -3,10 +3,7 @@ import { TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 
 import { ProgressIndicator } from "./progress-indicator.component";
-import { CommonModule } from "@angular/common";
-import { ExperimentalModule } from "../experimental";
-import { IconModule } from "../icon";
-import { I18nModule } from "../i18n";
+import { IconDirective } from "../icon";
 import { Step } from "./progress-indicator-step.interface";
 
 @Component({
@@ -14,9 +11,9 @@ import { Step } from "./progress-indicator-step.interface";
 		<cds-progress-indicator
 			[steps]="steps"
 			[current]="current"
-			(stepSelected)="stepSelected.emit($event)">
-		</cds-progress-indicator>
-	`
+			(stepSelected)="stepSelected.emit($event)" />
+	`,
+	imports: [ProgressIndicator]
 })
 class ProgressIndicatorTest {
 	steps = [
@@ -55,15 +52,8 @@ describe("Progress Indicator", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
 			schemas: [CUSTOM_ELEMENTS_SCHEMA],
-			declarations: [
-				ProgressIndicator,
-				ProgressIndicatorTest
-			],
 			imports: [
-				CommonModule,
-				ExperimentalModule,
-				IconModule,
-				I18nModule
+				ProgressIndicatorTest
 			]
 		});
 	});

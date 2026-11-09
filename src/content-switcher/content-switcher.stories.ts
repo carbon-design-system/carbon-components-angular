@@ -1,26 +1,18 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
-import {
-	ContentSwitcherModule,
-	ContentSwitcher,
-	ContentSwitcherOption
-} from "./";
+import { ContentSwitcher, ContentSwitcherOption } from "./";
 
 export default {
 	title: "Components/Content Switcher",
 	decorators: [
 		moduleMetadata({
-			imports: [ContentSwitcherModule]
+			imports: [
+				ContentSwitcher,
+				ContentSwitcherOption
+			]
 		})
 	],
-	argTypes: {
-		code: {
-			control: false
-		}
-	},
 	component: ContentSwitcher,
-	subcomponents: ContentSwitcherOption
+	subcomponents: {ContentSwitcherOption}
 } as Meta;
 
 const Template = (args) => ({

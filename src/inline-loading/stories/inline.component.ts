@@ -1,8 +1,11 @@
-import { Component, Input } from "@angular/core";
-import { InlineLoadingState } from "../";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+
+import { Button } from "carbon-components-angular/button";
+import { InlineLoading, InlineLoadingState } from "../";
 
 @Component({
 	selector: "app-inline-loading",
+	imports: [InlineLoading, Button],
 	template: `
 		<cds-inline-loading
 			[state]="state"
@@ -14,7 +17,8 @@ import { InlineLoadingState } from "../";
 		</cds-inline-loading>
 		<button cdsButton (click)="toggleState()">Toggle state</button>
 		<p>State: {{ state }}</p>
-	`
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InlineLoadingStory {
 	@Input() loadingText = "";

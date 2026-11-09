@@ -1,12 +1,8 @@
-import { TestBed, fakeAsync, waitForAsync } from "@angular/core/testing";
+import { TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { Component } from "@angular/core";
 import { DatePicker } from "./datepicker.component";
-import { DatePickerInput } from "../datepicker-input/datepicker-input.component";
-import { IconModule } from "../icon/index";
 import { FormsModule } from "@angular/forms";
-import { UtilsModule } from "../utils/utils.module";
-import { I18nModule } from "../i18n/i18n.module";
 
 @Component({
 	template: `
@@ -19,9 +15,9 @@ import { I18nModule } from "../i18n/i18n.module";
 		[invalid]="invalid"
 		invalidText="invalid text"
 		dateFormat="m/d/Y"
-		(valueChange)="onValueChange()">
-	</cds-date-picker>
-	`
+		(valueChange)="onValueChange()" />
+	`,
+	imports: [DatePicker, FormsModule]
 })
 class DatePickerTest {
 	value = new Date(new Date().getFullYear(), 5, 15);
@@ -34,16 +30,8 @@ describe("DatePicker", () => {
 	let fixture, element, wrapper;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				DatePicker,
-				DatePickerTest,
-				DatePickerInput
-			],
 			imports: [
-				IconModule,
-				UtilsModule,
-				FormsModule,
-				I18nModule
+				DatePickerTest
 			]
 		});
 	});
@@ -57,7 +45,11 @@ describe("DatePicker", () => {
 		fixture = TestBed.createComponent(DatePickerTest);
 		element = fixture.debugElement.query(By.css("cds-date-picker"));
 		fixture.detectChanges();
-		expect(element.nativeElement.textContent).toEqual("Date picker label");
+		/**
+		 * @todo
+		 * Verify if new control flow syntax still requires `space` preceding and succeeding label
+		 */
+		expect(element.nativeElement.textContent).toEqual(" Date picker label ");
 	});
 
 	it("should set the value of the component to be the value specified in the wrapper", async() => {
@@ -86,10 +78,11 @@ describe("DatePicker", () => {
 
 	it("should disable input", () => {
 		fixture = TestBed.createComponent(DatePickerTest);
+		fixture.detectChanges();
 		fixture.componentInstance.disabled = true;
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("input"));
-		expect(element.nativeElement.disabled).toBe(true);
+		expect(element.nativeElement.disabled).toBeTruthy();
 	});
 
 	it("should set date format to m/d/Y", () => {
@@ -114,7 +107,7 @@ describe("DatePicker", () => {
 		fixture.detectChanges();
 		expect(element.componentInstance.invalid).toBe(true);
 		expect(element.nativeElement.getAttribute("invalidText")).toEqual("invalid text");
-		expect(element.nativeElement.querySelector(".cds--form-requirement").textContent).toEqual("invalid text");
+		expect(element.nativeElement.querySelector(".cds--form-requirement").textContent).toEqual(" invalid text ");
 	});
 
 	it("should call onValueChange on valueChange event", () => {

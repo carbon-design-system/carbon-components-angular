@@ -4,25 +4,35 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	Optional
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
+	inject
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
+import { NgTemplateOutlet } from "@angular/common";
 
 @Component({
 	selector: "cds-breadcrumb-item, ibm-breadcrumb-item",
 	template: `
-	<a
-		class="cds--link"
-		[href]="(skeleton ? '/#' : href)"
-		(click)="navigate($event)"
-		[attr.aria-current]="(current ? ariaCurrent : null)"
-		*ngIf="useTemplate(); else content">
-		<ng-container *ngTemplateOutlet="content"></ng-container>
-	</a>
-	<ng-template #content>
-		<ng-content></ng-content>
-	</ng-template>`
+		<ng-template #content>
+			<ng-content />
+		</ng-template>
+
+		@if (useTemplate()) {
+			<a
+				class="cds--link"
+				[href]="(skeleton ? '/#' : href)"
+				(click)="navigate($event)"
+				[attr.aria-current]="(current ? ariaCurrent : null)">
+				<ng-container *ngTemplateOutlet="content" />
+			</a>
+		} @else {
+			<ng-container *ngTemplateOutlet="content" />
+		}
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgTemplateOutlet]
 })
 export class BreadcrumbItemComponent {
 	@Input() set href(v: string) {
@@ -50,7 +60,17 @@ export class BreadcrumbItemComponent {
 	 */
 	@Output() navigation = new EventEmitter<Promise<boolean>>();
 
-	@Input() skeleton = false;
+	/**
+	 * Set by the parent `cds-breadcrumb`
+	 */
+	@Input() set skeleton(value: boolean) {
+		this._skeleton = value;
+		this.changeDetectorRef.markForCheck();
+	}
+
+	get skeleton() {
+		return this._skeleton;
+	}
 
 	@Input() ariaCurrent = "page";
 
@@ -58,9 +78,17 @@ export class BreadcrumbItemComponent {
 
 	@HostBinding("class.cds--breadcrumb-item") itemClass = true;
 
+	protected domSanitizer = inject(DomSanitizer);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+	protected _skeleton = false;
+	protected router = inject(Router, { optional: true })!;
 	protected _href: string;
 
-	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) { }
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	useTemplate() {
 		return this.skeleton || this._href || this.route;

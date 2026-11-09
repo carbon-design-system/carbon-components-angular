@@ -1,9 +1,6 @@
-/* tslint:disable variable-name */
-
 import { FormsModule } from "@angular/forms";
 import { moduleMetadata, Meta } from "@storybook/angular";
 import {
-	StructuredListModule,
 	StructuredList,
 	ListColumn,
 	ListHeader,
@@ -15,17 +12,15 @@ export default {
 	decorators: [
 		moduleMetadata({
 			imports: [
-				StructuredListModule,
-				FormsModule
+				FormsModule,
+				ListHeader,
+				ListRow,
+				ListColumn,
+				StructuredList
 			]
 		})
 	],
-	component: StructuredList,
-	subcomponents: {
-		ListHeader,
-		ListRow,
-		ListColumn
-	}
+	component: StructuredList
 } as Meta;
 
 const Template = (args) => ({
@@ -138,9 +133,7 @@ const SkeletonTemplate = (args) => ({
 	template: `
 		<cds-structured-list
 			skeleton="true"
-			[border]="border"
-			[condensed]="condensed"
-			[nowrap]="nowrap">
+			[condensed]="condensed">
 			<cds-list-header>
 				<cds-list-column></cds-list-column>
 				<cds-list-column></cds-list-column>

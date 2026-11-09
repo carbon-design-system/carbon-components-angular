@@ -9,21 +9,8 @@ module.exports = {
 	managerHead: (head) => `${head}${managerAnalyticsHead}`,
 	previewHead: (head) => `${head}${previewAnalyticsHead}`,
 	staticDirs: ["public"],
-	stories: [
-		"../src/**/*.stories.mdx",
-		"../src/**/*.stories.@(js|jsx|ts|tsx)",
-	],
-	addons: [
-		"@storybook/addon-links",
-		{
-			name: "@storybook/addon-essentials",
-			options: {
-				backgrounds: false,
-			},
-		},
-		"@storybook/addon-a11y",
-		"@storybook/addon-storysource",
-	],
+	stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+	addons: ["@storybook/addon-links", "@storybook/addon-a11y", '@storybook/addon-docs'],
 	framework: {
 		name: "@storybook/angular",
 		options: {},
@@ -34,4 +21,7 @@ module.exports = {
 	docs: {
 		autodocs: true,
 	},
+	features: {
+		backgrounds: false
+	}
 };

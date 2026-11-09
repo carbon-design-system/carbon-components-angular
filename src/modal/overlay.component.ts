@@ -6,6 +6,7 @@ import {
 	ElementRef,
 	Input
 } from "@angular/core";
+import { NgClass } from "@angular/common";
 
 
 /**
@@ -26,9 +27,10 @@ import {
 			}"
 			(click)="overlayClick($event)"
 			#overlay>
-			<ng-content></ng-content>
+			<ng-content />
 		</section>
-	`
+	`,
+	imports: [NgClass]
 })
 export class Overlay {
 	/**

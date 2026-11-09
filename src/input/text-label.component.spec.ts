@@ -10,7 +10,8 @@ import { advancedFakeAsync } from "../test-helpers/change-detection";
 		<cds-text-label [enableCounter]="true" [maxCount]="20" labelText="Name">
 			<input cdsText [formControl]="control"/>
 		</cds-text-label>
-	`
+	`,
+	imports: [InputModule, ReactiveFormsModule]
 })
 class ReactiveCounterTest {
 	@ViewChild(TextInputLabelComponent) label: TextInputLabelComponent;
@@ -22,7 +23,8 @@ class ReactiveCounterTest {
 		<cds-text-label [enableCounter]="true" [maxCount]="20" labelText="Name">
 			<input cdsText/>
 		</cds-text-label>
-	`
+	`,
+	imports: [InputModule]
 })
 class NativeCounterTest {
 	@ViewChild(TextInputLabelComponent) label: TextInputLabelComponent;
@@ -31,8 +33,11 @@ class NativeCounterTest {
 describe("Text label", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [ReactiveCounterTest, NativeCounterTest],
-			imports: [InputModule, FormsModule, ReactiveFormsModule]
+			imports: [
+				ReactiveCounterTest,
+				NativeCounterTest,
+				FormsModule
+			]
 		});
 	});
 

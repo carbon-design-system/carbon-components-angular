@@ -1,16 +1,22 @@
 import {
+	AfterViewInit,
 	Component,
-	OnInit,
-	AfterViewInit
+	inject,
+	OnInit
 } from "@angular/core";
 import {
 	FormGroup,
 	FormBuilder,
-	FormControl
+	FormControl,
+	ReactiveFormsModule
 } from "@angular/forms";
+
+import { Radio } from "../radio.component";
+import { RadioGroup } from "../radio-group.component";
 
 @Component({
 	selector: "app-reactive-forms",
+	imports: [RadioGroup, Radio, ReactiveFormsModule],
 	template: `
 		<form [formGroup]="formGroup">
 			<cds-radio-group
@@ -20,11 +26,13 @@ import {
 					value="radio">
 					zero
 				</cds-radio>
-				<cds-radio *ngFor="let radio of manyRadios"
-					[value]="radio.num"
-					[disabled]="radio.disabled">
-					{{radio.num}}
-				</cds-radio>
+				@for (radio of manyRadios; track radio) {
+					<cds-radio
+						[value]="radio.num"
+						[disabled]="radio.disabled">
+						{{radio.num}}
+					</cds-radio>
+				}
 			</cds-radio-group>
 		</form>
 		<button (click)="changeSelected()">Set selected to three</button>
@@ -41,7 +49,7 @@ export class ReactiveFormsStory implements AfterViewInit, OnInit {
 		{ num: "four", disabled: true }
 	];
 
-	constructor(protected formBuilder: FormBuilder) { }
+	protected formBuilder = inject(FormBuilder);
 
 	changeSelected() {
 		this.formGroup.get("radioGroup")?.setValue("three");

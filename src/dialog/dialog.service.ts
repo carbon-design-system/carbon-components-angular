@@ -2,7 +2,8 @@ import {
 	Injector,
 	ComponentRef,
 	Injectable,
-	ViewContainerRef
+	ViewContainerRef,
+	inject
 } from "@angular/core";
 import { CloseReasons, DialogConfig } from "./dialog-config.interface";
 import { PlaceholderService } from "carbon-components-angular/placeholder";
@@ -34,10 +35,17 @@ export class DialogService {
 		DialogService.dialogRefs.clear();
 	}
 
+	protected injector = inject(Injector);
+	protected placeholderService = inject(PlaceholderService);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of `DialogService`.
 	 */
-	constructor(protected injector: Injector, protected placeholderService: PlaceholderService) {}
+	constructor() {}
 
 	/**
 	 * If `dialogRef` is defined, the Dialog is already open. If

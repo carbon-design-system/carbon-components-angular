@@ -1,13 +1,14 @@
 import {
 	Component,
 	Input,
-	Optional,
 	EventEmitter,
 	Output,
-	HostBinding
+	HostBinding,
+	inject
 } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
-import { Router } from "@angular/router";
+import { Router, RouterLinkActive, RouterLink } from "@angular/router";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
 
 /**
  * Individual item in the header. May be used a direct child of `HeaderNavigation` or `HeaderMenu`
@@ -15,34 +16,40 @@ import { Router } from "@angular/router";
 @Component({
 	selector: "cds-header-item, ibm-header-item",
 	template: `
-		<ng-container [ngSwitch]="useRouter">
-			<ng-template #content><ng-content></ng-content></ng-template>
+		<ng-template #content>
+			<ng-content />
+		</ng-template>
+		@if (useRouter) {
 			<a
-				*ngSwitchCase="false"
+				class="cds--header__menu-item"
+				tabindex="0"
+				[ngClass]="{'cds--header__menu-item--current' : isCurrentPage}"
+				[routerLink]="route"
+				[routerLinkActive]="routerLinkActiveClasses">
+				<ng-container *ngTemplateOutlet="content" />
+			</a>
+		} @else {
+			<a
 				class="cds--header__menu-item"
 				tabindex="0"
 				[ngClass]="{'cds--header__menu-item--current' : isCurrentPage}"
 				[href]="href"
 				(click)="navigate($event)">
-				<ng-container *ngTemplateOutlet="content"></ng-container>
+				<ng-container *ngTemplateOutlet="content" />
 			</a>
-			<a
-				*ngSwitchCase="true"
-				class="cds--header__menu-item"
-				[routerLinkActive]="['cds--header__menu-item--current']"
-				tabindex="0"
-				[ngClass]="{'cds--header__menu-item--current' : isCurrentPage}"
-				[routerLink]="route"
-				[routerLinkActive]="activeLinkClass">
-				<ng-container *ngTemplateOutlet="content"></ng-container>
-			</a>
-		</ng-container>
+		}
 	`,
 	styles: [`
 		:host {
 			display: list-item;
 		}
-	`]
+	`],
+	imports: [
+		NgClass,
+		NgTemplateOutlet,
+		RouterLinkActive,
+		RouterLink
+	]
 })
 export class HeaderItem {
 	@HostBinding("attr.role") role = "listitem";
@@ -66,7 +73,16 @@ export class HeaderItem {
 	/**
 	 * String or array of string class names to apply when active
 	 */
-	@Input() activeLinkClass: string | string[];
+	@Input() set activeLinkClass(v: string | string[]) {
+		this._activeLinkClass = v;
+		// Compute once per input change
+		const extra = v === "" || v == null ? [] : Array.isArray(v) ? v : [v];
+		this.routerLinkActiveClasses = ["cds--header__menu-item--current", ...extra];
+	}
+
+	get activeLinkClass() {
+		return this._activeLinkClass;
+	}
 
 	/**
 	 * Applies selected styles to the item if a user sets this to true.
@@ -91,8 +107,17 @@ export class HeaderItem {
 	@Output() navigation = new EventEmitter<Promise<boolean>>();
 
 	protected _href = "#";
+	protected _activeLinkClass: string | string[] = "";
+	protected routerLinkActiveClasses: string[] = ["cds--header__menu-item--current"];
 
-	constructor(protected domSanitizer: DomSanitizer, @Optional() protected router: Router) { }
+	protected domSanitizer = inject(DomSanitizer);
+	protected router = inject(Router, { optional: true })!;
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	navigate(event) {
 		if (this.router && this.route) {

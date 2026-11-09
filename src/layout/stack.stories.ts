@@ -1,13 +1,11 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { LayoutModule, StackDirective } from "./";
+import { StackDirective } from "./";
 
 export default {
 	title: "Layout/Stack",
 	decorators: [
 		moduleMetadata({
-			imports: [LayoutModule]
+			imports: [StackDirective]
 		})
 	],
 	component: StackDirective

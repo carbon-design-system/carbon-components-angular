@@ -7,15 +7,17 @@ import {
 	Input,
 	NgZone,
 	Renderer2,
-	TemplateRef
+	TemplateRef,
+	inject
 } from "@angular/core";
 import { PopoverContainer } from "carbon-components-angular/popover";
+import { NgTemplateOutlet } from "@angular/common";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { TooltipModule } from 'carbon-components-angular';
+ * import { Tooltip } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-tooltip-definition--basic)
@@ -34,22 +36,35 @@ import { PopoverContainer } from "carbon-components-angular/popover";
 			type="button">
 			<ng-content></ng-content>
 		</button>
-		<span
-			*ngIf="description"
-			class="cds--popover"
-			[id]="id"
-			[attr.aria-hidden]="!isOpen"
-			role="tooltip"
-			(mousedown)="onPopoverMouseDown()"
-			(mouseup)="onPopoverMouseUp()">
-			<span class="cds--popover-content cds--definition-tooltip" aria-live="polite">
-				<ng-container *ngIf="!isTemplate(description)">{{description}}</ng-container>
-				<ng-template *ngIf="isTemplate(description)" [ngTemplateOutlet]="description" [ngTemplateOutletContext]="{ $implicit: templateContext }"></ng-template>
-				<span *ngIf="autoAlign" class="cds--popover-caret cds--popover--auto-align"></span>
+		@if (description) {
+			<span
+				class="cds--popover"
+				[id]="id"
+				[attr.aria-hidden]="!isOpen"
+				role="tooltip"
+				(mousedown)="onPopoverMouseDown()"
+				(mouseup)="onPopoverMouseUp()">
+				<span class="cds--popover-content cds--definition-tooltip" aria-live="polite">
+					@if (!isTemplate(description)) {
+						{{description}}
+					}
+					@if (isTemplate(description)) {
+						<ng-template
+							[ngTemplateOutlet]="description"
+							[ngTemplateOutletContext]="{ $implicit: templateContext }">
+						</ng-template>
+					}
+					@if (autoAlign) {
+						<span class="cds--popover-caret cds--popover--auto-align"></span>
+					}
+				</span>
+				@if (!autoAlign) {
+					<span class="cds--popover-caret"></span>
+				}
 			</span>
-			<span *ngIf="!autoAlign" class="cds--popover-caret"></span>
-		</span>
-	`
+		}
+	`,
+	imports: [NgTemplateOutlet]
 })
 export class TooltipDefinition extends PopoverContainer {
 	static tooltipCount = 0;
@@ -72,13 +87,12 @@ export class TooltipDefinition extends PopoverContainer {
 	 */
 	private isInteractingWithPopover = false;
 
-	constructor(
-		protected elementRef: ElementRef,
-		protected ngZone: NgZone,
-		protected renderer: Renderer2,
-		protected changeDetectorRef: ChangeDetectorRef
-	) {
-		super(elementRef, ngZone, renderer, changeDetectorRef);
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
+		super();
 		this.highContrast = true;
 		this.dropShadow = false;
 	}

@@ -26,8 +26,9 @@
 		{{ !skeleton ? label : ''}}
 	</label>
 
-	<div *ngIf="skeleton; else enableInput" class="cds--text-input cds--skeleton"></div>
-	<ng-template #enableInput>
+	@if (skeleton) {
+		<div class="cds--text-input cds--skeleton"></div>
+	} @else {
 		<input
 			#input
 			class="cds--search-input"
@@ -40,30 +41,33 @@
 			[required]="required"
 			(input)="onSearch($event.target.value)"
 			(keyup.enter)="onEnter()"/>
-		<button
-			*ngIf="!tableSearch && toolbar"
-			class="cds--toolbar-search__btn"
-			(click)="openSearch()"
-			aria-label="Open search">
-			<svg cdsIcon="search" size="16" class="cds--search-magnifier-icon"></svg>
-		</button>
-		<svg
-			cdsIcon="search"
-			*ngIf="tableSearch || !toolbar"
-			class="cds--search-magnifier-icon"
-			size="16">
-		</svg>
-	</ng-template>
+		@if (!tableSearch && toolbar) {
+			<button
+				class="cds--toolbar-search__btn"
+				(click)="openSearch()"
+				aria-label="Open search">
+				<svg cdsIcon="search" size="16" class="cds--search-magnifier-icon"></svg>
+			</button>
+		}
+		@if (tableSearch || !toolbar) {
+			<svg
+				cdsIcon="search"
+				class="cds--search-magnifier-icon"
+				size="16">
+			</svg>
+		}
+	}
 
-	<button
-		*ngIf="tableSearch || !toolbar"
-		class="cds--search-close"
-		[ngClass]="{
-			'cds--search-close--hidden': !value || value.length === 0
-		}"
-		[title]="clearButtonTitle"
-		(click)="clearSearch()">
-		<span class="cds--visually-hidden">{{ clearButtonTitle }}</span>
-		<svg cdsIcon="close" size="16"></svg>
-	</button>
+	@if (tableSearch || !toolbar) {
+		<button
+			class="cds--search-close"
+			[ngClass]="{
+				'cds--search-close--hidden': !value || value.length === 0
+			}"
+			[title]="clearButtonTitle"
+			(click)="clearSearch()">
+			<span class="cds--visually-hidden">{{ clearButtonTitle }}</span>
+			<svg cdsIcon="close" size="16"></svg>
+		</button>
+	}
 </div>

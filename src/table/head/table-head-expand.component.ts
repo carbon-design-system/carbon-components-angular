@@ -3,26 +3,30 @@ import {
 	EventEmitter,
 	HostBinding,
 	Input,
-	Output
+	Output,
+	inject
 } from "@angular/core";
 import { I18n } from "carbon-components-angular/i18n";
 import { Observable } from "rxjs";
+import { IconDirective } from "carbon-components-angular/icon";
+import { AsyncPipe } from "@angular/common";
 
 @Component({
-	// tslint:disable-next-line: component-selector
+	// eslint-disable-next-line @angular-eslint/component-selector
 	selector: "[cdsTableHeadExpand], [ibmTableHeadExpand]",
 	template: `
-		<button
-			*ngIf="showExpandAllToggle"
-			class="cds--table-expand__button"
-			[attr.aria-label]="getAriaLabel() | async"
-			(click)="expandedChange.emit(!expanded)">
-			<svg cdsIcon="chevron--right" size="16" class="cds--table-expand__svg"></svg>
-		</button>
-		<ng-container *ngIf="!showExpandAllToggle">
-			<ng-content></ng-content>
-		</ng-container>
-	`
+		@if (showExpandAllToggle) {
+			<button
+				class="cds--table-expand__button"
+				[attr.aria-label]="getAriaLabel() | async"
+				(click)="expandedChange.emit(!expanded)">
+				<svg cdsIcon="chevron--right" size="16" class="cds--table-expand__svg"></svg>
+			</button>
+		} @else {
+			<ng-content />
+		}
+	`,
+	imports: [IconDirective, AsyncPipe]
 })
 export class TableHeadExpand {
 	@HostBinding("class.cds--table-expand") hostClass = true;
@@ -37,9 +41,15 @@ export class TableHeadExpand {
 		return this.expanded ? "collapsed" : null;
 	}
 
+	protected i18n = inject(I18n);
+
 	protected _ariaLabel = this.i18n.getOverridable("TABLE.EXPAND_ALL_BUTTON");
 
-	constructor(protected i18n: I18n) { }
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	getAriaLabel(): Observable<string> {
 		return this._ariaLabel.subject;

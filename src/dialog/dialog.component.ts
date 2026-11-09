@@ -1,25 +1,24 @@
 import {
-	Component,
-	Input,
-	Output,
-	EventEmitter,
-	ElementRef,
-	ViewChild,
-	OnInit,
 	AfterViewInit,
-	OnDestroy,
+	ChangeDetectorRef,
+	Component,
+	ElementRef,
+	EventEmitter,
 	HostListener,
-	Optional
+	Input,
+	OnDestroy,
+	OnInit,
+	Output,
+	ViewChild,
+	inject
 } from "@angular/core";
-import {
-	Observable,
-	Subscription
-} from "rxjs";
+import {Subscription} from "rxjs";
 // the AbsolutePosition is required to import the declaration correctly
-import Position, { position, AbsolutePosition, Positions } from "@carbon/utils-position";
+import Position, { position, Positions } from "@carbon/utils-position";
 import { cycleTabs, getFocusElementList } from "carbon-components-angular/common";
-import { CloseMeta, CloseReasons, DialogConfig } from "./dialog-config.interface";
 import { AnimationFrameService, ElementService } from "carbon-components-angular/utils";
+import { CloseMeta, CloseReasons, DialogConfig } from "./dialog-config.interface";
+import { DialogService } from "./dialog.service";
 
 /**
  * Implements a `Dialog` that can be positioned anywhere on the page.
@@ -27,7 +26,9 @@ import { AnimationFrameService, ElementService } from "carbon-components-angular
  */
 @Component({
 	selector: "cds-dialog, ibm-dialog",
-	template: ""
+	template: "",
+	providers: [DialogService, AnimationFrameService, ElementService],
+	standalone: true
 })
 export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	/**
@@ -54,6 +55,11 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 */
 	public placement: string;
 
+	protected elementRef = inject(ElementRef);
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+	protected elementService = inject(ElementService);
+	protected animationFrameService = inject(AnimationFrameService, { optional: true })! ?? null;
+
 	protected visibilitySubscription = new Subscription();
 
 	protected animationFrameSubscription = new Subscription();
@@ -76,16 +82,16 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 	 */
 	protected placements: Positions = {};
 
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of `Dialog`.
 	 * @param elementRef
 	 * @param elementService
 	 */
-	constructor(
-		protected elementRef: ElementRef,
-		protected elementService: ElementService,
-		@Optional() protected animationFrameService: AnimationFrameService = null
-	) {}
+	constructor() {}
 
 	/**
 	 * Initialize the `Dialog`, set the placement and gap, and add a `Subscription` to resize events.
@@ -136,8 +142,7 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 							reason: CloseReasons.hidden
 						});
 					}
-				}
-			);
+				});
 		}
 
 		this.placeDialog();
@@ -195,7 +200,10 @@ export class Dialog implements OnInit, AfterViewInit, OnDestroy {
 
 		// update the element
 		positionService.setElement(el, pos);
-		setTimeout(() => { this.placement = dialogPlacement; });
+		setTimeout(() => {
+			this.placement = dialogPlacement;
+			this.changeDetectorRef.markForCheck();
+		});
 	}
 
 	/**

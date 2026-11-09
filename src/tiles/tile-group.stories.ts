@@ -1,12 +1,6 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { LayerModule } from "../layer";
-import {
-	TilesModule,
-	SelectionTile,
-	TileGroup
-} from "./";
+import { LayerDirective } from "../layer";
+import { TileGroup, SelectionTile } from "./";
 import { AILabelModule } from "../ai-label";
 import { ButtonModule } from "../button";
 import { IconModule } from "../icon";
@@ -16,7 +10,7 @@ export default {
 	title: "Components/Tiles/Grouped",
 	decorators: [
 		moduleMetadata({
-			imports: [TilesModule, LayerModule, AILabelModule, ButtonModule, IconModule]
+			imports: [TileGroup, SelectionTile, LayerDirective, AILabelModule, ButtonModule, IconModule]
 		})
 	],
 	argTypes: {

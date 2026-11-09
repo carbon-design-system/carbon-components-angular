@@ -15,7 +15,8 @@ import {
 	QueryList,
 	Renderer2,
 	SimpleChanges,
-	ViewChild
+	ViewChild,
+	inject
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { EventService } from "carbon-components-angular/utils";
@@ -23,6 +24,7 @@ import { I18n } from "carbon-components-angular/i18n";
 
 import { BaseTabHeader } from "./base-tab-header.component";
 import { TabHeaderBase } from "./tab-header.directive";
+import { NgTemplateOutlet } from "@angular/common";
 
 const VERTICAL_TAB_HEIGHT = 64;
 
@@ -45,7 +47,9 @@ const VERTICAL_TAB_HEIGHT = 64;
 @Component({
 	selector: "cds-tab-header-group-vertical, ibm-tab-header-group-vertical",
 	template: `
-		<div *ngIf="isOverflowingTop" class="cds--tab--list-gradient_top"></div>
+		@if (isOverflowingTop) {
+			<div class="cds--tab--list-gradient_top"></div>
+		}
 		<div
 			#tabList
 			class="cds--tab--list"
@@ -56,12 +60,17 @@ const VERTICAL_TAB_HEIGHT = 64;
 			<ng-content></ng-content>
 			<ng-container [ngTemplateOutlet]="contentAfter"></ng-container>
 		</div>
-		<div *ngIf="isOverflowingBottom" class="cds--tab--list-gradient_bottom"></div>
-	`
+		@if (isOverflowingBottom) {
+			<div class="cds--tab--list-gradient_bottom"></div>
+		}
+	`,
+	imports: [NgTemplateOutlet]
 })
 export class TabHeaderGroupVertical
 	extends BaseTabHeader
 	implements AfterContentInit, OnChanges, OnInit, OnDestroy {
+	public i18n = inject(I18n);
+
 	/**
 	 * i18n strings for the tab list `aria-label` fallback.
 	 */
@@ -105,13 +114,6 @@ export class TabHeaderGroupVertical
 	isOverflowingTop = false;
 	isOverflowingBottom = false;
 
-	/**
-	 * We use taller rows when any header has a secondary label.
-	 */
-	@HostBinding("class.cds--tabs--tall") get tallClass(): boolean {
-		return this.hasSecondaryLabelTabs;
-	}
-
 	get hasSecondaryLabelTabs(): boolean {
 		if (!this.tabHeaderQuery) {
 			return false;
@@ -121,20 +123,25 @@ export class TabHeaderGroupVertical
 			.some((h) => h.secondaryLabel != null && h.secondaryLabel !== "");
 	}
 
+	/**
+	 * We use taller rows when any header has a secondary label.
+	 */
+	@HostBinding("class.cds--tabs--tall") get tallClass(): boolean {
+		return this.hasSecondaryLabelTabs;
+	}
+
 	private selectedSubscriptionTracker = new Subscription();
 	private closeSubscriptionTracker = new Subscription();
 
 	private resizeObserver: ResizeObserver | null = null;
 	private boundListScrollHandler: () => void;
 
-	constructor(
-		protected elementRef: ElementRef,
-		protected changeDetectorRef: ChangeDetectorRef,
-		protected eventService: EventService,
-		protected renderer: Renderer2,
-		protected i18n: I18n
-	) {
-		super(elementRef, changeDetectorRef, eventService, renderer);
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
+		super();
 		this.type = "contained";
 		// Cache a stable reference for add/removeEventListener.
 		this.boundListScrollHandler = () => this.updateOverflowState();
@@ -259,6 +266,7 @@ export class TabHeaderGroupVertical
 			this.activeIndex = initialIndex;
 			headers[initialIndex]?.selectTab();
 			this.updateOverflowState();
+			this.changeDetectorRef.markForCheck();
 		});
 	}
 

@@ -123,7 +123,7 @@ export class TableDomAdapter implements TableAdapter {
 	 *
 	 * @param tableElement the root HTML table element.
 	 */
-	constructor(public tableElement: HTMLTableElement) { }
+	constructor(public tableElement: HTMLTableElement) {}
 
 	/**
 	 * Returns a cell from the table taking colspans in to account.

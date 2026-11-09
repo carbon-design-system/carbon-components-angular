@@ -1,11 +1,10 @@
-/* tslint:disable variable-name */
-
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { DropdownModule, Dropdown } from "./";
-import { PlaceholderModule } from "../placeholder";
+import { Dropdown, DropdownList } from "./";
+import { Placeholder } from "../placeholder";
 
 import { ReactiveFormsStory } from "./stories";
+import { JsonPipe } from "@angular/common";
 import { AILabelModule } from "../ai-label";
 import { ButtonModule } from "../button";
 import { IconModule } from "../icon";
@@ -15,12 +14,14 @@ export default {
 	title: "Components/Dropdown",
 	decorators: [
 		moduleMetadata({
-			declarations: [ReactiveFormsStory],
 			imports: [
 				FormsModule,
 				ReactiveFormsModule,
-				DropdownModule,
-				PlaceholderModule,
+				Dropdown,
+				DropdownList,
+				Placeholder,
+				ReactiveFormsStory,
+				JsonPipe,
 				AILabelModule,
 				ButtonModule,
 				IconModule
@@ -74,6 +75,7 @@ export default {
 		size: "md",
 		theme: "dark",
 		fluid: false,
+		isOpen: false,
 		itemValueKey: "content"
 	},
 	argTypes: {
@@ -113,6 +115,7 @@ const Template = (args) => ({
 			[disabled]="disabled"
 			[readonly]="readonly"
 			[fluid]="fluid"
+			[isOpen]="isOpen"
 			[itemValueKey]="itemValueKey"
 			(selected)="selected($event)"
 			(onClose)="onClose($event)">
@@ -148,6 +151,7 @@ const MultiTemplate = (args) => ({
 			[disabled]="disabled"
 			[readonly]="readonly"
 			[fluid]="fluid"
+			[isOpen]="isOpen"
 			[itemValueKey]="itemValueKey"
 			(selected)="selected($event)"
 			(onClose)="onClose($event)">
@@ -203,13 +207,15 @@ const NgTemplate = (args) => ({
 			<cds-dropdown-list [items]="items" [listTpl]="dropdownRenderer"></cds-dropdown-list>
 		</cds-dropdown>
 		<ng-template #dropdownRenderer let-item="item">
-			<div *ngIf="item && item.content" style="font-size: 14px;">
-				<svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"
-						width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" style="will-change: transform;">
-					<path d="M9.3 3.7l3.8 3.8H1v1h12.1l-3.8 3.8.7.7 5-5-5-5z"></path>
-				</svg>
-				&nbsp;{{item.content}}
-			</div>
+			@if (item && item.content) {
+				<div style="font-size: 14px;">
+					<svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"
+							width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" style="will-change: transform;">
+						<path d="M9.3 3.7l3.8 3.8H1v1h12.1l-3.8 3.8.7.7 5-5-5-5z"></path>
+					</svg>
+					&nbsp;{{item.content}}
+				</div>
+			}
 		</ng-template>
 	`
 });

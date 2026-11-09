@@ -8,7 +8,12 @@ import {
 import { TableModel } from "../table-model.class";
 import { TableItem } from "../table-item.class";
 import { TableHeaderItem } from "../table-header-item.class";
-import { clone } from "../../utils/index";
+import { clone } from "carbon-components-angular/utils";
+import { Table } from "../table.component";
+import { TableToolbar } from "../toolbar/table-toolbar.component";
+import { Button } from "carbon-components-angular/button";
+
+import { TableHeadCellLabel } from "../head/table-head-cell-label.directive";
 
 export class CustomHeaderItem extends TableHeaderItem {
 	// used for custom sorting
@@ -53,7 +58,9 @@ export class CustomHeaderItem extends TableHeaderItem {
 			(rowClick)="onRowClick($event)"
 			(sort)="customSort($event)">
 		</cds-table>
-	`
+	`,
+	standalone: true,
+	imports: [Table, TableToolbar, Button, TableHeadCellLabel]
 })
 export class DynamicTableStory implements AfterViewInit {
 	@Input() model = new TableModel();
@@ -73,9 +80,15 @@ export class DynamicTableStory implements AfterViewInit {
 
 	ngAfterViewInit() {
 		this.model.data = [
-			[new TableItem({ data: "Name 1" }), new TableItem({ data: { name: "Lessy", link: "#" }, template: this.customTableItemTemplate })],
+			[
+				new TableItem({ data: "Name 1" }),
+				new TableItem({ data: { name: "Lessy", link: "#" }, template: this.customTableItemTemplate })
+			],
 			[new TableItem({ data: "Name 3" }), new TableItem({ data: "swer" })],
-			[new TableItem({ data: "Name 2" }), new TableItem({ data: { name: "Alice", surname: "Bob" }, template: this.customTableItemTemplate })],
+			[
+				new TableItem({ data: "Name 2" }),
+				new TableItem({ data: { name: "Alice", surname: "Bob" }, template: this.customTableItemTemplate })
+			],
 			[new TableItem({ data: "Name 4" }), new TableItem({ data: "twer" })],
 			[new TableItem({ data: "Name 5" }), new TableItem({ data: "twer" })],
 			[new TableItem({ data: "Name 6" }), new TableItem({ data: "twer" })],
@@ -115,6 +128,7 @@ export class DynamicTableStory implements AfterViewInit {
 	}
 
 	onRowClick(index: number) {
+		// eslint-disable-next-line no-console
 		console.log("Row item selected:", index);
 	}
 }

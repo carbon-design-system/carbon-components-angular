@@ -1,23 +1,28 @@
 import {
+	ChangeDetectorRef,
 	Component,
 	Input,
 	Output,
 	ViewChild,
 	EventEmitter,
-	TemplateRef
+	TemplateRef,
+	inject
 } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 import { I18n } from "carbon-components-angular/i18n";
 import { FileItem } from "./file-item.interface";
+import { Button } from "carbon-components-angular/button";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
+import { FileComponent } from "./file.component";
 
-const noop = () => { };
+const noop = () => {};
 
 /**
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { FileUploaderModule } from 'carbon-components-angular';
+ * import { FileUploader, FileComponent } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-file-uploader--basic)
@@ -25,40 +30,48 @@ const noop = () => { };
 @Component({
 	selector: "cds-file-uploader, ibm-file-uploader",
 	template: `
-		<ng-container *ngIf="!skeleton; else skeletonTemplate">
+		@if (skeleton) {
+			<div class="cds--skeleton__text" style="width: 100px"></div>
+			<div class="cds--skeleton__text" style="width: 225px"></div>
+			<button cdsButton [skeleton]="true"></button>
+		} @else {
 			<label [for]="fileUploaderId" class="cds--file--label">{{title}}</label>
 			<p class="cds--label-description" role="alert">{{description}}</p>
 			<div class="cds--file">
-				<label
-					*ngIf="drop"
-					class="cds--file-browse-btn"
-					(keyup.enter)="fileInput.click()"
-					(keyup.space)="fileInput.click()"
-					[ngClass]="{'cds--file-browse-btn--disabled': disabled}"
-					tabindex="0">
-					<div
-						class="cds--file__drop-container"
-						[ngClass]="{'cds--file__drop-container--drag-over': dragOver}"
-						role="button"
+				@if (drop) {
+					<label
+						class="cds--file-browse-btn"
+						(keyup.enter)="fileInput.click()"
+						(keyup.space)="fileInput.click()"
+						[ngClass]="{'cds--file-browse-btn--disabled': disabled}"
+						tabindex="0">
+						<div
+							class="cds--file__drop-container"
+							[ngClass]="{'cds--file__drop-container--drag-over': dragOver}"
+							role="button"
+							(click)="fileInput.click()"
+							[attr.for]="fileUploaderId"
+							(dragover)="onDragOver($event)"
+							(dragleave)="onDragLeave($event)"
+							(drop)="onDrop($event)">
+								@if (isTemplate(dropText)) {
+									<ng-template [ngTemplateOutlet]="dropText" />
+								} @else {
+									{{dropText}}
+								}
+						</div>
+					</label>
+				} @else {
+					<button
+						type="button"
+						[cdsButton]="buttonType"
 						(click)="fileInput.click()"
 						[attr.for]="fileUploaderId"
-						(dragover)="onDragOver($event)"
-						(dragleave)="onDragLeave($event)"
-						(drop)="onDrop($event)">
-						<ng-container *ngIf="!isTemplate(dropText)">{{dropText}}</ng-container>
-						<ng-template *ngIf="isTemplate(dropText)" [ngTemplateOutlet]="dropText"></ng-template>
-					</div>
-				</label>
-				<button
-					*ngIf="!drop"
-					type="button"
-					[cdsButton]="buttonType"
-					(click)="fileInput.click()"
-					[attr.for]="fileUploaderId"
-					[size]="size"
-					[disabled]="disabled">
-					{{buttonText}}
-				</button>
+						[size]="size"
+						[disabled]="disabled">
+						{{buttonText}}
+					</button>
+				}
 				<input
 					#fileInput
 					type="file"
@@ -70,7 +83,7 @@ const noop = () => { };
 					(change)="onFilesAdded()"
 					[disabled]="disabled"/>
 				<div class="cds--file-container">
-					<ng-container *ngFor="let fileItem of files">
+					@for (fileItem of files; track fileItem) {
 						<cds-file
 							[fileItem]="fileItem"
 							[nameTpl]="fileNameTpl"
@@ -78,16 +91,10 @@ const noop = () => { };
 							[size]="fileItemSize"
 							(remove)="removeFile(fileItem)">
 						</cds-file>
-					</ng-container>
+					}
 				</div>
 			</div>
-		</ng-container>
-
-		<ng-template #skeletonTemplate>
-			<div class="cds--skeleton__text" style="width: 100px"></div>
-			<div class="cds--skeleton__text" style="width: 225px"></div>
-			<button cdsButton skeleton="true"></button>
-		</ng-template>
+		}
 	`,
 	providers: [
 		{
@@ -95,6 +102,12 @@ const noop = () => { };
 			useExisting: FileUploader,
 			multi: true
 		}
+	],
+	imports: [
+		NgClass,
+		NgTemplateOutlet,
+		Button,
+		FileComponent
 	]
 })
 export class FileUploader implements ControlValueAccessor {
@@ -102,6 +115,9 @@ export class FileUploader implements ControlValueAccessor {
 	 * Counter used to create unique ids for file-uploader components
 	 */
 	static fileUploaderCount = 0;
+
+	public i18n = inject(I18n);
+
 	/**
 	 * Accessible text for the button that opens the upload window.
 	 *
@@ -193,7 +209,13 @@ export class FileUploader implements ControlValueAccessor {
 	protected onTouchedCallback: () => void = noop;
 	protected onChangeCallback: (_: Set<FileItem>) => void = noop;
 
-	constructor(protected i18n: I18n) {
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
 		FileUploader.fileUploaderCount++;
 	}
 
@@ -225,6 +247,7 @@ export class FileUploader implements ControlValueAccessor {
 	writeValue(value: Set<FileItem>) {
 		if (value !== this.value) {
 			this.files = value;
+			this.changeDetectorRef.markForCheck();
 		}
 	}
 
@@ -333,5 +356,6 @@ export class FileUploader implements ControlValueAccessor {
 	 */
 	setDisabledState(isDisabled: boolean) {
 		this.disabled = isDisabled;
+		this.changeDetectorRef.markForCheck();
 	}
 }

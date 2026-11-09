@@ -10,13 +10,16 @@ import {
 	SimpleChanges,
 	OnChanges,
 	Renderer2,
-	Inject,
 	OnDestroy,
-	TemplateRef
+	TemplateRef,
+	DOCUMENT,
+	inject
 } from "@angular/core";
-import { DOCUMENT } from "@angular/common";
+import { NgClass } from "@angular/common";
 import { cycleTabs, getFocusElementList } from "carbon-components-angular/common";
 import { BaseModalService } from "./base-modal.service";
+import { Overlay } from "./overlay.component";
+import { PLACEHOLDER_SERVICE_PROVIDER } from "carbon-components-angular/placeholder";
 
 /**
  * Component to create modals for presenting content.
@@ -42,7 +45,12 @@ import { BaseModalService } from "./base-modal.service";
 					<cds-modal-header (closeSelect)="closeModal()">Header text</cds-modal-header>
 						<section class="modal-body">
 							<h1>Sample modal works.</h1>
-							<button class="btn--icon-link" nPopover="Hello there" title="Popover title" placement="right" appendInline="true">
+							<button
+								class="btn--icon-link"
+								nPopover="Hello there"
+								title="Popover title"
+								placement="right"
+								appendInline="true">
 								<svg cdsIcon="info" size="sm"></svg>
 							</button>
 							{{modalText}}
@@ -98,12 +106,16 @@ export class ModalDemo {
 				style="z-index:1;"
 				[attr.aria-label]="ariaLabel"
 				#modal>
-				<ng-content></ng-content>
+				<ng-content />
 			</div>
 		</cds-overlay>
-	`
+	`,
+	providers: [PLACEHOLDER_SERVICE_PROVIDER, BaseModalService],
+	imports: [Overlay, NgClass]
 })
 export class Modal implements AfterViewInit, OnChanges, OnDestroy {
+	modalService = inject(BaseModalService);
+
 	/**
 	 * Size of the modal to display.
 	 */
@@ -147,7 +159,8 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 	@Input() decorator: TemplateRef<any>;
 
 	/**
-	 * Emits event when click occurs within `n-overlay` element. This is to track click events occurring outside bounds of the `Modal` object.
+	 * Emits event when click occurs within `n-overlay` element.
+	 * This is to track click events occurring outside bounds of the `Modal` object.
 	 */
 	@Output() overlaySelected = new EventEmitter();
 	/**
@@ -164,14 +177,17 @@ export class Modal implements AfterViewInit, OnChanges, OnDestroy {
 	 */
 	@Input() selectorPrimaryFocus = "[modal-primary-focus]";
 
+	private document = inject<Document>(DOCUMENT);
+	private renderer = inject(Renderer2);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of `Modal`.
 	 */
-	constructor(
-		public modalService: BaseModalService,
-		@Inject(DOCUMENT) private document: Document,
-		private renderer: Renderer2
-	) { }
+	constructor() {}
 
 	ngOnChanges({ open, hasScrollingContent }: SimpleChanges) {
 		if (open) {

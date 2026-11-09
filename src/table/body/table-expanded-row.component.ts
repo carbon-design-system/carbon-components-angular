@@ -1,23 +1,18 @@
-import {
-	Component,
-	HostBinding,
-	Input
-} from "@angular/core";
+import { Component, HostBinding, Input } from "@angular/core";
+import { NgTemplateOutlet } from "@angular/common";
 
 @Component({
-	// tslint:disable-next-line: component-selector
+	// eslint-disable-next-line @angular-eslint/component-selector
 	selector: "[cdsTableExpandedRow], [ibmTableExpandedRow]",
 	template: `
 		<td [attr.colspan]="row.length + 2">
-			<ng-container *ngIf="!firstExpandedTemplateInRow(row)">
+			@if (!firstExpandedTemplateInRow(row)) {
 				{{firstExpandedDataInRow(row)}}
-			</ng-container>
-			<ng-template
-				[ngTemplateOutlet]="firstExpandedTemplateInRow(row)"
-				[ngTemplateOutletContext]="{data: firstExpandedDataInRow(row)}">
-			</ng-template>
+			}
+			<ng-template [ngTemplateOutlet]="firstExpandedTemplateInRow(row)" [ngTemplateOutletContext]="{data: firstExpandedDataInRow(row)}" />
 		</td>
-	`
+	`,
+	imports: [NgTemplateOutlet]
 })
 export class TableExpandedRow {
 	@Input() row: any[];

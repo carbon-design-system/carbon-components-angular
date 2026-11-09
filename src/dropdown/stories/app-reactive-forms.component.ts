@@ -1,15 +1,21 @@
 import {
 	Component,
-	OnInit,
+	EventEmitter,
+	inject,
 	Input,
-	Output,
-	EventEmitter
+	OnInit,
+	Output
 } from "@angular/core";
 import {
 	FormBuilder,
 	FormGroup,
-	FormControl
+	FormControl,
+	FormsModule,
+	NgControl,
+	ReactiveFormsModule
 } from "@angular/forms";
+import { Dropdown, DropdownList } from "../";
+import { JsonPipe } from "@angular/common";
 
 @Component({
 	selector: "app-reactive-forms",
@@ -36,7 +42,14 @@ import {
 		</form>
 		<br>
 		<code>{{ formGroup.get("roles").value | json }}</code>
-	`
+	`,
+	imports: [
+		Dropdown,
+		DropdownList,
+		JsonPipe,
+		ReactiveFormsModule
+	],
+	standalone: true
 })
 export class ReactiveFormsStory implements OnInit {
 	public formGroup: FormGroup;
@@ -60,7 +73,7 @@ export class ReactiveFormsStory implements OnInit {
 	@Output() selected = new EventEmitter();
 	@Output() onClose = new EventEmitter();
 
-	constructor(protected formBuilder: FormBuilder) { }
+	protected formBuilder = inject(FormBuilder);
 
 	ngOnInit() {
 		this.formGroup = this.formBuilder.group({

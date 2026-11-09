@@ -1,5 +1,6 @@
 import {
 	AfterContentInit,
+	ChangeDetectionStrategy,
 	ContentChildren,
 	Component,
 	EventEmitter,
@@ -11,18 +12,22 @@ import {
 	AfterViewInit,
 	HostListener,
 	TemplateRef,
-	OnDestroy
+	OnDestroy,
+	ChangeDetectorRef,
+	inject
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 import { Radio } from "./radio.component";
 import { RadioChange } from "./radio-change.class";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 import { Subscription } from "rxjs/internal/Subscription";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the components:
  *
  * ```typescript
- * import { RadioModule } from 'carbon-components-angular';
+ * import { RadioGroup, Radio } from 'carbon-components-angular';
  * ```
  *
  * Ex:
@@ -58,48 +63,69 @@ import { Subscription } from "rxjs/internal/Subscription";
 				'cds--radio-button-group--decorator': !!decorator
 			}"
 			[attr.data-invalid]="invalid ? true : null">
-			<legend *ngIf="legend" class="cds--label">
-				<ng-template *ngIf="isTemplate(legend); else legendLabel;" [ngTemplateOutlet]="legend"></ng-template>
-				<ng-template #legendLabel>{{legend}}</ng-template>
-				<ng-container *ngIf="decorator">
-					<div class="cds--radio-button-group-inner--decorator">
-						<ng-template [ngTemplateOutlet]="decorator"></ng-template>
-					</div>
-				</ng-container>
-			</legend>
+			@if (legend) {
+				<legend class="cds--label">
+					@if (isTemplate(legend)) {
+						<ng-template [ngTemplateOutlet]="legend"></ng-template>
+					} @else {
+						{{legend}}
+					}
+
+					@if (decorator) {
+						<div class="cds--radio-button-group-inner--decorator">
+							<ng-template [ngTemplateOutlet]="decorator"></ng-template>
+						</div>
+					}
+				</legend>
+			}
 			<ng-content></ng-content>
 		</fieldset>
 		<div class="cds--radio-button__validation-msg">
-			<ng-container *ngIf="invalid">
+			@if (invalid) {
 				<svg
 					cdsIcon="warning--filled"
 					size="16"
 					class="cds--radio-button__invalid-icon">
 				</svg>
 				<div class="cds--form-requirement">
-					<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
-					<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+					@if (!isTemplate(invalidText)) {
+						{{ invalidText }}
+					}
+					@if (isTemplate(invalidText)) {
+						<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+					}
 				</div>
-			</ng-container>
-			<ng-container *ngIf="!invalid && warn">
+
+			}
+			@if (!invalid && warn) {
 				<svg
 					cdsIcon="warning--alt--filled"
 					class="cds--radio-button__invalid-icon cds--radio-button__invalid-icon--warning"
 					size="16">
 				</svg>
 				<div class="cds--form-requirement">
-					<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>
-					<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
+					@if (!isTemplate(warnText)) {
+						{{warnText}}
+					}
+					@if (isTemplate(warnText)) {
+						<ng-template [ngTemplateOutlet]="warnText"></ng-template>
+					}
 				</div>
-			</ng-container>
+
+			}
 		</div>
-		<div
-			*ngIf="helperText && !invalid && !warn"
-			class="cds--form__helper-text"
-			[ngClass]="{'cds--form__helper-text--disabled': disabled}">
-			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>
-			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-		</div>
+		@if (helperText && !invalid && !warn) {
+			<div
+				class="cds--form__helper-text"
+				[ngClass]="{'cds--form__helper-text--disabled': disabled}">
+				@if (!isTemplate(helperText)) {
+					{{helperText}}
+				}
+				@if (isTemplate(helperText)) {
+					<ng-template [ngTemplateOutlet]="helperText"></ng-template>
+				}
+			</div>
+		}
 	`,
 	providers: [
 		{
@@ -107,7 +133,9 @@ import { Subscription } from "rxjs/internal/Subscription";
 			useExisting: RadioGroup,
 			multi: true
 		}
-	]
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgClass, NgTemplateOutlet, IconDirective]
 })
 export class RadioGroup implements AfterContentInit, AfterViewInit, OnDestroy, ControlValueAccessor {
 
@@ -256,12 +284,12 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, OnDestroy, C
 	/**
 	 * Emits event notifying other classes of a change using a `RadioChange` class.
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() change: EventEmitter<RadioChange> = new EventEmitter<RadioChange>();
 
 	/**
 	 * The `Radio` input items in the `RadioGroup`.
 	 */
-	// tslint:disable-next-line:no-forward-ref
 	@ContentChildren(forwardRef(() => Radio)) radios: QueryList<Radio>;
 
 	/**
@@ -273,6 +301,8 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, OnDestroy, C
 	 * To track whether the `RadioGroup` has been initialized.
 	 */
 	protected isInitialized = false;
+
+	protected changeDetectorRef = inject(ChangeDetectorRef);
 	/**
 	 * Reflects whether or not the input is disabled and cannot be selected.
 	 */
@@ -335,6 +365,7 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, OnDestroy, C
 	 */
 	setDisabledState(isDisabled: boolean) {
 		this.disabled = isDisabled;
+		this.changeDetectorRef.markForCheck();
 	}
 
 	/**
@@ -359,6 +390,8 @@ export class RadioGroup implements AfterContentInit, AfterViewInit, OnDestroy, C
 						radio.labelPlacement = "left";
 					}
 				});
+				// the radios are projected content, refresh view on change
+				this.changeDetectorRef.markForCheck();
 			});
 		}
 	}

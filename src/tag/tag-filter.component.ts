@@ -3,26 +3,29 @@ import {
 	Output,
 	EventEmitter,
 	HostBinding,
-	Input
+	Input,
+	ChangeDetectionStrategy
 } from "@angular/core";
+import { NgTemplateOutlet } from "@angular/common";
 import { Tag } from "./tag.component";
+import { IconDirective } from "carbon-components-angular/icon";
 
 @Component({
 	selector: "cds-tag-filter, ibm-tag-filter",
 	template: `
-		<ng-container *ngIf="!skeleton">
-			<ng-content select="[cdsTagIcon],[ibmTagIcon]"></ng-content>
+		@if (!skeleton) {
+			<ng-content select="[cdsTagIcon],[ibmTagIcon]" />
 			<span
 				class="cds--tag__label"
 				[attr.title]="title ? title : null"
 				(click)="onClick($event)">
-				<ng-content></ng-content>
+				<ng-content />
 			</span>
-			<ng-container *ngIf="decorator">
+			@if (decorator) {
 				<div class="cds--tag__decorator">
 					<ng-template [ngTemplateOutlet]="decorator"></ng-template>
 				</div>
-			</ng-container>
+			}
 			<button
 				class="cds--tag__close-icon"
 				(click)="onClose($event)"
@@ -31,8 +34,10 @@ import { Tag } from "./tag.component";
 				<span class="cds--visually-hidden">{{closeButtonLabel}}</span>
 				<svg cdsIcon="close" size="16"></svg>
 			</button>
-		</ng-container>
-	`
+		}
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgTemplateOutlet, IconDirective]
 })
 export class TagFilter extends Tag {
 	@Input() closeButtonLabel = "Clear Filter";
@@ -52,6 +57,7 @@ export class TagFilter extends Tag {
 	 * to on the immediate close button element. `action` distinguishes between clicks on
 	 * the tag vs. clicks on the close button.
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() click = new EventEmitter<{ action: "click" | "close" }>();
 
 	onClick(event: any) {
@@ -69,7 +75,7 @@ export class TagFilter extends Tag {
 
 	/**
 	 * @todo
-	 * Remove `cds--tag--${this.size}` in v7
+	 * Remove `cds--tag--${this.size}` in Carbon v12
 	 */
 	@HostBinding("attr.class") get attrClass() {
 		const disabledClass = this.disabled ? "cds--tag--disabled" : "";

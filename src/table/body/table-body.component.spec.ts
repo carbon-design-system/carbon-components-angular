@@ -19,7 +19,8 @@ import { TableBody } from "./table-body.component";
 				[skeleton]="skeleton">
 			</tbody>
 		</table>
-	`
+	`,
+	imports: [TableModule]
 })
 class TableBodyTest {
 	@ViewChild(TableBody) body: TableBody;
@@ -44,8 +45,7 @@ describe("TableBody", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [TableBodyTest],
-			imports: [TableModule]
+			imports: [TableBodyTest]
 		});
 
 		fixture = TestBed.createComponent(TableBodyTest);

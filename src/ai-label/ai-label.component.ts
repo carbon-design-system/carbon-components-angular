@@ -11,9 +11,14 @@ import {
 	OnDestroy,
 	Output,
 	SimpleChanges,
-	ViewChild
+	ViewChild,
+	inject
 } from "@angular/core";
 import { Placement } from "@floating-ui/dom";
+import { NgClass } from "@angular/common";
+
+import { IconButton } from "carbon-components-angular/button";
+import { IconDirective } from "carbon-components-angular/icon";
 
 import { AILabelPopoverDirective } from "./ai-label-popover.directive";
 
@@ -65,7 +70,7 @@ type DeprecatedAILabelAlign =
 	selector: "cds-ai-label, ibm-ai-label",
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<ng-container *ngIf="!revertActive">
+		@if (!revertActive) {
 			<span
 				#aiLabelPopoverHost
 				cdsAILabelPopover
@@ -88,7 +93,9 @@ type DeprecatedAILabelAlign =
 					[ngClass]="triggerClasses"
 					(click)="onTriggerClick($event)">
 					<span class="cds--ai-label__text">{{aiText}}</span>
-					<span *ngIf="kind === 'inline' && textLabel" class="cds--ai-label__additional-text">{{textLabel}}</span>
+					@if (kind === 'inline' && textLabel) {
+						<span class="cds--ai-label__additional-text">{{textLabel}}</span>
+					}
 				</button>
 
 				<span
@@ -99,24 +106,29 @@ type DeprecatedAILabelAlign =
 						<div class="cds--toggletip-content">
 							<ng-content></ng-content>
 						</div>
-						<span *ngIf="autoAlign" class="cds--popover-caret cds--popover--auto-align"></span>
+						@if (autoAlign) {
+							<span class="cds--popover-caret cds--popover--auto-align"></span>
+						}
 					</span>
-					<span *ngIf="!autoAlign" class="cds--popover-caret"></span>
+					@if (!autoAlign) {
+						<span class="cds--popover-caret"></span>
+					}
 				</span>
 			</span>
-		</ng-container>
-
-		<cds-icon-button
-			*ngIf="revertActive"
-			kind="ghost"
-			size="sm"
-			[description]="revertLabel"
-			[autoAlign]="autoAlign"
-			[buttonAttributes]="{ 'aria-label': revertLabel }"
-			(click)="onRevertButtonClick($event)">
-			<svg cdsIcon="undo" size="16"></svg>
-		</cds-icon-button>
-	`
+		}
+		@if (revertActive) {
+			<cds-icon-button
+				kind="ghost"
+				size="sm"
+				[description]="revertLabel"
+				[autoAlign]="autoAlign"
+				[buttonAttributes]="{ 'aria-label': revertLabel }"
+				(click)="onRevertButtonClick($event)">
+				<svg cdsIcon="undo" size="16"></svg>
+			</cds-icon-button>
+		}
+	`,
+	imports: [NgClass, AILabelPopoverDirective, IconButton, IconDirective]
 })
 export class AILabelComponent implements AfterViewInit, OnChanges, OnDestroy {
 	static labelCounter = 0;
@@ -150,7 +162,7 @@ export class AILabelComponent implements AfterViewInit, OnChanges, OnDestroy {
 	/**
 	 * **Experimental**: Use floating-ui to position the tooltip.
 	 */
-	@Input() autoAlign = false;
+	@Input() autoAlign = true;
 
 	/**
 	 * Whether the callout is open.
@@ -227,12 +239,18 @@ export class AILabelComponent implements AfterViewInit, OnChanges, OnDestroy {
 	 */
 	@Output() revertClick = new EventEmitter<MouseEvent>();
 
+	private elementRef = inject(ElementRef);
+
 	@ViewChild("aiLabelPopoverHost", { read: AILabelPopoverDirective })
 	private aiLabelPopover: AILabelPopoverDirective;
 
 	private readonly documentClick = this.handleOutsideClick.bind(this);
 
-	constructor(private elementRef: ElementRef) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	onPopoverIsOpenChange(open: boolean): void {
 		this.isOpen = open;

@@ -1,24 +1,18 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import { FormsModule } from "@angular/forms";
-import { Component, OnInit } from "@angular/core";
-
-import { CommonModule } from "@angular/common";
-import { I18nModule } from "carbon-components-angular/i18n";
-import { ExperimentalModule } from "carbon-components-angular/experimental";
-import { Pagination, PaginationModule } from "./index";
+import { Component, type OnInit } from "@angular/core";
+import { Pagination } from "./index";
 import { PaginationModel } from "./pagination-model.class";
 
 @Component({
 	template: `
-		<cds-pagination
-			[model]="model"
+		<cds-pagination [model]="model"
 			[disabled]="disabled"
 			[pageInputDisabled]="pageInputDisabled"
 			[pagesUnknown]="pagesUnknown"
-			(selectPage)="selectPage($event)">
-		</cds-pagination>
-	`
+			(selectPage)="selectPage($event)" />
+	`,
+	imports: [Pagination]
 })
 class PaginationTest implements OnInit {
 	model = new PaginationModel();
@@ -41,13 +35,8 @@ describe("Pagination", () => {
 	let fixture, wrapper, element, component;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [ PaginationTest ],
 			imports: [
-				CommonModule,
-				FormsModule,
-				PaginationModule,
-				I18nModule,
-				ExperimentalModule
+				PaginationTest
 			]
 		});
 	});
@@ -107,12 +96,16 @@ describe("Pagination", () => {
 		spyOn(wrapper, "selectPage").and.callThrough();
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("cds-pagination"));
-		element.nativeElement.querySelector(".cds--pagination__button--forward").click();
+		element.nativeElement
+			.querySelector(".cds--pagination__button--forward")
+			.click();
 		fixture.detectChanges();
 		expect(element.componentInstance.currentPage).toBe(2);
 		expect(wrapper.model.currentPage).toBe(2);
 		expect(wrapper.selectPage).toHaveBeenCalled();
-		element.nativeElement.querySelector(".cds--pagination__button--backward").click();
+		element.nativeElement
+			.querySelector(".cds--pagination__button--backward")
+			.click();
 		fixture.detectChanges();
 		expect(element.componentInstance.currentPage).toBe(1);
 		expect(wrapper.model.currentPage).toBe(1);
@@ -123,7 +116,9 @@ describe("Pagination", () => {
 		wrapper = fixture.componentInstance;
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("cds-pagination"));
-		const buttonBackward = element.nativeElement.querySelector(".cds--pagination__button--backward");
+		const buttonBackward = element.nativeElement.querySelector(
+			".cds--pagination__button--backward"
+		);
 		buttonBackward.click();
 		fixture.detectChanges();
 		expect(buttonBackward.disabled).toBe(true);
@@ -137,8 +132,12 @@ describe("Pagination", () => {
 		fixture.detectChanges();
 		element = fixture.debugElement.query(By.css("cds-pagination"));
 		element.componentInstance.currentPage = 5;
-		const buttonForward = element.nativeElement.querySelector(".cds--pagination__button--forward");
-		const buttonBackward = element.nativeElement.querySelector(".cds--pagination__button--forward");
+		const buttonForward = element.nativeElement.querySelector(
+			".cds--pagination__button--forward"
+		);
+		const buttonBackward = element.nativeElement.querySelector(
+			".cds--pagination__button--forward"
+		);
 
 		buttonForward.click();
 		fixture.detectChanges();
@@ -163,16 +162,16 @@ describe("Pagination", () => {
 		model.totalDataLength = 9;
 		wrapper.model = model;
 		fixture.detectChanges();
-		expect(wrapper.pageOptions).toEqual(Array(2));
+		expect(wrapper.pageOptions.length).toEqual(2);
 		model.totalDataLength = 2;
 		fixture.detectChanges();
-		expect(wrapper.pageOptions).toEqual(Array(1));
+		expect(wrapper.pageOptions.length).toEqual(1);
 		model.totalDataLength = 20;
 		fixture.detectChanges();
-		expect(wrapper.pageOptions).toEqual(Array(4));
+		expect(wrapper.pageOptions.length).toEqual(4);
 		model.totalDataLength = 0;
 		fixture.detectChanges();
-		expect(wrapper.pageOptions).toEqual(Array(1));
+		expect(wrapper.pageOptions.length).toEqual(1);
 	});
 
 	it("should replace the select with a number input when the pagination threshold is reached", () => {
@@ -183,13 +182,20 @@ describe("Pagination", () => {
 
 		element.componentInstance.pageSelectThreshold = 500;
 		fixture.detectChanges();
-		expect(element.nativeElement.querySelector(".cds--select__page-number input")).toBe(null);
-		expect(element.nativeElement.querySelector(".cds--select__page-number select")).toBeDefined();
+		expect(
+			element.nativeElement.querySelector(".cds--select__page-number input")
+		).toBe(null);
+		expect(
+			element.nativeElement.querySelector(".cds--select__page-number select")
+		).toBeDefined();
 
 		element.componentInstance.pageSelectThreshold = 2;
 		fixture.detectChanges();
-		expect(element.nativeElement.querySelector(".cds--select__page-number input")).toBeDefined();
-		expect(element.nativeElement.querySelector(".cds--select__page-number select")).toBe(null);
-
+		expect(
+			element.nativeElement.querySelector(".cds--select__page-number input")
+		).toBeDefined();
+		expect(
+			element.nativeElement.querySelector(".cds--select__page-number select")
+		).toBe(null);
 	});
 });

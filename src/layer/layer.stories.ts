@@ -1,13 +1,11 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { LayerModule, LayerDirective } from "./";
+import { LayerDirective } from "./";
 
 export default {
 	title: "Components/Layer",
 	decorators: [
 		moduleMetadata({
-			imports: [LayerModule]
+			imports: [LayerDirective]
 		})
 	],
 	parameters: {

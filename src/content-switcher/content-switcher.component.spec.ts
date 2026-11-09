@@ -3,7 +3,7 @@ import { By } from "@angular/platform-browser";
 import { Component } from "@angular/core";
 import { advancedFakeAsync } from "../test-helpers/change-detection";
 import { ContentSwitcher } from "./content-switcher.component";
-import { ContentSwitcherModule, ContentSwitcherOption } from "./index";
+import { ContentSwitcherOption } from "./index";
 
 @Component({
 	template: `
@@ -12,7 +12,8 @@ import { ContentSwitcherModule, ContentSwitcherOption } from "./index";
 			<button ibmContentOption name="Second" id="second">Second section</button>
 			<button ibmContentOption name="Third" id="third">Third section</button>
 		</cds-content-switcher>
-	`
+	`,
+	imports: [ContentSwitcher, ContentSwitcherOption]
 })
 class ContentSwitcherTest {
 	selectedValue = null;
@@ -25,8 +26,7 @@ describe("ContentSwitcher", () => {
 	let fixture, wrapper, element;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [ContentSwitcherTest],
-			imports: [ContentSwitcherModule]
+			imports: [ContentSwitcherTest]
 		});
 	});
 

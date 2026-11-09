@@ -1,4 +1,4 @@
-import { moduleMetadata, Meta, Story } from "@storybook/angular";
+import { moduleMetadata, Meta } from "@storybook/angular";
 import { ContainedListModule, ContainedList, ContainedListItem } from ".";
 import { ButtonModule } from "../button";
 import { IconModule } from "../icon";
@@ -9,23 +9,31 @@ import { DialogModule } from "../dialog";
 import { TooltipModule } from "../tooltip";
 import { SearchModule } from "../search";
 import { ContainedListKind, ContainedListSize } from "./contained-list.enums";
-import { ContainedListStoryModule } from "./stories/contained-list-story.module";
+import { ContainedListStoryModule  } from "./stories/contained-list-story.module";
+import { I18n } from "../i18n";
+import { PlaceholderService } from "../placeholder";
+
+
 
 export default {
 	title: "Components/Contained List",
 	decorators: [
 		moduleMetadata({
 			imports: [
+				ButtonModule,
 				ContainedListModule,
 				ContainedListStoryModule,
-				ButtonModule,
 				IconModule,
 				LayerModule,
-				LayoutModule,
-				TagModule,
 				DialogModule,
-				TooltipModule,
-				SearchModule
+				LayoutModule,
+				SearchModule,
+				TagModule,
+				TooltipModule
+			],
+			providers: [
+				I18n,
+				PlaceholderService
 			]
 		})
 	],
@@ -82,7 +90,11 @@ const usageExamplesTemplate = () => ({
 		</ng-template>
 		<ng-template #overflowMenu let-item>
 			<ibm-tooltip class="cds--icon-tooltip" description="Options" align="left">
-				<ibm-overflow-menu [flip]="true" [customTrigger]="customTrigger" triggerClass="cds--toolbar-action" [offset]="{ x: 0, y: 0 }">
+				<ibm-overflow-menu
+					[flip]="true"
+					[customTrigger]="customTrigger"
+					triggerClass="cds--toolbar-action"
+					[offset]="{ x: 0, y: 0 }">
 					<ibm-overflow-menu-option>View details</ibm-overflow-menu-option>
 					<ibm-overflow-menu-option>Edit</ibm-overflow-menu-option>
 					<ibm-overflow-menu-option [divider]="true" type="danger">Remove</ibm-overflow-menu-option>
@@ -231,12 +243,13 @@ export const withActionsAndContextData = (args) => {
 				</button>
 			</ng-template>
 			<cds-contained-list label="List title" [size]="size">
-				<cds-contained-list-item
-					*ngFor="let item of items"
-					[action]="actionWithClick"
-					[actionData]="item">
-					{{ item.label }} {{ item.id }}
-				</cds-contained-list-item>
+				@for (item of items; track item.id) {
+					<cds-contained-list-item
+						[action]="actionWithClick"
+						[actionData]="item">
+						{{ item.label }} {{ item.id }}
+					</cds-contained-list-item>
+				}
 			</cds-contained-list>
 		`
 	};
@@ -358,4 +371,3 @@ const withListTitleDecoratorsTemplate = () => ({
 	`
 });
 export const withListTitleDecorators = withListTitleDecoratorsTemplate.bind({});
-

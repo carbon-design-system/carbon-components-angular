@@ -2,12 +2,7 @@ import { FormsModule } from "@angular/forms";
 import { fakeAsync, TestBed } from "@angular/core/testing";
 import { Component } from "@angular/core";
 import { advancedFakeAsync } from "../test-helpers/change-detection";
-import { ButtonModule } from "carbon-components-angular/button";
-import { LoadingModule } from "carbon-components-angular/loading";
 import { FileUploader } from "./file-uploader.component";
-import { FileComponent } from "./file.component";
-import { CommonModule } from "@angular/common";
-import { IconModule } from "../icon/index";
 import { By } from "@angular/platform-browser";
 import { FileItem } from "./file-item.interface";
 
@@ -21,7 +16,8 @@ import { FileItem } from "./file-item.interface";
 			[multiple]="true"
 			[(ngModel)]="files">
 		</cds-file-uploader>
-	`
+	`,
+	imports: [FileUploader, FormsModule]
 })
 class FileUploaderTest {
 	files = null;
@@ -31,20 +27,18 @@ describe("FileUploader", () => {
 	let fixture, wrapper, element;
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [
-				FileUploader,
-				FileUploaderTest,
-				FileComponent
-			],
 			imports: [
-				FormsModule,
-				CommonModule,
-				ButtonModule,
-				LoadingModule,
-				IconModule
+				FileUploaderTest
 			]
 		});
 	});
+
+	// ngModel needs one pass to notice the new set and a tick to hand it to the uploader
+	function setFiles(next: Set<FileItem>) {
+		wrapper.files = next;
+		fixture.detectChanges();
+		advancedFakeAsync(fixture);
+	}
 
 	function fileItem(name: string, state: "edit" | "upload" | "complete" = "edit"): FileItem {
 		return {
@@ -83,7 +77,7 @@ describe("FileUploader", () => {
 	it("should only accept .txt files", () => {
 		fixture = TestBed.createComponent(FileUploaderTest);
 		fixture.detectChanges();
-		element = fixture.debugElement.query(By.css("cds-file-uploader"));
+		element = fixture.debugElement.query(By.css("cds-file-uploader"));
 		expect(element.nativeElement.querySelector(".cds--file-input").getAttribute("accept")).toEqual(".txt");
 	});
 
@@ -103,10 +97,8 @@ describe("FileUploader", () => {
 		element.componentInstance.value = testFiles;
 		fixture.detectChanges();
 		expect(wrapper.files.has(fileItem)).toBe(true);
-		expect(element
-			.nativeElement
-			.querySelector(".cds--file-container .cds--file-filename")
-			.textContent).toEqual("test-filename");
+		const textContent = element.nativeElement.querySelector(".cds--file-container .cds--file-filename").textContent;
+		expect(textContent.trim()).toEqual("test-filename");
 	});
 
 	it("should set cds--file--invalid class on invalid file items", () => {
@@ -160,8 +152,7 @@ describe("FileUploader", () => {
 		advancedFakeAsync(fixture);
 		expect(fixture.nativeElement.querySelectorAll("cds-file").length).toBe(0);
 
-		wrapper.files.add(fileItem("first.txt"));
-		fixture.detectChanges();
+		setFiles(new Set([fileItem("first.txt")]));
 
 		expect(fixture.nativeElement.querySelectorAll("cds-file").length).toBe(1);
 		expect(fixture.nativeElement.textContent).toContain("first.txt");
@@ -175,12 +166,10 @@ describe("FileUploader", () => {
 		advancedFakeAsync(fixture);
 
 		const item = fileItem("first.txt");
-		wrapper.files.add(item);
-		fixture.detectChanges();
+		setFiles(new Set([item]));
 		expect(fixture.nativeElement.querySelectorAll("cds-file").length).toBe(1);
 
-		wrapper.files.delete(item);
-		fixture.detectChanges();
+		setFiles(new Set<FileItem>());
 
 		expect(fixture.nativeElement.querySelectorAll("cds-file").length).toBe(0);
 	}));
@@ -194,12 +183,12 @@ describe("FileUploader", () => {
 		advancedFakeAsync(fixture);
 
 		const item = fileItem("first.txt", "upload");
-		wrapper.files.add(item);
-		fixture.detectChanges();
+		setFiles(new Set([item]));
 		expect(fixture.nativeElement.querySelector("cds-loading")).toBeTruthy();
 
-		setTimeout(() => item.state = "complete", 300);
+		// same reason: the completed upload arrives as a new item
 		advancedFakeAsync(fixture, 300);
+		setFiles(new Set([{ ...item, state: "complete" }]));
 
 		expect(fixture.nativeElement.querySelector("cds-loading")).toBeFalsy();
 		expect(fixture.nativeElement.querySelector(".cds--file-complete")).toBeTruthy();
@@ -213,15 +202,13 @@ describe("FileUploader", () => {
 		advancedFakeAsync(fixture);
 
 		const item = fileItem("first.txt");
-		wrapper.files.add(item);
-		fixture.detectChanges();
+		setFiles(new Set([item]));
 		expect(fixture.nativeElement.querySelector(".cds--form-requirement")).toBeFalsy();
 
-		setTimeout(() => {
-			item.invalid = true;
-			item.invalidText = "file too large";
-		}, 200);
+		// cds-file is OnPush and holds the item by reference, so validation has to hand
+		// over a new item rather than mutating the one already rendered
 		advancedFakeAsync(fixture, 200);
+		setFiles(new Set([{ ...item, invalid: true, invalidText: "file too large" }]));
 
 		expect(fixture.nativeElement.querySelector(".cds--form-requirement")).toBeTruthy();
 		expect(fixture.nativeElement.textContent).toContain("file too large");

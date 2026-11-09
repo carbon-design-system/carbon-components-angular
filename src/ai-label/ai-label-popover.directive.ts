@@ -5,7 +5,8 @@ import {
 	NgZone,
 	OnChanges,
 	Renderer2,
-	SimpleChanges
+	SimpleChanges,
+	inject
 } from "@angular/core";
 
 import { PopoverContainer } from "carbon-components-angular/popover";
@@ -15,16 +16,16 @@ import { PopoverContainer } from "carbon-components-angular/popover";
  * `cds--popover-*` classes are not merged onto the `cds--ai-label` host.
  */
 @Directive({
-	selector: "[cdsAILabelPopover]"
+	selector: "[cdsAILabelPopover]",
+	standalone: true
 })
 export class AILabelPopoverDirective extends PopoverContainer implements OnChanges {
-	constructor(
-		protected elementRef: ElementRef,
-		protected ngZone: NgZone,
-		protected renderer: Renderer2,
-		protected changeDetectorRef: ChangeDetectorRef
-	) {
-		super(elementRef, ngZone, renderer, changeDetectorRef);
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
+		super();
 		this.highContrast = true;
 		this.dropShadow = false;
 	}

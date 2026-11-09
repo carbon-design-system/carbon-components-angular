@@ -3,10 +3,14 @@ import {
 	Component,
 	EventEmitter,
 	Input,
-	Output
+	Output,
+	inject
 } from "@angular/core";
 import { I18n, Overridable } from "carbon-components-angular/i18n";
 import { TableRowSize } from "../table.types";
+import { NgClass, AsyncPipe } from "@angular/common";
+import { Button } from "carbon-components-angular/button";
+import { ReplacePipe } from "carbon-components-angular/i18n";
 
 /**
  * The table toolbar is reserved for global table actions such as table settings, complex filter, export, or editing table data.
@@ -46,43 +50,56 @@ import { TableRowSize } from "../table.types";
 @Component({
 	selector: "cds-table-toolbar, ibm-table-toolbar",
 	template: `
-	<section
-		class="cds--table-toolbar"
-		[ngClass]="{'cds--table-toolbar--sm' : size === 'sm'}"
-		[attr.aria-label]="actionBarLabel.subject | async">
-		<div
-			*ngIf="model"
-			class="cds--batch-actions"
-			[ngClass]="{
-				'cds--batch-actions--active': selected
-			}">
-			<div class="cds--batch-summary">
-				<p class="cds--batch-summary__para" *ngIf="count as n">
-					<ng-container *ngIf="_batchTextLegacy.subject | async as legacyText; else batchTextBlock">
-						<span>{{n}}</span> {{legacyText}}
-					</ng-container>
-					<ng-template #batchTextBlock>
-						<span *ngIf="n === 1">{{_batchTextSingle.subject | async}}</span>
-						<span *ngIf="n !== 1">{{_batchTextMultiple.subject | i18nReplace: {count: n} | async}}</span>
-					</ng-template>
-				</p>
-			</div>
-			<div class="cds--action-list">
-				<ng-content select="cds-table-toolbar-actions,ibm-table-toolbar-actions"></ng-content>
-				<button
-					cdsButton="primary"
-					class="cds--batch-summary__cancel"
-					[tabindex]="selected ? 0 : -1"
-					(click)="onCancel()">
-					{{_cancelText.subject | async}}
-				</button>
-			</div>
-		</div>
-		<ng-content></ng-content>
-	</section>
-	`
+		<section
+			class="cds--table-toolbar"
+			[ngClass]="{'cds--table-toolbar--sm' : size === 'sm'}"
+			[attr.aria-label]="actionBarLabel.subject | async">
+			@if (model) {
+				<div
+					class="cds--batch-actions"
+					[ngClass]="{
+						'cds--batch-actions--active': selected
+					}">
+					<div class="cds--batch-summary">
+						@if (count; as n) {
+							<p class="cds--batch-summary__para">
+								@if (_batchTextLegacy.subject | async; as legacyText) {
+									<span>{{n}}</span> {{legacyText}}
+								} @else {
+									@if (n === 1) {
+										<span>{{_batchTextSingle.subject | async}}</span>
+									} @else if(n > 1) {
+										<span>{{_batchTextMultiple.subject | i18nReplace: {count: n} | async}}</span>
+									}
+								}
+							</p>
+						}
+					</div>
+					<div class="cds--action-list">
+						<ng-content select="cds-table-toolbar-actions,ibm-table-toolbar-actions" />
+						<button
+							cdsButton="primary"
+							class="cds--batch-summary__cancel"
+							[tabindex]="selected ? 0 : -1"
+							(click)="onCancel()">
+							{{_cancelText.subject | async}}
+						</button>
+					</div>
+				</div>
+			}
+			<ng-content />
+		</section>
+	`,
+	imports: [
+		NgClass,
+		Button,
+		AsyncPipe,
+		ReplacePipe
+	]
 })
 export class TableToolbar {
+	public i18n = inject(I18n);
+
 	@Input() model: TableModel;
 
 	@Input() set batchText (value: string | { SINGLE: string, MULTIPLE: string }) {
@@ -106,6 +123,7 @@ export class TableToolbar {
 		return { CANCEL: this._cancelText.value as string };
 	}
 
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() cancel = new EventEmitter();
 
 	actionBarLabel: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.ACTION_BAR");
@@ -114,7 +132,11 @@ export class TableToolbar {
 	_batchTextSingle: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.BATCH_TEXT_SINGLE");
 	_batchTextMultiple: Overridable = this.i18n.getOverridable("TABLE_TOOLBAR.BATCH_TEXT_MULTIPLE");
 
-	constructor(protected i18n: I18n) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	get count() {
 		return this.model.totalDataLength > 0 ? this.model.rowsSelected.reduce((previous, current) => previous + (current ? 1 : 0), 0) : 0;

@@ -1,14 +1,12 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { Component, OnInit, OnDestroy } from "@angular/core";
 
-import { ButtonModule } from "./button";
-import { IconModule } from "./icon/icon.module";
+import { Button } from "./button";
+import { IconDirective } from "./icon";
 
 @Component({
 	selector: "app-welcome",
-	// tslint:disable:max-line-length
+	imports: [Button, IconDirective],
 	template: `
 		<section class="overview-page__banner" aria-label="overview page banner">
 			<svg xmlns="http://www.w3.org/2000/svg" class="banner__background" viewBox="0 0 1530 823">
@@ -114,7 +112,6 @@ import { IconModule } from "./icon/icon.module";
 			</div>
 		</section>
 	`,
-	// tslint:enable:max-line-length
 	styles: [`
 		.overview-page__banner {
 			height: 100vh;
@@ -175,8 +172,7 @@ export default {
 	title: "Getting Started",
 	decorators: [
 		moduleMetadata({
-			imports: [ButtonModule, IconModule],
-			declarations: [WelcomeStory]
+			imports: [Button, IconDirective, WelcomeStory]
 		})
 	],
 	parameters: {

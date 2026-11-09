@@ -1,16 +1,26 @@
-/* tslint:disable variable-name */
-
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { TableModule, TableModel, TableHeaderItem, TableItem } from "../../table";
-import { DropdownModule } from "../../dropdown";
-import { StructuredListModule } from "../../structured-list";
-import { GridModule } from "../../grid";
-import { RadioModule } from "../../radio";
-import { CheckboxModule } from "../../checkbox";
-import { ButtonModule } from "../../button";
-import { TagModule } from "../../tag/index";
-import { UIShellModule } from "../../ui-shell";
+import {
+	TableModel,
+	TableHeaderItem,
+	TableItem,
+	TableContainer,
+	Table
+} from "../../table";
+import { Dropdown, DropdownList } from "../../dropdown";
+import { StructuredList } from "../../structured-list";
+import {
+	ColumnDirective,
+	GridDirective,
+	GridService,
+	RowDirective
+} from "../../grid";
+import { Radio, RadioGroup } from "../../radio";
+import { Button } from "../../button";
+import { Tag } from "../../tag/index";
+import { Checkbox } from "../../checkbox";
+import { Hamburger, Header } from "../../ui-shell";
+import { FormsModule } from "@angular/forms";
 
 @Component({
 	selector: "app-sample-multi-categories",
@@ -32,11 +42,13 @@ import { UIShellModule } from "../../ui-shell";
 						labelPlacement="right"
 						[(ngModel)]="radio"
 						(change)="onRadioChange($event)">
-						<cds-radio *ngFor="let radio of radios"
-							[value]="radio.color"
-							[disabled]="radio.disabled">
-							{{radio.color}}
-						</cds-radio>
+						@for (radio of radios; track radio) {
+							<cds-radio
+								[value]="radio.color"
+								[disabled]="radio.disabled">
+								{{radio.color}}
+							</cds-radio>
+						}
 					</cds-radio-group>
 				</fieldset>
 				<fieldset class="cds--fieldset">
@@ -45,21 +57,22 @@ import { UIShellModule } from "../../ui-shell";
 							<legend class="cds--label">Type</legend>
 						</div>
 						<div cdsCol [columnNumbers]="{'lg': 2, 'md': 2, 'sm': 1}">
-							<cds-tag-filter
-								*ngIf="checkBoxFilters.size > 0"
-								(close)="resetCheckboxList()">
-								{{checkBoxFilters.size}}
-							</cds-tag-filter>
+							@if (checkBoxFilters.size > 0) {
+								<cds-tag-filter (close)="resetCheckboxList()">
+									{{checkBoxFilters.size}}
+								</cds-tag-filter>
+							}
 						</div>
 					</div>
-					<cds-checkbox
-						*ngFor="let listItem of checkboxList"
-						[hideLabel]="hideLabel"
-						[checked]="listItem.checked"
-						[value]="listItem.value"
-						(change)="onCheckboxChange($event)">
-						{{ listItem.value }}
-					</cds-checkbox>
+					@for (listItem of checkboxList; track listItem) {
+						<cds-checkbox
+							[hideLabel]="hideLabel"
+							[checked]="listItem.checked"
+							[value]="listItem.value"
+							(change)="onCheckboxChange($event)">
+							{{ listItem.value }}
+						</cds-checkbox>
+					}
 				</fieldset>
 			</div>
 			<div cdsCol [columnNumbers]="{'lg': 10, 'md': 10, 'sm': 3}" class="data-table">
@@ -89,7 +102,23 @@ import { UIShellModule } from "../../ui-shell";
 			width: 100%;
 		}
 	`
-	]
+	],
+	imports: [
+		GridDirective,
+		RowDirective,
+		ColumnDirective,
+		Checkbox,
+		Tag,
+		Radio,
+		Header,
+		Hamburger,
+		TableContainer,
+		Table, RadioGroup,
+		Radio,
+		Button,
+		FormsModule
+	],
+	standalone: true
 })
 class SampleMultiCategories implements OnInit, OnDestroy {
 	model = new TableModel();
@@ -185,17 +214,8 @@ export default {
 	title: "Pattern/Filtering",
 	decorators: [
 		moduleMetadata({
-			declarations: [SampleMultiCategories],
 			imports: [
-				TableModule,
-				DropdownModule,
-				GridModule,
-				StructuredListModule,
-				RadioModule,
-				CheckboxModule,
-				ButtonModule,
-				TagModule,
-				UIShellModule
+				SampleMultiCategories
 			]
 		})
 	]

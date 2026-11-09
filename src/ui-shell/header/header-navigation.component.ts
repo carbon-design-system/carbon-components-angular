@@ -1,9 +1,7 @@
-import {
-	Component,
-	HostBinding,
-	Input
-} from "@angular/core";
+import { Component, HostBinding, Input } from "@angular/core";
 import { NavigationItem } from "./header-navigation-items.interface";
+import { HeaderItem } from "./header-item.component";
+import { HeaderMenu } from "./header-menu.component";
 /**
  * Container for header navigation items
  */
@@ -12,27 +10,30 @@ import { NavigationItem } from "./header-navigation-items.interface";
 	template: `
 		<nav class="cds--header__nav" [attr.aria-label]="ariaLabel">
 			<div class="cds--header__menu-bar" role="list">
-				<ng-content></ng-content>
-				<ng-container *ngFor="let navigationItem of navigationItems">
-					<cds-header-item
-						*ngIf="navigationItem.type === 'item'"
-						[href]="navigationItem.href"
-						[route]="navigationItem.route"
-						[routeExtras]="navigationItem.routeExtras"
-						[isCurrentPage]="!!navigationItem.isCurrentPage">
-						{{ navigationItem.content }}
-					</cds-header-item>
-					<cds-header-menu
-						*ngIf="navigationItem.type === 'menu'"
-						[href]="navigationItem.href"
-						[title]="navigationItem.title"
-						[trigger]="navigationItem.trigger ? navigationItem.trigger : 'click'"
-						[headerItems]="navigationItem.menuItems">
-					</cds-header-menu>
-				</ng-container>
+				<ng-content />
+				@for (navigationItem of navigationItems; track navigationItem) {
+					@if (navigationItem.type === 'item') {
+						<cds-header-item
+							[href]="navigationItem.href"
+							[route]="navigationItem.route"
+							[routeExtras]="navigationItem.routeExtras"
+							[isCurrentPage]="!!navigationItem.isCurrentPage">
+							{{ navigationItem.content }}
+						</cds-header-item>
+					}
+					@if (navigationItem.type === 'menu') {
+						<cds-header-menu
+							[href]="navigationItem.href"
+							[title]="navigationItem.title"
+							[trigger]="navigationItem.trigger ? navigationItem.trigger : 'click'"
+							[headerItems]="navigationItem.menuItems">
+						</cds-header-menu>
+					}
+				}
 			</div>
 		</nav>
-	`
+	`,
+	imports: [HeaderItem, HeaderMenu]
 })
 export class HeaderNavigation {
 	@HostBinding("style.height.%") height = 100;

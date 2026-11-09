@@ -1,10 +1,16 @@
-import { AfterViewInit, Component, ElementRef, Optional } from "@angular/core";
+import {
+	AfterViewInit,
+	Component,
+	ElementRef,
+	inject
+} from "@angular/core";
 import { position } from "@carbon/utils-position";
 import { I18n } from "carbon-components-angular/i18n";
 import { AnimationFrameService, ElementService } from "carbon-components-angular/utils";
 import { closestAttr } from "carbon-components-angular/utils";
 import { CloseReasons } from "../dialog-config.interface";
 import { Dialog } from "../dialog.component";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
 
 /**
  * @deprecated as of v5
@@ -23,22 +29,24 @@ import { Dialog } from "../dialog.component";
 			(click)="onClick($event)"
 			#dialog
 			[attr.aria-label]="dialogConfig.menuLabel">
-			<ng-template
-				[ngTemplateOutlet]="dialogConfig.content"
-				[ngTemplateOutletContext]="{overflowMenu: this}">
-			</ng-template>
+			<ng-template [ngTemplateOutlet]="dialogConfig.content" [ngTemplateOutletContext]="{overflowMenu: this}" />
 		</div>
-	`
+	`,
+	providers: [ElementService, AnimationFrameService],
+	imports: [NgClass, NgTemplateOutlet]
 })
 export class OverflowMenuCustomPane extends Dialog implements AfterViewInit {
-	constructor(
-		protected elementRef: ElementRef,
-		protected i18n: I18n,
-		@Optional() protected animationFrameService: AnimationFrameService = null,
-		// mark `elementService` as optional since making it mandatory would be a breaking change
-		@Optional() protected elementService: ElementService = null
-	) {
-		super(elementRef, elementService, animationFrameService);
+	protected elementRef: ElementRef;
+	protected i18n = inject(I18n);
+	protected animationFrameService: AnimationFrameService;
+	protected elementService: ElementService;
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
+		super();
 	}
 
 	onClick(event) {

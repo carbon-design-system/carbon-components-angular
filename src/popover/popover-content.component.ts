@@ -1,10 +1,12 @@
 import {
+	ChangeDetectionStrategy,
 	Component,
 	HostBinding,
 	ViewChild,
 	ElementRef,
 	AfterViewInit,
-	ChangeDetectorRef
+	ChangeDetectorRef,
+	inject
 } from "@angular/core";
 
 /**
@@ -15,19 +17,31 @@ import {
 	template: `
 		<span class="cds--popover-content" #content>
 			<div>
-				<ng-content></ng-content>
+				<ng-content />
 			</div>
-			<span *ngIf="autoAlign" class="cds--popover-caret cds--popover--auto-align"></span>
+			@if (autoAlign) {
+				<span class="cds--popover-caret cds--popover--auto-align"></span>
+			}
 		</span>
-		<span *ngIf="!autoAlign" class="cds--popover-caret"></span>
-	`
+		@if (!autoAlign) {
+			<span class="cds--popover-caret"></span>
+		}
+	`,
+	standalone: true,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PopoverContent implements AfterViewInit {
 	@HostBinding("class.cds--popover") popoverClass = true;
 	@ViewChild("content") popoverContent: ElementRef;
 	autoAlign = false;
 
-	constructor(private changeDetectorRef: ChangeDetectorRef) {}
+	private changeDetectorRef = inject(ChangeDetectorRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngAfterViewInit(): void {
 		if (this.popoverContent) {

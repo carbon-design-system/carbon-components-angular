@@ -1,23 +1,16 @@
-/* tslint:disable variable-name */
-
-
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { IconModule, IconDirective } from "./";
-import { GridModule } from "../grid";
+import { IconDirective } from "./";
 import { IconDemo, ManyIconDemo, ManyPictogramsDemo } from "./stories";
 
 export default {
 	title: "Components/Icon",
 	decorators: [
 		moduleMetadata({
-			declarations: [
+			imports: [
+				IconDirective,
 				IconDemo,
 				ManyIconDemo,
 				ManyPictogramsDemo
-			],
-			imports: [
-				IconModule,
-				GridModule
 			]
 		})
 	],

@@ -1,17 +1,14 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
-import {
-	PopoverModule,
-	PopoverContainer,
-	PopoverContent
-} from "./";
+import { PopoverContainer, PopoverContent } from "./";
 
 export default {
 	title: "Components/Popover",
 	decorators: [
 		moduleMetadata({
-			imports: [PopoverModule]
+			imports: [
+				PopoverContainer,
+				PopoverContent
+			]
 		})
 	],
 	args: {
@@ -27,13 +24,13 @@ export default {
 			control: false
 		},
 		onOpen: {
-			control: "Opened!"
+			action: "onOpen"
 		},
 		onClose: {
-			control: "Closed!"
+			action: "onClose"
 		},
 		isOpenChange: {
-			control: "Is Open Change!"
+			action: "isOpenChange"
 		},
 		align: {
 			options: [
@@ -140,7 +137,12 @@ const AutoAlignTemplate = (args) => ({
 					(onClose)="onClose($event)"
 					(isOpenChange)="isOpenChange($event)">
 					<div class="popover-trigger">
-						<svg preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32">
+						<svg
+							preserveAspectRatio="xMidYMid meet"
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							viewBox="0 0 32 32">
 							<path d="M26,4H6A2,2,0,0,0,4,6V26a2,2,0,0,0,2,2H26a2,2,0,0,0,2-2V6A2,2,0,0,0,26,4ZM6,26V6H26V26Z"></path>
 						</svg>
 					</div>

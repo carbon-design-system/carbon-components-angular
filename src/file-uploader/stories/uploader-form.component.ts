@@ -1,9 +1,13 @@
 import { Component, Input } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 
+import { Button } from "carbon-components-angular/button";
 import { FileItem } from "../";
+import { FileUploader } from "../file-uploader.component";
 
 @Component({
 	selector: "app-ngmodel-file-uploader",
+	imports: [FileUploader, Button, FormsModule],
 	template: `
 		<cds-file-uploader
 			[title]="title"
@@ -17,13 +21,14 @@ import { FileItem } from "../";
 			[(ngModel)]="model"
 			[disabled]="disabled">
 		</cds-file-uploader>
-		<button
-			cdsButton
-			*ngIf="model && model.size > 0"
-			(click)="onUpload()"
-			style="margin-top:20px">
-			Upload
-		</button>
+		@if (model && model.size > 0) {
+			<button
+				cdsButton
+				(click)="onUpload()"
+				style="margin-top:20px">
+				Upload
+			</button>
+		}
 		<button cdsButton (click)="removeFiles()">Remove all</button>
 	`
 })
@@ -53,6 +58,7 @@ export class NgModelFileUploaderStory {
 					setTimeout(() => {
 						fileItem.state = "complete";
 						fileItem.uploaded = true;
+						// eslint-disable-next-line no-console
 						console.log(fileItem);
 					}, 1500);
 				}

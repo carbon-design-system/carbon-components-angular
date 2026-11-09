@@ -6,104 +6,135 @@ import {
 	EventEmitter,
 	HostBinding,
 	OnChanges,
-	ViewChild
+	ViewChild,
+	inject
 } from "@angular/core";
 import { Observable, OperatorFunction } from "rxjs";
-import { I18n, Overridable } from "carbon-components-angular/i18n";
+import { I18n } from "carbon-components-angular/i18n";
 import { map } from "rxjs/operators";
 import { TableHeaderItem } from "../table-header-item.class";
+import { NgClass, NgTemplateOutlet, AsyncPipe } from "@angular/common";
+import { TableHeadCellLabel } from "./table-head-cell-label.directive";
+import { IconDirective } from "carbon-components-angular/icon";
 
 @Component({
-	// tslint:disable-next-line: component-selector
+	// eslint-disable-next-line @angular-eslint/component-selector
 	selector: "[cdsTableHeadCell], [ibmTableHeadCell]",
 	template: `
-		<button
-			class="cds--table-sort"
-			*ngIf="sortable && this.sort.observers.length > 0 && column.sortable"
-			[attr.aria-label]="(column.sorted && column.ascending ? getSortDescendingLabel() : getSortAscendingLabel()) | async"
-			aria-live="polite"
-			[ngClass]="{
-				'cds--table-sort--active': column.sorted,
-				'cds--table-sort--descending': column.ascending
-			}"
-			(click)="onClick($event)">
-			<span
-				*ngIf="headerAILabelDecoratorLayout"
-				class="cds--table-sort__flex"
-				[title]="column.title"
-				tabindex="-1">
-				<div cdsTableHeadCellLabel>{{ getHeaderLabelText() }}</div>
-				<svg *ngIf="!skeleton" class="cds--table-sort__icon" cdsIcon="arrow--down"></svg>
-				<svg *ngIf="!skeleton" class="cds--table-sort__icon-unsorted" cdsIcon="arrows--vertical"></svg>
+		@if (sortable && this.sort.observers.length > 0 && column.sortable) {
+			<button
+				class="cds--table-sort"
+				[attr.aria-label]="(column.sorted && column.ascending ? getSortDescendingLabel() : getSortAscendingLabel()) | async"
+				aria-live="polite"
+				[ngClass]="{
+					'cds--table-sort--active': column.sorted,
+					'cds--table-sort--descending': column.ascending
+				}"
+				(click)="onClick($event)">
+				@if (headerAILabelDecoratorLayout) {
+					<span
+						class="cds--table-sort__flex"
+						[title]="column.title"
+						tabindex="-1">
+						<div cdsTableHeadCellLabel>{{ getHeaderLabelText() }}</div>
+						@if (!skeleton) {
+							<svg class="cds--table-sort__icon" cdsIcon="arrow--down"></svg>
+						}
+						@if (!skeleton) {
+							<svg class="cds--table-sort__icon-unsorted" cdsIcon="arrows--vertical"></svg>
+						}
+						<div
+							#decoratorInner
+							class="cds--table-header-label--decorator-inner"
+							(click)="onDecoratorRegionClick($event)">
+							<ng-template
+								[ngTemplateOutlet]="column.template"
+								[ngTemplateOutletContext]="{data: column.data}">
+							</ng-template>
+						</div>
+					</span>
+				}
+				@if (!headerAILabelDecoratorLayout) {
+					<span
+						class="cds--table-sort__flex"
+						[title]="column.title"
+						tabindex="-1">
+						@if (!skeleton && !column.template) {
+							<div
+								cdsTableHeadCellLabel
+								[class.cds--table-header-label--ai-label]="column.hasAILabelHeader"
+								[class.cds--table-header-label--slug]="column.hasAILabelHeader">
+								{{column.data}}
+							</div>
+						}
+						@if (!skeleton && column.template) {
+							<div
+								cdsTableHeadCellLabel
+								[class.cds--table-header-label--ai-label]="column.hasAILabelHeader"
+								[class.cds--table-header-label--slug]="column.hasAILabelHeader">
+								<ng-template
+									[ngTemplateOutlet]="column.template"
+									[ngTemplateOutletContext]="{data: column.data}">
+								</ng-template>
+							</div>
+						}
+						@if (!skeleton) {
+							<svg class="cds--table-sort__icon" cdsIcon="arrow--down"></svg>
+						}
+						@if (!skeleton) {
+							<svg class="cds--table-sort__icon-unsorted" cdsIcon="arrows--vertical"></svg>
+						}
+					</span>
+				}
+			</button>
+		}
+		@if (headerAILabelDecoratorLayout && ((!skeleton && sort.observers.length === 0) || (sort.observers.length > 0 && !column.sortable) || !sortable)) {
 			<div
-				#decoratorInner
-				class="cds--table-header-label--decorator-inner"
-				(click)="onDecoratorRegionClick($event)">
-				<ng-template
-					[ngTemplateOutlet]="column.template"
-					[ngTemplateOutletContext]="{data: column.data}">
-				</ng-template>
-			</div>
-			</span>
-			<span
-				*ngIf="!headerAILabelDecoratorLayout"
-				class="cds--table-sort__flex"
-				[title]="column.title"
-				tabindex="-1">
-				<div
-					*ngIf="!skeleton && !column.template"
-					cdsTableHeadCellLabel
-					[class.cds--table-header-label--ai-label]="column.hasAILabelHeader"
-					[class.cds--table-header-label--slug]="column.hasAILabelHeader">
-					{{column.data}}
-				</div>
-				<div
-					*ngIf="!skeleton && column.template"
-					cdsTableHeadCellLabel
-					[class.cds--table-header-label--ai-label]="column.hasAILabelHeader"
-					[class.cds--table-header-label--slug]="column.hasAILabelHeader">
+				class="cds--table-header-label"
+				[ngClass]="{
+					'cds--table-header-label--ai-label': column.hasAILabelHeader,
+					'cds--table-header-label--slug': column.hasAILabelHeader,
+					'cds--table-header-label--decorator': column.hasAILabelHeader
+				}">
+				@if (getHeaderLabelText()) {
+					<span>{{ getHeaderLabelText() }}</span>
+				}
+				<div class="cds--table-header-label--decorator-inner">
 					<ng-template
 						[ngTemplateOutlet]="column.template"
 						[ngTemplateOutletContext]="{data: column.data}">
 					</ng-template>
 				</div>
-				<svg *ngIf="!skeleton" class="cds--table-sort__icon" cdsIcon="arrow--down"></svg>
-				<svg *ngIf="!skeleton" class="cds--table-sort__icon-unsorted" cdsIcon="arrows--vertical"></svg>
-			</span>
-		</button>
-		<div
-			*ngIf="headerAILabelDecoratorLayout && ((!skeleton && sort.observers.length === 0) || (sort.observers.length > 0 && !column.sortable) || !sortable)"
-			class="cds--table-header-label"
-			[ngClass]="{
-				'cds--table-header-label--ai-label': column.hasAILabelHeader,
-				'cds--table-header-label--slug': column.hasAILabelHeader,
-				'cds--table-header-label--decorator': column.hasAILabelHeader
-			}">
-			<span *ngIf="getHeaderLabelText()">{{ getHeaderLabelText() }}</span>
-			<div class="cds--table-header-label--decorator-inner">
+			</div>
+		}
+		@if (!headerAILabelDecoratorLayout && ((!skeleton && sort.observers.length === 0) || (sort.observers.length > 0 && !column.sortable) || !sortable)) {
+			<div
+				class="cds--table-header-label"
+				[ngClass]="{
+					'cds--table-header-label--ai-label': column.hasAILabelHeader,
+					'cds--table-header-label--slug': column.hasAILabelHeader
+				}">
+				@if (!column.template) {
+					<span [title]="column.data">
+						@if (!skeleton) {
+							{{column.data}}
+						}
+					</span>
+				}
 				<ng-template
 					[ngTemplateOutlet]="column.template"
 					[ngTemplateOutletContext]="{data: column.data}">
 				</ng-template>
 			</div>
-		</div>
-		<div
-			class="cds--table-header-label"
-			*ngIf="!headerAILabelDecoratorLayout && ((!skeleton && sort.observers.length === 0) || (sort.observers.length > 0 && !column.sortable) || !sortable)"
-			[ngClass]="{
-				'cds--table-header-label--ai-label': column.hasAILabelHeader,
-				'cds--table-header-label--slug': column.hasAILabelHeader
-			}">
-			<span *ngIf="!column.template" [title]="column.data">
-				<ng-container *ngIf="!skeleton">
-					{{column.data}}
-				</ng-container>
-			</span>
-			<ng-template
-				[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">
-			</ng-template>
-		</div>
-	`
+		}
+	`,
+	imports: [
+		NgClass,
+		NgTemplateOutlet,
+		TableHeadCellLabel,
+		IconDirective,
+		AsyncPipe
+	]
 })
 export class TableHeadCell implements OnChanges {
 	@Input() column: TableHeaderItem;
@@ -167,11 +198,17 @@ export class TableHeadCell implements OnChanges {
 		return !!(this.column?.hasAILabelHeader && this.column?.template);
 	}
 
+	protected i18n = inject(I18n);
+
 	protected _sortDescendingLabel = this.i18n.getOverridable("TABLE.SORT_DESCENDING");
 	protected _sortAscendingLabel = this.i18n.getOverridable("TABLE.SORT_ASCENDING");
 	protected _filterTitle = this.i18n.getOverridable("TABLE.FILTER");
 
-	constructor(protected i18n: I18n) { }
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngOnChanges() {
 		this.theadAction = !!(this.column && this.column.filterTemplate) || this.sort.observers.length > 0;

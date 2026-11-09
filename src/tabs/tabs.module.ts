@@ -2,7 +2,6 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { UtilsModule } from "carbon-components-angular/utils";
 import { I18nModule } from "carbon-components-angular/i18n";
-import { TooltipModule } from "carbon-components-angular/tooltip";
 
 import { TabSkeleton } from "./tab-skeleton.component";
 import { BaseTabHeader } from "./base-tab-header.component";
@@ -19,21 +18,6 @@ import { TabHeaderGroup } from "./tab-header-group.component";
 import { TabHeaderGroupVertical } from "./tab-header-group-vertical.component";
 
 @NgModule({
-	declarations: [
-		BaseTabHeader,
-		Tabs,
-		TabsVertical,
-		TabsVerticalGrouped,
-		Tab,
-		IconTab,
-		TabHeader,
-		TabHeaderComponent,
-		TabHeaders,
-		TabHeadersVertical,
-		TabHeaderGroup,
-		TabHeaderGroupVertical,
-		TabSkeleton
-	],
 	exports: [
 		Tabs,
 		TabsVertical,
@@ -52,7 +36,19 @@ import { TabHeaderGroupVertical } from "./tab-header-group-vertical.component";
 		CommonModule,
 		UtilsModule,
 		I18nModule,
-		TooltipModule
+		BaseTabHeader,
+		Tabs,
+		TabsVertical,
+		TabsVerticalGrouped,
+		Tab,
+		IconTab,
+		TabHeader,
+		TabHeaderComponent,
+		TabHeaders,
+		TabHeadersVertical,
+		TabHeaderGroup,
+		TabHeaderGroupVertical,
+		TabSkeleton
 	]
 })
 export class TabsModule {}

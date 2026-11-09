@@ -5,14 +5,14 @@ import { ListItemDirective } from "./list-item.directive";
 import { List } from "./list.directive";
 
 @NgModule({
-	declarations: [
-		ListItemDirective,
-		List
-	],
 	exports: [
 		ListItemDirective,
 		List
 	],
-	imports: [CommonModule]
+	imports: [
+		CommonModule,
+		ListItemDirective,
+		List
+	]
 })
 export class ListModule {}

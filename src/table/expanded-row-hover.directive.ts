@@ -1,10 +1,8 @@
-import {
-	Directive,
-	HostListener
-} from "@angular/core";
+import { Directive, HostListener } from "@angular/core";
 
 @Directive({
-	selector: "[cdsExpandedRowHover], [ibmExpandedRowHover]"
+	selector: "[cdsExpandedRowHover], [ibmExpandedRowHover]",
+	standalone: true
 })
 export class ExpandedRowHover {
 	@HostListener("mouseenter", ["$event"])

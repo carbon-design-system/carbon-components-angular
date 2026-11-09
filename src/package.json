@@ -13,7 +13,16 @@
   "license": "Apache-2.0",
   "author": "IBM",
   "peerDependencies": {
-    "@carbon/styles": "^1.54.0"
+    "@angular/common": "^20.0.0 || ^21.0.0 || ^22.0.0",
+    "@angular/core": "^20.0.0 || ^21.0.0 || ^22.0.0",
+    "@angular/forms": "^20.0.0 || ^21.0.0 || ^22.0.0",
+    "@angular/router": "^20.0.0 || ^21.0.0 || ^22.0.0",
+    "@carbon/styles": "^1.97.0",
+    "rxjs": "^7.4.0"
+  },
+  "publishConfig": {
+    "provenance": true,
+    "access": "public"
   },
   "dependencies": {
     "@carbon/icon-helpers": "10.84.0",

@@ -1,15 +1,26 @@
 import {
 	Component,
-	OnInit,
-	Input
+	inject,
+	Input,
+	OnInit
 } from "@angular/core";
 import { TableModel } from "../table-model.class";
 import { TableHeaderItem } from "../table-header-item.class";
 import { TableItem } from "../table-item.class";
 
-import { IconService } from "../../icon/icon.service";
+import { IconService } from "../../icon";
 import Add16 from "@carbon/icons/es/add/16";
 import Filter16 from "@carbon/icons/es/filter/16";
+import { Table } from "../table.component";
+import { TableContainer } from "../table-container.component";
+import { TableHeader } from "../header/table-header.component";
+import { TableToolbar } from "../toolbar/table-toolbar.component";
+import { TableToolbarContent } from "../toolbar/table-toolbar-content.component";
+import { TableToolbarSearch } from "../toolbar/table-toolbar-search.component";
+import { IconDirective } from "../../icon";
+import { Button } from "../../button";
+import { OverflowMenu, OverflowMenuDirective, OverflowMenuOption } from "../../dialog";
+import { Checkbox } from "../../checkbox";
 
 @Component({
 	selector: "app-function-override-filter-table",
@@ -53,7 +64,7 @@ import Filter16 from "@carbon/icons/es/filter/16";
 			[stickyHeader]="stickyHeader"
 			[striped]="striped"
 			[isDataGrid]="isDataGrid">
-			<ng-content></ng-content>
+			<ng-content />
 		</cds-table>
 	</cds-table-container>
 
@@ -82,7 +93,22 @@ import Filter16 from "@carbon/icons/es/filter/16";
 			</cds-checkbox>
 		</div>
 	</ng-template>
-	`
+	`,
+	standalone: true,
+	imports: [
+		Table,
+		TableContainer,
+		TableHeader,
+		TableToolbar,
+		TableToolbarContent,
+		TableToolbarSearch,
+		IconDirective,
+		Button,
+		OverflowMenu,
+		OverflowMenuOption,
+		OverflowMenuDirective,
+		Checkbox
+	]
 })
 export class FilterByFunctionOverrideStory implements OnInit {
 	@Input() size = "md";
@@ -143,11 +169,7 @@ export class FilterByFunctionOverrideStory implements OnInit {
 		]
 	];
 
-	constructor(protected iconService: IconService) {
-		this.iconService.registerAll([
-			Add16, Filter16
-		]);
-	}
+	protected iconService = inject(IconService);
 
 	filterNodeNames(searchString: string) {
 		this.searchValue = searchString;
@@ -163,9 +185,13 @@ export class FilterByFunctionOverrideStory implements OnInit {
 
 	overflowOnClick = (event: any) => {
 		event.stopPropagation();
-	}
+	};
 
 	ngOnInit() {
+		this.iconService.registerAll([
+			Add16, Filter16
+		]);
+
 		this.model.header = [
 			new TableHeaderItem({
 				data: "Node ID"

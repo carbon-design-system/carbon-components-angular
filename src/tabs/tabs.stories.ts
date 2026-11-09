@@ -1,10 +1,15 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
 import { GridModule } from "../grid/grid.module";
 import { IconModule } from "../icon/icon.module";
 
-import { TabsModule } from "./";
+import {
+	Tab,
+	TabHeader,
+	TabHeaderGroup,
+	TabHeaders,
+	TabSkeleton,
+	Tabs
+} from "./";
 
 import { TabsStoryModule } from "./stories";
 
@@ -13,9 +18,14 @@ export default {
 	decorators: [
 		moduleMetadata({
 			imports: [
+				Tabs,
+				Tab,
+				TabHeader,
+				TabHeaderGroup,
+				TabHeaders,
+				TabSkeleton,
 				IconModule,
 				GridModule,
-				TabsModule,
 				TabsStoryModule
 			]
 		})
@@ -78,13 +88,14 @@ const WithTemplate = (args) => ({
 			</div>
 		</ng-template>
 		<cds-tabs [type]="type" [followFocus]="followFocus" [isNavigation]="isNavigation">
-			<cds-tab
-				*ngFor="let item of data; let i = index;"
-				[heading]="customTabs"
-				title="Tab Content"
-				[context]="item">
-				Tab Content {{i + 1}}
-			</cds-tab>
+			@for (item of data; track item.name) {
+				<cds-tab
+					[heading]="customTabs"
+					title="Tab Content"
+					[context]="item">
+					Tab Content {{ $index + 1 }}
+				</cds-tab>
+			}
 			<cds-tab [heading]="iconTab" title="Custom tab content">Tab Content Custom</cds-tab>
 		</cds-tabs>
 	`

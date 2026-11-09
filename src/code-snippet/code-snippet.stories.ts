@@ -1,13 +1,11 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { CodeSnippetModule, CodeSnippet } from "./";
+import { CodeSnippet } from "./";
 
 export default {
 	title: "Components/Code Snippet",
 	decorators: [
 		moduleMetadata({
-			imports: [CodeSnippetModule]
+			imports: [CodeSnippet]
 		})
 	],
 	argTypes: {

@@ -7,17 +7,17 @@ import { GridDirective } from "./grid.directive";
 import { GridService } from "./grid.service";
 
 @NgModule({
-	declarations: [
-		ColumnDirective,
-		GridDirective,
-		RowDirective
-	],
 	exports: [
 		ColumnDirective,
 		GridDirective,
 		RowDirective
 	],
 	providers: [GridService],
-	imports: [CommonModule]
+	imports: [
+		CommonModule,
+		ColumnDirective,
+		GridDirective,
+		RowDirective
+	]
 })
 export class GridModule {}

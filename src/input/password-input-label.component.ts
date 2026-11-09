@@ -9,16 +9,21 @@ import {
 	TemplateRef,
 	ViewChild,
 	ChangeDetectorRef,
-	ContentChild
+	ContentChild,
+	ChangeDetectionStrategy,
+	inject
 } from "@angular/core";
 import { PasswordInput } from "./password.directive";
 import { BaseIconButton } from "carbon-components-angular/button";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
+import { Tooltip } from "carbon-components-angular/tooltip";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component and directive:
  *
  * ```typescript
- * import { InputModule } from 'carbon-components-angular';
+ * import { PasswordInputLabelComponent, PasswordInput } from 'carbon-components-angular';
  * ```
  *
  * ```html
@@ -33,113 +38,159 @@ import { BaseIconButton } from "carbon-components-angular/button";
 @Component({
 	selector: "cds-password-label, ibm-password-label",
 	template: `
-		<ng-container *ngIf="skeleton">
+		@if (skeleton) {
 			<span class="cds--label cds--skeleton"></span>
 			<div class="cds--text-input cds--skeleton"></div>
-		</ng-container>
-		<label
-			*ngIf="!skeleton"
-			[for]="labelInputID"
-			[attr.aria-label]="ariaLabel"
-			class="cds--label"
-			[ngClass]="{
-				'cds--label--disabled': disabled,
-				'cds--visually-hidden': hideLabel,
-				'cds--label--inline': inline
-			}">
-			<ng-template *ngIf="labelTemplate; else labelContent" [ngTemplateOutlet]="labelTemplate"></ng-template>
-			<ng-template #labelContent>
-				<ng-content></ng-content>
-			</ng-template>
-		</label>
+		}
+		@if (!skeleton) {
+			<label
+				[for]="labelInputID"
+				[attr.aria-label]="ariaLabel"
+				class="cds--label"
+				[ngClass]="{
+					'cds--label--disabled': disabled,
+					'cds--visually-hidden': hideLabel,
+					'cds--label--inline': inline
+				}">
+				@if (labelTemplate) {
+					<ng-template [ngTemplateOutlet]="labelTemplate"></ng-template>
+				} @else {
+					<ng-content></ng-content>
+				}
+			</label>
+		}
 
-		<div *ngIf="!skeleton" class="cds--text-input__field-outer-wrapper" [ngClass]="{'cds--text-input__field-outer-wrapper--inline': inline}">
+		@if (!skeleton) {
 			<div
-			class="cds--text-input__field-wrapper"
-			[ngClass]="{
-				'cds--text-input__field-wrapper--warning': warn
-			}"
-			[attr.data-invalid]="invalid ? true : null"
-			#wrapper>
-				<svg
-					*ngIf="!warn && invalid"
-					cdsIcon="warning--filled"
-					size="16"
-					class="cds--text-input__invalid-icon">
-				</svg>
-				<svg
-					*ngIf="!invalid && warn"
-					cdsIcon="warning--alt--filled"
-					size="16"
-					class="cds--text-input__invalid-icon cds--text-input__invalid-icon--warning">
-				</svg>
-				<ng-content select="[cdsPassword], [ibmPassword]"></ng-content>
-				<cds-tooltip
-					*ngIf="!skeleton"
-					[description]="passwordIsVisible ? hidePasswordLabel : showPasswordLabel"
-					[disabled]="disabled"
-					[caret]="caret"
-					[dropShadow]="dropShadow"
-					[highContrast]="highContrast"
-					[isOpen]="isOpen"
-					[align]="align"
-					[autoAlign]="autoAlign"
-					[enterDelayMs]="enterDelayMs"
-					[leaveDelayMs]="leaveDelayMs"
-					class="cds--toggle-password-tooltip">
-						<div class="cds--tooltip-trigger__wrapper">
-							<button
-								class="cds--text-input--password__visibility__toggle cds--btn cds--tooltip__trigger cds--tooltip--a11y"
-								[disabled]="disabled"
-								type="button"
-								(click)="handleTogglePasswordVisibility($event)">
-								<svg *ngIf="passwordIsVisible" cdsIcon="view--off" class="cds--icon-visibility-off" size="16"></svg>
-								<svg *ngIf="!passwordIsVisible" cdsIcon="view" class="cds--icon-visibility-on" size="16"></svg>
-							</button>
-						</div>
-				</cds-tooltip>
-
-				<ng-container *ngIf="fluid">
-					<hr class="cds--text-input__divider" />
-					<div *ngIf="!warn && invalid" class="cds--form-requirement">
-						<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
-						<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
-					</div>
-					<div *ngIf="!invalid && warn" class="cds--form-requirement">
-						<ng-container *ngIf="!isTemplate(warnText)">{{ warnText }}</ng-container>
-						<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
-					</div>
-				</ng-container>
-			</div>
-			<ng-container *ngIf="!fluid">
+				class="cds--text-input__field-outer-wrapper"
+				[ngClass]="{'cds--text-input__field-outer-wrapper--inline': inline}">
 				<div
-					*ngIf="!skeleton && helperText && !invalid && !warn"
-					class="cds--form__helper-text"
-					[ngClass]="{ 'cds--form__helper-text--disabled': disabled }">
-					<ng-container *ngIf="!isTemplate(helperText)">{{ helperText }}</ng-container>
-					<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>
-				</div>
+					class="cds--text-input__field-wrapper"
+					[ngClass]="{
+						'cds--text-input__field-wrapper--warning': warn
+					}"
+					[attr.data-invalid]="invalid ? true : null"
+					#wrapper>
+					@if (!warn && invalid) {
+						<svg
+							cdsIcon="warning--filled"
+							size="16"
+							class="cds--text-input__invalid-icon">
+						</svg>
+					}
+					@if (!invalid && warn) {
+						<svg
+							cdsIcon="warning--alt--filled"
+							size="16"
+							class="cds--text-input__invalid-icon cds--text-input__invalid-icon--warning">
+						</svg>
+					}
+					<ng-content select="[cdsPassword], [ibmPassword]"></ng-content>
+					@if (!skeleton) {
+						<cds-tooltip
+							[description]="passwordIsVisible ? hidePasswordLabel : showPasswordLabel"
+							[disabled]="disabled"
+							[caret]="caret"
+							[dropShadow]="dropShadow"
+							[highContrast]="highContrast"
+							[isOpen]="isOpen"
+							[align]="align"
+							[autoAlign]="autoAlign"
+							[enterDelayMs]="enterDelayMs"
+							[leaveDelayMs]="leaveDelayMs"
+							class="cds--toggle-password-tooltip">
+							<div class="cds--tooltip-trigger__wrapper">
+								<button
+									class="cds--text-input--password__visibility__toggle cds--btn cds--tooltip__trigger cds--tooltip--a11y"
+									[disabled]="disabled"
+									type="button"
+									(click)="handleTogglePasswordVisibility($event)">
+									@if (passwordIsVisible) {
+										<svg cdsIcon="view--off" class="cds--icon-visibility-off" size="16"></svg>
+									}
+									@if (!passwordIsVisible) {
+										<svg cdsIcon="view" class="cds--icon-visibility-on" size="16"></svg>
+									}
+								</button>
+							</div>
+					</cds-tooltip>
+				}
 
-				<div *ngIf="!warn && invalid" class="cds--form-requirement">
-					<ng-container *ngIf="!isTemplate(invalidText)">{{ invalidText }}</ng-container>
-					<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>
+					@if (fluid) {
+						<hr class="cds--text-input__divider" />
+						@if (!warn && invalid) {
+							<div class="cds--form-requirement">
+								@if (!isTemplate(invalidText)) {
+									{{ invalidText }}
+								}
+								@if (isTemplate(invalidText)) {
+									<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+								}
+							</div>
+						}
+						@if (!invalid && warn) {
+							<div class="cds--form-requirement">
+								@if (!isTemplate(warnText)) {
+									{{ warnText }}
+								}
+								@if (isTemplate(warnText)) {
+									<ng-template [ngTemplateOutlet]="warnText"></ng-template>
+								}
+							</div>
+						}
+					}
 				</div>
+				@if (!fluid) {
+					@if (!skeleton && helperText && !invalid && !warn) {
+						<div
+							class="cds--form__helper-text"
+							[ngClass]="{ 'cds--form__helper-text--disabled': disabled }">
+							@if (!isTemplate(helperText)) {
+								{{ helperText }}
+							}
+							@if (isTemplate(helperText)) {
+								<ng-template [ngTemplateOutlet]="helperText"></ng-template>
+							}
+						</div>
+					}
 
-				<div *ngIf="!invalid && warn" class="cds--form-requirement">
-					<ng-container *ngIf="!isTemplate(warnText)">{{ warnText }}</ng-container>
-					<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>
-				</div>
-			</ng-container>
-		</div>
-    `
+					@if (!warn && invalid) {
+						<div class="cds--form-requirement">
+							@if (!isTemplate(invalidText)) {
+								{{ invalidText }}
+							}
+							@if (isTemplate(invalidText)) {
+								<ng-template [ngTemplateOutlet]="invalidText"></ng-template>
+							}
+						</div>
+					}
+
+					@if (!invalid && warn) {
+						<div class="cds--form-requirement">
+							@if (!isTemplate(warnText)) {
+								{{ warnText }}
+							}
+							@if (isTemplate(warnText)) {
+								<ng-template [ngTemplateOutlet]="warnText"></ng-template>
+							}
+						</div>
+					}
+				}
+			</div>
+		}
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [
+		NgClass,
+		NgTemplateOutlet,
+		IconDirective,
+		Tooltip
+	]
 })
 /**
  * Represents the Password Input Label Component.
  */
 export class PasswordInputLabelComponent extends BaseIconButton implements AfterViewInit {
-	/**
-	 * Counter for generating unique labelInputID.
-	 */
 	static labelCounter = 0;
 
 	@ContentChild(PasswordInput) textInput: PasswordInput;
@@ -269,11 +320,17 @@ export class PasswordInputLabelComponent extends BaseIconButton implements After
 		return this.fluid && this.skeleton;
 	}
 
+	protected changeDetectorRef = inject(ChangeDetectorRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Constructor for PasswordInputLabelComponent.
 	 * @param changeDetectorRef - Reference to ChangeDetectorRef.
 	 */
-	constructor(protected changeDetectorRef: ChangeDetectorRef) {
+	constructor() {
 		super();
 	}
 

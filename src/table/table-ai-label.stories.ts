@@ -1,4 +1,4 @@
-/* tslint:disable variable-name */
+
 
 import { CommonModule } from "@angular/common";
 import { moduleMetadata, Meta } from "@storybook/angular";
@@ -27,9 +27,7 @@ export default {
 				TableModule,
 				AILabelModule,
 				ButtonModule,
-				IconModule
-			],
-			declarations: [
+				IconModule,
 				TableAiLabelWithSelectionStory,
 				TableAiLabelRadioSelectionStory,
 				TableAiLabelSelectionExpansionStory,

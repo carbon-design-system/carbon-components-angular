@@ -14,13 +14,14 @@ import { Component, HostBinding } from "@angular/core";
 @Component({
 	selector: "cds-switcher-list, ibm-switcher-list",
 	template: `
-			<ng-content></ng-content>
+			<ng-content />
 	`,
 	styles: [`
 		:host {
 			display: block;
 		}
-	`]
+	`],
+	standalone: true
 })
 export class SwitcherList {
 	@HostBinding("class.cds--switcher") switcher = true;

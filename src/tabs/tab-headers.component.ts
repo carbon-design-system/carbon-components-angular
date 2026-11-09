@@ -16,13 +16,16 @@ import {
 	OnDestroy,
 	OnInit,
 	ChangeDetectorRef,
-	Renderer2
+	Renderer2,
+	inject
 } from "@angular/core";
 import { EventService } from "carbon-components-angular/utils";
 import { I18n } from "carbon-components-angular/i18n";
 
 import { BaseTabHeader } from "./base-tab-header.component";
 import { Tab } from "./tab.component";
+import { NgClass, NgTemplateOutlet } from "@angular/common";
+import { Tooltip } from "carbon-components-angular/tooltip";
 
 /**
  * The `TabHeaders` component contains the `Tab` items and controls scroll functionality
@@ -66,53 +69,53 @@ import { Tab } from "./tab.component";
 			[attr.aria-labelledby]="ariaLabelledby || null"
 			(scroll)="handleScroll()">
 			<ng-container [ngTemplateOutlet]="contentBefore"></ng-container>
-			<ng-container *ngFor="let tab of tabs; let i = index;">
-				<cds-tooltip
-					*ngIf="tab.iconOnly; else inlineTabItem"
-					align="bottom"
-					[autoAlign]="true"
-					class="cds--icon-tooltip"
-					[description]="tab.iconLabel"
-					[enterDelayMs]="tab.enterDelayMs ?? 100"
-					[leaveDelayMs]="tab.leaveDelayMs ?? 300"
-					[isOpen]="tab.isTooltipOpen"
-					[disabled]="tab.disabled">
+			@for (tab of tabs; track tab; let i = $index) {
+				@if (tab.iconOnly) {
+					<cds-tooltip
+						align="bottom"
+						[autoAlign]="true"
+						class="cds--icon-tooltip"
+						[description]="tab.iconLabel"
+						[enterDelayMs]="tab.enterDelayMs ?? 100"
+						[leaveDelayMs]="tab.leaveDelayMs ?? 300"
+						[isOpen]="tab.isTooltipOpen"
+						[disabled]="tab.disabled">
+						<ng-container *ngTemplateOutlet="tabItemTpl; context: { tab: tab, i: i }"></ng-container>
+					</cds-tooltip>
+				} @else {
 					<ng-container *ngTemplateOutlet="tabItemTpl; context: { tab: tab, i: i }"></ng-container>
-				</cds-tooltip>
-				<ng-template #inlineTabItem>
-					<ng-container *ngTemplateOutlet="tabItemTpl; context: { tab: tab, i: i }"></ng-container>
-				</ng-template>
-				<div
-					*ngIf="dismissable"
-					class="cds--tabs__nav-item--close">
-					<button
-						type="button"
-						[attr.tabindex]="-1"
-						[attr.aria-disabled]="tab.disabled"
-						[attr.aria-hidden]="!(tab.active && !tab.disabled)"
-						[disabled]="tab.disabled"
-						class="cds--tabs__nav-item--close-icon"
-						[ngClass]="{
-							'cds--tabs__nav-item--close-icon--selected': tab.active,
-							'cds--tabs__nav-item--close-icon--disabled': tab.disabled
-						}"
-						[attr.title]="getCloseTitle(tab)"
-						(click)="handleClose($event, tab, i)">
-						<svg
-							focusable="false"
-							preserveAspectRatio="xMidYMid meet"
-							xmlns="http://www.w3.org/2000/svg"
-							fill="currentColor"
-							width="16"
-							height="16"
-							viewBox="0 0 32 32"
-							[attr.aria-label]="tab.closeButtonAriaLabel"
-							[attr.aria-hidden]="!(tab.active && !tab.disabled)">
-							<path d="M17.4141 16L24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z"></path>
-						</svg>
-					</button>
-				</div>
-			</ng-container>
+				}
+				@if (dismissable) {
+					<div class="cds--tabs__nav-item--close">
+						<button
+							type="button"
+							[attr.tabindex]="-1"
+							[attr.aria-disabled]="tab.disabled"
+							[attr.aria-hidden]="!(tab.active && !tab.disabled)"
+							[disabled]="tab.disabled"
+							class="cds--tabs__nav-item--close-icon"
+							[ngClass]="{
+								'cds--tabs__nav-item--close-icon--selected': tab.active,
+								'cds--tabs__nav-item--close-icon--disabled': tab.disabled
+							}"
+							[attr.title]="getCloseTitle(tab)"
+							(click)="handleClose($event, tab, i)">
+							<svg
+								focusable="false"
+								preserveAspectRatio="xMidYMid meet"
+								xmlns="http://www.w3.org/2000/svg"
+								fill="currentColor"
+								width="16"
+								height="16"
+								viewBox="0 0 32 32"
+								[attr.aria-label]="tab.closeButtonAriaLabel"
+								[attr.aria-hidden]="!(tab.active && !tab.disabled)">
+								<path d="M17.4141 16L24 9.4141 22.5859 8 16 14.5859 9.4143 8 8 9.4141 14.5859 16 8 22.5859 9.4143 24 16 17.4141 22.5859 24 24 22.5859 17.4141 16z"></path>
+							</svg>
+						</button>
+					</div>
+				}
+			}
 			<ng-container [ngTemplateOutlet]="contentAfter"></ng-container>
 		</div>
 		<ng-template #tabItemTpl let-tab="tab" let-i="i">
@@ -139,42 +142,46 @@ import { Tab } from "./tab.component";
 				(focus)="onTabFocus(tabItem, i)"
 				(keydown)="handleTabKeyDown($event, tab, i)"
 				(click)="selectTab(tabItem, tab, i)">
-				<ng-container *ngIf="tab.iconOnly; else labeledTab">
+				@if (tab.iconOnly) {
 					<ng-container [ngTemplateOutlet]="tab.icon"></ng-container>
-					<span
-						*ngIf="!tab.disabled && tab.badgeIndicator"
-						class="cds--badge-indicator"
-						aria-hidden="true">
-					</span>
-				</ng-container>
-				<ng-template #labeledTab>
-					<div class="cds--tabs__nav-item-label-wrapper">
-						<div *ngIf="dismissable && tab.icon" class="cds--tabs__nav-item--icon-left">
-							<ng-container [ngTemplateOutlet]="tab.icon"></ng-container>
-						</div>
-						<span class="cds--tabs__nav-item-label">
-							<ng-container *ngIf="!tab.headingIsTemplate">
-								{{ tab.heading }}
-							</ng-container>
-							<ng-template
-								*ngIf="tab.headingIsTemplate"
-								[ngTemplateOutlet]="tab.heading"
-								[ngTemplateOutletContext]="{$implicit: tab.context}">
-							</ng-template>
+					@if (!tab.disabled && tab.badgeIndicator) {
+						<span
+							class="cds--badge-indicator"
+							aria-hidden="true">
 						</span>
+					}
+				} @else {
+					<div class="cds--tabs__nav-item-label-wrapper">
+						@if (dismissable && tab.icon) {
+							<div class="cds--tabs__nav-item--icon-left">
+								<ng-container [ngTemplateOutlet]="tab.icon"></ng-container>
+							</div>
+						}
+						<span class="cds--tabs__nav-item-label">
+							@if (!tab.headingIsTemplate) {
+								{{ tab.heading }}
+							}
+							@if (tab.headingIsTemplate) {
+								<ng-template
+									[ngTemplateOutlet]="tab.heading"
+									[ngTemplateOutletContext]="{$implicit: tab.context}">
+								</ng-template>
+							}
+						</span>
+						@if (!dismissable && tab.icon) {
+							<div class="cds--tabs__nav-item--icon">
+								<ng-container [ngTemplateOutlet]="tab.icon"></ng-container>
+							</div>
+						}
+					</div>
+					@if (hasSecondaryLabelTabs && tab.secondaryLabel) {
 						<div
-							*ngIf="!dismissable && tab.icon"
-							class="cds--tabs__nav-item--icon">
-							<ng-container [ngTemplateOutlet]="tab.icon"></ng-container>
+							class="cds--tabs__nav-item-secondary-label"
+							[attr.title]="tab.secondaryLabel">
+							{{ tab.secondaryLabel }}
 						</div>
-					</div>
-					<div
-						*ngIf="hasSecondaryLabelTabs && tab.secondaryLabel"
-						class="cds--tabs__nav-item-secondary-label"
-						[attr.title]="tab.secondaryLabel">
-						{{ tab.secondaryLabel }}
-					</div>
-				</ng-template>
+					}
+				}
 			</button>
 		</ng-template>
 		<button
@@ -204,15 +211,19 @@ import { Tab } from "./tab.component";
 				<path d="M11 8L6 13 5.3 12.3 9.6 8 5.3 3.7 6 3z"></path>
 			</svg>
 		</button>
-	`
+	`,
+	providers: [EventService],
+	imports: [NgClass, NgTemplateOutlet, Tooltip]
 })
 
 export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnChanges, OnDestroy, OnInit {
+	public i18n = inject(I18n);
+
 	/**
 	 * List of `Tab` components.
 	 */
 	// disable the next line because we need to rename the input
-	// tslint:disable-next-line
+	// eslint-disable-next-line @angular-eslint/no-input-rename
 	@Input("tabs") tabInput: QueryList<Tab>;
 
 	/**
@@ -262,14 +273,12 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 
 	private resizeObserver: ResizeObserver;
 
-	constructor(
-		protected elementRef: ElementRef,
-		protected changeDetectorRef: ChangeDetectorRef,
-		protected eventService: EventService,
-		protected renderer: Renderer2,
-		protected i18n: I18n
-	) {
-		super(elementRef, changeDetectorRef, eventService, renderer);
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
+		super();
 	}
 
 	get hasSecondaryLabelTabs(): boolean {
@@ -520,6 +529,7 @@ export class TabHeaders extends BaseTabHeader implements AfterContentInit, OnCha
 				this.currentSelectedTab = this.tabs.toArray().indexOf(firstTab);
 				this.activeIndex = this.currentSelectedTab;
 				firstTab.doSelect();
+				this.changeDetectorRef.markForCheck();
 			}
 		});
 	}

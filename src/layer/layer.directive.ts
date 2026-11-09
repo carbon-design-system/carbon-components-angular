@@ -4,23 +4,25 @@ import {
 	Input,
 	ContentChildren,
 	QueryList,
-	AfterContentInit
+	AfterContentInit,
+	forwardRef
 } from "@angular/core";
 
 const MAX_LEVEL = 2;
 
 /**
- * Applies layering styles to the div container it is applied to. Get started with importing the module:
+ * Applies layering styles to the div container it is applied to. Get started with importing the directive:
  *
  * ```typescript
- * import { LayerModule } from 'carbon-components-angular';
+ * import { LayerDirective } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-layer--basic)
  */
 @Directive({
 	selector: "[cdsLayer], [ibmLayer]",
-	exportAs: "layer"
+	exportAs: "layer",
+	standalone: true
 })
 export class LayerDirective implements AfterContentInit {
 
@@ -84,7 +86,8 @@ export class LayerDirective implements AfterContentInit {
 		return this.layer === 2;
 	}
 
-	@ContentChildren(LayerDirective, { descendants: false }) layerChildren: QueryList<LayerDirective>;
+	// We use forward ref to resolve circular dependency
+	@ContentChildren(forwardRef(() => LayerDirective), { descendants: false }) layerChildren: QueryList<LayerDirective>;
 
 	// Holds user passsed level
 	private _passedLevel;

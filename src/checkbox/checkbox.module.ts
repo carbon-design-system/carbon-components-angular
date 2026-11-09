@@ -9,10 +9,6 @@ import { CheckboxGroup } from "./checkbox-group.component";
 import { IconModule } from "carbon-components-angular/icon";
 
 @NgModule({
-	declarations: [
-		Checkbox,
-		CheckboxGroup
-	],
 	exports: [
 		Checkbox,
 		CheckboxGroup
@@ -20,7 +16,9 @@ import { IconModule } from "carbon-components-angular/icon";
 	imports: [
 		CommonModule,
 		FormsModule,
-		IconModule
+		IconModule,
+		Checkbox,
+		CheckboxGroup
 	]
 })
-export class CheckboxModule { }
+export class CheckboxModule {}

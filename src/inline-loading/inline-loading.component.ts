@@ -3,8 +3,11 @@ import {
 	Input,
 	Output,
 	EventEmitter,
-	HostBinding
+	HostBinding,
+	ChangeDetectionStrategy
 } from "@angular/core";
+import { NgClass } from "@angular/common";
+import { IconDirective } from "carbon-components-angular/icon";
 
 export enum InlineLoadingState {
 	/** It hides the whole component. */
@@ -20,10 +23,10 @@ export enum InlineLoadingState {
 }
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component and the enum:
  *
  * ```typescript
- * import { InlineLoadingModule } from 'carbon-components-angular';
+ * import { InlineLoading, InlineLoadingState } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-inline-loading--basic)
@@ -31,41 +34,53 @@ export enum InlineLoadingState {
 @Component({
 	selector: "cds-inline-loading, ibm-inline-loading",
 	template: `
-		<div *ngIf="state !== InlineLoadingState.Hidden"
-			class="cds--inline-loading__animation">
-			<div
-				*ngIf="state === InlineLoadingState.Inactive || state === InlineLoadingState.Active"
-				class="cds--loading cds--loading--small"
-				[ngClass]="{
-					'cds--loading--stop': state === InlineLoadingState.Inactive
-				}">
-				<svg class="cds--loading__svg" viewBox="0 0 100 100">
-					<title *ngIf="iconDescription">{{iconDescription}}</title>
-					<circle class="cds--loading__background" cx="50%" cy="50%" r="44" />
-					<circle class="cds--loading__stroke" cx="50%" cy="50%" r="44" />
-				</svg>
+		@if (state !== InlineLoadingState.Hidden) {
+			<div class="cds--inline-loading__animation">
+				@if (state === InlineLoadingState.Inactive || state === InlineLoadingState.Active) {
+					<div
+						class="cds--loading cds--loading--small"
+						[ngClass]="{
+							'cds--loading--stop': state === InlineLoadingState.Inactive
+						}">
+						<svg class="cds--loading__svg" viewBox="0 0 100 100">
+							@if (iconDescription) {
+								<title>{{iconDescription}}</title>
+							}
+							<circle class="cds--loading__background" cx="50%" cy="50%" r="44" />
+							<circle class="cds--loading__stroke" cx="50%" cy="50%" r="44" />
+						</svg>
+					</div>
+				}
+				@if (state === InlineLoadingState.Finished) {
+					<svg
+						cdsIcon="checkmark--filled"
+						size="16"
+						class="cds--inline-loading__checkmark-container"
+						[attr.title]="iconDescription || null">
+					</svg>
+				}
+				@if (state === InlineLoadingState.Error) {
+					<svg
+						cdsIcon="error--filled"
+						size="16"
+						class="cds--inline-loading--error"
+						[attr.title]="iconDescription || null">
+					</svg>
+				}
 			</div>
-			<svg
-				*ngIf="state === InlineLoadingState.Finished"
-				cdsIcon="checkmark--filled"
-				size="16"
-				class="cds--inline-loading__checkmark-container"
-				[attr.title]="iconDescription || null">
-			</svg>
-			<svg
-				*ngIf="state === InlineLoadingState.Error"
-				cdsIcon="error--filled"
-				size="16"
-				class="cds--inline-loading--error"
-				[attr.title]="iconDescription || null">
-			</svg>
-		</div>
-		<p
-			*ngIf="state === InlineLoadingState.Inactive || state === InlineLoadingState.Active"
-			class="cds--inline-loading__text">{{loadingText}}</p>
-		<p *ngIf="state === InlineLoadingState.Finished" class="cds--inline-loading__text">{{successText}}</p>
-		<p *ngIf="state === InlineLoadingState.Error" class="cds--inline-loading__text">{{errorText}}</p>
-	`
+		}
+		@if (state === InlineLoadingState.Inactive || state === InlineLoadingState.Active) {
+			<p class="cds--inline-loading__text">{{loadingText}}</p>
+		}
+		@if (state === InlineLoadingState.Finished) {
+			<p class="cds--inline-loading__text">{{successText}}</p>
+		}
+		@if (state === InlineLoadingState.Error) {
+			<p class="cds--inline-loading__text">{{errorText}}</p>
+		}
+	`,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgClass, IconDirective]
 })
 export class InlineLoading {
 	InlineLoadingState = InlineLoadingState;

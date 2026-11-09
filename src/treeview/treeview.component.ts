@@ -1,26 +1,29 @@
-import { DOCUMENT } from "@angular/common";
+import { NgTemplateOutlet, NgClass } from "@angular/common";
 import {
+	ChangeDetectionStrategy,
 	Component,
 	Input,
 	Output,
 	TemplateRef,
 	EventEmitter,
 	AfterViewInit,
-	Inject,
 	ViewChild,
 	ElementRef,
 	OnInit,
-	OnDestroy
+	OnDestroy,
+	DOCUMENT,
+	inject
 } from "@angular/core";
 import { Subscription } from "rxjs";
 import { EventOnNode, Node } from "./tree-node.types";
 import { TreeViewService } from "./treeview.service";
+import { TreeNodeComponent } from "./tree-node.component";
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * ```typescript
- * import { TreeviewModule } from 'carbon-components-angular';
+ * import { TreeViewComponent } from 'carbon-components-angular';
  * ```
  *
  * [See demo](../../?path=/story/components-tree-view--basic)
@@ -28,18 +31,22 @@ import { TreeViewService } from "./treeview.service";
 @Component({
 	selector: "cds-tree-view",
 	template: `
-		<label
-			*ngIf="label"
-			[id]="id"
-			class="cds--label"
-			[ngClass]="{'cds--visually-hidden': hideLabel}">
-			<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>
-			<ng-template
-				*ngIf="isTemplate(label)"
-				[ngTemplateOutlet]="label"
-				[ngTemplateOutletContext]="{ $implicit: labelContext }">
-			</ng-template>
-		</label>
+		@if (label) {
+			<label
+				[id]="id"
+				class="cds--label"
+				[ngClass]="{'cds--visually-hidden': hideLabel}">
+				@if (!isTemplate(label)) {
+					{{label}}
+				}
+				@if (isTemplate(label)) {
+					<ng-template
+						[ngTemplateOutlet]="label"
+						[ngTemplateOutletContext]="{ $implicit: labelContext }">
+					</ng-template>
+				}
+			</label>
+		}
 		<div
 			class="cds--tree"
 			[ngClass]="{
@@ -52,21 +59,27 @@ import { TreeViewService } from "./treeview.service";
 			role="tree"
 			(keydown)="navigateTree($event)"
 			#treeWrapper>
-			<ng-container *ngIf="isProjected(); else notProjected">
+			@if (isProjected()) {
 				<ng-content></ng-content>
-			</ng-container>
-			<ng-template #notProjected>
-				<cds-tree-node
-					*ngFor="let node of tree"
-					[node]="node"
-					(nodetoggle)="onNodeToggle($event)">
-				</cds-tree-node>
-			</ng-template>
+			} @else {
+				@for (node of tree; track node) {
+					<cds-tree-node
+						[node]="node"
+						(nodetoggle)="onNodeToggle($event)">
+					</cds-tree-node>
+				}
+			}
 		</div>
 	`,
-	providers: [TreeViewService]
+	providers: [TreeViewService],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgTemplateOutlet, NgClass, TreeNodeComponent]
 })
 export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
+	static treeViewCount = 0;
+
+	treeViewService = inject(TreeViewService);
+
 	/**
 	 * Pass `Node[]` array to have tree view render the nodes
 	 * Passing value will disregard projected content
@@ -79,8 +92,6 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 	get tree() {
 		return this._tree;
 	}
-
-	static treeViewCount = 0;
 
 	@Input() id = `tree-view-${TreeViewComponent.treeViewCount++}`;
 	/**
@@ -108,18 +119,22 @@ export class TreeViewComponent implements AfterViewInit, OnInit, OnDestroy {
 	}
 
 	@Output() select = new EventEmitter<Node | Node[]>();
+
+	// eslint-disable-next-line @angular-eslint/no-output-native
 	@Output() toggle = new EventEmitter<Node>();
 	@ViewChild("treeWrapper") root: ElementRef;
 
 	private treeWalker: TreeWalker;
 	private _tree: Node[] = [];
 	private subscription: Subscription;
+	private document = inject<Document>(DOCUMENT);
+	private elementRef = inject(ElementRef);
 
-	constructor(
-		@Inject(DOCUMENT) private document: Document,
-		public treeViewService: TreeViewService,
-		private elementRef: ElementRef
-	) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	/**
 	 * Subscribe for node selection

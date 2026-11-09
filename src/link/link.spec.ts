@@ -5,19 +5,22 @@ import { By } from "@angular/platform-browser";
 import { Link } from "./link.directive";
 
 @Component({
-	template: `<a href="https://angular.carbondesignsystem.com/" cdsLink>link</a>`
+	template: `<a href="https://angular.carbondesignsystem.com/" cdsLink>link</a>`,
+	imports: [Link]
 })
 class TestLinkComponent {
 }
 
 @Component({
-	template: `<a href="https://angular.carbondesignsystem.com/" [disabled]="1+1===2" cdsLink>link</a>`
+	template: `<a href="https://angular.carbondesignsystem.com/" [disabled]="1+1===2" cdsLink>link</a>`,
+	imports: [Link]
 })
 class TestDisabledLinkComponent {
 }
 
 @Component({
-	template: `<a href="https://angular.carbondesignsystem.com/" [inline]="true" cdsLink>link</a>`
+	template: `<a href="https://angular.carbondesignsystem.com/" [inline]="true" cdsLink>link</a>`,
+	imports: [Link]
 })
 class TestInlineLinkComponent {
 }
@@ -25,7 +28,7 @@ class TestInlineLinkComponent {
 describe("Link", () => {
 	it("should create a Link", () => {
 		TestBed.configureTestingModule({
-			declarations: [TestLinkComponent, Link]
+			imports: [TestLinkComponent]
 		});
 
 		let fixture: ComponentFixture<TestLinkComponent> = TestBed.createComponent(TestLinkComponent);
@@ -42,7 +45,7 @@ describe("Link", () => {
 
 	it("should create a disabled link", () => {
 		TestBed.configureTestingModule({
-			declarations: [TestDisabledLinkComponent, Link]
+			imports: [TestDisabledLinkComponent]
 		});
 
 		let fixture: ComponentFixture<TestDisabledLinkComponent> = TestBed.createComponent(TestDisabledLinkComponent);
@@ -56,7 +59,7 @@ describe("Link", () => {
 
 	it("should create an inline link", () => {
 		TestBed.configureTestingModule({
-			declarations: [TestInlineLinkComponent, Link]
+			imports: [TestInlineLinkComponent]
 		});
 
 		let fixture: ComponentFixture<TestInlineLinkComponent> = TestBed.createComponent(TestInlineLinkComponent);

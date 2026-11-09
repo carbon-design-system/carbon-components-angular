@@ -20,7 +20,8 @@ import { advancedFakeAsync } from "../test-helpers/change-detection";
 			<cds-tab heading="two">Vertical content 2</cds-tab>
 			<cds-tab heading="three">Vertical content 3</cds-tab>
 		</cds-tabs-vertical>
-	`
+	`,
+	imports: [UtilsModule, I18nModule, TabsModule]
 })
 class TabsVerticalTest {
 	@ViewChild(TabsVertical) tabs: TabsVertical;
@@ -39,8 +40,7 @@ describe("TabsVertical", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [TabsVerticalTest],
-			imports: [CommonModule, UtilsModule, I18nModule, TabsModule],
+			imports: [TabsVerticalTest],
 			schemas: [CUSTOM_ELEMENTS_SCHEMA]
 		});
 	});
@@ -96,7 +96,8 @@ describe("TabsVertical", () => {
 				<cds-tab heading="one">content</cds-tab>
 			</cds-tabs-vertical>
 		</cds-tabs-vertical-grouped>
-	`
+	`,
+	imports: [UtilsModule, I18nModule, TabsModule]
 })
 class TabsVerticalGroupedTest {
 	@ViewChild(TabsVerticalGrouped) grouped: TabsVerticalGrouped;
@@ -108,8 +109,7 @@ describe("TabsVerticalGrouped", () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [TabsVerticalGroupedTest],
-			imports: [CommonModule, UtilsModule, I18nModule, TabsModule],
+			imports: [TabsVerticalGroupedTest],
 			schemas: [CUSTOM_ELEMENTS_SCHEMA]
 		});
 

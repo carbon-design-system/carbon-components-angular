@@ -1,10 +1,8 @@
-/* tslint:disable variable-name */
-
 import { moduleMetadata, componentWrapperDecorator } from "@storybook/angular";
-import { Story, Meta } from "@storybook/angular";
+import { Meta } from "@storybook/angular";
 import {
-	GridModule,
 	GridDirective,
+	GridService,
 	RowDirective,
 	ColumnDirective
 } from "./";
@@ -13,15 +11,11 @@ export default {
 	title: "Components/Grid/Flex",
 	decorators: [
 		moduleMetadata({
-			imports: [GridModule]
+			imports: [GridDirective, RowDirective, ColumnDirective]
 		}),
 		componentWrapperDecorator((story) => `<div class="flex-grid-story">${story}</div>`)
 	],
 	component: GridDirective,
-	subcomponents: {
-		RowDirective,
-		ColumnDirective
-	},
 	argTypes: {
 		useCssGrid: {
 			control: false

@@ -8,7 +8,9 @@ import {
 	HostBinding,
 	HostListener,
 	TemplateRef,
-	forwardRef
+	forwardRef,
+	ChangeDetectorRef,
+	inject
 } from "@angular/core";
 
 import { Tab } from "./tab.component";
@@ -20,7 +22,7 @@ import { Tab } from "./tab.component";
  * subclasses supply the template and host behavior.
  */
 @Directive()
-// eslint-disable-next-line @angular-eslint/directive-class-suffix -- abstract base class, not a directive instance
+
 export abstract class TabHeaderBase {
 	/**
 	 * Set to 'true' to have pane reference cached and not reloaded on tab switching.
@@ -123,8 +125,8 @@ export abstract class TabHeaderBase {
  */
 @Directive({
 	selector: "[cdsTabHeader], [ibmTabHeader]",
+	standalone: true,
 	providers: [
-		// tslint:disable-next-line:no-forward-ref
 		{ provide: TabHeaderBase, useExisting: forwardRef(() => TabHeader) }
 	]
 })
@@ -154,7 +156,14 @@ export class TabHeader extends TabHeaderBase implements AfterViewInit {
 		return this.title ?? null;
 	}
 
-	constructor(private host: ElementRef) {
+	private host = inject(ElementRef);
+	private changeDetectorRef = inject(ChangeDetectorRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
 		super();
 	}
 
@@ -174,6 +183,7 @@ export class TabHeader extends TabHeaderBase implements AfterViewInit {
 	ngAfterViewInit() {
 		setTimeout(() => {
 			this.title = this.title ? this.title : this.host.nativeElement.textContent;
+			this.changeDetectorRef.markForCheck();
 		});
 	}
 
