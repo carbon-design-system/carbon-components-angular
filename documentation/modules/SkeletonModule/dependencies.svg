@@ -24,13 +24,13 @@
 <title>cluster_SkeletonModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="53,-70 53,-268 443,-268 443,-70 53,-70"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_SkeletonModule_declarations</title>
-<polygon fill="none" stroke="black" points="66,-78 66,-130 429,-130 429,-78 66,-78"/>
-</g>
 <g id="clust7" class="cluster">
 <title>cluster_SkeletonModule_exports</title>
 <polygon fill="none" stroke="black" points="61,-208 61,-260 435,-260 435,-208 61,-208"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_SkeletonModule_declarations</title>
+<polygon fill="none" stroke="black" points="66,-78 66,-130 429,-130 429,-78 66,-78"/>
 </g>
 <!-- SkeletonIcon -->
 <g id="node1" class="node">

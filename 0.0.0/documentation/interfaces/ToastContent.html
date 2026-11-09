@@ -163,12 +163,14 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#caption" 
 >
                                             caption
                                         </a>
                                 </li>
                                 <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#subtitle" 
 >
                                             subtitle
@@ -212,6 +214,11 @@
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
@@ -245,6 +252,11 @@
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
@@ -284,8 +296,8 @@ export interface ActionableContent extends NotificationContent {
 }
 
 export interface ToastContent extends NotificationContent {
-	subtitle: string;
-	caption: string;
+	subtitle?: string;
+	caption?: string;
 }
 
 export interface NotificationAction {
