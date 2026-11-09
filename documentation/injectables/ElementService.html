@@ -152,6 +152,10 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Protected</span>
+                                <a href="#singleton" >singleton</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
                                 <a href="#tick" >tick</a>
                             </li>
                         </ul>
@@ -187,45 +191,15 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(singleton: <a href="../injectables/AnimationFrameServiceSingleton.html" target="_self">AnimationFrameServiceSingleton</a>)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/utils/element.service.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/utils/element.service.ts:16</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>singleton</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/AnimationFrameServiceSingleton.html" target="_self" >AnimationFrameServiceSingleton</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
 </section>
@@ -255,8 +229,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="16"
-                                    class="link-to-prism">src/utils/element.service.ts:16</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="22"
+                                    class="link-to-prism">src/utils/element.service.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -330,6 +304,32 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="singleton"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>singleton</b></span>
+                        <a href="#singleton"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(AnimationFrameServiceSingleton)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/utils/element.service.ts:10</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="tick"></a>
                     <span class="name">
                             <span class="modifier">Protected</span>
@@ -346,7 +346,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/utils/element.service.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/utils/element.service.ts:12</a></div>
                         </td>
                     </tr>
 
@@ -359,7 +359,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@angular/core&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, inject } from &quot;@angular/core&quot;;
 import { Observable, from } from &quot;rxjs&quot;;
 import { map } from &quot;rxjs/operators&quot;;
 import { getScrollableParents, isVisibleInContainer } from &quot;./scroll&quot;;
@@ -368,9 +368,15 @@ import { ElementVisibilityEvent } from &quot;./element.types&quot;;
 
 @Injectable()
 export class ElementService {
+	protected singleton &#x3D; inject(AnimationFrameServiceSingleton);
+
 	protected tick: Observable&lt;number&gt;;
 
-	constructor(protected singleton: AnimationFrameServiceSingleton) {
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
 		this.tick &#x3D; from(this.singleton.tick);
 	}
 
@@ -461,7 +467,6 @@ export class ElementService {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

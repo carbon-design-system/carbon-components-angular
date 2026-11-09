@@ -136,8 +136,8 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Get started with importing the module:</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { InlineLoadingModule } from &#39;carbon-components-angular&#39;;</code></pre></div><p><a href="../../?path=/story/components-inline-loading--basic">See demo</a></p>
+        <p>Get started with importing the component and the enum:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { InlineLoading, InlineLoadingState } from &#39;carbon-components-angular&#39;;</code></pre></div><p><a href="../../?path=/story/components-inline-loading--basic">See demo</a></p>
 
     </p>
 
@@ -149,6 +149,10 @@
     <table class="table table-sm table-hover metadata">
         <tbody>
 
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
 
 
 
@@ -166,45 +170,62 @@
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>NgClass</code>
+                                <code><a href="../directives/IconDirective.html" target="_self" >IconDirective</a></code>
+                </td>
+            </tr>
 
 
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;div *ngIf&#x3D;&quot;state !&#x3D;&#x3D; InlineLoadingState.Hidden&quot;
-	class&#x3D;&quot;cds--inline-loading__animation&quot;&gt;
-	&lt;div
-		*ngIf&#x3D;&quot;state &#x3D;&#x3D;&#x3D; InlineLoadingState.Inactive || state &#x3D;&#x3D;&#x3D; InlineLoadingState.Active&quot;
-		class&#x3D;&quot;cds--loading cds--loading--small&quot;
-		[ngClass]&#x3D;&quot;{
-			&#x27;cds--loading--stop&#x27;: state &#x3D;&#x3D;&#x3D; InlineLoadingState.Inactive
-		}&quot;&gt;
-		&lt;svg class&#x3D;&quot;cds--loading__svg&quot; viewBox&#x3D;&quot;0 0 100 100&quot;&gt;
-			&lt;title *ngIf&#x3D;&quot;iconDescription&quot;&gt;{{iconDescription}}&lt;/title&gt;
-			&lt;circle class&#x3D;&quot;cds--loading__background&quot; cx&#x3D;&quot;50%&quot; cy&#x3D;&quot;50%&quot; r&#x3D;&quot;44&quot; /&gt;
-			&lt;circle class&#x3D;&quot;cds--loading__stroke&quot; cx&#x3D;&quot;50%&quot; cy&#x3D;&quot;50%&quot; r&#x3D;&quot;44&quot; /&gt;
-		&lt;/svg&gt;
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">@if (state !&#x3D;&#x3D; InlineLoadingState.Hidden) {
+	&lt;div class&#x3D;&quot;cds--inline-loading__animation&quot;&gt;
+		@if (state &#x3D;&#x3D;&#x3D; InlineLoadingState.Inactive || state &#x3D;&#x3D;&#x3D; InlineLoadingState.Active) {
+			&lt;div
+				class&#x3D;&quot;cds--loading cds--loading--small&quot;
+				[ngClass]&#x3D;&quot;{
+					&#x27;cds--loading--stop&#x27;: state &#x3D;&#x3D;&#x3D; InlineLoadingState.Inactive
+				}&quot;&gt;
+				&lt;svg class&#x3D;&quot;cds--loading__svg&quot; viewBox&#x3D;&quot;0 0 100 100&quot;&gt;
+					@if (iconDescription) {
+						&lt;title&gt;{{iconDescription}}&lt;/title&gt;
+					}
+					&lt;circle class&#x3D;&quot;cds--loading__background&quot; cx&#x3D;&quot;50%&quot; cy&#x3D;&quot;50%&quot; r&#x3D;&quot;44&quot; /&gt;
+					&lt;circle class&#x3D;&quot;cds--loading__stroke&quot; cx&#x3D;&quot;50%&quot; cy&#x3D;&quot;50%&quot; r&#x3D;&quot;44&quot; /&gt;
+				&lt;/svg&gt;
+			&lt;/div&gt;
+		}
+		@if (state &#x3D;&#x3D;&#x3D; InlineLoadingState.Finished) {
+			&lt;svg
+				cdsIcon&#x3D;&quot;checkmark--filled&quot;
+				size&#x3D;&quot;16&quot;
+				class&#x3D;&quot;cds--inline-loading__checkmark-container&quot;
+				[attr.title]&#x3D;&quot;iconDescription || null&quot;&gt;
+			&lt;/svg&gt;
+		}
+		@if (state &#x3D;&#x3D;&#x3D; InlineLoadingState.Error) {
+			&lt;svg
+				cdsIcon&#x3D;&quot;error--filled&quot;
+				size&#x3D;&quot;16&quot;
+				class&#x3D;&quot;cds--inline-loading--error&quot;
+				[attr.title]&#x3D;&quot;iconDescription || null&quot;&gt;
+			&lt;/svg&gt;
+		}
 	&lt;/div&gt;
-	&lt;svg
-		*ngIf&#x3D;&quot;state &#x3D;&#x3D;&#x3D; InlineLoadingState.Finished&quot;
-		cdsIcon&#x3D;&quot;checkmark--filled&quot;
-		size&#x3D;&quot;16&quot;
-		class&#x3D;&quot;cds--inline-loading__checkmark-container&quot;
-		[attr.title]&#x3D;&quot;iconDescription || null&quot;&gt;
-	&lt;/svg&gt;
-	&lt;svg
-		*ngIf&#x3D;&quot;state &#x3D;&#x3D;&#x3D; InlineLoadingState.Error&quot;
-		cdsIcon&#x3D;&quot;error--filled&quot;
-		size&#x3D;&quot;16&quot;
-		class&#x3D;&quot;cds--inline-loading--error&quot;
-		[attr.title]&#x3D;&quot;iconDescription || null&quot;&gt;
-	&lt;/svg&gt;
-&lt;/div&gt;
-&lt;p
-	*ngIf&#x3D;&quot;state &#x3D;&#x3D;&#x3D; InlineLoadingState.Inactive || state &#x3D;&#x3D;&#x3D; InlineLoadingState.Active&quot;
-	class&#x3D;&quot;cds--inline-loading__text&quot;&gt;{{loadingText}}&lt;/p&gt;
-&lt;p *ngIf&#x3D;&quot;state &#x3D;&#x3D;&#x3D; InlineLoadingState.Finished&quot; class&#x3D;&quot;cds--inline-loading__text&quot;&gt;{{successText}}&lt;/p&gt;
-&lt;p *ngIf&#x3D;&quot;state &#x3D;&#x3D;&#x3D; InlineLoadingState.Error&quot; class&#x3D;&quot;cds--inline-loading__text&quot;&gt;{{errorText}}&lt;/p&gt;
+}
+@if (state &#x3D;&#x3D;&#x3D; InlineLoadingState.Inactive || state &#x3D;&#x3D;&#x3D; InlineLoadingState.Active) {
+	&lt;p class&#x3D;&quot;cds--inline-loading__text&quot;&gt;{{loadingText}}&lt;/p&gt;
+}
+@if (state &#x3D;&#x3D;&#x3D; InlineLoadingState.Finished) {
+	&lt;p class&#x3D;&quot;cds--inline-loading__text&quot;&gt;{{successText}}&lt;/p&gt;
+}
+@if (state &#x3D;&#x3D;&#x3D; InlineLoadingState.Error) {
+	&lt;p class&#x3D;&quot;cds--inline-loading__text&quot;&gt;{{errorText}}&lt;/p&gt;
+}
 	</code></pre></td>
             </tr>
 
@@ -357,7 +378,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/inline-loading/inline-loading.component.ts:92</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/inline-loading/inline-loading.component.ts:107</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -384,7 +405,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/inline-loading/inline-loading.component.ts:96</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/inline-loading/inline-loading.component.ts:111</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -411,7 +432,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/inline-loading/inline-loading.component.ts:111</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/inline-loading/inline-loading.component.ts:126</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -438,7 +459,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/inline-loading/inline-loading.component.ts:80</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/inline-loading/inline-loading.component.ts:95</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -470,7 +491,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/inline-loading/inline-loading.component.ts:76</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/inline-loading/inline-loading.component.ts:91</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -497,7 +518,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/inline-loading/inline-loading.component.ts:121</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/inline-loading/inline-loading.component.ts:136</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -529,7 +550,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/inline-loading/inline-loading.component.ts:88</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/inline-loading/inline-loading.component.ts:103</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -556,7 +577,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/inline-loading/inline-loading.component.ts:84</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/inline-loading/inline-loading.component.ts:99</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -586,7 +607,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/inline-loading/inline-loading.component.ts:139</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/inline-loading/inline-loading.component.ts:154</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -618,7 +639,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/inline-loading/inline-loading.component.ts:102</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/inline-loading/inline-loading.component.ts:117</a></div>
                         </td>
                     </tr>
 
@@ -656,7 +677,7 @@ otherwise).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/inline-loading/inline-loading.component.ts:141</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/inline-loading/inline-loading.component.ts:156</a></div>
                         </td>
                     </tr>
 
@@ -690,7 +711,7 @@ otherwise).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/inline-loading/inline-loading.component.ts:71</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/inline-loading/inline-loading.component.ts:86</a></div>
                         </td>
                     </tr>
 
@@ -725,7 +746,7 @@ otherwise).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/inline-loading/inline-loading.component.ts:141</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/inline-loading/inline-loading.component.ts:156</a></div>
                         </td>
                     </tr>
 
@@ -754,7 +775,7 @@ otherwise).</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/inline-loading/inline-loading.component.ts:102</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/inline-loading/inline-loading.component.ts:117</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -788,7 +809,7 @@ otherwise).</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/inline-loading/inline-loading.component.ts:111</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/inline-loading/inline-loading.component.ts:126</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -806,7 +827,7 @@ otherwise).</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/inline-loading/inline-loading.component.ts:114</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/inline-loading/inline-loading.component.ts:129</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -864,7 +885,7 @@ otherwise).</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/inline-loading/inline-loading.component.ts:121</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/inline-loading/inline-loading.component.ts:136</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -882,7 +903,7 @@ otherwise).</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/inline-loading/inline-loading.component.ts:127</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/inline-loading/inline-loading.component.ts:142</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -936,8 +957,11 @@ otherwise).</p>
 	Input,
 	Output,
 	EventEmitter,
-	HostBinding
+	HostBinding,
+	ChangeDetectionStrategy
 } from &quot;@angular/core&quot;;
+import { NgClass } from &quot;@angular/common&quot;;
+import { IconDirective } from &quot;carbon-components-angular/icon&quot;;
 
 export enum InlineLoadingState {
 	/** It hides the whole component. */
@@ -953,10 +977,10 @@ export enum InlineLoadingState {
 }
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component and the enum:
  *
  * &#x60;&#x60;&#x60;typescript
- * import { InlineLoadingModule } from &#x27;carbon-components-angular&#x27;;
+ * import { InlineLoading, InlineLoadingState } from &#x27;carbon-components-angular&#x27;;
  * &#x60;&#x60;&#x60;
  *
  * [See demo](../../?path&#x3D;/story/components-inline-loading--basic)
@@ -964,41 +988,53 @@ export enum InlineLoadingState {
 @Component({
 	selector: &quot;cds-inline-loading, ibm-inline-loading&quot;,
 	template: &#x60;
-		&lt;div *ngIf&#x3D;&quot;state !&#x3D;&#x3D; InlineLoadingState.Hidden&quot;
-			class&#x3D;&quot;cds--inline-loading__animation&quot;&gt;
-			&lt;div
-				*ngIf&#x3D;&quot;state &#x3D;&#x3D;&#x3D; InlineLoadingState.Inactive || state &#x3D;&#x3D;&#x3D; InlineLoadingState.Active&quot;
-				class&#x3D;&quot;cds--loading cds--loading--small&quot;
-				[ngClass]&#x3D;&quot;{
-					&#x27;cds--loading--stop&#x27;: state &#x3D;&#x3D;&#x3D; InlineLoadingState.Inactive
-				}&quot;&gt;
-				&lt;svg class&#x3D;&quot;cds--loading__svg&quot; viewBox&#x3D;&quot;0 0 100 100&quot;&gt;
-					&lt;title *ngIf&#x3D;&quot;iconDescription&quot;&gt;{{iconDescription}}&lt;/title&gt;
-					&lt;circle class&#x3D;&quot;cds--loading__background&quot; cx&#x3D;&quot;50%&quot; cy&#x3D;&quot;50%&quot; r&#x3D;&quot;44&quot; /&gt;
-					&lt;circle class&#x3D;&quot;cds--loading__stroke&quot; cx&#x3D;&quot;50%&quot; cy&#x3D;&quot;50%&quot; r&#x3D;&quot;44&quot; /&gt;
-				&lt;/svg&gt;
+		@if (state !&#x3D;&#x3D; InlineLoadingState.Hidden) {
+			&lt;div class&#x3D;&quot;cds--inline-loading__animation&quot;&gt;
+				@if (state &#x3D;&#x3D;&#x3D; InlineLoadingState.Inactive || state &#x3D;&#x3D;&#x3D; InlineLoadingState.Active) {
+					&lt;div
+						class&#x3D;&quot;cds--loading cds--loading--small&quot;
+						[ngClass]&#x3D;&quot;{
+							&#x27;cds--loading--stop&#x27;: state &#x3D;&#x3D;&#x3D; InlineLoadingState.Inactive
+						}&quot;&gt;
+						&lt;svg class&#x3D;&quot;cds--loading__svg&quot; viewBox&#x3D;&quot;0 0 100 100&quot;&gt;
+							@if (iconDescription) {
+								&lt;title&gt;{{iconDescription}}&lt;/title&gt;
+							}
+							&lt;circle class&#x3D;&quot;cds--loading__background&quot; cx&#x3D;&quot;50%&quot; cy&#x3D;&quot;50%&quot; r&#x3D;&quot;44&quot; /&gt;
+							&lt;circle class&#x3D;&quot;cds--loading__stroke&quot; cx&#x3D;&quot;50%&quot; cy&#x3D;&quot;50%&quot; r&#x3D;&quot;44&quot; /&gt;
+						&lt;/svg&gt;
+					&lt;/div&gt;
+				}
+				@if (state &#x3D;&#x3D;&#x3D; InlineLoadingState.Finished) {
+					&lt;svg
+						cdsIcon&#x3D;&quot;checkmark--filled&quot;
+						size&#x3D;&quot;16&quot;
+						class&#x3D;&quot;cds--inline-loading__checkmark-container&quot;
+						[attr.title]&#x3D;&quot;iconDescription || null&quot;&gt;
+					&lt;/svg&gt;
+				}
+				@if (state &#x3D;&#x3D;&#x3D; InlineLoadingState.Error) {
+					&lt;svg
+						cdsIcon&#x3D;&quot;error--filled&quot;
+						size&#x3D;&quot;16&quot;
+						class&#x3D;&quot;cds--inline-loading--error&quot;
+						[attr.title]&#x3D;&quot;iconDescription || null&quot;&gt;
+					&lt;/svg&gt;
+				}
 			&lt;/div&gt;
-			&lt;svg
-				*ngIf&#x3D;&quot;state &#x3D;&#x3D;&#x3D; InlineLoadingState.Finished&quot;
-				cdsIcon&#x3D;&quot;checkmark--filled&quot;
-				size&#x3D;&quot;16&quot;
-				class&#x3D;&quot;cds--inline-loading__checkmark-container&quot;
-				[attr.title]&#x3D;&quot;iconDescription || null&quot;&gt;
-			&lt;/svg&gt;
-			&lt;svg
-				*ngIf&#x3D;&quot;state &#x3D;&#x3D;&#x3D; InlineLoadingState.Error&quot;
-				cdsIcon&#x3D;&quot;error--filled&quot;
-				size&#x3D;&quot;16&quot;
-				class&#x3D;&quot;cds--inline-loading--error&quot;
-				[attr.title]&#x3D;&quot;iconDescription || null&quot;&gt;
-			&lt;/svg&gt;
-		&lt;/div&gt;
-		&lt;p
-			*ngIf&#x3D;&quot;state &#x3D;&#x3D;&#x3D; InlineLoadingState.Inactive || state &#x3D;&#x3D;&#x3D; InlineLoadingState.Active&quot;
-			class&#x3D;&quot;cds--inline-loading__text&quot;&gt;{{loadingText}}&lt;/p&gt;
-		&lt;p *ngIf&#x3D;&quot;state &#x3D;&#x3D;&#x3D; InlineLoadingState.Finished&quot; class&#x3D;&quot;cds--inline-loading__text&quot;&gt;{{successText}}&lt;/p&gt;
-		&lt;p *ngIf&#x3D;&quot;state &#x3D;&#x3D;&#x3D; InlineLoadingState.Error&quot; class&#x3D;&quot;cds--inline-loading__text&quot;&gt;{{errorText}}&lt;/p&gt;
-	&#x60;
+		}
+		@if (state &#x3D;&#x3D;&#x3D; InlineLoadingState.Inactive || state &#x3D;&#x3D;&#x3D; InlineLoadingState.Active) {
+			&lt;p class&#x3D;&quot;cds--inline-loading__text&quot;&gt;{{loadingText}}&lt;/p&gt;
+		}
+		@if (state &#x3D;&#x3D;&#x3D; InlineLoadingState.Finished) {
+			&lt;p class&#x3D;&quot;cds--inline-loading__text&quot;&gt;{{successText}}&lt;/p&gt;
+		}
+		@if (state &#x3D;&#x3D;&#x3D; InlineLoadingState.Error) {
+			&lt;p class&#x3D;&quot;cds--inline-loading__text&quot;&gt;{{errorText}}&lt;/p&gt;
+		}
+	&#x60;,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgClass, IconDirective]
 })
 export class InlineLoading {
 	InlineLoadingState &#x3D; InlineLoadingState;
@@ -1103,7 +1139,7 @@ export class InlineLoading {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div *ngIf="state !== InlineLoadingState.Hidden"	class="cds--inline-loading__animation">	<div		*ngIf="state === InlineLoadingState.Inactive || state === InlineLoadingState.Active"		class="cds--loading cds--loading--small"		[ngClass]="{			\'cds--loading--stop\': state === InlineLoadingState.Inactive		}">		<svg class="cds--loading__svg" viewBox="0 0 100 100">			<title *ngIf="iconDescription">{{iconDescription}}</title>			<circle class="cds--loading__background" cx="50%" cy="50%" r="44" />			<circle class="cds--loading__stroke" cx="50%" cy="50%" r="44" />		</svg>	</div>	<svg		*ngIf="state === InlineLoadingState.Finished"		cdsIcon="checkmark--filled"		size="16"		class="cds--inline-loading__checkmark-container"		[attr.title]="iconDescription || null">	</svg>	<svg		*ngIf="state === InlineLoadingState.Error"		cdsIcon="error--filled"		size="16"		class="cds--inline-loading--error"		[attr.title]="iconDescription || null">	</svg></div><p	*ngIf="state === InlineLoadingState.Inactive || state === InlineLoadingState.Active"	class="cds--inline-loading__text">{{loadingText}}</p><p *ngIf="state === InlineLoadingState.Finished" class="cds--inline-loading__text">{{successText}}</p><p *ngIf="state === InlineLoadingState.Error" class="cds--inline-loading__text">{{errorText}}</p>	</div>'
+        var COMPONENT_TEMPLATE = '<div>@if (state !== InlineLoadingState.Hidden) {	<div class="cds--inline-loading__animation">		@if (state === InlineLoadingState.Inactive || state === InlineLoadingState.Active) {			<div				class="cds--loading cds--loading--small"				[ngClass]="{					\'cds--loading--stop\': state === InlineLoadingState.Inactive				}">				<svg class="cds--loading__svg" viewBox="0 0 100 100">					@if (iconDescription) {						<title>{{iconDescription}}</title>					}					<circle class="cds--loading__background" cx="50%" cy="50%" r="44" />					<circle class="cds--loading__stroke" cx="50%" cy="50%" r="44" />				</svg>			</div>		}		@if (state === InlineLoadingState.Finished) {			<svg				cdsIcon="checkmark--filled"				size="16"				class="cds--inline-loading__checkmark-container"				[attr.title]="iconDescription || null">			</svg>		}		@if (state === InlineLoadingState.Error) {			<svg				cdsIcon="error--filled"				size="16"				class="cds--inline-loading--error"				[attr.title]="iconDescription || null">			</svg>		}	</div>}@if (state === InlineLoadingState.Inactive || state === InlineLoadingState.Active) {	<p class="cds--inline-loading__text">{{loadingText}}</p>}@if (state === InlineLoadingState.Finished) {	<p class="cds--inline-loading__text">{{successText}}</p>}@if (state === InlineLoadingState.Error) {	<p class="cds--inline-loading__text">{{errorText}}</p>}	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AILabelComponent', 'selector': 'cds-ai-label, ibm-ai-label'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'CheckboxGroup', 'selector': 'cds-checkbox-group, ibm-checkbox-group'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ComboButtonComponent', 'selector': 'cds-combo-button'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-menu, cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-menu-divider, cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-menu-group, cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-menu-item, cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'IconTab', 'selector': 'cds-icon-tab, ibm-icon-tab'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'MenuButtonComponent', 'selector': 'cds-menu-button'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonIcon', 'selector': 'cds-skeleton-icon, ibm-skeleton-icon'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderComponent', 'selector': 'cds-tab-header, ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaderGroupVertical', 'selector': 'cds-tab-header-group-vertical, ibm-tab-header-group-vertical'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'TabHeadersVertical', 'selector': 'cds-tab-headers-vertical, ibm-tab-headers-vertical'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeaderDecorator', 'selector': 'cds-table-header-decorator, ibm-table-header-decorator'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'TabsVertical', 'selector': 'cds-tabs-vertical, ibm-tabs-vertical'},{'name': 'TabsVerticalGrouped', 'selector': 'cds-tabs-vertical-grouped, ibm-tabs-vertical-grouped'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TagOperationalComponent', 'selector': 'cds-tag-operational, ibm-tag-operational'},{'name': 'TagSelectableComponent', 'selector': 'cds-tag-selectable, ibm-tag-selectable'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'AILabelActions', 'selector': '[cdsAILabelActions], [ibmAILabelActions]'},{'name': 'AILabelContent', 'selector': '[cdsAILabelContent], [ibmAILabelContent]'},{'name': 'AILabelPopoverDirective', 'selector': '[cdsAILabelPopover]'},{'name': 'AspectRatioDirective', 'selector': '[cdsAspectRatio], [ibmAspectRatio]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ClickableTileIconDirective', 'selector': '[cdsClickableTileIcon], [ibmClickableTileIcon]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'LinkIconDirective', 'selector': '[ibmLinkIcon], [cdsLinkIcon]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TabHeaderBase', 'selector': ''},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TagIconDirective', 'selector': '[cdsTagIcon], [ibmTagIcon]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'InlineLoading'};
@@ -1180,7 +1216,6 @@ export class InlineLoading {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

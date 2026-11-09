@@ -133,18 +133,18 @@
 <title>cluster_LayoutModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="181,-70 181,-268 315,-268 315,-70 181,-70"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_LayoutModule_declarations</title>
-<polygon fill="none" stroke="black" points="190,-78 190,-130 306,-130 306,-78 190,-78"/>
-</g>
-<g id="clust5" class="cluster">
+<g id="clust4" class="cluster">
 <title>cluster_LayoutModule_exports</title>
 <polygon fill="none" stroke="black" points="189,-208 189,-260 307,-260 307,-208 189,-208"/>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_LayoutModule_imports</title>
+<polygon fill="none" stroke="black" points="190,-78 190,-130 306,-130 306,-78 190,-78"/>
 </g>
 <!-- StackDirective -->
 <g id="node1" class="node">
 <title>StackDirective</title>
-<polygon fill="#ffffb3" stroke="black" points="297.69,-122 198.31,-122 198.31,-86 297.69,-86 297.69,-122"/>
+<polygon fill="#8dd3c7" stroke="black" points="297.69,-122 294.69,-126 273.69,-126 270.69,-122 198.31,-122 198.31,-86 297.69,-86 297.69,-122"/>
 <text text-anchor="middle" x="248" y="-99.8" font-family="Times,serif" font-size="14.00">StackDirective</text>
 </g>
 <!-- LayoutModule -->
@@ -217,11 +217,12 @@
         <div class="container-fluid module">
             <div class="row">
                 <div class="col-sm-3">
-                    <h3>Declarations<a href="https://angular.io/api/core/NgModule#declarations" target="_blank" rel="noopener noreferrer"
-                            title="Official documentation about module declarations"><span class="icon ion-ios-information-circle-outline"></span></a></h3>
+                    <h3>Imports<a href="https://angular.io/api/core/NgModule#imports" target="_blank" rel="noopener noreferrer"
+                            title="Official documentation about module imports"><span
+                                class="icon ion-ios-information-circle-outline"></a></h3>
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <a href="../directives/StackDirective.html">StackDirective</a>
+                            <a href="../modules/StackDirective.html">StackDirective</a>
                         </li>
                     </ul>
                 </div>
@@ -249,11 +250,13 @@ import { CommonModule } from &quot;@angular/common&quot;;
 import { StackDirective } from &quot;./stack.directive&quot;;
 
 @NgModule({
-	declarations: [StackDirective],
 	exports: [StackDirective],
-	imports: [CommonModule]
+	imports: [
+		CommonModule,
+		StackDirective
+	]
 })
-export class LayoutModule { }
+export class LayoutModule {}
 </code></pre>
     </div>
 </div>
@@ -328,7 +331,6 @@ export class LayoutModule { }
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

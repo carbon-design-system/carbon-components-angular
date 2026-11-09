@@ -256,10 +256,20 @@
 	ElementRef,
 	AfterViewInit,
 	ViewChild,
-	TemplateRef
+	ChangeDetectionStrategy,
+	TemplateRef,
+	inject
 } from &quot;@angular/core&quot;;
 import { I18n } from &quot;carbon-components-angular/i18n&quot;;
 import { merge } from &quot;carbon-components-angular/utils&quot;;
+import {
+	NgClass,
+	NgStyle,
+	NgTemplateOutlet,
+	AsyncPipe
+} from &quot;@angular/common&quot;;
+import { IconDirective } from &quot;carbon-components-angular/icon&quot;;
+import { Tile } from &quot;./tile.component&quot;;
 
 export interface ExpandableTileTranslations {
 	EXPAND: string;
@@ -267,10 +277,10 @@ export interface ExpandableTileTranslations {
 }
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * &#x60;&#x60;&#x60;typescript
- * import { TilesModule } from &#x27;carbon-components-angular&#x27;;
+ * import { ExpandableTile } from &#x27;carbon-components-angular&#x27;;
  * &#x60;&#x60;&#x60;
  *
  * [See demo](../../?path&#x3D;/story/components-tiles-expandable--basic)
@@ -278,34 +288,35 @@ export interface ExpandableTileTranslations {
 @Component({
 	selector: &quot;cds-expandable-tile, ibm-expandable-tile&quot;,
 	template: &#x60;
-		&lt;button
-			*ngIf&#x3D;&quot;!interactive&quot;
-			class&#x3D;&quot;cds--tile cds--tile--expandable&quot;
-			[ngClass]&#x3D;&quot;{
-				&#x27;cds--tile--is-expanded&#x27; : expanded,
-				&#x27;cds--tile--light&#x27;: theme &#x3D;&#x3D;&#x3D; &#x27;light&#x27;
-			}&quot;
-			[ngStyle]&#x3D;&quot;{&#x27;max-height&#x27;: expandedHeight + &#x27;px&#x27;}&quot;
-			type&#x3D;&quot;button&quot;
-			(click)&#x3D;&quot;onClick()&quot;
-			[attr.aria-expanded]&#x3D;&quot;expanded&quot;
-			[attr.title]&#x3D;&quot;(expanded ? collapse.subject : expand.subject) | async&quot;&gt;
+		@if (!interactive) {
+			&lt;button
+				class&#x3D;&quot;cds--tile cds--tile--expandable&quot;
+				[ngClass]&#x3D;&quot;{
+					&#x27;cds--tile--is-expanded&#x27; : expanded,
+					&#x27;cds--tile--light&#x27;: theme &#x3D;&#x3D;&#x3D; &#x27;light&#x27;
+				}&quot;
+				[ngStyle]&#x3D;&quot;{&#x27;max-height&#x27;: expandedHeight + &#x27;px&#x27;}&quot;
+				type&#x3D;&quot;button&quot;
+				(click)&#x3D;&quot;onClick()&quot;
+				[attr.aria-expanded]&#x3D;&quot;expanded&quot;
+				[attr.title]&#x3D;&quot;(expanded ? collapse.subject : expand.subject) | async&quot;&gt;
 				&lt;ng-container *ngTemplateOutlet&#x3D;&quot;expandableTileContent&quot;&gt;&lt;/ng-container&gt;
-		&lt;/button&gt;
-
-		&lt;div
-			*ngIf&#x3D;&quot;interactive&quot;
-			class&#x3D;&quot;cds--tile cds--tile--expandable cds--tile--expandable--interactive&quot;
-			[ngClass]&#x3D;&quot;{
-				&#x27;cds--tile--is-expanded&#x27; : expanded,
-				&#x27;cds--tile--light&#x27;: theme &#x3D;&#x3D;&#x3D; &#x27;light&#x27;,
-				&#x27;cds--tile--decorator&#x27;: !!decorator,
-				&#x27;cds--tile--decorator-rounded&#x27;: !!decorator &amp;&amp; hasRoundedCorners
-			}&quot;
-			[ngStyle]&#x3D;&quot;{&#x27;max-height&#x27;: expandedHeight + &#x27;px&#x27;}&quot;
-			[attr.title]&#x3D;&quot;(expanded ? collapse.subject : expand.subject) | async&quot;&gt;
-			&lt;ng-container *ngTemplateOutlet&#x3D;&quot;expandableTileContent&quot;&gt;&lt;/ng-container&gt;
-		&lt;/div&gt;
+			&lt;/button&gt;
+		}
+		@if (interactive) {
+			&lt;div
+				class&#x3D;&quot;cds--tile cds--tile--expandable cds--tile--expandable--interactive&quot;
+				[ngClass]&#x3D;&quot;{
+					&#x27;cds--tile--is-expanded&#x27; : expanded,
+					&#x27;cds--tile--light&#x27;: theme &#x3D;&#x3D;&#x3D; &#x27;light&#x27;,
+					&#x27;cds--tile--decorator&#x27;: !!decorator,
+					&#x27;cds--tile--decorator-rounded&#x27;: !!decorator &amp;&amp; hasRoundedCorners
+				}&quot;
+				[ngStyle]&#x3D;&quot;{&#x27;max-height&#x27;: expandedHeight + &#x27;px&#x27;}&quot;
+				[attr.title]&#x3D;&quot;(expanded ? collapse.subject : expand.subject) | async&quot;&gt;
+				&lt;ng-container *ngTemplateOutlet&#x3D;&quot;expandableTileContent&quot;&gt;&lt;/ng-container&gt;
+			&lt;/div&gt;
+		}
 
 		&lt;ng-template #chevronIcon&gt;
 			&lt;svg cdsIcon&#x3D;&quot;chevron--down&quot; size&#x3D;&quot;16&quot;&gt;&lt;/svg&gt;
@@ -313,34 +324,47 @@ export interface ExpandableTileTranslations {
 
 		&lt;ng-template #expandableTileContent&gt;
 			&lt;div #container&gt;
-				&lt;ng-container *ngIf&#x3D;&quot;interactive &amp;&amp; decorator&quot;&gt;
+				@if (interactive &amp;&amp; decorator) {
 					&lt;div class&#x3D;&quot;cds--tile--inner-decorator&quot;&gt;
 						&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;decorator&quot;&gt;&lt;/ng-template&gt;
 					&lt;/div&gt;
-				&lt;/ng-container&gt;
+				}
 				&lt;div class&#x3D;&quot;cds--tile-content&quot;&gt;
 					&lt;ng-content select&#x3D;&quot;[cdsAboveFold],[ibmAboveFold],.cds--tile-content__above-the-fold&quot;&gt;&lt;/ng-content&gt;
 				&lt;/div&gt;
-				&lt;div *ngIf&#x3D;&quot;!interactive&quot; class&#x3D;&quot;cds--tile__chevron&quot;&gt;
-					&lt;ng-container *ngTemplateOutlet&#x3D;&quot;chevronIcon&quot;&gt;&lt;/ng-container&gt;
-				&lt;/div&gt;
-				&lt;button
-					*ngIf&#x3D;&quot;interactive&quot;
-					class&#x3D;&quot;cds--tile__chevron cds--tile__chevron--interactive&quot;
-					type&#x3D;&quot;button&quot;
-					(click)&#x3D;&quot;onClick()&quot;
-					[attr.aria-expanded]&#x3D;&quot;expanded&quot;
-					[attr.aria-label]&#x3D;&quot;(expanded ? collapse.subject : expand.subject) | async&quot;&gt;
-					&lt;ng-container *ngTemplateOutlet&#x3D;&quot;chevronIcon&quot;&gt;&lt;/ng-container&gt;
-				&lt;/button&gt;
+				@if (!interactive) {
+					&lt;div class&#x3D;&quot;cds--tile__chevron&quot;&gt;
+						&lt;ng-container *ngTemplateOutlet&#x3D;&quot;chevronIcon&quot;&gt;&lt;/ng-container&gt;
+					&lt;/div&gt;
+				}
+				@if (interactive) {
+					&lt;button
+						class&#x3D;&quot;cds--tile__chevron cds--tile__chevron--interactive&quot;
+						type&#x3D;&quot;button&quot;
+						(click)&#x3D;&quot;onClick()&quot;
+						[attr.aria-expanded]&#x3D;&quot;expanded&quot;
+						[attr.aria-label]&#x3D;&quot;(expanded ? collapse.subject : expand.subject) | async&quot;&gt;
+						&lt;ng-container *ngTemplateOutlet&#x3D;&quot;chevronIcon&quot;&gt;&lt;/ng-container&gt;
+					&lt;/button&gt;
+				}
 				&lt;div class&#x3D;&quot;cds--tile-content&quot;&gt;
 					&lt;ng-content select&#x3D;&quot;[cdsBelowFold],[ibmBelowFold],.cds--tile-content__below-the-fold&quot;&gt;&lt;/ng-content&gt;
 				&lt;/div&gt;
 			&lt;/div&gt;
 		&lt;/ng-template&gt;
-	&#x60;
+	&#x60;,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [
+		NgClass,
+		NgStyle,
+		NgTemplateOutlet,
+		IconDirective,
+		AsyncPipe
+	]
 })
 export class ExpandableTile implements AfterViewInit {
+	public i18n &#x3D; inject(I18n);
+
 	/**
 	 * @deprecated since v5 - Use &#x60;cdsLayer&#x60; directive instead
 	 * Set to &#x60;&quot;light&quot;&#x60; to apply the light style
@@ -390,7 +414,13 @@ export class ExpandableTile implements AfterViewInit {
 	expand &#x3D; this.i18n.getOverridable(&quot;TILES.EXPAND&quot;);
 	collapse &#x3D; this.i18n.getOverridable(&quot;TILES.COLLAPSE&quot;);
 
-	constructor(protected i18n: I18n, protected element: ElementRef) {}
+	protected element &#x3D; inject(ElementRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngAfterViewInit() {
 		this.updateMaxHeight();
@@ -411,7 +441,10 @@ export class ExpandableTile implements AfterViewInit {
 		if (this.expanded) {
 			this.tileMaxHeight &#x3D; this.tileContainer.nativeElement.getBoundingClientRect().height;
 		} else {
-			this.tileMaxHeight &#x3D; this.element.nativeElement.querySelector(&quot;.cds--tile-content__above-the-fold&quot;).getBoundingClientRect().height;
+			// match the projection selectors &amp; class
+			const aboveFold &#x3D; this.element.nativeElement
+				.querySelector(&quot;.cds--tile-content__above-the-fold, [cdsAboveFold], [ibmAboveFold]&quot;);
+			this.tileMaxHeight &#x3D; aboveFold ? aboveFold.getBoundingClientRect().height : 0;
 		}
 	}
 
@@ -485,7 +518,6 @@ export class ExpandableTile implements AfterViewInit {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

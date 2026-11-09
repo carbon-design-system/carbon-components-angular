@@ -156,6 +156,10 @@
                         <td class="col-md-9"><code>[cdsBaseModal], [ibmBaseModal]</code></td>
                     </tr>
 
+                    <tr>
+                        <td class="col-md-3">Standalone</td>
+                        <td class="col-md-9"><code>true</code></td>
+                    </tr>
 
 
 
@@ -243,7 +247,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/modal/base-modal.class.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/modal/base-modal.class.ts:26</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -273,7 +277,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/modal/base-modal.class.ts:20</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/modal/base-modal.class.ts:21</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -312,8 +316,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="30"
-                                    class="link-to-prism">src/modal/base-modal.class.ts:30</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="31"
+                                    class="link-to-prism">src/modal/base-modal.class.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -351,7 +355,8 @@
  * &#x60;ModalService&#x60; depends on the &#x60;close&#x60; event to correctly clean up the component.
  */
 @Directive({
-	selector: &quot;[cdsBaseModal], [ibmBaseModal]&quot;
+	selector: &quot;[cdsBaseModal], [ibmBaseModal]&quot;,
+	standalone: true
 })
 export class BaseModal {
 	/**
@@ -443,7 +448,6 @@ export class BaseModal {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

@@ -156,6 +156,10 @@
                         <td class="col-md-9"><code>[cdsPopover], [ibmPopover]</code></td>
                     </tr>
 
+                    <tr>
+                        <td class="col-md-3">Standalone</td>
+                        <td class="col-md-9"><code>true</code></td>
+                    </tr>
 
 
 
@@ -195,12 +199,28 @@
                                 <a href="#caretRef" >caretRef</a>
                             </li>
                             <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#changeDetectorRef" >changeDetectorRef</a>
+                            </li>
+                            <li>
                                     <span class="modifier"></span>
                                 <a href="#containerClass" >containerClass</a>
                             </li>
                             <li>
                                     <span class="modifier">Protected</span>
+                                <a href="#elementRef" >elementRef</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#ngZone" >ngZone</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
                                 <a href="#popoverContentRef" >popoverContentRef</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#renderer" >renderer</a>
                             </li>
                             <li>
                                     <span class="modifier">Protected</span>
@@ -343,81 +363,15 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(elementRef: ElementRef, ngZone: NgZone, renderer: Renderer2, changeDetectorRef: ChangeDetectorRef)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/popover/popover.directive.ts:128</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/popover/popover.directive.ts:140</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>elementRef</td>
-                                                  
-                                                        <td>
-                                                                    <code>ElementRef</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>ngZone</td>
-                                                  
-                                                        <td>
-                                                                    <code>NgZone</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>renderer</td>
-                                                  
-                                                        <td>
-                                                                    <code>Renderer2</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>changeDetectorRef</td>
-                                                  
-                                                        <td>
-                                                                    <code>ChangeDetectorRef</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
 </section>
@@ -440,7 +394,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/popover/popover.directive.ts:45</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/popover/popover.directive.ts:47</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -469,7 +423,7 @@ As of v5, <code>oldPlacements</code> are now deprecated in favor of Placements</
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/popover/popover.directive.ts:122</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/popover/popover.directive.ts:126</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -502,7 +456,7 @@ Only takes effect when <code>autoalign</code> is enabled.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/popover/popover.directive.ts:115</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/popover/popover.directive.ts:119</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -535,7 +489,7 @@ This is not toggleable - should be assigned once</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/popover/popover.directive.ts:102</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/popover/popover.directive.ts:106</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -567,7 +521,7 @@ This is not toggleable - should be assigned once</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/popover/popover.directive.ts:106</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/popover/popover.directive.ts:110</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -599,7 +553,7 @@ This is not toggleable - should be assigned once</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/popover/popover.directive.ts:110</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/popover/popover.directive.ts:114</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -631,7 +585,7 @@ This is not toggleable - should be assigned once</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/popover/popover.directive.ts:117</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/popover/popover.directive.ts:121</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -655,7 +609,7 @@ This is not toggleable - should be assigned once</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/popover/popover.directive.ts:98</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/popover/popover.directive.ts:102</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -682,7 +636,7 @@ This is not toggleable - should be assigned once</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/popover/popover.directive.ts:90</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/popover/popover.directive.ts:93</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -709,7 +663,7 @@ This is not toggleable - should be assigned once</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/popover/popover.directive.ts:94</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/popover/popover.directive.ts:98</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -746,7 +700,7 @@ This is not toggleable - should be assigned once</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/popover/popover.directive.ts:116</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/popover/popover.directive.ts:120</a></div>
                         </td>
                     </tr>
 
@@ -781,8 +735,8 @@ This is not toggleable - should be assigned once</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="298"
-                                    class="link-to-prism">src/popover/popover.directive.ts:298</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="309"
+                                    class="link-to-prism">src/popover/popover.directive.ts:309</a></div>
                         </td>
                     </tr>
 
@@ -820,8 +774,8 @@ This is not toggleable - should be assigned once</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="142"
-                                    class="link-to-prism">src/popover/popover.directive.ts:142</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="149"
+                                    class="link-to-prism">src/popover/popover.directive.ts:149</a></div>
                         </td>
                     </tr>
 
@@ -914,8 +868,8 @@ This is not toggleable - should be assigned once</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="277"
-                                    class="link-to-prism">src/popover/popover.directive.ts:277</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="288"
+                                    class="link-to-prism">src/popover/popover.directive.ts:288</a></div>
                         </td>
                     </tr>
 
@@ -951,8 +905,8 @@ This is not toggleable - should be assigned once</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="273"
-                                    class="link-to-prism">src/popover/popover.directive.ts:273</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="284"
+                                    class="link-to-prism">src/popover/popover.directive.ts:284</a></div>
                         </td>
                     </tr>
 
@@ -990,8 +944,8 @@ This is not toggleable - should be assigned once</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="254"
-                                    class="link-to-prism">src/popover/popover.directive.ts:254</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="265"
+                                    class="link-to-prism">src/popover/popover.directive.ts:265</a></div>
                         </td>
                     </tr>
 
@@ -1059,8 +1013,8 @@ This is not toggleable - should be assigned once</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="291"
-                                    class="link-to-prism">src/popover/popover.directive.ts:291</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="302"
+                                    class="link-to-prism">src/popover/popover.directive.ts:302</a></div>
                         </td>
                     </tr>
 
@@ -1098,8 +1052,8 @@ This is not toggleable - should be assigned once</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="190"
-                                    class="link-to-prism">src/popover/popover.directive.ts:190</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="201"
+                                    class="link-to-prism">src/popover/popover.directive.ts:201</a></div>
                         </td>
                     </tr>
 
@@ -1137,8 +1091,8 @@ This is not toggleable - should be assigned once</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="182"
-                                    class="link-to-prism">src/popover/popover.directive.ts:182</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="193"
+                                    class="link-to-prism">src/popover/popover.directive.ts:193</a></div>
                         </td>
                     </tr>
 
@@ -1200,8 +1154,8 @@ This is not toggleable - should be assigned once</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="309"
-                                    class="link-to-prism">src/popover/popover.directive.ts:309</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="320"
+                                    class="link-to-prism">src/popover/popover.directive.ts:320</a></div>
                         </td>
                     </tr>
 
@@ -1291,7 +1245,7 @@ This is not toggleable - should be assigned once</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/popover/popover.directive.ts:84</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/popover/popover.directive.ts:86</a></div>
                         </td>
                     </tr>
 
@@ -1323,7 +1277,7 @@ This is not toggleable - should be assigned once</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/popover/popover.directive.ts:85</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/popover/popover.directive.ts:87</a></div>
                         </td>
                     </tr>
 
@@ -1350,7 +1304,7 @@ This is not toggleable - should be assigned once</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/popover/popover.directive.ts:127</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/popover/popover.directive.ts:135</a></div>
                         </td>
                     </tr>
 
@@ -1377,7 +1331,7 @@ This is not toggleable - should be assigned once</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/popover/popover.directive.ts:126</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/popover/popover.directive.ts:134</a></div>
                         </td>
                     </tr>
 
@@ -1404,7 +1358,33 @@ This is not toggleable - should be assigned once</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/popover/popover.directive.ts:125</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/popover/popover.directive.ts:133</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeDetectorRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>changeDetectorRef</b></span>
+                        <a href="#changeDetectorRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ChangeDetectorRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/popover/popover.directive.ts:131</a></div>
                         </td>
                     </tr>
 
@@ -1439,7 +1419,59 @@ This is not toggleable - should be assigned once</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/popover/popover.directive.ts:116</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/popover/popover.directive.ts:120</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="elementRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>elementRef</b></span>
+                        <a href="#elementRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ElementRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/popover/popover.directive.ts:128</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngZone"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>ngZone</b></span>
+                        <a href="#ngZone"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(NgZone)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/popover/popover.directive.ts:129</a></div>
                         </td>
                     </tr>
 
@@ -1466,7 +1498,33 @@ This is not toggleable - should be assigned once</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/popover/popover.directive.ts:124</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/popover/popover.directive.ts:132</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="renderer"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>renderer</b></span>
+                        <a href="#renderer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(Renderer2)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/popover/popover.directive.ts:130</a></div>
                         </td>
                     </tr>
 
@@ -1493,7 +1551,7 @@ This is not toggleable - should be assigned once</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/popover/popover.directive.ts:128</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/popover/popover.directive.ts:136</a></div>
                         </td>
                     </tr>
 
@@ -1523,7 +1581,7 @@ This is not toggleable - should be assigned once</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/popover/popover.directive.ts:45</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/popover/popover.directive.ts:47</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1588,7 +1646,8 @@ As of v5, <code>oldPlacements</code> are now deprecated in favor of Placements</
 	OnDestroy,
 	Output,
 	Renderer2,
-	SimpleChanges
+	SimpleChanges,
+	inject
 } from &quot;@angular/core&quot;;
 import {
 	arrow,
@@ -1610,7 +1669,8 @@ type oldPlacement &#x3D; &quot;top-left&quot;
 	| &quot;right-top&quot;;
 
 @Directive({
-	selector: &quot;[cdsPopover], [ibmPopover]&quot;
+	selector: &quot;[cdsPopover], [ibmPopover]&quot;,
+	standalone: true
 })
 export class PopoverContainer implements AfterViewInit, OnChanges, OnDestroy {
 	/**
@@ -1664,10 +1724,12 @@ export class PopoverContainer implements AfterViewInit, OnChanges, OnDestroy {
 	/**
 	 * Emits an event when the dialog is closed
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-on-prefix
 	@Output() onClose: EventEmitter&lt;Event&gt; &#x3D; new EventEmitter();
 	/**
 	 * Emits an event when the dialog is opened
 	 */
+	// eslint-disable-next-line @angular-eslint/no-output-on-prefix
 	@Output() onOpen: EventEmitter&lt;Event&gt; &#x3D; new EventEmitter();
 	/**
 	 * Emits an event when the state of &#x60;isOpen&#x60; changes. Allows &#x60;isOpen&#x60; to be double bound
@@ -1698,18 +1760,21 @@ export class PopoverContainer implements AfterViewInit, OnChanges, OnDestroy {
 	 */
 	@Input() alignmentAxisOffset?: number;
 
+	protected elementRef &#x3D; inject(ElementRef);
+	protected ngZone &#x3D; inject(NgZone);
+	protected renderer &#x3D; inject(Renderer2);
+	protected changeDetectorRef &#x3D; inject(ChangeDetectorRef);
 	protected popoverContentRef: HTMLElement;
 	protected caretRef: HTMLElement;
 	protected caretOffset: number;
 	protected caretHeight: number;
 	protected unmountFloatingElement: Function;
 
-	constructor(
-		protected elementRef: ElementRef,
-		protected ngZone: NgZone,
-		protected renderer: Renderer2,
-		protected changeDetectorRef: ChangeDetectorRef
-	) {}
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	/**
 	 * Handles emitting open/close event
@@ -1735,8 +1800,12 @@ export class PopoverContainer implements AfterViewInit, OnChanges, OnDestroy {
 					const computedStyle &#x3D; getComputedStyle(this.caretRef);
 					const offset &#x3D; computedStyle.getPropertyValue(&quot;--cds-popover-offset&quot;);
 					const height &#x3D; computedStyle.getPropertyValue(&quot;--cds-popover-caret-height&quot;);
-					this.caretOffset &#x3D; (offset?.includes(&quot;px&quot;) ? Number(offset.split(&quot;px&quot;, 1)[0]) : Number(offset.split(&quot;rem&quot;, 1)[0]) * 16) || 10;
-					this.caretHeight &#x3D; (height?.includes(&quot;px&quot;) ? Number(height.split(&quot;px&quot;, 1)[0]) : Number(height.split(&quot;rem&quot;, 1)[0]) * 16) || 6;
+					this.caretOffset &#x3D; (offset?.includes(&quot;px&quot;)
+						? Number(offset.split(&quot;px&quot;, 1)[0])
+						: Number(offset.split(&quot;rem&quot;, 1)[0]) * 16) || 10;
+					this.caretHeight &#x3D; (height?.includes(&quot;px&quot;)
+						? Number(height.split(&quot;px&quot;, 1)[0])
+						: Number(height.split(&quot;rem&quot;, 1)[0]) * 16) || 6;
 				}
 				if (this.elementRef.nativeElement &amp;&amp; this.popoverContentRef) {
 					this.unmountFloatingElement &#x3D; autoUpdate(
@@ -1968,7 +2037,6 @@ export class PopoverContainer implements AfterViewInit, OnChanges, OnDestroy {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

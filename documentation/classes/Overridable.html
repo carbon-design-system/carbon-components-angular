@@ -677,15 +677,15 @@ Overrides the value provided by the <code>I18n</code> service.</p>
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@angular/core&quot;;
+import { merge } from &quot;carbon-components-angular/utils&quot;;
 import {
 	BehaviorSubject,
-	Observable,
-	isObservable,
 	iif,
+	isObservable,
+	Observable,
 	Subscription
 } from &quot;rxjs&quot;;
 import { map } from &quot;rxjs/operators&quot;;
-import { merge } from &quot;carbon-components-angular/utils&quot;;
 
 import EN from &quot;./en&quot;;
 
@@ -813,7 +813,7 @@ export class Overridable {
 /**
  * An object of strings, should follow the same format as src/i18n/en.json
  */
-export type TranslationStrings &#x3D; {
+export interface TranslationStrings {
 	[key: string]: string | TranslationStrings;
 };
 
@@ -826,7 +826,9 @@ export type TranslationStrings &#x3D; {
  * are a better choice)
  *
  */
-@Injectable()
+@Injectable({
+	providedIn: &quot;root&quot;
+})
 export class I18n {
 	protected translationStrings: TranslationStrings &#x3D; EN;
 
@@ -1042,7 +1044,6 @@ export class I18n {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

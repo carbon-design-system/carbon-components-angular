@@ -182,12 +182,21 @@ via ArrowUp/ArrowDown/Home/End.</p>
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>NgClass</code>
+                            <code>NgTemplateOutlet</code>
+                </td>
+            </tr>
 
 
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;div *ngIf&#x3D;&quot;isOverflowingTop&quot; class&#x3D;&quot;cds--tab--list-gradient_top&quot;&gt;&lt;/div&gt;
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">@if (isOverflowingTop) {
+	&lt;div class&#x3D;&quot;cds--tab--list-gradient_top&quot;&gt;&lt;/div&gt;
+}
 &lt;div
 	#tabList
 	class&#x3D;&quot;cds--tab--list&quot;
@@ -195,42 +204,46 @@ via ArrowUp/ArrowDown/Home/End.</p>
 	[attr.aria-label]&#x3D;&quot;ariaLabel || translations.HEADER_ARIA_LABEL&quot;
 	[attr.aria-labelledby]&#x3D;&quot;ariaLabelledby || null&quot;&gt;
 	&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;contentBefore&quot;&gt;&lt;/ng-container&gt;
-	&lt;button
-		*ngFor&#x3D;&quot;let tab of tabs; let i &#x3D; index;&quot;
-		#tabItem
-		role&#x3D;&quot;tab&quot;
-		[attr.aria-selected]&#x3D;&quot;tab.active&quot;
-		[attr.tabindex]&#x3D;&quot;(tab.active?0:-1)&quot;
-		[attr.aria-controls]&#x3D;&quot;tab.id&quot;
-		[attr.aria-disabled]&#x3D;&quot;tab.disabled&quot;
-		[disabled]&#x3D;&quot;tab.disabled&quot;
-		[ngClass]&#x3D;&quot;{
-			&#x27;cds--tabs__nav-item--selected&#x27;: tab.active,
-			&#x27;cds--tabs__nav-item--disabled&#x27;: tab.disabled
-		}&quot;
-		class&#x3D;&quot;cds--tabs__nav-item cds--tabs__nav-link&quot;
-		type&#x3D;&quot;button&quot;
-		draggable&#x3D;&quot;false&quot;
-		id&#x3D;&quot;{{tab.id}}-header&quot;
-		[attr.title]&#x3D;&quot;tab.title || (!tab.headingIsTemplate ? tab.heading : null)&quot;
-		(focus)&#x3D;&quot;onTabFocus(i)&quot;
-		(click)&#x3D;&quot;selectTab(tab, i)&quot;&gt;
-		&lt;div class&#x3D;&quot;cds--tabs__nav-item-label-wrapper&quot;&gt;
-			&lt;span class&#x3D;&quot;cds--tabs__nav-item-label&quot;&gt;
-				&lt;ng-container *ngIf&#x3D;&quot;!tab.headingIsTemplate&quot;&gt;
-					{{ tab.heading }}
-				&lt;/ng-container&gt;
-				&lt;ng-template
-					*ngIf&#x3D;&quot;tab.headingIsTemplate&quot;
-					[ngTemplateOutlet]&#x3D;&quot;tab.heading&quot;
-					[ngTemplateOutletContext]&#x3D;&quot;{$implicit: tab.context}&quot;&gt;
-				&lt;/ng-template&gt;
-			&lt;/span&gt;
-		&lt;/div&gt;
-	&lt;/button&gt;
+	@for (tab of tabs; track tab; let i &#x3D; $index) {
+		&lt;button
+			#tabItem
+			role&#x3D;&quot;tab&quot;
+			[attr.aria-selected]&#x3D;&quot;tab.active&quot;
+			[attr.tabindex]&#x3D;&quot;(tab.active?0:-1)&quot;
+			[attr.aria-controls]&#x3D;&quot;tab.id&quot;
+			[attr.aria-disabled]&#x3D;&quot;tab.disabled&quot;
+			[disabled]&#x3D;&quot;tab.disabled&quot;
+			[ngClass]&#x3D;&quot;{
+				&#x27;cds--tabs__nav-item--selected&#x27;: tab.active,
+				&#x27;cds--tabs__nav-item--disabled&#x27;: tab.disabled
+			}&quot;
+			class&#x3D;&quot;cds--tabs__nav-item cds--tabs__nav-link&quot;
+			type&#x3D;&quot;button&quot;
+			draggable&#x3D;&quot;false&quot;
+			id&#x3D;&quot;{{tab.id}}-header&quot;
+			[attr.title]&#x3D;&quot;tab.title || (!tab.headingIsTemplate ? tab.heading : null)&quot;
+			(focus)&#x3D;&quot;onTabFocus(i)&quot;
+			(click)&#x3D;&quot;selectTab(tab, i)&quot;&gt;
+			&lt;div class&#x3D;&quot;cds--tabs__nav-item-label-wrapper&quot;&gt;
+				&lt;span class&#x3D;&quot;cds--tabs__nav-item-label&quot;&gt;
+					@if (!tab.headingIsTemplate) {
+						{{ tab.heading }}
+					}
+					@if (tab.headingIsTemplate) {
+						&lt;ng-template
+							[ngTemplateOutlet]&#x3D;&quot;tab.heading&quot;
+							[ngTemplateOutletContext]&#x3D;&quot;{$implicit: tab.context}&quot;&gt;
+						&lt;/ng-template&gt;
+					}
+				&lt;/span&gt;
+			&lt;/div&gt;
+		&lt;/button&gt;
+	}
 	&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;contentAfter&quot;&gt;&lt;/ng-container&gt;
 &lt;/div&gt;
-&lt;div *ngIf&#x3D;&quot;isOverflowingBottom&quot; class&#x3D;&quot;cds--tab--list-gradient_bottom&quot;&gt;&lt;/div&gt;
+@if (isOverflowingBottom) {
+	&lt;div class&#x3D;&quot;cds--tab--list-gradient_bottom&quot;&gt;&lt;/div&gt;
+}
 	</code></pre></td>
             </tr>
 
@@ -270,6 +283,10 @@ via ArrowUp/ArrowDown/Home/End.</p>
                                 <a href="#headerContainer" >headerContainer</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#i18n" >i18n</a>
+                            </li>
+                            <li>
                                 <a href="#isOverflowingBottom" >isOverflowingBottom</a>
                             </li>
                             <li>
@@ -295,11 +312,23 @@ via ArrowUp/ArrowDown/Home/End.</p>
                                 <a href="#verticalClass" >verticalClass</a>
                             </li>
                             <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#changeDetectorRef" >changeDetectorRef</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Readonly</span>
                                 <a href="#clickMultiplier" >clickMultiplier</a>
                             </li>
                             <li>
                                 <a href="#currentSelectedTab" >currentSelectedTab</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#elementRef" >elementRef</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#eventService" >eventService</a>
                             </li>
                             <li>
                                     <span class="modifier">Protected</span>
@@ -312,6 +341,10 @@ via ArrowUp/ArrowDown/Home/End.</p>
                             <li>
                                     <span class="modifier">Readonly</span>
                                 <a href="#OVERFLOW_BUTTON_OFFSET" >OVERFLOW_BUTTON_OFFSET</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#renderer" >renderer</a>
                             </li>
                             <li>
                                     <span class="modifier">Protected</span>
@@ -516,93 +549,15 @@ via ArrowUp/ArrowDown/Home/End.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, eventService: <a href="../injectables/EventService.html" target="_self">EventService</a>, renderer: Renderer2, i18n: <a href="../injectables/I18n.html" target="_self">I18n</a>)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:120</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:135</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>elementRef</td>
-                                                  
-                                                        <td>
-                                                                    <code>ElementRef</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>changeDetectorRef</td>
-                                                  
-                                                        <td>
-                                                                    <code>ChangeDetectorRef</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>eventService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/EventService.html" target="_self" >EventService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>renderer</td>
-                                                  
-                                                        <td>
-                                                                    <code>Renderer2</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>i18n</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/I18n.html" target="_self" >I18n</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
 </section>
@@ -625,7 +580,7 @@ via ArrowUp/ArrowDown/Home/End.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:87</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:98</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -657,7 +612,7 @@ via ArrowUp/ArrowDown/Home/End.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:92</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:103</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -690,7 +645,7 @@ via ArrowUp/ArrowDown/Home/End.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:33</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:36</a></code>
 </div>
                             </td>
                         </tr>
@@ -724,7 +679,7 @@ via ArrowUp/ArrowDown/Home/End.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:37</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:40</a></code>
 </div>
                             </td>
                         </tr>
@@ -763,7 +718,7 @@ via ArrowUp/ArrowDown/Home/End.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:25</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:28</a></code>
 </div>
                             </td>
                         </tr>
@@ -798,7 +753,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:46</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:49</a></code>
 </div>
                             </td>
                         </tr>
@@ -832,7 +787,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:42</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:45</a></code>
 </div>
                             </td>
                         </tr>
@@ -871,7 +826,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:70</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:73</a></code>
 </div>
                             </td>
                         </tr>
@@ -905,7 +860,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:29</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:32</a></code>
 </div>
                             </td>
                         </tr>
@@ -944,7 +899,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:65</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:68</a></code>
 </div>
                             </td>
                         </tr>
@@ -978,7 +933,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:60</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:63</a></code>
 </div>
                             </td>
                         </tr>
@@ -1017,7 +972,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:80</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:83</a></code>
 </div>
                             </td>
                         </tr>
@@ -1056,7 +1011,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:75</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:78</a></code>
 </div>
                             </td>
                         </tr>
@@ -1095,7 +1050,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:55</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:58</a></code>
 </div>
                             </td>
                         </tr>
@@ -1134,7 +1089,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:51</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:54</a></code>
 </div>
                             </td>
                         </tr>
@@ -1173,7 +1128,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:94</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:105</a></div>
                         </td>
                     </tr>
 
@@ -1205,7 +1160,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:98</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:101</a></code>
 </div>
                         </td>
                     </tr>
@@ -1243,7 +1198,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:82</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:85</a></code>
 </div>
                         </td>
                     </tr>
@@ -1276,7 +1231,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:92</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:95</a></code>
 </div>
                         </td>
                     </tr>
@@ -1309,7 +1264,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:95</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:98</a></code>
 </div>
                         </td>
                     </tr>
@@ -1342,7 +1297,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:83</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:86</a></code>
 </div>
                         </td>
                     </tr>
@@ -1375,7 +1330,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:89</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:92</a></code>
 </div>
                         </td>
                     </tr>
@@ -1408,7 +1363,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:86</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:89</a></code>
 </div>
                         </td>
                     </tr>
@@ -1444,8 +1399,8 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="187"
-                                    class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:187</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="196"
+                                    class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:196</a></div>
                         </td>
                     </tr>
 
@@ -1477,8 +1432,8 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="134"
-                                    class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:134</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="143"
+                                    class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:143</a></div>
                         </td>
                     </tr>
 
@@ -1511,8 +1466,8 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="254"
-                                    class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:254</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="263"
+                                    class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:263</a></div>
                         </td>
                     </tr>
 
@@ -1557,8 +1512,8 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="187"
-                                    class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:187</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="196"
+                                    class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:196</a></div>
                         </td>
                     </tr>
 
@@ -1633,8 +1588,8 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="134"
-                                    class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:134</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="143"
+                                    class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:143</a></div>
                         </td>
                     </tr>
 
@@ -1700,8 +1655,8 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="212"
-                                    class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:212</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="221"
+                                    class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:221</a></div>
                         </td>
                     </tr>
 
@@ -1737,8 +1692,8 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="227"
-                                    class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:227</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="236"
+                                    class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:236</a></div>
                         </td>
                     </tr>
 
@@ -1804,8 +1759,8 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="207"
-                                    class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:207</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="216"
+                                    class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:216</a></div>
                         </td>
                     </tr>
 
@@ -1841,8 +1796,8 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="198"
-                                    class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:198</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="207"
+                                    class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:207</a></div>
                         </td>
                     </tr>
 
@@ -1878,8 +1833,8 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="233"
-                                    class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:233</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="242"
+                                    class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:242</a></div>
                         </td>
                     </tr>
 
@@ -1947,8 +1902,8 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="274"
-                                    class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:274</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="283"
+                                    class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:283</a></div>
                         </td>
                     </tr>
 
@@ -1984,8 +1939,8 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="242"
-                                    class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:242</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="251"
+                                    class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:251</a></div>
                         </td>
                     </tr>
 
@@ -2065,8 +2020,8 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="298"
-                                    class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:298</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="307"
+                                    class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:307</a></div>
                         </td>
                     </tr>
 
@@ -2104,8 +2059,8 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="262"
-                                    class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:262</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="271"
+                                    class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:271</a></div>
                         </td>
                     </tr>
 
@@ -2147,7 +2102,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:156</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:163</a></code>
 </div>
                         </td>
                     </tr>
@@ -2238,7 +2193,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:168</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:175</a></code>
 </div>
                         </td>
                     </tr>
@@ -2311,7 +2266,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:193</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:200</a></code>
 </div>
                         </td>
                     </tr>
@@ -2356,7 +2311,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:143</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:150</a></code>
 </div>
                         </td>
                     </tr>
@@ -2403,7 +2358,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:109</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:120</a></div>
                         </td>
                     </tr>
 
@@ -2445,7 +2400,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:104</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:115</a></div>
                         </td>
                     </tr>
 
@@ -2487,8 +2442,34 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:96</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:107</a></code>
 </div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="i18n"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>i18n</b></span>
+                        <a href="#i18n"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(I18n)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:91</a></div>
                         </td>
                     </tr>
 
@@ -2513,7 +2494,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:118</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:129</a></div>
                         </td>
                     </tr>
 
@@ -2544,7 +2525,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:114</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:125</a></div>
                         </td>
                     </tr>
 
@@ -2576,7 +2557,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="313" class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:313</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="323" class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:323</a></div>
                         </td>
                     </tr>
 
@@ -2603,7 +2584,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:120</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:131</a></div>
                         </td>
                     </tr>
 
@@ -2639,7 +2620,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:101</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:112</a></div>
                         </td>
                     </tr>
 
@@ -2671,7 +2652,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:102</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:113</a></div>
                         </td>
                     </tr>
 
@@ -2706,7 +2687,40 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:94</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/tabs/tab-headers-vertical.component.ts:105</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeDetectorRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>changeDetectorRef</b></span>
+                        <a href="#changeDetectorRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ChangeDetectorRef)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/BaseTabHeader.html" target="_self" >BaseTabHeader</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:120</a></code>
+</div>
                         </td>
                     </tr>
 
@@ -2744,7 +2758,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:114</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:117</a></code>
 </div>
                         </td>
                     </tr>
@@ -2777,7 +2791,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:110</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:113</a></code>
 </div>
                         </td>
                     </tr>
@@ -2788,6 +2802,72 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
 </div>
                 </td>
             </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="elementRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>elementRef</b></span>
+                        <a href="#elementRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ElementRef)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/BaseTabHeader.html" target="_self" >BaseTabHeader</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:119</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="eventService"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>eventService</b></span>
+                        <a href="#eventService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(EventService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/BaseTabHeader.html" target="_self" >BaseTabHeader</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:121</a></code>
+</div>
+                        </td>
+                    </tr>
+
 
         </tbody>
     </table>
@@ -2822,7 +2902,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:116</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:124</a></code>
 </div>
                         </td>
                     </tr>
@@ -2861,7 +2941,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:113</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:116</a></code>
 </div>
                         </td>
                     </tr>
@@ -2900,7 +2980,40 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:112</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:115</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="renderer"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>renderer</b></span>
+                        <a href="#renderer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(Renderer2)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/BaseTabHeader.html" target="_self" >BaseTabHeader</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:122</a></code>
 </div>
                         </td>
                     </tr>
@@ -2939,7 +3052,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:118</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:126</a></code>
 </div>
                         </td>
                     </tr>
@@ -2981,7 +3094,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:82</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:85</a></code>
 </div>
                         </td>
                     </tr>
@@ -3020,7 +3133,7 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:117</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/BaseTabHeader.html#source" target="_self" >BaseTabHeader:125</a></code>
 </div>
                         </td>
                     </tr>
@@ -3050,13 +3163,15 @@ Duplicated from <code>cds-tabs</code> to support standalone headers.</p>
 	OnDestroy,
 	OnInit,
 	ChangeDetectorRef,
-	Renderer2
+	Renderer2,
+	inject
 } from &quot;@angular/core&quot;;
 import { EventService } from &quot;carbon-components-angular/utils&quot;;
 import { I18n } from &quot;carbon-components-angular/i18n&quot;;
 
 import { BaseTabHeader } from &quot;./base-tab-header.component&quot;;
 import { Tab } from &quot;./tab.component&quot;;
+import { NgClass, NgTemplateOutlet } from &quot;@angular/common&quot;;
 
 const VERTICAL_TAB_HEIGHT &#x3D; 64;
 
@@ -3068,7 +3183,9 @@ const VERTICAL_TAB_HEIGHT &#x3D; 64;
 @Component({
 	selector: &quot;cds-tab-headers-vertical, ibm-tab-headers-vertical&quot;,
 	template: &#x60;
-		&lt;div *ngIf&#x3D;&quot;isOverflowingTop&quot; class&#x3D;&quot;cds--tab--list-gradient_top&quot;&gt;&lt;/div&gt;
+		@if (isOverflowingTop) {
+			&lt;div class&#x3D;&quot;cds--tab--list-gradient_top&quot;&gt;&lt;/div&gt;
+		}
 		&lt;div
 			#tabList
 			class&#x3D;&quot;cds--tab--list&quot;
@@ -3076,50 +3193,57 @@ const VERTICAL_TAB_HEIGHT &#x3D; 64;
 			[attr.aria-label]&#x3D;&quot;ariaLabel || translations.HEADER_ARIA_LABEL&quot;
 			[attr.aria-labelledby]&#x3D;&quot;ariaLabelledby || null&quot;&gt;
 			&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;contentBefore&quot;&gt;&lt;/ng-container&gt;
-			&lt;button
-				*ngFor&#x3D;&quot;let tab of tabs; let i &#x3D; index;&quot;
-				#tabItem
-				role&#x3D;&quot;tab&quot;
-				[attr.aria-selected]&#x3D;&quot;tab.active&quot;
-				[attr.tabindex]&#x3D;&quot;(tab.active?0:-1)&quot;
-				[attr.aria-controls]&#x3D;&quot;tab.id&quot;
-				[attr.aria-disabled]&#x3D;&quot;tab.disabled&quot;
-				[disabled]&#x3D;&quot;tab.disabled&quot;
-				[ngClass]&#x3D;&quot;{
-					&#x27;cds--tabs__nav-item--selected&#x27;: tab.active,
-					&#x27;cds--tabs__nav-item--disabled&#x27;: tab.disabled
-				}&quot;
-				class&#x3D;&quot;cds--tabs__nav-item cds--tabs__nav-link&quot;
-				type&#x3D;&quot;button&quot;
-				draggable&#x3D;&quot;false&quot;
-				id&#x3D;&quot;{{tab.id}}-header&quot;
-				[attr.title]&#x3D;&quot;tab.title || (!tab.headingIsTemplate ? tab.heading : null)&quot;
-				(focus)&#x3D;&quot;onTabFocus(i)&quot;
-				(click)&#x3D;&quot;selectTab(tab, i)&quot;&gt;
-				&lt;div class&#x3D;&quot;cds--tabs__nav-item-label-wrapper&quot;&gt;
-					&lt;span class&#x3D;&quot;cds--tabs__nav-item-label&quot;&gt;
-						&lt;ng-container *ngIf&#x3D;&quot;!tab.headingIsTemplate&quot;&gt;
-							{{ tab.heading }}
-						&lt;/ng-container&gt;
-						&lt;ng-template
-							*ngIf&#x3D;&quot;tab.headingIsTemplate&quot;
-							[ngTemplateOutlet]&#x3D;&quot;tab.heading&quot;
-							[ngTemplateOutletContext]&#x3D;&quot;{$implicit: tab.context}&quot;&gt;
-						&lt;/ng-template&gt;
-					&lt;/span&gt;
-				&lt;/div&gt;
-			&lt;/button&gt;
+			@for (tab of tabs; track tab; let i &#x3D; $index) {
+				&lt;button
+					#tabItem
+					role&#x3D;&quot;tab&quot;
+					[attr.aria-selected]&#x3D;&quot;tab.active&quot;
+					[attr.tabindex]&#x3D;&quot;(tab.active?0:-1)&quot;
+					[attr.aria-controls]&#x3D;&quot;tab.id&quot;
+					[attr.aria-disabled]&#x3D;&quot;tab.disabled&quot;
+					[disabled]&#x3D;&quot;tab.disabled&quot;
+					[ngClass]&#x3D;&quot;{
+						&#x27;cds--tabs__nav-item--selected&#x27;: tab.active,
+						&#x27;cds--tabs__nav-item--disabled&#x27;: tab.disabled
+					}&quot;
+					class&#x3D;&quot;cds--tabs__nav-item cds--tabs__nav-link&quot;
+					type&#x3D;&quot;button&quot;
+					draggable&#x3D;&quot;false&quot;
+					id&#x3D;&quot;{{tab.id}}-header&quot;
+					[attr.title]&#x3D;&quot;tab.title || (!tab.headingIsTemplate ? tab.heading : null)&quot;
+					(focus)&#x3D;&quot;onTabFocus(i)&quot;
+					(click)&#x3D;&quot;selectTab(tab, i)&quot;&gt;
+					&lt;div class&#x3D;&quot;cds--tabs__nav-item-label-wrapper&quot;&gt;
+						&lt;span class&#x3D;&quot;cds--tabs__nav-item-label&quot;&gt;
+							@if (!tab.headingIsTemplate) {
+								{{ tab.heading }}
+							}
+							@if (tab.headingIsTemplate) {
+								&lt;ng-template
+									[ngTemplateOutlet]&#x3D;&quot;tab.heading&quot;
+									[ngTemplateOutletContext]&#x3D;&quot;{$implicit: tab.context}&quot;&gt;
+								&lt;/ng-template&gt;
+							}
+						&lt;/span&gt;
+					&lt;/div&gt;
+				&lt;/button&gt;
+			}
 			&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;contentAfter&quot;&gt;&lt;/ng-container&gt;
 		&lt;/div&gt;
-		&lt;div *ngIf&#x3D;&quot;isOverflowingBottom&quot; class&#x3D;&quot;cds--tab--list-gradient_bottom&quot;&gt;&lt;/div&gt;
-	&#x60;
+		@if (isOverflowingBottom) {
+			&lt;div class&#x3D;&quot;cds--tab--list-gradient_bottom&quot;&gt;&lt;/div&gt;
+		}
+	&#x60;,
+	imports: [NgClass, NgTemplateOutlet]
 })
 export class TabHeadersVertical extends BaseTabHeader implements AfterContentInit, OnChanges, OnDestroy, OnInit {
+	public i18n &#x3D; inject(I18n);
+
 	/**
 	 * List of &#x60;Tab&#x60; components.
 	 */
-	// disable the next line because we need to rename the input
-	// tslint:disable-next-line
+	// Template/API uses &#x60;[tabs]&#x60;; property name differs to avoid clashing with the &#x60;tabs&#x60; field populated from content.
+	// eslint-disable-next-line @angular-eslint/no-input-rename -- intentional alias for public &#x60;[tabs]&#x60; binding
 	@Input(&quot;tabs&quot;) tabInput: QueryList&lt;Tab&gt;;
 
 	/**
@@ -3155,14 +3279,12 @@ export class TabHeadersVertical extends BaseTabHeader implements AfterContentIni
 
 	private resizeObserver: ResizeObserver;
 
-	constructor(
-		protected elementRef: ElementRef,
-		protected changeDetectorRef: ChangeDetectorRef,
-		protected eventService: EventService,
-		protected renderer: Renderer2,
-		protected i18n: I18n
-	) {
-		super(elementRef, changeDetectorRef, eventService, renderer);
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
+		super();
 		this.type &#x3D; &quot;contained&quot;;
 	}
 
@@ -3343,6 +3465,7 @@ export class TabHeadersVertical extends BaseTabHeader implements AfterContentIni
 				this.activeIndex &#x3D; this.currentSelectedTab;
 				firstTab.doSelect();
 				this.updateOverflowState();
+				this.changeDetectorRef.markForCheck();
 			}
 		});
 	}
@@ -3378,7 +3501,7 @@ export class TabHeadersVertical extends BaseTabHeader implements AfterContentIni
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div *ngIf="isOverflowingTop" class="cds--tab--list-gradient_top"></div><div	#tabList	class="cds--tab--list"	role="tablist"	[attr.aria-label]="ariaLabel || translations.HEADER_ARIA_LABEL"	[attr.aria-labelledby]="ariaLabelledby || null">	<ng-container [ngTemplateOutlet]="contentBefore"></ng-container>	<button		*ngFor="let tab of tabs; let i = index;"		#tabItem		role="tab"		[attr.aria-selected]="tab.active"		[attr.tabindex]="(tab.active?0:-1)"		[attr.aria-controls]="tab.id"		[attr.aria-disabled]="tab.disabled"		[disabled]="tab.disabled"		[ngClass]="{			\'cds--tabs__nav-item--selected\': tab.active,			\'cds--tabs__nav-item--disabled\': tab.disabled		}"		class="cds--tabs__nav-item cds--tabs__nav-link"		type="button"		draggable="false"		id="{{tab.id}}-header"		[attr.title]="tab.title || (!tab.headingIsTemplate ? tab.heading : null)"		(focus)="onTabFocus(i)"		(click)="selectTab(tab, i)">		<div class="cds--tabs__nav-item-label-wrapper">			<span class="cds--tabs__nav-item-label">				<ng-container *ngIf="!tab.headingIsTemplate">					{{ tab.heading }}				</ng-container>				<ng-template					*ngIf="tab.headingIsTemplate"					[ngTemplateOutlet]="tab.heading"					[ngTemplateOutletContext]="{$implicit: tab.context}">				</ng-template>			</span>		</div>	</button>	<ng-container [ngTemplateOutlet]="contentAfter"></ng-container></div><div *ngIf="isOverflowingBottom" class="cds--tab--list-gradient_bottom"></div>	</div>'
+        var COMPONENT_TEMPLATE = '<div>@if (isOverflowingTop) {	<div class="cds--tab--list-gradient_top"></div>}<div	#tabList	class="cds--tab--list"	role="tablist"	[attr.aria-label]="ariaLabel || translations.HEADER_ARIA_LABEL"	[attr.aria-labelledby]="ariaLabelledby || null">	<ng-container [ngTemplateOutlet]="contentBefore"></ng-container>	@for (tab of tabs; track tab; let i = $index) {		<button			#tabItem			role="tab"			[attr.aria-selected]="tab.active"			[attr.tabindex]="(tab.active?0:-1)"			[attr.aria-controls]="tab.id"			[attr.aria-disabled]="tab.disabled"			[disabled]="tab.disabled"			[ngClass]="{				\'cds--tabs__nav-item--selected\': tab.active,				\'cds--tabs__nav-item--disabled\': tab.disabled			}"			class="cds--tabs__nav-item cds--tabs__nav-link"			type="button"			draggable="false"			id="{{tab.id}}-header"			[attr.title]="tab.title || (!tab.headingIsTemplate ? tab.heading : null)"			(focus)="onTabFocus(i)"			(click)="selectTab(tab, i)">			<div class="cds--tabs__nav-item-label-wrapper">				<span class="cds--tabs__nav-item-label">					@if (!tab.headingIsTemplate) {						{{ tab.heading }}					}					@if (tab.headingIsTemplate) {						<ng-template							[ngTemplateOutlet]="tab.heading"							[ngTemplateOutletContext]="{$implicit: tab.context}">						</ng-template>					}				</span>			</div>		</button>	}	<ng-container [ngTemplateOutlet]="contentAfter"></ng-container></div>@if (isOverflowingBottom) {	<div class="cds--tab--list-gradient_bottom"></div>}	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AILabelComponent', 'selector': 'cds-ai-label, ibm-ai-label'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'CheckboxGroup', 'selector': 'cds-checkbox-group, ibm-checkbox-group'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ComboButtonComponent', 'selector': 'cds-combo-button'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-menu, cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-menu-divider, cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-menu-group, cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-menu-item, cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'IconTab', 'selector': 'cds-icon-tab, ibm-icon-tab'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'MenuButtonComponent', 'selector': 'cds-menu-button'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonIcon', 'selector': 'cds-skeleton-icon, ibm-skeleton-icon'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderComponent', 'selector': 'cds-tab-header, ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaderGroupVertical', 'selector': 'cds-tab-header-group-vertical, ibm-tab-header-group-vertical'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'TabHeadersVertical', 'selector': 'cds-tab-headers-vertical, ibm-tab-headers-vertical'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeaderDecorator', 'selector': 'cds-table-header-decorator, ibm-table-header-decorator'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'TabsVertical', 'selector': 'cds-tabs-vertical, ibm-tabs-vertical'},{'name': 'TabsVerticalGrouped', 'selector': 'cds-tabs-vertical-grouped, ibm-tabs-vertical-grouped'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TagOperationalComponent', 'selector': 'cds-tag-operational, ibm-tag-operational'},{'name': 'TagSelectableComponent', 'selector': 'cds-tag-selectable, ibm-tag-selectable'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'AILabelActions', 'selector': '[cdsAILabelActions], [ibmAILabelActions]'},{'name': 'AILabelContent', 'selector': '[cdsAILabelContent], [ibmAILabelContent]'},{'name': 'AILabelPopoverDirective', 'selector': '[cdsAILabelPopover]'},{'name': 'AspectRatioDirective', 'selector': '[cdsAspectRatio], [ibmAspectRatio]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ClickableTileIconDirective', 'selector': '[cdsClickableTileIcon], [ibmClickableTileIcon]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'LinkIconDirective', 'selector': '[ibmLinkIcon], [cdsLinkIcon]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TabHeaderBase', 'selector': ''},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TagIconDirective', 'selector': '[cdsTagIcon], [ibmTagIcon]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'TabHeadersVertical'};
@@ -3455,7 +3578,6 @@ export class TabHeadersVertical extends BaseTabHeader implements AfterContentIni
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

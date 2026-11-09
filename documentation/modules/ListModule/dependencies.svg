@@ -24,18 +24,18 @@
 <title>cluster_ListModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="136,-70 136,-268 360,-268 360,-70 136,-70"/>
 </g>
-<g id="clust6" class="cluster">
+<g id="clust4" class="cluster">
 <title>cluster_ListModule_exports</title>
 <polygon fill="none" stroke="black" points="144,-208 144,-260 352,-260 352,-208 144,-208"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_ListModule_declarations</title>
+<g id="clust3" class="cluster">
+<title>cluster_ListModule_imports</title>
 <polygon fill="none" stroke="black" points="146,-78 146,-130 350,-130 350,-78 146,-78"/>
 </g>
 <!-- List -->
 <g id="node1" class="node">
 <title>List</title>
-<polygon fill="#ffffb3" stroke="black" points="342,-122 288,-122 288,-86 342,-86 342,-122"/>
+<polygon fill="#8dd3c7" stroke="black" points="342,-122 339,-126 318,-126 315,-122 288,-122 288,-86 342,-86 342,-122"/>
 <text text-anchor="middle" x="315" y="-99.8" font-family="Times,serif" font-size="14.00">List</text>
 </g>
 <!-- ListModule -->
@@ -53,7 +53,7 @@
 <!-- ListItemDirective -->
 <g id="node2" class="node">
 <title>ListItemDirective</title>
-<polygon fill="#ffffb3" stroke="black" points="269.52,-122 154.48,-122 154.48,-86 269.52,-86 269.52,-122"/>
+<polygon fill="#8dd3c7" stroke="black" points="269.52,-122 266.52,-126 245.52,-126 242.52,-122 154.48,-122 154.48,-86 269.52,-86 269.52,-122"/>
 <text text-anchor="middle" x="212" y="-99.8" font-family="Times,serif" font-size="14.00">ListItemDirective</text>
 </g>
 <!-- ListItemDirective&#45;&gt;ListModule -->

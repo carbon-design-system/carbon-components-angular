@@ -141,6 +141,10 @@
     <table class="table table-sm table-hover metadata">
         <tbody>
 
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
 
 
 
@@ -157,6 +161,10 @@
                 <td class="col-md-9"><code>cds-skeleton-icon, ibm-skeleton-icon</code></td>
             </tr>
 
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
 
 
 
@@ -233,7 +241,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/skeleton/skeleton-icon.component.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/skeleton/skeleton-icon.component.ts:17</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -254,10 +262,12 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input } from &quot;@angular/core&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, Input } from &quot;@angular/core&quot;;
 
 @Component({
 	selector: &quot;cds-skeleton-icon, ibm-skeleton-icon&quot;,
+	standalone: true,
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: &#x60;
 		&lt;div
 			class&#x3D;&quot;cds--icon--skeleton&quot;
@@ -377,7 +387,6 @@ export class SkeletonIcon {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

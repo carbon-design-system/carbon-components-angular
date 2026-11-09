@@ -168,6 +168,10 @@
                         <td class="col-md-9"><code>[cdsAILabelPopover]</code></td>
                     </tr>
 
+                    <tr>
+                        <td class="col-md-3">Standalone</td>
+                        <td class="col-md-9"><code>true</code></td>
+                    </tr>
 
 
 
@@ -207,12 +211,28 @@
                                 <a href="#caretRef" >caretRef</a>
                             </li>
                             <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#changeDetectorRef" >changeDetectorRef</a>
+                            </li>
+                            <li>
                                     <span class="modifier"></span>
                                 <a href="#containerClass" >containerClass</a>
                             </li>
                             <li>
                                     <span class="modifier">Protected</span>
+                                <a href="#elementRef" >elementRef</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#ngZone" >ngZone</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
                                 <a href="#popoverContentRef" >popoverContentRef</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#renderer" >renderer</a>
                             </li>
                             <li>
                                     <span class="modifier">Protected</span>
@@ -351,81 +371,15 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(elementRef: ElementRef, ngZone: NgZone, renderer: Renderer2, changeDetectorRef: ChangeDetectorRef)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/ai-label/ai-label-popover.directive.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/ai-label/ai-label-popover.directive.ts:25</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>elementRef</td>
-                                                  
-                                                        <td>
-                                                                    <code>ElementRef</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>ngZone</td>
-                                                  
-                                                        <td>
-                                                                    <code>NgZone</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>renderer</td>
-                                                  
-                                                        <td>
-                                                                    <code>Renderer2</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>changeDetectorRef</td>
-                                                  
-                                                        <td>
-                                                                    <code>ChangeDetectorRef</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
 </section>
@@ -454,7 +408,7 @@
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:45</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:47</a></code>
 </div>
                             </td>
                         </tr>
@@ -490,7 +444,7 @@ As of v5, <code>oldPlacements</code> are now deprecated in favor of Placements</
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:122</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:126</a></code>
 </div>
                             </td>
                         </tr>
@@ -530,7 +484,7 @@ Only takes effect when <code>autoalign</code> is enabled.</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:115</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:119</a></code>
 </div>
                             </td>
                         </tr>
@@ -570,7 +524,7 @@ This is not toggleable - should be assigned once</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:102</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:106</a></code>
 </div>
                             </td>
                         </tr>
@@ -609,7 +563,7 @@ This is not toggleable - should be assigned once</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:106</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:110</a></code>
 </div>
                             </td>
                         </tr>
@@ -648,7 +602,7 @@ This is not toggleable - should be assigned once</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:110</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:114</a></code>
 </div>
                             </td>
                         </tr>
@@ -687,7 +641,7 @@ This is not toggleable - should be assigned once</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:117</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:121</a></code>
 </div>
                             </td>
                         </tr>
@@ -718,7 +672,7 @@ This is not toggleable - should be assigned once</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:98</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:102</a></code>
 </div>
                             </td>
                         </tr>
@@ -752,7 +706,7 @@ This is not toggleable - should be assigned once</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:90</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:93</a></code>
 </div>
                             </td>
                         </tr>
@@ -786,7 +740,7 @@ This is not toggleable - should be assigned once</p>
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:94</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:98</a></code>
 </div>
                             </td>
                         </tr>
@@ -830,7 +784,7 @@ This is not toggleable - should be assigned once</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:116</a></code>
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:120</a></code>
 </div>
                         </td>
                     </tr>
@@ -868,8 +822,8 @@ This is not toggleable - should be assigned once</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="50"
-                                    class="link-to-prism">src/ai-label/ai-label-popover.directive.ts:50</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="51"
+                                    class="link-to-prism">src/ai-label/ai-label-popover.directive.ts:51</a></div>
                         </td>
                     </tr>
 
@@ -913,7 +867,7 @@ This is not toggleable - should be assigned once</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:32</a></code>
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:33</a></code>
 </div>
                         </td>
                     </tr>
@@ -958,7 +912,7 @@ This is not toggleable - should be assigned once</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:38</a></code>
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:39</a></code>
 </div>
                         </td>
                     </tr>
@@ -1027,8 +981,8 @@ This is not toggleable - should be assigned once</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="60"
-                                    class="link-to-prism">src/ai-label/ai-label-popover.directive.ts:60</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="61"
+                                    class="link-to-prism">src/ai-label/ai-label-popover.directive.ts:61</a></div>
                         </td>
                     </tr>
 
@@ -1100,7 +1054,7 @@ This is not toggleable - should be assigned once</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:298</a></code>
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:309</a></code>
 </div>
                         </td>
                     </tr>
@@ -1145,7 +1099,7 @@ This is not toggleable - should be assigned once</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:142</a></code>
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:149</a></code>
 </div>
                         </td>
                     </tr>
@@ -1245,7 +1199,7 @@ This is not toggleable - should be assigned once</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:273</a></code>
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:284</a></code>
 </div>
                         </td>
                     </tr>
@@ -1290,7 +1244,7 @@ This is not toggleable - should be assigned once</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:291</a></code>
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:302</a></code>
 </div>
                         </td>
                     </tr>
@@ -1335,7 +1289,7 @@ This is not toggleable - should be assigned once</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:190</a></code>
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:201</a></code>
 </div>
                         </td>
                     </tr>
@@ -1380,7 +1334,7 @@ This is not toggleable - should be assigned once</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:182</a></code>
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:193</a></code>
 </div>
                         </td>
                     </tr>
@@ -1449,7 +1403,7 @@ This is not toggleable - should be assigned once</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:309</a></code>
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:320</a></code>
 </div>
                         </td>
                     </tr>
@@ -1546,7 +1500,7 @@ This is not toggleable - should be assigned once</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:84</a></code>
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:86</a></code>
 </div>
                         </td>
                     </tr>
@@ -1585,7 +1539,7 @@ This is not toggleable - should be assigned once</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:85</a></code>
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:87</a></code>
 </div>
                         </td>
                     </tr>
@@ -1619,7 +1573,7 @@ This is not toggleable - should be assigned once</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:127</a></code>
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:135</a></code>
 </div>
                         </td>
                     </tr>
@@ -1653,7 +1607,7 @@ This is not toggleable - should be assigned once</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:126</a></code>
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:134</a></code>
 </div>
                         </td>
                     </tr>
@@ -1687,7 +1641,40 @@ This is not toggleable - should be assigned once</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:125</a></code>
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:133</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeDetectorRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>changeDetectorRef</b></span>
+                        <a href="#changeDetectorRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ChangeDetectorRef)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:131</a></code>
 </div>
                         </td>
                     </tr>
@@ -1729,7 +1716,73 @@ This is not toggleable - should be assigned once</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:116</a></code>
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:120</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="elementRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>elementRef</b></span>
+                        <a href="#elementRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ElementRef)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:128</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngZone"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>ngZone</b></span>
+                        <a href="#ngZone"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(NgZone)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:129</a></code>
 </div>
                         </td>
                     </tr>
@@ -1763,7 +1816,40 @@ This is not toggleable - should be assigned once</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:124</a></code>
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:132</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="renderer"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>renderer</b></span>
+                        <a href="#renderer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(Renderer2)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../directives/PopoverContainer.html" target="_self" >PopoverContainer</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:130</a></code>
 </div>
                         </td>
                     </tr>
@@ -1797,7 +1883,7 @@ This is not toggleable - should be assigned once</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:128</a></code>
+                                <div class="io-line">Defined in         <code><a href="../directives/PopoverContainer.html#source" target="_self" >PopoverContainer:136</a></code>
 </div>
                         </td>
                     </tr>
@@ -1819,7 +1905,8 @@ This is not toggleable - should be assigned once</p>
 	NgZone,
 	OnChanges,
 	Renderer2,
-	SimpleChanges
+	SimpleChanges,
+	inject
 } from &quot;@angular/core&quot;;
 
 import { PopoverContainer } from &quot;carbon-components-angular/popover&quot;;
@@ -1829,16 +1916,16 @@ import { PopoverContainer } from &quot;carbon-components-angular/popover&quot;;
  * &#x60;cds--popover-*&#x60; classes are not merged onto the &#x60;cds--ai-label&#x60; host.
  */
 @Directive({
-	selector: &quot;[cdsAILabelPopover]&quot;
+	selector: &quot;[cdsAILabelPopover]&quot;,
+	standalone: true
 })
 export class AILabelPopoverDirective extends PopoverContainer implements OnChanges {
-	constructor(
-		protected elementRef: ElementRef,
-		protected ngZone: NgZone,
-		protected renderer: Renderer2,
-		protected changeDetectorRef: ChangeDetectorRef
-	) {
-		super(elementRef, ngZone, renderer, changeDetectorRef);
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {
+		super();
 		this.highContrast &#x3D; true;
 		this.dropShadow &#x3D; false;
 	}
@@ -1952,7 +2039,6 @@ export class AILabelPopoverDirective extends PopoverContainer implements OnChang
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

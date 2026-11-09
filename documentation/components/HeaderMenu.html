@@ -169,6 +169,13 @@
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>NgTemplateOutlet</code>
+                                <code><a href="../components/HeaderItem.html" target="_self" >HeaderItem</a></code>
+                </td>
+            </tr>
 
 
             <tr>
@@ -190,23 +197,24 @@
 	[attr.aria-expanded]&#x3D;&quot;expanded&quot;
 	(click)&#x3D;&quot;navigate($event)&quot;&gt;
 	{{title}}
-	&lt;ng-template *ngIf&#x3D;&quot;icon; else defaultIcon&quot; [ngTemplateOutlet]&#x3D;&quot;icon&quot;&gt;&lt;/ng-template&gt;
-	&lt;ng-template #defaultIcon&gt;
+	@if (icon) {
+		&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;icon&quot; /&gt;
+	} @else {
 		&lt;svg class&#x3D;&quot;cds--header__menu-arrow&quot; width&#x3D;&quot;12&quot; height&#x3D;&quot;7&quot; aria-hidden&#x3D;&quot;true&quot;&gt;
 			&lt;path d&#x3D;&quot;M6.002 5.55L11.27 0l.726.685L6.003 7 0 .685.726 0z&quot; /&gt;
 		&lt;/svg&gt;
-	&lt;/ng-template&gt;
+	}
 &lt;/a&gt;
 &lt;div class&#x3D;&quot;cds--header__menu&quot; [attr.aria-label]&#x3D;&quot;title&quot;&gt;
-	&lt;ng-content&gt;&lt;/ng-content&gt;
-	&lt;ng-container *ngFor&#x3D;&quot;let headerItem of headerItems&quot;&gt;
+	&lt;ng-content /&gt;
+	@for (headerItem of headerItems; track headerItem) {
 		&lt;cds-header-item
 			[href]&#x3D;&quot;headerItem.href&quot;
 			[route]&#x3D;&quot;headerItem.route&quot;
 			[routeExtras]&#x3D;&quot;headerItem.routeExtras&quot;&gt;
 			{{ headerItem.content }}
 		&lt;/cds-header-item&gt;
-	&lt;/ng-container&gt;
+	}
 &lt;/div&gt;
 	</code></pre></td>
             </tr>
@@ -238,6 +246,14 @@
                             <li>
                                     <span class="modifier">Protected</span>
                                 <a href="#_href" >_href</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#domSanitizer" >domSanitizer</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#elementRef" >elementRef</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -380,57 +396,15 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(domSanitizer: DomSanitizer, elementRef: ElementRef)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:81</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:93</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>domSanitizer</td>
-                                                  
-                                                        <td>
-                                                                    <code>DomSanitizer</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>elementRef</td>
-                                                  
-                                                        <td>
-                                                                    <code>ElementRef</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
 </section>
@@ -453,7 +427,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:72</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:77</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -480,7 +454,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:61</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -501,7 +475,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:77</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:82</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -528,7 +502,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:55</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:60</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -554,7 +528,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:67</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:72</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -586,7 +560,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -617,7 +591,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:52</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:57</a></div>
                         </td>
                     </tr>
 
@@ -647,8 +621,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="86"
-                                    class="link-to-prism">src/ui-shell/header/header-menu.component.ts:86</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="98"
+                                    class="link-to-prism">src/ui-shell/header/header-menu.component.ts:98</a></div>
                         </td>
                     </tr>
 
@@ -680,8 +654,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="107"
-                                    class="link-to-prism">src/ui-shell/header/header-menu.component.ts:107</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="119"
+                                    class="link-to-prism">src/ui-shell/header/header-menu.component.ts:119</a></div>
                         </td>
                     </tr>
 
@@ -708,8 +682,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="100"
-                                    class="link-to-prism">src/ui-shell/header/header-menu.component.ts:100</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="112"
+                                    class="link-to-prism">src/ui-shell/header/header-menu.component.ts:112</a></div>
                         </td>
                     </tr>
 
@@ -736,8 +710,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="93"
-                                    class="link-to-prism">src/ui-shell/header/header-menu.component.ts:93</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="105"
+                                    class="link-to-prism">src/ui-shell/header/header-menu.component.ts:105</a></div>
                         </td>
                     </tr>
 
@@ -770,8 +744,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="113"
-                                    class="link-to-prism">src/ui-shell/header/header-menu.component.ts:113</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="125"
+                                    class="link-to-prism">src/ui-shell/header/header-menu.component.ts:125</a></div>
                         </td>
                     </tr>
 
@@ -842,8 +816,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="86"
-                                    class="link-to-prism">src/ui-shell/header/header-menu.component.ts:86</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="98"
+                                    class="link-to-prism">src/ui-shell/header/header-menu.component.ts:98</a></div>
                         </td>
                     </tr>
 
@@ -888,8 +862,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="107"
-                                    class="link-to-prism">src/ui-shell/header/header-menu.component.ts:107</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="119"
+                                    class="link-to-prism">src/ui-shell/header/header-menu.component.ts:119</a></div>
                         </td>
                     </tr>
 
@@ -960,8 +934,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="100"
-                                    class="link-to-prism">src/ui-shell/header/header-menu.component.ts:100</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="112"
+                                    class="link-to-prism">src/ui-shell/header/header-menu.component.ts:112</a></div>
                         </td>
                     </tr>
 
@@ -1006,8 +980,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="93"
-                                    class="link-to-prism">src/ui-shell/header/header-menu.component.ts:93</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="105"
+                                    class="link-to-prism">src/ui-shell/header/header-menu.component.ts:105</a></div>
                         </td>
                     </tr>
 
@@ -1054,7 +1028,59 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:81</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:86</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="domSanitizer"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>domSanitizer</b></span>
+                        <a href="#domSanitizer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(DomSanitizer)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:88</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="elementRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>elementRef</b></span>
+                        <a href="#elementRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ElementRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:89</a></div>
                         </td>
                     </tr>
 
@@ -1080,7 +1106,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:79</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:84</a></div>
                         </td>
                     </tr>
 
@@ -1121,7 +1147,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -1156,7 +1182,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:52</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:57</a></div>
                         </td>
                     </tr>
 
@@ -1185,7 +1211,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:64</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:69</a></div>
                                 </td>
                             </tr>
 
@@ -1196,7 +1222,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:56</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/ui-shell/header/header-menu.component.ts:61</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1249,10 +1275,13 @@
 	HostListener,
 	ElementRef,
 	TemplateRef,
-	HostBinding
+	HostBinding,
+	inject
 } from &quot;@angular/core&quot;;
 import { DomSanitizer } from &quot;@angular/platform-browser&quot;;
 import { HeaderItemInterface } from &quot;./header-navigation-items.interface&quot;;
+import { NgTemplateOutlet } from &quot;@angular/common&quot;;
+import { HeaderItem } from &quot;./header-item.component&quot;;
 
 /**
  * Dropdown menu container for navigation items.
@@ -1268,30 +1297,32 @@ import { HeaderItemInterface } from &quot;./header-navigation-items.interface&qu
 			[attr.aria-expanded]&#x3D;&quot;expanded&quot;
 			(click)&#x3D;&quot;navigate($event)&quot;&gt;
 			{{title}}
-			&lt;ng-template *ngIf&#x3D;&quot;icon; else defaultIcon&quot; [ngTemplateOutlet]&#x3D;&quot;icon&quot;&gt;&lt;/ng-template&gt;
-			&lt;ng-template #defaultIcon&gt;
+			@if (icon) {
+				&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;icon&quot; /&gt;
+			} @else {
 				&lt;svg class&#x3D;&quot;cds--header__menu-arrow&quot; width&#x3D;&quot;12&quot; height&#x3D;&quot;7&quot; aria-hidden&#x3D;&quot;true&quot;&gt;
 					&lt;path d&#x3D;&quot;M6.002 5.55L11.27 0l.726.685L6.003 7 0 .685.726 0z&quot; /&gt;
 				&lt;/svg&gt;
-			&lt;/ng-template&gt;
+			}
 		&lt;/a&gt;
 		&lt;div class&#x3D;&quot;cds--header__menu&quot; [attr.aria-label]&#x3D;&quot;title&quot;&gt;
-			&lt;ng-content&gt;&lt;/ng-content&gt;
-			&lt;ng-container *ngFor&#x3D;&quot;let headerItem of headerItems&quot;&gt;
+			&lt;ng-content /&gt;
+			@for (headerItem of headerItems; track headerItem) {
 				&lt;cds-header-item
 					[href]&#x3D;&quot;headerItem.href&quot;
 					[route]&#x3D;&quot;headerItem.route&quot;
 					[routeExtras]&#x3D;&quot;headerItem.routeExtras&quot;&gt;
 					{{ headerItem.content }}
 				&lt;/cds-header-item&gt;
-			&lt;/ng-container&gt;
+			}
 		&lt;/div&gt;
 	&#x60;,
 	styles: [&#x60;
 		:host {
 			display: list-item;
 		}
-	&#x60;]
+	&#x60;],
+	imports: [NgTemplateOutlet, HeaderItem]
 })
 export class HeaderMenu {
 	@HostBinding(&quot;class.cds--header__submenu&quot;) subMenu &#x3D; true;
@@ -1325,7 +1356,14 @@ export class HeaderMenu {
 
 	protected _href &#x3D; &quot;#&quot;;
 
-	constructor(protected domSanitizer: DomSanitizer, protected elementRef: ElementRef) { }
+	protected domSanitizer &#x3D; inject(DomSanitizer);
+	protected elementRef &#x3D; inject(ElementRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	@HostListener(&quot;click&quot;)
 	onClick() {
@@ -1399,7 +1437,7 @@ export class HeaderMenu {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><a	class="cds--header__menu-item cds--header__menu-title"	[href]="href"	tabindex="0"	aria-haspopup="menu"	[attr.aria-expanded]="expanded"	(click)="navigate($event)">	{{title}}	<ng-template *ngIf="icon; else defaultIcon" [ngTemplateOutlet]="icon"></ng-template>	<ng-template #defaultIcon>		<svg class="cds--header__menu-arrow" width="12" height="7" aria-hidden="true">			<path d="M6.002 5.55L11.27 0l.726.685L6.003 7 0 .685.726 0z" />		</svg>	</ng-template></a><div class="cds--header__menu" [attr.aria-label]="title">	<ng-content></ng-content>	<ng-container *ngFor="let headerItem of headerItems">		<cds-header-item			[href]="headerItem.href"			[route]="headerItem.route"			[routeExtras]="headerItem.routeExtras">			{{ headerItem.content }}		</cds-header-item>	</ng-container></div>	</div>'
+        var COMPONENT_TEMPLATE = '<div><a	class="cds--header__menu-item cds--header__menu-title"	[href]="href"	tabindex="0"	aria-haspopup="menu"	[attr.aria-expanded]="expanded"	(click)="navigate($event)">	{{title}}	@if (icon) {		<ng-template [ngTemplateOutlet]="icon" />	} @else {		<svg class="cds--header__menu-arrow" width="12" height="7" aria-hidden="true">			<path d="M6.002 5.55L11.27 0l.726.685L6.003 7 0 .685.726 0z" />		</svg>	}</a><div class="cds--header__menu" [attr.aria-label]="title">	<ng-content />	@for (headerItem of headerItems; track headerItem) {		<cds-header-item			[href]="headerItem.href"			[route]="headerItem.route"			[routeExtras]="headerItem.routeExtras">			{{ headerItem.content }}		</cds-header-item>	}</div>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AILabelComponent', 'selector': 'cds-ai-label, ibm-ai-label'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'CheckboxGroup', 'selector': 'cds-checkbox-group, ibm-checkbox-group'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ComboButtonComponent', 'selector': 'cds-combo-button'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-menu, cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-menu-divider, cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-menu-group, cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-menu-item, cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'IconTab', 'selector': 'cds-icon-tab, ibm-icon-tab'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'MenuButtonComponent', 'selector': 'cds-menu-button'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonIcon', 'selector': 'cds-skeleton-icon, ibm-skeleton-icon'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderComponent', 'selector': 'cds-tab-header, ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaderGroupVertical', 'selector': 'cds-tab-header-group-vertical, ibm-tab-header-group-vertical'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'TabHeadersVertical', 'selector': 'cds-tab-headers-vertical, ibm-tab-headers-vertical'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeaderDecorator', 'selector': 'cds-table-header-decorator, ibm-table-header-decorator'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'TabsVertical', 'selector': 'cds-tabs-vertical, ibm-tabs-vertical'},{'name': 'TabsVerticalGrouped', 'selector': 'cds-tabs-vertical-grouped, ibm-tabs-vertical-grouped'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TagOperationalComponent', 'selector': 'cds-tag-operational, ibm-tag-operational'},{'name': 'TagSelectableComponent', 'selector': 'cds-tag-selectable, ibm-tag-selectable'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'AILabelActions', 'selector': '[cdsAILabelActions], [ibmAILabelActions]'},{'name': 'AILabelContent', 'selector': '[cdsAILabelContent], [ibmAILabelContent]'},{'name': 'AILabelPopoverDirective', 'selector': '[cdsAILabelPopover]'},{'name': 'AspectRatioDirective', 'selector': '[cdsAspectRatio], [ibmAspectRatio]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ClickableTileIconDirective', 'selector': '[cdsClickableTileIcon], [ibmClickableTileIcon]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'LinkIconDirective', 'selector': '[ibmLinkIcon], [cdsLinkIcon]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TabHeaderBase', 'selector': ''},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TagIconDirective', 'selector': '[cdsTagIcon], [ibmTagIcon]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'HeaderMenu'};
@@ -1476,7 +1514,6 @@ export class HeaderMenu {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

@@ -240,8 +240,8 @@ Also used to insert/remove components from that view.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="83"
-                                    class="link-to-prism">src/placeholder/placeholder.service.ts:83</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="84"
+                                    class="link-to-prism">src/placeholder/placeholder.service.ts:84</a></div>
                         </td>
                     </tr>
 
@@ -319,8 +319,8 @@ Also used to insert/remove components from that view.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="38"
-                                    class="link-to-prism">src/placeholder/placeholder.service.ts:38</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="39"
+                                    class="link-to-prism">src/placeholder/placeholder.service.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -434,8 +434,8 @@ Also used to insert/remove components from that view.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="64"
-                                    class="link-to-prism">src/placeholder/placeholder.service.ts:64</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="65"
+                                    class="link-to-prism">src/placeholder/placeholder.service.ts:65</a></div>
                         </td>
                     </tr>
 
@@ -501,8 +501,8 @@ Also used to insert/remove components from that view.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="68"
-                                    class="link-to-prism">src/placeholder/placeholder.service.ts:68</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="69"
+                                    class="link-to-prism">src/placeholder/placeholder.service.ts:69</a></div>
                         </td>
                     </tr>
 
@@ -580,8 +580,8 @@ Also used to insert/remove components from that view.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="97"
-                                    class="link-to-prism">src/placeholder/placeholder.service.ts:97</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="98"
+                                    class="link-to-prism">src/placeholder/placeholder.service.ts:98</a></div>
                         </td>
                     </tr>
 
@@ -659,8 +659,8 @@ Also used to insert/remove components from that view.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="76"
-                                    class="link-to-prism">src/placeholder/placeholder.service.ts:76</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="77"
+                                    class="link-to-prism">src/placeholder/placeholder.service.ts:77</a></div>
                         </td>
                     </tr>
 
@@ -726,8 +726,8 @@ Also used to insert/remove components from that view.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="27"
-                                    class="link-to-prism">src/placeholder/placeholder.service.ts:27</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="28"
+                                    class="link-to-prism">src/placeholder/placeholder.service.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -807,8 +807,8 @@ Also used to insert/remove components from that view.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="90"
-                                    class="link-to-prism">src/placeholder/placeholder.service.ts:90</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="91"
+                                    class="link-to-prism">src/placeholder/placeholder.service.ts:91</a></div>
                         </td>
                     </tr>
 
@@ -897,7 +897,7 @@ Also used to insert/remove components from that view.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/placeholder/placeholder.service.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/placeholder/placeholder.service.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -935,7 +935,7 @@ Also used to insert/remove components from that view.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/placeholder/placeholder.service.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/placeholder/placeholder.service.ts:20</a></div>
                         </td>
                     </tr>
 
@@ -958,8 +958,9 @@ Also used to insert/remove components from that view.</p>
 	ComponentRef,
 	ViewContainerRef,
 	Injector,
-	EnvironmentInjector,
-	inject
+	Optional,
+	SkipSelf,
+	EnvironmentInjector
 } from &quot;@angular/core&quot;;
 import { Injectable } from &quot;@angular/core&quot;;
 
@@ -1057,6 +1058,18 @@ export class PlaceholderService {
 		return this.viewContainerRef.element.nativeElement.contains(element);
 	}
 }
+
+// either provides a new instance of PlaceholderService, or returns the parent
+export function PLACEHOLDER_SERVICE_PROVIDER_FACTORY(parentService: PlaceholderService) {
+	return parentService || new PlaceholderService();
+}
+
+// placeholder service *must* be a singleton to ensure the placeholder viewRef is accessible globally
+export const PLACEHOLDER_SERVICE_PROVIDER &#x3D; {
+	provide: PlaceholderService,
+	deps: [[new Optional(), new SkipSelf(), PlaceholderService]],
+	useFactory: PLACEHOLDER_SERVICE_PROVIDER_FACTORY
+};
 </code></pre>
     </div>
 
@@ -1128,7 +1141,6 @@ export class PlaceholderService {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

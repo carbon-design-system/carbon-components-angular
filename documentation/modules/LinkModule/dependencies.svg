@@ -24,18 +24,18 @@
 <title>cluster_LinkModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="135,-70 135,-268 361,-268 361,-70 135,-70"/>
 </g>
-<g id="clust6" class="cluster">
+<g id="clust4" class="cluster">
 <title>cluster_LinkModule_exports</title>
 <polygon fill="none" stroke="black" points="143,-208 143,-260 353,-260 353,-208 143,-208"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_LinkModule_declarations</title>
+<g id="clust3" class="cluster">
+<title>cluster_LinkModule_imports</title>
 <polygon fill="none" stroke="black" points="144,-78 144,-130 352,-130 352,-78 144,-78"/>
 </g>
 <!-- Link -->
 <g id="node1" class="node">
 <title>Link</title>
-<polygon fill="#ffffb3" stroke="black" points="344,-122 290,-122 290,-86 344,-86 344,-122"/>
+<polygon fill="#8dd3c7" stroke="black" points="344,-122 341,-126 320,-126 317,-122 290,-122 290,-86 344,-86 344,-122"/>
 <text text-anchor="middle" x="317" y="-99.8" font-family="Times,serif" font-size="14.00">Link</text>
 </g>
 <!-- LinkModule -->
@@ -53,7 +53,7 @@
 <!-- LinkIconDirective -->
 <g id="node2" class="node">
 <title>LinkIconDirective</title>
-<polygon fill="#ffffb3" stroke="black" points="271.9,-122 152.1,-122 152.1,-86 271.9,-86 271.9,-122"/>
+<polygon fill="#8dd3c7" stroke="black" points="271.9,-122 268.9,-126 247.9,-126 244.9,-122 152.1,-122 152.1,-86 271.9,-86 271.9,-122"/>
 <text text-anchor="middle" x="212" y="-99.8" font-family="Times,serif" font-size="14.00">LinkIconDirective</text>
 </g>
 <!-- LinkIconDirective&#45;&gt;LinkModule -->

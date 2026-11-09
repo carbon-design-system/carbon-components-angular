@@ -136,8 +136,8 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Get started with importing the module:</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { InputModule } from &#39;carbon-components-angular&#39;;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;cds-textarea-label&gt;
+        <p>Get started with importing the component and directive:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { TextareaLabelComponent, TextArea, } from &#39;carbon-components-angular&#39;;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;cds-textarea-label&gt;
     Label
     &lt;textarea cdsTextArea class=&quot;textarea-field&quot;&gt;
 &lt;/cds-textarea-label&gt;</code></pre></div><p><a href="../../?path=/story/components-input-text-area--basic">See demo</a></p>
@@ -160,6 +160,10 @@
     <table class="table table-sm table-hover metadata">
         <tbody>
 
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
 
 
 
@@ -177,16 +181,24 @@
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>NgClass</code>
+                            <code>NgTemplateOutlet</code>
+                                <code><a href="../directives/IconDirective.html" target="_self" >IconDirective</a></code>
+                </td>
+            </tr>
 
 
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;ng-container *ngIf&#x3D;&quot;skeleton&quot;&gt;
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">@if (skeleton) {
 	&lt;span class&#x3D;&quot;cds--label cds--skeleton&quot;&gt;&lt;/span&gt;
 	&lt;div class&#x3D;&quot;cds--text-area cds--skeleton&quot;&gt;&lt;/div&gt;
-&lt;/ng-container&gt;
-&lt;ng-container *ngIf&#x3D;&quot;!skeleton&quot;&gt;
+}
+@if (!skeleton) {
 	&lt;div class&#x3D;&quot;cds--text-area__label-wrapper&quot;&gt;
 		&lt;label
 			[for]&#x3D;&quot;labelInputID&quot;
@@ -196,18 +208,20 @@
 				&#x27;cds--label--disabled&#x27;: disabled,
 				&#x27;cds--visually-hidden&#x27;: hideLabel
 			}&quot;&gt;
-			&lt;ng-template *ngIf&#x3D;&quot;labelTemplate; else labelContent&quot; [ngTemplateOutlet]&#x3D;&quot;labelTemplate&quot;&gt;&lt;/ng-template&gt;
-			&lt;ng-template #labelContent&gt;
+			@if (labelTemplate) {
+				&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;labelTemplate&quot;&gt;&lt;/ng-template&gt;
+			} @else {
 				&lt;ng-content&gt;&lt;/ng-content&gt;
-			&lt;/ng-template&gt;
+			}
 		&lt;/label&gt;
-		&lt;span
-			*ngIf&#x3D;&quot;enableCounter &amp;&amp; maxCount&quot;
-			class&#x3D;&quot;cds--label&quot;
-			[ngClass]&#x3D;&quot;{&#x27;cds--label--disabled&#x27;: disabled}&quot;
-			aria-hidden&#x3D;&quot;true&quot;&gt;
-			{{textCount}}/{{maxCount}}
-		&lt;/span&gt;
+		@if (enableCounter &amp;&amp; maxCount) {
+			&lt;span
+				class&#x3D;&quot;cds--label&quot;
+				[ngClass]&#x3D;&quot;{&#x27;cds--label--disabled&#x27;: disabled}&quot;
+				aria-hidden&#x3D;&quot;true&quot;&gt;
+				{{textCount}}/{{maxCount}}
+			&lt;/span&gt;
+		}
 	&lt;/div&gt;
 	&lt;div
 		class&#x3D;&quot;cds--text-area__wrapper&quot;
@@ -217,68 +231,100 @@
 		}&quot;
 		[attr.data-invalid]&#x3D;&quot;(invalid ? true : null)&quot;
 		#wrapper&gt;
-		&lt;svg
-			*ngIf&#x3D;&quot;!fluid &amp;&amp; invalid&quot;
-			cdsIcon&#x3D;&quot;warning--filled&quot;
-			size&#x3D;&quot;16&quot;
-			class&#x3D;&quot;cds--text-area__invalid-icon&quot;&gt;
-		&lt;/svg&gt;
-		&lt;svg
-			*ngIf&#x3D;&quot;!fluid &amp;&amp; !invalid &amp;&amp; warn&quot;
-			cdsIcon&#x3D;&quot;warning--alt--filled&quot;
-			size&#x3D;&quot;16&quot;
-			class&#x3D;&quot;cds--text-area__invalid-icon cds--text-area__invalid-icon--warning&quot;&gt;
-		&lt;/svg&gt;
-		&lt;ng-template *ngIf&#x3D;&quot;textAreaTemplate; else textAreaContent&quot; [ngTemplateOutlet]&#x3D;&quot;textAreaTemplate&quot;&gt;&lt;/ng-template&gt;
-		&lt;ng-template #textAreaContent&gt;
+		@if (!fluid &amp;&amp; invalid) {
+			&lt;svg
+				cdsIcon&#x3D;&quot;warning--filled&quot;
+				size&#x3D;&quot;16&quot;
+				class&#x3D;&quot;cds--text-area__invalid-icon&quot;&gt;
+			&lt;/svg&gt;
+		}
+		@if (!fluid &amp;&amp; !invalid &amp;&amp; warn) {
+			&lt;svg
+				cdsIcon&#x3D;&quot;warning--alt--filled&quot;
+				size&#x3D;&quot;16&quot;
+				class&#x3D;&quot;cds--text-area__invalid-icon cds--text-area__invalid-icon--warning&quot;&gt;
+			&lt;/svg&gt;
+		}
+		@if (textAreaTemplate) {
+			&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;textAreaTemplate&quot;&gt;&lt;/ng-template&gt;
+		} @else {
 			&lt;ng-content select&#x3D;&quot;[cdsTextArea],[ibmTextArea],textarea&quot;&gt;&lt;/ng-content&gt;
-		&lt;/ng-template&gt;
-		&lt;ng-container *ngIf&#x3D;&quot;decorator&quot;&gt;
+		}
+		@if (decorator) {
 			&lt;div class&#x3D;&quot;cds--text-area__inner-wrapper--decorator&quot;&gt;
 				&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;decorator&quot;&gt;&lt;/ng-template&gt;
 			&lt;/div&gt;
-		&lt;/ng-container&gt;
+		}
 
-		&lt;ng-container *ngIf&#x3D;&quot;fluid&quot;&gt;
+		@if (fluid) {
 			&lt;hr class&#x3D;&quot;cds--text-area__divider&quot; /&gt;
-			&lt;div *ngIf&#x3D;&quot;invalid&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
-				&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(invalidText)&quot;&gt;{{invalidText}}&lt;/ng-container&gt;
-				&lt;ng-template *ngIf&#x3D;&quot;isTemplate(invalidText)&quot; [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
-				&lt;svg
-					cdsIcon&#x3D;&quot;warning--filled&quot;
-					size&#x3D;&quot;16&quot;
-					class&#x3D;&quot;cds--text-area__invalid-icon&quot;&gt;
-				&lt;/svg&gt;
-			&lt;/div&gt;
-			&lt;div *ngIf&#x3D;&quot;!invalid &amp;&amp; warn&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
-				&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(warnText)&quot;&gt;{{warnText}}&lt;/ng-container&gt;
-				&lt;ng-template *ngIf&#x3D;&quot;isTemplate(warnText)&quot; [ngTemplateOutlet]&#x3D;&quot;warnText&quot;&gt;&lt;/ng-template&gt;
-				&lt;svg
-					cdsIcon&#x3D;&quot;warning--alt--filled&quot;
-					size&#x3D;&quot;16&quot;
-					class&#x3D;&quot;cds--text-area__invalid-icon cds--text-area__invalid-icon--warning&quot;&gt;
-				&lt;/svg&gt;
-			&lt;/div&gt;
-		&lt;/ng-container&gt;
+			@if (invalid) {
+				&lt;div class&#x3D;&quot;cds--form-requirement&quot;&gt;
+					@if (!isTemplate(invalidText)) {
+						{{invalidText}}
+					}
+					@if (isTemplate(invalidText)) {
+						&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
+					}
+					&lt;svg
+						cdsIcon&#x3D;&quot;warning--filled&quot;
+						size&#x3D;&quot;16&quot;
+						class&#x3D;&quot;cds--text-area__invalid-icon&quot;&gt;
+					&lt;/svg&gt;
+				&lt;/div&gt;
+			}
+			@if (!invalid &amp;&amp; warn) {
+				&lt;div class&#x3D;&quot;cds--form-requirement&quot;&gt;
+					@if (!isTemplate(warnText)) {
+						{{warnText}}
+					}
+					@if (isTemplate(warnText)) {
+						&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;warnText&quot;&gt;&lt;/ng-template&gt;
+					}
+					&lt;svg
+						cdsIcon&#x3D;&quot;warning--alt--filled&quot;
+						size&#x3D;&quot;16&quot;
+						class&#x3D;&quot;cds--text-area__invalid-icon cds--text-area__invalid-icon--warning&quot;&gt;
+					&lt;/svg&gt;
+				&lt;/div&gt;
+			}
+		}
 	&lt;/div&gt;
-	&lt;ng-container *ngIf&#x3D;&quot;!fluid&quot;&gt;
-		&lt;div
-			*ngIf&#x3D;&quot;helperText &amp;&amp; !invalid &amp;&amp; !warn&quot;
-			class&#x3D;&quot;cds--form__helper-text&quot;
-			[ngClass]&#x3D;&quot;{&#x27;cds--form__helper-text--disabled&#x27;: disabled}&quot;&gt;
-			&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(helperText)&quot;&gt;{{helperText}}&lt;/ng-container&gt;
-			&lt;ng-template *ngIf&#x3D;&quot;isTemplate(helperText)&quot; [ngTemplateOutlet]&#x3D;&quot;helperText&quot;&gt;&lt;/ng-template&gt;
-		&lt;/div&gt;
-		&lt;div *ngIf&#x3D;&quot;invalid&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
-			&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(invalidText)&quot;&gt;{{invalidText}}&lt;/ng-container&gt;
-			&lt;ng-template *ngIf&#x3D;&quot;isTemplate(invalidText)&quot; [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
-		&lt;/div&gt;
-		&lt;div *ngIf&#x3D;&quot;!invalid &amp;&amp; warn&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
-			&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(warnText)&quot;&gt;{{warnText}}&lt;/ng-container&gt;
-			&lt;ng-template *ngIf&#x3D;&quot;isTemplate(warnText)&quot; [ngTemplateOutlet]&#x3D;&quot;warnText&quot;&gt;&lt;/ng-template&gt;
-		&lt;/div&gt;
-	&lt;/ng-container&gt;
-&lt;/ng-container&gt;
+	@if (!fluid) {
+		@if (helperText &amp;&amp; !invalid &amp;&amp; !warn) {
+			&lt;div
+				class&#x3D;&quot;cds--form__helper-text&quot;
+				[ngClass]&#x3D;&quot;{&#x27;cds--form__helper-text--disabled&#x27;: disabled}&quot;&gt;
+				@if (!isTemplate(helperText)) {
+					{{helperText}}
+				}
+				@if (isTemplate(helperText)) {
+					&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;helperText&quot;&gt;&lt;/ng-template&gt;
+				}
+			&lt;/div&gt;
+		}
+		@if (invalid) {
+			&lt;div class&#x3D;&quot;cds--form-requirement&quot;&gt;
+				@if (!isTemplate(invalidText)) {
+					{{invalidText}}
+				}
+				@if (isTemplate(invalidText)) {
+					&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
+				}
+			&lt;/div&gt;
+		}
+		@if (!invalid &amp;&amp; warn) {
+			&lt;div class&#x3D;&quot;cds--form-requirement&quot;&gt;
+				@if (!isTemplate(warnText)) {
+					{{warnText}}
+				}
+				@if (isTemplate(warnText)) {
+					&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;warnText&quot;&gt;&lt;/ng-template&gt;
+				}
+			&lt;/div&gt;
+		}
+	}
+}
 	</code></pre></td>
             </tr>
 
@@ -317,6 +363,10 @@
                             <li>
                                     <span class="modifier">Private</span>
                                 <a href="#_textareaElement" >_textareaElement</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#changeDetectorRef" >changeDetectorRef</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
@@ -505,12 +555,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(changeDetectorRef: ChangeDetectorRef)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="254" class="link-to-prism">src/input/textarea-label.component.ts:254</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="300" class="link-to-prism">src/input/textarea-label.component.ts:300</a></div>
                             </td>
                         </tr>
 
@@ -518,32 +568,6 @@
                     <td class="col-md-4">
                             <div class="io-description"><p>Creates an instance of Label.</p>
 </div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>changeDetectorRef</td>
-                                                  
-                                                        <td>
-                                                                    <code>ChangeDetectorRef</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
                     </td>
                 </tr>
             </tbody>
@@ -568,7 +592,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="199" class="link-to-prism">src/input/textarea-label.component.ts:199</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="239" class="link-to-prism">src/input/textarea-label.component.ts:239</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -600,7 +624,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="229" class="link-to-prism">src/input/textarea-label.component.ts:229</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="269" class="link-to-prism">src/input/textarea-label.component.ts:269</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -629,7 +653,7 @@ on each change. Excess words are trimmed from the end of the value.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="234" class="link-to-prism">src/input/textarea-label.component.ts:234</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="274" class="link-to-prism">src/input/textarea-label.component.ts:274</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -661,7 +685,7 @@ on each change. Excess words are trimmed from the end of the value.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/input/textarea-label.component.ts:164</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/input/textarea-label.component.ts:204</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -693,7 +717,7 @@ on each change. Excess words are trimmed from the end of the value.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="216" class="link-to-prism">src/input/textarea-label.component.ts:216</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="256" class="link-to-prism">src/input/textarea-label.component.ts:256</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -726,7 +750,7 @@ counter alongside the label.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/input/textarea-label.component.ts:204</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="244" class="link-to-prism">src/input/textarea-label.component.ts:244</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -753,7 +777,7 @@ counter alongside the label.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="179" class="link-to-prism">src/input/textarea-label.component.ts:179</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="219" class="link-to-prism">src/input/textarea-label.component.ts:219</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -785,7 +809,7 @@ counter alongside the label.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="210" class="link-to-prism">src/input/textarea-label.component.ts:210</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="250" class="link-to-prism">src/input/textarea-label.component.ts:250</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -818,7 +842,7 @@ screen readers.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="187" class="link-to-prism">src/input/textarea-label.component.ts:187</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="227" class="link-to-prism">src/input/textarea-label.component.ts:227</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -845,7 +869,7 @@ screen readers.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">src/input/textarea-label.component.ts:183</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="223" class="link-to-prism">src/input/textarea-label.component.ts:223</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -877,7 +901,7 @@ screen readers.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/input/textarea-label.component.ts:159</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="199" class="link-to-prism">src/input/textarea-label.component.ts:199</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -905,7 +929,7 @@ its input counterpart through the &#39;for&#39; attribute.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="174" class="link-to-prism">src/input/textarea-label.component.ts:174</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="214" class="link-to-prism">src/input/textarea-label.component.ts:214</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -933,7 +957,7 @@ Since we cannot pass ng-content down easily from label component, we will accept
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="222" class="link-to-prism">src/input/textarea-label.component.ts:222</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="262" class="link-to-prism">src/input/textarea-label.component.ts:262</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -966,7 +990,7 @@ counter to display.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="168" class="link-to-prism">src/input/textarea-label.component.ts:168</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="208" class="link-to-prism">src/input/textarea-label.component.ts:208</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -993,7 +1017,7 @@ counter to display.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="175" class="link-to-prism">src/input/textarea-label.component.ts:175</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="215" class="link-to-prism">src/input/textarea-label.component.ts:215</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1019,7 +1043,7 @@ counter to display.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="191" class="link-to-prism">src/input/textarea-label.component.ts:191</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="231" class="link-to-prism">src/input/textarea-label.component.ts:231</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -1046,7 +1070,7 @@ counter to display.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="195" class="link-to-prism">src/input/textarea-label.component.ts:195</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="235" class="link-to-prism">src/input/textarea-label.component.ts:235</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -1084,7 +1108,7 @@ counter to display.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="245" class="link-to-prism">src/input/textarea-label.component.ts:245</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="285" class="link-to-prism">src/input/textarea-label.component.ts:285</a></div>
                         </td>
                     </tr>
 
@@ -1110,7 +1134,7 @@ counter to display.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/input/textarea-label.component.ts:140</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">src/input/textarea-label.component.ts:184</a></div>
                         </td>
                     </tr>
 
@@ -1136,7 +1160,7 @@ counter to display.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/input/textarea-label.component.ts:144</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="188" class="link-to-prism">src/input/textarea-label.component.ts:188</a></div>
                         </td>
                     </tr>
 
@@ -1162,7 +1186,7 @@ counter to display.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/input/textarea-label.component.ts:148</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="192" class="link-to-prism">src/input/textarea-label.component.ts:192</a></div>
                         </td>
                     </tr>
 
@@ -1199,8 +1223,8 @@ counter to display.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="352"
-                                    class="link-to-prism">src/input/textarea-label.component.ts:352</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="398"
+                                    class="link-to-prism">src/input/textarea-label.component.ts:398</a></div>
                         </td>
                     </tr>
 
@@ -1241,8 +1265,8 @@ event listener</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="430"
-                                    class="link-to-prism">src/input/textarea-label.component.ts:430</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="479"
+                                    class="link-to-prism">src/input/textarea-label.component.ts:479</a></div>
                         </td>
                     </tr>
 
@@ -1310,8 +1334,8 @@ event listener</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="420"
-                                    class="link-to-prism">src/input/textarea-label.component.ts:420</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="469"
+                                    class="link-to-prism">src/input/textarea-label.component.ts:469</a></div>
                         </td>
                     </tr>
 
@@ -1352,8 +1376,8 @@ event listener</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="337"
-                                    class="link-to-prism">src/input/textarea-label.component.ts:337</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="383"
+                                    class="link-to-prism">src/input/textarea-label.component.ts:383</a></div>
                         </td>
                     </tr>
 
@@ -1396,8 +1420,8 @@ If <code>maxCount</code> is unset or the mode is <code>&quot;word&quot;</code>, 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="399"
-                                    class="link-to-prism">src/input/textarea-label.component.ts:399</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="448"
+                                    class="link-to-prism">src/input/textarea-label.component.ts:448</a></div>
                         </td>
                     </tr>
 
@@ -1481,8 +1505,8 @@ any trailing content (partial word or space) beyond the limit is dropped.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="327"
-                                    class="link-to-prism">src/input/textarea-label.component.ts:327</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="373"
+                                    class="link-to-prism">src/input/textarea-label.component.ts:373</a></div>
                         </td>
                     </tr>
 
@@ -1544,8 +1568,8 @@ any trailing content (partial word or space) beyond the limit is dropped.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="265"
-                                    class="link-to-prism">src/input/textarea-label.component.ts:265</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="311"
+                                    class="link-to-prism">src/input/textarea-label.component.ts:311</a></div>
                         </td>
                     </tr>
 
@@ -1584,8 +1608,8 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="302"
-                                    class="link-to-prism">src/input/textarea-label.component.ts:302</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="348"
+                                    class="link-to-prism">src/input/textarea-label.component.ts:348</a></div>
                         </td>
                     </tr>
 
@@ -1653,8 +1677,8 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="323"
-                                    class="link-to-prism">src/input/textarea-label.component.ts:323</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="369"
+                                    class="link-to-prism">src/input/textarea-label.component.ts:369</a></div>
                         </td>
                     </tr>
 
@@ -1701,7 +1725,7 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="254" class="link-to-prism">src/input/textarea-label.component.ts:254</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="296" class="link-to-prism">src/input/textarea-label.component.ts:296</a></div>
                         </td>
                     </tr>
 
@@ -1733,7 +1757,7 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="251" class="link-to-prism">src/input/textarea-label.component.ts:251</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="293" class="link-to-prism">src/input/textarea-label.component.ts:293</a></div>
                         </td>
                     </tr>
 
@@ -1765,7 +1789,33 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="248" class="link-to-prism">src/input/textarea-label.component.ts:248</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="290" class="link-to-prism">src/input/textarea-label.component.ts:290</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeDetectorRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>changeDetectorRef</b></span>
+                        <a href="#changeDetectorRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ChangeDetectorRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="287" class="link-to-prism">src/input/textarea-label.component.ts:287</a></div>
                         </td>
                     </tr>
 
@@ -1800,7 +1850,7 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="245" class="link-to-prism">src/input/textarea-label.component.ts:245</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="285" class="link-to-prism">src/input/textarea-label.component.ts:285</a></div>
                         </td>
                     </tr>
 
@@ -1832,7 +1882,7 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/input/textarea-label.component.ts:154</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="182" class="link-to-prism">src/input/textarea-label.component.ts:182</a></div>
                         </td>
                     </tr>
 
@@ -1874,7 +1924,7 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="243" class="link-to-prism">src/input/textarea-label.component.ts:243</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="283" class="link-to-prism">src/input/textarea-label.component.ts:283</a></div>
                         </td>
                     </tr>
 
@@ -1905,7 +1955,7 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="237" class="link-to-prism">src/input/textarea-label.component.ts:237</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="277" class="link-to-prism">src/input/textarea-label.component.ts:277</a></div>
                         </td>
                     </tr>
 
@@ -1941,7 +1991,7 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="240" class="link-to-prism">src/input/textarea-label.component.ts:240</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="280" class="link-to-prism">src/input/textarea-label.component.ts:280</a></div>
                         </td>
                     </tr>
 
@@ -1970,7 +2020,7 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/input/textarea-label.component.ts:140</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">src/input/textarea-label.component.ts:184</a></div>
                                 </td>
                             </tr>
 
@@ -1992,7 +2042,7 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/input/textarea-label.component.ts:144</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="188" class="link-to-prism">src/input/textarea-label.component.ts:188</a></div>
                                 </td>
                             </tr>
 
@@ -2014,7 +2064,7 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/input/textarea-label.component.ts:148</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="192" class="link-to-prism">src/input/textarea-label.component.ts:192</a></div>
                                 </td>
                             </tr>
 
@@ -2037,18 +2087,22 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
 	ViewChild,
 	ContentChild,
 	ChangeDetectorRef,
-	SimpleChanges
+	ChangeDetectionStrategy,
+	SimpleChanges,
+	inject
 } from &quot;@angular/core&quot;;
 import { Subscription } from &quot;rxjs&quot;;
 import { startWith } from &quot;rxjs/operators&quot;;
 
 import { TextArea } from &quot;./text-area.directive&quot;;
+import { NgClass, NgTemplateOutlet } from &quot;@angular/common&quot;;
+import { IconDirective } from &quot;carbon-components-angular/icon&quot;;
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component and directive:
  *
  * &#x60;&#x60;&#x60;typescript
- * import { InputModule } from &#x27;carbon-components-angular&#x27;;
+ * import { TextareaLabelComponent, TextArea, } from &#x27;carbon-components-angular&#x27;;
  * &#x60;&#x60;&#x60;
  *
  * &#x60;&#x60;&#x60;html
@@ -2063,11 +2117,11 @@ import { TextArea } from &quot;./text-area.directive&quot;;
 @Component({
 	selector: &quot;cds-textarea-label, ibm-textarea-label&quot;,
 	template: &#x60;
-		&lt;ng-container *ngIf&#x3D;&quot;skeleton&quot;&gt;
+		@if (skeleton) {
 			&lt;span class&#x3D;&quot;cds--label cds--skeleton&quot;&gt;&lt;/span&gt;
 			&lt;div class&#x3D;&quot;cds--text-area cds--skeleton&quot;&gt;&lt;/div&gt;
-		&lt;/ng-container&gt;
-		&lt;ng-container *ngIf&#x3D;&quot;!skeleton&quot;&gt;
+		}
+		@if (!skeleton) {
 			&lt;div class&#x3D;&quot;cds--text-area__label-wrapper&quot;&gt;
 				&lt;label
 					[for]&#x3D;&quot;labelInputID&quot;
@@ -2077,18 +2131,20 @@ import { TextArea } from &quot;./text-area.directive&quot;;
 						&#x27;cds--label--disabled&#x27;: disabled,
 						&#x27;cds--visually-hidden&#x27;: hideLabel
 					}&quot;&gt;
-					&lt;ng-template *ngIf&#x3D;&quot;labelTemplate; else labelContent&quot; [ngTemplateOutlet]&#x3D;&quot;labelTemplate&quot;&gt;&lt;/ng-template&gt;
-					&lt;ng-template #labelContent&gt;
+					@if (labelTemplate) {
+						&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;labelTemplate&quot;&gt;&lt;/ng-template&gt;
+					} @else {
 						&lt;ng-content&gt;&lt;/ng-content&gt;
-					&lt;/ng-template&gt;
+					}
 				&lt;/label&gt;
-				&lt;span
-					*ngIf&#x3D;&quot;enableCounter &amp;&amp; maxCount&quot;
-					class&#x3D;&quot;cds--label&quot;
-					[ngClass]&#x3D;&quot;{&#x27;cds--label--disabled&#x27;: disabled}&quot;
-					aria-hidden&#x3D;&quot;true&quot;&gt;
-					{{textCount}}/{{maxCount}}
-				&lt;/span&gt;
+				@if (enableCounter &amp;&amp; maxCount) {
+					&lt;span
+						class&#x3D;&quot;cds--label&quot;
+						[ngClass]&#x3D;&quot;{&#x27;cds--label--disabled&#x27;: disabled}&quot;
+						aria-hidden&#x3D;&quot;true&quot;&gt;
+						{{textCount}}/{{maxCount}}
+					&lt;/span&gt;
+				}
 			&lt;/div&gt;
 			&lt;div
 				class&#x3D;&quot;cds--text-area__wrapper&quot;
@@ -2098,71 +2154,109 @@ import { TextArea } from &quot;./text-area.directive&quot;;
 				}&quot;
 				[attr.data-invalid]&#x3D;&quot;(invalid ? true : null)&quot;
 				#wrapper&gt;
-				&lt;svg
-					*ngIf&#x3D;&quot;!fluid &amp;&amp; invalid&quot;
-					cdsIcon&#x3D;&quot;warning--filled&quot;
-					size&#x3D;&quot;16&quot;
-					class&#x3D;&quot;cds--text-area__invalid-icon&quot;&gt;
-				&lt;/svg&gt;
-				&lt;svg
-					*ngIf&#x3D;&quot;!fluid &amp;&amp; !invalid &amp;&amp; warn&quot;
-					cdsIcon&#x3D;&quot;warning--alt--filled&quot;
-					size&#x3D;&quot;16&quot;
-					class&#x3D;&quot;cds--text-area__invalid-icon cds--text-area__invalid-icon--warning&quot;&gt;
-				&lt;/svg&gt;
-				&lt;ng-template *ngIf&#x3D;&quot;textAreaTemplate; else textAreaContent&quot; [ngTemplateOutlet]&#x3D;&quot;textAreaTemplate&quot;&gt;&lt;/ng-template&gt;
-				&lt;ng-template #textAreaContent&gt;
+				@if (!fluid &amp;&amp; invalid) {
+					&lt;svg
+						cdsIcon&#x3D;&quot;warning--filled&quot;
+						size&#x3D;&quot;16&quot;
+						class&#x3D;&quot;cds--text-area__invalid-icon&quot;&gt;
+					&lt;/svg&gt;
+				}
+				@if (!fluid &amp;&amp; !invalid &amp;&amp; warn) {
+					&lt;svg
+						cdsIcon&#x3D;&quot;warning--alt--filled&quot;
+						size&#x3D;&quot;16&quot;
+						class&#x3D;&quot;cds--text-area__invalid-icon cds--text-area__invalid-icon--warning&quot;&gt;
+					&lt;/svg&gt;
+				}
+				@if (textAreaTemplate) {
+					&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;textAreaTemplate&quot;&gt;&lt;/ng-template&gt;
+				} @else {
 					&lt;ng-content select&#x3D;&quot;[cdsTextArea],[ibmTextArea],textarea&quot;&gt;&lt;/ng-content&gt;
-				&lt;/ng-template&gt;
-				&lt;ng-container *ngIf&#x3D;&quot;decorator&quot;&gt;
+				}
+				@if (decorator) {
 					&lt;div class&#x3D;&quot;cds--text-area__inner-wrapper--decorator&quot;&gt;
 						&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;decorator&quot;&gt;&lt;/ng-template&gt;
 					&lt;/div&gt;
-				&lt;/ng-container&gt;
+				}
 
-				&lt;ng-container *ngIf&#x3D;&quot;fluid&quot;&gt;
+				@if (fluid) {
 					&lt;hr class&#x3D;&quot;cds--text-area__divider&quot; /&gt;
-					&lt;div *ngIf&#x3D;&quot;invalid&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
-						&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(invalidText)&quot;&gt;{{invalidText}}&lt;/ng-container&gt;
-						&lt;ng-template *ngIf&#x3D;&quot;isTemplate(invalidText)&quot; [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
-						&lt;svg
-							cdsIcon&#x3D;&quot;warning--filled&quot;
-							size&#x3D;&quot;16&quot;
-							class&#x3D;&quot;cds--text-area__invalid-icon&quot;&gt;
-						&lt;/svg&gt;
-					&lt;/div&gt;
-					&lt;div *ngIf&#x3D;&quot;!invalid &amp;&amp; warn&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
-						&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(warnText)&quot;&gt;{{warnText}}&lt;/ng-container&gt;
-						&lt;ng-template *ngIf&#x3D;&quot;isTemplate(warnText)&quot; [ngTemplateOutlet]&#x3D;&quot;warnText&quot;&gt;&lt;/ng-template&gt;
-						&lt;svg
-							cdsIcon&#x3D;&quot;warning--alt--filled&quot;
-							size&#x3D;&quot;16&quot;
-							class&#x3D;&quot;cds--text-area__invalid-icon cds--text-area__invalid-icon--warning&quot;&gt;
-						&lt;/svg&gt;
-					&lt;/div&gt;
-				&lt;/ng-container&gt;
+					@if (invalid) {
+						&lt;div class&#x3D;&quot;cds--form-requirement&quot;&gt;
+							@if (!isTemplate(invalidText)) {
+								{{invalidText}}
+							}
+							@if (isTemplate(invalidText)) {
+								&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
+							}
+							&lt;svg
+								cdsIcon&#x3D;&quot;warning--filled&quot;
+								size&#x3D;&quot;16&quot;
+								class&#x3D;&quot;cds--text-area__invalid-icon&quot;&gt;
+							&lt;/svg&gt;
+						&lt;/div&gt;
+					}
+					@if (!invalid &amp;&amp; warn) {
+						&lt;div class&#x3D;&quot;cds--form-requirement&quot;&gt;
+							@if (!isTemplate(warnText)) {
+								{{warnText}}
+							}
+							@if (isTemplate(warnText)) {
+								&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;warnText&quot;&gt;&lt;/ng-template&gt;
+							}
+							&lt;svg
+								cdsIcon&#x3D;&quot;warning--alt--filled&quot;
+								size&#x3D;&quot;16&quot;
+								class&#x3D;&quot;cds--text-area__invalid-icon cds--text-area__invalid-icon--warning&quot;&gt;
+							&lt;/svg&gt;
+						&lt;/div&gt;
+					}
+				}
 			&lt;/div&gt;
-			&lt;ng-container *ngIf&#x3D;&quot;!fluid&quot;&gt;
-				&lt;div
-					*ngIf&#x3D;&quot;helperText &amp;&amp; !invalid &amp;&amp; !warn&quot;
-					class&#x3D;&quot;cds--form__helper-text&quot;
-					[ngClass]&#x3D;&quot;{&#x27;cds--form__helper-text--disabled&#x27;: disabled}&quot;&gt;
-					&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(helperText)&quot;&gt;{{helperText}}&lt;/ng-container&gt;
-					&lt;ng-template *ngIf&#x3D;&quot;isTemplate(helperText)&quot; [ngTemplateOutlet]&#x3D;&quot;helperText&quot;&gt;&lt;/ng-template&gt;
-				&lt;/div&gt;
-				&lt;div *ngIf&#x3D;&quot;invalid&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
-					&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(invalidText)&quot;&gt;{{invalidText}}&lt;/ng-container&gt;
-					&lt;ng-template *ngIf&#x3D;&quot;isTemplate(invalidText)&quot; [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
-				&lt;/div&gt;
-				&lt;div *ngIf&#x3D;&quot;!invalid &amp;&amp; warn&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
-					&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(warnText)&quot;&gt;{{warnText}}&lt;/ng-container&gt;
-					&lt;ng-template *ngIf&#x3D;&quot;isTemplate(warnText)&quot; [ngTemplateOutlet]&#x3D;&quot;warnText&quot;&gt;&lt;/ng-template&gt;
-				&lt;/div&gt;
-			&lt;/ng-container&gt;
-		&lt;/ng-container&gt;
-	&#x60;
+			@if (!fluid) {
+				@if (helperText &amp;&amp; !invalid &amp;&amp; !warn) {
+					&lt;div
+						class&#x3D;&quot;cds--form__helper-text&quot;
+						[ngClass]&#x3D;&quot;{&#x27;cds--form__helper-text--disabled&#x27;: disabled}&quot;&gt;
+						@if (!isTemplate(helperText)) {
+							{{helperText}}
+						}
+						@if (isTemplate(helperText)) {
+							&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;helperText&quot;&gt;&lt;/ng-template&gt;
+						}
+					&lt;/div&gt;
+				}
+				@if (invalid) {
+					&lt;div class&#x3D;&quot;cds--form-requirement&quot;&gt;
+						@if (!isTemplate(invalidText)) {
+							{{invalidText}}
+						}
+						@if (isTemplate(invalidText)) {
+							&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
+						}
+					&lt;/div&gt;
+				}
+				@if (!invalid &amp;&amp; warn) {
+					&lt;div class&#x3D;&quot;cds--form-requirement&quot;&gt;
+						@if (!isTemplate(warnText)) {
+							{{warnText}}
+						}
+						@if (isTemplate(warnText)) {
+							&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;warnText&quot;&gt;&lt;/ng-template&gt;
+						}
+					&lt;/div&gt;
+				}
+			}
+		}
+	&#x60;,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgClass, NgTemplateOutlet, IconDirective]
 })
 export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestroy {
+	/**
+	 * Used to build the id of the input item associated with the &#x60;Label&#x60;.
+	 */
+	static labelCounter &#x3D; 0;
 
 	@HostBinding(&quot;class.cds--text-area__wrapper--readonly&quot;) get isReadonly() {
 		return this.wrapper?.nativeElement.querySelector(&quot;textarea&quot;)?.readOnly ?? false;
@@ -2175,10 +2269,6 @@ export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestr
 	@HostBinding(&quot;class.cds--text-area--fluid__skeleton&quot;) get fluidSkeletonClass() {
 		return this.fluid &amp;&amp; this.skeleton;
 	}
-	/**
-	 * Used to build the id of the input item associated with the &#x60;Label&#x60;.
-	 */
-	static labelCounter &#x3D; 0;
 	/**
 	 * The id of the input item associated with the &#x60;Label&#x60;. This value is also used to associate the &#x60;Label&#x60; with
 	 * its input counterpart through the &#x27;for&#x27; attribute.
@@ -2271,6 +2361,8 @@ export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestr
 
 	@HostBinding(&quot;class.cds--form-item&quot;) labelClass &#x3D; true;
 
+	protected changeDetectorRef &#x3D; inject(ChangeDetectorRef);
+
 	// Cached reference to the textarea element, set once in ngAfterViewInit.
 	private _textareaElement: HTMLTextAreaElement | null &#x3D; null;
 
@@ -2280,10 +2372,14 @@ export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestr
 	// Fallback DOM listener used only when no NgControl is present (plain textarea).
 	private _inputListener: ((e: Event) &#x3D;&gt; void) | null &#x3D; null;
 
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of Label.
 	 */
-	constructor(protected changeDetectorRef: ChangeDetectorRef) {}
+	constructor() {}
 
 	/**
 	 * Sets the id on the input item associated with the &#x60;Label&#x60; and attaches the
@@ -2413,6 +2509,9 @@ export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestr
 					}
 				}
 				this.textCount &#x3D; this._countValue(el.value || &quot;&quot;);
+				// the listener is attached to the DOM directly, so nothing marks this view
+				// dirty on its own
+				this.changeDetectorRef.markForCheck();
 			};
 			this._textareaElement.addEventListener(&quot;input&quot;, this._inputListener);
 		}
@@ -2491,7 +2590,7 @@ export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestr
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container *ngIf="skeleton">	<span class="cds--label cds--skeleton"></span>	<div class="cds--text-area cds--skeleton"></div></ng-container><ng-container *ngIf="!skeleton">	<div class="cds--text-area__label-wrapper">		<label			[for]="labelInputID"			[attr.aria-label]="ariaLabel"			class="cds--label"			[ngClass]="{				\'cds--label--disabled\': disabled,				\'cds--visually-hidden\': hideLabel			}">			<ng-template *ngIf="labelTemplate; else labelContent" [ngTemplateOutlet]="labelTemplate"></ng-template>			<ng-template #labelContent>				<ng-content></ng-content>			</ng-template>		</label>		<span			*ngIf="enableCounter && maxCount"			class="cds--label"			[ngClass]="{\'cds--label--disabled\': disabled}"			aria-hidden="true">			{{textCount}}/{{maxCount}}		</span>	</div>	<div		class="cds--text-area__wrapper"		[ngClass]="{			\'cds--text-area__wrapper--warn\': warn,			\'cds--text-area__wrapper--decorator\': !!decorator		}"		[attr.data-invalid]="(invalid ? true : null)"		#wrapper>		<svg			*ngIf="!fluid && invalid"			cdsIcon="warning--filled"			size="16"			class="cds--text-area__invalid-icon">		</svg>		<svg			*ngIf="!fluid && !invalid && warn"			cdsIcon="warning--alt--filled"			size="16"			class="cds--text-area__invalid-icon cds--text-area__invalid-icon--warning">		</svg>		<ng-template *ngIf="textAreaTemplate; else textAreaContent" [ngTemplateOutlet]="textAreaTemplate"></ng-template>		<ng-template #textAreaContent>			<ng-content select="[cdsTextArea],[ibmTextArea],textarea"></ng-content>		</ng-template>		<ng-container *ngIf="decorator">			<div class="cds--text-area__inner-wrapper--decorator">				<ng-template [ngTemplateOutlet]="decorator"></ng-template>			</div>		</ng-container>		<ng-container *ngIf="fluid">			<hr class="cds--text-area__divider" />			<div *ngIf="invalid" class="cds--form-requirement">				<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>				<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>				<svg					cdsIcon="warning--filled"					size="16"					class="cds--text-area__invalid-icon">				</svg>			</div>			<div *ngIf="!invalid && warn" class="cds--form-requirement">				<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>				<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>				<svg					cdsIcon="warning--alt--filled"					size="16"					class="cds--text-area__invalid-icon cds--text-area__invalid-icon--warning">				</svg>			</div>		</ng-container>	</div>	<ng-container *ngIf="!fluid">		<div			*ngIf="helperText && !invalid && !warn"			class="cds--form__helper-text"			[ngClass]="{\'cds--form__helper-text--disabled\': disabled}">			<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>			<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>		</div>		<div *ngIf="invalid" class="cds--form-requirement">			<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>			<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>		</div>		<div *ngIf="!invalid && warn" class="cds--form-requirement">			<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>			<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>		</div>	</ng-container></ng-container>	</div>'
+        var COMPONENT_TEMPLATE = '<div>@if (skeleton) {	<span class="cds--label cds--skeleton"></span>	<div class="cds--text-area cds--skeleton"></div>}@if (!skeleton) {	<div class="cds--text-area__label-wrapper">		<label			[for]="labelInputID"			[attr.aria-label]="ariaLabel"			class="cds--label"			[ngClass]="{				\'cds--label--disabled\': disabled,				\'cds--visually-hidden\': hideLabel			}">			@if (labelTemplate) {				<ng-template [ngTemplateOutlet]="labelTemplate"></ng-template>			} @else {				<ng-content></ng-content>			}		</label>		@if (enableCounter && maxCount) {			<span				class="cds--label"				[ngClass]="{\'cds--label--disabled\': disabled}"				aria-hidden="true">				{{textCount}}/{{maxCount}}			</span>		}	</div>	<div		class="cds--text-area__wrapper"		[ngClass]="{			\'cds--text-area__wrapper--warn\': warn,			\'cds--text-area__wrapper--decorator\': !!decorator		}"		[attr.data-invalid]="(invalid ? true : null)"		#wrapper>		@if (!fluid && invalid) {			<svg				cdsIcon="warning--filled"				size="16"				class="cds--text-area__invalid-icon">			</svg>		}		@if (!fluid && !invalid && warn) {			<svg				cdsIcon="warning--alt--filled"				size="16"				class="cds--text-area__invalid-icon cds--text-area__invalid-icon--warning">			</svg>		}		@if (textAreaTemplate) {			<ng-template [ngTemplateOutlet]="textAreaTemplate"></ng-template>		} @else {			<ng-content select="[cdsTextArea],[ibmTextArea],textarea"></ng-content>		}		@if (decorator) {			<div class="cds--text-area__inner-wrapper--decorator">				<ng-template [ngTemplateOutlet]="decorator"></ng-template>			</div>		}		@if (fluid) {			<hr class="cds--text-area__divider" />			@if (invalid) {				<div class="cds--form-requirement">					@if (!isTemplate(invalidText)) {						{{invalidText}}					}					@if (isTemplate(invalidText)) {						<ng-template [ngTemplateOutlet]="invalidText"></ng-template>					}					<svg						cdsIcon="warning--filled"						size="16"						class="cds--text-area__invalid-icon">					</svg>				</div>			}			@if (!invalid && warn) {				<div class="cds--form-requirement">					@if (!isTemplate(warnText)) {						{{warnText}}					}					@if (isTemplate(warnText)) {						<ng-template [ngTemplateOutlet]="warnText"></ng-template>					}					<svg						cdsIcon="warning--alt--filled"						size="16"						class="cds--text-area__invalid-icon cds--text-area__invalid-icon--warning">					</svg>				</div>			}		}	</div>	@if (!fluid) {		@if (helperText && !invalid && !warn) {			<div				class="cds--form__helper-text"				[ngClass]="{\'cds--form__helper-text--disabled\': disabled}">				@if (!isTemplate(helperText)) {					{{helperText}}				}				@if (isTemplate(helperText)) {					<ng-template [ngTemplateOutlet]="helperText"></ng-template>				}			</div>		}		@if (invalid) {			<div class="cds--form-requirement">				@if (!isTemplate(invalidText)) {					{{invalidText}}				}				@if (isTemplate(invalidText)) {					<ng-template [ngTemplateOutlet]="invalidText"></ng-template>				}			</div>		}		@if (!invalid && warn) {			<div class="cds--form-requirement">				@if (!isTemplate(warnText)) {					{{warnText}}				}				@if (isTemplate(warnText)) {					<ng-template [ngTemplateOutlet]="warnText"></ng-template>				}			</div>		}	}}	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AILabelComponent', 'selector': 'cds-ai-label, ibm-ai-label'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'CheckboxGroup', 'selector': 'cds-checkbox-group, ibm-checkbox-group'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ComboButtonComponent', 'selector': 'cds-combo-button'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-menu, cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-menu-divider, cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-menu-group, cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-menu-item, cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'IconTab', 'selector': 'cds-icon-tab, ibm-icon-tab'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'MenuButtonComponent', 'selector': 'cds-menu-button'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonIcon', 'selector': 'cds-skeleton-icon, ibm-skeleton-icon'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderComponent', 'selector': 'cds-tab-header, ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaderGroupVertical', 'selector': 'cds-tab-header-group-vertical, ibm-tab-header-group-vertical'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'TabHeadersVertical', 'selector': 'cds-tab-headers-vertical, ibm-tab-headers-vertical'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeaderDecorator', 'selector': 'cds-table-header-decorator, ibm-table-header-decorator'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'TabsVertical', 'selector': 'cds-tabs-vertical, ibm-tabs-vertical'},{'name': 'TabsVerticalGrouped', 'selector': 'cds-tabs-vertical-grouped, ibm-tabs-vertical-grouped'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TagOperationalComponent', 'selector': 'cds-tag-operational, ibm-tag-operational'},{'name': 'TagSelectableComponent', 'selector': 'cds-tag-selectable, ibm-tag-selectable'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'AILabelActions', 'selector': '[cdsAILabelActions], [ibmAILabelActions]'},{'name': 'AILabelContent', 'selector': '[cdsAILabelContent], [ibmAILabelContent]'},{'name': 'AILabelPopoverDirective', 'selector': '[cdsAILabelPopover]'},{'name': 'AspectRatioDirective', 'selector': '[cdsAspectRatio], [ibmAspectRatio]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ClickableTileIconDirective', 'selector': '[cdsClickableTileIcon], [ibmClickableTileIcon]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'LinkIconDirective', 'selector': '[ibmLinkIcon], [cdsLinkIcon]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TabHeaderBase', 'selector': ''},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TagIconDirective', 'selector': '[cdsTagIcon], [ibmTagIcon]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'TextareaLabelComponent'};
@@ -2568,7 +2667,6 @@ export class TextareaLabelComponent implements AfterViewInit, OnChanges, OnDestr
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

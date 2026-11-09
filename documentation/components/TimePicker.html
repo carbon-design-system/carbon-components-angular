@@ -136,8 +136,8 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Get started with importing the module:</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { TimePickerModule } from &#39;carbon-components-angular&#39;;</code></pre></div><p><a href="../../?path=/story/components-time-picker--simple">See demo</a></p>
+        <p>Get started with importing the component:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { TimePicker } from &#39;carbon-components-angular&#39;;</code></pre></div><p><a href="../../?path=/story/components-time-picker--simple">See demo</a></p>
 
     </p>
 
@@ -155,6 +155,10 @@
     <table class="table table-sm table-hover metadata">
         <tbody>
 
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
 
 
 
@@ -180,22 +184,33 @@
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>NgClass</code>
+                            <code>NgTemplateOutlet</code>
+                </td>
+            </tr>
 
 
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;label
-*ngIf&#x3D;&quot;!skeleton &amp;&amp; label&quot;
-[for]&#x3D;&quot;id&quot;
-class&#x3D;&quot;cds--label&quot;
-[ngClass]&#x3D;&quot;{
-	&#x27;cds--label--disabled&#x27;: disabled,
-	&#x27;cds--visually-hidden&#x27;: hideLabel
-}&quot;&gt;
-	&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(label)&quot;&gt;{{label}}&lt;/ng-container&gt;
-	&lt;ng-template *ngIf&#x3D;&quot;isTemplate(label)&quot; [ngTemplateOutlet]&#x3D;&quot;label&quot;&gt;&lt;/ng-template&gt;
-&lt;/label&gt;
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">@if (!skeleton &amp;&amp; label) {
+	&lt;label
+		[for]&#x3D;&quot;id&quot;
+		class&#x3D;&quot;cds--label&quot;
+		[ngClass]&#x3D;&quot;{
+			&#x27;cds--label--disabled&#x27;: disabled,
+			&#x27;cds--visually-hidden&#x27;: hideLabel
+		}&quot;&gt;
+		@if (isTemplate(label)) {
+			&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;label&quot; /&gt;
+		} @else {
+			{{label}}
+		}
+	&lt;/label&gt;
+}
 &lt;div
 	class&#x3D;&quot;cds--time-picker&quot;
 	[ngClass]&#x3D;&quot;{
@@ -222,12 +237,17 @@ class&#x3D;&quot;cds--label&quot;
 			type&#x3D;&quot;text&quot;
 			class&#x3D;&quot;cds--time-picker__input-field cds--text-input&quot;&gt;
 	&lt;/div&gt;
-	&lt;ng-content&gt;&lt;/ng-content&gt;
+	&lt;ng-content /&gt;
 &lt;/div&gt;
-&lt;div *ngIf&#x3D;&quot;invalid&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
-	&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(invalidText)&quot;&gt;{{invalidText}}&lt;/ng-container&gt;
-	&lt;ng-template *ngIf&#x3D;&quot;isTemplate(invalidText)&quot; [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
-&lt;/div&gt;
+@if (invalid) {
+	&lt;div class&#x3D;&quot;cds--form-requirement&quot;&gt;
+		@if (isTemplate(invalidText)) {
+			&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;invalidText&quot; /&gt;
+		} @else {
+			{{invalidText}}
+		}
+	&lt;/div&gt;
+}
 	</code></pre></td>
             </tr>
 
@@ -255,6 +275,10 @@ class&#x3D;&quot;cds--label&quot;
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#changeDetectorRef" >changeDetectorRef</a>
+                            </li>
                             <li>
                                     <span class="modifier">Protected</span>
                                 <a href="#onChangeHandler" >onChangeHandler</a>
@@ -434,7 +458,7 @@ class&#x3D;&quot;cds--label&quot;
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/timepicker/timepicker.component.ts:89</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/timepicker/timepicker.component.ts:104</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -460,7 +484,7 @@ class&#x3D;&quot;cds--label&quot;
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/timepicker/timepicker.component.ts:85</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/timepicker/timepicker.component.ts:100</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -486,7 +510,7 @@ class&#x3D;&quot;cds--label&quot;
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/timepicker/timepicker.component.ts:88</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/timepicker/timepicker.component.ts:103</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -512,7 +536,7 @@ class&#x3D;&quot;cds--label&quot;
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/timepicker/timepicker.component.ts:82</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/timepicker/timepicker.component.ts:97</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -533,7 +557,7 @@ class&#x3D;&quot;cds--label&quot;
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/timepicker/timepicker.component.ts:83</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/timepicker/timepicker.component.ts:98</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -554,7 +578,7 @@ class&#x3D;&quot;cds--label&quot;
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/timepicker/timepicker.component.ts:84</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/timepicker/timepicker.component.ts:99</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -580,7 +604,7 @@ class&#x3D;&quot;cds--label&quot;
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/timepicker/timepicker.component.ts:91</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/timepicker/timepicker.component.ts:106</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -606,7 +630,7 @@ class&#x3D;&quot;cds--label&quot;
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/timepicker/timepicker.component.ts:87</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/timepicker/timepicker.component.ts:102</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -632,7 +656,7 @@ class&#x3D;&quot;cds--label&quot;
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/timepicker/timepicker.component.ts:86</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/timepicker/timepicker.component.ts:101</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -658,7 +682,7 @@ class&#x3D;&quot;cds--label&quot;
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/timepicker/timepicker.component.ts:106</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/timepicker/timepicker.component.ts:121</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -690,7 +714,7 @@ class&#x3D;&quot;cds--label&quot;
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/timepicker/timepicker.component.ts:96</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/timepicker/timepicker.component.ts:111</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -722,7 +746,7 @@ class&#x3D;&quot;cds--label&quot;
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/timepicker/timepicker.component.ts:101</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/timepicker/timepicker.component.ts:116</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -743,7 +767,7 @@ class&#x3D;&quot;cds--label&quot;
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/timepicker/timepicker.component.ts:90</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/timepicker/timepicker.component.ts:105</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -767,7 +791,7 @@ class&#x3D;&quot;cds--label&quot;
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/timepicker/timepicker.component.ts:108</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/timepicker/timepicker.component.ts:123</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -798,7 +822,7 @@ class&#x3D;&quot;cds--label&quot;
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/timepicker/timepicker.component.ts:113</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/timepicker/timepicker.component.ts:128</a></div>
                         </td>
                     </tr>
 
@@ -834,8 +858,8 @@ class&#x3D;&quot;cds--label&quot;
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="137"
-                                    class="link-to-prism">src/timepicker/timepicker.component.ts:137</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="156"
+                                    class="link-to-prism">src/timepicker/timepicker.component.ts:156</a></div>
                         </td>
                     </tr>
 
@@ -877,8 +901,8 @@ class&#x3D;&quot;cds--label&quot;
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="137"
-                                    class="link-to-prism">src/timepicker/timepicker.component.ts:137</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="156"
+                                    class="link-to-prism">src/timepicker/timepicker.component.ts:156</a></div>
                         </td>
                     </tr>
 
@@ -916,8 +940,8 @@ class&#x3D;&quot;cds--label&quot;
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="141"
-                                    class="link-to-prism">src/timepicker/timepicker.component.ts:141</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="160"
+                                    class="link-to-prism">src/timepicker/timepicker.component.ts:160</a></div>
                         </td>
                     </tr>
 
@@ -979,8 +1003,8 @@ class&#x3D;&quot;cds--label&quot;
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="131"
-                                    class="link-to-prism">src/timepicker/timepicker.component.ts:131</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="150"
+                                    class="link-to-prism">src/timepicker/timepicker.component.ts:150</a></div>
                         </td>
                     </tr>
 
@@ -1042,8 +1066,8 @@ class&#x3D;&quot;cds--label&quot;
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="119"
-                                    class="link-to-prism">src/timepicker/timepicker.component.ts:119</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="137"
+                                    class="link-to-prism">src/timepicker/timepicker.component.ts:137</a></div>
                         </td>
                     </tr>
 
@@ -1109,8 +1133,8 @@ class&#x3D;&quot;cds--label&quot;
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="123"
-                                    class="link-to-prism">src/timepicker/timepicker.component.ts:123</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="141"
+                                    class="link-to-prism">src/timepicker/timepicker.component.ts:141</a></div>
                         </td>
                     </tr>
 
@@ -1176,8 +1200,8 @@ class&#x3D;&quot;cds--label&quot;
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="127"
-                                    class="link-to-prism">src/timepicker/timepicker.component.ts:127</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="145"
+                                    class="link-to-prism">src/timepicker/timepicker.component.ts:145</a></div>
                         </td>
                     </tr>
 
@@ -1243,8 +1267,8 @@ class&#x3D;&quot;cds--label&quot;
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="115"
-                                    class="link-to-prism">src/timepicker/timepicker.component.ts:115</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="132"
+                                    class="link-to-prism">src/timepicker/timepicker.component.ts:132</a></div>
                         </td>
                     </tr>
 
@@ -1300,6 +1324,32 @@ class&#x3D;&quot;cds--label&quot;
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="changeDetectorRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>changeDetectorRef</b></span>
+                        <a href="#changeDetectorRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ChangeDetectorRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/timepicker/timepicker.component.ts:130</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="onChangeHandler"></a>
                     <span class="name">
                             <span class="modifier">Protected</span>
@@ -1315,7 +1365,7 @@ class&#x3D;&quot;cds--label&quot;
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/timepicker/timepicker.component.ts:145</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/timepicker/timepicker.component.ts:164</a></div>
                         </td>
                     </tr>
 
@@ -1341,7 +1391,7 @@ class&#x3D;&quot;cds--label&quot;
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/timepicker/timepicker.component.ts:146</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/timepicker/timepicker.component.ts:165</a></div>
                         </td>
                     </tr>
 
@@ -1376,7 +1426,7 @@ class&#x3D;&quot;cds--label&quot;
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/timepicker/timepicker.component.ts:113</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/timepicker/timepicker.component.ts:128</a></div>
                         </td>
                     </tr>
 
@@ -1414,7 +1464,7 @@ class&#x3D;&quot;cds--label&quot;
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/timepicker/timepicker.component.ts:80</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/timepicker/timepicker.component.ts:95</a></div>
                         </td>
                     </tr>
 
@@ -1434,21 +1484,25 @@ class&#x3D;&quot;cds--label&quot;
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
 	Component,
 	Input,
 	Output,
 	EventEmitter,
 	HostBinding,
 	TemplateRef,
-	HostListener
+	HostListener,
+	inject
 } from &quot;@angular/core&quot;;
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from &quot;@angular/forms&quot;;
+import { NgClass, NgTemplateOutlet } from &quot;@angular/common&quot;;
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * &#x60;&#x60;&#x60;typescript
- * import { TimePickerModule } from &#x27;carbon-components-angular&#x27;;
+ * import { TimePicker } from &#x27;carbon-components-angular&#x27;;
  * &#x60;&#x60;&#x60;
  *
  * [See demo](../../?path&#x3D;/story/components-time-picker--simple)
@@ -1456,17 +1510,21 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from &quot;@angular/forms&quo
 @Component({
 	selector: &quot;cds-timepicker, ibm-timepicker&quot;,
 	template: &#x60;
-		&lt;label
-		*ngIf&#x3D;&quot;!skeleton &amp;&amp; label&quot;
-		[for]&#x3D;&quot;id&quot;
-		class&#x3D;&quot;cds--label&quot;
-		[ngClass]&#x3D;&quot;{
-			&#x27;cds--label--disabled&#x27;: disabled,
-			&#x27;cds--visually-hidden&#x27;: hideLabel
-		}&quot;&gt;
-			&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(label)&quot;&gt;{{label}}&lt;/ng-container&gt;
-			&lt;ng-template *ngIf&#x3D;&quot;isTemplate(label)&quot; [ngTemplateOutlet]&#x3D;&quot;label&quot;&gt;&lt;/ng-template&gt;
-		&lt;/label&gt;
+		@if (!skeleton &amp;&amp; label) {
+			&lt;label
+				[for]&#x3D;&quot;id&quot;
+				class&#x3D;&quot;cds--label&quot;
+				[ngClass]&#x3D;&quot;{
+					&#x27;cds--label--disabled&#x27;: disabled,
+					&#x27;cds--visually-hidden&#x27;: hideLabel
+				}&quot;&gt;
+				@if (isTemplate(label)) {
+					&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;label&quot; /&gt;
+				} @else {
+					{{label}}
+				}
+			&lt;/label&gt;
+		}
 		&lt;div
 			class&#x3D;&quot;cds--time-picker&quot;
 			[ngClass]&#x3D;&quot;{
@@ -1493,12 +1551,17 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from &quot;@angular/forms&quo
 					type&#x3D;&quot;text&quot;
 					class&#x3D;&quot;cds--time-picker__input-field cds--text-input&quot;&gt;
 			&lt;/div&gt;
-			&lt;ng-content&gt;&lt;/ng-content&gt;
+			&lt;ng-content /&gt;
 		&lt;/div&gt;
-		&lt;div *ngIf&#x3D;&quot;invalid&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
-			&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(invalidText)&quot;&gt;{{invalidText}}&lt;/ng-container&gt;
-			&lt;ng-template *ngIf&#x3D;&quot;isTemplate(invalidText)&quot; [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
-		&lt;/div&gt;
+		@if (invalid) {
+			&lt;div class&#x3D;&quot;cds--form-requirement&quot;&gt;
+				@if (isTemplate(invalidText)) {
+					&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;invalidText&quot; /&gt;
+				} @else {
+					{{invalidText}}
+				}
+			&lt;/div&gt;
+		}
 	&#x60;,
 	providers: [
 		{
@@ -1506,7 +1569,9 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from &quot;@angular/forms&quo
 			useExisting: TimePicker,
 			multi: true
 		}
-	]
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgClass, NgTemplateOutlet]
 })
 export class TimePicker implements ControlValueAccessor {
 	/**
@@ -1547,8 +1612,11 @@ export class TimePicker implements ControlValueAccessor {
 	 */
 	@HostBinding(&quot;class.cds--form-item&quot;) timepickerClass &#x3D; true;
 
+	protected changeDetectorRef &#x3D; inject(ChangeDetectorRef);
+
 	writeValue(value: string) {
 		this.value &#x3D; value;
+		this.changeDetectorRef.markForCheck();
 	}
 
 	registerOnChange(callback: any) {
@@ -1561,6 +1629,7 @@ export class TimePicker implements ControlValueAccessor {
 
 	setDisabledState(isDisabled: boolean) {
 		this.disabled &#x3D; isDisabled;
+		this.changeDetectorRef.markForCheck();
 	}
 
 	onChange(event) {
@@ -1577,8 +1646,8 @@ export class TimePicker implements ControlValueAccessor {
 		return value instanceof TemplateRef;
 	}
 
-	protected onChangeHandler &#x3D; (_: any) &#x3D;&gt; { };
-	protected onTouchedHandler &#x3D; () &#x3D;&gt; { };
+	protected onChangeHandler &#x3D; (_: any) &#x3D;&gt; {};
+	protected onTouchedHandler &#x3D; () &#x3D;&gt; {};
 }
 </code></pre>
     </div>
@@ -1610,7 +1679,7 @@ export class TimePicker implements ControlValueAccessor {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><label*ngIf="!skeleton && label"[for]="id"class="cds--label"[ngClass]="{	\'cds--label--disabled\': disabled,	\'cds--visually-hidden\': hideLabel}">	<ng-container *ngIf="!isTemplate(label)">{{label}}</ng-container>	<ng-template *ngIf="isTemplate(label)" [ngTemplateOutlet]="label"></ng-template></label><div	class="cds--time-picker"	[ngClass]="{		\'cds--time-picker--invalid\' : invalid,		\'cds--time-picker--sm\': size === \'sm\',		\'cds--time-picker--md\': size === \'md\',		\'cds--time-picker--lg\': size === \'lg\',		\'cds--time-picker--light\': theme === \'light\'	}">	<div class="cds--time-picker__input">		<input			[ngClass]="{				\'cds--text-input--light\': theme === \'light\',				\'cds--skeleton\': skeleton			}"			[value]="value"			[placeholder]="placeholder"			[attr.data-invalid]="invalid ? true : undefined"			[pattern]="pattern"			[attr.id]="id"			[disabled]="disabled"			[attr.maxlength]="maxLength"			(change)="onChange($event)"			type="text"			class="cds--time-picker__input-field cds--text-input">	</div>	<ng-content></ng-content></div><div *ngIf="invalid" class="cds--form-requirement">	<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>	<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template></div>	</div>'
+        var COMPONENT_TEMPLATE = '<div>@if (!skeleton && label) {	<label		[for]="id"		class="cds--label"		[ngClass]="{			\'cds--label--disabled\': disabled,			\'cds--visually-hidden\': hideLabel		}">		@if (isTemplate(label)) {			<ng-template [ngTemplateOutlet]="label" />		} @else {			{{label}}		}	</label>}<div	class="cds--time-picker"	[ngClass]="{		\'cds--time-picker--invalid\' : invalid,		\'cds--time-picker--sm\': size === \'sm\',		\'cds--time-picker--md\': size === \'md\',		\'cds--time-picker--lg\': size === \'lg\',		\'cds--time-picker--light\': theme === \'light\'	}">	<div class="cds--time-picker__input">		<input			[ngClass]="{				\'cds--text-input--light\': theme === \'light\',				\'cds--skeleton\': skeleton			}"			[value]="value"			[placeholder]="placeholder"			[attr.data-invalid]="invalid ? true : undefined"			[pattern]="pattern"			[attr.id]="id"			[disabled]="disabled"			[attr.maxlength]="maxLength"			(change)="onChange($event)"			type="text"			class="cds--time-picker__input-field cds--text-input">	</div>	<ng-content /></div>@if (invalid) {	<div class="cds--form-requirement">		@if (isTemplate(invalidText)) {			<ng-template [ngTemplateOutlet]="invalidText" />		} @else {			{{invalidText}}		}	</div>}	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AILabelComponent', 'selector': 'cds-ai-label, ibm-ai-label'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'CheckboxGroup', 'selector': 'cds-checkbox-group, ibm-checkbox-group'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ComboButtonComponent', 'selector': 'cds-combo-button'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-menu, cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-menu-divider, cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-menu-group, cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-menu-item, cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'IconTab', 'selector': 'cds-icon-tab, ibm-icon-tab'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'MenuButtonComponent', 'selector': 'cds-menu-button'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonIcon', 'selector': 'cds-skeleton-icon, ibm-skeleton-icon'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderComponent', 'selector': 'cds-tab-header, ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaderGroupVertical', 'selector': 'cds-tab-header-group-vertical, ibm-tab-header-group-vertical'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'TabHeadersVertical', 'selector': 'cds-tab-headers-vertical, ibm-tab-headers-vertical'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeaderDecorator', 'selector': 'cds-table-header-decorator, ibm-table-header-decorator'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'TabsVertical', 'selector': 'cds-tabs-vertical, ibm-tabs-vertical'},{'name': 'TabsVerticalGrouped', 'selector': 'cds-tabs-vertical-grouped, ibm-tabs-vertical-grouped'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TagOperationalComponent', 'selector': 'cds-tag-operational, ibm-tag-operational'},{'name': 'TagSelectableComponent', 'selector': 'cds-tag-selectable, ibm-tag-selectable'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'AILabelActions', 'selector': '[cdsAILabelActions], [ibmAILabelActions]'},{'name': 'AILabelContent', 'selector': '[cdsAILabelContent], [ibmAILabelContent]'},{'name': 'AILabelPopoverDirective', 'selector': '[cdsAILabelPopover]'},{'name': 'AspectRatioDirective', 'selector': '[cdsAspectRatio], [ibmAspectRatio]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ClickableTileIconDirective', 'selector': '[cdsClickableTileIcon], [ibmClickableTileIcon]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'LinkIconDirective', 'selector': '[ibmLinkIcon], [cdsLinkIcon]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TabHeaderBase', 'selector': ''},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TagIconDirective', 'selector': '[cdsTagIcon], [ibmTagIcon]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'TimePicker'};
@@ -1687,7 +1756,6 @@ export class TimePicker implements ControlValueAccessor {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

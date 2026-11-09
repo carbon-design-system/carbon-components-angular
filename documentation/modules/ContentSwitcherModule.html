@@ -133,18 +133,18 @@
 <title>cluster_ContentSwitcherModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="90,-70 90,-268 406,-268 406,-70 90,-70"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_ContentSwitcherModule_declarations</title>
+<g id="clust3" class="cluster">
+<title>cluster_ContentSwitcherModule_imports</title>
 <polygon fill="none" stroke="black" points="102,-78 102,-130 395,-130 395,-78 102,-78"/>
 </g>
-<g id="clust6" class="cluster">
+<g id="clust4" class="cluster">
 <title>cluster_ContentSwitcherModule_exports</title>
 <polygon fill="none" stroke="black" points="98,-208 98,-260 398,-260 398,-208 98,-208"/>
 </g>
 <!-- ContentSwitcher -->
 <g id="node1" class="node">
 <title>ContentSwitcher</title>
-<polygon fill="#ffffb3" stroke="black" points="387.09,-122 276.91,-122 276.91,-86 387.09,-86 387.09,-122"/>
+<polygon fill="#8dd3c7" stroke="black" points="387.09,-122 384.09,-126 363.09,-126 360.09,-122 276.91,-122 276.91,-86 387.09,-86 387.09,-122"/>
 <text text-anchor="middle" x="332" y="-99.8" font-family="Times,serif" font-size="14.00">ContentSwitcher</text>
 </g>
 <!-- ContentSwitcherModule -->
@@ -162,7 +162,7 @@
 <!-- ContentSwitcherOption -->
 <g id="node2" class="node">
 <title>ContentSwitcherOption</title>
-<polygon fill="#ffffb3" stroke="black" points="258.48,-122 109.52,-122 109.52,-86 258.48,-86 258.48,-122"/>
+<polygon fill="#8dd3c7" stroke="black" points="258.48,-122 255.48,-126 234.48,-126 231.48,-122 109.52,-122 109.52,-86 258.48,-86 258.48,-122"/>
 <text text-anchor="middle" x="184" y="-99.8" font-family="Times,serif" font-size="14.00">ContentSwitcherOption</text>
 </g>
 <!-- ContentSwitcherOption&#45;&gt;ContentSwitcherModule -->
@@ -241,14 +241,15 @@
         <div class="container-fluid module">
             <div class="row">
                 <div class="col-sm-3">
-                    <h3>Declarations<a href="https://angular.io/api/core/NgModule#declarations" target="_blank" rel="noopener noreferrer"
-                            title="Official documentation about module declarations"><span class="icon ion-ios-information-circle-outline"></span></a></h3>
+                    <h3>Imports<a href="https://angular.io/api/core/NgModule#imports" target="_blank" rel="noopener noreferrer"
+                            title="Official documentation about module imports"><span
+                                class="icon ion-ios-information-circle-outline"></a></h3>
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <a href="../components/ContentSwitcher.html">ContentSwitcher</a>
+                            <a href="../modules/ContentSwitcher.html">ContentSwitcher</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="../directives/ContentSwitcherOption.html">ContentSwitcherOption</a>
+                            <a href="../modules/ContentSwitcherOption.html">ContentSwitcherOption</a>
                         </li>
                     </ul>
                 </div>
@@ -280,17 +281,17 @@ import { ContentSwitcher } from &quot;./content-switcher.component&quot;;
 import { ContentSwitcherOption } from &quot;./content-switcher-option.directive&quot;;
 
 @NgModule({
-	declarations: [
-		ContentSwitcher,
-		ContentSwitcherOption
-	],
 	exports: [
 		ContentSwitcher,
 		ContentSwitcherOption
 	],
-	imports: [CommonModule]
+	imports: [
+		CommonModule,
+		ContentSwitcher,
+		ContentSwitcherOption
+	]
 })
-export class ContentSwitcherModule { }
+export class ContentSwitcherModule {}
 </code></pre>
     </div>
 </div>
@@ -365,7 +366,6 @@ export class ContentSwitcherModule { }
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

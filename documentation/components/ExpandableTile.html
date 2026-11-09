@@ -136,8 +136,8 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Get started with importing the module:</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { TilesModule } from &#39;carbon-components-angular&#39;;</code></pre></div><p><a href="../../?path=/story/components-tiles-expandable--basic">See demo</a></p>
+        <p>Get started with importing the component:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { ExpandableTile } from &#39;carbon-components-angular&#39;;</code></pre></div><p><a href="../../?path=/story/components-tiles-expandable--basic">See demo</a></p>
 
     </p>
 
@@ -155,6 +155,10 @@
     <table class="table table-sm table-hover metadata">
         <tbody>
 
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
 
 
 
@@ -172,39 +176,50 @@
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>NgClass</code>
+                            <code>NgStyle</code>
+                            <code>NgTemplateOutlet</code>
+                                <code><a href="../directives/IconDirective.html" target="_self" >IconDirective</a></code>
+                            <code>AsyncPipe</code>
+                </td>
+            </tr>
 
 
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;button
-	*ngIf&#x3D;&quot;!interactive&quot;
-	class&#x3D;&quot;cds--tile cds--tile--expandable&quot;
-	[ngClass]&#x3D;&quot;{
-		&#x27;cds--tile--is-expanded&#x27; : expanded,
-		&#x27;cds--tile--light&#x27;: theme &#x3D;&#x3D;&#x3D; &#x27;light&#x27;
-	}&quot;
-	[ngStyle]&#x3D;&quot;{&#x27;max-height&#x27;: expandedHeight + &#x27;px&#x27;}&quot;
-	type&#x3D;&quot;button&quot;
-	(click)&#x3D;&quot;onClick()&quot;
-	[attr.aria-expanded]&#x3D;&quot;expanded&quot;
-	[attr.title]&#x3D;&quot;(expanded ? collapse.subject : expand.subject) | async&quot;&gt;
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">@if (!interactive) {
+	&lt;button
+		class&#x3D;&quot;cds--tile cds--tile--expandable&quot;
+		[ngClass]&#x3D;&quot;{
+			&#x27;cds--tile--is-expanded&#x27; : expanded,
+			&#x27;cds--tile--light&#x27;: theme &#x3D;&#x3D;&#x3D; &#x27;light&#x27;
+		}&quot;
+		[ngStyle]&#x3D;&quot;{&#x27;max-height&#x27;: expandedHeight + &#x27;px&#x27;}&quot;
+		type&#x3D;&quot;button&quot;
+		(click)&#x3D;&quot;onClick()&quot;
+		[attr.aria-expanded]&#x3D;&quot;expanded&quot;
+		[attr.title]&#x3D;&quot;(expanded ? collapse.subject : expand.subject) | async&quot;&gt;
 		&lt;ng-container *ngTemplateOutlet&#x3D;&quot;expandableTileContent&quot;&gt;&lt;/ng-container&gt;
-&lt;/button&gt;
-
-&lt;div
-	*ngIf&#x3D;&quot;interactive&quot;
-	class&#x3D;&quot;cds--tile cds--tile--expandable cds--tile--expandable--interactive&quot;
-	[ngClass]&#x3D;&quot;{
-		&#x27;cds--tile--is-expanded&#x27; : expanded,
-		&#x27;cds--tile--light&#x27;: theme &#x3D;&#x3D;&#x3D; &#x27;light&#x27;,
-		&#x27;cds--tile--decorator&#x27;: !!decorator,
-		&#x27;cds--tile--decorator-rounded&#x27;: !!decorator &amp;&amp; hasRoundedCorners
-	}&quot;
-	[ngStyle]&#x3D;&quot;{&#x27;max-height&#x27;: expandedHeight + &#x27;px&#x27;}&quot;
-	[attr.title]&#x3D;&quot;(expanded ? collapse.subject : expand.subject) | async&quot;&gt;
-	&lt;ng-container *ngTemplateOutlet&#x3D;&quot;expandableTileContent&quot;&gt;&lt;/ng-container&gt;
-&lt;/div&gt;
+	&lt;/button&gt;
+}
+@if (interactive) {
+	&lt;div
+		class&#x3D;&quot;cds--tile cds--tile--expandable cds--tile--expandable--interactive&quot;
+		[ngClass]&#x3D;&quot;{
+			&#x27;cds--tile--is-expanded&#x27; : expanded,
+			&#x27;cds--tile--light&#x27;: theme &#x3D;&#x3D;&#x3D; &#x27;light&#x27;,
+			&#x27;cds--tile--decorator&#x27;: !!decorator,
+			&#x27;cds--tile--decorator-rounded&#x27;: !!decorator &amp;&amp; hasRoundedCorners
+		}&quot;
+		[ngStyle]&#x3D;&quot;{&#x27;max-height&#x27;: expandedHeight + &#x27;px&#x27;}&quot;
+		[attr.title]&#x3D;&quot;(expanded ? collapse.subject : expand.subject) | async&quot;&gt;
+		&lt;ng-container *ngTemplateOutlet&#x3D;&quot;expandableTileContent&quot;&gt;&lt;/ng-container&gt;
+	&lt;/div&gt;
+}
 
 &lt;ng-template #chevronIcon&gt;
 	&lt;svg cdsIcon&#x3D;&quot;chevron--down&quot; size&#x3D;&quot;16&quot;&gt;&lt;/svg&gt;
@@ -212,26 +227,29 @@
 
 &lt;ng-template #expandableTileContent&gt;
 	&lt;div #container&gt;
-		&lt;ng-container *ngIf&#x3D;&quot;interactive &amp;&amp; decorator&quot;&gt;
+		@if (interactive &amp;&amp; decorator) {
 			&lt;div class&#x3D;&quot;cds--tile--inner-decorator&quot;&gt;
 				&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;decorator&quot;&gt;&lt;/ng-template&gt;
 			&lt;/div&gt;
-		&lt;/ng-container&gt;
+		}
 		&lt;div class&#x3D;&quot;cds--tile-content&quot;&gt;
 			&lt;ng-content select&#x3D;&quot;[cdsAboveFold],[ibmAboveFold],.cds--tile-content__above-the-fold&quot;&gt;&lt;/ng-content&gt;
 		&lt;/div&gt;
-		&lt;div *ngIf&#x3D;&quot;!interactive&quot; class&#x3D;&quot;cds--tile__chevron&quot;&gt;
-			&lt;ng-container *ngTemplateOutlet&#x3D;&quot;chevronIcon&quot;&gt;&lt;/ng-container&gt;
-		&lt;/div&gt;
-		&lt;button
-			*ngIf&#x3D;&quot;interactive&quot;
-			class&#x3D;&quot;cds--tile__chevron cds--tile__chevron--interactive&quot;
-			type&#x3D;&quot;button&quot;
-			(click)&#x3D;&quot;onClick()&quot;
-			[attr.aria-expanded]&#x3D;&quot;expanded&quot;
-			[attr.aria-label]&#x3D;&quot;(expanded ? collapse.subject : expand.subject) | async&quot;&gt;
-			&lt;ng-container *ngTemplateOutlet&#x3D;&quot;chevronIcon&quot;&gt;&lt;/ng-container&gt;
-		&lt;/button&gt;
+		@if (!interactive) {
+			&lt;div class&#x3D;&quot;cds--tile__chevron&quot;&gt;
+				&lt;ng-container *ngTemplateOutlet&#x3D;&quot;chevronIcon&quot;&gt;&lt;/ng-container&gt;
+			&lt;/div&gt;
+		}
+		@if (interactive) {
+			&lt;button
+				class&#x3D;&quot;cds--tile__chevron cds--tile__chevron--interactive&quot;
+				type&#x3D;&quot;button&quot;
+				(click)&#x3D;&quot;onClick()&quot;
+				[attr.aria-expanded]&#x3D;&quot;expanded&quot;
+				[attr.aria-label]&#x3D;&quot;(expanded ? collapse.subject : expand.subject) | async&quot;&gt;
+				&lt;ng-container *ngTemplateOutlet&#x3D;&quot;chevronIcon&quot;&gt;&lt;/ng-container&gt;
+			&lt;/button&gt;
+		}
 		&lt;div class&#x3D;&quot;cds--tile-content&quot;&gt;
 			&lt;ng-content select&#x3D;&quot;[cdsBelowFold],[ibmBelowFold],.cds--tile-content__below-the-fold&quot;&gt;&lt;/ng-content&gt;
 		&lt;/div&gt;
@@ -271,7 +289,15 @@
                                 <a href="#currentExpandedHeight" >currentExpandedHeight</a>
                             </li>
                             <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#element" >element</a>
+                            </li>
+                            <li>
                                 <a href="#expand" >expand</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#i18n" >i18n</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
@@ -365,57 +391,15 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(i18n: <a href="../injectables/I18n.html" target="_self">I18n</a>, element: ElementRef)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/tiles/expandable-tile.component.ts:139</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/tiles/expandable-tile.component.ts:169</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>i18n</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/I18n.html" target="_self" >I18n</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>element</td>
-                                                  
-                                                        <td>
-                                                                    <code>ElementRef</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
 </section>
@@ -438,7 +422,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/tiles/expandable-tile.component.ts:110</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/tiles/expandable-tile.component.ts:134</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -470,7 +454,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/tiles/expandable-tile.component.ts:101</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/tiles/expandable-tile.component.ts:125</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -502,7 +486,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/tiles/expandable-tile.component.ts:115</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/tiles/expandable-tile.component.ts:139</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -534,7 +518,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/tiles/expandable-tile.component.ts:105</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/tiles/expandable-tile.component.ts:129</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -566,7 +550,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/tiles/expandable-tile.component.ts:96</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/tiles/expandable-tile.component.ts:120</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -587,7 +571,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/tiles/expandable-tile.component.ts:127</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/tiles/expandable-tile.component.ts:151</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -630,8 +614,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="143"
-                                    class="link-to-prism">src/tiles/expandable-tile.component.ts:143</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="173"
+                                    class="link-to-prism">src/tiles/expandable-tile.component.ts:173</a></div>
                         </td>
                     </tr>
 
@@ -667,8 +651,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="166"
-                                    class="link-to-prism">src/tiles/expandable-tile.component.ts:166</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="199"
+                                    class="link-to-prism">src/tiles/expandable-tile.component.ts:199</a></div>
                         </td>
                     </tr>
 
@@ -704,8 +688,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="158"
-                                    class="link-to-prism">src/tiles/expandable-tile.component.ts:158</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="188"
+                                    class="link-to-prism">src/tiles/expandable-tile.component.ts:188</a></div>
                         </td>
                     </tr>
 
@@ -745,7 +729,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/tiles/expandable-tile.component.ts:139</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/tiles/expandable-tile.component.ts:163</a></div>
                         </td>
                     </tr>
 
@@ -776,7 +760,33 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/tiles/expandable-tile.component.ts:136</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/tiles/expandable-tile.component.ts:160</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="element"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>element</b></span>
+                        <a href="#element"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ElementRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/tiles/expandable-tile.component.ts:165</a></div>
                         </td>
                     </tr>
 
@@ -801,7 +811,33 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/tiles/expandable-tile.component.ts:138</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/tiles/expandable-tile.component.ts:162</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="i18n"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>i18n</b></span>
+                        <a href="#i18n"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(I18n)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/tiles/expandable-tile.component.ts:114</a></div>
                         </td>
                     </tr>
 
@@ -837,7 +873,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/tiles/expandable-tile.component.ts:133</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/tiles/expandable-tile.component.ts:157</a></div>
                         </td>
                     </tr>
 
@@ -868,7 +904,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/tiles/expandable-tile.component.ts:135</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/tiles/expandable-tile.component.ts:159</a></div>
                         </td>
                     </tr>
 
@@ -898,7 +934,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/tiles/expandable-tile.component.ts:127</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/tiles/expandable-tile.component.ts:151</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -961,7 +997,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">src/tiles/expandable-tile.component.ts:147</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="177" class="link-to-prism">src/tiles/expandable-tile.component.ts:177</a></div>
                                 </td>
                             </tr>
 
@@ -978,10 +1014,20 @@
 	ElementRef,
 	AfterViewInit,
 	ViewChild,
-	TemplateRef
+	ChangeDetectionStrategy,
+	TemplateRef,
+	inject
 } from &quot;@angular/core&quot;;
 import { I18n } from &quot;carbon-components-angular/i18n&quot;;
 import { merge } from &quot;carbon-components-angular/utils&quot;;
+import {
+	NgClass,
+	NgStyle,
+	NgTemplateOutlet,
+	AsyncPipe
+} from &quot;@angular/common&quot;;
+import { IconDirective } from &quot;carbon-components-angular/icon&quot;;
+import { Tile } from &quot;./tile.component&quot;;
 
 export interface ExpandableTileTranslations {
 	EXPAND: string;
@@ -989,10 +1035,10 @@ export interface ExpandableTileTranslations {
 }
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component:
  *
  * &#x60;&#x60;&#x60;typescript
- * import { TilesModule } from &#x27;carbon-components-angular&#x27;;
+ * import { ExpandableTile } from &#x27;carbon-components-angular&#x27;;
  * &#x60;&#x60;&#x60;
  *
  * [See demo](../../?path&#x3D;/story/components-tiles-expandable--basic)
@@ -1000,34 +1046,35 @@ export interface ExpandableTileTranslations {
 @Component({
 	selector: &quot;cds-expandable-tile, ibm-expandable-tile&quot;,
 	template: &#x60;
-		&lt;button
-			*ngIf&#x3D;&quot;!interactive&quot;
-			class&#x3D;&quot;cds--tile cds--tile--expandable&quot;
-			[ngClass]&#x3D;&quot;{
-				&#x27;cds--tile--is-expanded&#x27; : expanded,
-				&#x27;cds--tile--light&#x27;: theme &#x3D;&#x3D;&#x3D; &#x27;light&#x27;
-			}&quot;
-			[ngStyle]&#x3D;&quot;{&#x27;max-height&#x27;: expandedHeight + &#x27;px&#x27;}&quot;
-			type&#x3D;&quot;button&quot;
-			(click)&#x3D;&quot;onClick()&quot;
-			[attr.aria-expanded]&#x3D;&quot;expanded&quot;
-			[attr.title]&#x3D;&quot;(expanded ? collapse.subject : expand.subject) | async&quot;&gt;
+		@if (!interactive) {
+			&lt;button
+				class&#x3D;&quot;cds--tile cds--tile--expandable&quot;
+				[ngClass]&#x3D;&quot;{
+					&#x27;cds--tile--is-expanded&#x27; : expanded,
+					&#x27;cds--tile--light&#x27;: theme &#x3D;&#x3D;&#x3D; &#x27;light&#x27;
+				}&quot;
+				[ngStyle]&#x3D;&quot;{&#x27;max-height&#x27;: expandedHeight + &#x27;px&#x27;}&quot;
+				type&#x3D;&quot;button&quot;
+				(click)&#x3D;&quot;onClick()&quot;
+				[attr.aria-expanded]&#x3D;&quot;expanded&quot;
+				[attr.title]&#x3D;&quot;(expanded ? collapse.subject : expand.subject) | async&quot;&gt;
 				&lt;ng-container *ngTemplateOutlet&#x3D;&quot;expandableTileContent&quot;&gt;&lt;/ng-container&gt;
-		&lt;/button&gt;
-
-		&lt;div
-			*ngIf&#x3D;&quot;interactive&quot;
-			class&#x3D;&quot;cds--tile cds--tile--expandable cds--tile--expandable--interactive&quot;
-			[ngClass]&#x3D;&quot;{
-				&#x27;cds--tile--is-expanded&#x27; : expanded,
-				&#x27;cds--tile--light&#x27;: theme &#x3D;&#x3D;&#x3D; &#x27;light&#x27;,
-				&#x27;cds--tile--decorator&#x27;: !!decorator,
-				&#x27;cds--tile--decorator-rounded&#x27;: !!decorator &amp;&amp; hasRoundedCorners
-			}&quot;
-			[ngStyle]&#x3D;&quot;{&#x27;max-height&#x27;: expandedHeight + &#x27;px&#x27;}&quot;
-			[attr.title]&#x3D;&quot;(expanded ? collapse.subject : expand.subject) | async&quot;&gt;
-			&lt;ng-container *ngTemplateOutlet&#x3D;&quot;expandableTileContent&quot;&gt;&lt;/ng-container&gt;
-		&lt;/div&gt;
+			&lt;/button&gt;
+		}
+		@if (interactive) {
+			&lt;div
+				class&#x3D;&quot;cds--tile cds--tile--expandable cds--tile--expandable--interactive&quot;
+				[ngClass]&#x3D;&quot;{
+					&#x27;cds--tile--is-expanded&#x27; : expanded,
+					&#x27;cds--tile--light&#x27;: theme &#x3D;&#x3D;&#x3D; &#x27;light&#x27;,
+					&#x27;cds--tile--decorator&#x27;: !!decorator,
+					&#x27;cds--tile--decorator-rounded&#x27;: !!decorator &amp;&amp; hasRoundedCorners
+				}&quot;
+				[ngStyle]&#x3D;&quot;{&#x27;max-height&#x27;: expandedHeight + &#x27;px&#x27;}&quot;
+				[attr.title]&#x3D;&quot;(expanded ? collapse.subject : expand.subject) | async&quot;&gt;
+				&lt;ng-container *ngTemplateOutlet&#x3D;&quot;expandableTileContent&quot;&gt;&lt;/ng-container&gt;
+			&lt;/div&gt;
+		}
 
 		&lt;ng-template #chevronIcon&gt;
 			&lt;svg cdsIcon&#x3D;&quot;chevron--down&quot; size&#x3D;&quot;16&quot;&gt;&lt;/svg&gt;
@@ -1035,34 +1082,47 @@ export interface ExpandableTileTranslations {
 
 		&lt;ng-template #expandableTileContent&gt;
 			&lt;div #container&gt;
-				&lt;ng-container *ngIf&#x3D;&quot;interactive &amp;&amp; decorator&quot;&gt;
+				@if (interactive &amp;&amp; decorator) {
 					&lt;div class&#x3D;&quot;cds--tile--inner-decorator&quot;&gt;
 						&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;decorator&quot;&gt;&lt;/ng-template&gt;
 					&lt;/div&gt;
-				&lt;/ng-container&gt;
+				}
 				&lt;div class&#x3D;&quot;cds--tile-content&quot;&gt;
 					&lt;ng-content select&#x3D;&quot;[cdsAboveFold],[ibmAboveFold],.cds--tile-content__above-the-fold&quot;&gt;&lt;/ng-content&gt;
 				&lt;/div&gt;
-				&lt;div *ngIf&#x3D;&quot;!interactive&quot; class&#x3D;&quot;cds--tile__chevron&quot;&gt;
-					&lt;ng-container *ngTemplateOutlet&#x3D;&quot;chevronIcon&quot;&gt;&lt;/ng-container&gt;
-				&lt;/div&gt;
-				&lt;button
-					*ngIf&#x3D;&quot;interactive&quot;
-					class&#x3D;&quot;cds--tile__chevron cds--tile__chevron--interactive&quot;
-					type&#x3D;&quot;button&quot;
-					(click)&#x3D;&quot;onClick()&quot;
-					[attr.aria-expanded]&#x3D;&quot;expanded&quot;
-					[attr.aria-label]&#x3D;&quot;(expanded ? collapse.subject : expand.subject) | async&quot;&gt;
-					&lt;ng-container *ngTemplateOutlet&#x3D;&quot;chevronIcon&quot;&gt;&lt;/ng-container&gt;
-				&lt;/button&gt;
+				@if (!interactive) {
+					&lt;div class&#x3D;&quot;cds--tile__chevron&quot;&gt;
+						&lt;ng-container *ngTemplateOutlet&#x3D;&quot;chevronIcon&quot;&gt;&lt;/ng-container&gt;
+					&lt;/div&gt;
+				}
+				@if (interactive) {
+					&lt;button
+						class&#x3D;&quot;cds--tile__chevron cds--tile__chevron--interactive&quot;
+						type&#x3D;&quot;button&quot;
+						(click)&#x3D;&quot;onClick()&quot;
+						[attr.aria-expanded]&#x3D;&quot;expanded&quot;
+						[attr.aria-label]&#x3D;&quot;(expanded ? collapse.subject : expand.subject) | async&quot;&gt;
+						&lt;ng-container *ngTemplateOutlet&#x3D;&quot;chevronIcon&quot;&gt;&lt;/ng-container&gt;
+					&lt;/button&gt;
+				}
 				&lt;div class&#x3D;&quot;cds--tile-content&quot;&gt;
 					&lt;ng-content select&#x3D;&quot;[cdsBelowFold],[ibmBelowFold],.cds--tile-content__below-the-fold&quot;&gt;&lt;/ng-content&gt;
 				&lt;/div&gt;
 			&lt;/div&gt;
 		&lt;/ng-template&gt;
-	&#x60;
+	&#x60;,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [
+		NgClass,
+		NgStyle,
+		NgTemplateOutlet,
+		IconDirective,
+		AsyncPipe
+	]
 })
 export class ExpandableTile implements AfterViewInit {
+	public i18n &#x3D; inject(I18n);
+
 	/**
 	 * @deprecated since v5 - Use &#x60;cdsLayer&#x60; directive instead
 	 * Set to &#x60;&quot;light&quot;&#x60; to apply the light style
@@ -1112,7 +1172,13 @@ export class ExpandableTile implements AfterViewInit {
 	expand &#x3D; this.i18n.getOverridable(&quot;TILES.EXPAND&quot;);
 	collapse &#x3D; this.i18n.getOverridable(&quot;TILES.COLLAPSE&quot;);
 
-	constructor(protected i18n: I18n, protected element: ElementRef) {}
+	protected element &#x3D; inject(ElementRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngAfterViewInit() {
 		this.updateMaxHeight();
@@ -1133,7 +1199,10 @@ export class ExpandableTile implements AfterViewInit {
 		if (this.expanded) {
 			this.tileMaxHeight &#x3D; this.tileContainer.nativeElement.getBoundingClientRect().height;
 		} else {
-			this.tileMaxHeight &#x3D; this.element.nativeElement.querySelector(&quot;.cds--tile-content__above-the-fold&quot;).getBoundingClientRect().height;
+			// match the projection selectors &amp; class
+			const aboveFold &#x3D; this.element.nativeElement
+				.querySelector(&quot;.cds--tile-content__above-the-fold, [cdsAboveFold], [ibmAboveFold]&quot;);
+			this.tileMaxHeight &#x3D; aboveFold ? aboveFold.getBoundingClientRect().height : 0;
 		}
 	}
 
@@ -1172,7 +1241,7 @@ export class ExpandableTile implements AfterViewInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><button	*ngIf="!interactive"	class="cds--tile cds--tile--expandable"	[ngClass]="{		\'cds--tile--is-expanded\' : expanded,		\'cds--tile--light\': theme === \'light\'	}"	[ngStyle]="{\'max-height\': expandedHeight + \'px\'}"	type="button"	(click)="onClick()"	[attr.aria-expanded]="expanded"	[attr.title]="(expanded ? collapse.subject : expand.subject) | async">		<ng-container *ngTemplateOutlet="expandableTileContent"></ng-container></button><div	*ngIf="interactive"	class="cds--tile cds--tile--expandable cds--tile--expandable--interactive"	[ngClass]="{		\'cds--tile--is-expanded\' : expanded,		\'cds--tile--light\': theme === \'light\',		\'cds--tile--decorator\': !!decorator,		\'cds--tile--decorator-rounded\': !!decorator && hasRoundedCorners	}"	[ngStyle]="{\'max-height\': expandedHeight + \'px\'}"	[attr.title]="(expanded ? collapse.subject : expand.subject) | async">	<ng-container *ngTemplateOutlet="expandableTileContent"></ng-container></div><ng-template #chevronIcon>	<svg cdsIcon="chevron--down" size="16"></svg></ng-template><ng-template #expandableTileContent>	<div #container>		<ng-container *ngIf="interactive && decorator">			<div class="cds--tile--inner-decorator">				<ng-template [ngTemplateOutlet]="decorator"></ng-template>			</div>		</ng-container>		<div class="cds--tile-content">			<ng-content select="[cdsAboveFold],[ibmAboveFold],.cds--tile-content__above-the-fold"></ng-content>		</div>		<div *ngIf="!interactive" class="cds--tile__chevron">			<ng-container *ngTemplateOutlet="chevronIcon"></ng-container>		</div>		<button			*ngIf="interactive"			class="cds--tile__chevron cds--tile__chevron--interactive"			type="button"			(click)="onClick()"			[attr.aria-expanded]="expanded"			[attr.aria-label]="(expanded ? collapse.subject : expand.subject) | async">			<ng-container *ngTemplateOutlet="chevronIcon"></ng-container>		</button>		<div class="cds--tile-content">			<ng-content select="[cdsBelowFold],[ibmBelowFold],.cds--tile-content__below-the-fold"></ng-content>		</div>	</div></ng-template>	</div>'
+        var COMPONENT_TEMPLATE = '<div>@if (!interactive) {	<button		class="cds--tile cds--tile--expandable"		[ngClass]="{			\'cds--tile--is-expanded\' : expanded,			\'cds--tile--light\': theme === \'light\'		}"		[ngStyle]="{\'max-height\': expandedHeight + \'px\'}"		type="button"		(click)="onClick()"		[attr.aria-expanded]="expanded"		[attr.title]="(expanded ? collapse.subject : expand.subject) | async">		<ng-container *ngTemplateOutlet="expandableTileContent"></ng-container>	</button>}@if (interactive) {	<div		class="cds--tile cds--tile--expandable cds--tile--expandable--interactive"		[ngClass]="{			\'cds--tile--is-expanded\' : expanded,			\'cds--tile--light\': theme === \'light\',			\'cds--tile--decorator\': !!decorator,			\'cds--tile--decorator-rounded\': !!decorator && hasRoundedCorners		}"		[ngStyle]="{\'max-height\': expandedHeight + \'px\'}"		[attr.title]="(expanded ? collapse.subject : expand.subject) | async">		<ng-container *ngTemplateOutlet="expandableTileContent"></ng-container>	</div>}<ng-template #chevronIcon>	<svg cdsIcon="chevron--down" size="16"></svg></ng-template><ng-template #expandableTileContent>	<div #container>		@if (interactive && decorator) {			<div class="cds--tile--inner-decorator">				<ng-template [ngTemplateOutlet]="decorator"></ng-template>			</div>		}		<div class="cds--tile-content">			<ng-content select="[cdsAboveFold],[ibmAboveFold],.cds--tile-content__above-the-fold"></ng-content>		</div>		@if (!interactive) {			<div class="cds--tile__chevron">				<ng-container *ngTemplateOutlet="chevronIcon"></ng-container>			</div>		}		@if (interactive) {			<button				class="cds--tile__chevron cds--tile__chevron--interactive"				type="button"				(click)="onClick()"				[attr.aria-expanded]="expanded"				[attr.aria-label]="(expanded ? collapse.subject : expand.subject) | async">				<ng-container *ngTemplateOutlet="chevronIcon"></ng-container>			</button>		}		<div class="cds--tile-content">			<ng-content select="[cdsBelowFold],[ibmBelowFold],.cds--tile-content__below-the-fold"></ng-content>		</div>	</div></ng-template>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AILabelComponent', 'selector': 'cds-ai-label, ibm-ai-label'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'CheckboxGroup', 'selector': 'cds-checkbox-group, ibm-checkbox-group'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ComboButtonComponent', 'selector': 'cds-combo-button'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-menu, cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-menu-divider, cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-menu-group, cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-menu-item, cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'IconTab', 'selector': 'cds-icon-tab, ibm-icon-tab'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'MenuButtonComponent', 'selector': 'cds-menu-button'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonIcon', 'selector': 'cds-skeleton-icon, ibm-skeleton-icon'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderComponent', 'selector': 'cds-tab-header, ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaderGroupVertical', 'selector': 'cds-tab-header-group-vertical, ibm-tab-header-group-vertical'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'TabHeadersVertical', 'selector': 'cds-tab-headers-vertical, ibm-tab-headers-vertical'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeaderDecorator', 'selector': 'cds-table-header-decorator, ibm-table-header-decorator'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'TabsVertical', 'selector': 'cds-tabs-vertical, ibm-tabs-vertical'},{'name': 'TabsVerticalGrouped', 'selector': 'cds-tabs-vertical-grouped, ibm-tabs-vertical-grouped'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TagOperationalComponent', 'selector': 'cds-tag-operational, ibm-tag-operational'},{'name': 'TagSelectableComponent', 'selector': 'cds-tag-selectable, ibm-tag-selectable'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'AILabelActions', 'selector': '[cdsAILabelActions], [ibmAILabelActions]'},{'name': 'AILabelContent', 'selector': '[cdsAILabelContent], [ibmAILabelContent]'},{'name': 'AILabelPopoverDirective', 'selector': '[cdsAILabelPopover]'},{'name': 'AspectRatioDirective', 'selector': '[cdsAspectRatio], [ibmAspectRatio]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ClickableTileIconDirective', 'selector': '[cdsClickableTileIcon], [ibmClickableTileIcon]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'LinkIconDirective', 'selector': '[ibmLinkIcon], [cdsLinkIcon]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TabHeaderBase', 'selector': ''},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TagIconDirective', 'selector': '[cdsTagIcon], [ibmTagIcon]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'ExpandableTile'};
@@ -1249,7 +1318,6 @@ export class ExpandableTile implements AfterViewInit {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

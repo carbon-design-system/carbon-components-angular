@@ -22,61 +22,57 @@
 <text text-anchor="start" x="429.73" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Exports</text>
 <g id="clust1" class="cluster">
 <title>cluster_ProgressBarModule</title>
-<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="136,-70 136,-268 360,-268 360,-70 136,-70"/>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="134.5,-70 134.5,-268 361.5,-268 361.5,-70 134.5,-70"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_ProgressBarModule_declarations</title>
-<polygon fill="none" stroke="black" points="252,-78 252,-130 352,-130 352,-78 252,-78"/>
-</g>
-<g id="clust5" class="cluster">
-<title>cluster_ProgressBarModule_exports</title>
-<polygon fill="none" stroke="black" points="196,-208 196,-260 300,-260 300,-208 196,-208"/>
+<g id="clust3" class="cluster">
+<title>cluster_ProgressBarModule_imports</title>
+<polygon fill="none" stroke="black" points="142.5,-78 142.5,-130 353.5,-130 353.5,-78 142.5,-78"/>
 </g>
 <g id="clust4" class="cluster">
-<title>cluster_ProgressBarModule_imports</title>
-<polygon fill="none" stroke="black" points="144,-78 144,-130 244,-130 244,-78 144,-78"/>
+<title>cluster_ProgressBarModule_exports</title>
+<polygon fill="none" stroke="black" points="195.5,-208 195.5,-260 299.5,-260 299.5,-208 195.5,-208"/>
 </g>
-<!-- ProgressBar -->
+<!-- IconDirective -->
 <g id="node1" class="node">
-<title>ProgressBar</title>
-<polygon fill="#ffffb3" stroke="black" points="344.42,-122 259.58,-122 259.58,-86 344.42,-86 344.42,-122"/>
-<text text-anchor="middle" x="302" y="-99.8" font-family="Times,serif" font-size="14.00">ProgressBar</text>
+<title>IconDirective</title>
+<polygon fill="#8dd3c7" stroke="black" points="345.96,-122 342.96,-126 321.96,-126 318.96,-122 253.04,-122 253.04,-86 345.96,-86 345.96,-122"/>
+<text text-anchor="middle" x="299.5" y="-99.8" font-family="Times,serif" font-size="14.00">IconDirective</text>
 </g>
 <!-- ProgressBarModule -->
-<g id="node2" class="node">
+<g id="node3" class="node">
 <title>ProgressBarModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="311.97,-187 308.97,-191 287.97,-191 284.97,-187 184.03,-187 184.03,-151 311.97,-151 311.97,-187"/>
-<text text-anchor="middle" x="248" y="-164.8" font-family="Times,serif" font-size="14.00">ProgressBarModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="311.47,-187 308.47,-191 287.47,-191 284.47,-187 183.53,-187 183.53,-151 311.47,-151 311.47,-187"/>
+<text text-anchor="middle" x="247.5" y="-164.8" font-family="Times,serif" font-size="14.00">ProgressBarModule</text>
+</g>
+<!-- IconDirective&#45;&gt;ProgressBarModule -->
+<g id="edge1" class="edge">
+<title>IconDirective&#45;&gt;ProgressBarModule</title>
+<path fill="none" stroke="black" d="M282.25,-122.11C282.25,-122.11 282.25,-140.99 282.25,-140.99"/>
+<polygon fill="black" stroke="black" points="278.75,-140.99 282.25,-150.99 285.75,-140.99 278.75,-140.99"/>
+</g>
+<!-- ProgressBar -->
+<g id="node2" class="node">
+<title>ProgressBar</title>
+<polygon fill="#8dd3c7" stroke="black" points="234.92,-122 231.92,-126 210.92,-126 207.92,-122 150.08,-122 150.08,-86 234.92,-86 234.92,-122"/>
+<text text-anchor="middle" x="192.5" y="-99.8" font-family="Times,serif" font-size="14.00">ProgressBar</text>
 </g>
 <!-- ProgressBar&#45;&gt;ProgressBarModule -->
-<g id="edge1" class="edge">
+<g id="edge2" class="edge">
 <title>ProgressBar&#45;&gt;ProgressBarModule</title>
-<path fill="none" stroke="black" d="M285.89,-122.11C285.89,-122.11 285.89,-140.99 285.89,-140.99"/>
-<polygon fill="black" stroke="black" points="282.39,-140.99 285.89,-150.99 289.39,-140.99 282.39,-140.99"/>
+<path fill="none" stroke="black" d="M209.11,-122.11C209.11,-122.11 209.11,-140.99 209.11,-140.99"/>
+<polygon fill="black" stroke="black" points="205.61,-140.99 209.11,-150.99 212.61,-140.99 205.61,-140.99"/>
 </g>
 <!-- ProgressBar  -->
 <g id="node4" class="node">
 <title>ProgressBar </title>
-<polygon fill="#fb8072" stroke="black" points="291.92,-252 204.08,-252 204.08,-216 291.92,-216 291.92,-252"/>
-<text text-anchor="middle" x="248" y="-229.8" font-family="Times,serif" font-size="14.00">ProgressBar </text>
+<polygon fill="#fb8072" stroke="black" points="291.42,-252 203.58,-252 203.58,-216 291.42,-216 291.42,-252"/>
+<text text-anchor="middle" x="247.5" y="-229.8" font-family="Times,serif" font-size="14.00">ProgressBar </text>
 </g>
 <!-- ProgressBarModule&#45;&gt;ProgressBar  -->
 <g id="edge3" class="edge">
 <title>ProgressBarModule&#45;&gt;ProgressBar </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M248,-187.11C248,-187.11 248,-205.99 248,-205.99"/>
-<polygon fill="black" stroke="black" points="244.5,-205.99 248,-215.99 251.5,-205.99 244.5,-205.99"/>
-</g>
-<!-- IconModule -->
-<g id="node3" class="node">
-<title>IconModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="236.43,-122 233.43,-126 212.43,-126 209.43,-122 151.57,-122 151.57,-86 236.43,-86 236.43,-122"/>
-<text text-anchor="middle" x="194" y="-99.8" font-family="Times,serif" font-size="14.00">IconModule</text>
-</g>
-<!-- IconModule&#45;&gt;ProgressBarModule -->
-<g id="edge2" class="edge">
-<title>IconModule&#45;&gt;ProgressBarModule</title>
-<path fill="none" stroke="black" d="M210.11,-122.11C210.11,-122.11 210.11,-140.99 210.11,-140.99"/>
-<polygon fill="black" stroke="black" points="206.61,-140.99 210.11,-150.99 213.61,-140.99 206.61,-140.99"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M247.5,-187.11C247.5,-187.11 247.5,-205.99 247.5,-205.99"/>
+<polygon fill="black" stroke="black" points="244,-205.99 247.5,-215.99 251,-205.99 244,-205.99"/>
 </g>
 </g>
 </svg>

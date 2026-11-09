@@ -139,7 +139,7 @@
                 <h3>Extends</h3>
             </p>
             <p class="comment">
-                            <code><a href="../directives/Link.html" target="_self" >RouterLinkWithHref</a></code>
+                            <code><a href="../directives/Link.html" target="_self" >RouterLink</a></code>
             </p>
 
             <p class="comment">
@@ -160,6 +160,10 @@
                         <td class="col-md-9"><code>[routerLink]</code></td>
                     </tr>
 
+                    <tr>
+                        <td class="col-md-3">Standalone</td>
+                        <td class="col-md-9"><code>true</code></td>
+                    </tr>
 
 
 
@@ -228,7 +232,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/ui-shell/sidenav/routerlink-extended.directive.ts:11</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/ui-shell/sidenav/routerlink-extended.directive.ts:16</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -262,8 +266,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="13"
-                                    class="link-to-prism">src/ui-shell/sidenav/routerlink-extended.directive.ts:13</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="18"
+                                    class="link-to-prism">src/ui-shell/sidenav/routerlink-extended.directive.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -316,16 +320,21 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, Input, OnChanges, SimpleChanges } from &quot;@angular/core&quot;;
-import { NavigationExtras, RouterLinkWithHref } from &quot;@angular/router&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+	Directive,
+	Input,
+	OnChanges,
+	SimpleChanges
+} from &quot;@angular/core&quot;;
+import { NavigationExtras, RouterLink } from &quot;@angular/router&quot;;
 import keys from &quot;lodash-es/keys&quot;;
 
 @Directive({
-	// tslint:disable-next-line
-	selector: &quot;[routerLink]&quot;
+	// eslint-disable-next-line @angular-eslint/directive-selector
+	selector: &quot;[routerLink]&quot;,
+	standalone: true
 })
-export class RouterLinkExtendedDirective extends RouterLinkWithHref implements OnChanges {
-	// TODO: Change RouterLinkWithHref with RouterLink from angular 15 since RouterLinkWithHref has been deprecated
+export class RouterLinkExtendedDirective extends RouterLink implements OnChanges {
 	@Input() routeExtras: NavigationExtras;
 
 	ngOnChanges(changes: SimpleChanges): void {
@@ -408,7 +417,6 @@ export class RouterLinkExtendedDirective extends RouterLinkWithHref implements O
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

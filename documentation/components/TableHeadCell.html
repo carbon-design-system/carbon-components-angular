@@ -164,97 +164,127 @@
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>NgClass</code>
+                            <code>NgTemplateOutlet</code>
+                                <code><a href="../directives/TableHeadCellLabel.html" target="_self" >TableHeadCellLabel</a></code>
+                                <code><a href="../directives/IconDirective.html" target="_self" >IconDirective</a></code>
+                            <code>AsyncPipe</code>
+                </td>
+            </tr>
 
 
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;button
-	class&#x3D;&quot;cds--table-sort&quot;
-	*ngIf&#x3D;&quot;sortable &amp;&amp; this.sort.observers.length &gt; 0 &amp;&amp; column.sortable&quot;
-	[attr.aria-label]&#x3D;&quot;(column.sorted &amp;&amp; column.ascending ? getSortDescendingLabel() : getSortAscendingLabel()) | async&quot;
-	aria-live&#x3D;&quot;polite&quot;
-	[ngClass]&#x3D;&quot;{
-		&#x27;cds--table-sort--active&#x27;: column.sorted,
-		&#x27;cds--table-sort--descending&#x27;: column.ascending
-	}&quot;
-	(click)&#x3D;&quot;onClick($event)&quot;&gt;
-	&lt;span
-		*ngIf&#x3D;&quot;headerAILabelDecoratorLayout&quot;
-		class&#x3D;&quot;cds--table-sort__flex&quot;
-		[title]&#x3D;&quot;column.title&quot;
-		tabindex&#x3D;&quot;-1&quot;&gt;
-		&lt;div cdsTableHeadCellLabel&gt;{{ getHeaderLabelText() }}&lt;/div&gt;
-		&lt;svg *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;cds--table-sort__icon&quot; cdsIcon&#x3D;&quot;arrow--down&quot;&gt;&lt;/svg&gt;
-		&lt;svg *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;cds--table-sort__icon-unsorted&quot; cdsIcon&#x3D;&quot;arrows--vertical&quot;&gt;&lt;/svg&gt;
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">@if (sortable &amp;&amp; this.sort.observers.length &gt; 0 &amp;&amp; column.sortable) {
+	&lt;button
+		class&#x3D;&quot;cds--table-sort&quot;
+		[attr.aria-label]&#x3D;&quot;(column.sorted &amp;&amp; column.ascending ? getSortDescendingLabel() : getSortAscendingLabel()) | async&quot;
+		aria-live&#x3D;&quot;polite&quot;
+		[ngClass]&#x3D;&quot;{
+			&#x27;cds--table-sort--active&#x27;: column.sorted,
+			&#x27;cds--table-sort--descending&#x27;: column.ascending
+		}&quot;
+		(click)&#x3D;&quot;onClick($event)&quot;&gt;
+		@if (headerAILabelDecoratorLayout) {
+			&lt;span
+				class&#x3D;&quot;cds--table-sort__flex&quot;
+				[title]&#x3D;&quot;column.title&quot;
+				tabindex&#x3D;&quot;-1&quot;&gt;
+				&lt;div cdsTableHeadCellLabel&gt;{{ getHeaderLabelText() }}&lt;/div&gt;
+				@if (!skeleton) {
+					&lt;svg class&#x3D;&quot;cds--table-sort__icon&quot; cdsIcon&#x3D;&quot;arrow--down&quot;&gt;&lt;/svg&gt;
+				}
+				@if (!skeleton) {
+					&lt;svg class&#x3D;&quot;cds--table-sort__icon-unsorted&quot; cdsIcon&#x3D;&quot;arrows--vertical&quot;&gt;&lt;/svg&gt;
+				}
+				&lt;div
+					#decoratorInner
+					class&#x3D;&quot;cds--table-header-label--decorator-inner&quot;
+					(click)&#x3D;&quot;onDecoratorRegionClick($event)&quot;&gt;
+					&lt;ng-template
+						[ngTemplateOutlet]&#x3D;&quot;column.template&quot;
+						[ngTemplateOutletContext]&#x3D;&quot;{data: column.data}&quot;&gt;
+					&lt;/ng-template&gt;
+				&lt;/div&gt;
+			&lt;/span&gt;
+		}
+		@if (!headerAILabelDecoratorLayout) {
+			&lt;span
+				class&#x3D;&quot;cds--table-sort__flex&quot;
+				[title]&#x3D;&quot;column.title&quot;
+				tabindex&#x3D;&quot;-1&quot;&gt;
+				@if (!skeleton &amp;&amp; !column.template) {
+					&lt;div
+						cdsTableHeadCellLabel
+						[class.cds--table-header-label--ai-label]&#x3D;&quot;column.hasAILabelHeader&quot;
+						[class.cds--table-header-label--slug]&#x3D;&quot;column.hasAILabelHeader&quot;&gt;
+						{{column.data}}
+					&lt;/div&gt;
+				}
+				@if (!skeleton &amp;&amp; column.template) {
+					&lt;div
+						cdsTableHeadCellLabel
+						[class.cds--table-header-label--ai-label]&#x3D;&quot;column.hasAILabelHeader&quot;
+						[class.cds--table-header-label--slug]&#x3D;&quot;column.hasAILabelHeader&quot;&gt;
+						&lt;ng-template
+							[ngTemplateOutlet]&#x3D;&quot;column.template&quot;
+							[ngTemplateOutletContext]&#x3D;&quot;{data: column.data}&quot;&gt;
+						&lt;/ng-template&gt;
+					&lt;/div&gt;
+				}
+				@if (!skeleton) {
+					&lt;svg class&#x3D;&quot;cds--table-sort__icon&quot; cdsIcon&#x3D;&quot;arrow--down&quot;&gt;&lt;/svg&gt;
+				}
+				@if (!skeleton) {
+					&lt;svg class&#x3D;&quot;cds--table-sort__icon-unsorted&quot; cdsIcon&#x3D;&quot;arrows--vertical&quot;&gt;&lt;/svg&gt;
+				}
+			&lt;/span&gt;
+		}
+	&lt;/button&gt;
+}
+@if (headerAILabelDecoratorLayout &amp;&amp; ((!skeleton &amp;&amp; sort.observers.length &#x3D;&#x3D;&#x3D; 0) || (sort.observers.length &gt; 0 &amp;&amp; !column.sortable) || !sortable)) {
 	&lt;div
-		#decoratorInner
-		class&#x3D;&quot;cds--table-header-label--decorator-inner&quot;
-		(click)&#x3D;&quot;onDecoratorRegionClick($event)&quot;&gt;
-		&lt;ng-template
-			[ngTemplateOutlet]&#x3D;&quot;column.template&quot;
-			[ngTemplateOutletContext]&#x3D;&quot;{data: column.data}&quot;&gt;
-		&lt;/ng-template&gt;
-	&lt;/div&gt;
-	&lt;/span&gt;
-	&lt;span
-		*ngIf&#x3D;&quot;!headerAILabelDecoratorLayout&quot;
-		class&#x3D;&quot;cds--table-sort__flex&quot;
-		[title]&#x3D;&quot;column.title&quot;
-		tabindex&#x3D;&quot;-1&quot;&gt;
-		&lt;div
-			*ngIf&#x3D;&quot;!skeleton &amp;&amp; !column.template&quot;
-			cdsTableHeadCellLabel
-			[class.cds--table-header-label--ai-label]&#x3D;&quot;column.hasAILabelHeader&quot;
-			[class.cds--table-header-label--slug]&#x3D;&quot;column.hasAILabelHeader&quot;&gt;
-			{{column.data}}
-		&lt;/div&gt;
-		&lt;div
-			*ngIf&#x3D;&quot;!skeleton &amp;&amp; column.template&quot;
-			cdsTableHeadCellLabel
-			[class.cds--table-header-label--ai-label]&#x3D;&quot;column.hasAILabelHeader&quot;
-			[class.cds--table-header-label--slug]&#x3D;&quot;column.hasAILabelHeader&quot;&gt;
+		class&#x3D;&quot;cds--table-header-label&quot;
+		[ngClass]&#x3D;&quot;{
+			&#x27;cds--table-header-label--ai-label&#x27;: column.hasAILabelHeader,
+			&#x27;cds--table-header-label--slug&#x27;: column.hasAILabelHeader,
+			&#x27;cds--table-header-label--decorator&#x27;: column.hasAILabelHeader
+		}&quot;&gt;
+		@if (getHeaderLabelText()) {
+			&lt;span&gt;{{ getHeaderLabelText() }}&lt;/span&gt;
+		}
+		&lt;div class&#x3D;&quot;cds--table-header-label--decorator-inner&quot;&gt;
 			&lt;ng-template
 				[ngTemplateOutlet]&#x3D;&quot;column.template&quot;
 				[ngTemplateOutletContext]&#x3D;&quot;{data: column.data}&quot;&gt;
 			&lt;/ng-template&gt;
 		&lt;/div&gt;
-		&lt;svg *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;cds--table-sort__icon&quot; cdsIcon&#x3D;&quot;arrow--down&quot;&gt;&lt;/svg&gt;
-		&lt;svg *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;cds--table-sort__icon-unsorted&quot; cdsIcon&#x3D;&quot;arrows--vertical&quot;&gt;&lt;/svg&gt;
-	&lt;/span&gt;
-&lt;/button&gt;
-&lt;div
-	*ngIf&#x3D;&quot;headerAILabelDecoratorLayout &amp;&amp; ((!skeleton &amp;&amp; sort.observers.length &#x3D;&#x3D;&#x3D; 0) || (sort.observers.length &gt; 0 &amp;&amp; !column.sortable) || !sortable)&quot;
-	class&#x3D;&quot;cds--table-header-label&quot;
-	[ngClass]&#x3D;&quot;{
-		&#x27;cds--table-header-label--ai-label&#x27;: column.hasAILabelHeader,
-		&#x27;cds--table-header-label--slug&#x27;: column.hasAILabelHeader,
-		&#x27;cds--table-header-label--decorator&#x27;: column.hasAILabelHeader
-	}&quot;&gt;
-	&lt;span *ngIf&#x3D;&quot;getHeaderLabelText()&quot;&gt;{{ getHeaderLabelText() }}&lt;/span&gt;
-	&lt;div class&#x3D;&quot;cds--table-header-label--decorator-inner&quot;&gt;
+	&lt;/div&gt;
+}
+@if (!headerAILabelDecoratorLayout &amp;&amp; ((!skeleton &amp;&amp; sort.observers.length &#x3D;&#x3D;&#x3D; 0) || (sort.observers.length &gt; 0 &amp;&amp; !column.sortable) || !sortable)) {
+	&lt;div
+		class&#x3D;&quot;cds--table-header-label&quot;
+		[ngClass]&#x3D;&quot;{
+			&#x27;cds--table-header-label--ai-label&#x27;: column.hasAILabelHeader,
+			&#x27;cds--table-header-label--slug&#x27;: column.hasAILabelHeader
+		}&quot;&gt;
+		@if (!column.template) {
+			&lt;span [title]&#x3D;&quot;column.data&quot;&gt;
+				@if (!skeleton) {
+					{{column.data}}
+				}
+			&lt;/span&gt;
+		}
 		&lt;ng-template
 			[ngTemplateOutlet]&#x3D;&quot;column.template&quot;
 			[ngTemplateOutletContext]&#x3D;&quot;{data: column.data}&quot;&gt;
 		&lt;/ng-template&gt;
 	&lt;/div&gt;
-&lt;/div&gt;
-&lt;div
-	class&#x3D;&quot;cds--table-header-label&quot;
-	*ngIf&#x3D;&quot;!headerAILabelDecoratorLayout &amp;&amp; ((!skeleton &amp;&amp; sort.observers.length &#x3D;&#x3D;&#x3D; 0) || (sort.observers.length &gt; 0 &amp;&amp; !column.sortable) || !sortable)&quot;
-	[ngClass]&#x3D;&quot;{
-		&#x27;cds--table-header-label--ai-label&#x27;: column.hasAILabelHeader,
-		&#x27;cds--table-header-label--slug&#x27;: column.hasAILabelHeader
-	}&quot;&gt;
-	&lt;span *ngIf&#x3D;&quot;!column.template&quot; [title]&#x3D;&quot;column.data&quot;&gt;
-		&lt;ng-container *ngIf&#x3D;&quot;!skeleton&quot;&gt;
-			{{column.data}}
-		&lt;/ng-container&gt;
-	&lt;/span&gt;
-	&lt;ng-template
-		[ngTemplateOutlet]&#x3D;&quot;column.template&quot; [ngTemplateOutletContext]&#x3D;&quot;{data: column.data}&quot;&gt;
-	&lt;/ng-template&gt;
-&lt;/div&gt;
+}
 	</code></pre></td>
             </tr>
 
@@ -297,6 +327,10 @@
                             <li>
                                     <span class="modifier"></span>
                                 <a href="#decoratorInnerRef" >decoratorInnerRef</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#i18n" >i18n</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
@@ -452,45 +486,15 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(i18n: <a href="../injectables/I18n.html" target="_self">I18n</a>)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/table/head/table-head-cell.component.ts:172</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="209" class="link-to-prism">src/table/head/table-head-cell.component.ts:209</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>i18n</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/I18n.html" target="_self" >I18n</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
 </section>
@@ -513,7 +517,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/table/head/table-head-cell.component.ts:109</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/table/head/table-head-cell.component.ts:140</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -534,7 +538,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/table/head/table-head-cell.component.ts:134</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/table/head/table-head-cell.component.ts:165</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -560,7 +564,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/table/head/table-head-cell.component.ts:111</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/table/head/table-head-cell.component.ts:142</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -586,7 +590,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/table/head/table-head-cell.component.ts:113</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/table/head/table-head-cell.component.ts:144</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -607,7 +611,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/table/head/table-head-cell.component.ts:125</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/table/head/table-head-cell.component.ts:156</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -628,7 +632,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/table/head/table-head-cell.component.ts:116</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">src/table/head/table-head-cell.component.ts:147</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -652,7 +656,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/table/head/table-head-cell.component.ts:145</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="176" class="link-to-prism">src/table/head/table-head-cell.component.ts:176</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -684,7 +688,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/table/head/table-head-cell.component.ts:151</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="182" class="link-to-prism">src/table/head/table-head-cell.component.ts:182</a></div>
                         </td>
                     </tr>
 
@@ -710,7 +714,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="155" class="link-to-prism">src/table/head/table-head-cell.component.ts:155</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="186" class="link-to-prism">src/table/head/table-head-cell.component.ts:186</a></div>
                         </td>
                     </tr>
 
@@ -736,7 +740,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/table/head/table-head-cell.component.ts:159</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="190" class="link-to-prism">src/table/head/table-head-cell.component.ts:190</a></div>
                         </td>
                     </tr>
 
@@ -767,7 +771,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/table/head/table-head-cell.component.ts:149</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">src/table/head/table-head-cell.component.ts:180</a></div>
                         </td>
                     </tr>
 
@@ -802,8 +806,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="183"
-                                    class="link-to-prism">src/table/head/table-head-cell.component.ts:183</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="220"
+                                    class="link-to-prism">src/table/head/table-head-cell.component.ts:220</a></div>
                         </td>
                     </tr>
 
@@ -841,8 +845,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="201"
-                                    class="link-to-prism">src/table/head/table-head-cell.component.ts:201</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="238"
+                                    class="link-to-prism">src/table/head/table-head-cell.component.ts:238</a></div>
                         </td>
                     </tr>
 
@@ -878,8 +882,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="197"
-                                    class="link-to-prism">src/table/head/table-head-cell.component.ts:197</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="234"
+                                    class="link-to-prism">src/table/head/table-head-cell.component.ts:234</a></div>
                         </td>
                     </tr>
 
@@ -915,8 +919,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="176"
-                                    class="link-to-prism">src/table/head/table-head-cell.component.ts:176</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="213"
+                                    class="link-to-prism">src/table/head/table-head-cell.component.ts:213</a></div>
                         </td>
                     </tr>
 
@@ -952,8 +956,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="213"
-                                    class="link-to-prism">src/table/head/table-head-cell.component.ts:213</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="250"
+                                    class="link-to-prism">src/table/head/table-head-cell.component.ts:250</a></div>
                         </td>
                     </tr>
 
@@ -1019,8 +1023,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="208"
-                                    class="link-to-prism">src/table/head/table-head-cell.component.ts:208</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="245"
+                                    class="link-to-prism">src/table/head/table-head-cell.component.ts:245</a></div>
                         </td>
                     </tr>
 
@@ -1090,8 +1094,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="226"
-                                    class="link-to-prism">src/table/head/table-head-cell.component.ts:226</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="263"
+                                    class="link-to-prism">src/table/head/table-head-cell.component.ts:263</a></div>
                         </td>
                     </tr>
 
@@ -1132,7 +1136,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/table/head/table-head-cell.component.ts:172</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="205" class="link-to-prism">src/table/head/table-head-cell.component.ts:205</a></div>
                         </td>
                     </tr>
 
@@ -1158,7 +1162,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/table/head/table-head-cell.component.ts:171</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/table/head/table-head-cell.component.ts:204</a></div>
                         </td>
                     </tr>
 
@@ -1184,7 +1188,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/table/head/table-head-cell.component.ts:170</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="203" class="link-to-prism">src/table/head/table-head-cell.component.ts:203</a></div>
                         </td>
                     </tr>
 
@@ -1220,7 +1224,33 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">src/table/head/table-head-cell.component.ts:147</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/table/head/table-head-cell.component.ts:178</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="i18n"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>i18n</b></span>
+                        <a href="#i18n"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(I18n)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="201" class="link-to-prism">src/table/head/table-head-cell.component.ts:201</a></div>
                         </td>
                     </tr>
 
@@ -1255,7 +1285,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/table/head/table-head-cell.component.ts:149</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">src/table/head/table-head-cell.component.ts:180</a></div>
                         </td>
                     </tr>
 
@@ -1284,7 +1314,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/table/head/table-head-cell.component.ts:120</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/table/head/table-head-cell.component.ts:151</a></div>
                                 </td>
                             </tr>
 
@@ -1295,7 +1325,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/table/head/table-head-cell.component.ts:116</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">src/table/head/table-head-cell.component.ts:147</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1353,7 +1383,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/table/head/table-head-cell.component.ts:129</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/table/head/table-head-cell.component.ts:160</a></div>
                                 </td>
                             </tr>
 
@@ -1364,7 +1394,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/table/head/table-head-cell.component.ts:125</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/table/head/table-head-cell.component.ts:156</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1422,7 +1452,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/table/head/table-head-cell.component.ts:138</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/table/head/table-head-cell.component.ts:169</a></div>
                                 </td>
                             </tr>
 
@@ -1433,7 +1463,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/table/head/table-head-cell.component.ts:134</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">src/table/head/table-head-cell.component.ts:165</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1491,7 +1521,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/table/head/table-head-cell.component.ts:151</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="182" class="link-to-prism">src/table/head/table-head-cell.component.ts:182</a></div>
                                 </td>
                             </tr>
 
@@ -1513,7 +1543,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="155" class="link-to-prism">src/table/head/table-head-cell.component.ts:155</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="186" class="link-to-prism">src/table/head/table-head-cell.component.ts:186</a></div>
                                 </td>
                             </tr>
 
@@ -1535,7 +1565,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/table/head/table-head-cell.component.ts:159</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="190" class="link-to-prism">src/table/head/table-head-cell.component.ts:190</a></div>
                                 </td>
                             </tr>
 
@@ -1557,7 +1587,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="166" class="link-to-prism">src/table/head/table-head-cell.component.ts:166</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="197" class="link-to-prism">src/table/head/table-head-cell.component.ts:197</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1587,104 +1617,135 @@
 	EventEmitter,
 	HostBinding,
 	OnChanges,
-	ViewChild
+	ViewChild,
+	inject
 } from &quot;@angular/core&quot;;
 import { Observable, OperatorFunction } from &quot;rxjs&quot;;
-import { I18n, Overridable } from &quot;carbon-components-angular/i18n&quot;;
+import { I18n } from &quot;carbon-components-angular/i18n&quot;;
 import { map } from &quot;rxjs/operators&quot;;
 import { TableHeaderItem } from &quot;../table-header-item.class&quot;;
+import { NgClass, NgTemplateOutlet, AsyncPipe } from &quot;@angular/common&quot;;
+import { TableHeadCellLabel } from &quot;./table-head-cell-label.directive&quot;;
+import { IconDirective } from &quot;carbon-components-angular/icon&quot;;
 
 @Component({
-	// tslint:disable-next-line: component-selector
+	// eslint-disable-next-line @angular-eslint/component-selector
 	selector: &quot;[cdsTableHeadCell], [ibmTableHeadCell]&quot;,
 	template: &#x60;
-		&lt;button
-			class&#x3D;&quot;cds--table-sort&quot;
-			*ngIf&#x3D;&quot;sortable &amp;&amp; this.sort.observers.length &gt; 0 &amp;&amp; column.sortable&quot;
-			[attr.aria-label]&#x3D;&quot;(column.sorted &amp;&amp; column.ascending ? getSortDescendingLabel() : getSortAscendingLabel()) | async&quot;
-			aria-live&#x3D;&quot;polite&quot;
-			[ngClass]&#x3D;&quot;{
-				&#x27;cds--table-sort--active&#x27;: column.sorted,
-				&#x27;cds--table-sort--descending&#x27;: column.ascending
-			}&quot;
-			(click)&#x3D;&quot;onClick($event)&quot;&gt;
-			&lt;span
-				*ngIf&#x3D;&quot;headerAILabelDecoratorLayout&quot;
-				class&#x3D;&quot;cds--table-sort__flex&quot;
-				[title]&#x3D;&quot;column.title&quot;
-				tabindex&#x3D;&quot;-1&quot;&gt;
-				&lt;div cdsTableHeadCellLabel&gt;{{ getHeaderLabelText() }}&lt;/div&gt;
-				&lt;svg *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;cds--table-sort__icon&quot; cdsIcon&#x3D;&quot;arrow--down&quot;&gt;&lt;/svg&gt;
-				&lt;svg *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;cds--table-sort__icon-unsorted&quot; cdsIcon&#x3D;&quot;arrows--vertical&quot;&gt;&lt;/svg&gt;
+		@if (sortable &amp;&amp; this.sort.observers.length &gt; 0 &amp;&amp; column.sortable) {
+			&lt;button
+				class&#x3D;&quot;cds--table-sort&quot;
+				[attr.aria-label]&#x3D;&quot;(column.sorted &amp;&amp; column.ascending ? getSortDescendingLabel() : getSortAscendingLabel()) | async&quot;
+				aria-live&#x3D;&quot;polite&quot;
+				[ngClass]&#x3D;&quot;{
+					&#x27;cds--table-sort--active&#x27;: column.sorted,
+					&#x27;cds--table-sort--descending&#x27;: column.ascending
+				}&quot;
+				(click)&#x3D;&quot;onClick($event)&quot;&gt;
+				@if (headerAILabelDecoratorLayout) {
+					&lt;span
+						class&#x3D;&quot;cds--table-sort__flex&quot;
+						[title]&#x3D;&quot;column.title&quot;
+						tabindex&#x3D;&quot;-1&quot;&gt;
+						&lt;div cdsTableHeadCellLabel&gt;{{ getHeaderLabelText() }}&lt;/div&gt;
+						@if (!skeleton) {
+							&lt;svg class&#x3D;&quot;cds--table-sort__icon&quot; cdsIcon&#x3D;&quot;arrow--down&quot;&gt;&lt;/svg&gt;
+						}
+						@if (!skeleton) {
+							&lt;svg class&#x3D;&quot;cds--table-sort__icon-unsorted&quot; cdsIcon&#x3D;&quot;arrows--vertical&quot;&gt;&lt;/svg&gt;
+						}
+						&lt;div
+							#decoratorInner
+							class&#x3D;&quot;cds--table-header-label--decorator-inner&quot;
+							(click)&#x3D;&quot;onDecoratorRegionClick($event)&quot;&gt;
+							&lt;ng-template
+								[ngTemplateOutlet]&#x3D;&quot;column.template&quot;
+								[ngTemplateOutletContext]&#x3D;&quot;{data: column.data}&quot;&gt;
+							&lt;/ng-template&gt;
+						&lt;/div&gt;
+					&lt;/span&gt;
+				}
+				@if (!headerAILabelDecoratorLayout) {
+					&lt;span
+						class&#x3D;&quot;cds--table-sort__flex&quot;
+						[title]&#x3D;&quot;column.title&quot;
+						tabindex&#x3D;&quot;-1&quot;&gt;
+						@if (!skeleton &amp;&amp; !column.template) {
+							&lt;div
+								cdsTableHeadCellLabel
+								[class.cds--table-header-label--ai-label]&#x3D;&quot;column.hasAILabelHeader&quot;
+								[class.cds--table-header-label--slug]&#x3D;&quot;column.hasAILabelHeader&quot;&gt;
+								{{column.data}}
+							&lt;/div&gt;
+						}
+						@if (!skeleton &amp;&amp; column.template) {
+							&lt;div
+								cdsTableHeadCellLabel
+								[class.cds--table-header-label--ai-label]&#x3D;&quot;column.hasAILabelHeader&quot;
+								[class.cds--table-header-label--slug]&#x3D;&quot;column.hasAILabelHeader&quot;&gt;
+								&lt;ng-template
+									[ngTemplateOutlet]&#x3D;&quot;column.template&quot;
+									[ngTemplateOutletContext]&#x3D;&quot;{data: column.data}&quot;&gt;
+								&lt;/ng-template&gt;
+							&lt;/div&gt;
+						}
+						@if (!skeleton) {
+							&lt;svg class&#x3D;&quot;cds--table-sort__icon&quot; cdsIcon&#x3D;&quot;arrow--down&quot;&gt;&lt;/svg&gt;
+						}
+						@if (!skeleton) {
+							&lt;svg class&#x3D;&quot;cds--table-sort__icon-unsorted&quot; cdsIcon&#x3D;&quot;arrows--vertical&quot;&gt;&lt;/svg&gt;
+						}
+					&lt;/span&gt;
+				}
+			&lt;/button&gt;
+		}
+		@if (headerAILabelDecoratorLayout &amp;&amp; ((!skeleton &amp;&amp; sort.observers.length &#x3D;&#x3D;&#x3D; 0) || (sort.observers.length &gt; 0 &amp;&amp; !column.sortable) || !sortable)) {
 			&lt;div
-				#decoratorInner
-				class&#x3D;&quot;cds--table-header-label--decorator-inner&quot;
-				(click)&#x3D;&quot;onDecoratorRegionClick($event)&quot;&gt;
-				&lt;ng-template
-					[ngTemplateOutlet]&#x3D;&quot;column.template&quot;
-					[ngTemplateOutletContext]&#x3D;&quot;{data: column.data}&quot;&gt;
-				&lt;/ng-template&gt;
-			&lt;/div&gt;
-			&lt;/span&gt;
-			&lt;span
-				*ngIf&#x3D;&quot;!headerAILabelDecoratorLayout&quot;
-				class&#x3D;&quot;cds--table-sort__flex&quot;
-				[title]&#x3D;&quot;column.title&quot;
-				tabindex&#x3D;&quot;-1&quot;&gt;
-				&lt;div
-					*ngIf&#x3D;&quot;!skeleton &amp;&amp; !column.template&quot;
-					cdsTableHeadCellLabel
-					[class.cds--table-header-label--ai-label]&#x3D;&quot;column.hasAILabelHeader&quot;
-					[class.cds--table-header-label--slug]&#x3D;&quot;column.hasAILabelHeader&quot;&gt;
-					{{column.data}}
-				&lt;/div&gt;
-				&lt;div
-					*ngIf&#x3D;&quot;!skeleton &amp;&amp; column.template&quot;
-					cdsTableHeadCellLabel
-					[class.cds--table-header-label--ai-label]&#x3D;&quot;column.hasAILabelHeader&quot;
-					[class.cds--table-header-label--slug]&#x3D;&quot;column.hasAILabelHeader&quot;&gt;
+				class&#x3D;&quot;cds--table-header-label&quot;
+				[ngClass]&#x3D;&quot;{
+					&#x27;cds--table-header-label--ai-label&#x27;: column.hasAILabelHeader,
+					&#x27;cds--table-header-label--slug&#x27;: column.hasAILabelHeader,
+					&#x27;cds--table-header-label--decorator&#x27;: column.hasAILabelHeader
+				}&quot;&gt;
+				@if (getHeaderLabelText()) {
+					&lt;span&gt;{{ getHeaderLabelText() }}&lt;/span&gt;
+				}
+				&lt;div class&#x3D;&quot;cds--table-header-label--decorator-inner&quot;&gt;
 					&lt;ng-template
 						[ngTemplateOutlet]&#x3D;&quot;column.template&quot;
 						[ngTemplateOutletContext]&#x3D;&quot;{data: column.data}&quot;&gt;
 					&lt;/ng-template&gt;
 				&lt;/div&gt;
-				&lt;svg *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;cds--table-sort__icon&quot; cdsIcon&#x3D;&quot;arrow--down&quot;&gt;&lt;/svg&gt;
-				&lt;svg *ngIf&#x3D;&quot;!skeleton&quot; class&#x3D;&quot;cds--table-sort__icon-unsorted&quot; cdsIcon&#x3D;&quot;arrows--vertical&quot;&gt;&lt;/svg&gt;
-			&lt;/span&gt;
-		&lt;/button&gt;
-		&lt;div
-			*ngIf&#x3D;&quot;headerAILabelDecoratorLayout &amp;&amp; ((!skeleton &amp;&amp; sort.observers.length &#x3D;&#x3D;&#x3D; 0) || (sort.observers.length &gt; 0 &amp;&amp; !column.sortable) || !sortable)&quot;
-			class&#x3D;&quot;cds--table-header-label&quot;
-			[ngClass]&#x3D;&quot;{
-				&#x27;cds--table-header-label--ai-label&#x27;: column.hasAILabelHeader,
-				&#x27;cds--table-header-label--slug&#x27;: column.hasAILabelHeader,
-				&#x27;cds--table-header-label--decorator&#x27;: column.hasAILabelHeader
-			}&quot;&gt;
-			&lt;span *ngIf&#x3D;&quot;getHeaderLabelText()&quot;&gt;{{ getHeaderLabelText() }}&lt;/span&gt;
-			&lt;div class&#x3D;&quot;cds--table-header-label--decorator-inner&quot;&gt;
+			&lt;/div&gt;
+		}
+		@if (!headerAILabelDecoratorLayout &amp;&amp; ((!skeleton &amp;&amp; sort.observers.length &#x3D;&#x3D;&#x3D; 0) || (sort.observers.length &gt; 0 &amp;&amp; !column.sortable) || !sortable)) {
+			&lt;div
+				class&#x3D;&quot;cds--table-header-label&quot;
+				[ngClass]&#x3D;&quot;{
+					&#x27;cds--table-header-label--ai-label&#x27;: column.hasAILabelHeader,
+					&#x27;cds--table-header-label--slug&#x27;: column.hasAILabelHeader
+				}&quot;&gt;
+				@if (!column.template) {
+					&lt;span [title]&#x3D;&quot;column.data&quot;&gt;
+						@if (!skeleton) {
+							{{column.data}}
+						}
+					&lt;/span&gt;
+				}
 				&lt;ng-template
 					[ngTemplateOutlet]&#x3D;&quot;column.template&quot;
 					[ngTemplateOutletContext]&#x3D;&quot;{data: column.data}&quot;&gt;
 				&lt;/ng-template&gt;
 			&lt;/div&gt;
-		&lt;/div&gt;
-		&lt;div
-			class&#x3D;&quot;cds--table-header-label&quot;
-			*ngIf&#x3D;&quot;!headerAILabelDecoratorLayout &amp;&amp; ((!skeleton &amp;&amp; sort.observers.length &#x3D;&#x3D;&#x3D; 0) || (sort.observers.length &gt; 0 &amp;&amp; !column.sortable) || !sortable)&quot;
-			[ngClass]&#x3D;&quot;{
-				&#x27;cds--table-header-label--ai-label&#x27;: column.hasAILabelHeader,
-				&#x27;cds--table-header-label--slug&#x27;: column.hasAILabelHeader
-			}&quot;&gt;
-			&lt;span *ngIf&#x3D;&quot;!column.template&quot; [title]&#x3D;&quot;column.data&quot;&gt;
-				&lt;ng-container *ngIf&#x3D;&quot;!skeleton&quot;&gt;
-					{{column.data}}
-				&lt;/ng-container&gt;
-			&lt;/span&gt;
-			&lt;ng-template
-				[ngTemplateOutlet]&#x3D;&quot;column.template&quot; [ngTemplateOutletContext]&#x3D;&quot;{data: column.data}&quot;&gt;
-			&lt;/ng-template&gt;
-		&lt;/div&gt;
-	&#x60;
+		}
+	&#x60;,
+	imports: [
+		NgClass,
+		NgTemplateOutlet,
+		TableHeadCellLabel,
+		IconDirective,
+		AsyncPipe
+	]
 })
 export class TableHeadCell implements OnChanges {
 	@Input() column: TableHeaderItem;
@@ -1748,11 +1809,17 @@ export class TableHeadCell implements OnChanges {
 		return !!(this.column?.hasAILabelHeader &amp;&amp; this.column?.template);
 	}
 
+	protected i18n &#x3D; inject(I18n);
+
 	protected _sortDescendingLabel &#x3D; this.i18n.getOverridable(&quot;TABLE.SORT_DESCENDING&quot;);
 	protected _sortAscendingLabel &#x3D; this.i18n.getOverridable(&quot;TABLE.SORT_ASCENDING&quot;);
 	protected _filterTitle &#x3D; this.i18n.getOverridable(&quot;TABLE.FILTER&quot;);
 
-	constructor(protected i18n: I18n) { }
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 
 	ngOnChanges() {
 		this.theadAction &#x3D; !!(this.column &amp;&amp; this.column.filterTemplate) || this.sort.observers.length &gt; 0;
@@ -1849,7 +1916,7 @@ export class TableHeadCell implements OnChanges {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><button	class="cds--table-sort"	*ngIf="sortable && this.sort.observers.length > 0 && column.sortable"	[attr.aria-label]="(column.sorted && column.ascending ? getSortDescendingLabel() : getSortAscendingLabel()) | async"	aria-live="polite"	[ngClass]="{		\'cds--table-sort--active\': column.sorted,		\'cds--table-sort--descending\': column.ascending	}"	(click)="onClick($event)">	<span		*ngIf="headerAILabelDecoratorLayout"		class="cds--table-sort__flex"		[title]="column.title"		tabindex="-1">		<div cdsTableHeadCellLabel>{{ getHeaderLabelText() }}</div>		<svg *ngIf="!skeleton" class="cds--table-sort__icon" cdsIcon="arrow--down"></svg>		<svg *ngIf="!skeleton" class="cds--table-sort__icon-unsorted" cdsIcon="arrows--vertical"></svg>	<div		#decoratorInner		class="cds--table-header-label--decorator-inner"		(click)="onDecoratorRegionClick($event)">		<ng-template			[ngTemplateOutlet]="column.template"			[ngTemplateOutletContext]="{data: column.data}">		</ng-template>	</div>	</span>	<span		*ngIf="!headerAILabelDecoratorLayout"		class="cds--table-sort__flex"		[title]="column.title"		tabindex="-1">		<div			*ngIf="!skeleton && !column.template"			cdsTableHeadCellLabel			[class.cds--table-header-label--ai-label]="column.hasAILabelHeader"			[class.cds--table-header-label--slug]="column.hasAILabelHeader">			{{column.data}}		</div>		<div			*ngIf="!skeleton && column.template"			cdsTableHeadCellLabel			[class.cds--table-header-label--ai-label]="column.hasAILabelHeader"			[class.cds--table-header-label--slug]="column.hasAILabelHeader">			<ng-template				[ngTemplateOutlet]="column.template"				[ngTemplateOutletContext]="{data: column.data}">			</ng-template>		</div>		<svg *ngIf="!skeleton" class="cds--table-sort__icon" cdsIcon="arrow--down"></svg>		<svg *ngIf="!skeleton" class="cds--table-sort__icon-unsorted" cdsIcon="arrows--vertical"></svg>	</span></button><div	*ngIf="headerAILabelDecoratorLayout && ((!skeleton && sort.observers.length === 0) || (sort.observers.length > 0 && !column.sortable) || !sortable)"	class="cds--table-header-label"	[ngClass]="{		\'cds--table-header-label--ai-label\': column.hasAILabelHeader,		\'cds--table-header-label--slug\': column.hasAILabelHeader,		\'cds--table-header-label--decorator\': column.hasAILabelHeader	}">	<span *ngIf="getHeaderLabelText()">{{ getHeaderLabelText() }}</span>	<div class="cds--table-header-label--decorator-inner">		<ng-template			[ngTemplateOutlet]="column.template"			[ngTemplateOutletContext]="{data: column.data}">		</ng-template>	</div></div><div	class="cds--table-header-label"	*ngIf="!headerAILabelDecoratorLayout && ((!skeleton && sort.observers.length === 0) || (sort.observers.length > 0 && !column.sortable) || !sortable)"	[ngClass]="{		\'cds--table-header-label--ai-label\': column.hasAILabelHeader,		\'cds--table-header-label--slug\': column.hasAILabelHeader	}">	<span *ngIf="!column.template" [title]="column.data">		<ng-container *ngIf="!skeleton">			{{column.data}}		</ng-container>	</span>	<ng-template		[ngTemplateOutlet]="column.template" [ngTemplateOutletContext]="{data: column.data}">	</ng-template></div>	</div>'
+        var COMPONENT_TEMPLATE = '<div>@if (sortable && this.sort.observers.length > 0 && column.sortable) {	<button		class="cds--table-sort"		[attr.aria-label]="(column.sorted && column.ascending ? getSortDescendingLabel() : getSortAscendingLabel()) | async"		aria-live="polite"		[ngClass]="{			\'cds--table-sort--active\': column.sorted,			\'cds--table-sort--descending\': column.ascending		}"		(click)="onClick($event)">		@if (headerAILabelDecoratorLayout) {			<span				class="cds--table-sort__flex"				[title]="column.title"				tabindex="-1">				<div cdsTableHeadCellLabel>{{ getHeaderLabelText() }}</div>				@if (!skeleton) {					<svg class="cds--table-sort__icon" cdsIcon="arrow--down"></svg>				}				@if (!skeleton) {					<svg class="cds--table-sort__icon-unsorted" cdsIcon="arrows--vertical"></svg>				}				<div					#decoratorInner					class="cds--table-header-label--decorator-inner"					(click)="onDecoratorRegionClick($event)">					<ng-template						[ngTemplateOutlet]="column.template"						[ngTemplateOutletContext]="{data: column.data}">					</ng-template>				</div>			</span>		}		@if (!headerAILabelDecoratorLayout) {			<span				class="cds--table-sort__flex"				[title]="column.title"				tabindex="-1">				@if (!skeleton && !column.template) {					<div						cdsTableHeadCellLabel						[class.cds--table-header-label--ai-label]="column.hasAILabelHeader"						[class.cds--table-header-label--slug]="column.hasAILabelHeader">						{{column.data}}					</div>				}				@if (!skeleton && column.template) {					<div						cdsTableHeadCellLabel						[class.cds--table-header-label--ai-label]="column.hasAILabelHeader"						[class.cds--table-header-label--slug]="column.hasAILabelHeader">						<ng-template							[ngTemplateOutlet]="column.template"							[ngTemplateOutletContext]="{data: column.data}">						</ng-template>					</div>				}				@if (!skeleton) {					<svg class="cds--table-sort__icon" cdsIcon="arrow--down"></svg>				}				@if (!skeleton) {					<svg class="cds--table-sort__icon-unsorted" cdsIcon="arrows--vertical"></svg>				}			</span>		}	</button>}@if (headerAILabelDecoratorLayout && ((!skeleton && sort.observers.length === 0) || (sort.observers.length > 0 && !column.sortable) || !sortable)) {	<div		class="cds--table-header-label"		[ngClass]="{			\'cds--table-header-label--ai-label\': column.hasAILabelHeader,			\'cds--table-header-label--slug\': column.hasAILabelHeader,			\'cds--table-header-label--decorator\': column.hasAILabelHeader		}">		@if (getHeaderLabelText()) {			<span>{{ getHeaderLabelText() }}</span>		}		<div class="cds--table-header-label--decorator-inner">			<ng-template				[ngTemplateOutlet]="column.template"				[ngTemplateOutletContext]="{data: column.data}">			</ng-template>		</div>	</div>}@if (!headerAILabelDecoratorLayout && ((!skeleton && sort.observers.length === 0) || (sort.observers.length > 0 && !column.sortable) || !sortable)) {	<div		class="cds--table-header-label"		[ngClass]="{			\'cds--table-header-label--ai-label\': column.hasAILabelHeader,			\'cds--table-header-label--slug\': column.hasAILabelHeader		}">		@if (!column.template) {			<span [title]="column.data">				@if (!skeleton) {					{{column.data}}				}			</span>		}		<ng-template			[ngTemplateOutlet]="column.template"			[ngTemplateOutletContext]="{data: column.data}">		</ng-template>	</div>}	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AILabelComponent', 'selector': 'cds-ai-label, ibm-ai-label'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'CheckboxGroup', 'selector': 'cds-checkbox-group, ibm-checkbox-group'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ComboButtonComponent', 'selector': 'cds-combo-button'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-menu, cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-menu-divider, cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-menu-group, cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-menu-item, cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'IconTab', 'selector': 'cds-icon-tab, ibm-icon-tab'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'MenuButtonComponent', 'selector': 'cds-menu-button'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonIcon', 'selector': 'cds-skeleton-icon, ibm-skeleton-icon'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderComponent', 'selector': 'cds-tab-header, ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaderGroupVertical', 'selector': 'cds-tab-header-group-vertical, ibm-tab-header-group-vertical'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'TabHeadersVertical', 'selector': 'cds-tab-headers-vertical, ibm-tab-headers-vertical'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeaderDecorator', 'selector': 'cds-table-header-decorator, ibm-table-header-decorator'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'TabsVertical', 'selector': 'cds-tabs-vertical, ibm-tabs-vertical'},{'name': 'TabsVerticalGrouped', 'selector': 'cds-tabs-vertical-grouped, ibm-tabs-vertical-grouped'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TagOperationalComponent', 'selector': 'cds-tag-operational, ibm-tag-operational'},{'name': 'TagSelectableComponent', 'selector': 'cds-tag-selectable, ibm-tag-selectable'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'AILabelActions', 'selector': '[cdsAILabelActions], [ibmAILabelActions]'},{'name': 'AILabelContent', 'selector': '[cdsAILabelContent], [ibmAILabelContent]'},{'name': 'AILabelPopoverDirective', 'selector': '[cdsAILabelPopover]'},{'name': 'AspectRatioDirective', 'selector': '[cdsAspectRatio], [ibmAspectRatio]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ClickableTileIconDirective', 'selector': '[cdsClickableTileIcon], [ibmClickableTileIcon]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'LinkIconDirective', 'selector': '[ibmLinkIcon], [cdsLinkIcon]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TabHeaderBase', 'selector': ''},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TagIconDirective', 'selector': '[cdsTagIcon], [ibmTagIcon]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'TableHeadCell'};
@@ -1926,7 +1993,6 @@ export class TableHeadCell implements OnChanges {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

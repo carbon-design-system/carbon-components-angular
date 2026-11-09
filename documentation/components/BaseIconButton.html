@@ -145,6 +145,47 @@ Extend class to inherit @Input meta data</p>
 
 
 
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
 
     <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
@@ -219,7 +260,7 @@ Extend class to inherit @Input meta data</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/button/base-icon-button.component.ts:32</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/button/base-icon-button.component.ts:34</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -251,7 +292,7 @@ Extend class to inherit @Input meta data</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/button/base-icon-button.component.ts:40</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/button/base-icon-button.component.ts:42</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -284,7 +325,7 @@ This is not toggleable - should be assigned once</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/button/base-icon-button.component.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/button/base-icon-button.component.ts:18</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -316,7 +357,7 @@ This is not toggleable - should be assigned once</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/button/base-icon-button.component.ts:20</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/button/base-icon-button.component.ts:22</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -348,7 +389,7 @@ This is not toggleable - should be assigned once</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/button/base-icon-button.component.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/button/base-icon-button.component.ts:46</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -380,7 +421,7 @@ This is not toggleable - should be assigned once</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/button/base-icon-button.component.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/button/base-icon-button.component.ts:26</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -412,7 +453,7 @@ This is not toggleable - should be assigned once</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/button/base-icon-button.component.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/button/base-icon-button.component.ts:30</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -444,7 +485,7 @@ This is not toggleable - should be assigned once</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/button/base-icon-button.component.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/button/base-icon-button.component.ts:50</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -465,7 +506,7 @@ This is not toggleable - should be assigned once</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input } from &quot;@angular/core&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, Input } from &quot;@angular/core&quot;;
 
 /**
  * Base button with common input properties for configuring icon button.
@@ -474,7 +515,9 @@ This is not toggleable - should be assigned once</p>
  * Used by pagination nav icon button, code snippet, etc.
  */
 @Component({
-	template: &quot;&quot;
+	template: &quot;&quot;,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true
 })
 export class BaseIconButton {
 	/**
@@ -621,7 +664,6 @@ export class BaseIconButton {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

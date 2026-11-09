@@ -133,18 +133,18 @@
 <title>cluster_LayerModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="180,-70 180,-268 316,-268 316,-70 180,-70"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_LayerModule_declarations</title>
+<g id="clust3" class="cluster">
+<title>cluster_LayerModule_imports</title>
 <polygon fill="none" stroke="black" points="190,-78 190,-130 306,-130 306,-78 190,-78"/>
 </g>
-<g id="clust5" class="cluster">
+<g id="clust4" class="cluster">
 <title>cluster_LayerModule_exports</title>
 <polygon fill="none" stroke="black" points="188,-208 188,-260 308,-260 308,-208 188,-208"/>
 </g>
 <!-- LayerDirective -->
 <g id="node1" class="node">
 <title>LayerDirective</title>
-<polygon fill="#ffffb3" stroke="black" points="298.23,-122 197.77,-122 197.77,-86 298.23,-86 298.23,-122"/>
+<polygon fill="#8dd3c7" stroke="black" points="298.23,-122 295.23,-126 274.23,-126 271.23,-122 197.77,-122 197.77,-86 298.23,-86 298.23,-122"/>
 <text text-anchor="middle" x="248" y="-99.8" font-family="Times,serif" font-size="14.00">LayerDirective</text>
 </g>
 <!-- LayerModule -->
@@ -217,11 +217,12 @@
         <div class="container-fluid module">
             <div class="row">
                 <div class="col-sm-3">
-                    <h3>Declarations<a href="https://angular.io/api/core/NgModule#declarations" target="_blank" rel="noopener noreferrer"
-                            title="Official documentation about module declarations"><span class="icon ion-ios-information-circle-outline"></span></a></h3>
+                    <h3>Imports<a href="https://angular.io/api/core/NgModule#imports" target="_blank" rel="noopener noreferrer"
+                            title="Official documentation about module imports"><span
+                                class="icon ion-ios-information-circle-outline"></a></h3>
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <a href="../directives/LayerDirective.html">LayerDirective</a>
+                            <a href="../modules/LayerDirective.html">LayerDirective</a>
                         </li>
                     </ul>
                 </div>
@@ -249,9 +250,11 @@ import { CommonModule } from &quot;@angular/common&quot;;
 import { LayerDirective } from &quot;./layer.directive&quot;;
 
 @NgModule({
-	declarations: [LayerDirective],
 	exports: [LayerDirective],
-	imports: [CommonModule]
+	imports: [
+		CommonModule,
+		LayerDirective
+	]
 })
 export class LayerModule {}
 </code></pre>
@@ -328,7 +331,6 @@ export class LayerModule {}
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

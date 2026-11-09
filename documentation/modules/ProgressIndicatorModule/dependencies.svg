@@ -22,73 +22,69 @@
 <text text-anchor="start" x="429.73" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Exports</text>
 <g id="clust1" class="cluster">
 <title>cluster_ProgressIndicatorModule</title>
-<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="69,-70 69,-268 427,-268 427,-70 69,-70"/>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="67.5,-70 67.5,-268 428.5,-268 428.5,-70 67.5,-70"/>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_ProgressIndicatorModule_imports</title>
+<polygon fill="none" stroke="black" points="75.5,-78 75.5,-130 420.5,-130 420.5,-78 75.5,-78"/>
 </g>
 <g id="clust4" class="cluster">
-<title>cluster_ProgressIndicatorModule_imports</title>
-<polygon fill="none" stroke="black" points="215,-78 215,-130 419,-130 419,-78 215,-78"/>
-</g>
-<g id="clust5" class="cluster">
 <title>cluster_ProgressIndicatorModule_exports</title>
-<polygon fill="none" stroke="black" points="198,-208 198,-260 332,-260 332,-208 198,-208"/>
+<polygon fill="none" stroke="black" points="195.5,-208 195.5,-260 329.5,-260 329.5,-208 195.5,-208"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_ProgressIndicatorModule_declarations</title>
-<polygon fill="none" stroke="black" points="77,-78 77,-130 207,-130 207,-78 77,-78"/>
-</g>
-<!-- ProgressIndicator -->
+<!-- I18nModule -->
 <g id="node1" class="node">
-<title>ProgressIndicator</title>
-<polygon fill="#ffffb3" stroke="black" points="199.24,-122 84.76,-122 84.76,-86 199.24,-86 199.24,-122"/>
-<text text-anchor="middle" x="142" y="-99.8" font-family="Times,serif" font-size="14.00">ProgressIndicator</text>
+<title>I18nModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="412.21,-122 409.21,-126 388.21,-126 385.21,-122 326.79,-122 326.79,-86 412.21,-86 412.21,-122"/>
+<text text-anchor="middle" x="369.5" y="-99.8" font-family="Times,serif" font-size="14.00">I18nModule</text>
 </g>
 <!-- ProgressIndicatorModule -->
-<g id="node2" class="node">
+<g id="node4" class="node">
 <title>ProgressIndicatorModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="344.29,-187 341.29,-191 320.29,-191 317.29,-187 185.71,-187 185.71,-151 344.29,-151 344.29,-187"/>
-<text text-anchor="middle" x="265" y="-164.8" font-family="Times,serif" font-size="14.00">ProgressIndicatorModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="341.79,-187 338.79,-191 317.79,-191 314.79,-187 183.21,-187 183.21,-151 341.79,-151 341.79,-187"/>
+<text text-anchor="middle" x="262.5" y="-164.8" font-family="Times,serif" font-size="14.00">ProgressIndicatorModule</text>
+</g>
+<!-- I18nModule&#45;&gt;ProgressIndicatorModule -->
+<g id="edge1" class="edge">
+<title>I18nModule&#45;&gt;ProgressIndicatorModule</title>
+<path fill="none" stroke="black" d="M334.27,-122.11C334.27,-122.11 334.27,-140.99 334.27,-140.99"/>
+<polygon fill="black" stroke="black" points="330.77,-140.99 334.27,-150.99 337.77,-140.99 330.77,-140.99"/>
+</g>
+<!-- IconDirective -->
+<g id="node2" class="node">
+<title>IconDirective</title>
+<polygon fill="#8dd3c7" stroke="black" points="308.96,-122 305.96,-126 284.96,-126 281.96,-122 216.04,-122 216.04,-86 308.96,-86 308.96,-122"/>
+<text text-anchor="middle" x="262.5" y="-99.8" font-family="Times,serif" font-size="14.00">IconDirective</text>
+</g>
+<!-- IconDirective&#45;&gt;ProgressIndicatorModule -->
+<g id="edge2" class="edge">
+<title>IconDirective&#45;&gt;ProgressIndicatorModule</title>
+<path fill="none" stroke="black" d="M262.5,-122.11C262.5,-122.11 262.5,-140.99 262.5,-140.99"/>
+<polygon fill="black" stroke="black" points="259,-140.99 262.5,-150.99 266,-140.99 259,-140.99"/>
+</g>
+<!-- ProgressIndicator -->
+<g id="node3" class="node">
+<title>ProgressIndicator</title>
+<polygon fill="#8dd3c7" stroke="black" points="197.74,-122 194.74,-126 173.74,-126 170.74,-122 83.26,-122 83.26,-86 197.74,-86 197.74,-122"/>
+<text text-anchor="middle" x="140.5" y="-99.8" font-family="Times,serif" font-size="14.00">ProgressIndicator</text>
 </g>
 <!-- ProgressIndicator&#45;&gt;ProgressIndicatorModule -->
-<g id="edge1" class="edge">
+<g id="edge3" class="edge">
 <title>ProgressIndicator&#45;&gt;ProgressIndicatorModule</title>
-<path fill="none" stroke="black" d="M192.61,-122.11C192.61,-122.11 192.61,-140.99 192.61,-140.99"/>
-<polygon fill="black" stroke="black" points="189.11,-140.99 192.61,-150.99 196.11,-140.99 189.11,-140.99"/>
+<path fill="none" stroke="black" d="M190.61,-122.11C190.61,-122.11 190.61,-140.99 190.61,-140.99"/>
+<polygon fill="black" stroke="black" points="187.11,-140.99 190.61,-150.99 194.11,-140.99 187.11,-140.99"/>
 </g>
 <!-- ProgressIndicator  -->
 <g id="node5" class="node">
 <title>ProgressIndicator </title>
-<polygon fill="#fb8072" stroke="black" points="324.24,-252 205.76,-252 205.76,-216 324.24,-216 324.24,-252"/>
-<text text-anchor="middle" x="265" y="-229.8" font-family="Times,serif" font-size="14.00">ProgressIndicator </text>
+<polygon fill="#fb8072" stroke="black" points="321.74,-252 203.26,-252 203.26,-216 321.74,-216 321.74,-252"/>
+<text text-anchor="middle" x="262.5" y="-229.8" font-family="Times,serif" font-size="14.00">ProgressIndicator </text>
 </g>
 <!-- ProgressIndicatorModule&#45;&gt;ProgressIndicator  -->
 <g id="edge4" class="edge">
 <title>ProgressIndicatorModule&#45;&gt;ProgressIndicator </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M265,-187.11C265,-187.11 265,-205.99 265,-205.99"/>
-<polygon fill="black" stroke="black" points="261.5,-205.99 265,-215.99 268.5,-205.99 261.5,-205.99"/>
-</g>
-<!-- I18nModule -->
-<g id="node3" class="node">
-<title>I18nModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="410.71,-122 407.71,-126 386.71,-126 383.71,-122 325.29,-122 325.29,-86 410.71,-86 410.71,-122"/>
-<text text-anchor="middle" x="368" y="-99.8" font-family="Times,serif" font-size="14.00">I18nModule</text>
-</g>
-<!-- I18nModule&#45;&gt;ProgressIndicatorModule -->
-<g id="edge2" class="edge">
-<title>I18nModule&#45;&gt;ProgressIndicatorModule</title>
-<path fill="none" stroke="black" d="M334.77,-122.11C334.77,-122.11 334.77,-140.99 334.77,-140.99"/>
-<polygon fill="black" stroke="black" points="331.27,-140.99 334.77,-150.99 338.27,-140.99 331.27,-140.99"/>
-</g>
-<!-- IconModule -->
-<g id="node4" class="node">
-<title>IconModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="307.43,-122 304.43,-126 283.43,-126 280.43,-122 222.57,-122 222.57,-86 307.43,-86 307.43,-122"/>
-<text text-anchor="middle" x="265" y="-99.8" font-family="Times,serif" font-size="14.00">IconModule</text>
-</g>
-<!-- IconModule&#45;&gt;ProgressIndicatorModule -->
-<g id="edge3" class="edge">
-<title>IconModule&#45;&gt;ProgressIndicatorModule</title>
-<path fill="none" stroke="black" d="M265,-122.11C265,-122.11 265,-140.99 265,-140.99"/>
-<polygon fill="black" stroke="black" points="261.5,-140.99 265,-150.99 268.5,-140.99 261.5,-140.99"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M262.5,-187.11C262.5,-187.11 262.5,-205.99 262.5,-205.99"/>
+<polygon fill="black" stroke="black" points="259,-205.99 262.5,-215.99 266,-205.99 259,-205.99"/>
 </g>
 </g>
 </svg>

@@ -163,6 +163,10 @@ and <code>cds--ai-label-actions</code>.</p>
                         <td class="col-md-9"><code>[cdsAILabelActions], [ibmAILabelActions]</code></td>
                     </tr>
 
+                    <tr>
+                        <td class="col-md-3">Standalone</td>
+                        <td class="col-md-9"><code>true</code></td>
+                    </tr>
 
 
 
@@ -248,7 +252,7 @@ and <code>cds--ai-label-actions</code>.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/ai-label/ai-label-actions.directive.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/ai-label/ai-label-actions.directive.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -279,7 +283,7 @@ and <code>cds--ai-label-actions</code>.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/ai-label/ai-label-actions.directive.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/ai-label/ai-label-actions.directive.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -323,7 +327,7 @@ and <code>cds--ai-label-actions</code>.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/ai-label/ai-label-actions.directive.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/ai-label/ai-label-actions.directive.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -358,7 +362,7 @@ and <code>cds--ai-label-actions</code>.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/ai-label/ai-label-actions.directive.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/ai-label/ai-label-actions.directive.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -390,7 +394,8 @@ and <code>cds--ai-label-actions</code>.</p>
  * &#x60;&#x60;&#x60;
  */
 @Directive({
-	selector: &quot;[cdsAILabelActions], [ibmAILabelActions]&quot;
+	selector: &quot;[cdsAILabelActions], [ibmAILabelActions]&quot;,
+	standalone: true
 })
 export class AILabelActions {
 	@HostBinding(&quot;class.cds--toggletip-actions&quot;) toggletipActions &#x3D; true;
@@ -468,7 +473,6 @@ export class AILabelActions {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

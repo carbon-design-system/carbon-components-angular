@@ -163,6 +163,10 @@ The structure also matches that of toggletip, in future we may need this.</p>
                         <td class="col-md-9"><code>[cdsAILabelContent], [ibmAILabelContent]</code></td>
                     </tr>
 
+                    <tr>
+                        <td class="col-md-3">Standalone</td>
+                        <td class="col-md-9"><code>true</code></td>
+                    </tr>
 
 
 
@@ -201,7 +205,8 @@ The structure also matches that of toggletip, in future we may need this.</p>
  * &#x60;&#x60;&#x60;
  */
 @Directive({
-	selector: &quot;[cdsAILabelContent], [ibmAILabelContent]&quot;
+	selector: &quot;[cdsAILabelContent], [ibmAILabelContent]&quot;,
+	standalone: true
 })
 export class AILabelContent {}
 </code></pre>
@@ -276,7 +281,6 @@ export class AILabelContent {}
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

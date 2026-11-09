@@ -131,37 +131,45 @@
 <text text-anchor="start" x="429.73" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Exports</text>
 <g id="clust1" class="cluster">
 <title>cluster_LoadingModule</title>
-<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="146,-70 146,-268 350,-268 350,-70 146,-70"/>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="149,-70 149,-268 347,-268 347,-70 149,-70"/>
 </g>
-<g id="clust5" class="cluster">
+<g id="clust3" class="cluster">
+<title>cluster_LoadingModule_imports</title>
+<polygon fill="none" stroke="black" points="157,-78 157,-130 339,-130 339,-78 157,-78"/>
+</g>
+<g id="clust4" class="cluster">
 <title>cluster_LoadingModule_exports</title>
 <polygon fill="none" stroke="black" points="207,-208 207,-260 289,-260 289,-208 207,-208"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_LoadingModule_imports</title>
-<polygon fill="none" stroke="black" points="240,-78 240,-130 342,-130 342,-78 240,-78"/>
-</g>
-<g id="clust2" class="cluster">
-<title>cluster_LoadingModule_declarations</title>
-<polygon fill="none" stroke="black" points="154,-78 154,-130 232,-130 232,-78 154,-78"/>
-</g>
-<!-- Loading -->
+<!-- I18nModule -->
 <g id="node1" class="node">
-<title>Loading</title>
-<polygon fill="#ffffb3" stroke="black" points="224.16,-122 161.84,-122 161.84,-86 224.16,-86 224.16,-122"/>
-<text text-anchor="middle" x="193" y="-99.8" font-family="Times,serif" font-size="14.00">Loading</text>
+<title>I18nModule</title>
+<polygon fill="#8dd3c7" stroke="black" points="330.71,-122 327.71,-126 306.71,-126 303.71,-122 245.29,-122 245.29,-86 330.71,-86 330.71,-122"/>
+<text text-anchor="middle" x="288" y="-99.8" font-family="Times,serif" font-size="14.00">I18nModule</text>
 </g>
 <!-- LoadingModule -->
-<g id="node2" class="node">
+<g id="node3" class="node">
 <title>LoadingModule</title>
 <polygon fill="#8dd3c7" stroke="black" points="301.21,-187 298.21,-191 277.21,-191 274.21,-187 194.79,-187 194.79,-151 301.21,-151 301.21,-187"/>
 <text text-anchor="middle" x="248" y="-164.8" font-family="Times,serif" font-size="14.00">LoadingModule</text>
 </g>
-<!-- Loading&#45;&gt;LoadingModule -->
+<!-- I18nModule&#45;&gt;LoadingModule -->
 <g id="edge1" class="edge">
+<title>I18nModule&#45;&gt;LoadingModule</title>
+<path fill="none" stroke="black" d="M273.25,-122.11C273.25,-122.11 273.25,-140.99 273.25,-140.99"/>
+<polygon fill="black" stroke="black" points="269.75,-140.99 273.25,-150.99 276.75,-140.99 269.75,-140.99"/>
+</g>
+<!-- Loading -->
+<g id="node2" class="node">
+<title>Loading</title>
+<polygon fill="#8dd3c7" stroke="black" points="227.16,-122 224.16,-126 203.16,-126 200.16,-122 164.84,-122 164.84,-86 227.16,-86 227.16,-122"/>
+<text text-anchor="middle" x="196" y="-99.8" font-family="Times,serif" font-size="14.00">Loading</text>
+</g>
+<!-- Loading&#45;&gt;LoadingModule -->
+<g id="edge2" class="edge">
 <title>Loading&#45;&gt;LoadingModule</title>
-<path fill="none" stroke="black" d="M209.61,-122.11C209.61,-122.11 209.61,-140.99 209.61,-140.99"/>
-<polygon fill="black" stroke="black" points="206.11,-140.99 209.61,-150.99 213.11,-140.99 206.11,-140.99"/>
+<path fill="none" stroke="black" d="M211.11,-122.11C211.11,-122.11 211.11,-140.99 211.11,-140.99"/>
+<polygon fill="black" stroke="black" points="207.61,-140.99 211.11,-150.99 214.61,-140.99 207.61,-140.99"/>
 </g>
 <!-- Loading  -->
 <g id="node4" class="node">
@@ -174,18 +182,6 @@
 <title>LoadingModule&#45;&gt;Loading </title>
 <path fill="none" stroke="black" stroke-dasharray="5,2" d="M248,-187.11C248,-187.11 248,-205.99 248,-205.99"/>
 <polygon fill="black" stroke="black" points="244.5,-205.99 248,-215.99 251.5,-205.99 244.5,-205.99"/>
-</g>
-<!-- I18nModule -->
-<g id="node3" class="node">
-<title>I18nModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="333.71,-122 330.71,-126 309.71,-126 306.71,-122 248.29,-122 248.29,-86 333.71,-86 333.71,-122"/>
-<text text-anchor="middle" x="291" y="-99.8" font-family="Times,serif" font-size="14.00">I18nModule</text>
-</g>
-<!-- I18nModule&#45;&gt;LoadingModule -->
-<g id="edge2" class="edge">
-<title>I18nModule&#45;&gt;LoadingModule</title>
-<path fill="none" stroke="black" d="M274.75,-122.11C274.75,-122.11 274.75,-140.99 274.75,-140.99"/>
-<polygon fill="black" stroke="black" points="271.25,-140.99 274.75,-150.99 278.25,-140.99 271.25,-140.99"/>
 </g>
 </g>
 </svg>
@@ -233,21 +229,15 @@
         <div class="container-fluid module">
             <div class="row">
                 <div class="col-sm-3">
-                    <h3>Declarations<a href="https://angular.io/api/core/NgModule#declarations" target="_blank" rel="noopener noreferrer"
-                            title="Official documentation about module declarations"><span class="icon ion-ios-information-circle-outline"></span></a></h3>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <a href="../components/Loading.html">Loading</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-sm-3">
                     <h3>Imports<a href="https://angular.io/api/core/NgModule#imports" target="_blank" rel="noopener noreferrer"
                             title="Official documentation about module imports"><span
                                 class="icon ion-ios-information-circle-outline"></a></h3>
                     <ul class="list-group">
                         <li class="list-group-item">
                             <a href="../modules/I18nModule.html">I18nModule</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="../modules/Loading.html">Loading</a>
                         </li>
                     </ul>
                 </div>
@@ -276,9 +266,8 @@ import { Loading } from &quot;./loading.component&quot;;
 import { I18nModule } from &quot;carbon-components-angular/i18n&quot;;
 
 @NgModule({
-	declarations: [Loading],
 	exports: [Loading],
-	imports: [CommonModule, I18nModule]
+	imports: [CommonModule, I18nModule, Loading]
 })
 export class LoadingModule {}
 </code></pre>
@@ -355,7 +344,6 @@ export class LoadingModule {}
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

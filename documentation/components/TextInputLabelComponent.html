@@ -136,8 +136,8 @@
         <h3>Description</h3>
     </p>
     <p class="comment">
-        <p>Get started with importing the module:</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { InputModule } from &#39;carbon-components-angular&#39;;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;cds-text-label&gt;
+        <p>Get started with importing the component and directive:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { TextInput, TextInputLabelComponent, } from &#39;carbon-components-angular&#39;;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;cds-text-label&gt;
     Label
     &lt;input cdsText type=&quot;text&quot; class=&quot;input-field&quot;&gt;
 &lt;/cds-text-label&gt;</code></pre></div><p><a href="../../?path=/story/components-input--basic">See demo</a></p>
@@ -161,6 +161,10 @@
     <table class="table table-sm table-hover metadata">
         <tbody>
 
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
 
 
 
@@ -178,18 +182,26 @@
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>NgClass</code>
+                            <code>NgTemplateOutlet</code>
+                                <code><a href="../directives/IconDirective.html" target="_self" >IconDirective</a></code>
+                </td>
+            </tr>
 
 
 
             <tr>
                 <td class="col-md-3">template</td>
-                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;ng-container *ngIf&#x3D;&quot;skeleton&quot;&gt;
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">@if (skeleton) {
 	&lt;span class&#x3D;&quot;cds--label cds--skeleton&quot;&gt;&lt;/span&gt;
 	&lt;div class&#x3D;&quot;cds--text-input cds--skeleton&quot;&gt;&lt;/div&gt;
-&lt;/ng-container&gt;
-&lt;ng-container *ngIf&#x3D;&quot;!skeleton&quot;&gt;
+}
+@if (!skeleton) {
 	&lt;!-- non-inline: label-wrapper above field; inline: label+validation side-by-side --&gt;
-	&lt;ng-container *ngIf&#x3D;&quot;!inline; else inlineHeader&quot;&gt;
+	@if (!inline) {
 		&lt;div class&#x3D;&quot;cds--text-input__label-wrapper&quot;&gt;
 			&lt;label
 				[for]&#x3D;&quot;labelInputID&quot;
@@ -199,22 +211,22 @@
 					&#x27;cds--label--disabled&#x27;: disabled,
 					&#x27;cds--visually-hidden&#x27;: hideLabel
 				}&quot;&gt;
-				&lt;ng-template *ngIf&#x3D;&quot;labelTemplate; else labelContent&quot; [ngTemplateOutlet]&#x3D;&quot;labelTemplate&quot;&gt;&lt;/ng-template&gt;
-				&lt;ng-template #labelContent&gt;
+				@if (labelTemplate) {
+					&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;labelTemplate&quot;&gt;&lt;/ng-template&gt;
+				} @else {
 					&lt;ng-content&gt;&lt;/ng-content&gt;
-				&lt;/ng-template&gt;
+				}
 			&lt;/label&gt;
-			&lt;span
-				*ngIf&#x3D;&quot;enableCounter &amp;&amp; maxCount&quot;
-				class&#x3D;&quot;cds--label&quot;
-				[ngClass]&#x3D;&quot;{&#x27;cds--label--disabled&#x27;: disabled}&quot;
-				aria-hidden&#x3D;&quot;true&quot;&gt;
-				{{textCount}}/{{maxCount}}
-			&lt;/span&gt;
+			@if (enableCounter &amp;&amp; maxCount) {
+				&lt;span
+					class&#x3D;&quot;cds--label&quot;
+					[ngClass]&#x3D;&quot;{&#x27;cds--label--disabled&#x27;: disabled}&quot;
+					aria-hidden&#x3D;&quot;true&quot;&gt;
+					{{textCount}}/{{maxCount}}
+				&lt;/span&gt;
+			}
 		&lt;/div&gt;
-	&lt;/ng-container&gt;
-
-	&lt;ng-template #inlineHeader&gt;
+	} @else {
 		&lt;div class&#x3D;&quot;cds--text-input__label-helper-wrapper&quot;&gt;
 			&lt;div class&#x3D;&quot;cds--text-input__label-wrapper&quot;&gt;
 				&lt;label
@@ -229,82 +241,113 @@
 						&#x27;cds--label--inline--md&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;md&#x27;,
 						&#x27;cds--label--inline--lg&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;lg&#x27;
 					}&quot;&gt;
-					&lt;ng-template *ngIf&#x3D;&quot;labelTemplate&quot; [ngTemplateOutlet]&#x3D;&quot;labelTemplate&quot;&gt;&lt;/ng-template&gt;
+					@if (labelTemplate) {
+						&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;labelTemplate&quot;&gt;&lt;/ng-template&gt;
+					}
 				&lt;/label&gt;
 			&lt;/div&gt;
-			&lt;ng-container *ngIf&#x3D;&quot;!fluid&quot;&gt;
+			@if (!fluid) {
 				&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;validationOrHelper&quot;&gt;&lt;/ng-container&gt;
-			&lt;/ng-container&gt;
+			}
 		&lt;/div&gt;
-	&lt;/ng-template&gt;
-
+	}
 	&lt;div
 		class&#x3D;&quot;cds--text-input__field-outer-wrapper&quot;
 		[ngClass]&#x3D;&quot;{&#x27;cds--text-input__field-outer-wrapper--inline&#x27;: inline}&quot;&gt;
-	&lt;div
-		class&#x3D;&quot;cds--text-input__field-wrapper&quot;
-		[ngClass]&#x3D;&quot;{
-			&#x27;cds--text-input__field-wrapper--warning&#x27;: warn,
-			&#x27;cds--text-input__field-wrapper--decorator&#x27;: !!decorator
-		}&quot;
+		&lt;div
+			class&#x3D;&quot;cds--text-input__field-wrapper&quot;
+			[ngClass]&#x3D;&quot;{
+				&#x27;cds--text-input__field-wrapper--warning&#x27;: warn,
+				&#x27;cds--text-input__field-wrapper--decorator&#x27;: !!decorator
+			}&quot;
 			[attr.data-invalid]&#x3D;&quot;(invalid ? true : null)&quot;
 			#wrapper&gt;
-			&lt;svg
-				*ngIf&#x3D;&quot;invalid &amp;&amp; !warn&quot;
-				cdsIcon&#x3D;&quot;warning--filled&quot;
-				size&#x3D;&quot;16&quot;
-				class&#x3D;&quot;cds--text-input__invalid-icon&quot;&gt;
-			&lt;/svg&gt;
-			&lt;svg
-				*ngIf&#x3D;&quot;!invalid &amp;&amp; warn&quot;
-				cdsIcon&#x3D;&quot;warning--alt--filled&quot;
-				size&#x3D;&quot;16&quot;
-				class&#x3D;&quot;cds--text-input__invalid-icon cds--text-input__invalid-icon--warning&quot;&gt;
-			&lt;/svg&gt;
-			&lt;ng-template *ngIf&#x3D;&quot;textInputTemplate; else textInputContent&quot; [ngTemplateOutlet]&#x3D;&quot;textInputTemplate&quot;&gt;&lt;/ng-template&gt;
-			&lt;ng-template #textInputContent&gt;
+			@if (invalid &amp;&amp; !warn) {
+				&lt;svg
+					cdsIcon&#x3D;&quot;warning--filled&quot;
+					size&#x3D;&quot;16&quot;
+					class&#x3D;&quot;cds--text-input__invalid-icon&quot;&gt;
+				&lt;/svg&gt;
+			}
+			@if (!invalid &amp;&amp; warn) {
+				&lt;svg
+					cdsIcon&#x3D;&quot;warning--alt--filled&quot;
+					size&#x3D;&quot;16&quot;
+					class&#x3D;&quot;cds--text-input__invalid-icon cds--text-input__invalid-icon--warning&quot;&gt;
+				&lt;/svg&gt;
+			}
+			@if (textInputTemplate) {
+				&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;textInputTemplate&quot;&gt;&lt;/ng-template&gt;
+			} @else {
 				&lt;ng-content select&#x3D;&quot;[cdsText],[ibmText],input[type&#x3D;text],div&quot;&gt;&lt;/ng-content&gt;
-			&lt;/ng-template&gt;
-			&lt;ng-container *ngIf&#x3D;&quot;decorator&quot;&gt;
+			}
+			@if (decorator) {
 				&lt;div class&#x3D;&quot;cds--text-input__field-inner-wrapper--decorator&quot;&gt;
 					&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;decorator&quot;&gt;&lt;/ng-template&gt;
 				&lt;/div&gt;
-			&lt;/ng-container&gt;
-
-			&lt;ng-container *ngIf&#x3D;&quot;fluid&quot;&gt;
+			}
+			@if (fluid) {
 				&lt;hr class&#x3D;&quot;cds--text-input__divider&quot; /&gt;
-				&lt;div *ngIf&#x3D;&quot;invalid&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
-					&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(invalidText)&quot;&gt;{{invalidText}}&lt;/ng-container&gt;
-					&lt;ng-template *ngIf&#x3D;&quot;isTemplate(invalidText)&quot; [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
-				&lt;/div&gt;
-				&lt;div *ngIf&#x3D;&quot;!invalid &amp;&amp; warn&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
-					&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(warnText)&quot;&gt;{{warnText}}&lt;/ng-container&gt;
-					&lt;ng-template *ngIf&#x3D;&quot;isTemplate(warnText)&quot; [ngTemplateOutlet]&#x3D;&quot;warnText&quot;&gt;&lt;/ng-template&gt;
-				&lt;/div&gt;
-			&lt;/ng-container&gt;
+				@if (invalid) {
+					&lt;div class&#x3D;&quot;cds--form-requirement&quot;&gt;
+						@if (!isTemplate(invalidText)) {
+							{{invalidText}}
+						}
+						@if (isTemplate(invalidText)) {
+							&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
+						}
+					&lt;/div&gt;
+				}
+				@if (!invalid &amp;&amp; warn) {
+					&lt;div class&#x3D;&quot;cds--form-requirement&quot;&gt;
+						@if (!isTemplate(warnText)) {
+							{{warnText}}
+						}
+						@if (isTemplate(warnText)) {
+							&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;warnText&quot;&gt;&lt;/ng-template&gt;
+						}
+					&lt;/div&gt;
+				}
+			}
 		&lt;/div&gt;
-		&lt;ng-container *ngIf&#x3D;&quot;!fluid &amp;&amp; !inline&quot;&gt;
+		@if (!fluid &amp;&amp; !inline) {
 			&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;validationOrHelper&quot;&gt;&lt;/ng-container&gt;
-		&lt;/ng-container&gt;
+		}
 	&lt;/div&gt;
-&lt;/ng-container&gt;
-
+}
 &lt;ng-template #validationOrHelper&gt;
-	&lt;div
-		*ngIf&#x3D;&quot;helperText &amp;&amp; !invalid &amp;&amp; !warn&quot;
-		class&#x3D;&quot;cds--form__helper-text&quot;
-		[ngClass]&#x3D;&quot;{&#x27;cds--form__helper-text--disabled&#x27;: disabled, &#x27;cds--form__helper-text--inline&#x27;: inline}&quot;&gt;
-		&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(helperText)&quot;&gt;{{helperText}}&lt;/ng-container&gt;
-		&lt;ng-template *ngIf&#x3D;&quot;isTemplate(helperText)&quot; [ngTemplateOutlet]&#x3D;&quot;helperText&quot;&gt;&lt;/ng-template&gt;
-	&lt;/div&gt;
-	&lt;div *ngIf&#x3D;&quot;invalid&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
-		&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(invalidText)&quot;&gt;{{invalidText}}&lt;/ng-container&gt;
-		&lt;ng-template *ngIf&#x3D;&quot;isTemplate(invalidText)&quot; [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
-	&lt;/div&gt;
-	&lt;div *ngIf&#x3D;&quot;!invalid &amp;&amp; warn&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
-		&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(warnText)&quot;&gt;{{warnText}}&lt;/ng-container&gt;
-		&lt;ng-template *ngIf&#x3D;&quot;isTemplate(warnText)&quot; [ngTemplateOutlet]&#x3D;&quot;warnText&quot;&gt;&lt;/ng-template&gt;
-	&lt;/div&gt;
+	@if (helperText &amp;&amp; !invalid &amp;&amp; !warn) {
+		&lt;div
+			class&#x3D;&quot;cds--form__helper-text&quot;
+			[ngClass]&#x3D;&quot;{&#x27;cds--form__helper-text--disabled&#x27;: disabled, &#x27;cds--form__helper-text--inline&#x27;: inline}&quot;&gt;
+			@if (!isTemplate(helperText)) {
+				{{helperText}}
+			}
+			@if (isTemplate(helperText)) {
+				&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;helperText&quot;&gt;&lt;/ng-template&gt;
+			}
+		&lt;/div&gt;
+	}
+	@if (invalid) {
+		&lt;div class&#x3D;&quot;cds--form-requirement&quot;&gt;
+			@if (!isTemplate(invalidText)) {
+				{{invalidText}}
+			}
+			@if (isTemplate(invalidText)) {
+				&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
+			}
+		&lt;/div&gt;
+	}
+	@if (!invalid &amp;&amp; warn) {
+		&lt;div class&#x3D;&quot;cds--form-requirement&quot;&gt;
+			@if (!isTemplate(warnText)) {
+				{{warnText}}
+			}
+			@if (isTemplate(warnText)) {
+				&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;warnText&quot;&gt;&lt;/ng-template&gt;
+			}
+		&lt;/div&gt;
+	}
 &lt;/ng-template&gt;
 	</code></pre></td>
             </tr>
@@ -344,6 +387,10 @@
                             <li>
                                     <span class="modifier">Private</span>
                                 <a href="#_subscription" >_subscription</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#changeDetectorRef" >changeDetectorRef</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
@@ -539,12 +586,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(changeDetectorRef: ChangeDetectorRef)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="290" class="link-to-prism">src/input/text-input-label.component.ts:290</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="330" class="link-to-prism">src/input/text-input-label.component.ts:330</a></div>
                             </td>
                         </tr>
 
@@ -552,32 +599,6 @@
                     <td class="col-md-4">
                             <div class="io-description"><p>Creates an instance of Label.</p>
 </div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>changeDetectorRef</td>
-                                                  
-                                                        <td>
-                                                                    <code>ChangeDetectorRef</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
                     </td>
                 </tr>
             </tbody>
@@ -602,7 +623,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="229" class="link-to-prism">src/input/text-input-label.component.ts:229</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="263" class="link-to-prism">src/input/text-input-label.component.ts:263</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -629,7 +650,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="239" class="link-to-prism">src/input/text-input-label.component.ts:239</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="273" class="link-to-prism">src/input/text-input-label.component.ts:273</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -661,7 +682,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="194" class="link-to-prism">src/input/text-input-label.component.ts:194</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="228" class="link-to-prism">src/input/text-input-label.component.ts:228</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -693,7 +714,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="262" class="link-to-prism">src/input/text-input-label.component.ts:262</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="296" class="link-to-prism">src/input/text-input-label.component.ts:296</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -726,7 +747,7 @@ counter alongside the label.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="234" class="link-to-prism">src/input/text-input-label.component.ts:234</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="268" class="link-to-prism">src/input/text-input-label.component.ts:268</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -753,7 +774,7 @@ counter alongside the label.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="209" class="link-to-prism">src/input/text-input-label.component.ts:209</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="243" class="link-to-prism">src/input/text-input-label.component.ts:243</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -785,7 +806,7 @@ counter alongside the label.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="245" class="link-to-prism">src/input/text-input-label.component.ts:245</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="279" class="link-to-prism">src/input/text-input-label.component.ts:279</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -818,7 +839,7 @@ screen readers.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="250" class="link-to-prism">src/input/text-input-label.component.ts:250</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="284" class="link-to-prism">src/input/text-input-label.component.ts:284</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -850,7 +871,7 @@ screen readers.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="217" class="link-to-prism">src/input/text-input-label.component.ts:217</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="251" class="link-to-prism">src/input/text-input-label.component.ts:251</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -877,7 +898,7 @@ screen readers.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="213" class="link-to-prism">src/input/text-input-label.component.ts:213</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="247" class="link-to-prism">src/input/text-input-label.component.ts:247</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -909,7 +930,7 @@ screen readers.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/input/text-input-label.component.ts:189</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="223" class="link-to-prism">src/input/text-input-label.component.ts:223</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -937,7 +958,7 @@ its input counterpart through the &#39;for&#39; attribute.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/input/text-input-label.component.ts:204</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="238" class="link-to-prism">src/input/text-input-label.component.ts:238</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -965,7 +986,7 @@ Since we cannot pass ng-content down easily from label component, we will accept
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="268" class="link-to-prism">src/input/text-input-label.component.ts:268</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="302" class="link-to-prism">src/input/text-input-label.component.ts:302</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -998,7 +1019,7 @@ counter to display.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="256" class="link-to-prism">src/input/text-input-label.component.ts:256</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="290" class="link-to-prism">src/input/text-input-label.component.ts:290</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -1031,7 +1052,7 @@ variant class (<code>cds--label--inline--{size}</code>).</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="198" class="link-to-prism">src/input/text-input-label.component.ts:198</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="232" class="link-to-prism">src/input/text-input-label.component.ts:232</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -1058,7 +1079,7 @@ variant class (<code>cds--label--inline--{size}</code>).</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="205" class="link-to-prism">src/input/text-input-label.component.ts:205</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="239" class="link-to-prism">src/input/text-input-label.component.ts:239</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -1084,7 +1105,7 @@ variant class (<code>cds--label--inline--{size}</code>).</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="221" class="link-to-prism">src/input/text-input-label.component.ts:221</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="255" class="link-to-prism">src/input/text-input-label.component.ts:255</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -1111,7 +1132,7 @@ variant class (<code>cds--label--inline--{size}</code>).</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="225" class="link-to-prism">src/input/text-input-label.component.ts:225</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="259" class="link-to-prism">src/input/text-input-label.component.ts:259</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -1149,7 +1170,7 @@ variant class (<code>cds--label--inline--{size}</code>).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="279" class="link-to-prism">src/input/text-input-label.component.ts:279</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="313" class="link-to-prism">src/input/text-input-label.component.ts:313</a></div>
                         </td>
                     </tr>
 
@@ -1175,7 +1196,7 @@ variant class (<code>cds--label--inline--{size}</code>).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="174" class="link-to-prism">src/input/text-input-label.component.ts:174</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="212" class="link-to-prism">src/input/text-input-label.component.ts:212</a></div>
                         </td>
                     </tr>
 
@@ -1201,7 +1222,7 @@ variant class (<code>cds--label--inline--{size}</code>).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/input/text-input-label.component.ts:178</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="216" class="link-to-prism">src/input/text-input-label.component.ts:216</a></div>
                         </td>
                     </tr>
 
@@ -1232,7 +1253,7 @@ variant class (<code>cds--label--inline--{size}</code>).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="281" class="link-to-prism">src/input/text-input-label.component.ts:281</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="315" class="link-to-prism">src/input/text-input-label.component.ts:315</a></div>
                         </td>
                     </tr>
 
@@ -1258,7 +1279,7 @@ variant class (<code>cds--label--inline--{size}</code>).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="166" class="link-to-prism">src/input/text-input-label.component.ts:166</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/input/text-input-label.component.ts:204</a></div>
                         </td>
                     </tr>
 
@@ -1284,7 +1305,7 @@ variant class (<code>cds--label--inline--{size}</code>).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/input/text-input-label.component.ts:170</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="208" class="link-to-prism">src/input/text-input-label.component.ts:208</a></div>
                         </td>
                     </tr>
 
@@ -1321,8 +1342,8 @@ variant class (<code>cds--label--inline--{size}</code>).</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="367"
-                                    class="link-to-prism">src/input/text-input-label.component.ts:367</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="407"
+                                    class="link-to-prism">src/input/text-input-label.component.ts:407</a></div>
                         </td>
                     </tr>
 
@@ -1363,8 +1384,8 @@ event listener</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="396"
-                                    class="link-to-prism">src/input/text-input-label.component.ts:396</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="436"
+                                    class="link-to-prism">src/input/text-input-label.component.ts:436</a></div>
                         </td>
                     </tr>
 
@@ -1405,8 +1426,8 @@ Safe to call when neither is active.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="359"
-                                    class="link-to-prism">src/input/text-input-label.component.ts:359</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="399"
+                                    class="link-to-prism">src/input/text-input-label.component.ts:399</a></div>
                         </td>
                     </tr>
 
@@ -1468,8 +1489,8 @@ Safe to call when neither is active.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="351"
-                                    class="link-to-prism">src/input/text-input-label.component.ts:351</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="391"
+                                    class="link-to-prism">src/input/text-input-label.component.ts:391</a></div>
                         </td>
                     </tr>
 
@@ -1505,8 +1526,8 @@ Safe to call when neither is active.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="301"
-                                    class="link-to-prism">src/input/text-input-label.component.ts:301</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="341"
+                                    class="link-to-prism">src/input/text-input-label.component.ts:341</a></div>
                         </td>
                     </tr>
 
@@ -1545,8 +1566,8 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="337"
-                                    class="link-to-prism">src/input/text-input-label.component.ts:337</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="377"
+                                    class="link-to-prism">src/input/text-input-label.component.ts:377</a></div>
                         </td>
                     </tr>
 
@@ -1614,8 +1635,8 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="355"
-                                    class="link-to-prism">src/input/text-input-label.component.ts:355</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="395"
+                                    class="link-to-prism">src/input/text-input-label.component.ts:395</a></div>
                         </td>
                     </tr>
 
@@ -1662,7 +1683,7 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="284" class="link-to-prism">src/input/text-input-label.component.ts:284</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="320" class="link-to-prism">src/input/text-input-label.component.ts:320</a></div>
                         </td>
                     </tr>
 
@@ -1694,7 +1715,7 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="290" class="link-to-prism">src/input/text-input-label.component.ts:290</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="326" class="link-to-prism">src/input/text-input-label.component.ts:326</a></div>
                         </td>
                     </tr>
 
@@ -1726,7 +1747,33 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="287" class="link-to-prism">src/input/text-input-label.component.ts:287</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="323" class="link-to-prism">src/input/text-input-label.component.ts:323</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeDetectorRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>changeDetectorRef</b></span>
+                        <a href="#changeDetectorRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ChangeDetectorRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="317" class="link-to-prism">src/input/text-input-label.component.ts:317</a></div>
                         </td>
                     </tr>
 
@@ -1761,7 +1808,7 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="279" class="link-to-prism">src/input/text-input-label.component.ts:279</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="313" class="link-to-prism">src/input/text-input-label.component.ts:313</a></div>
                         </td>
                     </tr>
 
@@ -1793,16 +1840,10 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">src/input/text-input-label.component.ts:184</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="202" class="link-to-prism">src/input/text-input-label.component.ts:202</a></div>
                         </td>
                     </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Used to build the id of the input item associated with the <code>Label</code>.</p>
-</div>
-                </td>
-            </tr>
 
         </tbody>
     </table>
@@ -1830,7 +1871,7 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="271" class="link-to-prism">src/input/text-input-label.component.ts:271</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="305" class="link-to-prism">src/input/text-input-label.component.ts:305</a></div>
                         </td>
                     </tr>
 
@@ -1866,7 +1907,7 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="277" class="link-to-prism">src/input/text-input-label.component.ts:277</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="311" class="link-to-prism">src/input/text-input-label.component.ts:311</a></div>
                         </td>
                     </tr>
 
@@ -1901,7 +1942,7 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="281" class="link-to-prism">src/input/text-input-label.component.ts:281</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="315" class="link-to-prism">src/input/text-input-label.component.ts:315</a></div>
                         </td>
                     </tr>
 
@@ -1937,7 +1978,7 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="274" class="link-to-prism">src/input/text-input-label.component.ts:274</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="308" class="link-to-prism">src/input/text-input-label.component.ts:308</a></div>
                         </td>
                     </tr>
 
@@ -1966,7 +2007,7 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="166" class="link-to-prism">src/input/text-input-label.component.ts:166</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/input/text-input-label.component.ts:204</a></div>
                                 </td>
                             </tr>
 
@@ -1988,7 +2029,7 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/input/text-input-label.component.ts:170</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="208" class="link-to-prism">src/input/text-input-label.component.ts:208</a></div>
                                 </td>
                             </tr>
 
@@ -2010,7 +2051,7 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="174" class="link-to-prism">src/input/text-input-label.component.ts:174</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="212" class="link-to-prism">src/input/text-input-label.component.ts:212</a></div>
                                 </td>
                             </tr>
 
@@ -2032,7 +2073,7 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/input/text-input-label.component.ts:178</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="216" class="link-to-prism">src/input/text-input-label.component.ts:216</a></div>
                                 </td>
                             </tr>
 
@@ -2046,6 +2087,7 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
 	AfterContentInit,
 	AfterViewInit,
+	ChangeDetectionStrategy,
 	ChangeDetectorRef,
 	Component,
 	ContentChild,
@@ -2056,17 +2098,20 @@ counter listener when <code>enableCounter</code> is already <code>true</code> on
 	OnDestroy,
 	SimpleChanges,
 	TemplateRef,
-	ViewChild
+	ViewChild,
+	inject
 } from &quot;@angular/core&quot;;
+import { NgClass, NgTemplateOutlet } from &quot;@angular/common&quot;;
+import { IconDirective } from &quot;carbon-components-angular/icon&quot;;
 import { Subscription } from &quot;rxjs&quot;;
 import { startWith } from &quot;rxjs/operators&quot;;
 import { TextInput } from &quot;./input.directive&quot;;
 
 /**
- * Get started with importing the module:
+ * Get started with importing the component and directive:
  *
  * &#x60;&#x60;&#x60;typescript
- * import { InputModule } from &#x27;carbon-components-angular&#x27;;
+ * import { TextInput, TextInputLabelComponent, } from &#x27;carbon-components-angular&#x27;;
  * &#x60;&#x60;&#x60;
  *
  * &#x60;&#x60;&#x60;html
@@ -2081,13 +2126,13 @@ import { TextInput } from &quot;./input.directive&quot;;
 @Component({
 	selector: &quot;cds-text-label, ibm-text-label&quot;,
 	template: &#x60;
-		&lt;ng-container *ngIf&#x3D;&quot;skeleton&quot;&gt;
+		@if (skeleton) {
 			&lt;span class&#x3D;&quot;cds--label cds--skeleton&quot;&gt;&lt;/span&gt;
 			&lt;div class&#x3D;&quot;cds--text-input cds--skeleton&quot;&gt;&lt;/div&gt;
-		&lt;/ng-container&gt;
-		&lt;ng-container *ngIf&#x3D;&quot;!skeleton&quot;&gt;
+		}
+		@if (!skeleton) {
 			&lt;!-- non-inline: label-wrapper above field; inline: label+validation side-by-side --&gt;
-			&lt;ng-container *ngIf&#x3D;&quot;!inline; else inlineHeader&quot;&gt;
+			@if (!inline) {
 				&lt;div class&#x3D;&quot;cds--text-input__label-wrapper&quot;&gt;
 					&lt;label
 						[for]&#x3D;&quot;labelInputID&quot;
@@ -2097,22 +2142,22 @@ import { TextInput } from &quot;./input.directive&quot;;
 							&#x27;cds--label--disabled&#x27;: disabled,
 							&#x27;cds--visually-hidden&#x27;: hideLabel
 						}&quot;&gt;
-						&lt;ng-template *ngIf&#x3D;&quot;labelTemplate; else labelContent&quot; [ngTemplateOutlet]&#x3D;&quot;labelTemplate&quot;&gt;&lt;/ng-template&gt;
-						&lt;ng-template #labelContent&gt;
+						@if (labelTemplate) {
+							&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;labelTemplate&quot;&gt;&lt;/ng-template&gt;
+						} @else {
 							&lt;ng-content&gt;&lt;/ng-content&gt;
-						&lt;/ng-template&gt;
+						}
 					&lt;/label&gt;
-					&lt;span
-						*ngIf&#x3D;&quot;enableCounter &amp;&amp; maxCount&quot;
-						class&#x3D;&quot;cds--label&quot;
-						[ngClass]&#x3D;&quot;{&#x27;cds--label--disabled&#x27;: disabled}&quot;
-						aria-hidden&#x3D;&quot;true&quot;&gt;
-						{{textCount}}/{{maxCount}}
-					&lt;/span&gt;
+					@if (enableCounter &amp;&amp; maxCount) {
+						&lt;span
+							class&#x3D;&quot;cds--label&quot;
+							[ngClass]&#x3D;&quot;{&#x27;cds--label--disabled&#x27;: disabled}&quot;
+							aria-hidden&#x3D;&quot;true&quot;&gt;
+							{{textCount}}/{{maxCount}}
+						&lt;/span&gt;
+					}
 				&lt;/div&gt;
-			&lt;/ng-container&gt;
-
-			&lt;ng-template #inlineHeader&gt;
+			} @else {
 				&lt;div class&#x3D;&quot;cds--text-input__label-helper-wrapper&quot;&gt;
 					&lt;div class&#x3D;&quot;cds--text-input__label-wrapper&quot;&gt;
 						&lt;label
@@ -2127,86 +2172,120 @@ import { TextInput } from &quot;./input.directive&quot;;
 								&#x27;cds--label--inline--md&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;md&#x27;,
 								&#x27;cds--label--inline--lg&#x27;: size &#x3D;&#x3D;&#x3D; &#x27;lg&#x27;
 							}&quot;&gt;
-							&lt;ng-template *ngIf&#x3D;&quot;labelTemplate&quot; [ngTemplateOutlet]&#x3D;&quot;labelTemplate&quot;&gt;&lt;/ng-template&gt;
+							@if (labelTemplate) {
+								&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;labelTemplate&quot;&gt;&lt;/ng-template&gt;
+							}
 						&lt;/label&gt;
 					&lt;/div&gt;
-					&lt;ng-container *ngIf&#x3D;&quot;!fluid&quot;&gt;
+					@if (!fluid) {
 						&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;validationOrHelper&quot;&gt;&lt;/ng-container&gt;
-					&lt;/ng-container&gt;
+					}
 				&lt;/div&gt;
-			&lt;/ng-template&gt;
-
+			}
 			&lt;div
 				class&#x3D;&quot;cds--text-input__field-outer-wrapper&quot;
 				[ngClass]&#x3D;&quot;{&#x27;cds--text-input__field-outer-wrapper--inline&#x27;: inline}&quot;&gt;
-			&lt;div
-				class&#x3D;&quot;cds--text-input__field-wrapper&quot;
-				[ngClass]&#x3D;&quot;{
-					&#x27;cds--text-input__field-wrapper--warning&#x27;: warn,
-					&#x27;cds--text-input__field-wrapper--decorator&#x27;: !!decorator
-				}&quot;
+				&lt;div
+					class&#x3D;&quot;cds--text-input__field-wrapper&quot;
+					[ngClass]&#x3D;&quot;{
+						&#x27;cds--text-input__field-wrapper--warning&#x27;: warn,
+						&#x27;cds--text-input__field-wrapper--decorator&#x27;: !!decorator
+					}&quot;
 					[attr.data-invalid]&#x3D;&quot;(invalid ? true : null)&quot;
 					#wrapper&gt;
-					&lt;svg
-						*ngIf&#x3D;&quot;invalid &amp;&amp; !warn&quot;
-						cdsIcon&#x3D;&quot;warning--filled&quot;
-						size&#x3D;&quot;16&quot;
-						class&#x3D;&quot;cds--text-input__invalid-icon&quot;&gt;
-					&lt;/svg&gt;
-					&lt;svg
-						*ngIf&#x3D;&quot;!invalid &amp;&amp; warn&quot;
-						cdsIcon&#x3D;&quot;warning--alt--filled&quot;
-						size&#x3D;&quot;16&quot;
-						class&#x3D;&quot;cds--text-input__invalid-icon cds--text-input__invalid-icon--warning&quot;&gt;
-					&lt;/svg&gt;
-					&lt;ng-template *ngIf&#x3D;&quot;textInputTemplate; else textInputContent&quot; [ngTemplateOutlet]&#x3D;&quot;textInputTemplate&quot;&gt;&lt;/ng-template&gt;
-					&lt;ng-template #textInputContent&gt;
+					@if (invalid &amp;&amp; !warn) {
+						&lt;svg
+							cdsIcon&#x3D;&quot;warning--filled&quot;
+							size&#x3D;&quot;16&quot;
+							class&#x3D;&quot;cds--text-input__invalid-icon&quot;&gt;
+						&lt;/svg&gt;
+					}
+					@if (!invalid &amp;&amp; warn) {
+						&lt;svg
+							cdsIcon&#x3D;&quot;warning--alt--filled&quot;
+							size&#x3D;&quot;16&quot;
+							class&#x3D;&quot;cds--text-input__invalid-icon cds--text-input__invalid-icon--warning&quot;&gt;
+						&lt;/svg&gt;
+					}
+					@if (textInputTemplate) {
+						&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;textInputTemplate&quot;&gt;&lt;/ng-template&gt;
+					} @else {
 						&lt;ng-content select&#x3D;&quot;[cdsText],[ibmText],input[type&#x3D;text],div&quot;&gt;&lt;/ng-content&gt;
-					&lt;/ng-template&gt;
-					&lt;ng-container *ngIf&#x3D;&quot;decorator&quot;&gt;
+					}
+					@if (decorator) {
 						&lt;div class&#x3D;&quot;cds--text-input__field-inner-wrapper--decorator&quot;&gt;
 							&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;decorator&quot;&gt;&lt;/ng-template&gt;
 						&lt;/div&gt;
-					&lt;/ng-container&gt;
-
-					&lt;ng-container *ngIf&#x3D;&quot;fluid&quot;&gt;
+					}
+					@if (fluid) {
 						&lt;hr class&#x3D;&quot;cds--text-input__divider&quot; /&gt;
-						&lt;div *ngIf&#x3D;&quot;invalid&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
-							&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(invalidText)&quot;&gt;{{invalidText}}&lt;/ng-container&gt;
-							&lt;ng-template *ngIf&#x3D;&quot;isTemplate(invalidText)&quot; [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
-						&lt;/div&gt;
-						&lt;div *ngIf&#x3D;&quot;!invalid &amp;&amp; warn&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
-							&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(warnText)&quot;&gt;{{warnText}}&lt;/ng-container&gt;
-							&lt;ng-template *ngIf&#x3D;&quot;isTemplate(warnText)&quot; [ngTemplateOutlet]&#x3D;&quot;warnText&quot;&gt;&lt;/ng-template&gt;
-						&lt;/div&gt;
-					&lt;/ng-container&gt;
+						@if (invalid) {
+							&lt;div class&#x3D;&quot;cds--form-requirement&quot;&gt;
+								@if (!isTemplate(invalidText)) {
+									{{invalidText}}
+								}
+								@if (isTemplate(invalidText)) {
+									&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
+								}
+							&lt;/div&gt;
+						}
+						@if (!invalid &amp;&amp; warn) {
+							&lt;div class&#x3D;&quot;cds--form-requirement&quot;&gt;
+								@if (!isTemplate(warnText)) {
+									{{warnText}}
+								}
+								@if (isTemplate(warnText)) {
+									&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;warnText&quot;&gt;&lt;/ng-template&gt;
+								}
+							&lt;/div&gt;
+						}
+					}
 				&lt;/div&gt;
-				&lt;ng-container *ngIf&#x3D;&quot;!fluid &amp;&amp; !inline&quot;&gt;
+				@if (!fluid &amp;&amp; !inline) {
 					&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;validationOrHelper&quot;&gt;&lt;/ng-container&gt;
-				&lt;/ng-container&gt;
+				}
 			&lt;/div&gt;
-		&lt;/ng-container&gt;
-
+		}
 		&lt;ng-template #validationOrHelper&gt;
-			&lt;div
-				*ngIf&#x3D;&quot;helperText &amp;&amp; !invalid &amp;&amp; !warn&quot;
-				class&#x3D;&quot;cds--form__helper-text&quot;
-				[ngClass]&#x3D;&quot;{&#x27;cds--form__helper-text--disabled&#x27;: disabled, &#x27;cds--form__helper-text--inline&#x27;: inline}&quot;&gt;
-				&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(helperText)&quot;&gt;{{helperText}}&lt;/ng-container&gt;
-				&lt;ng-template *ngIf&#x3D;&quot;isTemplate(helperText)&quot; [ngTemplateOutlet]&#x3D;&quot;helperText&quot;&gt;&lt;/ng-template&gt;
-			&lt;/div&gt;
-			&lt;div *ngIf&#x3D;&quot;invalid&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
-				&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(invalidText)&quot;&gt;{{invalidText}}&lt;/ng-container&gt;
-				&lt;ng-template *ngIf&#x3D;&quot;isTemplate(invalidText)&quot; [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
-			&lt;/div&gt;
-			&lt;div *ngIf&#x3D;&quot;!invalid &amp;&amp; warn&quot; class&#x3D;&quot;cds--form-requirement&quot;&gt;
-				&lt;ng-container *ngIf&#x3D;&quot;!isTemplate(warnText)&quot;&gt;{{warnText}}&lt;/ng-container&gt;
-				&lt;ng-template *ngIf&#x3D;&quot;isTemplate(warnText)&quot; [ngTemplateOutlet]&#x3D;&quot;warnText&quot;&gt;&lt;/ng-template&gt;
-			&lt;/div&gt;
+			@if (helperText &amp;&amp; !invalid &amp;&amp; !warn) {
+				&lt;div
+					class&#x3D;&quot;cds--form__helper-text&quot;
+					[ngClass]&#x3D;&quot;{&#x27;cds--form__helper-text--disabled&#x27;: disabled, &#x27;cds--form__helper-text--inline&#x27;: inline}&quot;&gt;
+					@if (!isTemplate(helperText)) {
+						{{helperText}}
+					}
+					@if (isTemplate(helperText)) {
+						&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;helperText&quot;&gt;&lt;/ng-template&gt;
+					}
+				&lt;/div&gt;
+			}
+			@if (invalid) {
+				&lt;div class&#x3D;&quot;cds--form-requirement&quot;&gt;
+					@if (!isTemplate(invalidText)) {
+						{{invalidText}}
+					}
+					@if (isTemplate(invalidText)) {
+						&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;invalidText&quot;&gt;&lt;/ng-template&gt;
+					}
+				&lt;/div&gt;
+			}
+			@if (!invalid &amp;&amp; warn) {
+				&lt;div class&#x3D;&quot;cds--form-requirement&quot;&gt;
+					@if (!isTemplate(warnText)) {
+						{{warnText}}
+					}
+					@if (isTemplate(warnText)) {
+						&lt;ng-template [ngTemplateOutlet]&#x3D;&quot;warnText&quot;&gt;&lt;/ng-template&gt;
+					}
+				&lt;/div&gt;
+			}
 		&lt;/ng-template&gt;
-	&#x60;
+	&#x60;,
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [NgClass, NgTemplateOutlet, IconDirective]
 })
 export class TextInputLabelComponent implements AfterViewInit, AfterContentInit, OnChanges, OnDestroy {
+	static labelCounter &#x3D; 0;
 
 	@HostBinding(&quot;class.cds--text-input-wrapper--inline&quot;) get isInlineWrapper() {
 		return this.inline;
@@ -2223,10 +2302,6 @@ export class TextInputLabelComponent implements AfterViewInit, AfterContentInit,
 	@HostBinding(&quot;class.cds--text-input--fluid__skeleton&quot;) get fluidSkeletonClass() {
 		return this.fluid &amp;&amp; this.skeleton;
 	}
-	/**
-	 * Used to build the id of the input item associated with the &#x60;Label&#x60;.
-	 */
-	static labelCounter &#x3D; 0;
 	/**
 	 * The id of the input item associated with the &#x60;Label&#x60;. This value is also used to associate the &#x60;Label&#x60; with
 	 * its input counterpart through the &#x27;for&#x27; attribute.
@@ -2325,6 +2400,8 @@ export class TextInputLabelComponent implements AfterViewInit, AfterContentInit,
 
 	@HostBinding(&quot;class.cds--text-input-wrapper&quot;) textInputWrapper &#x3D; true;
 
+	protected changeDetectorRef &#x3D; inject(ChangeDetectorRef);
+
 	// Cached reference to the input element, set once in ngAfterViewInit.
 	private _inputElement: HTMLInputElement | null &#x3D; null;
 
@@ -2334,10 +2411,14 @@ export class TextInputLabelComponent implements AfterViewInit, AfterContentInit,
 	// Fallback cached DOM listener so it can be removed precisely (avoids anonymous-function leak).
 	private _inputListener: ((e: Event) &#x3D;&gt; void) | null &#x3D; null;
 
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
 	/**
 	 * Creates an instance of Label.
 	 */
-	constructor(protected changeDetectorRef: ChangeDetectorRef) {}
+	constructor() {}
 
 	/**
 	 * Sets the id on the input item associated with the &#x60;Label&#x60; and attaches the
@@ -2478,7 +2559,7 @@ export class TextInputLabelComponent implements AfterViewInit, AfterContentInit,
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-container *ngIf="skeleton">	<span class="cds--label cds--skeleton"></span>	<div class="cds--text-input cds--skeleton"></div></ng-container><ng-container *ngIf="!skeleton">	<!-- non-inline: label-wrapper above field; inline: label+validation side-by-side -->	<ng-container *ngIf="!inline; else inlineHeader">		<div class="cds--text-input__label-wrapper">			<label				[for]="labelInputID"				[attr.aria-label]="ariaLabel"				class="cds--label"				[ngClass]="{					\'cds--label--disabled\': disabled,					\'cds--visually-hidden\': hideLabel				}">				<ng-template *ngIf="labelTemplate; else labelContent" [ngTemplateOutlet]="labelTemplate"></ng-template>				<ng-template #labelContent>					<ng-content></ng-content>				</ng-template>			</label>			<span				*ngIf="enableCounter && maxCount"				class="cds--label"				[ngClass]="{\'cds--label--disabled\': disabled}"				aria-hidden="true">				{{textCount}}/{{maxCount}}			</span>		</div>	</ng-container>	<ng-template #inlineHeader>		<div class="cds--text-input__label-helper-wrapper">			<div class="cds--text-input__label-wrapper">				<label					[for]="labelInputID"					[attr.aria-label]="ariaLabel"					class="cds--label"					[ngClass]="{						\'cds--label--disabled\': disabled,						\'cds--visually-hidden\': hideLabel,						\'cds--label--inline\': true,						\'cds--label--inline--sm\': size === \'sm\',						\'cds--label--inline--md\': size === \'md\',						\'cds--label--inline--lg\': size === \'lg\'					}">					<ng-template *ngIf="labelTemplate" [ngTemplateOutlet]="labelTemplate"></ng-template>				</label>			</div>			<ng-container *ngIf="!fluid">				<ng-container [ngTemplateOutlet]="validationOrHelper"></ng-container>			</ng-container>		</div>	</ng-template>	<div		class="cds--text-input__field-outer-wrapper"		[ngClass]="{\'cds--text-input__field-outer-wrapper--inline\': inline}">	<div		class="cds--text-input__field-wrapper"		[ngClass]="{			\'cds--text-input__field-wrapper--warning\': warn,			\'cds--text-input__field-wrapper--decorator\': !!decorator		}"			[attr.data-invalid]="(invalid ? true : null)"			#wrapper>			<svg				*ngIf="invalid && !warn"				cdsIcon="warning--filled"				size="16"				class="cds--text-input__invalid-icon">			</svg>			<svg				*ngIf="!invalid && warn"				cdsIcon="warning--alt--filled"				size="16"				class="cds--text-input__invalid-icon cds--text-input__invalid-icon--warning">			</svg>			<ng-template *ngIf="textInputTemplate; else textInputContent" [ngTemplateOutlet]="textInputTemplate"></ng-template>			<ng-template #textInputContent>				<ng-content select="[cdsText],[ibmText],input[type=text],div"></ng-content>			</ng-template>			<ng-container *ngIf="decorator">				<div class="cds--text-input__field-inner-wrapper--decorator">					<ng-template [ngTemplateOutlet]="decorator"></ng-template>				</div>			</ng-container>			<ng-container *ngIf="fluid">				<hr class="cds--text-input__divider" />				<div *ngIf="invalid" class="cds--form-requirement">					<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>					<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>				</div>				<div *ngIf="!invalid && warn" class="cds--form-requirement">					<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>					<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>				</div>			</ng-container>		</div>		<ng-container *ngIf="!fluid && !inline">			<ng-container [ngTemplateOutlet]="validationOrHelper"></ng-container>		</ng-container>	</div></ng-container><ng-template #validationOrHelper>	<div		*ngIf="helperText && !invalid && !warn"		class="cds--form__helper-text"		[ngClass]="{\'cds--form__helper-text--disabled\': disabled, \'cds--form__helper-text--inline\': inline}">		<ng-container *ngIf="!isTemplate(helperText)">{{helperText}}</ng-container>		<ng-template *ngIf="isTemplate(helperText)" [ngTemplateOutlet]="helperText"></ng-template>	</div>	<div *ngIf="invalid" class="cds--form-requirement">		<ng-container *ngIf="!isTemplate(invalidText)">{{invalidText}}</ng-container>		<ng-template *ngIf="isTemplate(invalidText)" [ngTemplateOutlet]="invalidText"></ng-template>	</div>	<div *ngIf="!invalid && warn" class="cds--form-requirement">		<ng-container *ngIf="!isTemplate(warnText)">{{warnText}}</ng-container>		<ng-template *ngIf="isTemplate(warnText)" [ngTemplateOutlet]="warnText"></ng-template>	</div></ng-template>	</div>'
+        var COMPONENT_TEMPLATE = '<div>@if (skeleton) {	<span class="cds--label cds--skeleton"></span>	<div class="cds--text-input cds--skeleton"></div>}@if (!skeleton) {	<!-- non-inline: label-wrapper above field; inline: label+validation side-by-side -->	@if (!inline) {		<div class="cds--text-input__label-wrapper">			<label				[for]="labelInputID"				[attr.aria-label]="ariaLabel"				class="cds--label"				[ngClass]="{					\'cds--label--disabled\': disabled,					\'cds--visually-hidden\': hideLabel				}">				@if (labelTemplate) {					<ng-template [ngTemplateOutlet]="labelTemplate"></ng-template>				} @else {					<ng-content></ng-content>				}			</label>			@if (enableCounter && maxCount) {				<span					class="cds--label"					[ngClass]="{\'cds--label--disabled\': disabled}"					aria-hidden="true">					{{textCount}}/{{maxCount}}				</span>			}		</div>	} @else {		<div class="cds--text-input__label-helper-wrapper">			<div class="cds--text-input__label-wrapper">				<label					[for]="labelInputID"					[attr.aria-label]="ariaLabel"					class="cds--label"					[ngClass]="{						\'cds--label--disabled\': disabled,						\'cds--visually-hidden\': hideLabel,						\'cds--label--inline\': true,						\'cds--label--inline--sm\': size === \'sm\',						\'cds--label--inline--md\': size === \'md\',						\'cds--label--inline--lg\': size === \'lg\'					}">					@if (labelTemplate) {						<ng-template [ngTemplateOutlet]="labelTemplate"></ng-template>					}				</label>			</div>			@if (!fluid) {				<ng-container [ngTemplateOutlet]="validationOrHelper"></ng-container>			}		</div>	}	<div		class="cds--text-input__field-outer-wrapper"		[ngClass]="{\'cds--text-input__field-outer-wrapper--inline\': inline}">		<div			class="cds--text-input__field-wrapper"			[ngClass]="{				\'cds--text-input__field-wrapper--warning\': warn,				\'cds--text-input__field-wrapper--decorator\': !!decorator			}"			[attr.data-invalid]="(invalid ? true : null)"			#wrapper>			@if (invalid && !warn) {				<svg					cdsIcon="warning--filled"					size="16"					class="cds--text-input__invalid-icon">				</svg>			}			@if (!invalid && warn) {				<svg					cdsIcon="warning--alt--filled"					size="16"					class="cds--text-input__invalid-icon cds--text-input__invalid-icon--warning">				</svg>			}			@if (textInputTemplate) {				<ng-template [ngTemplateOutlet]="textInputTemplate"></ng-template>			} @else {				<ng-content select="[cdsText],[ibmText],input[type=text],div"></ng-content>			}			@if (decorator) {				<div class="cds--text-input__field-inner-wrapper--decorator">					<ng-template [ngTemplateOutlet]="decorator"></ng-template>				</div>			}			@if (fluid) {				<hr class="cds--text-input__divider" />				@if (invalid) {					<div class="cds--form-requirement">						@if (!isTemplate(invalidText)) {							{{invalidText}}						}						@if (isTemplate(invalidText)) {							<ng-template [ngTemplateOutlet]="invalidText"></ng-template>						}					</div>				}				@if (!invalid && warn) {					<div class="cds--form-requirement">						@if (!isTemplate(warnText)) {							{{warnText}}						}						@if (isTemplate(warnText)) {							<ng-template [ngTemplateOutlet]="warnText"></ng-template>						}					</div>				}			}		</div>		@if (!fluid && !inline) {			<ng-container [ngTemplateOutlet]="validationOrHelper"></ng-container>		}	</div>}<ng-template #validationOrHelper>	@if (helperText && !invalid && !warn) {		<div			class="cds--form__helper-text"			[ngClass]="{\'cds--form__helper-text--disabled\': disabled, \'cds--form__helper-text--inline\': inline}">			@if (!isTemplate(helperText)) {				{{helperText}}			}			@if (isTemplate(helperText)) {				<ng-template [ngTemplateOutlet]="helperText"></ng-template>			}		</div>	}	@if (invalid) {		<div class="cds--form-requirement">			@if (!isTemplate(invalidText)) {				{{invalidText}}			}			@if (isTemplate(invalidText)) {				<ng-template [ngTemplateOutlet]="invalidText"></ng-template>			}		</div>	}	@if (!invalid && warn) {		<div class="cds--form-requirement">			@if (!isTemplate(warnText)) {				{{warnText}}			}			@if (isTemplate(warnText)) {				<ng-template [ngTemplateOutlet]="warnText"></ng-template>			}		</div>	}</ng-template>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AILabelComponent', 'selector': 'cds-ai-label, ibm-ai-label'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'CheckboxGroup', 'selector': 'cds-checkbox-group, ibm-checkbox-group'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ComboButtonComponent', 'selector': 'cds-combo-button'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-menu, cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-menu-divider, cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-menu-group, cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-menu-item, cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'IconTab', 'selector': 'cds-icon-tab, ibm-icon-tab'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'MenuButtonComponent', 'selector': 'cds-menu-button'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonIcon', 'selector': 'cds-skeleton-icon, ibm-skeleton-icon'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderComponent', 'selector': 'cds-tab-header, ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaderGroupVertical', 'selector': 'cds-tab-header-group-vertical, ibm-tab-header-group-vertical'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'TabHeadersVertical', 'selector': 'cds-tab-headers-vertical, ibm-tab-headers-vertical'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeaderDecorator', 'selector': 'cds-table-header-decorator, ibm-table-header-decorator'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'TabsVertical', 'selector': 'cds-tabs-vertical, ibm-tabs-vertical'},{'name': 'TabsVerticalGrouped', 'selector': 'cds-tabs-vertical-grouped, ibm-tabs-vertical-grouped'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TagOperationalComponent', 'selector': 'cds-tag-operational, ibm-tag-operational'},{'name': 'TagSelectableComponent', 'selector': 'cds-tag-selectable, ibm-tag-selectable'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'AILabelActions', 'selector': '[cdsAILabelActions], [ibmAILabelActions]'},{'name': 'AILabelContent', 'selector': '[cdsAILabelContent], [ibmAILabelContent]'},{'name': 'AILabelPopoverDirective', 'selector': '[cdsAILabelPopover]'},{'name': 'AspectRatioDirective', 'selector': '[cdsAspectRatio], [ibmAspectRatio]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ClickableTileIconDirective', 'selector': '[cdsClickableTileIcon], [ibmClickableTileIcon]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'LinkIconDirective', 'selector': '[ibmLinkIcon], [cdsLinkIcon]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TabHeaderBase', 'selector': ''},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TagIconDirective', 'selector': '[cdsTagIcon], [ibmTagIcon]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'TextInputLabelComponent'};
@@ -2555,7 +2636,6 @@ export class TextInputLabelComponent implements AfterViewInit, AfterContentInit,
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

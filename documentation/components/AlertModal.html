@@ -194,6 +194,12 @@ export class ModalDemo {
 
 
 
+            <tr>
+                <td class="col-md-3">providers</td>
+                <td class="col-md-9">
+                                <code><a href="../injectables/BaseModalService.html" target="_self" >BaseModalService</a></code>
+                </td>
+            </tr>
 
 
             <tr>
@@ -202,6 +208,18 @@ export class ModalDemo {
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../components/Modal.html" target="_self" >Modal</a></code>
+                                <code><a href="../components/ModalHeader.html" target="_self" >ModalHeader</a></code>
+                                <code><a href="../directives/ModalHeaderLabel.html" target="_self" >ModalHeaderLabel</a></code>
+                                <code><a href="../directives/ModalHeaderHeading.html" target="_self" >ModalHeaderHeading</a></code>
+                                <code><a href="../directives/ModalContent.html" target="_self" >ModalContent</a></code>
+                                <code><a href="../components/ModalFooter.html" target="_self" >ModalFooter</a></code>
+                                <code><a href="../directives/Button.html" target="_self" >Button</a></code>
+                </td>
+            </tr>
 
 
 
@@ -221,17 +239,19 @@ export class ModalDemo {
 	&lt;div cdsModalContent #modalContent&gt;
 		&lt;p [innerHTML]&#x3D;&quot;content&quot;&gt;&lt;/p&gt;
 	&lt;/div&gt;
-	&lt;cds-modal-footer *ngIf&#x3D;&quot;buttons.length &gt; 0&quot;&gt;
-		&lt;ng-container *ngFor&#x3D;&quot;let button of buttons; let i &#x3D; index&quot;&gt;
-			&lt;button
-				[cdsButton]&#x3D;&quot;button.type&quot;
-				(click)&#x3D;&quot;buttonClicked(i)&quot;
-				[id]&#x3D;&quot;button.id&quot;
-				[attr.modal-primary-focus]&#x3D;&quot;(button.type.indexOf(&#x27;primary&#x27;) !&#x3D;&#x3D; -1 ? &#x27;&#x27; : null)&quot;&gt;
-				{{button.text}}
-			&lt;/button&gt;
-		&lt;/ng-container&gt;
-	&lt;/cds-modal-footer&gt;
+	@if (buttons.length &gt; 0) {
+		&lt;cds-modal-footer&gt;
+			@for (button of buttons; track button.id; let i &#x3D; $index) {
+				&lt;button
+					[cdsButton]&#x3D;&quot;button.type&quot;
+					(click)&#x3D;&quot;buttonClicked(i)&quot;
+					[id]&#x3D;&quot;button.id&quot;
+					[attr.modal-primary-focus]&#x3D;&quot;(button.type.indexOf(&#x27;primary&#x27;) !&#x3D;&#x3D; -1 ? &#x27;&#x27; : null)&quot;&gt;
+					{{button.text}}
+				&lt;/button&gt;
+			}
+		&lt;/cds-modal-footer&gt;
+	}
 &lt;/cds-modal&gt;
 	</code></pre></td>
             </tr>
@@ -261,27 +281,15 @@ export class ModalDemo {
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                    <span class="modifier">Public</span>
                                 <a href="#buttons" >buttons</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                    <span class="modifier">Public</span>
                                 <a href="#content" >content</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                    <span class="modifier">Public</span>
                                 <a href="#hasScrollingContent" >hasScrollingContent</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                    <span class="modifier">Public</span>
                                 <a href="#label" >label</a>
                             </li>
                             <li>
@@ -289,33 +297,18 @@ export class ModalDemo {
                                 <a href="#modalContent" >modalContent</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                    <span class="modifier">Public</span>
                                 <a href="#onClose" >onClose</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                    <span class="modifier">Public</span>
                                 <a href="#showCloseButton" >showCloseButton</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                    <span class="modifier">Public</span>
                                 <a href="#size" >size</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                    <span class="modifier">Public</span>
                                 <a href="#title" >title</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                    <span class="modifier">Public</span>
                                 <a href="#type" >type</a>
                             </li>
                         </ul>
@@ -388,12 +381,12 @@ export class ModalDemo {
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, label: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, title: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, content: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, size: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, hasScrollingContent: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, buttons: [], onClose: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" target="_blank">Function</a>, showCloseButton)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/modal/alert-modal.component.ts:80</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/modal/alert-modal.component.ts:113</a></div>
                             </td>
                         </tr>
 
@@ -401,127 +394,6 @@ export class ModalDemo {
                     <td class="col-md-4">
                             <div class="io-description"><p>Creates an instance of <code>AlertModal</code>.</p>
 </div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>type</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>label</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>title</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>content</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>size</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>hasScrollingContent</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>buttons</td>
-                                                  
-                                                        <td>
-                                                                    <code>[]</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>onClose</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" target="_blank" >Function</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>showCloseButton</td>
-                                                  
-                                                        <td>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
                     </td>
                 </tr>
             </tbody>
@@ -557,7 +429,7 @@ export class ModalDemo {
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/BaseModal.html#source" target="_self" >BaseModal:25</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/BaseModal.html#source" target="_self" >BaseModal:26</a></code>
 </div>
                             </td>
                         </tr>
@@ -594,7 +466,7 @@ export class ModalDemo {
                             </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in         <code><a href="../directives/BaseModal.html#source" target="_self" >BaseModal:20</a></code>
+                                    <div class="io-line">Defined in         <code><a href="../directives/BaseModal.html#source" target="_self" >BaseModal:21</a></code>
 </div>
                             </td>
                         </tr>
@@ -634,8 +506,8 @@ export class ModalDemo {
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="117"
-                                    class="link-to-prism">src/modal/alert-modal.component.ts:117</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="140"
+                                    class="link-to-prism">src/modal/alert-modal.component.ts:140</a></div>
                         </td>
                     </tr>
 
@@ -701,8 +573,8 @@ export class ModalDemo {
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="126"
-                                    class="link-to-prism">src/modal/alert-modal.component.ts:126</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="149"
+                                    class="link-to-prism">src/modal/alert-modal.component.ts:149</a></div>
                         </td>
                     </tr>
 
@@ -768,8 +640,8 @@ export class ModalDemo {
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="107"
-                                    class="link-to-prism">src/modal/alert-modal.component.ts:107</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="130"
+                                    class="link-to-prism">src/modal/alert-modal.component.ts:130</a></div>
                         </td>
                     </tr>
 
@@ -811,7 +683,7 @@ export class ModalDemo {
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../directives/BaseModal.html#source" target="_self" >BaseModal:30</a></code>
+                                <div class="io-line">Defined in         <code><a href="../directives/BaseModal.html#source" target="_self" >BaseModal:31</a></code>
 </div>
                         </td>
                     </tr>
@@ -842,9 +714,6 @@ export class ModalDemo {
                 <td class="col-md-4">
                     <a name="buttons"></a>
                     <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier">Public</span>
                         <span ><b>buttons</b></span>
                         <a href="#buttons"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -852,27 +721,12 @@ export class ModalDemo {
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>[]</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>[]</code>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @Optional()<br />@Inject(&#x27;buttons&#x27;)<br />
-                        </code>
+                        <i>Default value : </i><code>inject&lt;any&gt;(&quot;buttons&quot; as any, { optional: true })! ?? []</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/modal/alert-modal.component.ts:91</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/modal/alert-modal.component.ts:105</a></div>
                         </td>
                     </tr>
 
@@ -885,9 +739,6 @@ export class ModalDemo {
                 <td class="col-md-4">
                     <a name="content"></a>
                     <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier">Public</span>
                         <span ><b>content</b></span>
                         <a href="#content"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -895,22 +746,12 @@ export class ModalDemo {
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @Optional()<br />@Inject(&#x27;content&#x27;)<br />
-                        </code>
+                        <i>Default value : </i><code>inject&lt;string&gt;(&quot;content&quot; as any, { optional: true })!</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/modal/alert-modal.component.ts:88</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/modal/alert-modal.component.ts:102</a></div>
                         </td>
                     </tr>
 
@@ -923,9 +764,6 @@ export class ModalDemo {
                 <td class="col-md-4">
                     <a name="hasScrollingContent"></a>
                     <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier">Public</span>
                         <span ><b>hasScrollingContent</b></span>
                         <a href="#hasScrollingContent"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -933,27 +771,12 @@ export class ModalDemo {
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>null</code>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @Optional()<br />@Inject(&#x27;hasScrollingContent&#x27;)<br />
-                        </code>
+                        <i>Default value : </i><code>inject&lt;boolean&gt;(&quot;hasScrollingContent&quot; as any, { optional: true })! ?? null</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/modal/alert-modal.component.ts:90</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/modal/alert-modal.component.ts:104</a></div>
                         </td>
                     </tr>
 
@@ -966,9 +789,6 @@ export class ModalDemo {
                 <td class="col-md-4">
                     <a name="label"></a>
                     <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier">Public</span>
                         <span ><b>label</b></span>
                         <a href="#label"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -976,22 +796,12 @@ export class ModalDemo {
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @Optional()<br />@Inject(&#x27;label&#x27;)<br />
-                        </code>
+                        <i>Default value : </i><code>inject&lt;string&gt;(&quot;label&quot; as any, { optional: true })!</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/modal/alert-modal.component.ts:86</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/modal/alert-modal.component.ts:100</a></div>
                         </td>
                     </tr>
 
@@ -1027,7 +837,7 @@ export class ModalDemo {
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/modal/alert-modal.component.ts:80</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/modal/alert-modal.component.ts:109</a></div>
                         </td>
                     </tr>
 
@@ -1040,9 +850,6 @@ export class ModalDemo {
                 <td class="col-md-4">
                     <a name="onClose"></a>
                     <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier">Public</span>
                         <span ><b>onClose</b></span>
                         <a href="#onClose"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1050,22 +857,12 @@ export class ModalDemo {
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" target="_blank" >Function</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @Optional()<br />@Inject(&#x27;close&#x27;)<br />
-                        </code>
+                        <i>Default value : </i><code>inject&lt;Function&gt;(&quot;close&quot; as any, { optional: true })!</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/modal/alert-modal.component.ts:92</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/modal/alert-modal.component.ts:106</a></div>
                         </td>
                     </tr>
 
@@ -1078,9 +875,6 @@ export class ModalDemo {
                 <td class="col-md-4">
                     <a name="showCloseButton"></a>
                     <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier">Public</span>
                         <span ><b>showCloseButton</b></span>
                         <a href="#showCloseButton"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1088,21 +882,12 @@ export class ModalDemo {
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>true</code>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @Optional()<br />@Inject(&#x27;showCloseButton&#x27;)<br />
-                        </code>
+                        <i>Default value : </i><code>inject&lt;any&gt;(&quot;showCloseButton&quot; as any, { optional: true })! ?? true</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/modal/alert-modal.component.ts:93</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/modal/alert-modal.component.ts:107</a></div>
                         </td>
                     </tr>
 
@@ -1115,9 +900,6 @@ export class ModalDemo {
                 <td class="col-md-4">
                     <a name="size"></a>
                     <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier">Public</span>
                         <span ><b>size</b></span>
                         <a href="#size"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1125,22 +907,12 @@ export class ModalDemo {
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @Optional()<br />@Inject(&#x27;size&#x27;)<br />
-                        </code>
+                        <i>Default value : </i><code>inject&lt;string&gt;(&quot;size&quot; as any, { optional: true })!</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/modal/alert-modal.component.ts:89</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/modal/alert-modal.component.ts:103</a></div>
                         </td>
                     </tr>
 
@@ -1153,9 +925,6 @@ export class ModalDemo {
                 <td class="col-md-4">
                     <a name="title"></a>
                     <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier">Public</span>
                         <span ><b>title</b></span>
                         <a href="#title"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1163,22 +932,12 @@ export class ModalDemo {
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @Optional()<br />@Inject(&#x27;title&#x27;)<br />
-                        </code>
+                        <i>Default value : </i><code>inject&lt;string&gt;(&quot;title&quot; as any, { optional: true })!</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/modal/alert-modal.component.ts:87</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/modal/alert-modal.component.ts:101</a></div>
                         </td>
                     </tr>
 
@@ -1191,9 +950,6 @@ export class ModalDemo {
                 <td class="col-md-4">
                     <a name="type"></a>
                     <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier">Public</span>
                         <span ><b>type</b></span>
                         <a href="#type"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1201,27 +957,12 @@ export class ModalDemo {
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&quot;default&quot;</code>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @Optional()<br />@Inject(&#x27;type&#x27;)<br />
-                        </code>
+                        <i>Default value : </i><code>inject&lt;any&gt;(&quot;type&quot; as any, { optional: true })! ?? &quot;default&quot;</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/modal/alert-modal.component.ts:85</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/modal/alert-modal.component.ts:99</a></div>
                         </td>
                     </tr>
 
@@ -1236,12 +977,19 @@ export class ModalDemo {
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
 	Component,
-	Inject,
 	ViewChild,
 	AfterViewInit,
-	Optional
+	inject
 } from &quot;@angular/core&quot;;
 import { BaseModal } from &quot;./base-modal.class&quot;;
+import { Modal } from &quot;./modal.component&quot;;
+import { ModalHeader } from &quot;./modal-header.component&quot;;
+import { ModalHeaderLabel } from &quot;./modal-header-label.directive&quot;;
+import { ModalHeaderHeading } from &quot;./modal-header-heading.directive&quot;;
+import { ModalContent } from &quot;./modal-content.directive&quot;;
+import { ModalFooter } from &quot;./modal-footer.component&quot;;
+import { Button } from &quot;carbon-components-angular/button&quot;;
+import { BaseModalService } from &quot;./base-modal.service&quot;;
 
 /**
  * Component to create standard modals for presenting content or asking for user&#x27;s input.
@@ -1298,36 +1046,52 @@ import { BaseModal } from &quot;./base-modal.class&quot;;
 			&lt;div cdsModalContent #modalContent&gt;
 				&lt;p [innerHTML]&#x3D;&quot;content&quot;&gt;&lt;/p&gt;
 			&lt;/div&gt;
-			&lt;cds-modal-footer *ngIf&#x3D;&quot;buttons.length &gt; 0&quot;&gt;
-				&lt;ng-container *ngFor&#x3D;&quot;let button of buttons; let i &#x3D; index&quot;&gt;
-					&lt;button
-						[cdsButton]&#x3D;&quot;button.type&quot;
-						(click)&#x3D;&quot;buttonClicked(i)&quot;
-						[id]&#x3D;&quot;button.id&quot;
-						[attr.modal-primary-focus]&#x3D;&quot;(button.type.indexOf(&#x27;primary&#x27;) !&#x3D;&#x3D; -1 ? &#x27;&#x27; : null)&quot;&gt;
-						{{button.text}}
-					&lt;/button&gt;
-				&lt;/ng-container&gt;
-			&lt;/cds-modal-footer&gt;
+			@if (buttons.length &gt; 0) {
+				&lt;cds-modal-footer&gt;
+					@for (button of buttons; track button.id; let i &#x3D; $index) {
+						&lt;button
+							[cdsButton]&#x3D;&quot;button.type&quot;
+							(click)&#x3D;&quot;buttonClicked(i)&quot;
+							[id]&#x3D;&quot;button.id&quot;
+							[attr.modal-primary-focus]&#x3D;&quot;(button.type.indexOf(&#x27;primary&#x27;) !&#x3D;&#x3D; -1 ? &#x27;&#x27; : null)&quot;&gt;
+							{{button.text}}
+						&lt;/button&gt;
+					}
+				&lt;/cds-modal-footer&gt;
+			}
 		&lt;/cds-modal&gt;
-	&#x60;
+	&#x60;,
+	providers: [BaseModalService],
+	imports: [
+		Modal,
+		ModalHeader,
+		ModalHeaderLabel,
+		ModalHeaderHeading,
+		ModalContent,
+		ModalFooter,
+		Button
+	]
 })
 export class AlertModal extends BaseModal implements AfterViewInit {
+	type &#x3D; inject&lt;any&gt;(&quot;type&quot; as any, { optional: true })! ?? &quot;default&quot;;
+	label &#x3D; inject&lt;string&gt;(&quot;label&quot; as any, { optional: true })!;
+	title &#x3D; inject&lt;string&gt;(&quot;title&quot; as any, { optional: true })!;
+	content &#x3D; inject&lt;string&gt;(&quot;content&quot; as any, { optional: true })!;
+	size &#x3D; inject&lt;string&gt;(&quot;size&quot; as any, { optional: true })!;
+	hasScrollingContent &#x3D; inject&lt;boolean&gt;(&quot;hasScrollingContent&quot; as any, { optional: true })! ?? null;
+	buttons &#x3D; inject&lt;any&gt;(&quot;buttons&quot; as any, { optional: true })! ?? [];
+	onClose &#x3D; inject&lt;Function&gt;(&quot;close&quot; as any, { optional: true })!;
+	showCloseButton &#x3D; inject&lt;any&gt;(&quot;showCloseButton&quot; as any, { optional: true })! ?? true;
+
 	@ViewChild(&quot;modalContent&quot;, { static: true }) modalContent: { nativeElement: any; };
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
 	/**
 	 * Creates an instance of &#x60;AlertModal&#x60;.
 	 */
-	constructor(
-		@Optional() @Inject(&quot;type&quot;) public type &#x3D; &quot;default&quot;,
-		@Optional() @Inject(&quot;label&quot;) public label: string,
-		@Optional() @Inject(&quot;title&quot;) public title: string,
-		@Optional() @Inject(&quot;content&quot;) public content: string,
-		@Optional() @Inject(&quot;size&quot;) public size: string,
-		@Optional() @Inject(&quot;hasScrollingContent&quot;) public hasScrollingContent: boolean &#x3D; null,
-		@Optional() @Inject(&quot;buttons&quot;) public buttons &#x3D; [],
-		@Optional() @Inject(&quot;close&quot;) public onClose: Function,
-		@Optional() @Inject(&quot;showCloseButton&quot;) public showCloseButton &#x3D; true
-	) {
+	constructor() {
 		super();
 		for (let i &#x3D; 0; i &lt; this.buttons.length; i++) {
 			const button &#x3D; this.buttons[i];
@@ -1396,7 +1160,7 @@ export class AlertModal extends BaseModal implements AfterViewInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><cds-modal	[size]="size"	[theme]="type"	[ariaLabel]="title"	[hasScrollingContent]="hasScrollingContent"	[open]="open"	(overlaySelected)="dismissModal(\'overlay\')">	<cds-modal-header (closeSelect)="dismissModal(\'close\')" [showCloseButton]="showCloseButton">		<p cdsModalHeaderLabel class="cds--type-delta">{{label}}</p>		<p cdsModalHeaderHeading class="cds--type-beta">{{title}}</p>	</cds-modal-header>	<div cdsModalContent #modalContent>		<p [innerHTML]="content"></p>	</div>	<cds-modal-footer *ngIf="buttons.length > 0">		<ng-container *ngFor="let button of buttons; let i = index">			<button				[cdsButton]="button.type"				(click)="buttonClicked(i)"				[id]="button.id"				[attr.modal-primary-focus]="(button.type.indexOf(\'primary\') !== -1 ? \'\' : null)">				{{button.text}}			</button>		</ng-container>	</cds-modal-footer></cds-modal>	</div>'
+        var COMPONENT_TEMPLATE = '<div><cds-modal	[size]="size"	[theme]="type"	[ariaLabel]="title"	[hasScrollingContent]="hasScrollingContent"	[open]="open"	(overlaySelected)="dismissModal(\'overlay\')">	<cds-modal-header (closeSelect)="dismissModal(\'close\')" [showCloseButton]="showCloseButton">		<p cdsModalHeaderLabel class="cds--type-delta">{{label}}</p>		<p cdsModalHeaderHeading class="cds--type-beta">{{title}}</p>	</cds-modal-header>	<div cdsModalContent #modalContent>		<p [innerHTML]="content"></p>	</div>	@if (buttons.length > 0) {		<cds-modal-footer>			@for (button of buttons; track button.id; let i = $index) {				<button					[cdsButton]="button.type"					(click)="buttonClicked(i)"					[id]="button.id"					[attr.modal-primary-focus]="(button.type.indexOf(\'primary\') !== -1 ? \'\' : null)">					{{button.text}}				</button>			}		</cds-modal-footer>	}</cds-modal>	</div>'
     var COMPONENTS = [{'name': 'Accordion', 'selector': 'cds-accordion, ibm-accordion'},{'name': 'AccordionItem', 'selector': 'cds-accordion-item, ibm-accordion-item'},{'name': 'ActionableNotification', 'selector': 'cds-actionable-notification, ibm-actionable-notification'},{'name': 'AILabelComponent', 'selector': 'cds-ai-label, ibm-ai-label'},{'name': 'AlertModal', 'selector': 'cds-alert-modal, ibm-alert-modal'},{'name': 'BaseIconButton', 'selector': ''},{'name': 'BaseNotification', 'selector': ''},{'name': 'BaseTabHeader', 'selector': ''},{'name': 'Breadcrumb', 'selector': 'cds-breadcrumb, ibm-breadcrumb'},{'name': 'BreadcrumbItemComponent', 'selector': 'cds-breadcrumb-item, ibm-breadcrumb-item'},{'name': 'ButtonSet', 'selector': 'cds-button-set, ibm-button-set'},{'name': 'Checkbox', 'selector': 'cds-checkbox, ibm-checkbox'},{'name': 'CheckboxGroup', 'selector': 'cds-checkbox-group, ibm-checkbox-group'},{'name': 'ClickableTile', 'selector': 'cds-clickable-tile, ibm-clickable-tile'},{'name': 'CodeSnippet', 'selector': 'cds-code-snippet, ibm-code-snippet'},{'name': 'ComboBox', 'selector': 'cds-combo-box, ibm-combo-box'},{'name': 'ComboButtonComponent', 'selector': 'cds-combo-button'},{'name': 'ContainedList', 'selector': 'cds-contained-list, ibm-contained-list'},{'name': 'ContainedListItem', 'selector': 'cds-contained-list-item, ibm-contained-list-item'},{'name': 'ContentSwitcher', 'selector': 'cds-content-switcher, ibm-content-switcher'},{'name': 'ContextMenuComponent', 'selector': 'cds-menu, cds-context-menu, ibm-context-menu'},{'name': 'ContextMenuDividerComponent', 'selector': 'cds-menu-divider, cds-context-menu-divider, ibm-context-menu-divider'},{'name': 'ContextMenuGroupComponent', 'selector': 'cds-menu-group, cds-context-menu-group, ibm-context-menu-group'},{'name': 'ContextMenuItemComponent', 'selector': 'cds-menu-item, cds-context-menu-item, ibm-context-menu-item'},{'name': 'DatePicker', 'selector': 'cds-date-picker, ibm-date-picker'},{'name': 'DatePickerInput', 'selector': 'cds-date-picker-input, ibm-date-picker-input'},{'name': 'Dialog', 'selector': 'cds-dialog, ibm-dialog'},{'name': 'Documentation', 'selector': 'cds-documentation'},{'name': 'Dropdown', 'selector': 'cds-dropdown, ibm-dropdown'},{'name': 'DropdownList', 'selector': 'cds-dropdown-list, ibm-dropdown-list'},{'name': 'ExpandableTile', 'selector': 'cds-expandable-tile, ibm-expandable-tile'},{'name': 'FileComponent', 'selector': 'cds-file, ibm-file'},{'name': 'FileUploader', 'selector': 'cds-file-uploader, ibm-file-uploader'},{'name': 'Hamburger', 'selector': 'cds-hamburger, ibm-hamburger'},{'name': 'Header', 'selector': 'cds-header, ibm-header'},{'name': 'HeaderAction', 'selector': 'cds-header-action, ibm-header-action'},{'name': 'HeaderGlobal', 'selector': 'cds-header-global, ibm-header-global'},{'name': 'HeaderItem', 'selector': 'cds-header-item, ibm-header-item'},{'name': 'HeaderMenu', 'selector': 'cds-header-menu, ibm-header-menu'},{'name': 'HeaderNavigation', 'selector': 'cds-header-navigation, ibm-header-navigation'},{'name': 'IconButton', 'selector': 'cds-icon-button, ibm-icon-button'},{'name': 'IconTab', 'selector': 'cds-icon-tab, ibm-icon-tab'},{'name': 'InlineLoading', 'selector': 'cds-inline-loading, ibm-inline-loading'},{'name': 'Label', 'selector': 'cds-label, ibm-label'},{'name': 'ListColumn', 'selector': 'cds-list-column, ibm-list-column'},{'name': 'ListHeader', 'selector': 'cds-list-header, ibm-list-header'},{'name': 'ListRow', 'selector': 'cds-list-row, ibm-list-row'},{'name': 'Loading', 'selector': 'cds-loading, ibm-loading'},{'name': 'MenuButtonComponent', 'selector': 'cds-menu-button'},{'name': 'Modal', 'selector': 'cds-modal, ibm-modal'},{'name': 'ModalFooter', 'selector': 'cds-modal-footer, ibm-modal-footer'},{'name': 'ModalHeader', 'selector': 'cds-modal-header, ibm-modal-header'},{'name': 'Notification', 'selector': 'cds-notification, cds-inline-notification, ibm-notification, ibm-inline-notification'},{'name': 'NumberComponent', 'selector': 'cds-number, ibm-number'},{'name': 'OverflowMenu', 'selector': 'cds-overflow-menu, ibm-overflow-menu'},{'name': 'OverflowMenuCustomPane', 'selector': 'cds-overflow-custom-menu-pane, ibm-overflow-custom-menu-pane'},{'name': 'OverflowMenuOption', 'selector': 'cds-overflow-menu-option, ibm-overflow-menu-option'},{'name': 'OverflowMenuPane', 'selector': 'cds-overflow-menu-pane, ibm-overflow-menu-pane'},{'name': 'Overlay', 'selector': 'cds-overlay, ibm-overlay'},{'name': 'Pagination', 'selector': 'cds-pagination, ibm-pagination'},{'name': 'PaginationNav', 'selector': 'cds-pagination-nav, ibm-pagination-navm'},{'name': 'PaginationNavItem', 'selector': 'cds-pagination-nav-item, ibm-pagination-nav-item'},{'name': 'PaginationOverflow', 'selector': 'cds-pagination-overflow, ibm-pagination-overflow'},{'name': 'Panel', 'selector': 'cds-panel, ibm-panel'},{'name': 'PasswordInputLabelComponent', 'selector': 'cds-password-label, ibm-password-label'},{'name': 'Placeholder', 'selector': 'cds-placeholder, ibm-placeholder'},{'name': 'PopoverContent', 'selector': 'cds-popover-content, ibm-popover-content'},{'name': 'ProgressBar', 'selector': 'cds-progress-bar, ibm-progress-bar'},{'name': 'ProgressIndicator', 'selector': 'cds-progress-indicator, ibm-progress-indicator'},{'name': 'Radio', 'selector': 'cds-radio, ibm-radio'},{'name': 'RadioGroup', 'selector': 'cds-radio-group, ibm-radio-group'},{'name': 'Search', 'selector': 'cds-search, ibm-search'},{'name': 'Select', 'selector': 'cds-select, ibm-select'},{'name': 'SelectionTile', 'selector': 'cds-selection-tile, ibm-selection-tile'},{'name': 'SideNav', 'selector': 'cds-sidenav, ibm-sidenav'},{'name': 'SideNavItem', 'selector': 'cds-sidenav-item, ibm-sidenav-item'},{'name': 'SideNavMenu', 'selector': 'cds-sidenav-menu, ibm-sidenav-menu'},{'name': 'SkeletonIcon', 'selector': 'cds-skeleton-icon, ibm-skeleton-icon'},{'name': 'SkeletonPlaceholder', 'selector': 'cds-skeleton-placeholder, ibm-skeleton-placeholder'},{'name': 'SkeletonText', 'selector': 'cds-skeleton-text, ibm-skeleton-text'},{'name': 'Slider', 'selector': 'cds-slider, ibm-slider'},{'name': 'StructuredList', 'selector': 'cds-structured-list, ibm-structured-list'},{'name': 'SwitcherList', 'selector': 'cds-switcher-list, ibm-switcher-list'},{'name': 'SwitcherListItem', 'selector': 'cds-switcher-list-item, ibm-switcher-list-item'},{'name': 'Tab', 'selector': 'cds-tab, ibm-tab'},{'name': 'TabHeaderComponent', 'selector': 'cds-tab-header, ibm-tab-header'},{'name': 'TabHeaderGroup', 'selector': 'cds-tab-header-group, ibm-tab-header-group'},{'name': 'TabHeaderGroupVertical', 'selector': 'cds-tab-header-group-vertical, ibm-tab-header-group-vertical'},{'name': 'TabHeaders', 'selector': 'cds-tab-headers, ibm-tab-headers'},{'name': 'TabHeadersVertical', 'selector': 'cds-tab-headers-vertical, ibm-tab-headers-vertical'},{'name': 'Table', 'selector': 'cds-table, ibm-table'},{'name': 'TableBody', 'selector': '[cdsTableBody], [ibmTableBody]'},{'name': 'TableCheckbox', 'selector': '[cdsTableCheckbox], [ibmTableCheckbox]'},{'name': 'TableContainer', 'selector': 'cds-table-container, ibm-table-container'},{'name': 'TableData', 'selector': '[cdsTableData], [ibmTableData]'},{'name': 'TableExpandButton', 'selector': '[cdsTableExpandButton], [ibmTableExpandButton]'},{'name': 'TableExpandedRow', 'selector': '[cdsTableExpandedRow], [ibmTableExpandedRow]'},{'name': 'TableHead', 'selector': '[cdsTableHead], [ibmTableHead]'},{'name': 'TableHeadCell', 'selector': '[cdsTableHeadCell], [ibmTableHeadCell]'},{'name': 'TableHeadCheckbox', 'selector': '[cdsTableHeadCheckbox], [ibmTableHeadCheckbox]'},{'name': 'TableHeader', 'selector': 'cds-table-header, ibm-table-header'},{'name': 'TableHeaderDecorator', 'selector': 'cds-table-header-decorator, ibm-table-header-decorator'},{'name': 'TableHeadExpand', 'selector': '[cdsTableHeadExpand], [ibmTableHeadExpand]'},{'name': 'TableRadio', 'selector': '[cdsTableRadio], [ibmTableRadio]'},{'name': 'TableRowComponent', 'selector': '[cdsTableRow], [ibmTableRow]'},{'name': 'TableToolbar', 'selector': 'cds-table-toolbar, ibm-table-toolbar'},{'name': 'TableToolbarActions', 'selector': 'cds-table-toolbar-actions, ibm-table-toolbar-actions'},{'name': 'TableToolbarContent', 'selector': 'cds-table-toolbar-content, ibm-table-toolbar-content'},{'name': 'TableToolbarSearch', 'selector': 'cds-table-toolbar-search, ibm-table-toolbar-search'},{'name': 'Tabs', 'selector': 'cds-tabs, ibm-tabs'},{'name': 'TabSkeleton', 'selector': 'cds-tabs-skeleton, ibm-tabs-skeleton'},{'name': 'TabsVertical', 'selector': 'cds-tabs-vertical, ibm-tabs-vertical'},{'name': 'TabsVerticalGrouped', 'selector': 'cds-tabs-vertical-grouped, ibm-tabs-vertical-grouped'},{'name': 'Tag', 'selector': 'cds-tag, ibm-tag'},{'name': 'TagFilter', 'selector': 'cds-tag-filter, ibm-tag-filter'},{'name': 'TagOperationalComponent', 'selector': 'cds-tag-operational, ibm-tag-operational'},{'name': 'TagSelectableComponent', 'selector': 'cds-tag-selectable, ibm-tag-selectable'},{'name': 'TextareaLabelComponent', 'selector': 'cds-textarea-label, ibm-textarea-label'},{'name': 'TextInputLabelComponent', 'selector': 'cds-text-label, ibm-text-label'},{'name': 'Tile', 'selector': 'cds-tile, ibm-tile'},{'name': 'TileGroup', 'selector': 'cds-tile-group, ibm-tile-group'},{'name': 'TimePicker', 'selector': 'cds-timepicker, ibm-timepicker'},{'name': 'TimePickerSelect', 'selector': 'cds-timepicker-select, ibm-timepicker-select'},{'name': 'Toast', 'selector': 'cds-toast, ibm-toast'},{'name': 'Toggle', 'selector': 'cds-toggle, ibm-toggle'},{'name': 'Toggletip', 'selector': 'cds-toggletip, ibm-toggletip'},{'name': 'Tooltip', 'selector': 'cds-tooltip, ibm-tooltip'},{'name': 'TooltipDefinition', 'selector': 'cds-tooltip-definition, ibm-tooltip-definition'},{'name': 'TreeNodeComponent', 'selector': 'cds-tree-node'},{'name': 'TreeViewComponent', 'selector': 'cds-tree-view'}];
     var DIRECTIVES = [{'name': 'AbstractDropdownView', 'selector': '[cdsAbstractDropdownView], [ibmAbstractDropdownView]'},{'name': 'ActionableButton', 'selector': '[cdsActionableButton], [ibmActionableButton]'},{'name': 'ActionableSubtitle', 'selector': '[cdsActionableSubtitle], [ibmActionableSubtitle]'},{'name': 'ActionableTitle', 'selector': '[cdsActionableTitle], [ibmActionableTitle]'},{'name': 'AILabelActions', 'selector': '[cdsAILabelActions], [ibmAILabelActions]'},{'name': 'AILabelContent', 'selector': '[cdsAILabelContent], [ibmAILabelContent]'},{'name': 'AILabelPopoverDirective', 'selector': '[cdsAILabelPopover]'},{'name': 'AspectRatioDirective', 'selector': '[cdsAspectRatio], [ibmAspectRatio]'},{'name': 'BaseModal', 'selector': '[cdsBaseModal], [ibmBaseModal]'},{'name': 'Button', 'selector': '[cdsButton], [ibmButton]'},{'name': 'ClickableTileIconDirective', 'selector': '[cdsClickableTileIcon], [ibmClickableTileIcon]'},{'name': 'ColumnDirective', 'selector': '[cdsCol], [ibmCol]'},{'name': 'ContentSwitcherOption', 'selector': '[cdsContentOption], [ibmContentOption]'},{'name': 'DialogDirective', 'selector': '[cdsDialog], [ibmDialog]'},{'name': 'ExpandableTileAboveFoldDirective', 'selector': '[cdsAboveFold], [ibmAboveFold]'},{'name': 'ExpandableTileBelowFoldDirective', 'selector': '[cdsBelowFold], [ibmBelowFold]'},{'name': 'ExpandedRowHover', 'selector': '[cdsExpandedRowHover], [ibmExpandedRowHover]'},{'name': 'GridDirective', 'selector': '[cdsGrid], [ibmGrid]'},{'name': 'IconDirective', 'selector': '[cdsIcon], [ibmIcon]'},{'name': 'LayerDirective', 'selector': '[cdsLayer], [ibmLayer]'},{'name': 'Link', 'selector': '[cdsLink], [ibmLink]'},{'name': 'LinkIconDirective', 'selector': '[ibmLinkIcon], [cdsLinkIcon]'},{'name': 'List', 'selector': '[cdsList], [ibmList]'},{'name': 'ListItemDirective', 'selector': '[cdsListItem], [ibmListItem]'},{'name': 'ModalContent', 'selector': '[cdsModalContent], [ibmModalContent]'},{'name': 'ModalContentText', 'selector': '[cdsModalContentText], [ibmModalContentText]'},{'name': 'ModalHeaderHeading', 'selector': '[cdsModalHeaderHeading], [ibmModalHeaderHeading]'},{'name': 'ModalHeaderLabel', 'selector': '[cdsModalHeaderLabel], [ibmModalHeaderLabel]'},{'name': 'NotificationSubtitle', 'selector': '[cdsNotificationSubtitle], [ibmNotificationSubtitle]'},{'name': 'NotificationTitle', 'selector': '[cdsNotificationTitle], [ibmNotificationTitle]'},{'name': 'OptGroup', 'selector': 'optgroup'},{'name': 'Option', 'selector': 'option'},{'name': 'OverflowMenuDirective', 'selector': '[cdsOverflowMenu], [ibmOverflowMenu]'},{'name': 'PasswordInput', 'selector': '[cdsPassword], [ibmPassword]'},{'name': 'PopoverContainer', 'selector': '[cdsPopover], [ibmPopover]'},{'name': 'RouterLinkExtendedDirective', 'selector': '[routerLink]'},{'name': 'RowDirective', 'selector': '[cdsRow], [ibmRow]'},{'name': 'ScrollableList', 'selector': '[cdsScrollableList], [ibmScrollableList]'},{'name': 'StackDirective', 'selector': '[cdsStack], [ibmStack]'},{'name': 'TabHeader', 'selector': '[cdsTabHeader], [ibmTabHeader]'},{'name': 'TabHeaderBase', 'selector': ''},{'name': 'TableDirective', 'selector': '[cdsTable], [ibmTable]'},{'name': 'TableHeadCellLabel', 'selector': '[cdsTableHeadCellLabel], [ibmTableHeadCellLabel]'},{'name': 'TableHeaderDescription', 'selector': '[cdsTableHeaderDescription], [ibmTableHeaderDescription]'},{'name': 'TableHeaderTitle', 'selector': '[cdsTableHeaderTitle], [ibmTableHeaderTitle]'},{'name': 'TagIconDirective', 'selector': '[cdsTagIcon], [ibmTagIcon]'},{'name': 'TextArea', 'selector': '[cdsTextArea], [ibmTextArea]'},{'name': 'TextInput', 'selector': '[cdsText], [ibmText]'},{'name': 'ThemeDirective', 'selector': '[cdsTheme], [ibmTheme]'},{'name': 'ToastCaption', 'selector': '[cdsToastCaption], [ibmToastCaption]'},{'name': 'ToastSubtitle', 'selector': '[cdsToastSubtitle], [ibmToastSubtitle]'},{'name': 'ToastTitle', 'selector': '[cdsToastTitle], [ibmToastTitle]'},{'name': 'ToggletipAction', 'selector': '[cdsToggletipAction], [ibmToggletipAction]'},{'name': 'ToggletipButton', 'selector': '[cdsToggletipButton], [ibmToggletipButton]'},{'name': 'ToggletipContent', 'selector': '[cdsToggletipContent], [ibmToggletipContent]'},{'name': 'ToggletipLabel', 'selector': '[cdsToggletipLabel], [ibmToggletipLabel]'}];
     var ACTUAL_COMPONENT = {'name': 'AlertModal'};
@@ -1473,7 +1237,6 @@ export class AlertModal extends BaseModal implements AfterViewInit {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

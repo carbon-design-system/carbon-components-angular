@@ -24,18 +24,18 @@
 <title>cluster_LayerModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="180,-70 180,-268 316,-268 316,-70 180,-70"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_LayerModule_declarations</title>
+<g id="clust3" class="cluster">
+<title>cluster_LayerModule_imports</title>
 <polygon fill="none" stroke="black" points="190,-78 190,-130 306,-130 306,-78 190,-78"/>
 </g>
-<g id="clust5" class="cluster">
+<g id="clust4" class="cluster">
 <title>cluster_LayerModule_exports</title>
 <polygon fill="none" stroke="black" points="188,-208 188,-260 308,-260 308,-208 188,-208"/>
 </g>
 <!-- LayerDirective -->
 <g id="node1" class="node">
 <title>LayerDirective</title>
-<polygon fill="#ffffb3" stroke="black" points="298.23,-122 197.77,-122 197.77,-86 298.23,-86 298.23,-122"/>
+<polygon fill="#8dd3c7" stroke="black" points="298.23,-122 295.23,-126 274.23,-126 271.23,-122 197.77,-122 197.77,-86 298.23,-86 298.23,-122"/>
 <text text-anchor="middle" x="248" y="-99.8" font-family="Times,serif" font-size="14.00">LayerDirective</text>
 </g>
 <!-- LayerModule -->

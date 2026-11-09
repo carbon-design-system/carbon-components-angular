@@ -133,18 +133,18 @@
 <title>cluster_ListModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="136,-70 136,-268 360,-268 360,-70 136,-70"/>
 </g>
-<g id="clust6" class="cluster">
+<g id="clust4" class="cluster">
 <title>cluster_ListModule_exports</title>
 <polygon fill="none" stroke="black" points="144,-208 144,-260 352,-260 352,-208 144,-208"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_ListModule_declarations</title>
+<g id="clust3" class="cluster">
+<title>cluster_ListModule_imports</title>
 <polygon fill="none" stroke="black" points="146,-78 146,-130 350,-130 350,-78 146,-78"/>
 </g>
 <!-- List -->
 <g id="node1" class="node">
 <title>List</title>
-<polygon fill="#ffffb3" stroke="black" points="342,-122 288,-122 288,-86 342,-86 342,-122"/>
+<polygon fill="#8dd3c7" stroke="black" points="342,-122 339,-126 318,-126 315,-122 288,-122 288,-86 342,-86 342,-122"/>
 <text text-anchor="middle" x="315" y="-99.8" font-family="Times,serif" font-size="14.00">List</text>
 </g>
 <!-- ListModule -->
@@ -162,7 +162,7 @@
 <!-- ListItemDirective -->
 <g id="node2" class="node">
 <title>ListItemDirective</title>
-<polygon fill="#ffffb3" stroke="black" points="269.52,-122 154.48,-122 154.48,-86 269.52,-86 269.52,-122"/>
+<polygon fill="#8dd3c7" stroke="black" points="269.52,-122 266.52,-126 245.52,-126 242.52,-122 154.48,-122 154.48,-86 269.52,-86 269.52,-122"/>
 <text text-anchor="middle" x="212" y="-99.8" font-family="Times,serif" font-size="14.00">ListItemDirective</text>
 </g>
 <!-- ListItemDirective&#45;&gt;ListModule -->
@@ -241,14 +241,15 @@
         <div class="container-fluid module">
             <div class="row">
                 <div class="col-sm-3">
-                    <h3>Declarations<a href="https://angular.io/api/core/NgModule#declarations" target="_blank" rel="noopener noreferrer"
-                            title="Official documentation about module declarations"><span class="icon ion-ios-information-circle-outline"></span></a></h3>
+                    <h3>Imports<a href="https://angular.io/api/core/NgModule#imports" target="_blank" rel="noopener noreferrer"
+                            title="Official documentation about module imports"><span
+                                class="icon ion-ios-information-circle-outline"></a></h3>
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <a href="../directives/List.html">List</a>
+                            <a href="../modules/List.html">List</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="../directives/ListItemDirective.html">ListItemDirective</a>
+                            <a href="../modules/ListItemDirective.html">ListItemDirective</a>
                         </li>
                     </ul>
                 </div>
@@ -280,15 +281,15 @@ import { ListItemDirective } from &quot;./list-item.directive&quot;;
 import { List } from &quot;./list.directive&quot;;
 
 @NgModule({
-	declarations: [
-		ListItemDirective,
-		List
-	],
 	exports: [
 		ListItemDirective,
 		List
 	],
-	imports: [CommonModule]
+	imports: [
+		CommonModule,
+		ListItemDirective,
+		List
+	]
 })
 export class ListModule {}
 </code></pre>
@@ -365,7 +366,6 @@ export class ListModule {}
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

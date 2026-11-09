@@ -131,7 +131,7 @@
                             <a href="#advancedFakeAsync" title="src/test-helpers/change-detection.ts" ><b>advancedFakeAsync</b>&nbsp;&nbsp;&nbsp;(src/.../change-detection.ts)</a>
                         </li>
                         <li>
-                            <a href="#ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER_FACTORY" title="src/utils/utils.module.ts" ><b>ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER_FACTORY</b>&nbsp;&nbsp;&nbsp;(src/.../utils.module.ts)</a>
+                            <a href="#ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER_FACTORY" title="src/utils/utils.module.ts" class="deprecated-name"><b>ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER_FACTORY</b>&nbsp;&nbsp;&nbsp;(src/.../utils.module.ts)</a>
                         </li>
                         <li>
                             <a href="#clone" title="src/utils/utils.ts" ><b>clone</b>&nbsp;&nbsp;&nbsp;(src/.../utils.ts)</a>
@@ -143,7 +143,7 @@
                             <a href="#cycleTabs" title="src/common/tab.service.ts" ><b>cycleTabs</b>&nbsp;&nbsp;&nbsp;(src/.../tab.service.ts)</a>
                         </li>
                         <li>
-                            <a href="#DOCUMENT_SERVICE_PROVIDER_FACTORY" title="src/utils/utils.module.ts" ><b>DOCUMENT_SERVICE_PROVIDER_FACTORY</b>&nbsp;&nbsp;&nbsp;(src/.../utils.module.ts)</a>
+                            <a href="#DOCUMENT_SERVICE_PROVIDER_FACTORY" title="src/utils/utils.module.ts" class="deprecated-name"><b>DOCUMENT_SERVICE_PROVIDER_FACTORY</b>&nbsp;&nbsp;&nbsp;(src/.../utils.module.ts)</a>
                         </li>
                         <li>
                             <a href="#EXPERIMENTAL_SERVICE_PROVIDER_FACTORY" title="src/experimental/experimental.module.ts" ><b>EXPERIMENTAL_SERVICE_PROVIDER_FACTORY</b>&nbsp;&nbsp;&nbsp;(src/.../experimental.module.ts)</a>
@@ -185,10 +185,10 @@
                             <a href="#HcModeChecker" title="src/utils/a11y.ts" ><b>HcModeChecker</b>&nbsp;&nbsp;&nbsp;(src/.../a11y.ts)</a>
                         </li>
                         <li>
-                            <a href="#I18N_SERVICE_PROVIDER_FACTORY" title="src/i18n/i18n.module.ts" ><b>I18N_SERVICE_PROVIDER_FACTORY</b>&nbsp;&nbsp;&nbsp;(src/.../i18n.module.ts)</a>
+                            <a href="#I18N_SERVICE_PROVIDER_FACTORY" title="src/i18n/i18n.module.ts" class="deprecated-name"><b>I18N_SERVICE_PROVIDER_FACTORY</b>&nbsp;&nbsp;&nbsp;(src/.../i18n.module.ts)</a>
                         </li>
                         <li>
-                            <a href="#ICON_SERVICE_PROVIDER_FACTORY" title="src/icon/icon.module.ts" ><b>ICON_SERVICE_PROVIDER_FACTORY</b>&nbsp;&nbsp;&nbsp;(src/.../icon.module.ts)</a>
+                            <a href="#ICON_SERVICE_PROVIDER_FACTORY" title="src/icon/icon.module.ts" class="deprecated-name"><b>ICON_SERVICE_PROVIDER_FACTORY</b>&nbsp;&nbsp;&nbsp;(src/.../icon.module.ts)</a>
                         </li>
                         <li>
                             <a href="#isElementFocused" title="src/common/tab.service.ts" ><b>isElementFocused</b>&nbsp;&nbsp;&nbsp;(src/.../tab.service.ts)</a>
@@ -209,7 +209,7 @@
                             <a href="#matchesAttr" title="src/utils/utils.ts" ><b>matchesAttr</b>&nbsp;&nbsp;&nbsp;(src/.../utils.ts)</a>
                         </li>
                         <li>
-                            <a href="#PLACEHOLDER_SERVICE_PROVIDER_FACTORY" title="src/placeholder/placeholder.module.ts" ><b>PLACEHOLDER_SERVICE_PROVIDER_FACTORY</b>&nbsp;&nbsp;&nbsp;(src/.../placeholder.module.ts)</a>
+                            <a href="#PLACEHOLDER_SERVICE_PROVIDER_FACTORY" title="src/placeholder/placeholder.service.ts" ><b>PLACEHOLDER_SERVICE_PROVIDER_FACTORY</b>&nbsp;&nbsp;&nbsp;(src/.../placeholder.service.ts)</a>
                         </li>
                         <li>
                             <a href="#range" title="src/common/utils.ts" ><b>range</b>&nbsp;&nbsp;&nbsp;(src/.../utils.ts)</a>
@@ -482,14 +482,19 @@ to re-check when a component moves to <code>OnPush</code>.</p>
                 <td class="col-md-4">
                     <a name="ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER_FACTORY"></a>
                     <span class="name">
-                        <span ><b>ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER_FACTORY</b></span>
+                        <span class="deprecated-name"><b>ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER_FACTORY</b></span>
                         <a href="#ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER_FACTORY"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
+                <td class="col-md-4 deprecated">
+                    as of v6 - `AnimationFrameServiceSingleton` is `providedIn: "root"` and no longer needs to be provided manually.
+                </td>
+            </tr>
+            <tr>
                 <td class="col-md-4">
-<code>ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER_FACTORY(parentService: <a href="../injectables/AnimationFrameServiceSingleton.html" target="_self">AnimationFrameServiceSingleton</a>, ngZone: NgZone)</code>
+<code>ANIMATION_FRAME_SERVICE_SINGLETON_PROVIDER_FACTORY(parentService: <a href="../injectables/AnimationFrameServiceSingleton.html" target="_self">AnimationFrameServiceSingleton</a>, ngZone?: NgZone)</code>
                 </td>
             </tr>
 
@@ -498,6 +503,8 @@ to re-check when a component moves to <code>OnPush</code>.</p>
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Returns the parent <code>AnimationFrameServiceSingleton</code> instance if one exists, otherwise creates a new one.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -530,7 +537,7 @@ to re-check when a component moves to <code>OnPush</code>.</p>
                                             </td>
 
                                             <td>
-                                                    No
+                                                    Yes
                                             </td>
 
 
@@ -548,9 +555,14 @@ to re-check when a component moves to <code>OnPush</code>.</p>
                 <td class="col-md-4">
                     <a name="DOCUMENT_SERVICE_PROVIDER_FACTORY"></a>
                     <span class="name">
-                        <span ><b>DOCUMENT_SERVICE_PROVIDER_FACTORY</b></span>
+                        <span class="deprecated-name"><b>DOCUMENT_SERVICE_PROVIDER_FACTORY</b></span>
                         <a href="#DOCUMENT_SERVICE_PROVIDER_FACTORY"><span class="icon ion-ios-link"></span></a>
                     </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4 deprecated">
+                    as of v6 - `DocumentService` is `providedIn: "root"` and no longer needs to be provided manually.
                 </td>
             </tr>
             <tr>
@@ -564,6 +576,8 @@ to re-check when a component moves to <code>OnPush</code>.</p>
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Returns the parent <code>DocumentService</code> instance if one exists, otherwise creates a new one.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -1721,9 +1735,14 @@ to re-check when a component moves to <code>OnPush</code>.</p>
                 <td class="col-md-4">
                     <a name="I18N_SERVICE_PROVIDER_FACTORY"></a>
                     <span class="name">
-                        <span ><b>I18N_SERVICE_PROVIDER_FACTORY</b></span>
+                        <span class="deprecated-name"><b>I18N_SERVICE_PROVIDER_FACTORY</b></span>
                         <a href="#I18N_SERVICE_PROVIDER_FACTORY"><span class="icon ion-ios-link"></span></a>
                     </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4 deprecated">
+                    as of v6 - `I18n` is `providedIn: "root"` and no longer needs to be provided manually.
                 </td>
             </tr>
             <tr>
@@ -1737,6 +1756,8 @@ to re-check when a component moves to <code>OnPush</code>.</p>
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Returns the parent <code>I18n</code> instance if one exists, otherwise creates a new one.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -1777,9 +1798,14 @@ to re-check when a component moves to <code>OnPush</code>.</p>
                 <td class="col-md-4">
                     <a name="ICON_SERVICE_PROVIDER_FACTORY"></a>
                     <span class="name">
-                        <span ><b>ICON_SERVICE_PROVIDER_FACTORY</b></span>
+                        <span class="deprecated-name"><b>ICON_SERVICE_PROVIDER_FACTORY</b></span>
                         <a href="#ICON_SERVICE_PROVIDER_FACTORY"><span class="icon ion-ios-link"></span></a>
                     </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4 deprecated">
+                    as of v6 - `IconService` is `providedIn: "root"` and no longer needs to be provided manually.
                 </td>
             </tr>
             <tr>
@@ -1793,6 +1819,8 @@ to re-check when a component moves to <code>OnPush</code>.</p>
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Returns the parent <code>IconService</code> instance if one exists, otherwise creates a new one.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -1877,7 +1905,7 @@ to re-check when a component moves to <code>OnPush</code>.</p>
             </tr>
         </tbody>
     </table>
-</section>    <h3>src/placeholder/placeholder.module.ts</h3>
+</section>    <h3>src/placeholder/placeholder.service.ts</h3>
     <section data-compodoc="block-methods">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
@@ -2184,7 +2212,6 @@ it&#39;s textContent matches the key pressed</p>
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

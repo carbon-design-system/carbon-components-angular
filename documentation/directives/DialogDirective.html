@@ -166,6 +166,7 @@ the service relies on.</p>
                         <td class="col-md-9">
                             <code>
                                 DialogService
+                                EventService
                             </code>
                         </td>
                     </tr>
@@ -175,6 +176,10 @@ the service relies on.</p>
                         <td class="col-md-9"><code>[cdsDialog], [ibmDialog]</code></td>
                     </tr>
 
+                    <tr>
+                        <td class="col-md-3">Standalone</td>
+                        <td class="col-md-9"><code>true</code></td>
+                    </tr>
 
 
                     <tr>
@@ -199,6 +204,10 @@ the service relies on.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#changeDetectorRef" >changeDetectorRef</a>
+                            </li>
+                            <li>
                                 <a href="#dialogConfig" >dialogConfig</a>
                             </li>
                             <li>
@@ -208,6 +217,18 @@ the service relies on.</p>
                             <li>
                                     <span class="modifier">Protected</span>
                                 <a href="#dialogRef" >dialogRef</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#dialogService" >dialogService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#elementRef" >elementRef</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#eventService" >eventService</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
@@ -220,6 +241,10 @@ the service relies on.</p>
                             <li>
                                     <span class="modifier">Private</span>
                                 <a href="#subscriptions" >subscriptions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#viewContainerRef" >viewContainerRef</a>
                             </li>
                         </ul>
                     </td>
@@ -391,12 +416,12 @@ the service relies on.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(elementRef: ElementRef, viewContainerRef: ViewContainerRef, dialogService: <a href="../injectables/DialogService.html" target="_self">DialogService</a>, eventService: <a href="../injectables/EventService.html" target="_self">EventService</a>)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/dialog/dialog.directive.ts:129</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/dialog/dialog.directive.ts:143</a></div>
                             </td>
                         </tr>
 
@@ -404,68 +429,6 @@ the service relies on.</p>
                     <td class="col-md-4">
                             <div class="io-description"><p>Creates an instance of DialogDirective.</p>
 </div>
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>elementRef</td>
-                                                  
-                                                        <td>
-                                                                    <code>ElementRef</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>viewContainerRef</td>
-                                                  
-                                                        <td>
-                                                                    <code>ViewContainerRef</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>dialogService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/DialogService.html" target="_self" >DialogService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>eventService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/EventService.html" target="_self" >EventService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
                     </td>
                 </tr>
             </tbody>
@@ -495,7 +458,7 @@ the service relies on.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/dialog/dialog.directive.ts:86</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/dialog/dialog.directive.ts:90</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -522,7 +485,7 @@ the service relies on.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/dialog/dialog.directive.ts:52</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/dialog/dialog.directive.ts:56</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -548,7 +511,7 @@ the service relies on.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/dialog/dialog.directive.ts:66</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/dialog/dialog.directive.ts:70</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -583,7 +546,7 @@ for more on the difference between <code>mouseleave</code> and <code>mouseout</c
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/dialog/dialog.directive.ts:90</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/dialog/dialog.directive.ts:94</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -615,7 +578,7 @@ for more on the difference between <code>mouseleave</code> and <code>mouseout</c
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/dialog/dialog.directive.ts:96</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/dialog/dialog.directive.ts:100</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -647,7 +610,7 @@ for more on the difference between <code>mouseleave</code> and <code>mouseout</c
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/dialog/dialog.directive.ts:82</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/dialog/dialog.directive.ts:86</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -674,7 +637,7 @@ for more on the difference between <code>mouseleave</code> and <code>mouseout</c
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/dialog/dialog.directive.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/dialog/dialog.directive.ts:52</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -700,7 +663,7 @@ for more on the difference between <code>mouseleave</code> and <code>mouseout</c
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/dialog/dialog.directive.ts:92</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/dialog/dialog.directive.ts:96</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -721,7 +684,7 @@ for more on the difference between <code>mouseleave</code> and <code>mouseout</c
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/dialog/dialog.directive.ts:74</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/dialog/dialog.directive.ts:78</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -753,7 +716,7 @@ for more on the difference between <code>mouseleave</code> and <code>mouseout</c
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/dialog/dialog.directive.ts:70</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/dialog/dialog.directive.ts:74</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -780,7 +743,7 @@ for more on the difference between <code>mouseleave</code> and <code>mouseout</c
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/dialog/dialog.directive.ts:100</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/dialog/dialog.directive.ts:104</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -812,7 +775,7 @@ for more on the difference between <code>mouseleave</code> and <code>mouseout</c
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/dialog/dialog.directive.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/dialog/dialog.directive.ts:47</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -844,7 +807,7 @@ for more on the difference between <code>mouseleave</code> and <code>mouseout</c
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/dialog/dialog.directive.ts:57</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/dialog/dialog.directive.ts:61</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -872,7 +835,7 @@ Do not add focusable elements if trigger is <code>hover</code> or <code>mouseent
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/dialog/dialog.directive.ts:78</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/dialog/dialog.directive.ts:82</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -902,7 +865,7 @@ Do not add focusable elements if trigger is <code>hover</code> or <code>mouseent
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/dialog/dialog.directive.ts:116</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/dialog/dialog.directive.ts:120</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -929,7 +892,7 @@ Do not add focusable elements if trigger is <code>hover</code> or <code>mouseent
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/dialog/dialog.directive.ts:108</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/dialog/dialog.directive.ts:112</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -956,7 +919,7 @@ Do not add focusable elements if trigger is <code>hover</code> or <code>mouseent
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/dialog/dialog.directive.ts:112</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/dialog/dialog.directive.ts:116</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -993,7 +956,7 @@ Do not add focusable elements if trigger is <code>hover</code> or <code>mouseent
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/dialog/dialog.directive.ts:119</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/dialog/dialog.directive.ts:123</a></div>
                         </td>
                     </tr>
 
@@ -1019,7 +982,7 @@ Do not add focusable elements if trigger is <code>hover</code> or <code>mouseent
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/dialog/dialog.directive.ts:120</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/dialog/dialog.directive.ts:124</a></div>
                         </td>
                     </tr>
 
@@ -1050,7 +1013,7 @@ Do not add focusable elements if trigger is <code>hover</code> or <code>mouseent
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/dialog/dialog.directive.ts:118</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/dialog/dialog.directive.ts:122</a></div>
                         </td>
                     </tr>
 
@@ -1085,8 +1048,8 @@ Do not add focusable elements if trigger is <code>hover</code> or <code>mouseent
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="305"
-                                    class="link-to-prism">src/dialog/dialog.directive.ts:305</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="314"
+                                    class="link-to-prism">src/dialog/dialog.directive.ts:314</a></div>
                         </td>
                     </tr>
 
@@ -1158,8 +1121,8 @@ Do not add focusable elements if trigger is <code>hover</code> or <code>mouseent
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="148"
-                                    class="link-to-prism">src/dialog/dialog.directive.ts:148</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="154"
+                                    class="link-to-prism">src/dialog/dialog.directive.ts:154</a></div>
                         </td>
                     </tr>
 
@@ -1225,8 +1188,8 @@ Do not add focusable elements if trigger is <code>hover</code> or <code>mouseent
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="252"
-                                    class="link-to-prism">src/dialog/dialog.directive.ts:252</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="258"
+                                    class="link-to-prism">src/dialog/dialog.directive.ts:258</a></div>
                         </td>
                     </tr>
 
@@ -1267,8 +1230,8 @@ Do not add focusable elements if trigger is <code>hover</code> or <code>mouseent
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="185"
-                                    class="link-to-prism">src/dialog/dialog.directive.ts:185</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="191"
+                                    class="link-to-prism">src/dialog/dialog.directive.ts:191</a></div>
                         </td>
                     </tr>
 
@@ -1309,8 +1272,8 @@ running code from child class.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="321"
-                                    class="link-to-prism">src/dialog/dialog.directive.ts:321</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="330"
+                                    class="link-to-prism">src/dialog/dialog.directive.ts:330</a></div>
                         </td>
                     </tr>
 
@@ -1381,8 +1344,8 @@ run after DialogDirective completes it&#39;s ngOnChanges.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="315"
-                                    class="link-to-prism">src/dialog/dialog.directive.ts:315</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="324"
+                                    class="link-to-prism">src/dialog/dialog.directive.ts:324</a></div>
                         </td>
                     </tr>
 
@@ -1421,8 +1384,8 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="263"
-                                    class="link-to-prism">src/dialog/dialog.directive.ts:263</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="269"
+                                    class="link-to-prism">src/dialog/dialog.directive.ts:269</a></div>
                         </td>
                     </tr>
 
@@ -1489,8 +1452,8 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="294"
-                                    class="link-to-prism">src/dialog/dialog.directive.ts:294</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="303"
+                                    class="link-to-prism">src/dialog/dialog.directive.ts:303</a></div>
                         </td>
                     </tr>
 
@@ -1564,8 +1527,8 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="323"
-                                    class="link-to-prism">src/dialog/dialog.directive.ts:323</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="332"
+                                    class="link-to-prism">src/dialog/dialog.directive.ts:332</a></div>
                         </td>
                     </tr>
 
@@ -1591,6 +1554,32 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="changeDetectorRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>changeDetectorRef</b></span>
+                        <a href="#changeDetectorRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ChangeDetectorRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/dialog/dialog.directive.ts:129</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="dialogConfig"></a>
                     <span class="name">
                         <span ><b>dialogConfig</b></span>
@@ -1606,7 +1595,7 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/dialog/dialog.directive.ts:104</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/dialog/dialog.directive.ts:108</a></div>
                         </td>
                     </tr>
 
@@ -1644,7 +1633,7 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/dialog/dialog.directive.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/dialog/dialog.directive.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -1671,7 +1660,7 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/dialog/dialog.directive.ts:127</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/dialog/dialog.directive.ts:137</a></div>
                         </td>
                     </tr>
 
@@ -1681,6 +1670,84 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
 </div>
                 </td>
             </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dialogService"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>dialogService</b></span>
+                        <a href="#dialogService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(DialogService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/dialog/dialog.directive.ts:131</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="elementRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>elementRef</b></span>
+                        <a href="#elementRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ElementRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/dialog/dialog.directive.ts:128</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="eventService"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>eventService</b></span>
+                        <a href="#eventService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(EventService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/dialog/dialog.directive.ts:132</a></div>
+                        </td>
+                    </tr>
+
 
         </tbody>
     </table>
@@ -1712,7 +1779,7 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/dialog/dialog.directive.ts:119</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/dialog/dialog.directive.ts:123</a></div>
                         </td>
                     </tr>
 
@@ -1753,7 +1820,7 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/dialog/dialog.directive.ts:118</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/dialog/dialog.directive.ts:122</a></div>
                         </td>
                     </tr>
 
@@ -1785,7 +1852,33 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/dialog/dialog.directive.ts:129</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/dialog/dialog.directive.ts:139</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="viewContainerRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>viewContainerRef</b></span>
+                        <a href="#viewContainerRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ViewContainerRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/dialog/dialog.directive.ts:130</a></div>
                         </td>
                     </tr>
 
@@ -1815,7 +1908,7 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/dialog/dialog.directive.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/dialog/dialog.directive.ts:52</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1875,7 +1968,7 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/dialog/dialog.directive.ts:120</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/dialog/dialog.directive.ts:124</a></div>
                                 </td>
                             </tr>
 
@@ -1900,11 +1993,13 @@ Run after DialogDirective completes it&#39;s ngOnInit.</p>
 	OnChanges,
 	HostBinding,
 	SimpleChanges,
-	ComponentRef
+	ChangeDetectorRef,
+	ComponentRef,
+	inject
 } from &quot;@angular/core&quot;;
 import { DialogService } from &quot;./dialog.service&quot;;
 import { CloseMeta, CloseReasons, DialogConfig } from &quot;./dialog-config.interface&quot;;
-import { EventService } from &quot;carbon-components-angular/utils&quot;;
+import {  EventService } from &quot;carbon-components-angular/utils&quot;;
 import { Dialog } from &quot;./dialog.component&quot;;
 import { fromEvent, Subscription } from &quot;rxjs&quot;;
 
@@ -1921,8 +2016,10 @@ import { fromEvent, Subscription } from &quot;rxjs&quot;;
 	selector: &quot;[cdsDialog], [ibmDialog]&quot;,
 	exportAs: &quot;dialog&quot;,
 	providers: [
-		DialogService
-	]
+		DialogService,
+		EventService
+	],
+	standalone: true
 })
 export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	static dialogCounter &#x3D; 0;
@@ -2010,12 +2107,22 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		return this.isOpen ? this.dialogConfig.compID : null;
 	}
 
+	protected elementRef &#x3D; inject(ElementRef);
+	protected changeDetectorRef &#x3D; inject(ChangeDetectorRef);
+	protected viewContainerRef &#x3D; inject(ViewContainerRef);
+	protected dialogService &#x3D; inject(DialogService);
+	protected eventService &#x3D; inject(EventService);
+
 	/**
 	 * Keeps a reference to the currently opened dialog
 	 */
 	protected dialogRef: ComponentRef&lt;Dialog&gt;;
 
 	private subscriptions: Subscription[] &#x3D; [];
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
 
 	/**
 	 * Creates an instance of DialogDirective.
@@ -2024,15 +2131,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 	 * @param dialogService
 	 * @param eventService
 	 */
-	constructor(
-		protected elementRef: ElementRef,
-		protected viewContainerRef: ViewContainerRef,
-		protected dialogService: DialogService,
-		/**
-		 * Deprecated as of v5
-		 */
-		protected eventService: EventService
-	) {}
+	constructor() {}
 
 	ngOnChanges(changes: SimpleChanges) {
 		// set the config object (this can [and should!] be added to in child classes depending on what they need)
@@ -2156,6 +2255,8 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 		// actually open the dialog, emit events, and set the open state
 		this.dialogRef &#x3D; this.dialogService.open(this.viewContainerRef, this.dialogConfig, component);
 		this.isOpen &#x3D; true;
+		// opened from fromEvent subscriptions and timers, rerender for zoneless apps
+		this.changeDetectorRef.markForCheck();
 		this.onOpen.emit();
 		this.isOpenChange.emit(true);
 
@@ -2168,6 +2269,7 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
 				this.dialogService.close(this.dialogRef);
 				this.dialogRef &#x3D; null;
 				this.isOpen &#x3D; false;
+				this.changeDetectorRef.markForCheck();
 				this.onClose.emit();
 				this.isOpenChange.emit(false);
 				subscription.unsubscribe();
@@ -2283,7 +2385,6 @@ export class DialogDirective implements OnInit, OnDestroy, OnChanges {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

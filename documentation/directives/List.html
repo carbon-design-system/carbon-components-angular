@@ -141,8 +141,8 @@
                 <p>Applies either ordered or unordered styling to the list container it is applied to.</p>
 <p>For <code>ul</code>s it will apply unordered list styles, and for <code>ol</code>s it will apply ordered list styles.</p>
 <p>If a <code>ul</code> or <code>ol</code> is nested within a <code>li</code> the directive will apply nested list styling.</p>
-<p>Get started with importing the module:</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { ListModule } from &#39;carbon-components-angular&#39;;</code></pre></div><p><a href="../../?path=/story/components-list--basic">See demo</a></p>
+<p>Get started with importing the directives:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { List, ListItemDirective } from &#39;carbon-components-angular&#39;;</code></pre></div><p><a href="../../?path=/story/components-list--basic">See demo</a></p>
 
             </p>
 
@@ -159,6 +159,10 @@
                         <td class="col-md-9"><code>[cdsList], [ibmList]</code></td>
                     </tr>
 
+                    <tr>
+                        <td class="col-md-3">Standalone</td>
+                        <td class="col-md-9"><code>true</code></td>
+                    </tr>
 
 
 
@@ -170,6 +174,21 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                <a href="#elementRef" >elementRef</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
                 <tr>
@@ -240,45 +259,15 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(elementRef: ElementRef)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/list/list.directive.ts:44</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/list/list.directive.ts:52</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>elementRef</td>
-                                                  
-                                                        <td>
-                                                                    <code>ElementRef</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
 </section>
@@ -306,7 +295,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/list/list.directive.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/list/list.directive.ts:46</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -339,7 +328,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/list/list.directive.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/list/list.directive.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -365,7 +354,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/list/list.directive.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/list/list.directive.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -391,7 +380,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/list/list.directive.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/list/list.directive.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -402,6 +391,38 @@
 
 
 
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="elementRef"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                        <span ><b>elementRef</b></span>
+                        <a href="#elementRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ElementRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/list/list.directive.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
 
             <section data-compodoc="block-accessors">
     <h3 id="accessors">
@@ -423,7 +444,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/list/list.directive.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/list/list.directive.ts:29</a></div>
                                 </td>
                             </tr>
 
@@ -445,7 +466,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/list/list.directive.ts:32</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/list/list.directive.ts:34</a></div>
                                 </td>
                             </tr>
 
@@ -467,7 +488,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/list/list.directive.ts:37</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/list/list.directive.ts:39</a></div>
                                 </td>
                             </tr>
 
@@ -483,7 +504,8 @@
 	Directive,
 	ElementRef,
 	HostBinding,
-	Input
+	Input,
+	inject
 } from &quot;@angular/core&quot;;
 
 /**
@@ -493,16 +515,17 @@
  *
  * If a &#x60;ul&#x60; or &#x60;ol&#x60; is nested within a &#x60;li&#x60; the directive will apply nested list styling.
  *
- * Get started with importing the module:
+ * Get started with importing the directives:
  *
  * &#x60;&#x60;&#x60;typescript
- * import { ListModule } from &#x27;carbon-components-angular&#x27;;
+ * import { List, ListItemDirective } from &#x27;carbon-components-angular&#x27;;
  * &#x60;&#x60;&#x60;
  *
  * [See demo](../../?path&#x3D;/story/components-list--basic)
  */
 @Directive({
-	selector: &quot;[cdsList], [ibmList]&quot;
+	selector: &quot;[cdsList], [ibmList]&quot;,
+	standalone: true
 })
 export class List {
 	@HostBinding(&quot;class.cds--list--ordered&quot;) get ordered() {
@@ -524,7 +547,13 @@ export class List {
 	 */
 	@Input() @HostBinding(&quot;class.cds--list--expressive&quot;) isExpressive &#x3D; false;
 
-	constructor(protected elementRef: ElementRef) {}
+	protected elementRef &#x3D; inject(ElementRef);
+
+	/** Inserted by Angular inject() migration for backwards compatibility */
+	// eslint-disable-next-line @angular-eslint/prefer-inject -- backwards-compatible DI overload until next major
+	constructor(...args: unknown[]);
+
+	constructor() {}
 }
 </code></pre>
     </div>
@@ -598,7 +627,6 @@ export class List {
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 

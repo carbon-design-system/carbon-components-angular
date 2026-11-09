@@ -131,25 +131,21 @@
 <text text-anchor="start" x="429.73" y="-15.4" font-family="Times-12" font-size="14.00"> &#160;Exports</text>
 <g id="clust1" class="cluster">
 <title>cluster_I18nModule</title>
-<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="148,-70 148,-268 348,-268 348,-70 148,-70"/>
+<polygon fill="none" stroke="black" stroke-dasharray="1,5" points="187,-70 187,-268 309,-268 309,-70 187,-70"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_I18nModule_declarations</title>
-<polygon fill="none" stroke="black" points="238,-78 238,-130 340,-130 340,-78 238,-78"/>
+<g id="clust3" class="cluster">
+<title>cluster_I18nModule_imports</title>
+<polygon fill="none" stroke="black" points="197,-78 197,-130 299,-130 299,-78 197,-78"/>
 </g>
-<g id="clust5" class="cluster">
+<g id="clust4" class="cluster">
 <title>cluster_I18nModule_exports</title>
 <polygon fill="none" stroke="black" points="195,-208 195,-260 301,-260 301,-208 195,-208"/>
-</g>
-<g id="clust7" class="cluster">
-<title>cluster_I18nModule_providers</title>
-<polygon fill="none" stroke="black" points="156,-78 156,-130 230,-130 230,-78 156,-78"/>
 </g>
 <!-- ReplacePipe -->
 <g id="node1" class="node">
 <title>ReplacePipe</title>
-<polygon fill="#ffffb3" stroke="black" points="331.97,-122 246.03,-122 246.03,-86 331.97,-86 331.97,-122"/>
-<text text-anchor="middle" x="289" y="-99.8" font-family="Times,serif" font-size="14.00">ReplacePipe</text>
+<polygon fill="#8dd3c7" stroke="black" points="290.97,-122 287.97,-126 266.97,-126 263.97,-122 205.03,-122 205.03,-86 290.97,-86 290.97,-122"/>
+<text text-anchor="middle" x="248" y="-99.8" font-family="Times,serif" font-size="14.00">ReplacePipe</text>
 </g>
 <!-- I18nModule -->
 <g id="node2" class="node">
@@ -160,8 +156,8 @@
 <!-- ReplacePipe&#45;&gt;I18nModule -->
 <g id="edge1" class="edge">
 <title>ReplacePipe&#45;&gt;I18nModule</title>
-<path fill="none" stroke="black" d="M268.31,-122.11C268.31,-122.11 268.31,-140.99 268.31,-140.99"/>
-<polygon fill="black" stroke="black" points="264.81,-140.99 268.31,-150.99 271.81,-140.99 264.81,-140.99"/>
+<path fill="none" stroke="black" d="M248,-122.11C248,-122.11 248,-140.99 248,-140.99"/>
+<polygon fill="black" stroke="black" points="244.5,-140.99 248,-150.99 251.5,-140.99 244.5,-140.99"/>
 </g>
 <!-- ReplacePipe  -->
 <g id="node3" class="node">
@@ -174,18 +170,6 @@
 <title>I18nModule&#45;&gt;ReplacePipe </title>
 <path fill="none" stroke="black" stroke-dasharray="5,2" d="M248,-187.11C248,-187.11 248,-205.99 248,-205.99"/>
 <polygon fill="black" stroke="black" points="244.5,-205.99 248,-215.99 251.5,-205.99 244.5,-205.99"/>
-</g>
-<!-- I18n -->
-<g id="node4" class="node">
-<title>I18n</title>
-<ellipse fill="#fdb462" stroke="black" cx="193" cy="-104" rx="28.98" ry="18"/>
-<text text-anchor="middle" x="193" y="-99.8" font-family="Times,serif" font-size="14.00">I18n</text>
-</g>
-<!-- I18n&#45;&gt;I18nModule -->
-<g id="edge3" class="edge">
-<title>I18n&#45;&gt;I18nModule</title>
-<path fill="none" stroke="black" d="M213.57,-116.84C213.57,-116.84 213.57,-140.52 213.57,-140.52"/>
-<polygon fill="black" stroke="black" points="210.07,-140.52 213.57,-150.52 217.07,-140.52 210.07,-140.52"/>
 </g>
 </g>
 </svg>
@@ -233,20 +217,12 @@
         <div class="container-fluid module">
             <div class="row">
                 <div class="col-sm-3">
-                    <h3>Declarations<a href="https://angular.io/api/core/NgModule#declarations" target="_blank" rel="noopener noreferrer"
-                            title="Official documentation about module declarations"><span class="icon ion-ios-information-circle-outline"></span></a></h3>
+                    <h3>Imports<a href="https://angular.io/api/core/NgModule#imports" target="_blank" rel="noopener noreferrer"
+                            title="Official documentation about module imports"><span
+                                class="icon ion-ios-information-circle-outline"></a></h3>
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <a href="../pipes/ReplacePipe.html">ReplacePipe</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-sm-3">
-                    <h3>Providers<a href="https://angular.io/api/core/NgModule#providers" target="_blank" rel="noopener noreferrer"
-                            title="Official documentation about module providers"><span class="icon ion-ios-information-circle-outline"></a></h3>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <a href="../injectables/I18n.html">I18n</a>
+                            <a href="../modules/ReplacePipe.html">ReplacePipe</a>
                         </li>
                     </ul>
                 </div>
@@ -268,17 +244,24 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule, SkipSelf, Optional } from &quot;@angular/core&quot;;
-
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { SkipSelf, Optional, NgModule } from &quot;@angular/core&quot;;
 import { I18n } from &quot;./i18n.service&quot;;
 import { ReplacePipe } from &quot;./replace.pipe&quot;;
 
-// either provides a new instance of I18n, or returns the parent
+/**
+ * Returns the parent &#x60;I18n&#x60; instance if one exists, otherwise creates a new one.
+ *
+ * @deprecated as of v6 - &#x60;I18n&#x60; is &#x60;providedIn: &quot;root&quot;&#x60; and no longer needs to be provided manually.
+ */
 export function I18N_SERVICE_PROVIDER_FACTORY(parentService: I18n) {
 	return parentService || new I18n();
 }
 
-// I18n should provide a single instance of itself to ensure that translations are consistent through the app
+/**
+ * Ensures a single &#x60;I18n&#x60; instance so translations stay consistent across the app.
+ *
+ * @deprecated as of v6 - &#x60;I18n&#x60; is &#x60;providedIn: &quot;root&quot;&#x60; and no longer needs to be provided manually.
+ */
 export const I18N_SERVICE_PROVIDER &#x3D; {
 	provide: I18n,
 	deps: [[new Optional(), new SkipSelf(), I18n]],
@@ -286,12 +269,8 @@ export const I18N_SERVICE_PROVIDER &#x3D; {
 };
 
 @NgModule({
-	declarations: [ReplacePipe],
-	exports: [ReplacePipe],
-	providers: [
-		I18n,
-		I18N_SERVICE_PROVIDER
-	]
+	imports: [ReplacePipe],
+	exports: [ReplacePipe]
 })
 export class I18nModule {}
 </code></pre>
@@ -368,7 +347,6 @@ export class I18nModule {}
        <script src="../js/libs/es6-shim.min.js"></script>
        <script src="../js/libs/EventDispatcher.js"></script>
        <script src="../js/libs/promise.min.js"></script>
-       <script src="../js/libs/zepto.min.js"></script>
 
        <script src="../js/compodoc.js"></script>
 
