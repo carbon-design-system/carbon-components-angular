@@ -39,6 +39,7 @@ class DropdownTest {
 		class="custom-class"
 		[itemValueKey]="itemValueKey"
 		[allowNullValues]="allowNullValues"
+		[disabled]="disabled"
 		[type]="type"
 		(selected)="onSelect()">
 		<cds-dropdown-list [items]="items"></cds-dropdown-list>
@@ -52,6 +53,7 @@ class DropdownTestNoModel {
 	items = [{content: "one", id: 0, selected: false}, {content: "two", id: 1, selected: false}];
 	itemValueKey = undefined;
 	allowNullValues = false;
+	disabled = false;
 	type = "single";
 	onSelect() {}
 }
@@ -86,6 +88,33 @@ describe("Dropdown", () => {
 		element.triggerEventHandler("click", null);
 		fixture.detectChanges();
 		expect(element.nativeElement.getAttribute("aria-expanded")).toEqual("true");
+	});
+
+	["input", "form control"].forEach(disabledSource => {
+		it(`should close an open dropdown when disabled through its ${disabledSource}`, fakeAsync(() => {
+			fixture = TestBed.createComponent(DropdownTestNoModel);
+			wrapper = fixture.componentInstance;
+			wrapper.items[0].selected = true;
+			const onSelect = spyOn(wrapper, "onSelect");
+			advancedFakeAsync(fixture);
+
+			const dropdown = fixture.debugElement.query(By.css("cds-dropdown")).componentInstance;
+			const trigger = fixture.nativeElement.querySelector(".cds--list-box__field");
+			trigger.click();
+			advancedFakeAsync(fixture);
+			expect(trigger.getAttribute("aria-expanded")).toBe("true");
+
+			if (disabledSource === "input") {
+				wrapper.disabled = true;
+			} else {
+				dropdown.setDisabledState(true);
+			}
+			advancedFakeAsync(fixture);
+
+			expect(trigger.getAttribute("aria-expanded")).toBe("false");
+			expect(dropdown.view.getSelected()[0].id).toBe(0);
+			expect(onSelect).not.toHaveBeenCalled();
+		}));
 	});
 
 	it("should propagate the change in selected option back to the form and emit a selected event", () => {
