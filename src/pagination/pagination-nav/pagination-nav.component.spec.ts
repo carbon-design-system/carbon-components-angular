@@ -14,6 +14,7 @@ import { PaginationModel } from "../pagination-model.class";
 		<cds-pagination-nav
 			[model]="model"
 			[disabled]="disabled"
+			[tooltipAlign]="tooltipAlign"
 			[numOfItemsToShow]="4"
 			(selectPage)="selectPage($event)" />
 	`,
@@ -24,6 +25,7 @@ import { PaginationModel } from "../pagination-model.class";
 class PaginationNavTest implements OnInit {
 	model = new PaginationModel();
 	disabled = false;
+	tooltipAlign: PaginationNav["tooltipAlign"] = "bottom";
 
 	selectPage(page) {
 		this.model.currentPage = page;
@@ -92,6 +94,21 @@ describe("PaginationNav", () => {
 		fixture.detectChanges();
 		expect(paginationComponent.componentInstance.currentPage).toBe(1);
 		expect(wrapper.model.currentPage).toBe(1);
+	});
+
+	it("should align the previous and next button tooltips to the bottom by default", () => {
+		fixture.detectChanges();
+		const buttons = paginationComponent.queryAll(By.css("cds-icon-button"));
+		expect(buttons.length).toBe(2);
+		buttons.forEach(button => expect(button.componentInstance.align).toBe("bottom"));
+	});
+
+	it("should pass tooltipAlign to the previous and next buttons", () => {
+		fixture.componentInstance.tooltipAlign = "top";
+		fixture.detectChanges();
+		const buttons = paginationComponent.queryAll(By.css("cds-icon-button"));
+		expect(buttons.length).toBe(2);
+		buttons.forEach(button => expect(button.componentInstance.align).toBe("top"));
 	});
 
 	it("should disable the forward and backward button when disabled is true", () => {
