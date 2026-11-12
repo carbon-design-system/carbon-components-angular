@@ -1,6 +1,6 @@
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { moduleMetadata, Meta } from "@storybook/angular";
-import { Checkbox } from "./";
+import { Checkbox, CheckboxGroup } from "./";
 import { ReactiveFormsStory } from "./stories";
 import { AILabelModule } from "../ai-label";
 import { ButtonModule } from "../button";
@@ -15,6 +15,7 @@ export default {
 				FormsModule,
 				ReactiveFormsModule,
 				Checkbox,
+				CheckboxGroup,
 				ButtonModule,
 				AILabelModule,
 				IconModule,
@@ -126,6 +127,30 @@ const singleTemplate = () => ({
 });
 export const Single = singleTemplate.bind({});
 
+
+const groupModelTemplate = (args) => ({
+	props: args,
+	template: `
+		<cds-checkbox-group legend="Group with ngModel" [(ngModel)]="model">
+			<cds-checkbox value="apples">Apples</cds-checkbox>
+			<cds-checkbox value="oranges">Oranges</cds-checkbox>
+			<cds-checkbox value="pears">Pears</cds-checkbox>
+		</cds-checkbox-group>
+
+		<div style="display:flex; flex-direction: column; width: 150px">
+			<button (click)="model=['apples', 'pears']">Set model</button>
+			Selected: {{ model }}
+		</div>
+	`
+});
+export const GroupWithNgModel = groupModelTemplate.bind({});
+GroupWithNgModel.storyName = "Group with NgModel";
+GroupWithNgModel.args = {
+	model: ["oranges"]
+};
+GroupWithNgModel.parameters = {
+	controls: { disabled: true }
+};
 
 const groupStatePropagationTemplate = (args) => ({
 	props: args,

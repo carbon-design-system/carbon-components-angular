@@ -56,7 +56,7 @@ export enum CheckboxState {
 				[name]="name"
 				[required]="required"
 				[checked]="checked"
-				[disabled]="disabled"
+				[disabled]="effectiveDisabled"
 				[attr.data-invalid]="(!effectiveReadOnly && effectiveInvalid) ? true : null"
 				[attr.aria-readonly]="effectiveReadOnly ? true : null"
 				[attr.aria-labelledby]="ariaLabelledby"
@@ -320,6 +320,10 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 		Checkbox.checkboxCount++;
 	}
 
+	get effectiveDisabled(): boolean {
+		return this.disabled || !!this.hostGroup?.disabled;
+	}
+
 	get effectiveReadOnly(): boolean {
 		const own = this.readOnly;
 		const group = this.hostGroup?.readOnly ?? false;
@@ -389,7 +393,7 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	}
 
 	/**
-	 * Invoked by `CheckboxGroup` when group `readOnly`, `invalid`, `warn` change so `OnPush`
+	 * Invoked by `CheckboxGroup` when group `readOnly`, `invalid`, `warn`, `disabled` change so `OnPush`
 	 * checkboxes still refresh inherited state from `CHECKBOX_GROUP_HOST`.
 	 */
 	markForCheckFromGroup(): void {
@@ -426,7 +430,7 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 			this.click.emit();
 			return;
 		}
-		if (!this.disabled) {
+		if (!this.effectiveDisabled) {
 			this.toggle();
 			this.transitionCheckboxState(this._checked ? CheckboxState.Checked : CheckboxState.Unchecked);
 			this.emitChangeEvent();
@@ -452,6 +456,7 @@ export class Checkbox implements ControlValueAccessor, AfterViewInit {
 	emitChangeEvent() {
 		this.checkedChange.emit(this.checked);
 		this.propagateChange(this.checked);
+		this.hostGroup?.checkboxChanged?.(this);
 	}
 
 	/**
