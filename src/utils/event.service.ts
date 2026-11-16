@@ -34,7 +34,7 @@ export class EventService implements OnDestroy {
 	}
 
 	onDocument(eventType: string, callback: EventHandler) {
-		this.documentService.handleEvent(eventType, callback);
+		return this.documentService.handleEvent(eventType, callback);
 	}
 
 	ngOnDestroy() {

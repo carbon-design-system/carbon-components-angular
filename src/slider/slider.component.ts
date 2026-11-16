@@ -5,6 +5,7 @@ import {
 	Output,
 	EventEmitter,
 	AfterViewInit,
+	OnDestroy,
 	ViewChild,
 	ElementRef,
 	TemplateRef,
@@ -16,6 +17,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 import { EventService } from "carbon-components-angular/utils";
 import { NgClass, NgTemplateOutlet, NgStyle } from "@angular/common";
+import { Subscription } from "rxjs";
 
 /**
  * Used to select from ranges of values. [See here](https://www.carbondesignsystem.com/components/slider/usage) for usage information.
@@ -163,7 +165,7 @@ import { NgClass, NgTemplateOutlet, NgStyle } from "@angular/common";
 	],
 	imports: [NgClass, NgTemplateOutlet, NgStyle]
 })
-export class Slider implements AfterViewInit, ControlValueAccessor {
+export class Slider implements AfterViewInit, OnDestroy, ControlValueAccessor {
 	/**
 	 * Used to generate unique IDs
 	 */
@@ -323,6 +325,8 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 	protected _disabled = false;
 	protected _readonly = false;
 	protected _focusedThumbIndex = 0;
+	protected documentMouseMoveSubscription: Subscription;
+	protected documentMouseUpSubscription: Subscription;
 
 	private changeDetection = inject(ChangeDetectorRef);
 
@@ -334,8 +338,8 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 
 	ngAfterViewInit() {
 		// bind mousemove and mouseup to the document so we don't have issues tracking the mouse
-		this.eventService.onDocument("mousemove", this.onMouseMove.bind(this));
-		this.eventService.onDocument("mouseup", this.onMouseUp.bind(this));
+		this.documentMouseMoveSubscription = this.eventService.onDocument("mousemove", this.onMouseMove.bind(this));
+		this.documentMouseUpSubscription = this.eventService.onDocument("mouseup", this.onMouseUp.bind(this));
 
 		// apply any values we got from before the view initialized
 		this.changeDetection.detectChanges();
@@ -360,6 +364,11 @@ export class Slider implements AfterViewInit, ControlValueAccessor {
 				}
 			});
 		}
+	}
+
+	ngOnDestroy() {
+		this.documentMouseMoveSubscription?.unsubscribe();
+		this.documentMouseUpSubscription?.unsubscribe();
 	}
 
 	trackThumbsBy(index: number, item: any) {
