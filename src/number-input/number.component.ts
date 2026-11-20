@@ -87,6 +87,7 @@ export class NumberChange {
 					[placeholder]="placeholder"
 					(focus)="fluid ? handleFocus($event): null"
 					(blur)="fluid ? handleFocus($event): null"
+					(input)="onNumberInput($event)"
 					(change)="onNumberInputChange($event)"/>
 				<ng-container *ngIf="decorator">
 					<div class="cds--number__input-inner-wrapper--decorator">
@@ -284,6 +285,11 @@ export class NumberComponent implements ControlValueAccessor {
 	 */
 	@Input() pattern: string;
 	/**
+	 * Set to `true` to allow an empty input, which emits `null`.
+	 * Otherwise an empty or non-numeric input resets the value to `0`.
+	 */
+	@Input() allowEmpty = false;
+	/**
 	 * Emits event notifying other classes when a change in state occurs in the input.
 	 */
 	@Output() change = new EventEmitter<NumberChange>();
@@ -461,6 +467,23 @@ export class NumberComponent implements ControlValueAccessor {
 		this.propagateChange(this.value);
 	}
 
+	/**
+	 * Validates on every keystroke
+	 */
+	onNumberInput(event: Event) {
+		const input = event.target as HTMLInputElement;
+		if (this.disabled || this.allowEmpty) {
+			return;
+		}
+		const isNumber = input.value !== "" && !isNaN(Number(input.value));
+		if (!isNumber) {
+			input.value = "0";
+		}
+	}
+
+	/**
+	 * Emits the committed value (on blur or enter).
+	 */
 	onNumberInputChange(event) {
 		this.value = event.target.value;
 		this.emitChangeEvent();
