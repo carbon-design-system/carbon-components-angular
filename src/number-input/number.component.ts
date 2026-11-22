@@ -285,8 +285,11 @@ export class NumberComponent implements ControlValueAccessor {
 	 */
 	@Input() pattern: string;
 	/**
-	 * Set to `true` to allow an empty input, which emits `null`.
-	 * Otherwise an empty or non-numeric input resets the value to `0`.
+	 * Set to `true` to reset non-numeric input to `0` as the user types
+	 */
+	@Input() numericOnly = false;
+	/**
+	 * Set to `true` to allow an empty input when `numericOnly` is set, which emits `null`.
 	 */
 	@Input() allowEmpty = false;
 	/**
@@ -468,15 +471,17 @@ export class NumberComponent implements ControlValueAccessor {
 	}
 
 	/**
-	 * Validates on every keystroke
+	 * Validates on every keystroke when `numericOnly` is set.
+	 * The value is only emitted on `change`.
 	 */
 	onNumberInput(event: Event) {
 		const input = event.target as HTMLInputElement;
-		if (this.disabled || this.allowEmpty) {
+		if (!this.numericOnly || this.disabled || input.value !== "") {
 			return;
 		}
-		const isNumber = input.value !== "" && !isNaN(Number(input.value));
-		if (!isNumber) {
+		// `type="number"` reports `""` both when empty and when the text isn't a number,
+		// `badInput` tells them apart.
+		if (input.validity.badInput || !this.allowEmpty) {
 			input.value = "0";
 		}
 	}
