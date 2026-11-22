@@ -64,6 +64,7 @@ const Template = (args) => ({
 			[warn]="warn"
 			[warnText]="warnText"
 			[size]="size"
+			[numericOnly]="true"
 			[readonly]="readonly"
 			[disabled]="disabled"
 			[fluid]="fluid"
