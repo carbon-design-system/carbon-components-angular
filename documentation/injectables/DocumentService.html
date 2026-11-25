@@ -221,8 +221,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="26"
-                                    class="link-to-prism">src/utils/document.service.ts:26</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="28"
+                                    class="link-to-prism">src/utils/document.service.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -337,7 +337,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                         </div>
                             <div class="io-description">
@@ -367,8 +367,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="30"
-                                    class="link-to-prism">src/utils/document.service.ts:30</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="32"
+                                    class="link-to-prism">src/utils/document.service.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -496,7 +496,9 @@ export class DocumentService implements OnDestroy {
 			}
 		}
 		const observable &#x3D; this.globalEvents.get(eventType);
-		this.subscriptions.add(observable.subscribe(callback));
+		const subscription &#x3D; observable.subscribe(callback);
+		this.subscriptions.add(subscription);
+		return subscription;
 	}
 
 	handleClick(callback: EventHandler) {

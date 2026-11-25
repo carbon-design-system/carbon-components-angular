@@ -416,7 +416,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                         </div>
                             <div class="io-description">
@@ -552,7 +552,7 @@ export class EventService implements OnDestroy {
 	}
 
 	onDocument(eventType: string, callback: EventHandler) {
-		this.documentService.handleEvent(eventType, callback);
+		return this.documentService.handleEvent(eventType, callback);
 	}
 
 	ngOnDestroy() {

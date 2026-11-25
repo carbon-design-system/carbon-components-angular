@@ -24,13 +24,13 @@
 <title>cluster_AccordionModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="83.5,-70 83.5,-268 412.5,-268 412.5,-70 83.5,-70"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_AccordionModule_exports</title>
-<polygon fill="none" stroke="black" points="140.5,-208 140.5,-260 356.5,-260 356.5,-208 140.5,-208"/>
-</g>
 <g id="clust3" class="cluster">
 <title>cluster_AccordionModule_imports</title>
 <polygon fill="none" stroke="black" points="91.5,-78 91.5,-130 404.5,-130 404.5,-78 91.5,-78"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_AccordionModule_exports</title>
+<polygon fill="none" stroke="black" points="140.5,-208 140.5,-260 356.5,-260 356.5,-208 140.5,-208"/>
 </g>
 <!-- Accordion -->
 <g id="node1" class="node">
