@@ -290,6 +290,7 @@ export class NumberComponent implements ControlValueAccessor {
 	@Input() numericOnly = false;
 	/**
 	 * Set to `true` to allow an empty input when `numericOnly` is set, which emits `null`.
+	 * `null` is default/only value emitted otherwise (numericOnly=false)
 	 */
 	@Input() allowEmpty = false;
 	/**
