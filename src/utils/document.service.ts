@@ -20,7 +20,9 @@ export class DocumentService implements OnDestroy {
 			}
 		}
 		const observable = this.globalEvents.get(eventType);
-		this.subscriptions.add(observable.subscribe(callback));
+		const subscription = observable.subscribe(callback);
+		this.subscriptions.add(subscription);
+		return subscription;
 	}
 
 	handleClick(callback: EventHandler) {

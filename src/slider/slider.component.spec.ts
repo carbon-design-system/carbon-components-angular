@@ -47,6 +47,25 @@ describe("Slider", () => {
 		expect(fixture.componentInstance instanceof Slider).toBe(true);
 	});
 
+	it("should remove document mouse listeners when destroyed", () => {
+		const sliderFixture = TestBed.createComponent(Slider);
+		const slider = sliderFixture.componentInstance;
+		const onMouseMove = spyOn(slider, "onMouseMove");
+		const onMouseUp = spyOn(slider, "onMouseUp");
+		sliderFixture.detectChanges();
+
+		document.dispatchEvent(new MouseEvent("mousemove"));
+		document.dispatchEvent(new MouseEvent("mouseup"));
+		expect(onMouseMove).toHaveBeenCalledTimes(1);
+		expect(onMouseUp).toHaveBeenCalledTimes(1);
+
+		sliderFixture.destroy();
+		document.dispatchEvent(new MouseEvent("mousemove"));
+		document.dispatchEvent(new MouseEvent("mouseup"));
+		expect(onMouseMove).toHaveBeenCalledTimes(1);
+		expect(onMouseUp).toHaveBeenCalledTimes(1);
+	});
+
 	it("should set isMouseDown to true on mousedown event", () => {
 		element.nativeElement.querySelector(".cds--slider__thumb").dispatchEvent(new Event("mousedown"));
 		expect(element.componentInstance.isMouseDown).toBe(true);
