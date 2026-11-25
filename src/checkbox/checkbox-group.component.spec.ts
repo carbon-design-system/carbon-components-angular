@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import { FormsModule } from "@angular/forms";
+import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { CheckboxModule } from "./checkbox.module";
 
@@ -101,6 +101,46 @@ class GroupInheritanceInvalidHost {
 	groupInvalid = false;
 }
 
+@Component({
+	template: `
+		<cds-checkbox-group legend="Checkbox heading" [(ngModel)]="selected">
+			@for (option of options; track option) {
+				<cds-checkbox [value]="option">{{option}}</cds-checkbox>
+			}
+		</cds-checkbox-group>
+	`,
+	imports: [CheckboxModule, FormsModule]
+})
+class GroupNgModelHost {
+	options = ["a", "b", "c"];
+	selected: string[] = ["b"];
+}
+
+@Component({
+	template: `
+		<cds-checkbox-group legend="Checkbox heading" [formControl]="control">
+			<cds-checkbox value="a">A</cds-checkbox>
+			<cds-checkbox value="b">B</cds-checkbox>
+			<cds-checkbox>No value</cds-checkbox>
+		</cds-checkbox-group>
+	`,
+	imports: [CheckboxModule, ReactiveFormsModule]
+})
+class GroupReactiveHost {
+	control = new FormControl<string[]>(["a"]);
+}
+
+@Component({
+	template: `
+		<cds-checkbox-group legend="Checkbox heading">
+			<cds-checkbox value="a" [checked]="true">A</cds-checkbox>
+			<cds-checkbox value="b">B</cds-checkbox>
+		</cds-checkbox-group>
+	`,
+	imports: [CheckboxModule]
+})
+class GroupStandaloneHost {}
+
 describe("CheckboxGroup", () => {
 	beforeEach(() => {
 		TestBed.resetTestingModule();
@@ -112,7 +152,10 @@ describe("CheckboxGroup", () => {
 				GroupReadOnlyInheritBothHost,
 				GroupInheritanceHost,
 				GroupInvalidInheritBothHost,
-				GroupInheritanceInvalidHost
+				GroupInheritanceInvalidHost,
+				GroupNgModelHost,
+				GroupReactiveHost,
+				GroupStandaloneHost
 			]
 		});
 	});
@@ -298,6 +341,138 @@ describe("CheckboxGroup", () => {
 			expect(inputs[1].nativeElement.getAttribute("data-invalid")).toBe(
 				"true"
 			);
+		});
+	});
+
+	describe("forms support", () => {
+		const getInputs = (f: ComponentFixture<unknown>): HTMLInputElement[] =>
+			f.debugElement
+				.queryAll(By.css("input.cds--checkbox"))
+				.map(input => input.nativeElement);
+
+		it("should not change the checked state of checkboxes when used without forms", async () => {
+			const f = TestBed.createComponent(GroupStandaloneHost);
+			f.detectChanges();
+			await f.whenStable();
+			f.detectChanges();
+			expect(getInputs(f).map(input => input.checked)).toEqual([true, false]);
+		});
+
+		it("should check the checkboxes included in the ngModel value", async () => {
+			const f = TestBed.createComponent(GroupNgModelHost);
+			f.detectChanges();
+			await f.whenStable();
+			f.detectChanges();
+			expect(getInputs(f).map(input => input.checked)).toEqual([false, true, false]);
+		});
+
+		it("should update the ngModel value when checkboxes are toggled", async () => {
+			const f = TestBed.createComponent(GroupNgModelHost);
+			f.detectChanges();
+			await f.whenStable();
+			const inputs = getInputs(f);
+			inputs[2].click();
+			f.detectChanges();
+			expect(f.componentInstance.selected).toEqual(["b", "c"]);
+			inputs[1].click();
+			f.detectChanges();
+			expect(f.componentInstance.selected).toEqual(["c"]);
+			inputs[2].click();
+			f.detectChanges();
+			expect(f.componentInstance.selected).toEqual([]);
+		});
+
+		it("should not mutate the array bound to ngModel", async () => {
+			const f = TestBed.createComponent(GroupNgModelHost);
+			const initial = f.componentInstance.selected;
+			f.detectChanges();
+			await f.whenStable();
+			getInputs(f)[0].click();
+			f.detectChanges();
+			expect(initial).toEqual(["b"]);
+			expect(f.componentInstance.selected).not.toBe(initial);
+		});
+
+		it("should reflect ngModel changes made from the outside", async () => {
+			const f = TestBed.createComponent(GroupNgModelHost);
+			f.detectChanges();
+			await f.whenStable();
+			f.componentInstance.selected = ["a", "c"];
+			f.detectChanges();
+			await f.whenStable();
+			f.detectChanges();
+			expect(getInputs(f).map(input => input.checked)).toEqual([true, false, true]);
+		});
+
+		it("should apply the value to checkboxes rendered later", async () => {
+			const f = TestBed.createComponent(GroupNgModelHost);
+			f.detectChanges();
+			await f.whenStable();
+			f.componentInstance.options = ["a", "b", "c", "d"];
+			f.componentInstance.selected = ["d"];
+			f.detectChanges();
+			await f.whenStable();
+			f.detectChanges();
+			await f.whenStable();
+			f.detectChanges();
+			expect(getInputs(f).map(input => input.checked)).toEqual([false, false, false, true]);
+		});
+
+		it("should work with reactive forms", () => {
+			const f = TestBed.createComponent(GroupReactiveHost);
+			f.detectChanges();
+			const inputs = getInputs(f);
+			expect(inputs.map(input => input.checked)).toEqual([true, false, false]);
+
+			inputs[1].click();
+			f.detectChanges();
+			expect(f.componentInstance.control.value).toEqual(["a", "b"]);
+
+			f.componentInstance.control.setValue(["b"]);
+			f.detectChanges();
+			expect(inputs.map(input => input.checked)).toEqual([false, true, false]);
+
+			f.componentInstance.control.setValue(null);
+			f.detectChanges();
+			expect(inputs.map(input => input.checked)).toEqual([false, false, false]);
+		});
+
+		it("should ignore checkboxes without a value", () => {
+			const f = TestBed.createComponent(GroupReactiveHost);
+			f.detectChanges();
+			getInputs(f)[2].click();
+			f.detectChanges();
+			expect(f.componentInstance.control.value).toEqual(["a"]);
+		});
+
+		it("should disable every checkbox when the form control is disabled", async () => {
+			const f = TestBed.createComponent(GroupReactiveHost);
+			f.detectChanges();
+			f.componentInstance.control.disable();
+			await f.whenStable();
+			f.detectChanges();
+			expect(getInputs(f).every(input => input.disabled)).toBe(true);
+
+			getInputs(f)[1].click();
+			expect(f.componentInstance.control.value).toEqual(["a"]);
+
+			f.componentInstance.control.enable();
+			await f.whenStable();
+			f.detectChanges();
+			expect(getInputs(f).some(input => input.disabled)).toBe(false);
+		});
+
+		it("should mark the control as touched only when focus leaves the group", () => {
+			const f = TestBed.createComponent(GroupReactiveHost);
+			f.detectChanges();
+			const inputs = getInputs(f);
+			const group = f.debugElement.query(By.css("cds-checkbox-group")).nativeElement;
+
+			group.dispatchEvent(new FocusEvent("focusout", { relatedTarget: inputs[1], bubbles: true }));
+			expect(f.componentInstance.control.touched).toBe(false);
+
+			group.dispatchEvent(new FocusEvent("focusout", { relatedTarget: null, bubbles: true }));
+			expect(f.componentInstance.control.touched).toBe(true);
 		});
 	});
 });

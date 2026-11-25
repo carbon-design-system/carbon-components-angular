@@ -1,1 +1,1 @@
-export type CheckboxValue = boolean | "on" | "off";
+export type CheckboxValue = boolean | string | number;
