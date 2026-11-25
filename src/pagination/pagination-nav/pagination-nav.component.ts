@@ -61,6 +61,7 @@ export interface PaginationNavTranslations {
 						[size]="size"
 						(click)="jumpToPrevious()"
 						[disabled]="leftArrowDisabled"
+						[align]="tooltipAlign"
 						[description]="previousItemText.subject | async">
 						<svg
 							cdsIcon="caret--left"
@@ -110,6 +111,7 @@ export interface PaginationNavTranslations {
 						[size]="size"
 						(click)="jumpToNext()"
 						[disabled]="rightArrowDisabled"
+						[align]="tooltipAlign"
 						[description]="nextItemText.subject | async">
 						<svg
 							cdsIcon="caret--right"
@@ -168,6 +170,13 @@ export class PaginationNav {
 		this.nextItemText.override(valueWithDefaults.NEXT);
 		this.previousItemText.override(valueWithDefaults.PREVIOUS);
 	}
+
+	/**
+	 * Alignment of the tooltip shown for the previous/next buttons.
+	 * Useful when the pagination sits at the bottom of the page and the
+	 * default `bottom` tooltip would be cropped.
+	 */
+	@Input() tooltipAlign: IconButton["align"] = "bottom";
 
 	/**
 	 * Sets the pagination nav size

@@ -39,6 +39,7 @@ const Template = (args) => ({
 			[numOfItemsToShow]="numOfItemsToShow"
 			[loop]="loop"
 			[skeleton]="skeleton"
+			[tooltipAlign]="tooltipAlign"
 			[size]="size">
 		</app-pagination>
 	`
@@ -50,5 +51,6 @@ Basic.args = {
 	numOfItemsToShow: 4,
 	loop: true,
 	skeleton: false,
+	tooltipAlign: "bottom",
 	size: "md"
 };

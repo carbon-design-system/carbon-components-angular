@@ -16,6 +16,7 @@ import {
 			[loop]="loop"
 			(selectPage)="selectPage($event)"
 			[numOfItemsToShow]="numOfItemsToShow"
+			[tooltipAlign]="tooltipAlign"
 			[size]="size">
 		</cds-pagination-nav>
 	`,
@@ -29,6 +30,7 @@ export class PaginationNavStory implements OnInit {
 	@Input() pageInputDisabled = false;
 	@Input() numOfItemsToShow = 4;
 	@Input() size: "sm" | "md" | "lg" = "md";
+	@Input() tooltipAlign: PaginationNav["tooltipAlign"] = "bottom";
 
 	@Input() get totalDataLength() {
 		return this.model.totalDataLength;
