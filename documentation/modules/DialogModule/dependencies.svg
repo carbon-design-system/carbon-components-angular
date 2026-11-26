@@ -24,13 +24,13 @@
 <title>cluster_DialogModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 1545,-268 1545,-70 8,-70"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_DialogModule_exports</title>
-<polygon fill="none" stroke="black" points="340,-208 340,-260 1156,-260 1156,-208 340,-208"/>
-</g>
 <g id="clust6" class="cluster">
 <title>cluster_DialogModule_providers</title>
 <polygon fill="none" stroke="black" points="1389,-78 1389,-130 1537,-130 1537,-78 1389,-78"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_DialogModule_exports</title>
+<polygon fill="none" stroke="black" points="340,-208 340,-260 1156,-260 1156,-208 340,-208"/>
 </g>
 <g id="clust3" class="cluster">
 <title>cluster_DialogModule_imports</title>

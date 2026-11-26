@@ -24,13 +24,13 @@
 <title>cluster_InputModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 1079,-268 1079,-70 8,-70"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_InputModule_exports</title>
-<polygon fill="none" stroke="black" points="61,-208 61,-260 1026,-260 1026,-208 61,-208"/>
-</g>
 <g id="clust3" class="cluster">
 <title>cluster_InputModule_imports</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-130 1071,-130 1071,-78 16,-78"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_InputModule_exports</title>
+<polygon fill="none" stroke="black" points="61,-208 61,-260 1026,-260 1026,-208 61,-208"/>
 </g>
 <!-- IconDirective -->
 <g id="node1" class="node">

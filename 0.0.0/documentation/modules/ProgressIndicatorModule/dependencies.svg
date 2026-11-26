@@ -24,13 +24,13 @@
 <title>cluster_ProgressIndicatorModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="67.5,-70 67.5,-268 428.5,-268 428.5,-70 67.5,-70"/>
 </g>
-<g id="clust3" class="cluster">
-<title>cluster_ProgressIndicatorModule_imports</title>
-<polygon fill="none" stroke="black" points="75.5,-78 75.5,-130 420.5,-130 420.5,-78 75.5,-78"/>
-</g>
 <g id="clust4" class="cluster">
 <title>cluster_ProgressIndicatorModule_exports</title>
 <polygon fill="none" stroke="black" points="195.5,-208 195.5,-260 329.5,-260 329.5,-208 195.5,-208"/>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_ProgressIndicatorModule_imports</title>
+<polygon fill="none" stroke="black" points="75.5,-78 75.5,-130 420.5,-130 420.5,-78 75.5,-78"/>
 </g>
 <!-- I18nModule -->
 <g id="node1" class="node">

@@ -24,13 +24,13 @@
 <title>cluster_SliderModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="153,-70 153,-268 343,-268 343,-70 153,-70"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_SliderModule_exports</title>
-<polygon fill="none" stroke="black" points="215,-208 215,-260 285,-260 285,-208 215,-208"/>
-</g>
 <g id="clust3" class="cluster">
 <title>cluster_SliderModule_imports</title>
 <polygon fill="none" stroke="black" points="161,-78 161,-130 335,-130 335,-78 161,-78"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_SliderModule_exports</title>
+<polygon fill="none" stroke="black" points="215,-208 215,-260 285,-260 285,-208 215,-208"/>
 </g>
 <!-- Slider -->
 <g id="node1" class="node">

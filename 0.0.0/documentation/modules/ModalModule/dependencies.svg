@@ -24,13 +24,13 @@
 <title>cluster_ModalModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 2104,-268 2104,-70 8,-70"/>
 </g>
-<g id="clust3" class="cluster">
-<title>cluster_ModalModule_imports</title>
-<polygon fill="none" stroke="black" points="356,-78 356,-130 2096,-130 2096,-78 356,-78"/>
-</g>
 <g id="clust4" class="cluster">
 <title>cluster_ModalModule_exports</title>
 <polygon fill="none" stroke="black" points="564,-208 564,-260 1635,-260 1635,-208 564,-208"/>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_ModalModule_imports</title>
+<polygon fill="none" stroke="black" points="356,-78 356,-130 2096,-130 2096,-78 356,-78"/>
 </g>
 <g id="clust6" class="cluster">
 <title>cluster_ModalModule_providers</title>
