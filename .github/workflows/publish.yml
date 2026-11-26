@@ -21,15 +21,15 @@ jobs:
       contents: write # to be able to publish a GitHub release
       issues: write # to be able to comment on released issues
       pull-requests: write # to be able to comment on pull requests
-      id-token: write # to enable use of ODIC for npm provenance
+      id-token: write # to enable use of OIDC for npm trusted publishing & provenance
     steps:
       # Checkout to branch
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      # Set up node to use v18
+      # Angular 14 toolchain builds on Node 18
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: "18"
           cache: "npm"
@@ -42,12 +42,23 @@ jobs:
       - name: Build package
         run: npm run build
 
+      # npm trusted publishing (OIDC) needs npm 11.5+ and semantic-release needs Node 22.14+
+      - name: Setup Node for release
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24.x"
+
+      # @semantic-release/npm runs `npm publish` preferring node_modules/.bin, where
+      # package-lock.json installs npm 8 (no OIDC support). dist/ is already built,
+      # so dropping node_modules to publish with Node 24's npm instead.
+      - name: Remove project node_modules
+        run: rm -rf node_modules
+
       # Run Semantic release to publish package to NPM
       - name: Publish package
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.CARBON_BOT_NPM_TOKEN }}
-        run: npm run semantic-release
+        run: npx -y semantic-release@25.0.3
 
       # Push storybook build to gh-pages branch if pushed to `master` branch
       - name: Serve storybook
