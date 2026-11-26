@@ -24,13 +24,13 @@
 <title>cluster_SideNavModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 633,-268 633,-70 8,-70"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_SideNavModule_exports</title>
-<polygon fill="none" stroke="black" points="105,-208 105,-260 419,-260 419,-208 105,-208"/>
-</g>
 <g id="clust3" class="cluster">
 <title>cluster_SideNavModule_imports</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-130 625,-130 625,-78 16,-78"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_SideNavModule_exports</title>
+<polygon fill="none" stroke="black" points="105,-208 105,-260 419,-260 419,-208 105,-208"/>
 </g>
 <!-- I18nModule -->
 <g id="node1" class="node">
