@@ -30,7 +30,7 @@
     "@angular/router": "^20.1.0",
     "@carbon/icons": "^11.74.0",
     "@carbon/styles": "^1.99.0",
-    "carbon-components-angular": "^5.63.0",
+    "carbon-components-angular": "^5.73.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
